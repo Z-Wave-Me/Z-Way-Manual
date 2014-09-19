@@ -1,0 +1,452 @@
+\section{Automation Engine}
+\label{modules}
+
+ 
+%The Z-Way architecture consist of the four main building blocks:
+%\begin{itemize}
+%\item the optimized firmware for the Z-Wave chip
+%\item the Z-Wave communication stack
+%\item the different user interfaces
+%\item the automation engine
+%\end{itemize}
+
+The automation engine performs different actions based on events.  The actions are either 
+signal commands or scripts that can add additional logic and conditions.
+Events, either generated 
+from the Z-Wave network or from an outside sources such as the Internet or even from a 
+user interaction is causing certain actions, either within the Z-Wave network (e.g. 
+switching a light) or outside Z-Wave (e.g. sending a email). In Z-Way all automation 
+is organized in so called modules. The subsequent manual will explain how these 
+modules work and how to create own modules.
+
+{\bf Attention: There is no Graphical User Interface for the Automation engine at this 
+moment in time. You will need a text editor such as joe, textwrangler or vi to edit 
+certain files. }
+
+\subsection{How to get to the automation engine}
+
+The starting point for automation in Z-Way is called config.xml and is located in the main 
+folder of Z-Way. The statement for the automation engine looks like
+
+\begin{quote}
+{\tt  
+$<automation-dir>pathToAutomationCodeBase</automation-dir>$
+}
+\end{quote}
+Assuming the automation is – like on default – in the subdirectory /automation the 
+statement should look like
+
+\begin{quote}
+{\tt  
+$<automation-dir>automation </automation-dir>$
+}
+\end{quote}
+
+The automation folder consists of several files and subdirectories. The most important 
+file of the automation is called config.json. On default there is no config.json but 
+you may create an initial configuration file from the template config-sample.json
+
+Lets have a look into this file. It consists of one JSON object description, that defines certain basic configuration settings:
+
+{\bf basePath:} This path variable points to root of the automation engine. In most cases this is './'
+
+
+{\bf controller} These are some definition of setups of the controller itself. Within the controller
+definition there are three further sections:
+
+\begin{itemize}
+\item modulePath: the folder where all the automation modules are stored
+\item modules: a list of all the modules that shall be known to the controller
+\item instances: the active instances of the modules
+\end{itemize}
+
+The listing below shows a sample configuration file
+
+\begin{lstlisting}[caption=Sample JSON Config File]{SJSON}
+{
+  "basePath": "./,
+  "controller": {
+    "modulesPath": "./modules",
+     "modules": [
+       "EventLog",
+       "ZWaveGate",
+       "AutoOff"
+       ],
+      "instances": {
+        "EventLog" : {
+          "module": "EventLog",
+          "config": {}
+          },
+        "ZWave" : {
+          "module": "ZWaveGate",
+          "config": {}
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+The module variable lists all the modules separated by comma that shall be known to the controller. The sample config only shows the modules 'EventLog', 'ZWaveGate' and 'AutoOff'. Whenever a new module is 
+created it needs to be added here in order to be registered. Please note that listing 
+a module here only makes the module available to the automation engine 
+but will not instantiate the functionality.
+
+The next part finally instantiates the module within the structure 'instances' The sample 
+code shows the two instances, one of the module 'Eventlog' and one of the Module 'ZWaveGate'.
+
+From the sample code we can learn
+\begin{itemize}
+\item that every instance has a unique name and the module to be instantiated is defined in the variable 'module'
+\item the very same module can be instantiated multiple times but with different names
+\item not every module needs to be instantiated.
+\end{itemize}
+
+Every instance consists of the name of the instance, the reference to the module (that 
+was declared in the upper part of the config file and a config structure. The config structure 
+allows to send certain configuration values to the module. 
+
+Example: Assuming there is a module that turns on a light at a certain time, accepting the 
+node ID and the time for action, then there could be multiple instances with different 
+node IDs and times as config  parameter.
+
+\begin{lstlisting}[caption=Another Sample Config File - Instance Part]{SJSON2}
+instances {
+“TurnOn Floor” {
+	“module”  “TurnOn”,
+		config{	“node”: 2, 
+				“time”: “22:00”}},
+“TurnOn Kitchen” {
+	“module”:  “TurnOn”,
+		config{	“node”: 5, 
+				“time”: “18:00”}},
+}
+\end{lstlisting}
+The modules will be instantiated one after each other in the order of its 
+entries in the instances section. 
+
+Warning! The current Z-Way Home Automation system requires “'ventLog' and 'ZWave' modules to  be always instantiated. 'EventLog should always be instantiated as first module prior to any other module. 'The module 'EventLog'  creates the event logging subsystem and the module "ZWave" enables the Z-Wave network bindings.
+
+\subsection{The Event Bus}
+
+All communication from and to the automation modules is handled by events. An event is a structure containing certain information that is exchanged using a central distribution place, {\bf the event bus}. This means that all modules can send events to the event bus and can listen to event in order to execute commands on them. All modules can 'see' all events but need to filter out their events of relevance.  The core objects of the automation are written in JS and they are available as source code in the sub folder  “classes”:
+
+\begin{itemize}
+\item AutomationController.js: This is the main engine of the automation function
+\item AutomationModule.js: the basic object for the module
+\item VirtualDevice.js: The implementation of the virtual device that is the abstraction of all real device but the way to create new devices not related to certain physical Z-Wave devices.
+\end{itemize}
+
+
+The file main.js is the startup file for the automation system and it is loading the three 
+classes just mentioned. The subfolder /lib contains the key JS script for the Event handling: eventemitter.js.
+
+\subsubsection{Emitting events}
+
+The 'Event emitter' emits events into the central event bus. The event emitter can be called from 
+all modules and scripts of the automation system. The syntax is:
+
+\begin{quote}
+{\tt  
+$controller.emit(eventName, args1,arg2,...argn)$
+}
+\end{quote}
+
+The event name 'eventName' has to be noted in the form of XXX.YYY where XXX is the name 
+of the event source (e.g. the name of the module issuing the event or the name of the 
+module using the event) and YYY is the name of the event itself.  To allow a scalable 
+system it makes sense to name the events by the name of the module that is supposed to 
+receive and to manage events. This simplifies the filtering of these events by the 
+receiver module(s).
+
+Certain event names are forbidden for general use because they are already used in the 
+existing modules. One example are events with the name cron.XXXX that are used by the 
+cron module handling all timer related events.
+
+Every event can have a list of arguments developers can decide on. For the events used by 
+preloaded modules (first and foremost the cron module) this argument structure is 
+predefined. For all other modules the developer is free to decide on structure and content. It is also 
+possible to have list fields and or any other structure as argument for the event
+
+One example of an issued event can be 
+
+\begin{quote}
+{\tt  
+$emit(“mymodule.testevent”,”Test”,[“event1”,”event2”])$
+}
+\end{quote}
+
+\subsubsection{Catching events}
+
+The controller object, part of every module, offers a function called 'on()' to catch events. 
+The 'on(name, function())' function subscribes to events of a certain name type. If not all  events of a certain name tag shall be processed a further filtering needs to be implemented  processing  the further arguments of the event. The function argument contains a reference 
+to the implementation using the event to perform certain actions. The argument list of the event is 
+handed over to this function in its order but need to be declared in the function call statement.
+
+\begin{quote}
+{\tt  
+this.controller.on(“mymodule.testevent”, function (name,eventarray) {})
+}
+\end{quote}
+
+\subsection{Module-Syntax}
+
+Each module is located in a sub directory of the module-subfolder defined in the config.json file.
+The name of the sub folder equals to the module name (not the instance of the module name!) and has at least two files:
+
+\subsubsection{Module.json}
+
+This file contains the module meta-definition used by the AutomationController. It must be a valid JSON object with the following fields (all of them are required):
+\begin{itemize}
+\item autoload — Boolean, defines will this module automatically instantiated during Home Automation startup.
+\item singleton — Boolean, defines this module can be instantiated more than one time or not.
+\item defaults — Object, default module instance settings. This object will be patched with the particular 
+config object from the controller's configuration and resulting object will be passed to the initializer.
+%\item actions — Object, defines exported module instance actions. Object keys are the %names of actions and 
+%values are meta-definitions of exported actions used by AutomationController and API %webserver.
+%\item metrics — Object, defines exported module metrics.
+\end{itemize}
+All configuration fields are required. Types of the object must be equal in every definition in every case. For instance, if module doesn't export any metric corresponding key value should be and empty object “{}”.
+
+\subsubsection{index.js}
+ 
+This script defines an automation module class which is descendant of AutomationModule base class.
+During initialization the module script must define the variable '\_module' containing the particular module class.
+
+
+Example of a minimal automation module:
+
+\begin{lstlisting}[caption=Minimal Module]{MMIN}
+
+function SampleModule (id, controller) {
+    SampleModule.super_.call.init(this, id, controller);
+
+    this.greeting = "Hello, World!";
+}
+
+inherits(SampleModule, AutomationModule);
+_module = SampleModule;
+
+SampleModule.prototype.init = function () {
+    this.sayHello();
+}
+
+SampleModule.prototype.sayHello = function () {
+    debugPrint(this.greeting);
+} 
+
+\end{lstlisting} 
+ 
+The first part of the code illustrates how to define a class function named SampleModule that calls the superclass' constructor. Its highly recommended not to do further instantiations in the constructur. Initializations should be implemented within the 'init' function.
+ 
+The second part of the code is almost immutable for any module. It calls prototypal inheritance support routine and it fills in \_module variable.
+
+The third part of the sample code defines module's init() method which is an 
+instance initializer. This initializer must call the superclass's initializer prior to all other tasks. In the initializer module can setup it's private environment, subscribe to the events and do any other stuff.
+Sometimes, whole module code can be placed withing the initializer without creation of any other class's methods. As the reference of such approach you can examine AutoOff module source code.
+
+After the init function a module may contain other functions. The 'sayHello' function of the Sample Module shows this as example.
+
+\subsection{Available Core Modules}
+
+
+The automation engine already contains certain modules essential for the work of the whole system. Do now exclude these modules from the config.json and alter them only if you know exactly what you do.
+
+
+\subsubsection{Cron, the timer module}
+
+All time driven actions need a timer. The Z-Way automation engine implement a cron-type timer 
+system as a module as well. The basic function of the cron module is
+
+\begin{itemize}
+\item It accepts registration of events that are triggered periodically
+\item It allows to de-register such events. 
+\end{itemize}
+
+
+The registration and deregistration of events is also handled using the event mechanism. 
+The cron module is listening for events with the tags 'cron.addTask' and  'cron.removeTask'. 
+The first argument of these events are the name of the event fired by the cron module. The 
+second argument of the 'addTask' event is an array desricing the times when this event shall be issued. It has the format: 
+\begin{itemize}
+\item Minute [start,stop, step] or 0-59 or null
+\item Hour [start,stop, step] or 0-23 or null
+\item weekDay [start,stop, step] or 0-6 or null
+\item dayOfMonth [start,stop, step] or 1-31 or null
+\item Month [start,stop, step] or 1-12 or null
+\end{itemize}
+The argument for the different time parameters has one of three formats
+\begin{itemize}
+\item null: the event will be fired on every minute or hour etc.
+\item single value: the event will be fired when the value reaches the given value
+\item array [start, stop, step]: The event will be fired between start and stop in steps.
+\end{itemize}
+ 
+ The object  
+\begin{quote}
+{\tt  $\{minute: null,hour: null,weekDay: null, day: null, month: null\} $   }
+\end{quote} 
+
+will fire every minute within every hour within every weekday on every day of the month every month. Another example of an event emitted towards the cron 
+module for registering an timer event can be found in the Battery Polling Module:
+
+\begin{lstlisting}[caption=Registering a Battery Polling Command]{SJSON3}
+    this.controller.emit("cron.addTask", "batteryPolling.poll", {
+        minute: 0,
+        hour: 0,
+        weekDay: this.config.launchWeekDay,
+        day: null,
+        month: null        
+    });
+\end{lstlisting}
+
+This call will cause the cron module to emit an event at night (00:00) on a day 
+that is defined in the configuration variable this.config.launchWeekDay, e.g. 0 = Sunday.
+
+The “cron.removeTask” only needs the name of the registered event to deregister.
+
+\subsubsection{Z-Wave}
+
+All Z-Wave related functions of Z-Way are encapsulated in the zway object and can be accessed directly from all automation modules in the same way as described in the JSON interface. However it is recommended to access Z-Wave related functions using the virtual device associated wit the Z-Wave devices.
+
+\subsubsection{HTTP Request}
+
+The JS interpreter used for the execution of the modules allows to directly accessing HTTP
+objects.
+
+The http request is much like jQuery.ajax(): r = http.request(options);
+
+
+Here's the list of options:
+\begin{itemize}
+\item url – required. Url you want to request (might be http, https, or maybe even ftp);
+\item method – optional. Http method to use (currently one of GET, POST, HEAD). If not specified, GET is used;
+\item headers – optional. Object containing additional headers to pass to server:
+
+\begin{lstlisting}
+headers: {
+    "Content-Type": "text/xml",
+    "X-Requested-With": "RaZberry/1.5.0"
+}
+\end{lstlisting}
+
+\item data – required for POST requests. Data to post to the server. May be either string (to post raw data) or an object with keys and values (will be serialized as 'key1=value1\&key2=value2\&…');
+\item auth – optional. Provides credentials for basic authentication. It is an object containing login and password:
+\begin{lstlisting}
+auth: {
+    login: "username",
+    password: "secret"
+}
+\end{lstlisting}
+\item contentType – optional. Allows to override content type returned by server for parsing data (see below);
+\item async – optional. Specifies whether request should be sent asynchronously. Default is false. In case of synchronous request result is returned immediately (as function return value), otherwise function exits immediately, and response is delivered later thru callbacks.
+\item success, error and complete – optional, valid only for async requests. Success callback is called after successful request, error is called on failure, complete is called nevertheless (even if success/error callback produces exception, so it is like "finally" statement);
+\end{itemize}
+
+Response (as stated above) is delivered either as function return value, or as callback parameter. Is is always an object containing following members:
+
+\begin{itemize}
+\item status – HTTP status code (or -1 if some non-HTTP error occurred). Status codes from 200 to 299 are considered success;
+\item statusText – status string;
+\item url – response url (might differ from url requested in case of server redirects);
+\item headers – object containing all the headers returned by server;
+\item contentType – content type returned by server;
+\item data – response data.
+\end{itemize}
+
+
+Response data is handled differently depending on content type (if contentType on request is set, it takes priority over server content type):
+\begin{itemize}
+\item application/json and text/x-json are returned as JSON object;
+\item application/xml and text/xml are returned as XML object;
+\item application/octet-stream is returned as binary ArrayBuffer;
+\item string is returned otherwise.
+\end{itemize}
+In case data cannot be parsed as valid JSON/XML, it is still returned as string, and additional parseError member is present.
+
+
+\begin{lstlisting}
+http.request({
+	url: "http://server.com" (string, required),
+	method: "GET" (GET/POST/HEAD, optional, default "GET"),
+	
+	headers: (object, optional)
+	{
+		"name": "value",
+		...
+	},
+	
+	auth: (object, optional)
+	{
+		"login": "xxx" (string, required),
+		"password": "***" (string, required)
+	},
+	
+	data: (object, optional, for POST only)
+	{
+		"name": "value",
+		...
+	}
+	-- OR --
+	data: "name=value&..." (string, optional, for POST only),
+
+	async: true (boolean, optional, default false),
+	
+	success: function(rsp) {} (function, optional, for async only),
+	failure: function(rsp) {} (function, optional, for async only)
+});
+
+
+response:
+{
+	status: 200 (integer, -1 for non-http errors),
+	statusText: "OK" (string),
+	url: "http://server.com" (string),
+	contentType: "text/html" (string),
+	headers: (object)
+	{
+		"name": "value"
+	},
+	data: result (object or string, depending on content type)
+}
+\end{lstlisting}
+
+
+\subsection{Additional Javascript Commands useful for automation}
+
+The z-way automation engine is based on Javascript as specified in the ECMA specification document
+
+\begin{quote}
+{\tt  
+$http://www.ecma-international.org/publications/standards/Ecma-262.htm$
+}
+\end{quote}
+
+This implementation does not offer any automated module loading functions. Every Javascript code runs in the same global name space. Therefore its important to maintain certain naming conventions and keep the namespace as clean as possible.
+
+It must also be understood that the implementation running on the backend of zway does NOT offer all the nice library and communication functions of a web browsers Java script implementation. In particular there are not direct function to access network resources and not function to access the local filesystem.
+
+The following functions implemented in the zway automation system need to be used instead:
+
+\subsubsection{loadJSON(filename)}
+
+This function reads a file from the filesystem and loads it into the memory. The file must contain a valid JSON object. The only argument is the name of the file including full pathname of the local filesystem. The functions returns the full JSON object or null in case of error.
+
+\subsubsection{executeFile(filename)}
+
+Loads and executes a particular javascript file from the local filesystem.
+The script is executed withig the global namespace.
+
+Remark: If an error occurred during the execution it won't stop from further execution, but erroneous script will not be executed completely. It will stop on the first error.
+
+\subsubsection{system(command)}
+
+The command system() allows to execute any shell level command available on the operating system. It will return the shell output of the command. One common example of this function would be the call of a 'wget' function to access data from internet services.
+On default the execution of system commands is forbidden. Each command executed need to be permitted by putting one line with the starting commands in the file automation/.syscommands or in an different automation folder as specified in config.xml.
+ 
+\subsubsection{Debugging}
+
+Please us the functions 'debugPrint()' or 'console.log()' for debugging purposes.
+
+
+Further function calls and descriptions can be found in the  Z-Way Data Reference , particularly in the root portion of it.
+

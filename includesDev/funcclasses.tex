@@ -1,0 +1,175 @@
+\chapter{Function Class Reference}
+\label{FunctionClasses}
+ 
+\paragraph {Function Class SerialAPIGetInitData}
+\begin{quote} Syntax: SerialAPIGetInitData(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Request initial information about devices in network\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class SerialAPIApplicationNodeInfo}
+\begin{quote} Syntax: SerialAPIApplicationNodeInfo(listening, optional, flirs1000, flirs250, genericClass, specificClass, nif, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Set controller node information\end{quote}
+\begin{quote} Parameter listening: Listening flag\end{quote}
+\begin{quote} Parameter optional: Optional flag (set if device supports more CCs than described as mandatory for it's Device Type)\end{quote}
+\begin{quote} Parameter flirs1000: FLiRS 1000 flag (hardware have to be based on FLiRS library to support it)\end{quote}
+\begin{quote} Parameter flirs250: FLiRS 250 flag (hardware have to be based on FLiRS library to support it)\end{quote}
+\begin{quote} Parameter genericClass: Generic Device Type\end{quote}
+\begin{quote} Parameter specificClass: Specific Device Type\end{quote}
+\begin{quote} Parameter nif: New NIF\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class GetControllerCapabilities}
+\begin{quote} Syntax: GetControllerCapabilities(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Request controller capabilities (primary role, SUC/SIS availability)\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class GetVersion}
+\begin{quote} Syntax: GetVersion(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Request controller hardware version\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class IsFailedNode}
+\begin{quote} Syntax: IsFailedNode(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Checks if node is failed\end{quote}
+\begin{quote} Parameter nodeId: Node Id to be checked\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class SerialAPISoftReset}
+\begin{quote} Syntax: SerialAPISoftReset(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Soft reset. Restarts Z-Wave chip\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class GetNodeProtocolInfo}
+\begin{quote} Syntax: GetNodeProtocolInfo(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Get node protocol info\end{quote}
+\begin{quote} Parameter nodeId: Node Id of the device in question\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class GetRoutingTableLine}
+\begin{quote} Syntax: GetRoutingTableLine(nodeId, removeBad = False, removeRepeaters = False, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Get routing table line\end{quote}
+\begin{quote} Parameter nodeId: Node Id of the device in question\end{quote}
+\begin{quote} Parameter removeBad: Exclude failed nodes from the listing\end{quote}
+\begin{quote} Parameter removeRepeaters: Exclude repeater nodes from the listing\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class AssignReturnRoute}
+\begin{quote} Syntax: AssignReturnRoute(nodeId, destId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Assign return route to specified node. Get Serial API capabilities\end{quote}
+\begin{quote} Parameter nodeId: Node Id of the device that have to store new route\end{quote}
+\begin{quote} Parameter destId: Destination Node Id of the route\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class DeleteReturnRoute}
+\begin{quote} Syntax: DeleteReturnRoute(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Delete return route\end{quote}
+\begin{quote} Parameter nodeId: Node Id of the device that have to delete all assigned return routes\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class SetDefault}
+\begin{quote} Syntax: SetDefault(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Reset the controller. Note: this function will delete ALL data 
+from the Z-Wave chip and restore it to factory default! Z-Wave transceiver firmares based 
+on 4.5x and 6.x+ SDKs will also generate a new Home Id.\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class SendNodeInformation}
+\begin{quote} Syntax: SendNodeInformation(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send NIF of the transceiver to nodeId\end{quote}
+\begin{quote} Parameter nodeId: Destination Node Id (NODE\_BROADCAST to send non-routed broadcast packet)\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class RequestNodeInformation}
+\begin{quote} Syntax: RequestNodeInformation(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Request NIF of a device\end{quote}
+\begin{quote} Parameter nodeId: Node Id to be requested for a NIF\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class RemoveFailedNode}
+\begin{quote} Syntax: RemoveFailedNode(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Remove failed node from network. Before removing the transceiver firmware will check that the device is really unreachable\end{quote}
+\begin{quote} Parameter nodeId: Node Id to be removed from network\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class ReplaceFailedNode}
+\begin{quote} Syntax: ReplaceFailedNode(nodeId, successCallback = None, failureCallback = None)\end{quote}
+\begin{quote} Description: Replace failed node with a new one. Be aware that a failed node can be replaced by a node of another type. 
+This can lead to problems. Always request device NIF and force re-interview after successful replace process.\end{quote}
+\begin{quote} Parameter nodeId: Node Id to be replaced by new one\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class RequestNetworkUpdate}
+\begin{quote} Syntax: RequestNetworkUpdate(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Request network topology update from SUC/SIS. Note that this process may also fail due more than 64 changes from last sync. In this case a re-inclusion of the controller (self) is required.\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class RequestNodeNeighbourUpdate}
+\begin{quote} Syntax: RequestNodeNeighbourUpdate(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Request neighbours update for specific node\end{quote}
+\begin{quote} Parameter nodeId: Node Id to be requested for its neighbours\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class SetLearnMode}
+\begin{quote} Syntax: SetLearnMode(startStop, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Set/stop Learn mode\end{quote}
+\begin{quote} Parameter startStop: Start Learn mode if True, stop if False\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class AddNodeToNetwork}
+\begin{quote} Syntax: AddNodeToNetwork(startStop, highPower = True, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Start/stop Inclusion of a new node. Available on primary and inclusion controllers\end{quote}
+\begin{quote} Parameter startStop: Start inclusion mode if True, stop if False\end{quote}
+\begin{quote} Parameter highPower: Use full power during this operation if True. On False use low power mode.\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class RemoveNodeFromNetwork}
+\begin{quote} Syntax: RemoveNodeFromNetwork(startStop, highPower = False, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Start/stop exclusion of a node. Note that this function can be used to exclude a device from previous network 
+before including in ours. Available on primary and inclusion controllers.\end{quote}
+\begin{quote} Parameter startStop: Start exclusion mode if True, stop if False\end{quote}
+\begin{quote} Parameter highPower: Use full power during this operation if True. On False use low power mode.\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class ControllerChange}
+\begin{quote} Syntax: ControllerChange(startStop, highPower = False, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Set new primary controller (also known as Controller Shift). Same as Inclusion, but the newly included device will get the role of primary. Available only on primary controller.\end{quote}
+\begin{quote} Parameter startStop: Start controller shift mode if True, stop if False.\end{quote}
+\begin{quote} Parameter highPower: Use full power during this operation if True. On False use low power mode.\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class CreateNewPrimary}
+\begin{quote} Syntax: CreateNewPrimary(startStop, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Create new primary controller by SUC controller. Same as Inclusion, but the newly included device will get the role of primary.. Available only on SUC.. Be careful not to create two primary controllers! This can lead to network malfunction!\end{quote}
+\begin{quote} Parameter startStop: Start create new primary mode if True, stop if False\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+
+\paragraph {Function Class ZMEFreqChange}
+\begin{quote} Syntax: ZMEFreqChange(freq, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Change Transceiver frequency for Z-Wave ICs supporting the SRD 860 frequency band. 
+This function is specific for Z-Wave.Me hardware\end{quote}
+\begin{quote} Parameter freq: 0 for EU, 1 for RU, 2 for IND\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote} 
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote} 
+

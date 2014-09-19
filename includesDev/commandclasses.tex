@@ -1,0 +1,1175 @@
+\chapter{Command Class Reference}
+\label{ccs}
+
+%@@@ Alarm missing variable description
+%@@@ Schedule is incomplete
+
+Command Classes are groups of wireless commands that allow using certain functions of a Z-wave device.  
+In Z-Way each Z-Wave device has a data holder entry for each command class supported. During the inclusion 
+and interview of the device the command class structure is instantiated in the data holder and filled with 
+certain data.  Command Class commands change values of the corresponding data holder structure. The follow 
+list shows the public commands of the command classes supported with their parameters and the data holder 
+objects changed.
+
+
+The subsequent list shows the most important data holder values but the full set of data values can always 
+be accesses using the demo UI. In expert mode there is a list of command classes with a simplified 
+User Interface plus a link that visualizes all data holder elements.
+ 
+
+
+\section{FirmwareUpdate (0x7A/122)}	
+
+Command Class values in data holder:
+\begin{itemize}
+\item 'updateStatus': indicated the status of the update process
+\end{itemize}
+
+\paragraph {Perform}
+\begin{quote} Syntax: FirmwareUpdatePerform(manufacturerId, firmwareId, firmwareTarget, size, Data, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Starts a firmware Update process\end{quote}
+\begin{quote} Parameter manufacturerId:  This must be the Manufacturer ID of the device as reported in Version CC, can be copied from there\end{quote}
+\begin{quote} Parameter firmwareTarget:  A device can have multiple firmwares, Id=0 points to the Z-Wave firmware\end{quote}
+\begin{quote} Parameter length:  the length of the data structure\end{quote}
+\begin{quote} Parameter data:  the bin encoded firmware\end{quote}
+\begin{quote} Return: data holder "type id" is updated with sub variables srcId,sensorState,sensorTime \end{quote}
+
+ 	  			 	 			 
+	
+% ******************************
+
+\section{Alarm (0x71/113)}		
+
+Hands binary alarm events from binary sensors by alarm type. The following alarm types
+are defined:
+\begin{itemize}
+\item 0x01: Smoke
+\item 0x02: CO
+\item 0x03: CO2
+\item 0x04: Heat
+\item 0x05: Water
+\item 0x06: Access Control
+\item 0x07: Burglar
+\item 0x08: Power Management
+\item 0x09: System
+\item 0x0a: Emergency
+\item 0x0b: Clock
+\end{itemize}
+
+
+\begin{quote} Syntax: AlarmGet(type, event, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Requests the status of a specific event of a specific alarm type\end{quote}
+\begin{quote} Parameter type: Alarm type\end{quote}
+\begin{quote} Parameter event: Event type\end{quote}
+
+\begin{quote} Syntax: AlarmSet(type, level, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Status the status of a specific alarm type\end{quote}
+\begin{quote} Parameter type: Alarm type\end{quote}
+\begin{quote} Parameter level: New status\end{quote}	
+
+
+\section{Command Class Alarm Sensor (0x9c/156)}
+
+The Alarm Sensor Command Class can be used to realize Sensor Alarms.
+
+Command Class values in data holder:
+\begin{itemize}
+\item 'type': A field with the type id as index what holds the information about the alarm sensors
+\end{itemize}
+
+\paragraph {Command Alarm Sensor Get}
+\begin{quote} Syntax: Get(type = -1, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Requests the status of  the alarm sensor of type 'type'\end{quote}
+\begin{quote} Parameter type:  Alarm type to get. -1 means get all types\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "type id" is updated with sub variables srcId,sensorState,sensorTime \end{quote}
+ 
+\section{Command Class Association (0x85/133)}
+
+The association command class allows to manage the association groups and the nodeIDs in the association groups.
+
+Command Class values in data holder:
+\begin{itemize}
+\item groups: number of association groups
+\item group number: array of association groups with the child values: 
+max (max number of nodes allowed) and nodes as array of nodes in the association group
+\end{itemize}
+
+\paragraph {Command Association Get}
+\begin{quote} Syntax: Get(groupId = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Association Get\end{quote}
+\begin{quote} Parameter groupId: Group Id (from 1 to 255), 0 requests all groups\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder value "nodes" in association group object is  updated \end{quote}
+
+
+\paragraph {Command Association Set}
+\begin{quote} Syntax: Set(groupId, includeNode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Association Set (Add)\end{quote}
+\begin{quote} Parameter groupId: Group Id (from 1 to 255)\end{quote}
+\begin{quote} Parameter includeNode: Node to be added to the group\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder value "nodes" in association group object is  updated \end{quote}
+
+\paragraph {Command Association Remove}
+\begin{quote} Syntax: Remove(groupId, excludeNode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Association Remove\end{quote}
+\begin{quote} Parameter groupId: Group Id (from 1 to 255)\end{quote}
+\begin{quote} Parameter excludeNode: Node to be removed from the group\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder value "nodes" in association group object is  updated \end{quote}
+ 
+
+\section{Command Class Basic (0x20/32)}
+
+The Basic Command Class is the wild card command class. Almost all Z-Wave devices support this command class 
+but they interpret the command class commands in different ways. A Thermostat will handle a Basic Set Command 
+in a different way than a Dimmer but both accept the Basic Set command and act.
+
+Command Class values in data holder:
+\begin{itemize}
+\item level: generic switching level of the device controlled
+\end{itemize}
+
+\paragraph {Command Basic Get}
+\begin{quote} Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Basic Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "level" is updated \end{quote}
+
+\paragraph {Command Basic Set}
+\begin{quote} Syntax: Set(value, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Basic Set\end{quote}
+\begin{quote} Parameter value: Value\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "level" is updated \end{quote}
+ 
+ 
+\section{Command Class Battery (0x80/128)}
+
+The battery command class allows monitoring the battery charging level of a device.
+
+Command Class values in data holder:
+\begin{itemize}
+\item last: last battery charging level (0…100 %)
+\item history: an array of charging levels and UNIX time stamps, can be used to predict next time to change battery
+\item lastChange: UNIX time stamp of last battery change (if recognized)
+\end{itemize}
+
+\paragraph {Command Battery Get}
+\begin{quote} Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Battery Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "last" is updated, in case "last" has changed, "history" or "lastChange" may be updates\end{quote}
+
+
+\section{CentralScene (0x5B/91)}		
+
+Received Central Scene Commands. They are triggered by pushing a button on a controller
+supporting the central Scene Commmand Class
+
+Command Class values in data holder:
+\begin{itemize}
+\item 'keyAttribute': 0x00 = Key pressed, 0x01 = Key released, 0x02 = Key held down
+\item 'currentScene': indicates the current activated scene
+\end{itemize}
+
+\section{ClimateControlSchedule (0x46/70)}	 
+
+The command class is obsolete but still partly implemented for legacy reasons. No values 
+or command class functions are exposed.
+
+  
+\section{Command Class Clock (0x81/129)}
+
+The clock Command Class allows to sync the internal clock for timer dependent application such as thermostats with schedules.
+
+\paragraph {Command Class Clock Get}
+\begin{quote} Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Clock Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class Clock Set}
+\begin{quote} Syntax: Set(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Clock Set\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+ 
+\section{Command Class Configuration(0x70/112)} 
+
+The configuration command class is used to set certian configuration valeus that change the behavior
+of the device. Z-Wave requires that every device works out of the box with out further configuration.
+However different configuration value significantly enhance the value a device.
+
+Configuration parameters are identified by a 8 bit parameter number and a value that can be 1, 2 or 
+even 4 byte long. Z-Wave does not provide any information about the configuration
+ values by wireless commands. User have to look into the device manual 
+ to learn about configuration parameters. The Device Description Record, incoprotated by Z-Way
+ gives information about valid parameters and the meaning of the values to be set.
+
+Command Class values in data holder:
+\begin{itemize}
+\item []: Parameter value  with child values size (1,2,4 byte) and value
+\end{itemize}
+ 
+\paragraph {Command Configuration Get}
+\begin{quote} Syntax: Get(parameter, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Configuration Get\end{quote}
+\begin{quote} Parameter parameter: Parameter number (from 1 to 255)\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder with parameter number is updated  or created when no available\end{quote}
+
+
+\paragraph {Command Configuration Set}
+\begin{quote} Syntax: Set(parameter, value, size = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Configuration Set\end{quote}
+\begin{quote} Parameter parameter: Parameter number (from 1 to 255)\end{quote}
+\begin{quote} Parameter value: Value to be sent (negative and positive values are accepted, but will be stripped to size)\end{quote}
+\begin{quote} Parameter size: Size of the value (1, 2 or 4 bytes). Use 0 to guess from previously reported value if any. 0 means use size previously obtained Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder with parameter number is updated \end{quote}
+
+
+\paragraph {Command Configuration SetDefault}
+\begin{quote} Syntax: SetDefault(parameter, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Configuration SetDefault\end{quote}
+\begin{quote} Parameter parameter: Parameter number to be set to device default\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\section{Command Class DoorLock (0x62/98)}
+
+The door lock command class allows to operate an electronic door lock
+
+Command Class values in data holder:
+\begin{itemize}
+\item mode: general operating mode of lock
+\item insideMode: for inside handle
+\item outsideMode: for outside handle
+\item lockMinutes: setup value fo timeout
+\item lockSeconds: setup value fo timeout
+\item condition:
+\item insideState: state of inside handle
+\item outsideState: state of outside handle
+\item timeoutMinutes: time to timeout mode
+\item timeoutSeconds: time to timeout mode
+\item opType"));
+\end{itemize}
+ 
+\paragraph {Command Class DoorLock Get}
+\begin{quote} Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send DoorLock Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class DoorLock ConfigurationGet}
+\begin{quote} Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send DoorLock Configuration Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class DoorLock Set}
+\begin{quote} Syntax: Set(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send DoorLock Configuration Set\end{quote}
+\begin{quote} Parameter mode: Lock mode\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class DoorLock ConfigurationSet}
+\begin{quote} Syntax: ConfigurationSet(opType, outsideState, insideState, lockMin, lockSec, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send DoorLock Configuration Set\end{quote}
+\begin{quote} Parameter opType: Operation type\end{quote}
+\begin{quote} Parameter outsideState: State of outside door handle\end{quote}
+\begin{quote} Parameter insideState: State of inside door handle\end{quote}
+\begin{quote} Parameter lockMin: Lock after a specified time (minutes part)\end{quote}
+\begin{quote} Parameter lockSec: Lock after a specified time (seconds part)\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+ 
+\section{Command Class Door Lock Logging (0x4C/76)}
+
+The Door Lock Logging Command Class allows to receive reports about all successful and failed activities 
+of the electronic door lock
+
+Command Class values in data holder:
+\begin{itemize}
+\item log record: The data holder contains the log history
+\end{itemize}
+
+\paragraph {Command Door Lock Log LoggingGet}
+\begin{quote} Syntax:  LoggingGet(records,successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Calls the log entries from the lock\end{quote}
+\begin{quote} Parameter records: max number of records \end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder  is updated \end{quote}
+
+ 
+\section{Command Class Indicator (0x87/135)}
+
+The indicator command class operates the indicator on the physical device if available. This can be used to
+identify a device or use the indicator for special purposes.
+
+Command Class values in data holder:
+\begin{itemize}
+\item stat: The status of the indicator
+\end{itemize}
+
+\paragraph {Command Indicator Get}
+\begin{quote} Syntax:  Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Calls the indicator status from the device\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder stat is updated \end{quote} 
+ 
+\paragraph {Command Class Indicator Set}
+\begin{quote} Syntax: Set(stat, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Indicator Set\end{quote}
+\begin{quote} Parameter stat: indicator status value\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+ 
+\section{Command Class Meter (0x32/50)}
+
+The meter command class allows to read different kind of meters. Z-Wave differentiates different meter types and different 
+meter scales. Please refer to the file /translations/scales.xml for details about possible meter types and values.
+
+Command Class values in data holder:
+\begin{itemize}
+\item resettable: flag to indicate of the meter can be reset
+\item [typeId]: One meter device can have different meters. Each meter object has the following child objects:
+\begin{itemize}
+\item delta: difference between last and actual meter value.
+\item previous: previous meter value (gotten with last GET request
+\item rateType: meter rate type
+\item scale: meter scale id
+\item scaleString: string representation of meter scale. Refer to  /translations/scales.xml for scale types. 
+\item sensorType: meter type id. Refer to  /translations/scales.xml for types
+\item sensorTypeString: string representation of sensor Type. Refer to  /translations/scales.xml for type strings
+\item val: The actual meter value
+\end{itemize}
+\end{itemize}
+
+\paragraph {Command Meter Get}
+\begin{quote} Syntax: Get(scale = -1, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Meter Get\end{quote}
+\begin{quote} Parameter scale: Desired scale. -1 for all scales\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder values of meter id are updated \end{quote}
+
+\paragraph {Command Meter Reset}
+\begin{quote} Syntax: Reset(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Meter Reset\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+  
+\section{MeterTableMonitor (0x3D/61)}	
+
+The Meter Table Monitor Command Class defines the Commands necessary to read historical 
+and accumulated values in physical units from a water meter or other metering device 
+(gas, electric etc.) and thereby enabling automatic meter reading capabilities
+
+\paragraph {MeterTableMonitorGetAdminId}
+\begin{quote} Syntax: MeterTableMonitorGetAdminId(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: The Meter Table Point Adm. Number Get Command is used to request 
+the Meter Point Administration Number to identify customer. \end{quote}
+
+\paragraph {MeterTableMonitorGetId}
+\begin{quote} Syntax: MeterTableMonitorGetId(successCallback = NULL, failureCallback = NULL)\end{quote} 
+\begin{quote} Description: The Meter Table ID Get Command is used to request the parameters 
+used for identification of customer and metering device. \end{quote}
+
+\paragraph {MeterTableMonitorStatusDepthGet}
+\begin{quote} Syntax: MeterTableMonitorStatusDepthGet(depth, successCallback = NULL, failureCallback = NULL)\end{quote} 
+\begin{quote} Description: The Meter Table Status Date Get Command is used to request a 
+number of status events recorded in a certain time interval. If the meter does not support 
+a status event log history it must return the current state of the meter \end{quote}
+
+
+\paragraph {MeterTableMonitorCurrentDataGet}
+\begin{quote} Syntax: MeterTableMonitorStatusDateGet(maxResults, startDate, endDate, , successCallback = NULL, failureCallback = NULL)\end{quote}  
+\begin{quote} Description:  The Meter Table Current Data Get Command is used to request a 
+number of time stamped values (current) in physical units according to the dataset mask.
+\end{quote}
+
+\paragraph {MeterTableMonitorCurrentDataGet}
+\begin{quote} Syntax: MeterTableMonitorCurrentDataGet(setId, successCallback = NULL, failureCallback = NULL)\end{quote} 
+\begin{quote} Description:  \end{quote}
+
+\paragraph {MeterTableMonitorHistoricalDataGet}
+\begin{quote} Syntax: MeterTableMonitorHistoricalDataGet(setId, maxResults, startDate, 
+endDate, successCallback = NULL, failureCallback = NULL)\end{quote} 
+\begin{quote} Description: The Meter Table Historical Data Get Command is used to request 
+a number of time stamped values (historical) in physical units according to rate type, 
+dataset mask and time interval. \end{quote}
+
+
+\section{Command Class Multichannel Association (0x8e/142)}
+
+This is an enhancement to the Association Command Class. The command class follows the same logic as the Association command class and 
+has the same commands but accepts different instance values. 
+
+\paragraph {Command MultiChannelAssociation Get}
+\begin{quote} Syntax: Get(groupId = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send MultiChannelAssociation Get\end{quote}
+\begin{quote} Parameter groupId: Group Id (from 1 to 255), 0 requests all groups\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command MultiChannelAssociation Set}
+\begin{quote} Syntax: Set(groupId, includeNode, includeInstance, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send MultiChannelAssociation Set (Add)\end{quote}
+\begin{quote} Parameter groupId: Group Id (from 1 to 255)\end{quote}
+\begin{quote} Parameter includeNode: Node to be added to the group\end{quote}
+\begin{quote} Parameter includeInstance: Instance of the node to be added to the group\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command MultiChannelAssociation Remove}
+\begin{quote} Syntax: Remove(groupId, excludeNode, excludeInstance, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send MultiChannelAssociation Remove\end{quote}
+\begin{quote} Parameter groupId: Group Id (from 1 to 255)\end{quote}
+\begin{quote} Parameter excludeNode: Node to be removed from the group\end{quote}
+\begin{quote} Parameter excludeInstance: Instance of the node to be removed from the group\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\section{Command Class NodeNaming (0x77/119)}
+
+The Node naming command class allows assigning a readable string for a name and a location to a physical device. The two strings 
+are stored inside the device and can be called on request. There are no restrictions to the name except the maximum length of the 
+string of  16 characters.
+
+Command Class values in data holder:
+\begin{itemize}
+\item nodename: The name of the device
+\item location:  the location of the device
+\item myname: The name of the Z-Way instance
+\item mylocation:  the location of the Z-Way instance
+\end{itemize}
+
+
+\paragraph {Command NodeNaming Get}
+\begin{quote} Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Send NodeNaming GetName and GetLocation\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "nodename" and "location" are updated\end{quote}
+
+\paragraph {Command NodeNaming GetName}
+\begin{quote} Syntax: GetName(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send NodeNaming GetName\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "nodename"  is updated\end{quote}
+
+\paragraph {Command NodeNaming GetLocation}
+\begin{quote} Syntax: GetLocation(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send NodeNaming GetLocation\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "location" is updated\end{quote}
+
+\paragraph {Command NodeNaming SetName}
+\begin{quote} Syntax: SetName(name, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send NodeNaming SetName\end{quote}
+\begin{quote} Parameter name: Value\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "nodename" is updated\end{quote}
+
+\paragraph {Command NodeNaming SetLocation}
+\begin{quote} Syntax: SetLocation(location, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send NodeNaming SetLocation\end{quote}
+\begin{quote} Parameter location: Value\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "location" is updated\end{quote}
+
+
+\section{PowerLevel (0x73/115)}
+
+This Command Class ist used to test the link budget to a given other device identified 
+by its node ID. The command class will vary the transmit level and send a number of test frames
+and counts those successfully transmitted. 
+
+Command Class values in data holder:
+\begin{itemize}
+\item 'status':  status of power test
+\item 'acknowledgedFrames':  'good' frames
+\item 'totalFrames':  total frames sent 
+\end{itemize}
+
+\paragraph {PowerLevelGet}
+\begin{quote} Syntax: PowerLevelGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: returns the actual (TX) power level of te node\end{quote}
+
+\paragraph {PowerLevelSet}
+\begin{quote} Syntax: PowerLevelSet(level,timeout, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: The Powerlevel Set Command used to set the power level indicator value, which SHOULD be used by the node when transmitting RF, and the timeout for this power level indicator value before returning the power level defined by the application.\end{quote}
+\begin{quote} Parameter level: power level\end{quote}
+\begin{quote} Parameter timeout: timeout in sec\end{quote}
+
+\paragraph {PowerLevelTestNodeSet}
+\begin{quote} Syntax: PowerLevelTestNodeSet(testNodeId,  level, frameCount, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: instruct the testNode to send out 'framecount' number of frames with (TX) power level 'level'\end{quote}
+\begin{quote} Parameter testNodeId: Node ID if  the link to be tested\end{quote}
+\begin{quote} Parameter level: power level used\end{quote}
+\begin{quote} Parameter framecount: number of frames used for testing\end{quote}
+
+\paragraph {PowerLevelTestNodeGet}
+\begin{quote} Syntax: PowerLevelTestNodeGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: requests the result of the latest powerlevel test started with PowerLevelTestNodeSet\end{quote}
+
+
+
+\section{Command Class Protection (0x75/117)}
+
+This command class is used to disable local control of the device.
+
+\paragraph {Command Class Protection Get}
+\begin{quote} Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Protection Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class Protection Set}
+\begin{quote} Syntax: Set(state, rfState = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Protection Set\end{quote}
+\begin{quote} Parameter state: Local control protection state\end{quote}
+\begin{quote} Parameter rfState: RF control protection state\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class Protection ExclusiveGet}
+\begin{quote} Syntax: ExclusiveGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Protection Exclusive Control Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class Protection ExclusiveSet}
+\begin{quote} Syntax: ExclusiveSet(controlNodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Protection Exclusive Control Set\end{quote}
+\begin{quote} Parameter controlNodeId: Node Id to have exclusive control over destination node\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class Protection TimeoutGet}
+\begin{quote} Syntax: TimeoutGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Protection Timeout Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class Protection TimeoutSet}
+\begin{quote} Syntax: TimeoutSet(timeout, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Protection Timeout Set\end{quote}
+\begin{quote} Parameter timeout: Timeout in seconds. 0 is no timer set. -1 is infinite timeout. max value is 191 minute (11460 seconds). values above 1 minute are ...\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+
+\section{Command Class SceneActivation(0x2B/43)}
+
+\paragraph {Command Class SceneActivation Set}
+\begin{quote} Syntax: Set(sceneId, dimmingDuration = 0xff, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SceneActivation Set\end{quote}
+\begin{quote} Parameter sceneId: Scene Id\end{quote}
+\begin{quote} Parameter dimmingDuration: Dimming duration\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\section{Command Class SceneControllerConf (0x2d/45)}
+
+\paragraph {Command Class SceneControllerConf}
+\begin{quote} Syntax: Get(group = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SceneControllerConf Get\end{quote}
+\begin{quote} Parameter group: Group Id\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class SceneControllerConf Set}
+\begin{quote} Syntax: Set(group, scene, duration = 0x0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SceneControllerConf Set\end{quote}
+\begin{quote} Parameter group: Group Id\end{quote}
+\begin{quote} Parameter scene: Scene Id\end{quote}
+\begin{quote} Parameter duration: Duration\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\section{Command Class SceneActuatorConf (0x2C/44)}
+
+Command Class values in data holder:
+
+\begin{itemize}
+\item currentScene: the actual scene
+\end{itemize}
+
+\paragraph {Command Class SceneActuatorConf Get}
+\begin{quote} Syntax: Get(scene = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SceneActuatorConf Get\end{quote}
+\begin{quote} Parameter scene: Scene Id\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class SceneActuatorConf Set}
+\begin{quote} Syntax: Set(scene, level, dimming = 0xff, override = TRUE, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SceneActuatorConf Set\end{quote}
+\begin{quote} Parameter scene: Scene Id\end{quote}
+\begin{quote} Parameter level: Level\end{quote}
+\begin{quote} Parameter dimming: Dimming\end{quote}
+\begin{quote} Parameter override: If false then the current settings in the device is associated with the Scene Id. If true then the Level value is used\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\section{Schedule (0x53/83)}		
+
+The Schedule Command Class allows devices to exchange schedules which specify when to set 
+a new behaviour. The Schedule Command Class is a generic scheduling command class that 
+can be used to make schedules for any device type.
+
+
+\paragraph {ScheduleGet}
+Tequest the current schedule in a device for a specific schedule ID 	
+\begin{quote} Syntax: ScheduleGet(slotId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Parameter slotId: the storage slot of the schedule\end{quote}
+ 
+
+
+\section{Command Class ScheduleEntryLock (0x4e/78)}
+
+Controls access to a door lock based on  times and intervals
+
+\paragraph {Command Class ScheduleEntryLock Enable}
+\begin{quote} Syntax: Enable(user, enable, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send ScheduleEntryLock Enable(All)\end{quote}
+\begin{quote} Parameter user: User to enable/disable schedule for. 0 to enable/disable for all users\end{quote}
+\begin{quote} Parameter enable: TRUE to enable schedule, FALSE otherwise\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class ScheduleEntryLock WeekdayGet}
+\begin{quote} Syntax: WeekdayGet(user, slot, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send ScheduleEntryLock Weekday Get\end{quote}
+\begin{quote} Parameter user: User to get schedule for. 0 to get for all users\end{quote}
+\begin{quote} Parameter slot: Slot to get schedule for. 0 to get for all slots\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class ScheduleEntryLock WeekdaySet}
+\begin{quote} Syntax: WeekdaySet(user, slot, dayOfWeek, startHour, startMinute, stopHour, stopMinute, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send ScheduleEntryLock Weekday Set\end{quote}
+\begin{quote} Parameter user: User to set schedule for\end{quote}
+\begin{quote} Parameter slot: Slot to set schedule for\end{quote}
+\begin{quote} Parameter dayOfWeek: Weekday number (0..6). 0 = Sunday. . 6 = Saturday\end{quote}
+\begin{quote} Parameter startHour: Hour when schedule starts (0..23)\end{quote}
+\begin{quote} Parameter startMinute: Minute when schedule starts (0..59)\end{quote}
+\begin{quote} Parameter stopHour: Hour when schedule stops (0..23)\end{quote}
+\begin{quote} Parameter stopMinute: Minute when schedule stops (0..59)\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class ScheduleEntryLock YearGet}
+\begin{quote} Syntax: YearGet(user, slot, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send ScheduleEntryLock Year Get\end{quote}
+\begin{quote} Parameter user: User to enable/disable schedule for. 0 to get for all users\end{quote}
+\begin{quote} Parameter slot: Slot to get schedule for. 0 to get for all slots\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class ScheduleEntryLock YearSet}
+\begin{quote} Syntax: YearSet(user, slot, startYear, startMonth, startDay, startHour, startMinute, stopYear, stopMonth, stopDay, stopHour, stopMinute, successCallba\end{quote}
+\begin{quote} Description: Send ScheduleEntryLock Year Set\end{quote}
+\begin{quote} Parameter user: User to set schedule for\end{quote}
+\begin{quote} Parameter slot: Slot to set schedule for\end{quote}
+\begin{quote} Parameter startYear: Year in current century when schedule starts (0..99)\end{quote}
+\begin{quote} Parameter startMonth: Month when schedule starts (1..12)\end{quote}
+\begin{quote} Parameter startDay: Day when schedule starts (1..31)\end{quote}
+\begin{quote} Parameter startHour: Hour when schedule starts (0..23)\end{quote}
+\begin{quote} Parameter startMinute: Minute when schedule starts (0..59)\end{quote}
+\begin{quote} Parameter stopYear: Year in current century when schedule stops (0..99)\end{quote}
+\begin{quote} Parameter stopMonth: Month when schedule stops (1..12)\end{quote}
+\begin{quote} Parameter stopDay: Day when schedule stops (1..31)\end{quote}
+\begin{quote} Parameter stopHour: Hour when schedule stops (0..23)\end{quote}
+\begin{quote} Parameter stopMinute: Minute when schedule stops (0..59)\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\section{Command Class SensorBinary (0x30/48)}
+
+Command Class values in data holder:
+\begin{itemize}
+\item level: level of the binary sensor
+\end{itemize}
+
+\paragraph {Command SensorBinary Get}
+\begin{quote} Syntax: Get(sensorType = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SensorBinary Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter sensorType: Type of sensor to query information for. 0xFF to query information for the first available sensor type\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder value "level" is  updated \end{quote}
+
+
+\section{Command Class Sensor Configuration (0x9e/158)}
+ 
+Allows to set a certain trigger level for a sensor to trigger
+
+\paragraph {Command Class SensorConfiguration Get}
+\begin{quote} Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SensorConfiguration Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class SensorConfiguration Set}
+\begin{quote} Syntax: Set(mode, value, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SensorConfiguration Set\end{quote}
+\begin{quote} Parameter mode: Value set mode\end{quote}
+\begin{quote} Parameter value: Value\end{quote}
+\begin{quote}  Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}  Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+ 
+\section{Command Class Sensor Multilevel (0x31/49)}
+
+The sensor multilevel command class allows to read different kind of sensor. Z-Wave differentiates 
+different sensor types and different scales of this sensor. Please refer to the file /translations/scales.xml 
+for details about possible sensor types and values.
+
+Command Class values in data holder:
+\begin{itemize}
+
+\item [typeId]: One sensor device can have different sensor. Each sensor object has the following child objects:
+\begin{itemize}
+\item scale: sensor scale id
+\item scaleString: string representation of sensor scale. Refer to  /translations/scales.xml for scale types. 
+\item sensorType: sensor type id. Refer to  /translations/scales.xml for types
+\item sensorTypeString: string representation of sensor Type. Refer to  /translations/scales.xml for type strings
+\item val: The actual sensor value
+\end{itemize}
+\end{itemize}
+
+ 
+
+\paragraph {Command SensorMultilevel Get}
+\begin{quote} Syntax: Get(sensorType = -1, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SensorMultilevel Get\end{quote}
+\begin{quote} Parameter sensorType: Type of sensor to be requested. -1 means all sensor types supported by the device\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder values of sensorIds are updated \end{quote}
+
+\section{Command Class Switch All (0x27/39)}
+
+This command class controls the behavior of a actuator on Switch all commands. It can accept, both on and off, only on, only 
+off or nothing.
+
+Command Class values in data holder:
+\begin{itemize}
+\item mode: the current acceptance mode
+\end{itemize}
+
+\paragraph {Command SwitchAll Get}
+\begin{quote} Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SwitchAll Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder for "mode"  is updated\end{quote}
+
+\paragraph {Command SwitchAll Set}
+\begin{quote} Syntax: Set(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SwitchAll Set\end{quote}
+\begin{quote} Parameter mode: SwitchAll Mode: see definitions below\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder for "mode"  is updated\end{quote}
+
+\paragraph {Command SwitchAll SetOn}
+\begin{quote} Syntax: SetOn(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SwitchAll Set On\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command SwitchAll SetOff}
+\begin{quote} Syntax: SetOff(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SwitchAll Set Off\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\section{Command Class SwitchColor (0x33/51)}	
+
+Allows to define color for multicolor LED lights. It based on capabilities:
+\begin{itemize}
+\item 0: Warm White (0x00 – 0xFF: 0 – 100\%)
+\item 1: Cold White (0x00: - 0xFF: 0 – 100\%)
+\item 2: Red (0x00 – 0xFF: 0 – 100\%)
+\item 3: Green (0x00 – 0xFF: 0 – 100\%)
+\item 4: Blue (0x00 – 0xFF: 0 – 100\%)
+\item 5: Amber (for 6ch Color mixing) (0x00 – 0xFF: 0 – 100\%)
+\item 6: Cyan (for 6ch Color mixing) (0x00 – 0xFF: 0 – 100\%)
+\item 7: Purple (for 6ch Color mixing) (0x00 – 0xFF: 0 – 100\%)
+\item 8: Indexed Color (0x00 – 0x0FF: Color Index 0-255
+\end{itemize}
+
+Command Class values in data holder:
+\begin{itemize}
+\item [capability Id]: A data holder for available capability. it contains the status level
+\end{itemize}
+
+\paragraph {Get}
+\begin{quote} Syntax: SwitchColorStateGet(capabilityId, successCallback=NULL, failureCallback=NULL)\end{quote}
+\begin{quote} Description: Requests a status of the a certain capability\end{quote}
+\begin{quote} Parameter capability: the id of the capability\end{quote}
+\begin{quote} Return: data holder 'capability Id' is updated with status \end{quote}
+
+\paragraph {Set}
+\begin{quote} Syntax: SwitchColorStateSet(capabilityId, value, successCallback=NULL, failureCallback=NULL)\end{quote}
+\begin{quote} Description: sets the status of a capability\end{quote}
+\begin{quote} Parameter capability: the id of the capability\end{quote}
+\begin{quote} Parameter value: new desired value of this capability\end{quote}
+
+\paragraph {SwitchColorStateSetMultiple}
+\begin{quote} Syntax: SwitchColorStateSetMultiple(count, [capabilityIds], [states], duration, successCallback=NULL, failureCallback=NULL )\end{quote}
+\begin{quote} Description: sets the status of a multiple capabilities\end{quote}
+\begin{quote} Parameter count: number of array members\end{quote}
+\begin{quote} Parameter capabilities: array of ids of the capability\end{quote}
+\begin{quote} Parameter state: array of new desired states of this capabilities\end{quote}
+\begin{quote} Parameter duration: array of times to change the capabilities state (in sec)\end{quote}
+
+\paragraph {SwitchColorStartLevelChange}
+\begin{quote} Syntax: SwitchColorStartLevelChange(capabilityId, dir, successCallback=NULL, failureCallback=NULL)\end{quote}
+\begin{quote} Description: Start the change of a capability status\end{quote}
+\begin{quote} Parameter capability: the id of the capability\end{quote}
+\begin{quote} Others Parameters: see SwitchMultilevel Parameters\end{quote} 
+
+\paragraph {SwitchColorStopStateChange}
+\begin{quote} Syntax: SwitchColorStopStateChange(capabilityId, ZJobCustomCallback successCallback, successCallback=NULL, failureCallback=NULL)\end{quote}
+\begin{quote} Description: stop change of capability status\end{quote}
+\begin{quote} Parameter capability: the id of the capability\end{quote}
+\begin{quote} Return: data holder 'capability Id' is updated with status \end{quote}
+
+
+
+
+\section{Command Class SwitchBinary(0x25/37)}
+
+The Switch Binary Command Class is used to control all actuators with simple binary (on/off) switching functions, primarily electrical switches. 
+
+Command Class values in data holder:
+\begin{itemize}
+\item Level: the level of the remotely controlled device
+\item mylevel:  the level of the switch multilevel emulation of Z-Way
+\end{itemize}
+
+\paragraph {Command SwitchBinary Get}
+\begin{quote} Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SwitchBinary Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "level" is updated\end{quote}
+
+\paragraph {Command SwitchBinary Set}
+\begin{quote} Syntax: Set(value, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SwitchBinary Set\end{quote}
+\begin{quote} Parameter value: Value\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "level" is updated\end{quote}
+
+\section{Command Class SwitchMultilevel (0x26/38)}
+
+The Switch Multilevel Command Class is used to control all actuators with multilevel switching functions, primarily Dimmers and Motor Controlling devices. 
+
+Command Class values in data holder:
+\begin{itemize}
+\item Level: the level of the remotely controlled device
+\item mylevel:  the level of the switch multilevel emulation of Z-Way
+\end{itemize}
+
+\paragraph {Command SwitchMultilevel Get}
+\begin{quote} Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SwitchMultilevel Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "level" is updated\end{quote}
+
+\paragraph {Command SwitchMultilevel Set}
+\begin{quote} Syntax: Set(level, duration = 0xff, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SwitchMultilevel Set\end{quote}
+\begin{quote} Parameter level: Level to be set\end{quote}
+\begin{quote} Parameter duration: Duration of change:. 0 instantly. 1-127 in seconds. 128-254 in minutes mapped to 1-127 (value 128 is 1 minute). 255 use device factory default\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "level" is updated\end{quote}
+
+
+\paragraph { Command Class SwitchMultilevel StartLevelChange}
+\begin{quote} Syntax: StartLevelChange(dir, duration = 0xff, ignoreStartLevel = TRUE, startLevel = 50, indec = 0, step = 0xff, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SwitchMultilevel StartLevelChange\end{quote}
+\begin{quote} Parameter dir: Direction of change: 0 to incrase, 1 to decrase\end{quote}
+\begin{quote} Parameter duration: Duration of change:. 0 instantly. 0x01-0x7f in seconds. 0x80-0xfe in minutes mapped to 1-127 (value 0x80=128 is 1 minute). 0xff us\end{quote}
+\begin{quote} Parameter ignoreStartLevel: If set to True, device will ignore start level value and will use it's curent value\end{quote}
+\begin{quote} Parameter startLevel: Start level to change from\end{quote}
+\begin{quote} Parameter indec: Increment/decrement type for step\end{quote}
+\begin{quote} Parameter step: Step to be used in level change in percentage. 0-99 mapped to 1-100\%. 0xff uses device factory default\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "level" is updated\end{quote} 
+
+
+\paragraph {Command SwitchMultilevel StopLevelChange}
+\begin{quote} Syntax: StopLevelChange(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send SwitchMultilevel StopLevelChange\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "level" is updated\end{quote}
+
+\section{Command Class ThermostatFanMode(0x44/68)}
+
+Allows to control the Thermostat Fan
+
+Command Class values in data holder:
+\begin{itemize}
+\item mode: fan mode
+\end{itemize}
+
+\paragraph {Command ThermostatFanMode Get}
+\begin{quote} Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send ThermostatFanMode Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "mode" is updated\end{quote}
+
+\paragraph {Command ThermostatFanMode Set}
+\begin{quote} Syntax: Set(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send ThermostatFanMode Set\end{quote}
+\begin{quote} Parameter mode: new fan mode\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "mode" is updated\end{quote}
+
+\section{Command Class ThermostatFanState(0x45/69)}
+
+Allows to control the Thermostat Fan
+
+Command Class values in data holder:
+\begin{itemize}
+\item state: fan state
+\end{itemize}
+
+\paragraph {Command ThermostatFanState Get}
+\begin{quote} Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send ThermostatFanState Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "state" is updated\end{quote}
+
+ 
+\section{Command Class ThermostatMode (0x40/64)}
+
+This command class allows to switch a heating/cooling actuator in different modes. During interview the mode mask
+is requested and the dat objects are create accordingly.
+
+Command Class values in data holder:
+\begin{itemize}
+\item modemask: contains the modemask with bit to identify the different modes of the thermostat
+\item mode: the actual mode
+\item [modeID]:  list of all allowed modes with string representation.
+\end{itemize}
+
+\paragraph {Command ThermostatMode Get}
+\begin{quote} Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send ThermostatMode Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command ThermostatMode Set}
+\begin{quote} Syntax: Set(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send ThermostatMode Set\end{quote}
+\begin{quote} Parameter mode: Thermostat Mode\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\section{Command Class ThermostatOperatingState (0x42/66)}
+
+This command class allows to determine the operating state of the thermostat
+
+Command Class values in data holder:
+\begin{itemize}
+\item state:  operating state 
+\end{itemize}
+
+\paragraph {Command ThermostatOperatingState LoggingGet}
+\begin{quote} Syntax:LoggingGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send ThermostatOperatingState LoggingGet\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\section{Command Class ThermostatSetPoint (0x43/67)}
+
+This command class  allows to set a certain setpoint to a thermostat. The command class can be applied to different kind of thermostats 
+(heating, cooling, ...), hence it has various modes.
+
+Command Class values in data holder:
+\begin{itemize}
+\item modemask: contains the modemask with bit to identify the different modes of the thermostat
+\item [modeID]:  data object for each mode with the following child objects
+\begin{itemize}
+\item modeName: contains the modemask with bit to identify the different modes of the thermostat
+\item precision:  data object for each mode with the following child objects
+\item scale: scale id of the thermostat value
+\item scaleString: string representation of the scale id
+\item setVal
+\item size: size of setpoint value in bte
+\item val
+\end{itemize}
+\end{itemize}
+
+\paragraph {Command ThermostatSetPoint Get}
+\begin{quote} Syntax: Get(mode = -1, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send ThermostatSetPoint Get\end{quote}
+\begin{quote} Parameter mode: Thermostat Mode, -1 requests for all modes\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder for "mode"  is updated\end{quote}
+
+\paragraph {Command ThermostatSetPoint Set}
+\begin{quote} Syntax: Set(mode, value, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send ThermostatSetPoint Set\end{quote}
+\begin{quote} Parameter mode: Thermostat Mode\end{quote}
+\begin{quote} Parameter value: temperature\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder for "mode"  is updated\end{quote}
+
+
+\section{Command Class UserCode (0x63/99)}
+
+\paragraph {Command Class UserCode Get}
+\begin{quote} Syntax: Get(user = -1, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send UserCode Get\end{quote}
+\begin{quote} Parameter user: User index to get code for (1 ... maxUsers). -1 to get codes for all users\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class UserCode Set}
+\begin{quote} Syntax: Set(user, code, status = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send UserCode Set\end{quote}
+\begin{quote} Parameter user: User index to set code for (1...maxUsers) 0 means set for all users\end{quote}
+\begin{quote} Parameter code: Code to set (4...10 characters long)\end{quote}
+\begin{quote} Parameter status: Code status to set\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\section{Command Class Time (0x8a/138)} 
+ 
+  
+\paragraph {Command Class Time TimeGet}
+\begin{quote} Syntax: TimeGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Time TimeGet\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class Time DateGet}
+\begin{quote} Syntax: DateGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Time DateGet\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class Time OffsetGet}
+\begin{quote} Syntax: OffsetGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Time TimeOffsetGet\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\section{Command Class TimeParameters (0x8b/139)} 
+
+\paragraph {Command Class TimeParameters Get}
+\begin{quote} Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send TimeParameters Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+\paragraph {Command Class TimeParameters Set}
+\begin{quote} Syntax: Set(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send TimeParameters Set\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed \end{quote}
+ 
+
+\section{Command Class Wakeup (0x84/132)}
+
+The wakeup command class handles the wakeup behavior of devices with wakeup interval
+
+Command Class values in data holder:
+\begin{itemize}
+\item default: default wakeup interval (constant), only filled if device support Wakeup Command Class Version 2
+\item interval:  wakeup interval in seconds
+\item lastSleep: UNIX time stamp of last sleep() command sent
+\item lastWakeup:  UNIX time stamp of last wakeup notification() received
+\item max: maximum accepted wakeup interval (constant), only filled if device support Wakeup Command Class Version 2
+\item min: min. allowed wakeup interval (constant), only filled if device support Wakeup Command Class Version 2
+\item nodeId: Node ID of the device that will receive the wakeup notification of this device
+\item step: step size of wakeup interval setting allows (constant), only filled if device support Wakeup Command Class Version 2
+\end{itemize}
+
+\paragraph {Command Wakeup Get}
+\begin{quote} Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Wakeup Get\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "interval" is updated\end{quote}
+
+ 
+\paragraph {Command Wakeup Sleep}
+\begin{quote} Syntax: Sleep(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Wakeup NoMoreInformation (Sleep)\end{quote}
+\begin{quote} Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote} Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote} Return: data holder "lastsleep" is updated\end{quote}
+ 
+\paragraph {Command Wakeup Set}
+\begin{quote} Syntax: Set(interval, notificationNodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote} Description: Send Wakeup Set\end{quote}
+\begin{quote} Parameter interval: Wakeup interval in seconds\end{quote}
+\begin{quote} Parameter notificationNodeId: Node Id to be notified about wakeup\end{quote}
+\begin{quote} Return: data holder "interval" and "nodeId" is updated \end{quote}
+
+
+\section{Other command classes not exposed on the API}
+
+There are few other command classes needed for maintenance behind the scenes:
+
+\begin{itemize}
+\item ApplicationStatus	
+\item AssociationGroupInformation
+\item CRC16
+\item Security
+\item DeviceResetLocally		 
+\item ManufacturerSpecific
+\item MultiChannel
+\item MultiChannelAssociation
+\item Version
+\item MultiCmd			
+\item NoOperation			
+\item ZWavePlusInfo
+\end{itemize}

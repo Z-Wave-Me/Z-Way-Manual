@@ -1,0 +1,245 @@
+\chapter{Javascript API}
+\label{jsapi}
+
+The Javascript API mirrors all functions of the Z-Wave device API and 
+combines them with the ability to run Javascript code on top of the 
+Z-Wave Device functions and variables.
+
+There are two ways to run Javascript functions in Z-Way.
+\begin{itemize}
+\item They can be executed in the web browser and can be used via the JSON API
+\item They can be implemented as module running in the backend.
+\end{itemize}
+Both options have their pros and cons. Running JS code in the browser is a very nice
+and convenient way to test things but the function is not persistent.
+
+Writing a module requires some more knowledge and debugging is more complicated. 
+On the other hand the possibilities of Javascript in the module are almost infinite 
+and goes far beyond just accessing Z-Wave device. Javascript as any other language
+can make use of services available in the Internet and combine them in any possible 
+way with information from the Z-Wave network and can execute functions within 
+the Z-Wave network but the same time on any place accessible via Internet based 
+services. In theory there is not even a need to have Z-Wave device in order to make 
+use of the powerful Javascript engine. As an example you can write a Javascript 
+module polling weather data from the internet and depending on certain well defined 
+conditions the same module can send you a short message on your mobile.
+Both functions are by the way already implemented as open source modules and can be 
+accessed and studies for further modification or use.
+
+\section {The Javascript Engine}
+
+Z-Way uses the Javascript engine provided by Google referred to as v8. You find more 
+information about this Javascript implementation on https://code.google.com/p/v8/.
+V8 implements Javascript according to the specification ECMA 
+\footnote {http://www.ecma-international.org/publications/standards/Ecma-262.htm}.
+
+Z-Way extends the basic functionality provided by V8 with plenty of application 
+specific functions.
+
+\section{Accessing the JS API}
+
+The JS API can be accessed from any web browser with the URL
+
+\paragraph{http://YOURIP:8083/JS/*}
+
+All functions of the Z-Wave Device API can be used by Javascript. They are encapsulated
+in the 'zway' object.  This object has the same structure as defined in chapter 
+\ref{c2-data model}. 
+The client side access to the device data is done like
+
+\paragraph{http://YOURIP:8083/JS/Run/zway.devices[x].*}
+
+Due to the scripting nature of Javascript its possible to 'inject' code at run time
+using the interface. Here a nice example how to use the Java Script 
+setInterval function:
+
+\begin{lstlisting}[caption=Set Interval]{Name}
+/JS/Run/setInterval(function() { 
+	zway.devices[2].Basic.Get();
+	}, 300*1000);
+\end{lstlisting}
+
+This code will, once 'executed' as URL within a web browser, call the Get() command
+of the command class Basic of Node ID 2 every 300 seconds.  
+
+A very powerful function of the JS API is the ability to bind functions to certain
+values of the device tree. they get then executed when the value changes. Here an 
+example for this binding. The device No. 3 has a command class SensorMultilevel that offers
+the variable level. The following call - both available on the client side 
+and on the server side - will bind a simple alert function to the change of 
+the variable.
+
+\begin{lstlisting}[caption=Bind a function]{Name}
+zway.devices[3].SensorMultilevel.data[1].level.bind( function() { 
+	debugPrint('CHANGED\n'); 
+	});  
+\end{lstlisting}
+
+\section{HTTP Access}
+
+The JavaScript implementation of Z-Way allows to directly accessing HTTP objects.
+
+The http request is much like jQuery.ajax(): r = http.request(options);
+
+Here's the list of options:
+\begin{itemize}
+\item Url - required. Url you want to request (might be http, https, or maybe even ftp);
+\item method – optional. Http method to use (currently one of GET, POST, HEAD). If not 
+specified, GET is used;
+\item headers – optional. Object containing additional headers to pass to server:
+
+\begin{lstlisting}
+headers: {
+    "Content-Type": "text/xml",
+    "X-Requested-With": "RaZberry/1.5.0"
+}
+\end{lstlisting}
+
+\item data – required for POST requests. Data to post to the server. May be either 
+string (to post raw data) or an object with keys and values (will be serialized as 
+'key1=value1\&key2=value2\&…');
+\item auth – optional. Provides credentials for basic authentication. It is an object 
+containing login and password:
+\begin{lstlisting}
+auth: {
+    login: 'username',
+    password: 'secret'
+}
+\end{lstlisting}
+\item contentType – optional. Allows to override content type returned by server for 
+parsing data (see below);
+\item async – optional. Specifies whether request should be sent asynchronously. Default 
+is false. In case of synchronous request result is returned immediately (as function 
+return value), otherwise function exits immediately, and response is delivered later 
+thru callbacks.
+\item success, error and complete – optional, valid only for async requests. Success 
+callback is called after successful request, error is called on failure, complete is 
+called nevertheless (even if success/error callback produces exception, so it is like 
+'finally' statement);
+\end{itemize}
+
+Response (as stated above) is delivered either as function return value, or as callback 
+parameter. Is is always an object containing following members:
+
+\begin{itemize}
+\item status – HTTP status code (or -1 if some non-HTTP error occurred). Status codes 
+from 200 to 299 are considered success;
+\item statusText – status string;
+\item URL – response URL (might differ from url requested in case of server redirects);
+\item headers – object containing all the headers returned by server;
+\item contentType – content type returned by server;
+\item data – response data.
+\end{itemize}
+
+
+Response data is handled differently depending on content type (if contentType on request is set, it takes priority over server content type):
+\begin{itemize}
+\item application/json and text/x-json are returned as JSON object;
+\item application/xml and text/xml are returned as XML object;
+\item application/octet-stream is returned as binary ArrayBuffer;
+\item string is returned otherwise.
+\end{itemize}
+In case data cannot be parsed as valid JSON/XML, it is still returned as string, and additional parseError member is present.
+
+
+\begin{lstlisting}
+http.request({
+	url: "http://server.com" (string, required),
+	method: "GET" (GET/POST/HEAD, optional, default "GET"),
+	
+	headers: (object, optional)
+	{
+		"name": "value",
+		...
+	},
+	
+	auth: (object, optional)
+	{
+		"login": "xxx" (string, required),
+		"password": "***" (string, required)
+	},
+	
+	data: (object, optional, for POST only)
+	{
+		"name": "value",
+		...
+	}
+	-- OR --
+	data: "name=value&..." (string, optional, for POST only),
+
+	async: true (boolean, optional, default false),
+	
+	success: function(rsp) {} (function, optional, for async only),
+	failure: function(rsp) {} (function, optional, for async only)
+});
+
+
+response:
+{
+	status: 200 (integer, -1 for non-http errors),
+	statusText: "OK" (string),
+	url: "http://server.com" (string),
+	contentType: "text/html" (string),
+	headers: (object)
+	{
+		"name": "value"
+	},
+	data: result (object or string, depending on content type)
+}
+\end{lstlisting}
+
+\section{Other Javascript Extensions}
+
+\subsubsection{fs.list(folder)}
+
+This returns list of items in the folder or undefined if not folder is not existing.
+
+
+\subsubsection{fs.stat(file)}
+
+This returns one of the following values:
+
+\begin{itemize}
+\item 1) undefined if object does not exist or not readable
+\item 2) object \{ type: 'file', size: $<size>$\} if it is a file
+\item 3) object \{ type: 'dir' \} if it is a folder
+\end{itemize} 
+
+
+\subsubsection{loadJSON(filename)}
+
+This function reads a file from the file system and loads it into the memory. The file must contain a valid JSON object. The only argument is the name of the file including full pathname of the local file system. The functions returns the full JSON object or null in case of error.
+
+\subsubsection{executeFile(filename)}
+
+Loads and executes a particular javascript file from the local filesystem.
+The script is executed withig the global namespace.
+
+Remark: If an error occurred during the execution it won't stop from further execution, but erroneous script will not be executed completely. It will stop on the first error.
+
+\subsubsection{system(command)}
+
+The command system() allows to execute any shell level command available on the operating 
+system. It will return the shell output of the command.  On default the execution of 
+system commands is forbidden. Each command executed need to be permitted by putting one 
+line with the starting commands in the file automation/.syscommands or in an different 
+automation folder as specified in config.xml.
+
+\subsubsection{Other functions derived from Javascript}
+\begin{itemize}
+\item setTimeout(function() { }, timeout): equivalent to the setTimeout function of Javascript, used for scripting
+\item setInterval(function() { }, timeout): equivalent to the setInterval function of Javascript, used for scripting
+\item clearTimeout(function() { }, timeout): equivalent to the clearTimeout function of Javascript, used for scripting
+\item clearInterval(function() { }, timeout): equivalent to the clearInterval function of Javascript, used for scripting
+\item executeJS(string): executes javascript code in the string (like eval)
+\item loadObject(object\_name): returns JSON object from storage
+\item saveObject(object\_name, object):  saves JSON object to filesystem storage
+\end{itemize}
+
+
+\subsubsection{Debugging}
+
+Please use the functions 'debugPrint()' or 'console.log()' for debugging purposes.
+
+% http://forum.z-wave.me/viewtopic.php?f=3422&t=20387&p=50793#p50793
+

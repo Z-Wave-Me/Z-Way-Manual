@@ -1,0 +1,32 @@
+\begin{itemize}
+\item AutoConfig: Flag if Z-Way shall interview the device right after inclusion (default = 1)
+\item DeepInterview: Flag that Interview is only completed after all values are received back. This includes
+Asking the device for all initial values of sensor or status data (default = 1)
+\item SaveDataAfterInterviewSteps: Flag whether or not all device data shall be saved after each interview step (default = 1)
+\item TryToBecomeSIS: Shall Z-Way try to become Networks SIS if transceiver hardware allows to (default = 1)
+\item Controller: Descriptio how Z_Way shall behave as device in the network. This entry has the following subentries
+\begin{itemize}
+\item NodeInformationFrame: The command classes Z_way is announcing as "supported" in the network
+\item SecureNodeInformationFrame: Command Classes available in secure environment
+\item InstanceNodeInformationFrame: Command Classes in Instances if Multi Channel is emulated
+\item Version id =iD: Versions to be reported in Command Class Version Get Command for all Command Classes announced in NIF
+\item Name: Default Node Name reported by NodeNaming Report
+\item Location Default Node Location of Controller reported by NodeNaming Report
+\item AppVersion: Application Version reported by ManufacturerSpecific Report 
+
+\item Manufacturer_Specific: Values report by ManufacturerSpecific Report 
+\item SpecificDeviceClass: Specific Device Class reported
+\item GenericDeviceClass: Generic Device Class reported
+\end{itemize} 
+\item Command class 0x73 (Powerlevel) Timeout: Seconds until PowerLevel test will time out
+\item Command class 0x73 (Powerlevel) MaxFrames: Number of Test-Frames sent out per power level 
+\item Command class 0x84 (Wakeup) WakeupInterval: Default Wakeup Interval
+\item Command class 0x2C (Scene Activation) Max Scenes: Maximum number of Scenes supported
+\item Command class 0x2D (Scene Activation) Max Scenes: Maximum number of Scenes supported
+\item Command class 0x75 (Protection) Mode: Default Protection Mode
+\item Command class 0x31 (SensorMultilevel) Fahrenheit: Flag what temperature scale is used
+\item Command class 0x27 (SwitchAll) Mode: default Switch All mode
+\item Command class 0x60 (Multichannel) ChannelsNumber: max number of channels emulated
+\item Command class 0x60 (Multichannel) GenericDeviceClass: Generic Device Class of simulated Channel
+\item Command class 0x60 (Multichannel) SpecificDeviceClass: Specific Device Class of simulated Channel
+\end{itemize} 

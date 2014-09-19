@@ -1,0 +1,29 @@
+\chapter{The Z-Wave Device API}
+\label{c2}
+
+This chapter describes the Z-Wave Device API and its use in detail All examples will use
+the JSON REST API notation. Please not that the C library notation offers equal 
+functionality but in a different notation.
+
+The Z-Wave Device API is the north bound interface of the Z-Wave Core. This Z-Wave core
+implement the whole control logic of the the Z-Wave network. The two main functions are
+\begin{itemize}
+\item Management of the network. This includes including and excluding devices, managing 
+the routing and rerouting of the network  an executing some housekeeping functions 
+to keep the network clean and stable. In the Z-Wave terminology all these functions 
+are called 'function classes' and they are described in section \ref{c2:fc}. The function 
+classes can be seen as functions offered by the controller itself. Hence the variables
+and status parameters of the networks are offered by an object called 'controller'.
+
+\item Execution of commands offered by the wireless devices as such switching switches 
+and dimming dimmers. Z-Wave groups the command and their corresponding variables into
+so called command classes. The Z-Wave API offers access to these command classes with
+their variables and their commands according to the abilities od the respective device.
+\end{itemize}
+The next chapters first explain the timings of the communication in a wireless 
+Z-Wave network. Then the data model is presented that reflects the real data and status 
+information in the network.
+
+The description of function Classes and command Classes and their access 
+using the JSON API  complete the description of the Z-Wave Device API. For a full 
+reference of function classes and command classes please refer to the Annex. 

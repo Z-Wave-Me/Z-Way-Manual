@@ -1,0 +1,132 @@
+\section{JSON-API}
+\label{jsapi}
+JSON API allows to execute commands on server side using HTTP POST requests 
+(currently GET requests are also allowed, but this might be deprecated in future). 
+The command to execute is taken from the URL.
+
+All functions are executed in form 
+
+\paragraph{http://YOURIP:8083/$<$URL$>$}
+
+
+\subsection{/ZWaveAPI/Run/$<$command$>$}
+
+This executes zway.$<$command$>$ in JavaScript engine of the server. As an example to 
+switch ON a device no 2 using the command class BASIC (The ID of the command class BASIC is 0x20, for more
+information about the IDs of certain command classes please refer to the Annex) its 
+possible to write:
+
+\begin{quote}/ZWaveAPI/Run/devices[2].instances[0].commandClasses[0x20].Set(255)\end{quote}
+
+or
+
+\begin{quote}/ZWaveAPI/Run/devices[2].instances[0].Basic.Set(255)\end{quote}
+
+
+
+The Z-Way Expert GUI has a JavaScript command runCmd($<$command$>$) to simplify such 
+operations. This function  is accessable in the Javascript console of your web browser 
+(in Chrome you find the JavaScript  console unter View-$>$Debug-$>$JS Console). Using 
+this feature the command in JS console would look like
+
+\begin{quote}runCmd('devices[2].instances[0].Basic.Set(255)')\end{quote}
+
+
+The usual way to access a command class is using the format \\'devices[nodeId].instances[instanceId].
+commandClasses[commandclassId]'.
+There are ways to simplify the syntax:
+
+\begin{itemize}
+\item 'devices[nodeId].instances[instanceId].Basic' is equivalent to \\
+'devices[nodeId].instances[instanceId].commandClasses[0x20]'
+\item the instances[0] can be obmitted: 'devices[nodeId].instances[instanceId].Basic' 
+then turns into 'devices[nodeId].Basic'
+\end{itemize} 
+
+Each Instance object has a device property that refers to the parent device it belongs to. 
+Each Command Class Object has a device and an instance property that refers to the instance 
+and the device this command class belongs to.
+ 
+
+Data holder object have properties value, updateTime, invalidateTime, name, but for 
+compatibility with JS and previous versions we have valueOf() method (allows to 
+omit .value in JS code, hence write "data.level == 255"), updated (alias to updateTime), 
+invalidated (alias toinvalidateTime). These aliases are not enumerated if the dataholder 
+is requested (data.level returns {value: 255, name: "level", updatedTime: 12345678, 
+invalidatedTime: 12345678}).
+
+\subsection{/ZWaveAPI/InspectQueue}
+
+This function is used to visualize the Z-Way job queue. This is for debugging only but 
+very useful to understand the current state of Z-Way engine.
+
+\subsection{/ZWaveAPI/Data/$<$timestamp$>$}
+Returns an associative array of changes in Z-Way data tree since $<$timestamp$>$. The 
+array consists of ($<$path$>$: $<$JSON object$>$) object pairs. The client is supposed 
+to assign the new $<$JSON object$>$ to the subtree with the $<$path$>$ discarding previous 
+content of that subtree. Zero (0) can be used instead of $<$timestamp$>$ to obtain the 
+full Z-Way data tree.
+
+The tree have same structure as the backend tree (Figure \ref{zwaystructure}) with 
+one additional root element "updateTime" which contains the time of latest update. 
+This "updateTime" value should be used in the next request for changes. 
+All timestamps (including updateTime) corresponds to server local time.
+
+Each node in the tree contains the following elements:
+\begin{itemize}
+\item value — the value itself
+\item updateTime — timestamp of the last update of this particular value
+\item invalidateTime — timestamp when the value was invalidated by issuing a Get 
+command to a device and expecting a Report command from the device
+\end{itemize}
+
+The object looks like:
+\begin{lstlisting}[caption=JSON Data Structure]{Name}
+{
+"[path from the root]": [updated subtree],
+"[path from the root]": [updated subtree],
+...
+updateTime: [current timestamp]
+}
+\end{lstlisting}
+
+Examples for Commands to update the data tree look like:
+
+\begin{quote}Get all data: /ZWaveAPI/Data/0\end{quote}
+
+\begin{quote} Get updates since 134500000 (Unix timestamp): /ZWaveAPI/Data/134500000\end{quote}
+
+Please note that during data updates some values are updated by big subtrees. For example, 
+in Meter Command Class value of a scale is always updated as a scale subtree by 
+[scale].val object (containing scale and type descriptions).
+
+
+\subsection{Handling of updates coming from Z-Way}
+
+A good design of a UI is linking UI objects (label, textbox, slider, ...) to a certain 
+path in the tree object. Any update of a subtree linked to UI will then update the UI too. 
+This is called bindings.
+
+For web applications Z-Way Web UI contains a library called jQuery.triggerPath 
+(extention of jQuery written by Z-Wave.Me), that allows to make such links between 
+objects in the tree and HTML DOM objects. Use
+
+\begin{quote}var tree;\end{quote}
+\begin{quote}jQuery.triggerPath.init(tree);\end{quote}
+
+during web application initialization to attach the library to a tree object. Then run
+
+\begin{quote}jQuery([objects selector]).bindPath([path with regexp], [updater function], 
+[additional arguments]);\end{quote}
+
+to make binding between path changes and updater function. The updater function would be 
+called upon changes in the desired object with this pointing to the DOM object itself, 
+first argument pointing to the updated object in the tree, second argument is the exact 
+path of this object (fulfilling the regexp) and all other arguments 
+copies additional arguments. RegExp allows only few control characters: * 
+is a wildcard, (1|2|3) - is 1 or 
+2 or 3.  
+
+\textbf{Please not that the use of the triggerpath extension is one option to handle the incoming
+data. You can also extract all the interesting values right when the data is received and 
+bind update functions to them.}
