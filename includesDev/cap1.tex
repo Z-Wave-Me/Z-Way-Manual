@@ -30,10 +30,12 @@ function too. In the folder /z-way-devel there are all header files with the fun
 prototypes. All function calls and the whole data model are identical. The URL
 
 \paragraph{http://razberry.zwave.me/fileadmin/z-way-test.zip}
+\todo{update this package}
 
 provides a sample application written in standard C that makes use of the C level API to 
 demonstrate its application. Makefiles and project files for compilation on Linux and 
 OSX are provided together with the sample code.
+
 
 \end{itemize}
 
@@ -42,16 +44,19 @@ and management of the devices as such. No higher order logic except the so calle
 between two Z-Wave devices can be used here.
 
 For all \textbf{automation and higher order logic a Javascript automation engine} is available.
-This engine is embedded in Z-Way can it be used to create your own home automation engine
-working in addition or instead  of the Z-Way Home Automation engine. 
+This engine is also shipped with Z-Way. There is also a possibility to create your own home automation engine
+working in addition or instead  of the original Z-Way Home Automation engine. 
 The implementation of the Java Script engine is organized in so called modules that implement 
 a broad variety of applications using the underlying Z-Wave devices. The automation logic 
-can also access and use other third party technology stacks such as the Enocean stack.
+can also access and use other third party technology stacks such as the EnOcean stack
+or any technologies based on HTTP.
 
-The Z-Way solution offers multiple prefabricated modules. \textbf{One of them implements
-a Virtual Device API (vDev API)}. The virtual API unifies all information and control options
-of the Z-Wave Device API, other third party API and own created virtual devices to simply
-the access by AJAX based user interfaces.
+The Z-Way Home Automation (HA) solution offers multiple prefabricated modules.
+In addition \textbf{Z-Way HA implements
+a Virtual Device API (vDev API)}. The Virtual Devices API uses information
+from Z-Wave Device API to create virtual devices based in Z-Wave devices and
+represent them in a unified way to upper level clients using Virtual Device API
+and provide access to them by JSON based user interfaces.
 The Demo GUI z-way-ha uses this API and demonstrates the use of the Virtual Device API.
 
 
@@ -60,7 +65,7 @@ The Demo GUI z-way-ha uses this API and demonstrates the use of the Virtual Devi
 The best way to learn about Z-Way is to use it. That is why the solutions comes with two
 reference User Interfaces that can be accesses using a web browser. This allows to 
 built, manage and use a first wireless smart home network with Z-Wave device (and/or with
-devices using a third party wireless technology such as Enocean if supported by Z-Way) 
+devices using a third party wireless technology such as EnOcean if supported by Z-Way) 
 without writing a single line of code.
  
 Once Z-Way is installed turn your browser to the URL
@@ -72,17 +77,8 @@ Once Z-Way is installed turn your browser to the URL
 \paragraph{http://YOURIP:8083/z-way-ha} 
 
  
-\paragraph{to use demonstation UIs available with Z-Way.} The port 8083 is predefined but can be 
-changed  to any arbitrary port number by editing the file config.xml in the root folder
-of Z-Way.
-
-\begin{lstlisting}[caption=part of config.xml]{Name}
-<config>
-	...
-	<port>8083</port>
- 	...
-</config>
-\end{lstlisting}
+\paragraph{to use demonstation UIs available with Z-Way.} The port 8083 is predefined
+(in automation/main.js).
 
 In most cases you will want to control Z-Wave devices with Z-Way. Before a new device 
 can be used, the device needs to be included in the Z-Wave network managed by Z-Way.
@@ -117,7 +113,7 @@ different purposes:
 The Z-Wave Device API implements the direct access to the Z-Wave network as such.
 All Z-Wave devices are referred to by their unique identification in the wireless network - 
 the Node Id. Z-Wave devices may have different instances of the same function, also 
-called channels. The Z-Wave Device API refers to them as daughter objects of the 
+called channels (for example sockets in a power strip). The Z-Wave Device API refers to them as daughter objects of the 
 physical device object identified by an instance Id. In case there only one instance the 
 instance Id = 0  is used.
 
@@ -165,7 +161,7 @@ into the data model. All data of Z-Way are exposed on the Expert UI.
 \subsection{Third Party Technology API}
 
 Third party Technology APIs implement the same logic as the Z-Wave device API for other 
-wireless technologies such as Enocean.
+wireless technologies such as EnOcean.
 
 For more information  please refer to the technology specific descriptions.
 
@@ -175,8 +171,8 @@ The Z-Wave Device API or any other Third Party technology API do
 not offer any higher order logic support but the pure access to functions and parameters 
 only.
 
-Z-Way offers an automation engine to overcome this restriction. A server-side Javascript
-Run time environment allows writing Javascript modules that are executed within Z-Way 
+Z-Way offers an automation engine to overcome this restriction. A server-side JavaScript
+Run time environment allows writing JavaScript modules that are executed within Z-Way 
 (means on the server). The same time all functions of the JS API can also be access on 
 the client side (the web browser). This offers some cool debug and test capabilities. 
 Among others it is possible to write whole JS functions right into the URL or the browser.
@@ -198,14 +194,14 @@ using the JS API
 \item \textbf{zway.devices[3].*}: Server Side access using the JS and the public zway object
 \end{enumerate}
 
-Due to the scripting nature of Javascript it is possible to 'inject' code at run time
+Due to the scripting nature of JavaScript it is possible to 'inject' code at run time
 using the interface. Here a nice example how to use the Java Script 
 setInterval function:
 
-\begin{lstlisting}[caption=Set Interval]{Name}
+\begin{lstlisting}[caption=Polling of device \#2]{Name}
 /JS/Run/setInterval(function() { 
 	zway.devices[2].Basic.Get();
-	}, 300*1000);
+}, 300*1000);
 \end{lstlisting}
 
 This code will, once 'executed' as URL within a web browser, call the Get() command
@@ -220,22 +216,22 @@ the variable.
 
 \begin{lstlisting}[caption=Bind a function]{Name}
 zway.devices[3].SensorMultilevel.data[1].level.bind( function() { 
-	debugPrint('CHANGED\n'); 
-	});  
-\end{lstlisting}\footnote{Please note that the Sensor Multi Command class data is an array
-index by the scale Id. Other command classes suc has Basic dont have this index but allow direct access using 
-CommandClassName.data.val}
+	debugPrint('CHANGED TO:' + this.value + '\n'); 
+});  
+\end{lstlisting}\footnote{Please note that the Sensor Multilevel Command class data is an array
+index by the scale Id. Other command classes such as Basic do not have this index but allow direct access using 
+CommandClassName.data.level}
 
 Chapter \ref{jsapi} and \ref{datamodel} describe the whole JS API in detail. The names 
 and Ids of the different command classes as well as their instance variables can be found
 in the Annex.
 
-Javascript modules can and will generate new functions that are accessible using the 
+JavaScript modules can and will generate new functions that are accessible using the 
 JSON interface. For simplification function calls on the API (means on the client
 side) are written in URL style starting with the word 'ZAutomation':
 
 \begin{center}
-ZAutomation/JSfunction/JParameter/
+/ZAutomation/JSfunction/JParameter
 == JSfunction(JParameter)
 \end{center}
 
@@ -248,13 +244,13 @@ to simplify and to unify the implementation of a Graphical User Interface.
 All functions and all instances of a physical device - that are represented as daughter
 objects in the Z-Wave Device API -  are enrolled into individual virtual devices. 
 
-In case the Z-Wave API shows one single physical device with two channels the virtual device 
-API will show two devices with same function. In case the Z-Wave API shows a physical
+In case the Z-Wave API shows one single physical device with two channels, while the Virtual Device 
+API will show two devices with similar functionality. In case the Z-Wave API shows a physical
 device with  several different functions (like a binary switch and a analog sensor in one 
 device) the Virtual Device API (vDev API) will show them as several devices with one 
 function each.
 
-The vDev is accessed using the JSON REST API but in a slightly different style. All 
+The vDev is accessed using the HTTP REST API in a slightly different style than zDev API. All 
 devices, variables and commands are encoded into a URL style for easier handling in AJAX
 code. A typical client side command in the vDev API looks like
 
@@ -271,7 +267,7 @@ Device API. The vDev also unifies the commands 'command' and the parameters, her
 On the server side the very same command would be encoded in a JavaScript style.
 
 \begin{center}
-	dev = this.controller.devices,get('ZWayVDev\_6:0:37');
+	dev = this.controller.devices.get('ZWayVDev\_6:0:37');
 	dev.command('off');
 \end{center}
 
@@ -311,7 +307,7 @@ For demo and sample code please refer to the following sources:
 \begin{enumerate}
 \item \textbf{Z-Wave Device API JSON} Expert UI on http://YOURIP:8083/expert
 \item \textbf{Z-Wave C Library API} Header files in folder /z-way-devel 
-\item \textbf{Javascript API} Modules in folder /automation
+\item \textbf{JavaScript API} Modules in folder /automation
 \item \textbf{vDev API} z-way-ha UI on http://YOURIP:8083/z-way-ha
 \end{enumerate}
 

@@ -1,36 +1,36 @@
-\chapter{Javascript API}
+\chapter{JavaScript API}
 \label{jsapi}
 
-The Javascript API mirrors all functions of the Z-Wave device API and 
-combines them with the ability to run Javascript code on top of the 
+The JavaScript API mirrors all functions of the Z-Wave device API and 
+combines them with the ability to run JavaScript code on top of the 
 Z-Wave Device functions and variables.
 
-There are two ways to run Javascript functions in Z-Way.
+There are two ways to run JavaScript functions in Z-Way.
 \begin{itemize}
-\item They can be executed in the web browser and can be used via the JSON API
-\item They can be implemented as module running in the backend.
+\item They can be executed in the web browser URL string (using /JS/Run/ prefix)
+\item They can be implemented as module running in the backend or be stored in a file on the server side.
 \end{itemize}
 Both options have their pros and cons. Running JS code in the browser is a very nice
 and convenient way to test things but the function is not persistent.
 
 Writing a module requires some more knowledge and debugging is more complicated. 
-On the other hand the possibilities of Javascript in the module are almost infinite 
-and goes far beyond just accessing Z-Wave device. Javascript as any other language
+On the other hand the possibilities of JavaScript in the module are almost infinite 
+and goes far beyond just accessing Z-Wave device. JavaScript as any other language
 can make use of services available in the Internet and combine them in any possible 
 way with information from the Z-Wave network and can execute functions within 
 the Z-Wave network but the same time on any place accessible via Internet based 
 services. In theory there is not even a need to have Z-Wave device in order to make 
-use of the powerful Javascript engine. As an example you can write a Javascript 
+use of the powerful JavaScript engine. As an example you can write a JavaScript 
 module polling weather data from the internet and depending on certain well defined 
 conditions the same module can send you a short message on your mobile.
 Both functions are by the way already implemented as open source modules and can be 
-accessed and studies for further modification or use.
+accessed and studied for further modification or use.
 
-\section {The Javascript Engine}
+\section {The JavaScript Engine}
 
-Z-Way uses the Javascript engine provided by Google referred to as v8. You find more 
-information about this Javascript implementation on https://code.google.com/p/v8/.
-V8 implements Javascript according to the specification ECMA 
+Z-Way uses the JavaScript engine provided by Google referred to as V8. You find more 
+information about this JavaScript implementation on https://code.google.com/p/v8/.
+V8 implements JavaScript according to the specification ECMA 5
 \footnote {http://www.ecma-international.org/publications/standards/Ecma-262.htm}.
 
 Z-Way extends the basic functionality provided by V8 with plenty of application 
@@ -40,23 +40,23 @@ specific functions.
 
 The JS API can be accessed from any web browser with the URL
 
-\paragraph{http://YOURIP:8083/JS/*}
+\paragraph{http://YOURIP:8083/JS/Run/*}
 
-All functions of the Z-Wave Device API can be used by Javascript. They are encapsulated
+All functions of the Z-Wave Device API can be used by JavaScript. They are encapsulated
 in the 'zway' object.  This object has the same structure as defined in chapter 
 \ref{c2-data model}. 
 The client side access to the device data is done like
 
 \paragraph{http://YOURIP:8083/JS/Run/zway.devices[x].*}
 
-Due to the scripting nature of Javascript its possible to 'inject' code at run time
+Due to the scripting nature of JavaScript its possible to 'inject' code at run time
 using the interface. Here a nice example how to use the Java Script 
 setInterval function:
 
-\begin{lstlisting}[caption=Set Interval]{Name}
+\begin{lstlisting}[caption=Polling device \#2]{Name}
 /JS/Run/setInterval(function() { 
 	zway.devices[2].Basic.Get();
-	}, 300*1000);
+}, 300*1000);
 \end{lstlisting}
 
 This code will, once 'executed' as URL within a web browser, call the Get() command
@@ -71,8 +71,8 @@ the variable.
 
 \begin{lstlisting}[caption=Bind a function]{Name}
 zway.devices[3].SensorMultilevel.data[1].level.bind( function() { 
-	debugPrint('CHANGED\n'); 
-	});  
+	debugPrint('CHANGED TO: ' + this.value + '\n'); 
+});  
 \end{lstlisting}
 
 \section{HTTP Access}
@@ -83,8 +83,8 @@ The http request is much like jQuery.ajax(): r = http.request(options);
 
 Here's the list of options:
 \begin{itemize}
-\item Url - required. Url you want to request (might be http, https, or maybe even ftp);
-\item method – optional. Http method to use (currently one of GET, POST, HEAD). If not 
+\item url - required. Url you want to request (might be http, https, or maybe even ftp);
+\item method – optional. HTTP method to use (currently one of GET, POST, HEAD). If not 
 specified, GET is used;
 \item headers – optional. Object containing additional headers to pass to server:
 
@@ -95,7 +95,7 @@ headers: {
 }
 \end{lstlisting}
 
-\item data – required for POST requests. Data to post to the server. May be either 
+\item data – used only for POST requests. Data to post to the server. May be either a
 string (to post raw data) or an object with keys and values (will be serialized as 
 'key1=value1\&key2=value2\&…');
 \item auth – optional. Provides credentials for basic authentication. It is an object 
@@ -170,7 +170,8 @@ http.request({
 	async: true (boolean, optional, default false),
 	
 	success: function(rsp) {} (function, optional, for async only),
-	failure: function(rsp) {} (function, optional, for async only)
+	error: function(rsp) {} (function, optional, for async only),
+	complete: function(rsp) {} (function, optional, for async only)
 });
 
 
@@ -188,7 +189,107 @@ response:
 }
 \end{lstlisting}
 
-\section{Other Javascript Extensions}
+\section{XML parser}
+
+ZXmlDocument object allows to convert any valid XML document into a JSON object and vice versa.
+
+\subsection{var x = new ZXmlDocument()}
+Create new empty XML document
+
+\subsection{x = new ZXmlDocument("xml content")}
+Create new XML document from a string
+
+\subsection{x.root}
+Get/set document root element. Elements are got/set in form of JS objects:
+
+\begin{lstlisting}
+{
+    name: "node_name", – mandatory
+    text: "value", – optional, for text nodes
+    attributes: { – optional
+    	name: "value",
+    	...
+    },
+    children: [ – optional, should contain a valid object of same type
+    	{ ... }
+    ]
+}
+\end{lstlisting}
+
+For example:
+\begin{lstlisting}
+(new ZXmlDocument('<weather><city id="1"><name>Zwickau</name><temp>2.6</temp></city><city id="2"><name>Moscow</name><temp>-23.4</temp></city></weather>')).root =
+{  
+   "children":[  
+      {  
+         "children":[  
+            {  
+               "text":"Zwickau",
+               "name":"name"
+            },
+            {  
+               "text":"2.6",
+               "name":"temp"
+            }
+         ],
+         "attributes":{  
+            "id":"1"
+         },
+         "name":"city"
+      },
+      {  
+         "children":[  
+            {  
+               "text":"Moscow",
+               "name":"name"
+            },
+            {  
+               "text":"-23.4",
+               "name":"temp"
+            }
+         ],
+         "attributes":{  
+            "id":"2"
+         },
+         "name":"city"
+      }
+   ],
+   "name":"weather"
+}
+\end{lstlisting}
+
+\subsection{x.isXML}
+This hidden readonly property allows to detect if object is XML object or not (it is always true).
+
+\subsection{x.toString()}
+Converts XML object into a string with valid XML content.
+
+\subsection{x.findOne(XPathString)}
+Returns first matching to XPathString element or null if not found.
+\begin{lstlisting}
+x.findOne('/weather/city[@id="2"]') // returns only city tag for Moscow
+x.findOne('/weather/city[name="Moscow"]/temp/text()') // returns temperature in Moscow
+\end{lstlisting}
+
+\subsection{x.findAll(XPathString)}
+Returns array of all matching to XPathString elements or empty array if not found.
+\begin{lstlisting}
+x.findAll('/weather/city') // returns all city tags
+x.findAll('/weather/city/name/text()') // returns all city names
+\end{lstlisting}
+
+\subsection{XML elements}
+Each XML element (tag) in addition to properties described above (text, attributes, children) have hidden readonly property parent pointing to parent object and the following methiods:
+\begin{itemize}
+\item insertChild(element) Insert new child eleemnt
+\item removeChild(element) Remove child element
+\item findOne(XPathString) Same as on root object, but relative (no leading / needed in XPathString
+\item findAll(XPathString) Same as on root object, but relative (no leading / needed in XPathString
+\end{itemize}
+
+ZXmlDocument is returned from http.request() when content type is "application/xml", "text/xml" or any other ending with "+xml". Namespaces are not yet supported.
+
+\section{Other JavaScript Extensions}
 
 \subsubsection{fs.list(folder)}
 
@@ -201,21 +302,27 @@ This returns one of the following values:
 
 \begin{itemize}
 \item 1) undefined if object does not exist or not readable
-\item 2) object \{ type: 'file', size: $<size>$\} if it is a file
+\item 2) object \{ type: 'file', size: \textless{}size\textgreater{}\} if it is a file
 \item 3) object \{ type: 'dir' \} if it is a folder
 \end{itemize} 
 
 
-\subsubsection{loadJSON(filename)}
+\subsubsection{fs.loadJSON(filename)}
 
 This function reads a file from the file system and loads it into the memory. The file must contain a valid JSON object. The only argument is the name of the file including full pathname of the local file system. The functions returns the full JSON object or null in case of error.
 
-\subsubsection{executeFile(filename)}
+\subsubsection{fs.load(filename)}
 
-Loads and executes a particular javascript file from the local filesystem.
+This function reads a file from the file system and returns it's content as a string. The only argument is the name of the file including full pathname of the local file system. The functions returns null in case of error.
+
+\subsubsection{executeFile(filename) and executeJS(string)}
+
+Loads and executes a particular JavaScript file from the local filesystem or executes JavaScript code represented in string (like eval in browsers).
+
 The script is executed withig the global namespace.
 
 Remark: If an error occurred during the execution it won't stop from further execution, but erroneous script will not be executed completely. It will stop on the first error.
+Exceptions in the callee can be trapped in the caller using standard try-catch mechanism.
 
 \subsubsection{system(command)}
 
@@ -225,21 +332,94 @@ system commands is forbidden. Each command executed need to be permitted by putt
 line with the starting commands in the file automation/.syscommands or in an different 
 automation folder as specified in config.xml.
 
-\subsubsection{Other functions derived from Javascript}
+\subsubsection{Timers}
+Timers are implemented exactly as they are used in browsers. They are very helpfull for periodical and delayed operations. Timeout/period is defined in milliseconds.
 \begin{itemize}
-\item setTimeout(function() { }, timeout): equivalent to the setTimeout function of Javascript, used for scripting
-\item setInterval(function() { }, timeout): equivalent to the setInterval function of Javascript, used for scripting
-\item clearTimeout(function() { }, timeout): equivalent to the clearTimeout function of Javascript, used for scripting
-\item clearInterval(function() { }, timeout): equivalent to the clearInterval function of Javascript, used for scripting
-\item executeJS(string): executes javascript code in the string (like eval)
-\item loadObject(object\_name): returns JSON object from storage
-\item saveObject(object\_name, object):  saves JSON object to filesystem storage
+\item timerId = setTimeout(function() { }, timeout)
+\item timerId = setInterval(function() { }, period)
+\item clearTimeout(timerId)
+\item clearInterval(timerId)
 \end{itemize}
 
+\subsubsection{loadObject(object\_name) and saveObject(object\_name, object)}
+Loads and saves JSON object from/to storage. These functions implements flat storage for application with access to the object by it's name. No folders are available.
 
-\subsubsection{Debugging}
+Data is saved in automation/storage folder. Filenames are made from object names by stripping characters but [a-ZA-Z0-9] and adding checksum from original name (to avoid name conflicts).
 
-Please use the functions 'debugPrint()' or 'console.log()' for debugging purposes.
+\subsubsection{exit()}
+Stops JavaScript engine and shuts down Z-Way server
 
-% http://forum.z-wave.me/viewtopic.php?f=3422&t=20387&p=50793#p50793
 
+\subsubsection{allowExternalAccess(handlerName) and listExternalAccess()}
+allowExternalAccess allows to register HTTP handler. handlerName can contain strings like aaa.bbb.ccc.ddd - in that case any HTTP request starting by /aaa/bbb/ccc/ddd will be handled by a function aaa.bbb.ccc.ddd() if present, otherwise aaa.bbb.ccc(), ... up to aaa().
+Handler should return object with at least properties status and body (one can also specify headers like it was in http.request module).
+
+listExternalAccess returns array with names of all registered HTTP handlers.
+
+Here is an example how to attach handlers for /what/timeisit and /what:
+
+\begin{lstlisting}
+what = function() {
+  return { status: 500, body: 'What do you want to know' };
+};
+
+what.timeisit = function() {
+  return { status: 200, body: (new Date()).toString() }
+};
+
+allowExternalAccess("what");
+allowExternalAccess("what.timeisit");
+\end{lstlisting}
+
+\subsubsection{debugPrint(object, object, ...)}
+
+Prints arguments converted to string to Z-Way console. Very usefull for debuggin.
+For convenience one can map 'console.log()' to debugPrint().
+
+This is how it was done in automation/main.js in Z-Way Home Automation engine:
+\begin{lstlisting}
+var console = {
+    log: debugPrint,
+    warn: debugPrint,
+    error: debugPrint,
+    debug: debugPrint,
+    logJS: function() {
+        var arr = [];
+        for (var key in arguments)
+            arr.push(JSON.stringify(arguments[key]));
+        debugPrint(arr);
+    }
+};
+\end{lstlisting}
+
+\subsection{Debugging JavaScript code}
+Change in config.xml debug-port to 8183 (or some other) turn on V8 debugger capability on Z-Way start.
+
+\begin{lstlisting}
+<config>
+    ...
+    <debug-port>8183</debug-port>
+    ....
+</config>
+\end{lstlisting}
+
+node-inspector debugger tool is required. It provides web-based UI for debugging similar to Google Chrome debug console.
+
+You might want to run debugger tool on another machine (for example if it is not possible to install it on the same box as Z-Way is running on).
+
+Use the following command to forward debugger port defined in config.xml to your local machine:
+\begin{lstlisting}
+ssh -N USER@IP_OF_Z-WAY_MACHINE -L 8183:127.0.0.1:8183
+\end{lstlisting}
+(for RaZberry USER is pi)
+
+Install node-inspector debugger tool and run it:
+\begin{lstlisting}
+npm install -g node-inspector
+node-inspector --debug-port 8183
+\end{lstlisting}
+
+Then you can connect to http://IP\_OF\_MACHINE\_WITH\_NODE\_INSPECTOR:8080/debug?port=8183
+
+If debugging is turned on, Z-Way gives you 5 seconds during startup to reconnect debugger to Z-Way (refresh the page of debugger Web UI withing these 5 seconds).
+This allows you to debug startup code of Z-Way JavaScript engine from the very first line of code.
