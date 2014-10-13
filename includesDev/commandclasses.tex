@@ -824,7 +824,7 @@ Allows to define color for multicolor LED lights. It based on capabilities:
 \item 5: Amber (for 6ch Color mixing) (0x00 – 0xFF: 0 – 100\%)
 \item 6: Cyan (for 6ch Color mixing) (0x00 – 0xFF: 0 – 100\%)
 \item 7: Purple (for 6ch Color mixing) (0x00 – 0xFF: 0 – 100\%)
-\item 8: Indexed Color (0x00 – 0x0FF: Color Index 0-255
+\item 8: Indexed Color (0x00 – 0x0FF: Color Index 0-255)
 \end{itemize}
 
 Command Class values in data holder:
@@ -832,34 +832,35 @@ Command Class values in data holder:
 \item [capability Id]: A data holder for available capability. it contains the status level
 \end{itemize}
 
-\paragraph {Get}
-\begin{quote} Syntax: SwitchColorStateGet(capabilityId, successCallback=NULL, failureCallback=NULL)\end{quote}
+\paragraph {Command SwitchColor Get}
+\begin{quote} Syntax: Get(capabilityId, successCallback=NULL, failureCallback=NULL)\end{quote}
 \begin{quote} Description: Requests a status of the a certain capability\end{quote}
 \begin{quote} Parameter capability: the id of the capability\end{quote}
 \begin{quote} Return: data holder 'capability Id' is updated with status \end{quote}
 
-\paragraph {Set}
-\begin{quote} Syntax: SwitchColorStateSet(capabilityId, value, successCallback=NULL, failureCallback=NULL)\end{quote}
+\paragraph {Command SwitchColor Set}
+\begin{quote} Syntax: Set(capabilityId, value, duration=0xff, successCallback=NULL, failureCallback=NULL)\end{quote}
 \begin{quote} Description: sets the status of a capability\end{quote}
 \begin{quote} Parameter capability: the id of the capability\end{quote}
 \begin{quote} Parameter value: new desired value of this capability\end{quote}
+\begin{quote} Parameter duration: optional time to change capability state (0 = instant, 1-127 = seconds, 128-254 = minutes+127, 255 = factory default)\end{quote}
 
-\paragraph {SwitchColorStateSetMultiple}
-\begin{quote} Syntax: SwitchColorStateSetMultiple(count, [capabilityIds], [states], duration, successCallback=NULL, failureCallback=NULL )\end{quote}
+\paragraph {Command SwitchColor SetMultiple}
+\begin{quote} Syntax: SetMultiple(count, [capabilityIds], [states], duration=0xff, successCallback=NULL, failureCallback=NULL )\end{quote}
 \begin{quote} Description: sets the status of a multiple capabilities\end{quote}
 \begin{quote} Parameter count: number of array members\end{quote}
 \begin{quote} Parameter capabilities: array of ids of the capability\end{quote}
 \begin{quote} Parameter state: array of new desired states of this capabilities\end{quote}
-\begin{quote} Parameter duration: array of times to change the capabilities state (in sec)\end{quote}
+\begin{quote} Parameter duration: optional time to change capability state (see above)\end{quote}
 
-\paragraph {SwitchColorStartLevelChange}
-\begin{quote} Syntax: SwitchColorStartLevelChange(capabilityId, dir, successCallback=NULL, failureCallback=NULL)\end{quote}
+\paragraph {Command SwitchColor StartLevelChange}
+\begin{quote} Syntax: StartLevelChange(capabilityId, dir, successCallback=NULL, failureCallback=NULL)\end{quote}
 \begin{quote} Description: Start the change of a capability status\end{quote}
 \begin{quote} Parameter capability: the id of the capability\end{quote}
 \begin{quote} Others Parameters: see SwitchMultilevel Parameters\end{quote} 
 
-\paragraph {SwitchColorStopStateChange}
-\begin{quote} Syntax: SwitchColorStopStateChange(capabilityId, ZJobCustomCallback successCallback, successCallback=NULL, failureCallback=NULL)\end{quote}
+\paragraph {Command SwitchColor StopStateChange}
+\begin{quote} Syntax: StopStateChange(capabilityId, ZJobCustomCallback successCallback, successCallback=NULL, failureCallback=NULL)\end{quote}
 \begin{quote} Description: stop change of capability status\end{quote}
 \begin{quote} Parameter capability: the id of the capability\end{quote}
 \begin{quote} Return: data holder 'capability Id' is updated with status \end{quote}
