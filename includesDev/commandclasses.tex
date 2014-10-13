@@ -843,7 +843,16 @@ Command Class values in data holder:
 \begin{quote} Description: sets the status of a capability\end{quote}
 \begin{quote} Parameter capability: the id of the capability\end{quote}
 \begin{quote} Parameter value: new desired value of this capability\end{quote}
-\begin{quote} Parameter duration: optional time to change capability state (0 = instant, 1-127 = seconds, 128-254 = minutes+127, 255 = factory default)\end{quote}
+\begin{quote} Parameter duration: time to change capability state\end{quote}
+
+Duration argument is only valid for SwitchColor CC version 2 (it is ignored for version 1). 
+It may have the following values:
+\begin{itemize}
+\item [0]: Change value instantly
+\item [1-127]: Duration between 1 and 127 seconds
+\item [128-254]: Duration between 1 and 127 minutes
+\item [255]: Factory default (device-specific)
+\end{itemize}
 
 \paragraph {Command SwitchColor SetMultiple}
 \begin{quote} Syntax: SetMultiple(count, [capabilityIds], [states], duration=0xff, successCallback=NULL, failureCallback=NULL )\end{quote}
@@ -851,7 +860,7 @@ Command Class values in data holder:
 \begin{quote} Parameter count: number of array members\end{quote}
 \begin{quote} Parameter capabilities: array of ids of the capability\end{quote}
 \begin{quote} Parameter state: array of new desired states of this capabilities\end{quote}
-\begin{quote} Parameter duration: optional time to change capability state (see above)\end{quote}
+\begin{quote} Parameter duration: time to change capability state\end{quote}
 
 \paragraph {Command SwitchColor StartLevelChange}
 \begin{quote} Syntax: StartLevelChange(capabilityId, dir, successCallback=NULL, failureCallback=NULL)\end{quote}
