@@ -289,6 +289,42 @@ Each XML element (tag) in addition to properties described above (text, attribut
 
 ZXmlDocument is returned from http.request() when content type is "application/xml", "text/xml" or any other ending with "+xml". Namespaces are not yet supported.
 
+\section{Cryptographic functions}
+
+crypto object provides access to some popular cryptographic functions such
+as SHA1, SHA256, SHA512, MD5, HMAC and provides good random numbers.
+
+\subsection{var guid = crypto.guid()}
+Provides standard GUID in string format.
+
+\subsection{var rnd = crypto.random(n)}
+Generates n random bytes.
+Returned values is of type ArrayBuffer. To convert it into array use this
+trick:
+\begin{lstlisting}
+	rnd = (new Uint8Array(crypto.random(10)));
+\end{lstlisting}
+
+\subsection{var dgst = crypto.digest(cipher, data, ...)}
+Returns digest calculated using selected cipher. Available are: "sha1", "sha256", "sha512", "md5".
+You can specify many parameters with data -- all will be used to calculate the result.
+Return value is of type ArrayBuffer.
+
+There are also shortcuts for easier usage. These calls are equivalent (same
+for other ciphers):
+
+\begin{lstlisting}
+	dgst = crypto.digest("sha256", data);
+	dgst = crypto.sha256(data);
+\end{lstlisting}
+
+\subsection{var hmac = crypto.hmac(cipher, key, data, ...)}
+Returns hmac calculated using selected cipher. Available are: "sha1", "sha256", "sha512", "md5".
+You can specify many parameters with data -- all will be used to calculate the result.
+Return value is of type ArrayBuffer.
+
+There are also shortcuts for easier usage cipher.hmac256 and cipher.hmac512 (for sha256 and sha512 only).
+
 \section{Other JavaScript Extensions}
 
 \subsubsection{fs.list(folder)}
