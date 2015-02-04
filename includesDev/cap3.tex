@@ -70,7 +70,7 @@ and on the server side - will bind a simple alert function to the change of
 the variable.
 
 \begin{lstlisting}[caption=Bind a function]{Name}
-zway.devices[3].SensorMultilevel.data[1].level.bind( function() { 
+zway.devices[3].SensorMultilevel.data[1].val.bind( function() { 
 	debugPrint('CHANGED TO: ' + this.value + '\n'); 
 });  
 \end{lstlisting}
