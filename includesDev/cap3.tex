@@ -70,7 +70,7 @@ and on the server side - will bind a simple alert function to the change of
 the variable.
 
 \begin{lstlisting}[caption=Bind a function]{Name}
-zway.devices[3].SensorMultilevel.data[1].val.bind( function() { 
+zway.devices[3].SensorMultilevel.data[1].level.bind( function() { 
 	debugPrint('CHANGED TO: ' + this.value + '\n'); 
 });  
 \end{lstlisting}
@@ -292,26 +292,24 @@ ZXmlDocument is returned from http.request() when content type is "application/x
 \section{Cryptographic functions}
 
 crypto object provides access to some popular cryptographic functions such
-as SHA1, SHA256, SHA512, MD5, HMAC and provides good random numbers.
+as SHA1, SHA256, SHA512, MD5, HMAC, and provides good random numbers.
 
 \subsection{var guid = crypto.guid()}
 Provides standard GUID in string format.
 
 \subsection{var rnd = crypto.random(n)}
 Generates n random bytes.
-Returned values is of type ArrayBuffer. To convert it into array use this
-trick:
+Returned values is of type ArrayBuffer. To convert it into array use this trick:
 \begin{lstlisting}
 	rnd = (new Uint8Array(crypto.random(10)));
 \end{lstlisting}
 
-\subsection{var dgst = crypto.digest(cipher, data, ...)}
-Returns digest calculated using selected cipher. Available are: "sha1", "sha256", "sha512", "md5".
-You can specify many parameters with data -- all will be used to calculate the result.
+\subsection{var dgst = crypto.digest(hash, data, ...)}
+Returns digest calculated using selected hash algorithm. It supports virtually all the algorithms available in OpenSSL (md4, md5, mdc2, sha, sha1, sha224, sha256, sha384, sha512, ripemd160).
+If no data parameters specified, it returns a digest of an empty value. If more than one data parameters are specified, they're all used to calculate the result. Data parameters may be of different types (strings, arrays, ArrayBuffers).
 Return value is of type ArrayBuffer.
 
-There are also shortcuts for easier usage. These calls are equivalent (same
-for other ciphers):
+There are also a few shortcut functions for popular algorithms: "md5", "sha1", "sha256", "sha512". For example, these calls are equivalent:
 
 \begin{lstlisting}
 	dgst = crypto.digest("sha256", data);
@@ -319,11 +317,17 @@ for other ciphers):
 \end{lstlisting}
 
 \subsection{var hmac = crypto.hmac(cipher, key, data, ...)}
-Returns hmac calculated using selected cipher. Available are: "sha1", "sha256", "sha512", "md5".
-You can specify many parameters with data -- all will be used to calculate the result.
+Returns hmac calculated using selected hash algorithm. Hash algorithms are the same as for digest() function.
+Key parameter is required. 
+If no data parameters specified, it returns a HMAC of an empty value. If more than one data parameters are specified, they're all used to calculate the result. Key and data parameters may be of different types (strings, arrays, ArrayBuffers).
 Return value is of type ArrayBuffer.
 
-There are also shortcuts for easier usage cipher.hmac256 and cipher.hmac512 (for sha256 and sha512 only).
+There are also a few shortcut functions for popular algorithms: "hmac256", "hmac512". For example, these calls are equivalent:
+
+\begin{lstlisting}
+  dgst = crypto.hmac("sha256", key, data);
+  dgst = crypto.hmac256(key, data);
+\end{lstlisting}
 
 \section{Other JavaScript Extensions}
 
