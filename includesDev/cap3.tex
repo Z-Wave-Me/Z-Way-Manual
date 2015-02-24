@@ -329,6 +329,72 @@ There are also a few shortcut functions for popular algorithms: "hmac256", "hmac
   dgst = crypto.hmac256(key, data);
 \end{lstlisting}
 
+\section{Sockets functions}
+
+Socket module allows easy access to TCP and UDP sockets from JavaScript.
+Both connection to distant ports and listening on local are available. This API fully mirrors into JavaScript POSIX TCP/IP sockets.
+This can be used to control third party devices like Global Cache or Sonos
+as well as emulating third party services.
+
+To start communications one need to create socket and either
+\textbf{connect} it or \textbf{listen} it. \textbf{onrecv} method is called
+on data receive from remote, while \textbf{send} is used to send data to remote side.
+
+The example below dumps to log file response to http://ya.ru:80/ (raw HTTP
+protocol is used as an example).
+
+\begin{lstlisting}
+var sock = new sockets.tcp();
+
+sock.onrecv = function(data) {
+    debugPrint(data.byteLength);
+};
+
+sock.connect("ya.ru", 80);
+
+sock.send("GET / HTTP/1.0\r\n\r\n");
+\end{lstlisting}
+
+Here is an example of TCP echo server on port 8888:
+
+\begin{lstlisting}
+var sock = new sockets.tcp();
+
+sock.bind(8888);
+
+sock.onrecv = function(data) {
+    this.send(data);
+};
+
+sock.listen();
+\end{lstlisting}
+
+And echo server for UDP:
+\begin{lstlisting}
+var sock = new sockets.udp();
+
+sock.bind(8888);
+
+sock.onrecv = function(data, host, port) {
+    this.sendto(data, host, port);
+};
+
+sock.listen();
+\end{lstlisting}
+
+Detailed description of Socket API:
+\begin{itemize}
+\item bind(ip, port) or bind(port) binds socket to port (integer number). ip should be a string like "192.168.0.1". If omited "127.0.0.1" is used.
+\item connect(ip, port) connects to remote side ip:port. TCP sockets requires this call before sending data. For UDP sockets it is optional, but once used allows to use send call instead of sendto call.
+\item listen() starts listening port (this is required not only for TCP, but for UDP too).
+\item close() initiate close of socket.
+\item send(data) sends data to connected or accepted socket.
+\item sendto(data, host, port) sends data to a non-connected UDP socket.
+\item onrecv(data, host, port) called on new data receiption from remote side. "this" object will be defined like in onconnect.
+\item onconnect(host, port) called once connection to remote side is established or on new connection accept. For UDP sockets and connected TCP sockets "this" object reffers to the socket itself, while for accepted TCP sockets "this" reffers to the client individual object.
+\item onclose(host, port) called on socket close by remote or due to close() call. Note that for TCP sockets this callback is called for client sockets on connection close and for binded listening socket if close() is called. "this" object will be defined like in onconnect.
+\end{itemize}
+
 \section{Other JavaScript Extensions}
 
 \subsubsection{fs.list(folder)}
