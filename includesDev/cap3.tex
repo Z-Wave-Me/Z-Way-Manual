@@ -384,9 +384,9 @@ sock.listen();
 
 Detailed description of Socket API:
 \begin{itemize}
-\item bind(ip, port) or bind(port) binds socket to port (integer number). ip should be a string like "192.168.0.1". If omited "0.0.0.0" is used (bind on all IP addresses of all interfaces).
-\item connect(ip, port) connects to remote side ip:port. TCP sockets requires this call before sending data. For UDP sockets it is optional, but once used allows to use send call instead of sendto call.
-\item listen() starts listening port (this is required not only for TCP, but for UDP too).
+\item bind(ip, port) or bind(port) binds socket to port (integer number). ip should be a string like "192.168.0.1". If omited "0.0.0.0" is used (bind on all IP addresses of all interfaces). Returns false on error.
+\item connect(ip, port) connects to remote side ip:port. TCP sockets requires this call before sending data. For UDP sockets it is optional, but once used allows to use send call instead of sendto call. Returns false on error.
+\item listen() starts listening port (this is required not only for TCP, but for UDP too). Returns false on error.
 \item close() initiate close of socket.
 \item send(data) sends data to connected or accepted socket.
 \item sendto(data, host, port) sends data to a non-connected UDP socket.
