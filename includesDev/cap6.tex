@@ -29,7 +29,56 @@ rooms, application etc.
 There is an online manual for syntax of the various functions that can be accessed on 
 
 \paragraph{http://docs.zwayhomeautomation.apiary.io/}
- 
+
+\section{Authentication}
+
+In order to access API one need to authenticate itself. Z-Way uses sessions
+to authenticate users. Session can be obtained by sending login and password
+in JSON format using POST to URL \texttt{/ZAutomation/api/v1/login}. User
+credentials should look like \texttt{\{"login":"admin", "password":"admin"\}}
+
+In return the session will be sent in two forms:
+\begin{itemize}
+\item as \textbf{data.sid} field in JSON structure,
+\item as a cookie called \textbf{ZWAYSession}.
+\end{itemize}
+
+Example of successful login will look like:
+\begin{lstlisting}[caption=Successful login reply]
+{
+    "data": {
+        "sid": "ba69cb5b-b2fd-5ce0-5b75-9bae3e8bc369",
+        "id": 1,
+        "role": 1,
+        "name": "Administrator",
+        "lang": "en",
+        "color": "#dddddd",
+        "dashboard": [],
+        "interval": 2000,
+        "rooms": [
+            0
+        ],
+        "hide_all_device_events": false,
+        "hide_system_events": false,
+        "hide_single_device_events": []
+    },
+    "code": 200,
+    "message": "200 OK",
+    "error": null
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Wrong login/password reply]
+{
+    "data": null,
+    "code": 401,
+    "message": "401 Unauthorized",
+    "error": "User login/password is wrong."
+}
+\end{lstlisting}
+
+One obtained, the session can be sent to the server via cookie (as set by
+Z-Way) or via HTTP header.
 
 \section{The virtual device}
 
