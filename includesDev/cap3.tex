@@ -391,8 +391,12 @@ Detailed description of Socket API:
 \item send(data) sends data to connected or accepted socket.
 \item sendto(data, host, port) sends data to a non-connected UDP socket.
 \item onrecv(data, host, port) called on new data receiption from remote side. For UDP sockets and connected TCP sockets "this" object reffers to the socket itself, while for accepted TCP sockets "this" reffers to the client's individual objects.
-\item onconnect(host, port) called only for TCP sockets on new connection accept. "this" reffers to the client individual socket object.
-\item onclose(host, port) called on socket close by remote or due to close() call. Note that for TCP sockets this callback is called for client sockets on connection close and for binded listening socket if close() is called. "this" object will be defined like in onrecv.
+\item onconnect(remoteHost, remotePort, localHost, localPort) called only for TCP sockets on new connection accept. "this" reffers to the client individual socket object.
+\item onclose(remoteHost, remotePort, localHost, localPort) called on socket close by remote or due to close() call. Note that for TCP sockets this callback is called for client sockets on connection close and for binded listening socket if close() is called. "this" object will be defined like in onrecv.
+\item reusable() sets SO\_REUSEADDR socket option to allow multiple bind() on the same port.
+\item broadcast() sets SO\_BROADCAST socket option to allow sending broadcast UDP messages.
+\item multicastAddMembership(multicastGroup) subscribe socket to multicast group
+\item multicastDropMembership(multicastGroup) unsubscribe socket from multicast group
 \end{itemize}
 
 \section{Other JavaScript Extensions}
