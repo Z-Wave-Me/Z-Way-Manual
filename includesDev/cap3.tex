@@ -399,6 +399,46 @@ Detailed description of Socket API:
 \item multicastDropMembership(multicastGroup) unsubscribe socket from multicast group
 \end{itemize}
 
+\subsection{WebSockets functions}
+
+Socket module also implements WebSockets (RFC 6455). WebSocket API is made to be
+compatible with browser implementations (some rarely used functions are not
+implemented - see below).
+
+The example below implemnts basic application using WebSockets:
+
+\begin{lstlisting}
+var sock = new sockets.websocket("ws://echo.websocket.org");
+
+sock.onopen = function () {
+    debugPrint('connected, sending ping');
+    sock.send('ping');
+}
+
+sock.onmessage = function(ev) {
+    debugPrint('recv', ev.data);
+}
+
+sock.onclose = function() {
+    debugPrint('closed');
+}
+
+sock.onerror = function(ev) {
+    debugPrint('error', ev.data);
+}
+\end{lstlisting}
+
+Detailed description of WebSocket API:
+\begin{itemize}
+\item socket.websocket(url) creates new WebSocket and connects to the specifiedURL.
+\item close() initiate close of WebSocket.
+\item send(data) sends data to WebSocket. data can be array, ArrayBuffer (sent as binary) or string (sent as text).
+\item onmessage(event) called on new data receiption from remote side. Object event contains only data property. Other properties mentioned in RFC 6455 are not supported.
+\item onopen() called on connection establish. Compared RFC 6455 event parameter is not passed.
+\item onclose() called on WebSocket close by remote or due to close() call. Compared RFC 6455 event parameter is not passed.
+\item onerror(event) called on error. Parameter event contains only propery data. Other properties from RFC 6455 are not implemented.
+\end{itemize}
+
 \section{Other JavaScript Extensions}
 
 \subsubsection{fs.list(folder)}
