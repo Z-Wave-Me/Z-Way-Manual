@@ -405,7 +405,7 @@ Socket module also implements WebSockets (RFC 6455). WebSocket API is made to be
 compatible with browser implementations (some rarely used functions are not
 implemented - see below).
 
-The example below implemnts basic application using WebSockets:
+The example below implemnts basic application using WebSockets client:
 
 \begin{lstlisting}
 var sock = new sockets.websocket("ws://echo.websocket.org");
@@ -428,14 +428,42 @@ sock.onerror = function(ev) {
 }
 \end{lstlisting}
 
+Next example shows basic application using WebSockets server:
+
+\begin{lstlisting}
+var sock = new sockets.websocket(9009);
+
+sock.onconnect = function () {
+    debugPrint('client connected, sending ping');
+}
+
+sock.onmessage = function(ev) {
+    debugPrint('recv', ev.data);
+    sock.send('pong');
+}
+
+sock.onclose = function() {
+    if (this === sock) {
+        debugPrint('server websocket closed');
+    } else {
+        debugPrint('client disconnected');
+    }
+}
+
+sock.onerror = function(ev) {
+    debugPrint('error', ev.data);
+}
+\end{lstlisting}
+
 Detailed description of WebSocket API:
 \begin{itemize}
-\item socket.websocket(url) creates new WebSocket and connects to the specifiedURL.
+\item socket.websocket(url, [protocol]) creates new client WebSocket and connects to the specified URL (should be a string like "ws://host:port" or "wss://host:port" for SSL channel). Optional protocol parameter can be used to specify protocol from server capabilities (comma separated string), default is "default".
+\item socket.websocket(port) creates new WebSocket server on port.
 \item close() initiate close of WebSocket.
 \item send(data) sends data to WebSocket. data can be array, ArrayBuffer (sent as binary) or string (sent as text).
 \item onmessage(event) called on new data receiption from remote side. Object event contains only data property. Other properties mentioned in RFC 6455 are not supported.
 \item onopen() called on connection establish. Compared RFC 6455 event parameter is not passed.
-\item onclose() called on WebSocket close by remote or due to close() call. Compared RFC 6455 event parameter is not passed.
+\item onclose() called on WebSocket close by remote or due to close() call. For server side will be called on client instance and on listening instance (use this to differenciate). Compared RFC 6455 event parameter is not passed.
 \item onerror(event) called on error. Parameter event contains only propery data. Other properties from RFC 6455 are not implemented.
 \end{itemize}
 

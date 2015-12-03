@@ -149,6 +149,9 @@ The data object can be accesses in the demo UI in advanced mode of "Configuratio
 \item LoadXMLFile(file): Load new Z-Wave Device Description XML file. See http://pepper1.net/zwavedb/
 \item GuestXML(): Return the list of all known Z-Wave Device Description XML files with match score. [score, file name, brand name, product name, photo]
 \item WakeupQueue(): Pretend the device is awake and try to send packets
+\item AssignReturnRoute(target): Send device new routes to target node
+\item DeleteReturnRoute(): Clear routes in device
+\item AssignSUCReturnRoute(): Inform device about SUC and route to reach it
 \end {itemize}
 \end {itemize}
 
