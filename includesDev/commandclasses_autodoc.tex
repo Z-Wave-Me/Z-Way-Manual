@@ -1067,7 +1067,7 @@ Data holders:
 \item \textbf{[userId]}: User subtree
 \item \qquad\textbf{code}: User code
 \item \qquad\textbf{status}: Status of the user: 0 for available (no code set), 1 for occupied (code set), 2 for reserved by administrator
-\item \qquad\textbf{hasCode}: Flag if a valid code is set (in case device reports occupied, but code is not valid (less than 4 symbols)
+\item \qquad\textbf{hasCode}: Flag if a valid code is set (in case device reports occupied, but code is not valid (less than 4 symbols) or code not set but old is still reported by the device)
 \end{itemize}
 
 \paragraph{Command UserCode Get}
