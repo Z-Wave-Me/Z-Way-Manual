@@ -39,37 +39,52 @@ You can access the data elements of "controller" in the demo user interface in m
 \begin {itemize}
 \item data: Data tree of the controller
 \begin {itemize}
-\item  APIVersion: Version of the Serial API
-\item  SDK: System development kit version of the Transceiver firmware
-\item  SISPresent: flase if SUIS is available
-\item  SUCNodeId: Node ID of SUC if present
-\item  ZWVersion: ZWave Version (firmware)
-\item  ZWaveChip: The name of the Z-Wave transceiver chip
-\item  ZWlibMajor / ZWlibMinor: library version 
-\item  capabilities: array of function class ids
-\item  controllerstate: flag to show inclusion mode etc
-\item  countJobs: shall job be counted
-\item  curSerialAPIAckTimeout10ms: timing parameter of serial interface
-\item  curSerialAPIBytetimeout10ms: timing parameter of serial interface
-\item  homeId:the home id of the controller
-\item  isinOtherNetworks: flag to show if controller is real primary if in other network
-\item  isPrimary: flag to show if controller is primary
-\item  isRealprimary: flag to show if controller can be  primary
+\item  homeId: Home ID of the controller
+\item  nodeId: Node ID of the controller
+\item  SISPresent: is SIS available (if TRUE, SUCNodeId is a SIS, otherwise it is SUC)
+\item  SUCNodeId: Node ID of SUC or SIS or 0 if no SUC/SIS present
+\item  isInOtherNetworks: is controller the original Primary or it is in other's network
+\item  isPrimary: can controller include devices (Primary or Inclusion controller)
+\item  isRealPrimary: is controller Primary Controller or SIS in the network
 \item  isSUC: is SUC present
-\item  lastExcludedDevice: node ID of last excluded device
-\item  lastIncludedDevice: node ID of last included device
-\item  libType library basis type
-\item  manufacturerIS / manufacturerProductId / manufacturerProductTypeId: ids to identify the transceiver hardware
-\item  memoryGetAddress
-\item  memoryGetData
-\item  nodeId: own node ID
-\item  nonManagementJobs: number of non man. jobs
-\item  oldSerialAPIAckTimeout10ms: default timing parameter of serial interface
-\item  oldSerialAPIBytetimeout10ms: default timing parameter of serial interface
-\item  softwareRevisonDate: written by compiler
-\item  softwareRevisionID: written by compiler
-\item  vendor: string of hardware vendor
+\item  libType: Z-Wave library type
+\item  frequency: current frequency of the transceiver
+
+\item  controllerState: current network management state of the controller
+\item  lastExcludedDevice: Node ID of last excluded device
+\item  lastIncludedDevice: Node ID of last included device
+\item  secureInclusion: shall inclusion be done using Security
+
+\item  caps: Z-Way license information
+\item  softwareRevisionVersion: version of Z-Way build
+\item  softwareRevisonDate: date of Z-Way build
+\item  softwareRevisionId: git commit of Z-Way build
+
+\item  manufacturerId / manufacturerProductId / manufacturerProductTypeId: IDs to identify the transceiver hardware
+\item  vendor: name of hardware vendor
+\item  APIVersion: Version of the Serial API of the transceiver firmware
+\item  SDK: Z-Wave SDK version of the transceiver firmware
+\item  ZWVersion: ZWave Version (firmware)
+\item  ZWaveChip: Serie of the transceiver Z-Wave chip
+\item  ZWlibMajor / ZWlibMinor: library version 
+\item  capabilities: array of Function Class IDs supported by the transceiver firmware
+\item  functionClasses: ordered array of IDs of Function Classes
+\item  functionClassesNames: ordered array of Names of Function Classes
+\item  uuid: Z-Way transceiver firmware unique ID
+
+\item  memoryGetAddress: address of last data stored in memoryGetData read by one of memory read function
+\item  memoryGetData: last data read by one of memory read function
+\item  countJobs: shall job be counted (nonManagementJobs and devices[x].data.queueLength)
+\item  nonManagementJobs: number of non-management jobs in the queue
+\item  deviceRelaxDelay: time in 10ms to wait before sending next command to same device (configurable in Defaults.xml)
+\item  incomingPacket: last incoming packet from Z-Wave network
+
+\item  curSerialAPIAckTimeout10ms: timing parameter of Serial API
+\item  curSerialAPIBytetimeout10ms: timing parameter of Serial API
+\item  oldSerialAPIAckTimeout10ms: previous timing parameter of Serial API
+\item  oldSerialAPIBytetimeout10ms: previous timing parameter of Serial API
 \end {itemize}
+
 \item AddNodeToNetwork(mode): Reference to zway.AddNodeToNetwork()
 \item RemoveNodeFromNetwork(mode): Reference to zway.RemoveNodeFromNetwork()
 \item ControllerChange(mode): Reference to zway.ControllerChange()
@@ -111,36 +126,42 @@ The data object can be accesses in the demo UI in advanced mode of "Configuratio
 \item id: (node) Id of the device
 \item Data: Data tree of the device
 \begin {itemize}
-\item SDK: SDK used in the device
+\item SDK: SDK used in the device firmware
 \item ZDDXMLFile: file of the Devcie Description Record
-\item ZWLib: Z-Wave library used
+\item ZWLib: Z-Wave library used in the device firmware
 \item ZWProtocolMajor / ZWProtocolMinor: Z-Wave protocol version
 \item applicationMajor / ApplicationMinor: Application Version of devices firmware
-\item basicType: basic Z-Wave device class
-\item beam: wake up beam required
-\item countFailed: statistics of failed packets sent (from start of process)
-\item countSuccess: statistics of sucessful packets sent (from start of process)
-\item deviceTypeString:
-\item genericType: generic Z-Wave device class
-\item infoProtocolSpecific
-\item isAwake
-\item isListening
-\item isFailed
-\item isRouting
-\item isVirtual: 
-\item keepAwake: flag is device need to be kept awake
-\item lastRecevied:  timestamp of last packet received
-\item lastSend:  timestamp of last sent operation
-\item ManufacturerId / manufacturerProductID / manufacturerProductTypeId: ids used to identify the device
+\item manufacturerId / manufacturerProductId / manufacturerProductTypeId: ids used to identify the device
+\item basicType: Z-Wave Basic Type
+\item genericType: Z-Wave Generic Type
+\item specificType: Z-Wave Specific Type
+\item deviceTypeString: verbal Z-Wave Device Class
+\item vendorString: verbal vendor name
+
+\item nodeInfoFrame: Node Information Frame (NIF) array
+\item isListening: is always listening
+\item isAwake: is currently awake
+\item keepAwake: shall the device be kept awake even if there is nothing to send to it
+\item isRouting: is abale to send routed unsolicited packets
+\item sensor1000: device is a FLiRS with 1000 ms wakeup
+\item sensor250: device is a FLiRS with 250 ms wakeup
+\item isVirtual: is virtual device from a bridge controller
+\item option: are optional Command Classes present in addition to mandatory for this Device Class
+\item infoProtocolSpecific: internal information about the device
+
 \item neightbours: list of neighbour nodes
-\item nodeInfoFrame: nodeinformation frame in bytes
-\item option: flag if optional command classes are present
-\item queueLength: length of device specific send queue
-\item sensor1000: flag if device is FLIRS with 1000 ms wakeup 
-\item sensor250: flag if device is FLIRS with 250 ms wakeup 
-\item specificType: specific Z-Wave device class
+
+\item givenName: name for Expert UI
+\item isFailed: is failed
+\item failureCount: number of tries since last device failed
+\item lastRecevied: timestamp of last packet received
+\item lastSend: timestamp of last sent operation
+\item lastPacketInfo: structure with deliveryTime, delivered and packetLength information about last packet sent
+\item queueLength: length of device specific send queue (if countJobs is enabled)
+\item lastNonceGet: internal
 \end {itemize}
-\item instances: Instances list of the device
+
+\item instances: iInstances list of the device
 \item RequestNodeInformation(): Request NIF
 \item RequestNodeNeighbourUpdate(): Request routes update
 \item InterviewForce(): Purge all command classes and start interview based on device's NIF
@@ -179,7 +200,7 @@ is present the id of this instance is 0. Command classes are located in instance
 
 \subsection{CommandClass}
 
-This is the command class object. It contains public methods and public data elements that are described
+This is the Command Class object. It contains public methods and public data elements that are described
 in chapter \ref{ccs}
 
 \begin {itemize}
@@ -192,9 +213,9 @@ in chapter \ref{ccs}
 \begin {itemize}
 \item interviewCounter: number of attempts left until interview is terminate even if not successful
 \item interviewDone: flag if interview of the command class is finished
-\item security: flag if command class is operated under special security mode
-\item version: version of the command class implemented
-\item supported: flag if CC is supported or only controlled
+\item security: flag if Command Class is operated under Security Command Class
+\item version: version of the Command Class implemented in the device
+\item supported: flag if Command Class is supported or only controlled
 \item {commandclass data}: Command Class specific data - see chapter \ref{ccs} for details.
 \end {itemize}
 \item name: Command Class name
@@ -204,10 +225,9 @@ in chapter \ref{ccs}
 
 \section{Data}
 
-This is the description of the data object.
+This is the description of the data object (called Data Holder or DH).
 
-General note: Z-Way objects and it's decendents are NOT simple JS objects, but native JS objects, 
-that does not allow object modification.
+General note: Z-Way objects and it's decendents are NOT simple JS objects, but native JS objects, that does not allow object modification.
 
 \begin {itemize}
 \item name: Name of data tree element

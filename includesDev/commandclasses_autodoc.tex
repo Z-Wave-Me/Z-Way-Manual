@@ -1228,6 +1228,7 @@ Data holders:
 \item \textbf{[sceneId]}: Subtree for scene
 \item \qquad\textbf{level}: Level to set on scene activation
 \item \qquad\textbf{dimming}: Default dimming duration to use
+\item \textbf{currentScene}: Currently activated scene
 \end{itemize}
 
 \paragraph{Command SceneActuatorConf Get}
@@ -1236,7 +1237,7 @@ Data holders:
 \begin{quote}Parameter scene: Scene Id. 0 means get current scene\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
-\begin{quote}Report: scene subtree updated\end{quote}
+\begin{quote}Report: scene subtree updated, currentScene updated (if scene = 0)\end{quote}
 
 \paragraph{Command SceneActuatorConf Set}
 \begin{quote}Syntax: Set(scene, level, dimming = 0xff, override = TRUE, successCallback = NULL, failureCallback = NULL)\end{quote}
