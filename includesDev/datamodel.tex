@@ -166,7 +166,7 @@ The data object can be accesses in the demo UI in advanced mode of "Configuratio
 \item RequestNodeNeighbourUpdate(): Request routes update
 \item InterviewForce(): Purge all command classes and start interview based on device's NIF
 \item RemoveFailedNode(): Remove this node as failed. Device should be marked as failed to remove it with this function.
-\item SendNoOperation(): Ping the device with empty packet
+\item SendNoOperation(successCallback = NULL, failureCallback = NULL): Ping the device with empty packet (even if device is not reachable successCallback is called - use isFailed to check device availability)
 \item LoadXMLFile(file): Load new Z-Wave Device Description XML file. See http://pepper1.net/zwavedb/
 \item GuestXML(): Return the list of all known Z-Wave Device Description XML files with match score. [score, file name, brand name, product name, photo]
 \item WakeupQueue(): Pretend the device is awake and try to send packets
