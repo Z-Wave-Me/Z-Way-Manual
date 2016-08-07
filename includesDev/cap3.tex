@@ -462,9 +462,9 @@ Detailed description of WebSocket API:
 \item close() initiate close of WebSocket.
 \item send(data) sends data to WebSocket. data can be array, ArrayBuffer (sent as binary) or string (sent as text).
 \item onmessage(event) called on new data receiption from remote side. Object event contains only data property. Other properties mentioned in RFC 6455 are not supported.
-\item onopen() called on connection establish. Compared RFC 6455 event parameter is not passed.
+\item onopen() or onconnect() called on connection establish. Compared RFC 6455 event parameter is not passed.
 \item onclose() called on WebSocket close by remote or due to close() call. For server side will be called on client instance and on listening instance (use this to differenciate). Note that if close() is called before connection was established, onclose() is not executed. Compared RFC 6455 event parameter is not passed.
-\item onerror(event) called on error. For example DNS resolution error. Parameter event contains only propery data. Other properties from RFC 6455 are not implemented.
+\item onerror(event) called on error. For example host or port unreachable. Note that new sockets.websocket(..) can throw an exception on DNS resolution error or on network unreachable. Other errors will be reported via onerror. Parameter event contains only propery data. Other properties from RFC 6455 are not implemented.
 \end{itemize}
 
 \section{Other JavaScript Extensions}
