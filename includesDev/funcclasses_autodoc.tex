@@ -204,7 +204,7 @@
 \begin{quote}Parameter description: Packet description for queue inspector and logging\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
-\begin{quote}Report: devices[node\_id].data.lastSend, devices[node\_id].data.lastPacketInfo subtree\end{quote}
+\begin{quote}Report: devices[node\_id].data.lastSend\end{quote}
 
 \paragraph{Function Class SendDataSecure}
 \begin{quote}Syntax: SendDataSecure(nodeId, data, description = NULL, successCallback = NULL, failureCallback = NULL)\end{quote}
@@ -214,7 +214,7 @@
 \begin{quote}Parameter description: Packet description for queue inspector and logging\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
-\begin{quote}Report: devices[node\_id].data.lastSend, devices[node\_id].data.lastPacketInfo subtree\end{quote}
+\begin{quote}Report: devices[node\_id].data.lastSend\end{quote}
 
 \paragraph{Function Class GetNodeProtocolInfo}
 \begin{quote}Syntax: GetNodeProtocolInfo(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
@@ -484,6 +484,57 @@
 \begin{quote}Description: Inject command in Z-Way as it was received via Z-Wave. This function is for debugging only\end{quote}
 \begin{quote}Parameter nodeId: Source Node Id\end{quote}
 \begin{quote}Parameter data: Paket payload (should looks like ccId, ccCmd, data, ....)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class GetBackgroundRSSI}
+\begin{quote}Syntax: GetBackgroundRSSI(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Get background noise level\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class SerialAPISetup}
+\begin{quote}Syntax: SerialAPISetup(function, enable, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Configure Z-Wave Serial API\end{quote}
+\begin{quote}Parameter function: Configure specific Serial API function. Currently only enable/disable IMA is supported (function = 0x02)\end{quote}
+\begin{quote}Parameter enable: Set feature state: True to enable, False to disable\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class ClearNetworkStats}
+\begin{quote}Syntax: ClearNetworkStats(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Clear statistics gathered by the Z-Wave protocol\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class GetNetworkStats}
+\begin{quote}Syntax: GetNetworkStats(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Get statistics gathered by the Z-Wave protocol\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class GetPriorityRoute}
+\begin{quote}Syntax: GetPriorityRoute(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Get the route with the highest priority\end{quote}
+\begin{quote}Parameter nodeId: Node ID we are interested in\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class SetPriorityRoute}
+\begin{quote}Syntax: SetPriorityRoute(nodeId, repeater1, repeater2, repeater3, repeater4, routeSpeed, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Set the route with the highest priority\end{quote}
+\begin{quote}Parameter nodeId: Node ID we are interested in\end{quote}
+\begin{quote}Parameter repeater1: Hop #1 in the route. Value 0 means direct range. Values > 232 clears the priority route and LWR (Last Working Route is selected by the protocol)\end{quote}
+\begin{quote}Parameter repeater2: Hop #2 in the route. Value 0 means end of route\end{quote}
+\begin{quote}Parameter repeater3: Hop #3 in the route. Value 0 means end of route\end{quote}
+\begin{quote}Parameter repeater4: Hop #4 in the route. Value 0 means end of route\end{quote}
+\begin{quote}Parameter routeSpeed: Baudrate to use: 1 for 9.6 kbps, 2 for 40 kbps, 3 for 100 kbps. Value 0 means end of route\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
