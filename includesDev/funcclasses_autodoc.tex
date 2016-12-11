@@ -355,6 +355,16 @@
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: controllerState, lastExcludedDevice, lastIncludedDevice\end{quote}
 
+\paragraph{Function Class RemoveNodeIdFromNetwork}
+\begin{quote}Syntax: RemoveNodeIdFromNetwork(nodeId, startStop, highPower = FALSE, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Start/stop exclusion of a node id. Note that this function can be used to exclude a device from previous network before including in ours. Available on primary and inclusion controllers\end{quote}
+\begin{quote}Parameter nodeId: NodeId to exclude. If 0 or > 232, any node will be excluded (like with zway\_fc\_remove\_node\_from\_network / RemoveNodeFromNetwork)\end{quote}
+\begin{quote}Parameter startStop: Start exclusion mode if True, stop if False\end{quote}
+\begin{quote}Parameter highPower: Use full power during this operation if True. On False use low power mode\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: controllerState, lastExcludedDevice, lastIncludedDevice\end{quote}
+
 \paragraph{Function Class ControllerChange}
 \begin{quote}Syntax: ControllerChange(startStop, highPower = TRUE, successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}Description: Set new primary controller (also known as Controller Shift). Same as Inclusion, but the newly included device will get the role of primary. Available only on primary controller\end{quote}
@@ -414,6 +424,13 @@
 \paragraph{Function Class ExploreRequestInclusion}
 \begin{quote}Syntax: ExploreRequestInclusion(successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}Description: Request NWI. Called from SetLearnMode\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class ExploreRequestExclusion}
+\begin{quote}Syntax: ExploreRequestExclusion(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Request NWE\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
@@ -535,6 +552,14 @@
 \begin{quote}Parameter repeater3: Hop #3 in the route. Value 0 means end of route\end{quote}
 \begin{quote}Parameter repeater4: Hop #4 in the route. Value 0 means end of route\end{quote}
 \begin{quote}Parameter routeSpeed: Baudrate to use: 1 for 9.6 kbps, 2 for 40 kbps, 3 for 100 kbps. Value 0 means end of route\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class SetPromiscuousMode}
+\begin{quote}Syntax: SetPromiscuousMode(enable, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Enable or disable promiscuous mode\end{quote}
+\begin{quote}Parameter enable: True to enable functionality, False to disable\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
