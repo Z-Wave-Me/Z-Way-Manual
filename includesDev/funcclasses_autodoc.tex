@@ -331,7 +331,7 @@
 
 \paragraph{Function Class SetLearnMode}
 \begin{quote}Syntax: SetLearnMode(startStop, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}Description: Set/stop Learn mode. Tries first classical inclusion then falls back to NWI automatically\end{quote}
+\begin{quote}Description: Set/stop Learn mode. Tries first classical inclusion then falls back to NWI automatically. Use zway\_controller\_set\_learn\_mode instead to get correctly set up the environment after inclusion\end{quote}
 \begin{quote}Parameter startStop: Start Learn mode if True, stop if False\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
