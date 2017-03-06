@@ -459,7 +459,7 @@ sock.onerror = function(ev) {
 
 Detailed description of WebSocket API:
 \begin{itemize}
-\item socket.websocket(url, [protocol]) creates new client WebSocket and connects to the specified URL (should be a string like "ws://host:port" or "wss://host:port" for SSL channel). Optional protocol parameter can be used to specify protocol from server capabilities (comma separated string), default is "default".
+\item socket.websocket(url, [protocol], [ssl_ca_filepath], [ssl_cert_filepath, ssl_private_key_filepath]) creates new client WebSocket and connects to the specified URL (should be a string like "ws://host:port" or "wss://host:port" for SSL channel). Optional protocol parameter can be used to specify protocol from server capabilities (comma separated string), default is "default". To use a specific CA file instead of system default use ssl_ca_filepath. To send client certificate use  ssl_cert_filepath and ssl_private_key_filepath.
 \item socket.websocket(port) creates new WebSocket server on port.
 \item close() initiate close of WebSocket.
 \item send(data) sends data to WebSocket. data can be array, ArrayBuffer (sent as binary) or string (sent as text).
