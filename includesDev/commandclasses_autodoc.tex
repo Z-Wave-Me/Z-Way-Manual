@@ -2120,6 +2120,26 @@ Data holders:
 \end{itemize}
 
 
+\section{Command Class Supervision (0x6C/108)}
+
+\textit{Version 1, Supported and Controlled}
+\newline
+
+This Command Class is transparently implemented in the library to guarantee delivery report on every command (even on Set). There are no functions to execute.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{[sessionId]}: Subtree with session status
+\item \qquad\textbf{status}: Current session status (0 = Not supported, 1 = Working, 2 = Fail, 3 = Busy, 255 = Success)
+\item \qquad\textbf{duration}: Expected time to finish the operation
+\item \qquad\textbf{moreStatusUpdates}: True if more updates on the session status are expected
+\item \textbf{lastSession}: Internal
+\end{itemize}
+
+
 \section{Command Class Application Status (0x22/34)}
 
 \textit{Version 1, Supported and Controlled}
