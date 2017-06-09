@@ -2192,10 +2192,10 @@ Data holders:
 
 \section{Command Class Central Scene (0x5B/91)}
 
-\textit{Version 1, Supported and Controlled}
+\textit{Version 3, Supported and Controlled}
 \newline
 
-Allows to receive central controller oriented scene actions. Scenes are triggered by pushing a button on a remote control or wall controller.
+Allows to receive central controller oriented scene actions. Scenes are triggered by pushing a button on a remote control or wall controller. Note that Z-Way supports only V1, but in most cases you don't need it to be enabled in the NIF. Controlled version is V3.
 \newline
 
 \noindent
@@ -2203,6 +2203,8 @@ Data holders:
 
 \begin{itemize}
 \item \textbf{maxScenes}: Number of scenes supported
+\item \textbf{slowRefreshSupport}: Flag to indicate if the device supports Slow Refresh mode
+\item \textbf{slowRefresh}: Flag to indicate if the device is currently in Slow Refresh mode
 \item \textbf{currentScene}: Last activated scene
 \item \textbf{keyAttribute}: Button (or key) action: 0 for key press, 1 for key release, 2 for key held down (should bre repeated at least every 200ms)
 \item \textbf{sequence}: Internal. To ignore duplicate packats.
