@@ -2208,4 +2208,6 @@ Data holders:
 \item \textbf{currentScene}: Last activated scene
 \item \textbf{keyAttribute}: Button (or key) action: 0 for key press, 1 for key release, 2 for key held down (should bre repeated at least every 200ms)
 \item \textbf{sequence}: Internal. To ignore duplicate packats.
+\item \textbf{sceneSupportedKeyAttributesMask}: Holds the list of supported key attributes for each scene
+\item \qquad\textbf{[sceneId]}: Array of supported key attributes for Scene Id: 0 for 1 press, 1 for release after hold, 2 for hold, 3..6 for 2..5 presses
 \end{itemize}
