@@ -207,11 +207,12 @@
 \begin{quote}Report: devices[node\_id].data.lastSend\end{quote}
 
 \paragraph{Function Class SendDataSecure}
-\begin{quote}Syntax: SendDataSecure(nodeId, data, description = NULL, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Syntax: SendDataSecure(nodeId, data, description = NULL, keyClass = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}Description: Send data using security. Packets are sent in AUTO\_ROUTE mode with EXPLRER\_FRAME enabled for listening devices (ignored if not supported by the hardware [based on 5.0x branch]). Explicitelly use security\end{quote}
 \begin{quote}Parameter nodeId: Destination Node Id (NODE\_BROADCAST to send non-routed broadcast packet)\end{quote}
 \begin{quote}Parameter data: Paket payload\end{quote}
 \begin{quote}Parameter description: Packet description for queue inspector and logging\end{quote}
+\begin{quote}Parameter keyClass: Security class to use: 0 - S0, 1 - S2 Unauthenticated, 2 - S2 Authenticated, 4 - S2 Access\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: devices[node\_id].data.lastSend\end{quote}
