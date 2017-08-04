@@ -1,0 +1,1222 @@
+\chapter{The JavaScript Engine}
+\label{cap:js}
+\index{JavaScript Engine}
+
+The \zway  core function engine is the so called JavaScript (JS) automation system.
+It uses the APIs of the technology-dependent 'drivers' and delivers all the functions
+and interface for running a Smart Home controller:
+\begin{itemize}
+\item It \textbf{unifies the functions and properties of the physical devices} to a common 
+device structure, the virtual Device (vDev).
+\item It allows to \textbf{create own virtual devices} not related to physical devices.
+\item It allows to \textbf{dynamically load 'plugin' modules}  - also written in Javascript or 
+even in native C - that extend the function of the JS core and deliver furter functionality.
+Users see these modules as apps. For more information about apps please refer to chapter 
+\ref{apps}.
+\item It organizes the \textbf{communication between the virtual devices} as event bus. Every 
+vDev can inject events into this bus and every vDev can read events from this bus.
+\item It provides a \textbf{higher layer API} that is 
+is used among others by the Smart Home User Interface.
+\end{itemize}
+
+This chapter explains the different building blocks of the JS Engine:
+\begin{itemize}
+\item Javascript Interpreter/Compiler Core Engine
+\item Virtual Devices
+\item Event Bus
+\item User Interface elements referring to the different virtual devices
+\item The structure of the Apps
+\end{itemize}
+
+\section{The JavaScript Core Interpreter and the integration of the Z-Wave function}
+
+\zway uses the JavaScript engine provided by Google referred to as V8. You find more 
+information about this JavaScript implementation on 
+
+\murl{https://code.google.com/p/v8/.}
+
+V8 implements JavaScript according to the specification ECMA 5
+\footnote {http://www.ecma-international.org/publications/standards/Ecma-262.htm}.
+
+Please note that this V8 core engine only implements the very basic JS functions and need to 
+be extended to be usable in a Smart Home environment.
+
+Javascript code can be executed on the server side and certain functions of the JS core are 
+available on the client side as well since most modern web browsers have a built-in Javascript
+engine as well. The bridge between the server side JS and the web browser client is a built-in
+web server. This is the same embedded web server serving all the web browsers HTML pages etc.
+
+Accessing a server side JS function from the web browsers client side is easy. Just call 
+ 
+\murl{http://YOURIP:8083/JS/Run/*}
+
+with the function desired.
+
+Please note that all accesses using the embedded webserver require an authentication of the 
+web browsers instance. Please refer to chapter \ref{cap:authentication} for details how to 
+authenticate against the web server.
+
+\zway offers one central object with the name 'zway' . This object encapsulates all the 
+Z-Wave variables and functions known from the Z-Wave Device API describes in chapter \ref{c2}.
+
+Hence its possible to use the very same functions of the Z-Wave Device API using the JS
+engine. The zway objects internal structure is shown in figure \ref{zwaystructure} and the data elements 
+are describes in Annex \ref{datamodel}.
+
+The functions can be accessed using the web browsers function like
+
+\murl{http://YOURIP:8083/JS/Run/zway.devices[x].*}
+
+Due to the scripting nature of JavaScript its possible to 'inject' code at run time
+using the interface. Here a nice example how to use the Java Script 
+setInterval function:
+
+\begin{lstlisting}[caption=Polling device \#2]{Name}
+/JS/Run/setInterval(function() { 
+	zway.devices[2].Basic.Get();
+}, 300*1000);
+\end{lstlisting}
+
+This code will, once 'executed' as URL within a web browser, call the Get() command
+of the command class Basic of Node ID 2 every 300 seconds.  
+
+A very powerful function of the JS API is the ability to bind functions to certain
+values of the device tree. they get then executed when the value changes. Here an 
+example for this binding. The device No. 3 has a command class SensorMultilevel that offers
+the variable level. The following call - both available on the client side 
+and on the server side - will bind a simple alert function to the change of 
+the variable.
+
+\begin{lstlisting}[caption=Bind a function]{Name}
+zway.devices[3].SensorMultilevel.data[1].val.bind( function() { 
+	debugPrint('CHANGED TO: ' + this.value + '\n'); 
+});  
+\end{lstlisting}
+
+
+
+\section{\zway extensions to the JavaScript Core}
+
+\zway provides some extensions to the JS core that are not part of the ECMA 
+functionality mentioned above.
+
+\subsection{HTTP Access}
+
+The JavaScript implementation of \zway allows to directly accessing HTTP objects.
+
+The http request is much like jQuery.ajax(): r = http.request(options);
+
+Here's the list of options:
+\begin{itemize}
+\item url - required. Url you want to request (might be http, https, or maybe even ftp);
+\item method – optional. HTTP method to use (currently one of GET, POST, HEAD). If not 
+specified, GET is used;
+\item headers – optional. Object containing additional headers to pass to server:
+
+\begin{lstlisting}
+headers: {
+    "Content-Type": "text/xml",
+    "X-Requested-With": "RaZberry/1.5.0"
+}
+\end{lstlisting}
+
+\item data – used only for POST requests. Data to post to the server. May be either a
+string (to post raw data) or an object with keys and values (will be serialized as 
+'key1=value1\&key2=value2\&…');
+\item auth – optional. Provides credentials for basic authentication. It is an object 
+containing login and password:
+
+\begin{lstlisting}
+auth: {
+    login: 'username',
+    password: 'secret'
+}
+\end{lstlisting}
+
+\item contentType – optional. Allows to override content type returned by server for 
+parsing data (see below);
+\item async – optional. Specifies whether request should be sent asynchronously. Default 
+is false. In case of synchronous request result is returned immediately (as function 
+return value), otherwise function exits immediately, and response is delivered later 
+thru callbacks.
+\item success, error and complete – optional, valid only for async requests. Success 
+callback is called after successful request, error is called on failure, complete is 
+called nevertheless (even if success/error callback produces exception, so it is like 
+'finally' statement);
+\end{itemize}
+
+Response (as stated above) is delivered either as function return value, or as callback 
+parameter. Is is always an object containing following members:
+
+\begin{itemize}
+\item status – HTTP status code (or -1 if some non-HTTP error occurred). Status codes 
+from 200 to 299 are considered success;
+\item statusText – status string;
+\item URL – response URL (might differ from url requested in case of server redirects);
+\item headers – object containing all the headers returned by server;
+\item contentType – content type returned by server;
+\item data – response data.
+\end{itemize}
+
+Response data is handled differently depending on content type (if contentType on request 
+is set, it takes priority over server content type):
+
+\begin{itemize}
+\item application/json and text/x-json are returned as JSON object;
+\item application/xml and text/xml are returned as XML object;
+\item application/octet-stream is returned as binary ArrayBuffer;
+\item string is returned otherwise.
+\end{itemize}
+In case data cannot be parsed as valid JSON/XML, it is still returned as string, and 
+additional parseError member is present.
+
+
+\begin{lstlisting}
+http.request({
+	url: "http://server.com" (string, required),
+	method: "GET" (GET/POST/HEAD, optional, default "GET"),
+	
+	headers: (object, optional)
+	{
+		"name": "value",
+		...
+	},
+	
+	auth: (object, optional)
+	{
+		"login": "xxx" (string, required),
+		"password": "***" (string, required)
+	},
+	
+	data: (object, optional, for POST only)
+	{
+		"name": "value",
+		...
+	}
+	-- OR --
+	data: "name=value&..." (string, optional, for POST only),
+
+	async: true (boolean, optional, default false),
+
+	timeout: (number, optional, default 20000)
+	
+	success: function(rsp) {} (function, optional, for async only),
+	error: function(rsp) {} (function, optional, for async only),
+	complete: function(rsp) {} (function, optional, for async only)
+});
+
+
+response:
+{
+	status: 200 (integer, -1 for non-http errors),
+	statusText: "OK" (string),
+	url: "http://server.com" (string),
+	contentType: "text/html" (string),
+	headers: (object)
+	{
+		"name": "value"
+	},
+	data: result (object or string, depending on content type)
+}
+\end{lstlisting}
+
+\subsection{XML parser}
+
+ZXmlDocument object allows to convert any valid XML document into a JSON object and vice versa.
+
+\subsubsection{var x = new ZXmlDocument()}
+Create new empty XML document
+
+\subsubsection{x = new ZXmlDocument("xml content")}
+Create new XML document from a string
+
+\subsubsection{x.root}
+Get/set document root element. Elements are got/set in form of JS objects:
+
+\begin{lstlisting}
+{
+    name: "node_name", - mandatory
+    text: "value", - optional, for text nodes
+    attributes: { - optional
+    	name: "value",
+    	...
+    },
+    children: [ - optional, should contain a valid object of same type
+    	{ ... }
+    ]
+}
+\end{lstlisting}
+
+For example:
+\begin{lstlisting}
+(new ZXmlDocument('<weather><city id="1"><name>Zwickau</name>
+	<temp>2.6</temp></city> 
+	<city id="2"><name>Moscow</name><temp>-23.4</temp></city>
+	</weather>')).root =
+{  
+   "children":[  
+      {  
+         "children":[  
+            {  
+               "text":"Zwickau",
+               "name":"name"
+            },
+            {  
+               "text":"2.6",
+               "name":"temp"
+            }
+         ],
+         "attributes":{  
+            "id":"1"
+         },
+         "name":"city"
+      },
+      {  
+         "children":[  
+            {  
+               "text":"Moscow",
+               "name":"name"
+            },
+            {  
+               "text":"-23.4",
+               "name":"temp"
+            }
+         ],
+         "attributes":{  
+            "id":"2"
+         },
+         "name":"city"
+      }
+   ],
+   "name":"weather"
+}
+\end{lstlisting}
+
+\subsubsection{x.isXML}
+This hidden readonly property allows to detect if object is XML object or not (it is always true).
+
+\subsubsection{x.toString()}
+Converts XML object into a string with valid XML content.
+
+\subsubsection{x.findOne(XPathString)}
+Returns first matching to XPathString element or null if not found.
+
+\begin{lstlisting}
+x.findOne('/weather/city[@id="2"]') // returns only city tag for Moscow
+x.findOne('/weather/city[name="Moscow"]/temp/text()') // returns temperature 
+\end{lstlisting}
+
+\subsubsection{x.findAll(XPathString)}
+Returns array of all matching to XPathString elements or empty array if not found.
+
+\begin{lstlisting}
+x.findAll('/weather/city') // returns all city tags
+x.findAll('/weather/city/name/text()') // returns all city names
+\end{lstlisting}
+
+\subsubsection{XML elements}
+Each XML element (tag) in addition to properties described above (text, attributes, 
+children) have hidden readonly property parent pointing to parent object and the following methiods:
+\begin{itemize}
+\item insertChild(element) Insert new child eleemnt
+\item removeChild(element) Remove child element
+\item findOne(XPathString) Same as on root object, but relative (no leading / needed in XPathString
+\item findAll(XPathString) Same as on root object, but relative (no leading / needed in XPathString
+\end{itemize}
+
+ZXmlDocument is returned from http.request() when content type is 'application/xml', 
+'text/xml' or any other ending with '+xml'. Namespaces are not yet supported.
+
+\subsection{Cryptographic functions}
+
+crypto object provides access to some popular cryptographic functions such
+as SHA1, SHA256, SHA512, MD5, HMAC, and provides good random numbers.
+
+\subsubsection{var guid = crypto.guid()}
+Provides standard GUID in string format.
+
+\subsubsection{var rnd = crypto.random(n)}
+Generates n random bytes.
+Returned values is of type ArrayBuffer. To convert it into array use this trick:
+
+\begin{lstlisting}
+	rnd = (new Uint8Array(crypto.random(10)));
+\end{lstlisting}
+
+\subsubsection{var dgst = crypto.digest(hash, data, ...)}
+Returns digest calculated using selected hash algorithm. It supports virtually all the 
+algorithms available in OpenSSL (md4, md5, mdc2, sha, sha1, sha224, sha256, sha384, sha512, ripemd160).
+If no data parameters specified, it returns a digest of an empty value. If more than one 
+data parameters are specified, they're all used to calculate the result. Data parameters 
+may be of different types (strings, arrays, ArrayBuffers).
+Return value is of type ArrayBuffer.
+
+There are also a few shortcut functions for popular algorithms: 'md5', 'sha1', 'sha256', 
+'sha512'. For example, these calls are equivalent:
+
+\begin{lstlisting}
+	dgst = crypto.digest('sha256', data);
+	dgst = crypto.sha256(data);
+\end{lstlisting}
+
+\subsubsection{var hmac = crypto.hmac(cipher, key, data, ...)}
+Returns hmac calculated using selected hash algorithm. Hash algorithms are the same as 
+for digest() function.
+
+Key parameter is required. 
+
+If no data parameters specified, it returns a HMAC of an empty value. If more than one 
+data parameters are specified, they're all used to calculate the result. Key and data 
+parameters may be of different types (strings, arrays, ArrayBuffers).
+Return value is of type ArrayBuffer.
+
+There are also a few shortcut functions for popular algorithms: 'hmac256', 'hmac512'. For 
+example, these calls are equivalent:
+
+\begin{lstlisting}
+  dgst = crypto.hmac('sha256', key, data);
+  dgst = crypto.hmac256(key, data);
+\end{lstlisting}
+
+\subsection{Sockets functions}
+
+Socket module allows easy access to TCP and UDP sockets from JavaScript.
+Both connection to distant ports and listening on local are available. This API fully 
+mirrors into JavaScript POSIX TCP/IP sockets.
+This can be used to control third party devices like Global Cache or Sonos
+as well as emulating third party services.
+
+To start communications one need to create socket and either
+\textbf{connect} it or \textbf{listen} it. \textbf{onrecv} method is called
+on data receive from remote, while \textbf{send} is used to send data to remote side.
+
+The example below dumps to log file response to http://ya.ru:80/ (raw HTTP
+protocol is used as an example).
+
+\begin{lstlisting}
+var sock = new sockets.tcp();
+
+sock.onrecv = function(data) {
+    debugPrint(data.byteLength);
+};
+
+sock.connect('ya.ru', 80);
+
+sock.send("GET / HTTP/1.0\r\n\r\n");
+\end{lstlisting}
+
+Here is an example of TCP echo server on port 8888:
+
+\begin{lstlisting}
+var sock = new sockets.tcp();
+
+sock.bind(8888);
+
+sock.onrecv = function(data) {
+    this.send(data);
+};
+
+sock.listen();
+\end{lstlisting}
+
+And echo server for UDP:
+\begin{lstlisting}
+var sock = new sockets.udp();
+
+sock.bind(8888);
+
+sock.onrecv = function(data, host, port) {
+    this.sendto(data, host, port);
+};
+
+sock.listen();
+\end{lstlisting}
+
+Detailed description of Socket API:
+\begin{itemize}
+\item bind(ip, port) or bind(port) binds socket to port (integer number). ip should be a 
+string like "192.168.0.1". If omited "0.0.0.0" is used (bind on all IP addresses of all 
+interfaces). Returns false on error.
+\item connect(ip, port) connects to remote side ip:port. TCP sockets requires this call 
+before sending data. For UDP sockets it is optional, but once used allows to use send call 
+instead of sendto call. Returns false on error.
+\item listen() starts listening port (this is required not only for TCP, but for UDP too). 
+Returns false on error.
+\item close() initiate close of socket.
+\item send(data) sends data to connected or accepted socket.
+\item sendto(data, host, port) sends data to a non-connected UDP socket.
+\item onrecv(data, host, port) called on new data receiption from remote side. For UDP 
+sockets and connected TCP sockets "this" object reffers to the socket itself, while for 
+accepted TCP sockets "this" reffers to the client's individual objects.
+\item onconnect(remoteHost, remotePort, localHost, localPort) called only for TCP sockets 
+on new connection accept. "this" reffers to the client individual socket object.
+\item onclose(remoteHost, remotePort, localHost, localPort) called on socket close by 
+remote or due to close() call. Note that for TCP sockets this callback is called for client 
+sockets on connection close and for binded listening socket if close() is called. "this" 
+object will be defined like in onrecv.
+\item reusable() sets SO\_REUSEADDR socket option to allow multiple bind() on the same port.
+\item broadcast() sets SO\_BROADCAST socket option to allow sending broadcast UDP messages.
+\item multicastAddMembership(multicastGroup) subscribe socket to multicast group
+\item multicastDropMembership(multicastGroup) unsubscribe socket from multicast group
+\end{itemize}
+
+\subsection{WebSockets functions}
+
+Socket module also implements WebSockets (RFC 6455). WebSocket API is made to be
+compatible with browser implementations (some rarely used functions are not
+implemented - see below).
+
+The example below implements basic application using WebSockets client:
+
+\begin{lstlisting}
+var sock = new sockets.websocket("ws://echo.websocket.org");
+
+sock.onopen = function () {
+    debugPrint('connected, sending ping');
+    sock.send('ping');
+}
+
+sock.onmessage = function(ev) {
+    debugPrint('recv', ev.data);
+}
+
+sock.onclose = function() {
+    debugPrint('closed');
+}
+
+sock.onerror = function(ev) {
+    debugPrint('error', ev.data);
+}
+\end{lstlisting}
+
+Next example shows basic application using WebSockets server:
+
+\begin{lstlisting}
+var sock = new sockets.websocket(9009);
+
+sock.onconnect = function () {
+    debugPrint('client connected, sending ping');
+}
+
+sock.onmessage = function(ev) {
+    debugPrint('recv', ev.data);
+    sock.send('pong');
+}
+
+sock.onclose = function() {
+    if (this === sock) {
+        debugPrint('server websocket closed');
+    } else {
+        debugPrint('client disconnected');
+    }
+}
+
+sock.onerror = function(ev) {
+    debugPrint('error', ev.data);
+}
+\end{lstlisting}
+
+Detailed description of WebSocket API:
+\begin{itemize}
+\item socket.websocket(url, [protocol], [ssl\_ca\_filepath], [ssl\_cert\_filepath, 
+ssl\_private\_key\_filepath]) creates new client WebSocket and connects to the 
+specified URL (should be a string like "ws://host:port" or "wss://host:port" for 
+SSL channel). Optional protocol parameter can be used to specify protocol from server 
+capabilities (comma separated string), default is "default". To use a specific CA file 
+instead of system default use ssl\_ca\_filepath. To send client certificate use  ssl\_cert\_filepath and ssl\_private\_key\_filepath.
+\item socket.websocket(port) creates new WebSocket server on port.
+\item close() initiate close of WebSocket.
+\item send(data) sends data to WebSocket. data can be array, ArrayBuffer (sent as binary) or string (sent as text).
+\item onmessage(event) called on new data receiption from remote side. Object event contains only data property. Other properties mentioned in RFC 6455 are not supported.
+\item onopen() or onconnect() called on connection establish. Compared RFC 6455 event parameter is not passed.
+\item onclose() called on WebSocket close by remote or due to close() call. For server side will be called on client instance and on listening instance (use this to differenciate). Note that if close() is called before connection was established, onclose() is not executed. Compared RFC 6455 event parameter is not passed.
+\item onerror(event) called on error. For example host or port unreachable. Note that new sockets.websocket(..) can throw an exception on DNS resolution error or on network unreachable. Other errors will be reported via onerror. Parameter event contains only propery data. Other properties from RFC 6455 are not implemented.
+\end{itemize}
+
+\subsection{Other JavaScript Extensions}
+
+\subsubsection{fs.list(folder)}
+
+This returns list of items in the folder or undefined if not folder is not existing.
+
+
+\subsubsection{fs.stat(file)}
+
+This returns one of the following values:
+
+\begin{itemize}
+\item 1) undefined if object does not exist or not readable
+\item 2) object \{ type: 'file', size: \textless{}size\textgreater{}\} if it is a file
+\item 3) object \{ type: 'dir' \} if it is a folder
+\end{itemize} 
+
+
+\subsubsection{fs.loadJSON(filename)}
+
+This function reads a file from the file system and loads it into the memory. The file 
+must contain a valid JSON object. The only argument is the name of the file including 
+relative pathname to the automation folder. The functions returns the full JSON object or 
+null in case of error.
+
+\subsubsection{fs.load(filename)}
+
+This function reads a file from the file system and returns it's content as a string. The 
+only argument is the name of the file including relative pathname to the automation folder.
+ The functions returns null in case of error.
+
+\subsubsection{executeFile(filename) and executeJS(string)}
+
+Loads and executes a particular JavaScript file from the local filesystem or executes 
+JavaScript code represented in string (like eval in browsers).
+
+The script is executed withig the global namespace.
+
+Remark: If an error occurred during the execution it won't stop from further execution, 
+but erroneous script will not be executed completely. It will stop on the first error.
+Exceptions in the callee can be trapped in the caller using standard try-catch mechanism.
+
+\subsubsection{system(command)}
+
+The command system() allows to execute any shell level command available on the operating 
+system. It will return the shell output of the command.  On default the execution of 
+system commands is forbidden. Each command executed need to be permitted by putting one 
+line with the starting commands in the file automation/.syscommands or in an different 
+automation folder as specified in config.xml.
+
+\subsubsection{Timers}
+Timers are implemented exactly as they are used in browsers. They are very helpfull for 
+periodical and delayed operations. Timeout/period is defined in milliseconds.
+\begin{itemize}
+\item timerId = setTimeout(function() { }, timeout)
+\item timerId = setInterval(function() { }, period)
+\item clearTimeout(timerId)
+\item clearInterval(timerId)
+\end{itemize}
+
+\subsubsection{loadObject(object\_name) and saveObject(object\_name, object)}
+Loads and saves JSON object from/to storage. These functions implements flat storage for 
+application with access to the object by it's name. No folders are available.
+
+Data is saved in automation/storage folder. Filenames are made from object names by 
+stripping characters but [a-ZA-Z0-9] and adding checksum from original name (to avoid name conflicts).
+
+\subsubsection{exit()}
+Stops JavaScript engine and shuts down \zway server
+
+
+\subsubsection{allowExternalAccess(handlerName) and listExternalAccess()}
+allowExternalAccess allows to register HTTP handler. handlerName can contain strings like 
+aaa.bbb.ccc.ddd - in that case any HTTP request starting by /aaa/bbb/ccc/ddd will be 
+handled by a function aaa.bbb.ccc.ddd() if present, otherwise aaa.bbb.ccc(), ... up to aaa().
+Handler should return object with at least properties status and body (one can also specify 
+headers like it was in http.request module).
+
+listExternalAccess returns array with names of all registered HTTP handlers.
+
+Here is an example how to attach handlers for /what/timeisit and /what:
+
+\begin{lstlisting}
+what = function() {
+  return { status: 500, body: 'What do you want to know' };
+};
+
+what.timeisit = function() {
+  return { status: 200, body: (new Date()).toString() }
+};
+
+allowExternalAccess("what");
+allowExternalAccess("what.timeisit");
+\end{lstlisting}
+
+\subsubsection{debugPrint(object, object, ...)}
+
+Prints arguments converted to string to \zway console. Very usefull for debuggin.
+For convenience one can map 'console.log()' to debugPrint().
+
+This is how it was done in automation/main.js in \zway Home Automation engine:
+\begin{lstlisting}
+var console = {
+    log: debugPrint,
+    warn: debugPrint,
+    error: debugPrint,
+    debug: debugPrint,
+    logJS: function() {
+        var arr = [];
+        for (var key in arguments)
+            arr.push(JSON.stringify(arguments[key]));
+        debugPrint(arr);
+    }
+};
+\end{lstlisting}
+
+\subsection{Debugging JavaScript code}
+Change in config.xml debug-port to 8183 (or some other) turn on V8 debugger capability on \zway start.
+
+\begin{lstlisting}
+<config>
+    ...
+    <debug-port>8183</debug-port>
+    ....
+</config>
+\end{lstlisting}
+
+node-inspector debugger tool is required. It provides web-based UI for debugging similar 
+to Google Chrome debug console.
+
+You might want to run debugger tool on another machine (for example if it is not possible to 
+install it on the same box as \zway is running on).
+
+Use the following command to forward debugger port defined in config.xml to your local machine:
+\begin{quote} 
+\cmdline{ssh -N USER@IP\_OF\_Z-WAY\_MACHINE -L 8183:127.0.0.1:8183}
+(for RaZberry USER is pi)
+\end{quote} 
+
+
+Install node-inspector debugger tool and run it:
+\begin{quote} 
+\cmdline{npm install -g node-inspector node-inspector --debug-port 8183}
+\end{quote} 
+
+Then you can connect to 
+
+\murl{http://IP\_OF\_MACHINE\_WITH\_NODE\_INSPECTOR:8080/debug?port=8183}
+
+If debugging is turned on, \zway gives you 5 seconds during startup to reconnect debugger to 
+\zway (refresh the page of debugger Web UI withing these 5 seconds).
+This allows you to debug startup code of \zway JavaScript engine from the very first line of code.
+
+\section{The virtual device concept (vDev)}
+\label{cap:vdev}
+\index{Virtual Device}
+\index{vDev}
+
+A virtual device is a data object within the JS engine. Virtual devices have 
+properties and functions. Most virtual devices represent a physical device or a part of 
+a physical device but virtual devices are not limited to this. Virtual devices can be 
+pure dummy device doing nothing but pretenting to be a device (There is an app called
+\app{Dummy Device} that works exactly like this). Virtual devices can also connect to
+services via TCP/IP.
+
+The purpose of virtual devices is to unify the appearance on a graphical user interface 
+and to unify the communication between them. At the level of virtual devices 
+and EnOcean controller can switch a Z-Wave switch and trigger a rule in a cloud 
+service.
+ 
+\subsection{Names and Ids}
+
+Every virtual device is identified by a simple string type id. For all virtual devices 
+that are related to physical Z-Wave devices the device name is auto-generated by the 
+module (app) 'Z-Wave' following this logic:
+
+\paragraph{ZWayVDev\_[Node ID]:[Instance ID]:[Command Class ID]:[Scale ID]}
+
+The Node Id is the node id of the physical device, the Instance ID is the instance id 
+of the device  or '0' if there is only one instance. The command class ID refers to the 
+command class the function is embedded in. The scale id is usually '0' unless the virtual
+device is generated from a Z-Wave device that supports multiple sensors with different 
+scales in one single command class.
+
+Virtual devices not generated by a Z-Wave device may have other Ids. They are either created 
+by other physical device subsystems such as 433MHz or EnOcean or they are generated
+by a module (app).
+
+\subsection{Device Type}
+
+Virtual devices can have a certain types. Table shows the different types plus the defines 
+commands.  Table \ref{tab:devicetypes} shows the list of current device types with their 
+metrics and defines commands.
+
+\begin{table}
+\begin{tabular}{|p{0.2\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|}
+\hline
+deviceType	&Metrics	&Commands	&Examples\\
+\hline
+battery	&probeTitle,scaleTitle, level, icon, title	&-	&- \\
+\hline
+doorlock	&level, icon, title	&open or close	&apiURL/devices/:deviceId/command/open\\
+\hline
+thermostat	&scaleTitle, min, max, level, icon, title	&exact with get-param level	&apiURL/devices/:deviceId/command/exact?level=22.5\\
+\hline
+switchBinary (Thermostat)	&level, icon, title	&on, off or update&	apiURL/devices/:deviceId/command/on\\
+\hline
+switchBinary&	level, icon, title	&on, off or update	&apiURL/devices/:deviceId/command/on\\
+\hline
+switchMultilevel	&level, icon, title	& on Set(255), off Set(0), min Set(10), max Set(99), increase Set(l+10), decrease Set(l-10), update, exact + get params level	&apiURL/devices/:deviceId/command/exact?level=40 \\
+\hline
+switchMultilevel (Blinds)&	level, icon, title	&up Set(255), down Set(0), upMax Set(99), increase Set(l+10), decrease Set(l-10), startUp StartLevelChange(0), startDown StartLevelChange(1), stop StopLevelChange(), update, excactSmooth + get params level	& apiURL/devices/:deviceId/command/stop  \\
+\hline
+sensorBinary	&probeTitle, level, icon, title	&update	&apiURL/devices/:deviceId/command/update\\
+\hline
+sensorMultilevel	&probeTitle, scaleTitle, level, icon, title	&update	&apiURL/devices/:deviceId/command/update \\
+\hline
+toggleButton	&level, icon, title&	on	&apiURL/devices/:deviceId/command/on \\
+\hline
+camera	&icon, title	&depends on installed camera - could be: zoomIn, zoomOut, up, down, left, right, close, open	&apiURL/devices/:deviceId/zoomIn \\
+\hline
+switchControl	&level, icon, title,& change	on, off, upstart, upstop, downstart, downstop, exact with get-param level	&apiURL/devices/:deviceId/command/on \\
+\hline
+text	&title, text, icon	&-	&- \\
+\hline
+sensorMultiline	&multilineType, title, icon, level, (scaleTitle, ...)	&depends on apps	&apiURL/devices/:deviceId/command/:cmd \\
+\hline
+switchRGB	&icon, title, color: {r:255,g:255,b:255}, &level	on, off, exact with get-params: red, green and blue	& apiURL/devices/:deviceId/command/exact?red=20\&green=240\&blue=0 \\
+\hline
+\end{tabular}
+\caption{vDev device types with metrics and commands} 
+\label{tab:devicetypes}
+\end{table}	
+
+ 
+\subsection{Access to Virtual Devices}
+
+Virtual devices can be access both on the server side using JS modules and on the client 
+side using the JSON API. On the client they are encoded into a URL style for easier 
+handling  in AJAX code. A typical client side command in the vDev API looks like
+
+\murl{http://YOURIP:8083/ZAutomation/api/v1/devices/ZWayVDev\_6:0:37/command/off}
+
+'api' points to the vDev API function, 'v1' is just a constant to allow future extensions. 
+The devices are referred by a name that is automatically generated from the Z-Wave 
+Device API. The vDev also unifies the commands 'command' and the parameters, here 'off'.
+
+On the server side the very same command would be encoded in a JavaScript style.
+
+\begin{lstlisting}[caption=Access vDevs]{}
+
+vdevId = vdev.id;
+
+vDev = this.controller.devices.get(vdevId);
+
+vDevList = this.controller.devices.filter(function(x) { 
+	return x.get("deviceType") === "switchBinary"; }); 
+
+vDevTypes = this.controller.devices.map(function(x) { 
+	return x.get("deviceType"); }); 
+\end{lstlisting}
+
+\subsection{Virtual Device Usage / Commands}
+
+In case the virtual device is an actor it will accept and execute a command using the 
+syntax:
+
+\paragraph{Vdev.performCommand(„name of the command“)}
+
+The name of the accepted command should depend on the device type and can again be defined 
+free of restrictions when implementing the virtual device. For auto-generated devices 
+derived from Z-Wave the following commands are typically implemented.
+
+\begin{enumerate}
+\item 'update': updates a sensor value
+\item 'on': turns a device on.  Only valid for binary commands
+\item 'off': turns a device off. Only valid for binary commands
+\item 'exact': sets the device to an exact value. This will be a temperature for 
+thermostats or a percentage value of motor controls or dimmers
+\end{enumerate}
+
+\subsection{Virtual Device Usage / Values}
+
+Virtual devices have inner values. They are called metrics. A metric can be set and get. 
+Each virtual device can define its own metrics. Metrics can be level, title icon and 
+other device specific values like scale (\%, kWh, ...)
+
+\begin{lstlisting}
+vDev.set("metrics:...", ...);  
+vDev.get("metrics:...");
+\end{lstlisting}
+
+\subsection{How to create your own virtual devices}
+
+A Virtual Device (Vdev) is an instance of a VirtualDevice class' descendant which exposes 
+set of metrics and commands (according to it's type/subtype). Virtual devices are the only 
+runtime instances which is controllable and observable through the JS API.
+
+Technically, VDev is a VirtualDevice subclass which concretize, overrides or extends 
+superclass' methods.
+
+\subsubsection{Step 1. Define a VirtualDevice subclass}
+
+\begin{lstlisting}
+// Important: constructor SHOULD always be successful
+BatteryPollingDevice = function (id, controller) {
+    // Always call superconstructor first
+    BatteryPollingDevice.super_.call(this, id, controller);
+
+    // Define VDevs properties
+    this.deviceType = "virtual";
+    this.deviceSubType = "batteryPolling";
+    this.widgetClass = "BatteryStatusWidget";
+
+    // Setup some additional metrics (many of them is setted up in a base class)
+    this.setMetricValue("someMetric", "someValue");
+}
+inherits(BatteryPollingDevice, VirtualDevice);
+\end{lstlisting}
+
+VDev class should always fill in the deviceType property and often fill in the 
+deviceSubType property.
+
+If the particular VDev class can be controller by the client-side widget, it should define 
+widget's class name in the widgetClass property.
+
+\subsubsection{Step 2. Override performCommand() method}
+
+\begin{lstlisting}
+BatteryPollingDevice.prototype.performCommand = function (command) {
+    var handled = true;
+
+    if ("update" === command) {
+        for (var id in zway.devices) {
+            zway.devices[id].Battery && zway.devices[id].Battery.Get();
+        }
+    } else {
+        handled = false;
+    }
+
+    return handled ? true : BatteryPollingDevice.super_.prototype.performCommand.call(this, command);
+}
+\end{lstlisting}
+
+
+VDev itself mostly needed to handle commands, triggered by the events, system or the API.
+
+In the example above you could see, that this VDev is capable of performing "update" 
+command. But base class can be capable of performing some other commands, so the last l
+ine calls superclass' performCommand() method if the particular command wasn't handled 
+by the VDev itself.
+
+This extensibility provides the possibility to create a VDev class tree. Take a look at 
+ZWaveGate module as an example of such tree.
+
+\subsubsection{Step 3. Instantiate your VDev by the module}
+
+\begin{lstlisting}
+// ...part of the BatteryPolling.init() method
+executeFile(this.moduleBasePath()+"/BatteryPollingDevice.js");
+this.vdev = new BatteryPollingDevice("BatteryPolling", this.controller);
+\end{lstlisting}
+
+First line of code is loads and executes apropriate .js-file which provides 
+BatteryPollingDevice class.
+
+Secnd line instantiates this class.
+
+The last line calls controller's registerDevice method to register and VDev instance.
+
+\subsubsection{Step 4. Register device}
+
+\begin{lstlisting}[caption=Register Device]{Name} 
+        vDev = this.controller.devices.create(vDevId, {
+            deviceType: "deviceType",
+            metrics: {
+                level: "level",
+                icon: "icon from lib or url"
+                title: "Default title"
+            }
+        }, function (command, ...) {
+                // handles actions with the widget
+        });  
+\end{lstlisting}
+
+\subsubsection{Step 5: Unregister device}
+
+Devices can be deleted or unregistered  using the following command:
+
+\paragraph{this.controller.devices.remove(vDevId)}
+
+\subsection{Binding to metric changes}
+
+The metric - the inner variables of the vDev a changed by the system automatically.
+In order to perform certain functions on these changes the function needs to be 
+bound to the change to the vdev. The syntax for this is
+
+\paragraph{vDev.on('change:metrics:...", function (vDev) { ... });}
+
+Unbinding then works as one can expect:
+
+\paragraph{vDev.off(’change:metrics:...”, function (vDev) ... )} 
+
+\section{The event bus}
+\label{cap:eventbus}
+
+All communication from and to the automation modules is handled by events. An event 
+is a structure containing certain information that is exchanged using a central 
+distribution place, {\bf the event bus}. This means that all modules can send events 
+to the event bus and can listen to event in order to execute commands on them. All 
+modules can 'see' all events but need to filter out their events of relevance.  The 
+core objects of the automation are written in JS and they are available as source 
+code in the sub folder 'classes':
+
+\begin{itemize}
+\item AutomationController.js: This is the main engine of the automation function
+\item AutomationModule.js: the basic object for the module
+\end{itemize}
+
+The file main.js is the startup file for the automation system and it is loading the three 
+classes just mentioned. The subfolder /lib contains the key JS script for the Event 
+handling: eventemitter.js.
+
+\subsection{Emitting events}
+
+The 'Event emitter' emits events into the central event bus. The event emitter can 
+be called from all modules and scripts of the automation system. The syntax is:
+
+\begin{quote}
+\texttt{  
+$controller.emit(eventName, args1,arg2,...argn)$
+}
+\end{quote}
+
+The event name 'eventName' has to be noted in the form of 'XXX.YYY' where 'XXX' is the name 
+of the event source (e.g. the name of the module issuing the event or the name of the 
+module using the event) and 'YYY' is the name of the event itself.  To allow a scalable 
+system it makes sense to name the events by the name of the module that is supposed to 
+receive and to manage events. This simplifies the filtering of these events by the 
+receiver module(s).
+
+Certain event names are forbidden for general use because they are already used in the 
+existing modules. One example are events with the name cron.XXXX that are used by the 
+cron module handling all timer related events.
+
+Every event can have a list of arguments developers can decide on. For the events used by 
+preloaded modules (first and foremost the cron module) this argument structure is 
+predefined. For all other modules the developer is free to decide on structure and content. 
+It is also possible to have list fields and or any other structure as argument for the event
+
+One example of an issued event can be 
+
+\begin{quote}
+\texttt{  
+$emit(“mymodule.testevent”,”Test”,[“event1”,”event2”])$
+}
+\end{quote}
+
+\subsection{Catching (binding to) events}
+
+The controller object, part of every module, offers a function called 'on()' to catch events. 
+The 'on(name, function())' function subscribes to events of a certain name type. If not 
+all  events of a certain name tag shall be processed a further filtering needs to be 
+implemented  processing  the further arguments of the event. The function argument contains a reference 
+to the implementation using the event to perform certain actions. The argument list of the event is 
+handed over to this function in its order but need to be declared in the function call statement.
+
+\begin{quote}
+\texttt{  
+this.controller.on(“mymodule.testevent”, function (name,eventarray) {})
+}
+\end{quote}
+
+The same way objects can unbind from events:
+
+\begin{quote}
+\texttt{  
+this.controller.off(“mymodule.testevent”, function (name,eventarray));
+}
+\end{quote}
+
+\subsection{Notification and Severity}
+
+Notifications are a special  kind of event to inform the user on the graphical user interface or 
+out-of-band.. This means that normal events are typically describes with numbers or ids 
+while notifications contain a human readable message. 
+ 
+The UI can be notified on the certain events.
+
+\paragraph{this.controller.addNotification("....severity....", "....message....", "....origin....");} 
+
+The parameters define
+\begin{itemize}
+\item severity is error, info, debug; 
+\item origin describes which part of the system it is about: core, module, device, battery.
+\end{itemize}
+
+The controller can act on notifications or disable them.
+
+\paragraph{this.controller.on('notifications.push', this.handler);}
+\paragraph{this.controller.off('notifications.push', this.handler);}
+
+\section{Modules (for users called 'Apps')}
+\label{cap:modules}
+
+Beside the core functions encoded into the JS core there are extensions to this code called
+modules. Modules extend the JS core by providing internal or external ( visible to the user)
+functions.
+
+Each modules code is located in a sub directory of the sub folder module as described 
+in chapter \ref{c11:zwayfolder}. The name of the subfolder equals the name of the module. The sub folder 
+contains files to define the behavior of the module.
+
+\begin{forest}
+  for tree={
+    font=\ttfamily,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    calign=first,
+    edge path={
+      \noexpand\path [draw, \forestoption{edge}]
+      (!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+    },
+    before typesetting nodes={
+      if n=1
+        {insert before={[,phantom]}}
+        {}
+    },
+    fit=band,
+    before computing xy={l=15pt},
+  }
+[ModuleName
+[Module.json: The Manifest file of the Module]
+[index.js: The main JS file]
+[htdocs: ressources accessible by the web server]
+[lang: translation into local languages] 
+]
+\end{forest}
+
+\subsection{Module.json}
+
+This file contains the module meta-definition used by the AutomationController. It must 
+be a valid JSON object with the following fields (all of them are required):
+\begin{itemize}
+\item \textbf{autoload} — Boolean, defines will this module automatically instantiated during Home Automation startup.
+\item \textbf{singleton} — Boolean, defines this module can be instantiated more than one time or not.
+\item \textbf{defaults} — Object, default module instance settings. This object will be patched with the particular 
+config object from the controller's configuration and resulting object will be passed to the initializer.
+\item \textbf{actions} — Object, defines exported module instance actions. Object keys 
+are the names of actions and  values are meta-definitions of exported actions used by 
+AutomationController and API webserver.
+\item \textbf{metrics} — Object, defines exported module metrics.
+\end{itemize}
+All configuration fields are required. Types of the object must be equal in every 
+definition in every case. For instance, if module doesn't export any metric corresponding 
+key value should be and empty object “{}”.
+
+\subsection{index.js}
+ 
+This script defines an automation module class which is descendant of AutomationModule base class.
+During initialization the module script must define the variable '\_module' containing the particular module class.
+
+
+Example of a minimal automation module:
+
+\begin{lstlisting}[caption=Minimal Module]{MMIN}
+
+function SampleModule (id, controller) {
+SampleModule.super_.call.init(this, id, controller);
+
+this.greeting = "Hello,World!";
+}
+
+inherits(SampleModule, AutomationModule);
+_module = SampleModule;
+
+SampleModule.prototype.init = function () {
+    this.sayHello();
+}
+
+SampleModule.prototype.sayHello = function () {
+    debugPrint(this.greeting);
+} 
+
+SampleModule.prototype.stop = function () {
+    this.sayByeBye();
+}    
+
+\end{lstlisting} 
+ 
+The first part of the code illustrates how to define a class function named SampleModule 
+that calls the superclass' constructor. Its highly recommended not to do further 
+instantiations in the constructur. Initializations should be implemented within the 
+'init' function.
+ 
+The second part of the code is almost immutable for any module. It calls prototypal 
+inheritance support routine and it fills in \_module variable.
+
+The third part of the sample code defines module's init() method which is an 
+instance initializer. This initializer must call the superclass's initializer prior to 
+all other tasks. In the initializer module can setup it's private environment, subscribe 
+to the events and do any other stuff.
+Sometimes, whole module code can be placed withing the initializer without creation of 
+any other class's methods. As the reference of such approach you can examine AutoOff 
+module source code.
+
+After the init function a module may contain other functions. The 'sayHello' function 
+of the Sample Module shows this as example.
+
+\subsection{Available Core Modules}
+
+All modules in \zway are designed the same way using the same file structure but they 
+serve different purposes and they are of different importance:
+\begin{itemize}
+\item Core Module are modules that provide essential parts of the \zway system. They run
+from the beginning and should not be terminated without good reason. Normal users will
+not even see them in the list of active apps. Users with management privilege can set a 
+checkbox in their \keystroke{My Settings} to unhide them.
+\item Standard Modules can be started and stopped by the user. they are already in the 
+subfolder 'modules' and can not be deleted.
+\item Modules from the Online Service must be downloaded first before they can be used. 
+They can be started, stopped and even removed. They are stored in the folder 'userModules'.
+\end{itemize}
+The two core modules are worth to be explained in detail:
+
+\subsubsection{Cron, the timer module}
+
+All time driven actions need a timer. The \zway automation engine implement a cron-type timer 
+system as a module as well. The basic function of the cron module is
+
+\begin{itemize}
+\item It accepts registration of events that are triggered periodically
+\item It allows to de-register such events. 
+\end{itemize}
+
+
+The registration and deregistration of events is also handled using the event mechanism. 
+The cron module is listening for events with the tags 'cron.addTask' and  'cron.removeTask'. 
+The first argument of these events are the name of the event fired by the cron module. The 
+second argument of the 'addTask' event is an array desricing the times when this event 
+shall be issued. It has the format: 
+\begin{itemize}
+\item Minute [start,stop, step] or 0-59 or null
+\item Hour [start,stop, step] or 0-23 or null
+\item weekDay [start,stop, step] or 0-6 or null
+\item dayOfMonth [start,stop, step] or 1-31 or null
+\item Month [start,stop, step] or 1-12 or null
+\end{itemize}
+The argument for the different time parameters has one of three formats
+\begin{itemize}
+\item null: the event will be fired on every minute or hour etc.
+\item single value: the event will be fired when the value reaches the given value
+\item array [start, stop, step]: The event will be fired between start and stop in steps.
+\end{itemize}
+ 
+ The object  
+\begin{quote}
+{\tt  $\{minute: null,hour: null,weekDay: null, day: null, month: null\} $   }
+\end{quote} 
+
+will fire every minute within every hour within every weekday on every day of the month 
+every month. Another example of an event emitted towards the cron 
+module for registering an timer event can be found in the Battery Polling Module:
+
+\begin{lstlisting}[caption=Registering a Battery Polling Command]{SJSON3}
+    this.controller.emit("cron.addTask", "batteryPolling.poll", {
+        minute: 0,
+        hour: 0,
+        weekDay: this.config.launchWeekDay,
+        day: null,
+        month: null        
+    });
+\end{lstlisting}
+
+This call will cause the cron module to emit an event at night (00:00) on a day 
+that is defined in the configuration variable this.config.launchWeekDay, e.g. 0 = Sunday.
+
+The 'cron.removeTask' only needs the name of the registered event to deregister.
+
+\subsubsection{Z-Wave}
+
+The whole mapping of Z-Wave devices into virtual devices is handled by a module called 
+\app{ZWave}. This module is quite powerful. It does not only manage the mapping but handles
+various Z-Wave specific functions such as timing recording, etc.
+

@@ -1,0 +1,354 @@
+\chapter{Special topics for Developers}
+
+\section{Authentication}
+\label{cap:authentication}
+
+In order to access API one need to authenticate itself. \zway uses sessions
+to authenticate users. Session can be obtained by sending login and password
+in JSON format using POST to URL \texttt{/ZAutomation/api/v1/login}. User
+credentials should look like \texttt{\{"login":"admin", "password":"admin"\}}
+
+In return the session will be sent in two forms:
+\begin{itemize}
+\item as \textbf{data.sid} field in JSON structure,
+\item as a cookie called \textbf{ZWAYSession}.
+\end{itemize}
+
+Example of successful login will look like:
+\begin{lstlisting}[caption=Successful login reply]
+{
+    "data": {
+        "sid": "ba69cb5b-b2fd-5ce0-5b75-9bae3e8bc369",
+        "id": 1,
+        "role": 1,
+        "name": "Administrator",
+        "lang": "en",
+        "color": "#dddddd",
+        "dashboard": [],
+        "interval": 2000,
+        "rooms": [
+            0
+        ],
+        "hide_all_device_events": false,
+        "hide_system_events": false,
+        "hide_single_device_events": []
+    },
+    "code": 200,
+    "message": "200 OK",
+    "error": null
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Wrong login/password reply]
+{
+    "data": null,
+    "code": 401,
+    "message": "401 Unauthorized",
+    "error": "User login/password is wrong."
+}
+\end{lstlisting}
+
+One obtained, the session can be sent to the server via cookie (as set by
+\zway) or via HTTP header.
+
+An elegant way to execute a command using URL including authentication is:
+
+\begin{quote} 
+\cmdline{wget --auth-no-challenge --user=admin --password=pwd IP:8083/ZAutomation/api/v1/...}
+\end{quote}  
+
+As jquery function the authentication will look like this:
+
+\begin{lstlisting}[caption=Login with jQuery]
+$('img').click(function() {
+$.ajax({
+url: "https://find.z-wave.me/ZWave.zway/Run/devices[3].Basic.Set(255)",
+username: "56033/admin",
+password: "pwd",
+xhrFields: { withCredentials: true }
+});
+});
+\end{lstlisting}
+
+\section{How to write own Apps for \zway}
+\label{developownapps}
+
+According to Chapter \ref{cap:modules} apps have two core files:
+
+\begin{itemize}
+\item module.js
+\item index.js
+\end{itemize}
+
+The following chapter explains these two files more in detail. 
+
+\subsection{module.js}
+
+Module.js defines the general behavior of the app and the interface to the user side.
+Table \ref{tab:module.json} 
+shows the structure of the file module.js with an explanation of each line item.
+
+\begin{table}
+\begin{tabular}{|p{0.45\textwidth}|p{0.5\textwidth}|}
+\hline
+\{ "singleton" : false, &
+Boolean to set if there can be multiple Instances of the
+module allowed or not \\
+"dependencies": [], & 
+An array list of all module names from which this module is dependent. Modules in this list
+should be 'singleton'.Thew module cannot be instantiated if at least one of the modules
+in the list does not have an instance. \\
+\hline
+"category": "automation\_basics", & 
+The app category this module is shown in the app store. Known app store categories are:
+'basic\_gateway\_modules',
+'legacy\_products\_workaround', 'support\_external\_ui',
+'support\_external\_dev', 'automation\_basic',
+'device\_enhancements', 'developers\_stuff',
+'complex\_applications', 'automation', 'security',
+'peripherals', 'surveillance', 'logging', 'scripting',
+'scheduling', 'climate', 'environment', 'scenes',
+'notifications', 'tagging' \\
+\hline
+"author": "ZWave.Me", & Author name of the Module \\
+\hline
+"homepage": "http://razberry.zwave. me", &
+If you have a news homepage, it can be linked here. \\
+\hline
+"icon": "icon.png", & Name of the icon which is shown for this module
+on the UI \\
+\hline
+"moduleName": "AppClassName", & Module name have to the same like the class
+reference \\
+\hline
+"version": "1.0.0", &Version number of this module \\
+\hline
+"maturity": "beta", & Status if the app is still in development or released \\
+\hline
+"repository": \{ Repository optional "type": "git", Kind of the repository
+"source":
+https://github.com/ZWaveMe/ homeautomation \}, &
+Address of the repository \\
+\hline
+"defaults" : \{ "title" : "\_\_m\_title\_\_", & The title placeholder for the Language files \\
+\hline
+"description" : \{ "\_m\_descr\_\_" \}, &
+The description placeholder for the language files \\
+\hline
+"schema" : \{\}, & Description of the data structure of the form for
+instantiating the module. See explanation of schema for details \\
+\hline
+"options" : \{\}\} & Showing options of the setup form\\
+\hline
+"description" : \{ "\_m\_descr\_\_" \}, &
+The description placeholder for the language files \\
+\hline
+\end{tabular}
+\caption{Module.json details} 
+\label{tab:module.json}
+\end{table}	
+
+\subsection{Schema}
+
+The \textbf{schema} is a JSON Structure to define the user interface of the module.
+It lists all input parameters and  options to be shown in the setup dialog of the app:
+
+\begin{lstlisting}[caption=Schema Structure]
+{
+"schema": {
+"type": "object",
+"properties": {
+}
+}
+}
+\end{lstlisting}
+
+
+The structure of the schema is the following. Inside the 'properties' space the single 'properties' 
+can be defined. They become the parameter of the module during the initiation and they 
+are shown as configuration parameters in the setup dialog. There are different
+types of input parameters:
+
+
+\subsubsection{Primitive data types like integer, float or string}
+
+\begin{lstlisting}[caption=Schema Structure Simple Type]
+{
+//Parametername
+"name": {
+
+"type": "array",
+"items": {
+"title": "Device",
+"type": "radio",
+//array of choosable items
+"enum": ["Adult", "Child"],
+"default": "Child",
+"required": true
+}
+},
+//Parametername
+"name": {
+"type": "integer",
+"required": true
+},
+}
+\end{lstlisting}
+
+\subsubsection{Name Spaces  - Enumerations with a choice}
+
+\begin{lstlisting}[caption=Schema Structure Enumerations with a choice]
+{
+
+//Parametername
+"name": {
+"field": "enum",
+"datasource": "namespaces",
+//special namespacedestination
+"enum": "namespaces:devices\_all:deviceId",
+"required": true
+},
+}
+\end{lstlisting}
+
+
+
+Name spaces refer to the internal \zway structure. It allows to list elements from 
+the \zway data model and filter it. The statement 
+\texttt{"namespaces:devices\_all:deviceId"} will offer a selection of all devices.
+
+Namespaces can also be combined like
+
+\murl{namespaces:devices\_doorlock:deviceId,namespaces:devices\_switchBinary:deviceId}
+
+which means devices doorlock and all binary switches.
+Namespaces can also be REST paths like
+
+\murl{server:port/v1/namespaces/{devices\_DEVICETYPE}.{PATH}}
+
+
+\subsection{The file index.js}
+
+Thew file index.js contains the application as such. It can include other js files is needed 
+but \zway will always look for a index.js file to load first. Table \ref{tab:detailindexjs}
+list the basic structure of index.js with the minimum functions.
+
+
+\begin{table}
+\begin{tabular}{|p{0.45\textwidth}|p{0.5\textwidth}|}
+\hline
+function AppClassName (id, controller) {AppClassName.super\_.call(this, id, controller);} &
+Constructor method:
+This line is a call of the Superconstructor. It has always to be first line of the constructor \\
+\hline
+inherits(AppClassName, AutomationModule); &
+inheration call: \\
+\hline
+\_module = AppClassName; &
+Thew definition of the class reference \\
+\hline
+AppClassName.prototype.init = function (config) {
+AppClassName.super\_.prototype.init.call(this, config);
+var self = this; }; &
+Initialization method: Variable to refer to in the class in own
+methods (this is context dependent in JavaScript).
+Here you can register 'listeners' for the event bus. For details on event bus please 
+refer to chapter \ref{cap:eventbus} \\
+\hline
+AppClassName.prototype.stop = function () {
+AppClassName.super\_.prototype.stop.call(this);}; &
+Destroy method:
+Here you have to unregister 'listeners'.  \\
+\hline
+AppClassName.prototype.Methodname=
+function(parameter){ } &
+Own Methods: Write your own Methods here. \\
+\hline
+\end{tabular}
+\caption{Details of index.js} 
+\label{tab:detailindexjs}
+\end{table}	
+	
+
+More information e.g. about the list of probe types etc. you find on 
+
+\murl{http://docs.zwayhomeautomation.apiary.io/}
+
+\section{Write you own Device Description Files}
+\label {newddr} 
+
+This part of the manual is not yet published because the service for creating own Device 
+Description Files is not yet available.
+
+\section{Extending EnOcean}
+\label{addenocean}
+
+How to include a new EnOcean Device (example Hoppe Door handle)
+
+(1) Check if the profile is in \cmdline{/opt/z-way-server/config/Profile.xml}. Not that 
+you just need to know the profile the given product supports. There is no way 
+to find out automatically! 
+
+\begin{lstlisting}[caption=EnOcean Profile Entry]{Name}
+<Profile rorg="0xf6" func="0x10" type="0x00" rorgDescription="RPS Telegram" 
+funcDescription="Mechanical Handle" typeDescription="Window Handle">
+<Field offset="0" size="4" name="windowHandle" type="int" 
+description="Movement of the window handle" short="WIN" />
+</Profile>
+\end{lstlisting}
+
+(2) Add the device record of the device to 
+\begin{quote} 
+\cmdline{/opt/z-wave-server/htdocs/smarthome/storage/data/devices\_encoean.json}. 
+\end{quote} 
+Here the rorg, funcid and type are set. Now the device record will be created and the 
+right values are changed on message reception. Now you need to make sure the right  
+element is rendered and updated. This is 
+in \cmdline{/opt/z-wave-server/automation/modules/Enocean/index.js}
+
+First add a filter to catch the events and call the correct function:
+
+\begin{lstlisting}[caption=Catch Device IDs]{Name}
+if (matchDevice(0xf6, 0x10, 0x01)) {
+// Hoppe Window handle
+windowHandle("contact", "window", "Windor Handle"); 
+}
+\end{lstlisting}
+now you add the function that handles the value changes and renders the element 
+accordingly. For the window handle we use the binary sensor element but overwrite 
+the status information according to the information of the window handle moves.  
+
+\begin{lstlisting}[caption=Handle Device]{Name} 
+function windowHandle(dh, type, title) {
+	var vDev = self.controller.devices.create({
+	deviceId: vDevIdPrefix + type,
+	defaults: {
+		deviceType: 'sensorBinary',
+		metrics: {
+			probeTitle: type,
+			scaleTitle: '',
+			icon: type,
+			level: '',
+			title: title
+		}
+	},
+	overlay: {},
+	handler: function(command) {},
+	moduleId: self.id
+});
+
+if (vDev) {
+	self.dataBind(self.gateDataBinding, self.zeno, nodeId, dh, 
+	function(type) {
+		try {
+			if (this. handleValue == 13)
+				vDev.set("metrics:level", "tilt");
+			if (this. handleValue == 15)
+				vDev.set("metrics:level", "closed");
+			if (this. handleValue == 12 || this. handleValue == 14)
+				vDev.set("metrics:level", "open");
+		} catch (e) {}
+	}, "value");
+}
+}
+\end{lstlisting}

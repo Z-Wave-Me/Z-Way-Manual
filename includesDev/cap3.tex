@@ -1,605 +1,315 @@
-\chapter{JavaScript API}
-\label{jsapi}
+\chapter{Preparation and Ways to Access the  System}
 
-The JavaScript API mirrors all functions of the Z-Wave device API and 
-combines them with the ability to run JavaScript code on top of the 
-Z-Wave Device functions and variables.
+\section {Installation on Raspberry Pi}
+\index{Installation}
+\index{RaZberry}
 
-There are two ways to run JavaScript functions in Z-Way.
+Before you can use the RaZberry solution, you need to complete your gateway hardware 
+and install the software.
+
+Here are two ways to install and start \zway:
+
 \begin{itemize}
-\item They can be executed in the web browser URL string (using /JS/Run/ prefix)
-\item They can be implemented as module running in the backend or be stored in a file on the server side.
-\end{itemize}
-Both options have their pros and cons. Running JS code in the browser is a very nice
-and convenient way to test things but the function is not persistent.
+\item A:  You do not have Linux OS on your Raspberry Pi installed yet. Please download 
+an SD card image (minimum 8 GB) from the download section of 
+\murl{http://razberry.z-wave.me}. It is based on the Raspberry Pi distribution ``Jessie.’’
 
-Writing a module requires some more knowledge and debugging is more complicated. 
-On the other hand the possibilities of JavaScript in the module are almost infinite 
-and goes far beyond just accessing Z-Wave device. JavaScript as any other language
-can make use of services available in the Internet and combine them in any possible 
-way with information from the Z-Wave network and can execute functions within 
-the Z-Wave network but the same time on any place accessible via Internet based 
-services. In theory there is not even a need to have Z-Wave device in order to make 
-use of the powerful JavaScript engine. As an example you can write a JavaScript 
-module polling weather data from the internet and depending on certain well defined 
-conditions the same module can send you a short message on your mobile.
-Both functions are by the way already implemented as open source modules and can be 
-accessed and studied for further modification or use.
+\item B (recommended): You already have a working Linux (Jessie) running. Log in and 
+execute the following command line:
 
-\section {The JavaScript Engine}
+\begin{quote}
+\cmdline{wget -q -O - http://razberry.z-wave.me/install | sudo bash}.
+\end{quote}
 
-Z-Way uses the JavaScript engine provided by Google referred to as V8. You find more 
-information about this JavaScript implementation on https://code.google.com/p/v8/.
-V8 implements JavaScript according to the specification ECMA 5
-\footnote {http://www.ecma-international.org/publications/standards/Ecma-262.htm}.
-
-Z-Way extends the basic functionality provided by V8 with plenty of application 
-specific functions.
-
-\section{Accessing the JS API}
-
-The JS API can be accessed from any web browser with the URL
-
-\paragraph{http://YOURIP:8083/JS/Run/*}
-
-All functions of the Z-Wave Device API can be used by JavaScript. They are encapsulated
-in the 'zway' object.  This object has the same structure as defined in chapter 
-\ref{c2-data model}. 
-The client side access to the device data is done like
-
-\paragraph{http://YOURIP:8083/JS/Run/zway.devices[x].*}
-
-Due to the scripting nature of JavaScript its possible to 'inject' code at run time
-using the interface. Here a nice example how to use the Java Script 
-setInterval function:
-
-\begin{lstlisting}[caption=Polling device \#2]{Name}
-/JS/Run/setInterval(function() { 
-	zway.devices[2].Basic.Get();
-}, 300*1000);
-\end{lstlisting}
-
-This code will, once 'executed' as URL within a web browser, call the Get() command
-of the command class Basic of Node ID 2 every 300 seconds.  
-
-A very powerful function of the JS API is the ability to bind functions to certain
-values of the device tree. they get then executed when the value changes. Here an 
-example for this binding. The device No. 3 has a command class SensorMultilevel that offers
-the variable level. The following call - both available on the client side 
-and on the server side - will bind a simple alert function to the change of 
-the variable.
-
-\begin{lstlisting}[caption=Bind a function]{Name}
-zway.devices[3].SensorMultilevel.data[1].val.bind( function() { 
-	debugPrint('CHANGED TO: ' + this.value + '\n'); 
-});  
-\end{lstlisting}
-
-\section{HTTP Access}
-
-The JavaScript implementation of Z-Way allows to directly accessing HTTP objects.
-
-The http request is much like jQuery.ajax(): r = http.request(options);
-
-Here's the list of options:
-\begin{itemize}
-\item url - required. Url you want to request (might be http, https, or maybe even ftp);
-\item method – optional. HTTP method to use (currently one of GET, POST, HEAD). If not 
-specified, GET is used;
-\item headers – optional. Object containing additional headers to pass to server:
-
-\begin{lstlisting}
-headers: {
-    "Content-Type": "text/xml",
-    "X-Requested-With": "RaZberry/1.5.0"
-}
-\end{lstlisting}
-
-\item data – used only for POST requests. Data to post to the server. May be either a
-string (to post raw data) or an object with keys and values (will be serialized as 
-'key1=value1\&key2=value2\&…');
-\item auth – optional. Provides credentials for basic authentication. It is an object 
-containing login and password:
-\begin{lstlisting}
-auth: {
-    login: 'username',
-    password: 'secret'
-}
-\end{lstlisting}
-\item contentType – optional. Allows to override content type returned by server for 
-parsing data (see below);
-\item async – optional. Specifies whether request should be sent asynchronously. Default 
-is false. In case of synchronous request result is returned immediately (as function 
-return value), otherwise function exits immediately, and response is delivered later 
-thru callbacks.
-\item success, error and complete – optional, valid only for async requests. Success 
-callback is called after successful request, error is called on failure, complete is 
-called nevertheless (even if success/error callback produces exception, so it is like 
-'finally' statement);
 \end{itemize}
 
-Response (as stated above) is delivered either as function return value, or as callback 
-parameter. Is is always an object containing following members:
+You may need to configure the Wi-Fi access point of your Raspberry Pi in order to allow 
+direct wireless access.
+
+\section {Installation on other platforms using UZB}
+\index{UZB}
+
+\subsection {Unix-based Platforms}
+
+Let’s assume you already have shell access to your system. You can download a binary 
+distribution from \murl{https://razberry.zwave.me/z-way-server}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{pngs/cap3/rootfolder.png}
+\caption{Folder Content of \zway}
+\label{rootfile}
+\end{center}
+\end{figure}
+
+and unpack it. The code can run on every place in the filesystem. Nevertheless, we 
+recommend using \cmdline{/opt/z-way-server} as the folder to store the codebase. The 
+folder content looks as shown in Figure \ref{rootfile}. For more information on the 
+files and the file structure of \zway, please refer to Chapter \ref{clevelapi}.
+
+\zway can then be started using the simple shell command from inside the \zway folder:
+
+\begin{quote}
+\cmdline{LD\_LIBRARY\_PATH=./libs ./zwayserver}
+\end{quote}
+
+Once the code is started, it is possible to access the standard user interface using 
+\murl{http://localhost:8083}
+
+To use Z-Wave, the correct port of the Z-Wave transceivers virtual serial port must be 
+configured. Please  go to the user interface menu and open the app \app{Z-Way Network Access} 
+as shown in Figure \ref{zwaynetworkapp}. for more information about \zway aps please refer 
+to Chapter \ref{apps}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.4\textwidth]{pngs/cap3/zwavenetwork.png}
+\caption{Z-Wave Network Access App}
+\label{zwaynetworkapp}
+\end{center}
+\end{figure}
+
+After checking the right virtual port created by the operating system, please configure 
+this port name and save the settings. Now \zway should be up and running, and you may 
+want to create a startup script to make sure \zway is running right after booting.
+
+\subsection {Windows}
+\index{Windows}
+
+First, note that the Windows platform is only partly supported. There is a binary distribution 
+for Windows, but it certainly lacks the level of testing required. Please use the binary 
+Windows distribution at your own risk.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.6\textwidth]{pngs/cap3/winsetup1.png}
+\caption{\zway Windows Setup Wizard}
+\label{winsetup1}
+\end{center}
+\end{figure}
+
+Install the MSI file and start it. You will see a nice wizard---see Figure \ref{winsetup1}
+---guiding you through the setup process.
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.6\textwidth]{pngs/cap3/winsetup2.png}
+\caption{\zway Windows Installation}
+\label{winsetup2}
+\end{center}
+\end{figure}
+
+The files are installed on the folder of choice as shown in Figure \ref{winsetup2}.
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.6\textwidth]{pngs/cap3/winsetup3.png}
+\caption{Windows Hardware manager with new COM port}
+\label{winsetup3}
+\end{center}
+\end{figure}
+
+If the UZB stick is plugged into the system, there is a new COM port created for this stick. 
+Figure \ref{winsetup3} shows the Windows hardware manager with the new port. After passing 
+the initial setup page, open the app \app{Z-Way Network Access} and double check the 
+right COM port. Note that there is a very special syntax for the COM port 
+\textbf{'\textbackslash \textbackslash.\textbackslash COM3'} for serial port 3.
+
+Figure \ref{winsetup4} shows this dialog.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.6\textwidth]{pngs/cap3/winsetup4.png}
+\caption{Z-Wave Network Access App with COM Port}
+\label{winsetup4}
+\end{center}
+\end{figure}
+
+Under Windows, \zway runs as a service. You find the service entry in the Windows Service 
+Management as shown in Figure \ref{winsetup5}. This dialog also allows starting and stopping 
+the service.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.8\textwidth]{pngs/cap3/winsetup5.png}
+\caption{Z-Wave as Windows service}
+\label{winsetup5}
+\end{center}
+\end{figure}
+
+\section {Local and Remote Access}
+\label{remoteaccess}
+\index{Remote Access}
+
+\zway can be accessed in several ways:
 
 \begin{itemize}
-\item status – HTTP status code (or -1 if some non-HTTP error occurred). Status codes 
-from 200 to 299 are considered success;
-\item statusText – status string;
-\item URL – response URL (might differ from url requested in case of server redirects);
-\item headers – object containing all the headers returned by server;
-\item contentType – content type returned by server;
-\item data – response data.
+\item Using a standard web browser\footnote{We recommend Chrome, Firefox, or Safari 
+since we frequently see problems with MSIE.} on the controller’s IP address. There is an 
+embedded webserver on Port 8083 providing the web pages of the user interface.
+\item Using a standard web browser but the redirection service \murl{find.zwave.me} The 
+user interface is similar, but there is no need to be on the same IP network or to 
+install an explicit port forwarding.
+\item Use one of the native apps from Google Playstore or Apple iTunes. These will, 
+however, use the two same services for local and remote access as mentioned above and 
+will only render the user interface differently.
+\item Use your own web or native app-based user interface. Again, you will then use one 
+of the two options mentioned above.
 \end{itemize}
 
+Both the local access and the remote access using the find-service have their pros and 
+cons as listed in Table \ref{compaccess}:
 
-Response data is handled differently depending on content type (if contentType on request is set, it takes priority over server content type):
+\begin{table}
+\begin{tabular}{|p{0.15\textwidth}|p{0.4\textwidth}|p{0.4\textwidth}|}
+\hline
+Access &	Advantage & Disadvantage\\
+\hline
+Local IP Ethernet&	very fast, all data stays within own home & no secure connection due
+to missing IP certificates, IP address must be known, no access from outside the home\\
+\hline
+Find Service &	worked independent of local network setting from everywhere, very safe
+due to complete end-2-end security & depends on external service, more delays\\
+\hline
+Local IP WIFI&	very fast and secure & another WIFI access point, no access from outside the home  \\
+\hline
+\end{tabular}
+\caption{Comparison of Access methods}
+\label{compaccess}
+\end{table}		
+
+The initial access to the user interface must be done using one of the local access routes. 
+Once \zway is running, the first access to the interface asks for some basic setup such 
+as the admin password and an email address to recover this password. Figure \ref{init1} 
+shows this screen.
+The number provided in the title (1) is the unique \zwaydeviceid of the device and it will be needed 
+in the future to access the controller remotely using the find service. 
+
+\textbf{Please remember this \zwaydeviceid!}
+
+The  \includegraphics[width=0.02\textwidth]{pngs/world.png} on the upper right side 
+allows changing the interface language from 
+standard English to your chosen language. If your language is not yet available, you 
+may want to consider contributing a translation. Please refer to Chapter \ref{sec:translation} 
+for details on how to do this.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{pngs/cap3/init1.png}
+\caption{Initial setup of the \zway User Interface}
+\label{init1}
+\end{center}
+\end{figure}
+
+The language selection can be used for the user interface from this time on, but it can 
+be changed in \menu{\includegraphics[width=0.02\textwidth]{pngs/smenu.png} > My Settings}.
+
+Please note that the email address provided for email recovery will not be stored outside 
+your controller, e.g. in a cloud service. This provides extra security but also means that 
+certain processes like restore are a bit more complicated than is usual.
+
+After completing the setup, a welcome screen will guide you through the system and 
+introduce the basic user interface terms/dialogs.
+
 \begin{itemize}
-\item application/json and text/x-json are returned as JSON object;
-\item application/xml and text/xml are returned as XML object;
-\item application/octet-stream is returned as binary ArrayBuffer;
-\item string is returned otherwise.
-\end{itemize}
-In case data cannot be parsed as valid JSON/XML, it is still returned as string, and additional parseError member is present.
-
-
-\begin{lstlisting}
-http.request({
-	url: "http://server.com" (string, required),
-	method: "GET" (GET/POST/HEAD, optional, default "GET"),
-	
-	headers: (object, optional)
-	{
-		"name": "value",
-		...
-	},
-	
-	auth: (object, optional)
-	{
-		"login": "xxx" (string, required),
-		"password": "***" (string, required)
-	},
-	
-	data: (object, optional, for POST only)
-	{
-		"name": "value",
-		...
-	}
-	-- OR --
-	data: "name=value&..." (string, optional, for POST only),
-
-	async: true (boolean, optional, default false),
-
-	timeout: (number, optional, default 20000)
-	
-	success: function(rsp) {} (function, optional, for async only),
-	error: function(rsp) {} (function, optional, for async only),
-	complete: function(rsp) {} (function, optional, for async only)
-});
-
-
-response:
-{
-	status: 200 (integer, -1 for non-http errors),
-	statusText: "OK" (string),
-	url: "http://server.com" (string),
-	contentType: "text/html" (string),
-	headers: (object)
-	{
-		"name": "value"
-	},
-	data: result (object or string, depending on content type)
-}
-\end{lstlisting}
-
-\section{XML parser}
-
-ZXmlDocument object allows to convert any valid XML document into a JSON object and vice versa.
-
-\subsection{var x = new ZXmlDocument()}
-Create new empty XML document
-
-\subsection{x = new ZXmlDocument("xml content")}
-Create new XML document from a string
-
-\subsection{x.root}
-Get/set document root element. Elements are got/set in form of JS objects:
-
-\begin{lstlisting}
-{
-    name: "node_name", – mandatory
-    text: "value", – optional, for text nodes
-    attributes: { – optional
-    	name: "value",
-    	...
-    },
-    children: [ – optional, should contain a valid object of same type
-    	{ ... }
-    ]
-}
-\end{lstlisting}
-
-For example:
-\begin{lstlisting}
-(new ZXmlDocument('<weather><city id="1"><name>Zwickau</name><temp>2.6</temp></city><city id="2"><name>Moscow</name><temp>-23.4</temp></city></weather>')).root =
-{  
-   "children":[  
-      {  
-         "children":[  
-            {  
-               "text":"Zwickau",
-               "name":"name"
-            },
-            {  
-               "text":"2.6",
-               "name":"temp"
-            }
-         ],
-         "attributes":{  
-            "id":"1"
-         },
-         "name":"city"
-      },
-      {  
-         "children":[  
-            {  
-               "text":"Moscow",
-               "name":"name"
-            },
-            {  
-               "text":"-23.4",
-               "name":"temp"
-            }
-         ],
-         "attributes":{  
-            "id":"2"
-         },
-         "name":"city"
-      }
-   ],
-   "name":"weather"
-}
-\end{lstlisting}
-
-\subsection{x.isXML}
-This hidden readonly property allows to detect if object is XML object or not (it is always true).
-
-\subsection{x.toString()}
-Converts XML object into a string with valid XML content.
-
-\subsection{x.findOne(XPathString)}
-Returns first matching to XPathString element or null if not found.
-\begin{lstlisting}
-x.findOne('/weather/city[@id="2"]') // returns only city tag for Moscow
-x.findOne('/weather/city[name="Moscow"]/temp/text()') // returns temperature in Moscow
-\end{lstlisting}
-
-\subsection{x.findAll(XPathString)}
-Returns array of all matching to XPathString elements or empty array if not found.
-\begin{lstlisting}
-x.findAll('/weather/city') // returns all city tags
-x.findAll('/weather/city/name/text()') // returns all city names
-\end{lstlisting}
-
-\subsection{XML elements}
-Each XML element (tag) in addition to properties described above (text, attributes, children) have hidden readonly property parent pointing to parent object and the following methiods:
-\begin{itemize}
-\item insertChild(element) Insert new child eleemnt
-\item removeChild(element) Remove child element
-\item findOne(XPathString) Same as on root object, but relative (no leading / needed in XPathString
-\item findAll(XPathString) Same as on root object, but relative (no leading / needed in XPathString
+\item Element,
+\item Element View,
+\item Element Configuration,
+\item Dashboard,
+\item Event,
+\item Timeline,
+\item Apps
 \end{itemize}
 
-ZXmlDocument is returned from http.request() when content type is "application/xml", "text/xml" or any other ending with "+xml". Namespaces are not yet supported.
+It also offers buttons for direct access to the two most common actions right after installation:
 
-\section{Cryptographic functions}
-
-crypto object provides access to some popular cryptographic functions such
-as SHA1, SHA256, SHA512, MD5, HMAC, and provides good random numbers.
-
-\subsection{var guid = crypto.guid()}
-Provides standard GUID in string format.
-
-\subsection{var rnd = crypto.random(n)}
-Generates n random bytes.
-Returned values is of type ArrayBuffer. To convert it into array use this trick:
-\begin{lstlisting}
-	rnd = (new Uint8Array(crypto.random(10)));
-\end{lstlisting}
-
-\subsection{var dgst = crypto.digest(hash, data, ...)}
-Returns digest calculated using selected hash algorithm. It supports virtually all the algorithms available in OpenSSL (md4, md5, mdc2, sha, sha1, sha224, sha256, sha384, sha512, ripemd160).
-If no data parameters specified, it returns a digest of an empty value. If more than one data parameters are specified, they're all used to calculate the result. Data parameters may be of different types (strings, arrays, ArrayBuffers).
-Return value is of type ArrayBuffer.
-
-There are also a few shortcut functions for popular algorithms: "md5", "sha1", "sha256", "sha512". For example, these calls are equivalent:
-
-\begin{lstlisting}
-	dgst = crypto.digest("sha256", data);
-	dgst = crypto.sha256(data);
-\end{lstlisting}
-
-\subsection{var hmac = crypto.hmac(cipher, key, data, ...)}
-Returns hmac calculated using selected hash algorithm. Hash algorithms are the same as for digest() function.
-Key parameter is required. 
-If no data parameters specified, it returns a HMAC of an empty value. If more than one data parameters are specified, they're all used to calculate the result. Key and data parameters may be of different types (strings, arrays, ArrayBuffers).
-Return value is of type ArrayBuffer.
-
-There are also a few shortcut functions for popular algorithms: "hmac256", "hmac512". For example, these calls are equivalent:
-
-\begin{lstlisting}
-  dgst = crypto.hmac("sha256", key, data);
-  dgst = crypto.hmac256(key, data);
-\end{lstlisting}
-
-\section{Sockets functions}
-
-Socket module allows easy access to TCP and UDP sockets from JavaScript.
-Both connection to distant ports and listening on local are available. This API fully mirrors into JavaScript POSIX TCP/IP sockets.
-This can be used to control third party devices like Global Cache or Sonos
-as well as emulating third party services.
-
-To start communications one need to create socket and either
-\textbf{connect} it or \textbf{listen} it. \textbf{onrecv} method is called
-on data receive from remote, while \textbf{send} is used to send data to remote side.
-
-The example below dumps to log file response to http://ya.ru:80/ (raw HTTP
-protocol is used as an example).
-
-\begin{lstlisting}
-var sock = new sockets.tcp();
-
-sock.onrecv = function(data) {
-    debugPrint(data.byteLength);
-};
-
-sock.connect("ya.ru", 80);
-
-sock.send("GET / HTTP/1.0\r\n\r\n");
-\end{lstlisting}
-
-Here is an example of TCP echo server on port 8888:
-
-\begin{lstlisting}
-var sock = new sockets.tcp();
-
-sock.bind(8888);
-
-sock.onrecv = function(data) {
-    this.send(data);
-};
-
-sock.listen();
-\end{lstlisting}
-
-And echo server for UDP:
-\begin{lstlisting}
-var sock = new sockets.udp();
-
-sock.bind(8888);
-
-sock.onrecv = function(data, host, port) {
-    this.sendto(data, host, port);
-};
-
-sock.listen();
-\end{lstlisting}
-
-Detailed description of Socket API:
 \begin{itemize}
-\item bind(ip, port) or bind(port) binds socket to port (integer number). ip should be a string like "192.168.0.1". If omited "0.0.0.0" is used (bind on all IP addresses of all interfaces). Returns false on error.
-\item connect(ip, port) connects to remote side ip:port. TCP sockets requires this call before sending data. For UDP sockets it is optional, but once used allows to use send call instead of sendto call. Returns false on error.
-\item listen() starts listening port (this is required not only for TCP, but for UDP too). Returns false on error.
-\item close() initiate close of socket.
-\item send(data) sends data to connected or accepted socket.
-\item sendto(data, host, port) sends data to a non-connected UDP socket.
-\item onrecv(data, host, port) called on new data receiption from remote side. For UDP sockets and connected TCP sockets "this" object reffers to the socket itself, while for accepted TCP sockets "this" reffers to the client's individual objects.
-\item onconnect(remoteHost, remotePort, localHost, localPort) called only for TCP sockets on new connection accept. "this" reffers to the client individual socket object.
-\item onclose(remoteHost, remotePort, localHost, localPort) called on socket close by remote or due to close() call. Note that for TCP sockets this callback is called for client sockets on connection close and for binded listening socket if close() is called. "this" object will be defined like in onrecv.
-\item reusable() sets SO\_REUSEADDR socket option to allow multiple bind() on the same port.
-\item broadcast() sets SO\_BROADCAST socket option to allow sending broadcast UDP messages.
-\item multicastAddMembership(multicastGroup) subscribe socket to multicast group
-\item multicastDropMembership(multicastGroup) unsubscribe socket from multicast group
+\item Add a new physical device.
+\item Add some virtual device, internet service or application.
 \end{itemize}
 
-\subsection{WebSockets functions}
+After completing the setup, it is possible to access \zway using the find service, or install 
+a native app for the mobile phone. Open the url \murl{http://find.z-wave.me/}
 
-Socket module also implements WebSockets (RFC 6455). WebSocket API is made to be
-compatible with browser implementations (some rarely used functions are not
-implemented - see below).
+The dialog on this find service, as shown in Figure \ref{sh1}, is intentionally 
+simple. It offers two ways to log in:
 
-The example below implemnts basic application using WebSockets client:
-
-\begin{lstlisting}
-var sock = new sockets.websocket("ws://echo.websocket.org");
-
-sock.onopen = function () {
-    debugPrint('connected, sending ping');
-    sock.send('ping');
-}
-
-sock.onmessage = function(ev) {
-    debugPrint('recv', ev.data);
-}
-
-sock.onclose = function() {
-    debugPrint('closed');
-}
-
-sock.onerror = function(ev) {
-    debugPrint('error', ev.data);
-}
-\end{lstlisting}
-
-Next example shows basic application using WebSockets server:
-
-\begin{lstlisting}
-var sock = new sockets.websocket(9009);
-
-sock.onconnect = function () {
-    debugPrint('client connected, sending ping');
-}
-
-sock.onmessage = function(ev) {
-    debugPrint('recv', ev.data);
-    sock.send('pong');
-}
-
-sock.onclose = function() {
-    if (this === sock) {
-        debugPrint('server websocket closed');
-    } else {
-        debugPrint('client disconnected');
-    }
-}
-
-sock.onerror = function(ev) {
-    debugPrint('error', ev.data);
-}
-\end{lstlisting}
-
-Detailed description of WebSocket API:
 \begin{itemize}
-\item socket.websocket(url, [protocol], [ssl_ca_filepath], [ssl_cert_filepath, ssl_private_key_filepath]) creates new client WebSocket and connects to the specified URL (should be a string like "ws://host:port" or "wss://host:port" for SSL channel). Optional protocol parameter can be used to specify protocol from server capabilities (comma separated string), default is "default". To use a specific CA file instead of system default use ssl_ca_filepath. To send client certificate use  ssl_cert_filepath and ssl_private_key_filepath.
-\item socket.websocket(port) creates new WebSocket server on port.
-\item close() initiate close of WebSocket.
-\item send(data) sends data to WebSocket. data can be array, ArrayBuffer (sent as binary) or string (sent as text).
-\item onmessage(event) called on new data receiption from remote side. Object event contains only data property. Other properties mentioned in RFC 6455 are not supported.
-\item onopen() or onconnect() called on connection establish. Compared RFC 6455 event parameter is not passed.
-\item onclose() called on WebSocket close by remote or due to close() call. For server side will be called on client instance and on listening instance (use this to differenciate). Note that if close() is called before connection was established, onclose() is not executed. Compared RFC 6455 event parameter is not passed.
-\item onerror(event) called on error. For example host or port unreachable. Note that new sockets.websocket(..) can throw an exception on DNS resolution error or on network unreachable. Other errors will be reported via onerror. Parameter event contains only propery data. Other properties from RFC 6455 are not implemented.
+\item Using your \zwaydeviceid, along with your login name (Example: '23333/admin') and 
+your password for remote login and redirection
+\item In case you use the service from a PC or a mobile phone within your home, the 
+service will detect this and show the IP addresses of your \zway controllers. It 
+is possible that a \zway controller has two IP interfaces (Ethernet + Wi-Fi). In 
+this case, both addresses are shown. Clicking on the IP address will lead to the 
+local IP login screen, as shown in Figure \ref{init2}, where only name (e.g. admin) and 
+password are required.
 \end{itemize}
 
-\section{Other JavaScript Extensions}
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{pngs/cap3/init2.png}
+\caption{Login on local IP address}
+\label{init2}
+\end{center}
+\end{figure}
 
-\subsubsection{fs.list(folder)}
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{pngs/cap3/sh1.png}
+\caption{Remote Login Screen}
+\label{sh1}
+\end{center}
+\end{figure}
 
-This returns list of items in the folder or undefined if not folder is not existing.
+The menu option \keystroke{Logout} in the setup menu of the user interface will terminate 
+the session and return you to the login screen or the find service depending on how to 
+log in. You can always force the termination of the find session by calling the 
+URL \murl{http://find.z-wave.me/zboxweb}.
 
+\section {Security and Privacy}
+\index{Security}
+\index{Privacy}
 
-\subsubsection{fs.stat(file)}
-
-This returns one of the following values:
+Security and privacy are of great importance. \zway tries to maximize security and privacy 
+and will not compromise them in order to improve user experience and convenience.
 
 \begin{itemize}
-\item 1) undefined if object does not exist or not readable
-\item 2) object \{ type: 'file', size: \textless{}size\textgreater{}\} if it is a file
-\item 3) object \{ type: 'dir' \} if it is a folder
-\end{itemize} 
+\item All user data including login name and email address are stored only locally, which 
+means that the controller must be available and connected to restore passwords. We 
+believe that this is a robust security and privacy measure.
 
+\item \zway offers certain cloud-based services. This requires certain services and 
+connections to the \zway cloud service:
 
-\subsubsection{fs.loadJSON(filename)}
-
-This function reads a file from the file system and loads it into the memory. The file must contain a valid JSON object. The only argument is the name of the file including relative pathname to the automation folder. The functions returns the full JSON object or null in case of error.
-
-\subsubsection{fs.load(filename)}
-
-This function reads a file from the file system and returns it's content as a string. The only argument is the name of the file including relative pathname to the automation folder. The functions returns null in case of error.
-
-\subsubsection{executeFile(filename) and executeJS(string)}
-
-Loads and executes a particular JavaScript file from the local filesystem or executes JavaScript code represented in string (like eval in browsers).
-
-The script is executed withig the global namespace.
-
-Remark: If an error occurred during the execution it won't stop from further execution, but erroneous script will not be executed completely. It will stop on the first error.
-Exceptions in the callee can be trapped in the caller using standard try-catch mechanism.
-
-\subsubsection{system(command)}
-
-The command system() allows to execute any shell level command available on the operating 
-system. It will return the shell output of the command.  On default the execution of 
-system commands is forbidden. Each command executed need to be permitted by putting one 
-line with the starting commands in the file automation/.syscommands or in an different 
-automation folder as specified in config.xml.
-
-\subsubsection{Timers}
-Timers are implemented exactly as they are used in browsers. They are very helpfull for periodical and delayed operations. Timeout/period is defined in milliseconds.
 \begin{itemize}
-\item timerId = setTimeout(function() { }, timeout)
-\item timerId = setInterval(function() { }, period)
-\item clearTimeout(timerId)
-\item clearInterval(timerId)
+\item Right after boot-up, the \zway controller will connect to the find service 
+announcing its presence. This is done using a reverse ssh service. The client side of this 
+service is available on the \zway server and you can review its work and source code. 
+If you don’t like this service, you can turn it off using the \zwshui. 
+However, be prepared not to have the find service available anymore.
+
+\item The backup to cloud service will also create a copy of your device data on the 
+cloud service. This is very convenient and ensures that you have a backup file when 
+needed. If you feel uncomfortable leaving a copy of your smart home configuration 
+on the \zway cloud service, just don’t use this service and turn it off.
+
 \end{itemize}
 
-\subsubsection{loadObject(object\_name) and saveObject(object\_name, object)}
-Loads and saves JSON object from/to storage. These functions implements flat storage for application with access to the object by it's name. No folders are available.
+\item The find service allows https connection and provides a valid certificate issued by 
+COMODO RSA Domain Validation Secure Server CA. Please check the validity of the 
+certificate before using the find service. This means that the access using the find 
+service has established a complete secure connection from the web browser via the 
+find service to your controller at home.
 
-Data is saved in automation/storage folder. Filenames are made from object names by stripping characters but [a-ZA-Z0-9] and adding checksum from original name (to avoid name conflicts).
+\item There is no https access enabled to the local port. This is because there is no way 
+to create a valid certificate on an IP address that is assigned dynamically using DHCP. 
+It would still be possible to run encryption with https, but we believe that this would 
+be mimicking security without having real security. That’s why we only keep http to 
+send a clear message about the risk of accessing a local IP address. We strongly 
+recommend doing an initial password setting and subsequent local access using Wi-Fi 
+only since Wi-Fi comes with its own very secure encryption based on WPA.
 
-\subsubsection{exit()}
-Stops JavaScript engine and shuts down Z-Way server
+\end{itemize}
 
-
-\subsubsection{allowExternalAccess(handlerName) and listExternalAccess()}
-allowExternalAccess allows to register HTTP handler. handlerName can contain strings like aaa.bbb.ccc.ddd - in that case any HTTP request starting by /aaa/bbb/ccc/ddd will be handled by a function aaa.bbb.ccc.ddd() if present, otherwise aaa.bbb.ccc(), ... up to aaa().
-Handler should return object with at least properties status and body (one can also specify headers like it was in http.request module).
-
-listExternalAccess returns array with names of all registered HTTP handlers.
-
-Here is an example how to attach handlers for /what/timeisit and /what:
-
-\begin{lstlisting}
-what = function() {
-  return { status: 500, body: 'What do you want to know' };
-};
-
-what.timeisit = function() {
-  return { status: 200, body: (new Date()).toString() }
-};
-
-allowExternalAccess("what");
-allowExternalAccess("what.timeisit");
-\end{lstlisting}
-
-\subsubsection{debugPrint(object, object, ...)}
-
-Prints arguments converted to string to Z-Way console. Very usefull for debuggin.
-For convenience one can map 'console.log()' to debugPrint().
-
-This is how it was done in automation/main.js in Z-Way Home Automation engine:
-\begin{lstlisting}
-var console = {
-    log: debugPrint,
-    warn: debugPrint,
-    error: debugPrint,
-    debug: debugPrint,
-    logJS: function() {
-        var arr = [];
-        for (var key in arguments)
-            arr.push(JSON.stringify(arguments[key]));
-        debugPrint(arr);
-    }
-};
-\end{lstlisting}
-
-\subsection{Debugging JavaScript code}
-Change in config.xml debug-port to 8183 (or some other) turn on V8 debugger capability on Z-Way start.
-
-\begin{lstlisting}
-<config>
-    ...
-    <debug-port>8183</debug-port>
-    ....
-</config>
-\end{lstlisting}
-
-node-inspector debugger tool is required. It provides web-based UI for debugging similar to Google Chrome debug console.
-
-You might want to run debugger tool on another machine (for example if it is not possible to install it on the same box as Z-Way is running on).
-
-Use the following command to forward debugger port defined in config.xml to your local machine:
-\begin{lstlisting}
-ssh -N USER@IP_OF_Z-WAY_MACHINE -L 8183:127.0.0.1:8183
-\end{lstlisting}
-(for RaZberry USER is pi)
-
-Install node-inspector debugger tool and run it:
-\begin{lstlisting}
-npm install -g node-inspector
-node-inspector --debug-port 8183
-\end{lstlisting}
-
-Then you can connect to http://IP\_OF\_MACHINE\_WITH\_NODE\_INSPECTOR:8080/debug?port=8183
-
-If debugging is turned on, Z-Way gives you 5 seconds during startup to reconnect debugger to Z-Way (refresh the page of debugger Web UI withing these 5 seconds).
-This allows you to debug startup code of Z-Way JavaScript engine from the very first line of code.

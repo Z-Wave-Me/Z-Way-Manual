@@ -1,0 +1,139 @@
+ \documentclass[10pt, bibtotoc, pointlessnumbers, twoside=false, normalheadings]{scrbook}
+\usepackage[left=0.1cm,right=0.1cm,top=0.1cm,bottom=2.1cm]{geometry}
+\usepackage{a4wide}
+\usepackage{trajan}
+\usepackage[utf8]{inputenc}
+\usepackage{libertineotf}
+\usepackage[T1]{fontenc}
+\usepackage[sc]{mathpazo}
+\usepackage{graphicx}	
+\usepackage{longtable}	
+\usepackage{caption}
+\usepackage{makeidx} 
+\usepackage{color}
+\makeindex
+%\linespread{1.05} 
+\usepackage{hyperref}			
+\usepackage{amssymb}
+\usepackage{forest}
+\usepackage{verbatim} % for comments
+\usepackage{listings} % for comments
+\usepackage{blindtext}
+%\usepackage{listings} \lstset{numbers=left, numberstyle=\tiny, numbersep=5pt, showstringspaces=false} \lstset{language=C}
+
+\usepackage{tikz}
+\usepackage{menukeys}
+\usetikzlibrary{shadows}
+
+\newcommand*\keystroke[1]{%
+  \tikz[baseline=(key.base)]
+    \node[%
+      draw,
+      fill=white,
+      drop shadow={shadow xshift=0.25ex,shadow yshift=0.3ex,fill=black,opacity=0.75},
+      rectangle,
+      rounded corners=2pt,
+      inner sep=1pt,
+      line width=0.5pt,
+      font=\scriptsize\sffamily
+    ](key) {#1\strut}
+  ;
+}
+
+\newcommand*\murl[1]{\begin{quote}\url{#1} \end{quote}}
+\newcommand*\cmdline[1]{\sffamily\colorbox{black}{\bfseries\textcolor{white}{#1}}}
+\newcommand*\app[1]{\textbf{\textsc{ '#1'}}}
+\newcommand{\zway}{\textbf{Z-Way\textsuperscript{\texttrademark} }}
+\newcommand{\zwaveme}{\textbf{Z-Wave.Me }}
+\newcommand{\zwave}{\textbf{Z-Wave }}
+\newcommand{\zwaydeviceid}{\textbf{Z-Way Platform ID }}
+\newcommand{\zweui}{\textbf{\textsc{Z-Wave Expert User Interface }}}
+\newcommand{\zwshui}{\textsc{Z-Way Smart Home Interface }}
+
+\begin{document}
+%=========================================
+\begin{titlepage}
+\centering{
+		\vspace{50mm}
+{\fontsize{40}{48}\selectfont Z-Way Essentials } }\\ 
+		\vspace{10mm}
+		\centering{\Large{The Z-Wave.Me Team}}\\ 
+		\vspace{10mm}
+	
+		\vspace{\fill}	
+\date{\today}  	
+		\centering \large{\today}\\
+
+%\centering \large{, (Copy No. \numbercopy ) for internal use}	
+\end{titlepage}
+%=========================================
+\newpage{}
+\thispagestyle {empty}
+
+%\vspace*{2cm}
+
+\begin{center}
+  
+
+\end{center}
+\null\vfill
+\noindent\rule{\textwidth}{1pt}
+\\
+\\
+\noindent
+\textcopyright  \enspace 2017 Prof.- Ing. Christian Paetz, 08064 Zwickau \\
+\\
+\noindent 1. Edition 2017 \\
+\\
+\noindent ISBN: XXX-XXXXXXXX \\
+\\
+\begin{scriptsize}
+\noindent
+All rights reserved. No part of this publication may be reproduced, distributed, or 
+transmitted in any form or by any means, including photocopying, recording, or other 
+electronic or mechanical methods, without the prior written permission of the publisher, 
+except in the case of brief quotations embodied in critical reviews and certain other 
+noncommercial uses permitted by copyright law. For permission requests, write to the 
+publisher at the address below.
+
+
+\noindent
+The Z-Wave.Me Team, info@z-wave.me
+
+
+\end{scriptsize}
+\newpage{}		
+		
+%=========================================
+
+\newpage{}
+\tableofcontents
+\include{includesDev/cap1} 
+\include{includesDev/cap2} 
+\include{includesDev/cap3} 
+\include{includesDev/cap4} 
+\include{includesDev/cap5} 
+\include{includesDev/cap6} 
+\include{includesDev/cap7} 
+\include{includesDev/cap8}
+\include{includesDev/cap9}
+\include{includesDev/cap10}
+
+\include{includesDev/cap11-1}
+\include{includesDev/cap11-2}
+\include{includesDev/cap12}
+\include{includesDev/cap13}
+
+\begin{appendix} 
+\include {includesDev/anx.dm}
+\include {includesDev/anx.cc}
+\include {includesDev/commandclasses_autodoc}
+\include {includesDev/anx.fc}
+\include {includesDev/funcclasses_autodoc}
+\include{includesDev/anx.eno} 
+\end{appendix} 
+
+\listoftables
+\listoffigures
+\printindex
+\end{document}
