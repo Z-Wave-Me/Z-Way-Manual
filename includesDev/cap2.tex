@@ -14,7 +14,7 @@ of \zway binary distributions for the various platforms supported:
 	\item Alix-x86:  Intel CPU 32 Bit Linux
 	\item Contactless
 	\item Debian:  Intel CPU 64 Bit Linux Debian distribution
-	\item Popp:  For Popp Hub, Mediatec CPU openWRT
+	\item Popp:  For Popp Hub, Mediatek CPU, OpenWRT
 	\item Raspberry Pi: for the famous Raspberry Pi, ARM based
 	\item Ubuntu: Intel CPU 64 Bit Linux Ubuntu distribution
 	\item Windows: For Windows Operating System
@@ -54,6 +54,7 @@ available on all contemporary Raspberry Pi versions, such as:
 \item Version A
 \item Version B
 \item Version B+
+\item Version 2B
 \item Zero
 \item Version 3
 \end{itemize}
@@ -92,7 +93,8 @@ The board itself offers a few connection options as shown in Figure \ref{q2}:
 \item Raspberry Pi Connector, used GPIO pins 1-10
 \item Second open connector, identical to (1)
 \item Reset button
-\item Open hole for a PigTail antenna. You need to break off the PCBA antenna to make this work.
+\item Open hole for a PigTail antenna. You need to break off the PCBA antenna or unsolder 
+resistor S1 to make this work.
 \item Pads to solder a uFL connector for external antenna. See 
 \murl{https://www.adafruit.com/products/1661} for component details. You need to break 
 off the PCBA antenna to make this work.
@@ -145,9 +147,8 @@ identified by their SKU codes.
 \item Europe (EU)[default]
 \item India (IN)
 \item Russia (RU)
-\item Malaysia (MY)
-\item PR China(CN)
-\item RSA(EU)
+\item PR China (CN)
+\item RSA (EU)
 \item Middle East(EU)
 \end{itemize}
 \item SKU: ZMEUUZB2 (908 ... 917 MHz):
@@ -157,7 +158,7 @@ identified by their SKU codes.
 \end{itemize}
 \item SKU: ZMEAUZB2 (919 ... 921 MHz):
 \begin{itemize}
-\item Australia/New Zealand/Brazil/Peru (ANZ) [default]
+\item Australia/New Zealand/Brazil/Peru/Malaysia (ANZ) [default]
 \item Hongkong (HK)
 \item Japan/Taiwan (JP)
 \item Korea (KR)
@@ -170,7 +171,8 @@ There are two options to change the RaZberry operating frequency:
 \item If you use \zweui, just choose the frontend on \menu{Network > Management} as shown in 
 the figure \ref{freqchange}. For more information about this \zweui, please refer to chapter \ref{eui}.
 \item There is a shell script available at
-\murl{http://www.zwave.me/fileadmin/download/changezwf.sh}. Just execute the script with
+\murl{http://www.z-wave.me/fileadmin/download/changezwf.sh} 
+Just execute the script with
 \cmdline{changezwf.sh [COM Port] [US|EU|ANZ|…]}
 \end{enumerate}
 
@@ -226,7 +228,7 @@ The USB Stick 'UZB' allows enabling \zway on various platforms. Figure \ref{uzb}
 
 It is plugged into a free standard USB port. UNIX-based operating systems will recognize 
 the stick and generate a virtual serial device named
-\cmdline{/dev/ttyUSB0} or \cmdline{/dev/cu.usbmodem} or similar.
+\cmdline{/dev/ttyACM0} or \cmdline{/dev/cu.usbmodem} or similar.
 Windows will generate one virtual serial port \cmdline{COM XX}.
 
 Once \zway is started, it will connect to the \zwave hardware using this virtual serial device.
@@ -237,7 +239,8 @@ If you experience problems with the wireless range, please use a standard USB ex
 cable to get the UZB antenna further away from the PC.
 
 In case the UZB is not loaded with a \zway license (the stick is generally sold in two 
-versions, one with a license and one without), the license can be loaded once \zway is 
+versions, one with a license and one without for use with 3rd party software), the 
+license can be loaded once \zway is 
 up and running. Please use the \zweui as described in Section \ref{eui} to apply 
 the license. The license is a simple string that usually comes printed in a scratch 
 card. Go to \menu{Network > Controller Info} and click on the button 
@@ -262,12 +265,13 @@ allows inserting and applying the license key manually. Please note that:
 \item It is possible to apply various license files to the same hardware.
 \item The license is stored in the hardware. You can do a complete reinstallation of \zway on 
 your platform or connect the UZB to a totally new platform without losing the license. 
-However, losing the UZB key means losing the license!
+However, loosing or damaging the UZB key means loosing the license!
 \end{itemize}
 It is possible to run multiple UZBs on one single hardware platform or even combine a 
 RaZberry shield with a UZB on the same Raspberry Pi. Each piece of hardware will then 
 manage its own network of \zwave devices having its own Home ID. However, \zway allows 
-using devices of different \zwave networks together.
+using devices of different \zwave networks together. This can be used to use products 
+with different frequencies in one controller.
 
 In order to enable a second \zwave transceiver (dedicated onboard, UZB or RaZberry), 
 please use the standard user interface as described in Chapter \ref{shui}. 
@@ -301,9 +305,8 @@ their SKU codes.
 \item Europe (EU)[default]
 \item India (IN)
 \item Russia (RU)
-\item Malaysia (MY)
-\item PR China(CN)
-\item RSA(EU)
+\item PR China (CN)
+\item RSA (EU)
 \item Middle East(EU)
 \end{itemize}
 \item SKU: ZMEUUZB2 (908 ... 917 MHz):
@@ -313,7 +316,7 @@ their SKU codes.
 \end{itemize}
 \item SKU: ZMEAUZB2 (919 ... 921 MHz):
 \begin{itemize}
-\item Australia/New Zealand/Brazil/Peru (ANZ) [default]
+\item Australia/New Zealand/Brazil/Peru/Malaysia (ANZ) [default]
 \item Hongkong (HK)
 \item Japan/Taiwan (JP)
 \item Korea (KR)
@@ -364,7 +367,7 @@ meets the requirements for \zway to run on. The general requirements are:
 \begin{itemize}
 \item min. 200 MHz CPU clock speed,
 \item CPU architecture based on ARM, Intel or MIPS, as well as a GNU-based development tool chain,
-\item min. 16 MB Flash memory and 16 MB RAM,
+\item min. 16 MB Flash memory and 12 MB RAM,
 \item Operating system supports POSIX-compatible API.
 \end{itemize}
 
@@ -372,7 +375,7 @@ There is a simple test to check if certain hardware on a platform is capable of 
 Follow the instructions given on
 
 \begin{quote}
-\textbf{http://razberry.zwave.me/index.php?id=28}.
+\textbf{http://razberry.z-wave.me/index.php?id=28}.
 \end{quote}
 
 Only after you have double-checked that a binary distribution runs on your system or that 
