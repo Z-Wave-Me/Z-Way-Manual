@@ -36,7 +36,7 @@ information about the Z-Wave Device API please refer to Section \ref{zwavedevice
 \item Z-Wave API as C Library API: All functions of the JSON API are available as C 
 library function too. The URL
 
-\murl{http://razberry.z-wave.me/fileadmin/z-way-test.tgz}
+\murl{razberry.z-wave.me/fileadmin/z-way-test.tgz}
 
 provides a sample application written in standard C that makes use of the C level 
 API to demonstrate its application. Makefiles and project files for compilation on 
@@ -107,15 +107,15 @@ function classes.
 
 The Z-Wave Device API can be accessed on the JSON API with any standard web browser using the URL
 
-\murl{http://YOURIP:8083/ZWaveAPI/*}.
+\murl{http://YOURIP:8083/ ZWaveAPI/*}.
 
 Device objects or commands of these objects are accessed by
 
-\murl{http://YOURIP:8083/ZWaveAPI/Run/devices[*].* }
+\murl{http://YOURIP:8083/ ZWaveAPI/Run/devices[*].* }
 
-\murl{http://YOURIP:8083/ZWaveAPI/Run/devices[x].instances[y].*}
+\murl{http://YOURIP:8083/ ZWaveAPI/Run/devices[x].instances[y].*}
 
-\textbf{http://YOURIP:8083/ZWaveAPI/Run/devices[x].instances[y].commandClasses[z].*}
+\murl{http://YOURIP:8083/ ZWaveAPI/Run/devices[x].instances[y].commandClasses[z].*}
 
 The whole data tree of the Z-Wave network is accessed using
 
@@ -157,7 +157,7 @@ the object ``zway’‘. As a result, the following three statements refer to th
 Due to the scripting nature of JavaScript it is possible to ``inject’‘ code at run time 
 using the interface. Here a nice example how to use the JavaScript setInterval function:
 
-\begin{lstlisting}[caption=Polling of device \#2]{Name}
+\begin{lstlisting}[caption=Polling of device \#2, basicstyle=\small]{Name}
 /JS/Run/setInterval(function() {
 	zway.devices[2].Basic.Get();
 }, 300*1000);
@@ -172,8 +172,9 @@ for this binding. The device No. 3 has a command class SensorMultilevel that off
 the variable ``level.’’ The following call---both available on the client side and 
 on the server side---will bind a simple alert function to the change of the variable.
 
-\begin{lstlisting}[caption=Bind a function]{Name}
-zway.devices[3].SensorMultilevel.data[1].val.bind( function() {
+\begin{lstlisting}[caption=Bind a function, basicstyle=\small]{Name}
+zway.devices[3].SensorMultilevel.data[1].val.bind( 
+	function() {
 	debugPrint('CHANGED TO:' + this.value + '\n');
 });
 \end{lstlisting}
@@ -221,9 +222,9 @@ API. The vDev also unifies the commands ``command’’ and the parameters, here
 
 On the server side, the very same command would be encoded in a JavaScript style.
 
-\begin{lstlisting}[caption=Bind a function]{Name}
-	dev = this.controller.devices.get('ZWayVDev\_6:0:37');
-	dev.command('off');
+\begin{lstlisting}[caption=Bind a function, basicstyle=\small]{Name}
+dev = this.controller.devices.get('ZWayVDev\_6:0:37');
+dev.command('off');
 \end{lstlisting}
 
 The vDev API also offers support for notifications, locations information, the use of other modules, etc.
@@ -234,7 +235,7 @@ Table \ref{c1:comp} summarizes the functions of the different APIs.
 
 
 \begin{table}
-\begin{tabular}{|p{40mm}|p{50mm}|p{20mm}|p{20mm}|}
+\begin{tabular}{|p{0.2\textwidth}|p{0.3\textwidth}|p{0.15\textwidth}|p{0.15\textwidth}|}
 \hline
 API Type &	Core Function & Network Management & Automation\\
 \hline

@@ -197,18 +197,27 @@ available or too inconvenient to use.
 
 For example, to switch ON a device no 2 using the command class BASIC, it is possible to write:
 
-\begin{quote}\texttt{/ZWaveAPI/Run/devices[2].instances[0].commandClasses[0x20].Set(255)}\end{quote}
-
+\begin{quote}
+\small{\texttt{/ZWaveAPI/Run/devices[2].instances[0].commandClasses[0x20].Set(255)}}
+\end{quote}
 or
 
-\begin{quote}/ZWaveAPI/Run/devices[2].instances[0].Basic.Set(255)\end{quote}
+\begin{quote}
+/ZWaveAPI/Run/devices[2].instances[0].Basic.Set(255)
+\end{quote}
 
-The \zweui has a JavaScript command runCmd($<$command$>$) to simplify such operations. 
+The \zweui has a JavaScript command 
+\begin{quote}
+\cmdline{runCmd($<$command$>$)}
+\end{quote}
+to simplify such operations. 
 This function is accessible in the JavaScript console of your web browser 
 (in Chrome you find the JavaScript console under View-$>$Debug-$>$JS Console). 
 Using this feature, the command in JS console would look like
 
-\begin{quote}\cmdline{runCmd('devices[2].instances[0].Basic.Set(255)')}\end{quote}
+\begin{quote}
+\cmdline{runCmd('devices[2].instances[0].Basic.Set(255)')}
+\end{quote}
 
 
 The usual way to access a command class is using the format \\'devices[nodeId].instances[instanceId].
@@ -407,6 +416,7 @@ On Windows, the installation wizard asked where to place \zway and where to plac
 
 Right after installation, the standard folder has the following content:
 
+{\footnotesize
 \begin{forest}
   for tree={
     font=\ttfamily,
@@ -445,6 +455,7 @@ Right after installation, the standard folder has the following content:
 [z-way-server: Main Application]
 ]
 \end{forest}
+}
 
 \subsubsection{config.xml - the main config file}
 
@@ -467,6 +478,7 @@ This is an example for the standard config.xml displaying all log right into the
 
 This subfolder has the following structure:
 
+{\footnotesize
 \begin{forest}
   for tree={
     font=\ttfamily,
@@ -490,14 +502,14 @@ This subfolder has the following structure:
 [config
 [maps: legacy folder]
 [zddx
-		[HOMEID-DeviceData.xml: main storage file for Z-Wave structure]
+		[HOMEID-DeviceData.xml: main storage for Z-Wave structure]
 ]
 [Defaults.xml: Default Settings]
 [Profiles.xml]
 [Rules.xml]
 ]
 \end{forest}
-
+}
 The file \cmdline{Defaults.xml} allows defining various behavior of \zway, among them the appearance of \zway as secondary controller:
 
 \begin{itemize}
@@ -561,6 +573,7 @@ The file \cmdline{Rules.xml} is a legacy file.
 
 \subsubsection{translations: XMLs mapping Ids to text}
 
+{\footnotesize
 \begin{forest}
   for tree={
     font=\ttfamily,
@@ -595,6 +608,7 @@ The file \cmdline{Rules.xml} is a legacy file.
 [ZWavePlus.xml: Z-Wave Plus Role Types and Network Types]
 ]
 \end{forest}
+}
 
 All files in this subfolder are XML files and some of them require local language 
 translations, as described in Chapter \ref{sec:translation}.
@@ -627,6 +641,7 @@ Chapter \ref{newddr} explain how to add and to submit new own ZDDX files and how
 
 \subsubsection{Htdocs: The web servers document folder}
 
+{\footnotesize
 \begin{forest}
   for tree={
     font=\ttfamily,
@@ -656,11 +671,13 @@ Chapter \ref{newddr} explain how to add and to submit new own ZDDX files and how
 	[index.html]
 ]
 \end{forest}
+}
 
 This subfolder is the root folder of the embedded webserver. The index.html redirects to smarthome/index.html.
 
 \subsubsection{automation: The JavaScript sub system}
 
+{\footnotesize
 \begin{forest}
   for tree={
     font=\ttfamily,
@@ -691,7 +708,7 @@ This subfolder is the root folder of the embedded webserver. The index.html redi
 [userModules: Downloaded apps
 	[uploadModule.sh: Utility to upload own created apps]
 ]
-[storage: The central folder to store all user dependent data and settings
+[storage: The central folder to store all user data and settings
 	[configjson-XXXXXXX: Configuration Settings of Smart Home UI]
 	[dedevicesjson-XXXXXXX: complete device description in German)]
 	[endevicesjson-XXXXXXX: complete device description in English]
@@ -701,6 +718,7 @@ This subfolder is the root folder of the embedded webserver. The index.html redi
 ]
 ]
 \end{forest}
+}
 
 The subfolder for automation contains the whole JavaScript (JS) subsystem including the
 \begin{itemize}

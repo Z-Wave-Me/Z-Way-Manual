@@ -1,28 +1,44 @@
- \documentclass[10pt, bibtotoc, pointlessnumbers, twoside=false, normalheadings]{scrbook}
-\usepackage[left=0.1cm,right=0.1cm,top=0.1cm,bottom=2.1cm]{geometry}
-\usepackage{a4wide}
-\usepackage{trajan}
-\usepackage[utf8]{inputenc}
+%\documentclass[10pt, a5paper, pagesize, pointlessnumbers, twoside=false, normalheadings, DIV=9]{scrbook}
+\documentclass[10pt, pointlessnumbers, twoside=false, normalheadings]{scrbook}
+
+%layout
+\usepackage[left=2.1cm,right=2.1cm,top=2.1cm,bottom=2.1cm,headsep=.1in]{geometry}
+\parskip2em plus .5em minus .5em
+\usepackage{xcolor} %gray boxes
+\usepackage{graphicx}
+\usepackage{xspace}	%fixes the trailing space missing problem
+\usepackage{caption}
+\parindent0cm
+\usepackage{blindtext}
+\usepackage{hyperref}
+\usepackage{menukeys} % keystroke, ....
+
+\usepackage{enumitem}
+\setlist{nosep} 
+\setlength{\parskip}{1pt}
+
+%fonts
 \usepackage{libertineotf}
 \usepackage[T1]{fontenc}
-\usepackage[sc]{mathpazo}
-\usepackage{graphicx}	
-\usepackage{longtable}	
-\usepackage{caption}
-\usepackage{makeidx} 
-\usepackage{color}
-\makeindex
-%\linespread{1.05} 
-\usepackage{hyperref}			
-\usepackage{amssymb}
-\usepackage{forest}
 \usepackage{verbatim} % for comments
-\usepackage{listings} % for comments
-\usepackage{blindtext}
-%\usepackage{listings} \lstset{numbers=left, numberstyle=\tiny, numbersep=5pt, showstringspaces=false} \lstset{language=C}
+\usepackage[utf8]{inputenc}
 
-\usepackage{tikz}
-\usepackage{menukeys}
+%blocks
+
+\usepackage{longtable} % for longer tables
+\usepackage{listings} % for comments
+\usepackage{forest} % for folders
+
+
+%\usepackage{tikz}			
+%\usepackage{amssymb}
+
+
+\usepackage{makeidx} 
+\makeindex
+
+
+%===========================
 \usetikzlibrary{shadows}
 
 \newcommand*\keystroke[1]{%
@@ -30,7 +46,7 @@
     \node[%
       draw,
       fill=white,
-      drop shadow={shadow xshift=0.25ex,shadow yshift=0.3ex,fill=black,opacity=0.75},
+      drop shadow={shadow xshift=0.25ex,shadow yshift=0.3ex,fill=gray,opacity=0.75},
       rectangle,
       rounded corners=2pt,
       inner sep=1pt,
@@ -40,22 +56,22 @@
   ;
 }
 
-\newcommand*\murl[1]{\begin{quote}\url{#1} \end{quote}}
-\newcommand*\cmdline[1]{\sffamily\colorbox{black}{\bfseries\textcolor{white}{#1}}}
+\newcommand*\murl[1]{\noindent\begin{quote}\url{#1}\end{quote}\xspace}
+\newcommand*\cmdline[1]{\sffamily\colorbox{black!25}{\bfseries\textcolor{white}{#1}}}
 \newcommand*\app[1]{\textbf{\textsc{ '#1'}}}
-\newcommand{\zway}{\textbf{Z-Way\textsuperscript{\texttrademark}}}
-\newcommand{\zwaveme}{\textbf{Z-Wave.Me}}
-\newcommand{\zwave}{\textbf{Z-Wave}}
+\newcommand{\zway}{\textbf{Z-Way\textsuperscript{\texttrademark} }}
+\newcommand{\zwaveme}{\textbf{Z-Wave.Me}\xspace}
+\newcommand{\zwave}{\textbf{Z-Wave}\xspace}
 \newcommand{\zwaydeviceid}{\textbf{Z-Way Platform ID}}
-\newcommand{\zweui}{\textbf{\textsc{Z-Wave Expert User Interface}}}
+\newcommand{\zweui}{\textbf{\textsc{Z-Wave Expert User Interface }}}
 \newcommand{\zwshui}{\textsc{Z-Way Smart Home Interface}}
 
 \begin{document}
 %=========================================
 \begin{titlepage}
 \centering{
-		\vspace{50mm}
-{\fontsize{40}{48}\selectfont Z-Way Essentials } }\\ 
+		\vspace{70mm}
+{\fontsize{40}{48}\selectfont Z-Way Essentials} }\\ 
 		\vspace{10mm}
 		\centering{\Large{The Z-Wave.Me Team}}\\ 
 		\vspace{10mm}
@@ -118,12 +134,10 @@ The Z-Wave.Me Team, info@z-wave.me
 \include{includesDev/cap8}
 \include{includesDev/cap9}
 \include{includesDev/cap10}
-
 \include{includesDev/cap11-1}
 \include{includesDev/cap11-2}
 \include{includesDev/cap12}
 \include{includesDev/cap13}
-
 \begin{appendix} 
 \include {includesDev/anx.dm}
 \include {includesDev/anx.cc}
@@ -137,3 +151,4 @@ The Z-Wave.Me Team, info@z-wave.me
 \listoffigures
 \printindex
 \end{document}
+

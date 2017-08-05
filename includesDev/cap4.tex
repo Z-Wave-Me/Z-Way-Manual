@@ -124,7 +124,8 @@ open a 24-hour history of the sensor value. Devices
 with 24-hour history also show a time stamp when the last value update was received. 
 Clicking on the large icon itself will call for a value update, but please keep in mind 
 that battery-operated devices will only send updated values after the next wakeup.
-For event-driven devices such as actuators or binary sensors, an icon \includegraphics[width=0.04\textwidth]{pngs/10events.png}
+For event-driven devices such as actuators or binary sensors, an icon 
+\includegraphics[width=0.04\textwidth]{pngs/10events.png}
 will show a list 
 of the last 10 events with the time stamp. One click away is then the full list of 
 events, as described in Section \ref{timeline}, but filtered for this element.
@@ -464,7 +465,7 @@ can be done without involving this very specific and technical interface.
 \end{figure}
 
 To include a new \zwave device (one of the first steps needed to start a smart home 
-system!) please click on the ``+’’ button on the \zwave device part. This will open an 
+system!) please click on the \keystroke{+} button on the \zwave device part. This will open an 
 overview of current \zwave device vendors by name and logo. Figure \ref{device1} 
 shows this overview.
 
@@ -489,8 +490,14 @@ shown in Figure \ref{device3}.
 \end{center}
 \end{figure}
 
-\framebox{\textbf{It is recommended to exclude (reset) a device before it gets included}.}
-
+\vspace{5mm}
+\noindent\framebox{\noindent
+\begin{minipage}{\dimexpr\linewidth-2\fboxrule-2\fboxsep\relax}
+\begin{center}
+{\fontsize{20}{28}\selectfont It is recommended to exclude (reset) a device before it gets included.}
+\end{center}
+\end{minipage}}
+\vspace{5mm}
 
 However, 
 if you are sure that the device is new and in factory default state, you may skip this 
@@ -606,7 +613,7 @@ Once the interview has passed and all configurations are done, the device can be
 \subsubsection{\zwave Device Management}
 
 The second option for \zwave devices besides adding (including) new devices is the device 
-management menu. Clicking on the ``Manage’’ button opens a menu with three tabs:
+management menu. Clicking on the button \keystroke{Manage} button opens a menu with three tabs:
 
 \begin{itemize}
 \item Figure \ref{incl6} shows a list of the physical \zwave devices. The \keystroke{*} button 
@@ -767,7 +774,12 @@ As shown in Figure \ref{news2}, this dialog lists all news entries received from
 \subsubsection{Logout}
 
 The logout button cancels the user sessions of the \zwshui. In case of 
-a login from find.zwave.me, the user is redirected to the find.zwave.me overview page or 
+a login from 
+
+\murl{find.zwave.me}
+
+
+the user is redirected to the find.zwave.me overview page or 
 else to the local login page.
 
 \section {The Management Interface}

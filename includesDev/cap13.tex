@@ -5,7 +5,9 @@
 
 In order to access API one need to authenticate itself. \zway uses sessions
 to authenticate users. Session can be obtained by sending login and password
-in JSON format using POST to URL \texttt{/ZAutomation/api/v1/login}. User
+in JSON format using POST to URL 
+\murl{/ZAutomation/api/v1/login}
+User
 credentials should look like \texttt{\{"login":"admin", "password":"admin"\}}
 
 In return the session will be sent in two forms:
@@ -15,7 +17,7 @@ In return the session will be sent in two forms:
 \end{itemize}
 
 Example of successful login will look like:
-\begin{lstlisting}[caption=Successful login reply]
+\begin{lstlisting}[caption=Successful login reply,basicstyle=\small,columns=fullflexible]
 {
     "data": {
         "sid": "ba69cb5b-b2fd-5ce0-5b75-9bae3e8bc369",
@@ -39,7 +41,7 @@ Example of successful login will look like:
 }
 \end{lstlisting}
 
-\begin{lstlisting}[caption=Wrong login/password reply]
+\begin{lstlisting}[caption=Wrong login/password reply,basicstyle=\small,columns=fullflexible]
 {
     "data": null,
     "code": 401,
@@ -53,13 +55,14 @@ One obtained, the session can be sent to the server via cookie (as set by
 
 An elegant way to execute a command using URL including authentication is:
 
+{\scriptsize
 \begin{quote} 
 \cmdline{wget --auth-no-challenge --user=admin --password=pwd IP:8083/ZAutomation/api/v1/...}
 \end{quote}  
-
+}
 As jquery function the authentication will look like this:
 
-\begin{lstlisting}[caption=Login with jQuery]
+\begin{lstlisting}[caption=Login with jQuery,basicstyle=\small,columns=fullflexible]
 $('img').click(function() {
 $.ajax({
 url: "https://find.z-wave.me/ZWave.zway/Run/devices[3].Basic.Set(255)",
@@ -153,7 +156,7 @@ The description placeholder for the language files \\
 The \textbf{schema} is a JSON Structure to define the user interface of the module.
 It lists all input parameters and  options to be shown in the setup dialog of the app:
 
-\begin{lstlisting}[caption=Schema Structure]
+\begin{lstlisting}[caption=Schema Structure,basicstyle=\small,columns=fullflexible]
 {
 "schema": {
 "type": "object",
@@ -172,7 +175,7 @@ types of input parameters:
 
 \subsubsection{Primitive data types like integer, float or string}
 
-\begin{lstlisting}[caption=Schema Structure Simple Type]
+\begin{lstlisting}[caption=Schema Structure Simple Type,basicstyle=\small,columns=fullflexible]
 {
 //Parametername
 "name": {
@@ -197,7 +200,7 @@ types of input parameters:
 
 \subsubsection{Name Spaces  - Enumerations with a choice}
 
-\begin{lstlisting}[caption=Schema Structure Enumerations with a choice]
+\begin{lstlisting}[caption=Schema Structure Enumerations with a choice,basicstyle=\small,columns=fullflexible]
 {
 
 //Parametername
@@ -237,31 +240,34 @@ list the basic structure of index.js with the minimum functions.
 \begin{table}
 \begin{tabular}{|p{0.45\textwidth}|p{0.5\textwidth}|}
 \hline
-function AppClassName (id, controller) {AppClassName.super\_.call(this, id, controller);} &
+\texttt{\tiny 
+function AppClassName (id, controller) {AppClassName.super\_.call(this, id, controller);} }&
 Constructor method:
 This line is a call of the Superconstructor. It has always to be first line of the constructor \\
 \hline
-inherits(AppClassName, AutomationModule); &
+\texttt{\tiny inherits(AppClassName, AutomationModule); }
+&
 inheration call: \\
 \hline
-\_module = AppClassName; &
-Thew definition of the class reference \\
+\texttt{\tiny \_module = AppClassName;} &
+The definition of the class reference \\
 \hline
-AppClassName.prototype.init = function (config) {
+\texttt{\tiny AppClassName.prototype.init = function (config) {
 AppClassName.super\_.prototype.init.call(this, config);
-var self = this; }; &
+var self = this; }; }&
 Initialization method: Variable to refer to in the class in own
 methods (this is context dependent in JavaScript).
 Here you can register 'listeners' for the event bus. For details on event bus please 
 refer to chapter \ref{cap:eventbus} \\
 \hline
-AppClassName.prototype.stop = function () {
-AppClassName.super\_.prototype.stop.call(this);}; &
+
+\texttt{\tiny AppClassName.prototype.stop = function () {
+AppClassName.super\_.prototype.stop.call(this);}; }&
 Destroy method:
 Here you have to unregister 'listeners'.  \\
 \hline
-AppClassName.prototype.Methodname=
-function(parameter){ } &
+\texttt{\tiny AppClassName.prototype.Methodname=
+function(parameter) }&
 Own Methods: Write your own Methods here. \\
 \hline
 \end{tabular}
@@ -289,7 +295,7 @@ How to include a new EnOcean Device (example Hoppe Door handle)
 you just need to know the profile the given product supports. There is no way 
 to find out automatically! 
 
-\begin{lstlisting}[caption=EnOcean Profile Entry]{Name}
+\begin{lstlisting}[caption=EnOcean Profile Entry,basicstyle=\small,columns=fullflexible]{Name}
 <Profile rorg="0xf6" func="0x10" type="0x00" rorgDescription="RPS Telegram" 
 funcDescription="Mechanical Handle" typeDescription="Window Handle">
 <Field offset="0" size="4" name="windowHandle" type="int" 
@@ -298,9 +304,10 @@ description="Movement of the window handle" short="WIN" />
 \end{lstlisting}
 
 (2) Add the device record of the device to 
-\begin{quote} 
+
+{\small
 \cmdline{/opt/z-wave-server/htdocs/smarthome/storage/data/devices\_encoean.json}. 
-\end{quote} 
+}
 Here the rorg, funcid and type are set. Now the device record will be created and the 
 right values are changed on message reception. Now you need to make sure the right  
 element is rendered and updated. This is 
@@ -308,7 +315,7 @@ in \cmdline{/opt/z-wave-server/automation/modules/Enocean/index.js}
 
 First add a filter to catch the events and call the correct function:
 
-\begin{lstlisting}[caption=Catch Device IDs]{Name}
+\begin{lstlisting}[caption=Catch Device IDs,basicstyle=\small,columns=fullflexible]{Name}
 if (matchDevice(0xf6, 0x10, 0x01)) {
 // Hoppe Window handle
 windowHandle("contact", "window", "Windor Handle"); 
@@ -318,7 +325,7 @@ now you add the function that handles the value changes and renders the element
 accordingly. For the window handle we use the binary sensor element but overwrite 
 the status information according to the information of the window handle moves.  
 
-\begin{lstlisting}[caption=Handle Device]{Name} 
+\begin{lstlisting}[caption=Handle Device,basicstyle=\small,columns=fullflexible]{Name} 
 function windowHandle(dh, type, title) {
 	var vDev = self.controller.devices.create({
 	deviceId: vDevIdPrefix + type,

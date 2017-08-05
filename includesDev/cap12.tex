@@ -71,7 +71,7 @@ Due to the scripting nature of JavaScript its possible to 'inject' code at run t
 using the interface. Here a nice example how to use the Java Script 
 setInterval function:
 
-\begin{lstlisting}[caption=Polling device \#2]{Name}
+\begin{lstlisting}[caption=Polling device \#2, basicstyle=\small,columns=fullflexible]{Name}
 /JS/Run/setInterval(function() { 
 	zway.devices[2].Basic.Get();
 }, 300*1000);
@@ -87,8 +87,8 @@ the variable level. The following call - both available on the client side
 and on the server side - will bind a simple alert function to the change of 
 the variable.
 
-\begin{lstlisting}[caption=Bind a function]{Name}
-zway.devices[3].SensorMultilevel.data[1].val.bind( function() { 
+\begin{lstlisting}[caption=Bind a function, basicstyle=\small,columns=fullflexible]{Name}
+zway.devices[3].SensorMultilevel.data[1].val.bind(function() { 
 	debugPrint('CHANGED TO: ' + this.value + '\n'); 
 });  
 \end{lstlisting}
@@ -113,7 +113,7 @@ Here's the list of options:
 specified, GET is used;
 \item headers – optional. Object containing additional headers to pass to server:
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
 headers: {
     "Content-Type": "text/xml",
     "X-Requested-With": "RaZberry/1.5.0"
@@ -126,7 +126,7 @@ string (to post raw data) or an object with keys and values (will be serialized 
 \item auth – optional. Provides credentials for basic authentication. It is an object 
 containing login and password:
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
 auth: {
     login: 'username',
     password: 'secret'
@@ -171,7 +171,7 @@ In case data cannot be parsed as valid JSON/XML, it is still returned as string,
 additional parseError member is present.
 
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
 http.request({
 	url: "http://server.com" (string, required),
 	method: "GET" (GET/POST/HEAD, optional, default "GET"),
@@ -233,7 +233,7 @@ Create new XML document from a string
 \subsubsection{x.root}
 Get/set document root element. Elements are got/set in form of JS objects:
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
 {
     name: "node_name", - mandatory
     text: "value", - optional, for text nodes
@@ -248,7 +248,7 @@ Get/set document root element. Elements are got/set in form of JS objects:
 \end{lstlisting}
 
 For example:
-\begin{lstlisting}
+\begin{lstlisting} [basicstyle=\small,columns=fullflexible]
 (new ZXmlDocument('<weather><city id="1"><name>Zwickau</name>
 	<temp>2.6</temp></city> 
 	<city id="2"><name>Moscow</name><temp>-23.4</temp></city>
@@ -301,7 +301,7 @@ Converts XML object into a string with valid XML content.
 \subsubsection{x.findOne(XPathString)}
 Returns first matching to XPathString element or null if not found.
 
-\begin{lstlisting}
+\begin{lstlisting} [basicstyle=\small,columns=fullflexible]
 x.findOne('/weather/city[@id="2"]') // returns only city tag for Moscow
 x.findOne('/weather/city[name="Moscow"]/temp/text()') // returns temperature 
 \end{lstlisting}
@@ -309,7 +309,7 @@ x.findOne('/weather/city[name="Moscow"]/temp/text()') // returns temperature
 \subsubsection{x.findAll(XPathString)}
 Returns array of all matching to XPathString elements or empty array if not found.
 
-\begin{lstlisting}
+\begin{lstlisting} [basicstyle=\small,columns=fullflexible]
 x.findAll('/weather/city') // returns all city tags
 x.findAll('/weather/city/name/text()') // returns all city names
 \end{lstlisting}
@@ -339,7 +339,7 @@ Provides standard GUID in string format.
 Generates n random bytes.
 Returned values is of type ArrayBuffer. To convert it into array use this trick:
 
-\begin{lstlisting}
+\begin{lstlisting} [basicstyle=\small,columns=fullflexible]
 	rnd = (new Uint8Array(crypto.random(10)));
 \end{lstlisting}
 
@@ -354,7 +354,7 @@ Return value is of type ArrayBuffer.
 There are also a few shortcut functions for popular algorithms: 'md5', 'sha1', 'sha256', 
 'sha512'. For example, these calls are equivalent:
 
-\begin{lstlisting}
+\begin{lstlisting} [basicstyle=\small,columns=fullflexible]
 	dgst = crypto.digest('sha256', data);
 	dgst = crypto.sha256(data);
 \end{lstlisting}
@@ -373,7 +373,7 @@ Return value is of type ArrayBuffer.
 There are also a few shortcut functions for popular algorithms: 'hmac256', 'hmac512'. For 
 example, these calls are equivalent:
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
   dgst = crypto.hmac('sha256', key, data);
   dgst = crypto.hmac256(key, data);
 \end{lstlisting}
@@ -393,7 +393,7 @@ on data receive from remote, while \textbf{send} is used to send data to remote 
 The example below dumps to log file response to http://ya.ru:80/ (raw HTTP
 protocol is used as an example).
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
 var sock = new sockets.tcp();
 
 sock.onrecv = function(data) {
@@ -407,7 +407,7 @@ sock.send("GET / HTTP/1.0\r\n\r\n");
 
 Here is an example of TCP echo server on port 8888:
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
 var sock = new sockets.tcp();
 
 sock.bind(8888);
@@ -420,7 +420,7 @@ sock.listen();
 \end{lstlisting}
 
 And echo server for UDP:
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
 var sock = new sockets.udp();
 
 sock.bind(8888);
@@ -468,7 +468,7 @@ implemented - see below).
 
 The example below implements basic application using WebSockets client:
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
 var sock = new sockets.websocket("ws://echo.websocket.org");
 
 sock.onopen = function () {
@@ -491,7 +491,7 @@ sock.onerror = function(ev) {
 
 Next example shows basic application using WebSockets server:
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
 var sock = new sockets.websocket(9009);
 
 sock.onconnect = function () {
@@ -615,7 +615,7 @@ listExternalAccess returns array with names of all registered HTTP handlers.
 
 Here is an example how to attach handlers for /what/timeisit and /what:
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
 what = function() {
   return { status: 500, body: 'What do you want to know' };
 };
@@ -634,7 +634,7 @@ Prints arguments converted to string to \zway console. Very usefull for debuggin
 For convenience one can map 'console.log()' to debugPrint().
 
 This is how it was done in automation/main.js in \zway Home Automation engine:
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
 var console = {
     log: debugPrint,
     warn: debugPrint,
@@ -652,7 +652,7 @@ var console = {
 \subsection{Debugging JavaScript code}
 Change in config.xml debug-port to 8183 (or some other) turn on V8 debugger capability on \zway start.
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
 <config>
     ...
     <debug-port>8183</debug-port>
@@ -728,7 +728,8 @@ commands.  Table \ref{tab:devicetypes} shows the list of current device types wi
 metrics and defines commands.
 
 \begin{table}
-\begin{tabular}{|p{0.2\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|}
+\scriptsize
+\begin{tabular}{|p{0.15\textwidth}|p{0.15\textwidth}|p{0.2\textwidth}|p{0.40\textwidth}|}
 \hline
 deviceType	&Metrics	&Commands	&Examples\\
 \hline
@@ -736,13 +737,14 @@ battery	&probeTitle,scaleTitle, level, icon, title	&-	&- \\
 \hline
 doorlock	&level, icon, title	&open or close	&apiURL/devices/:deviceId/command/open\\
 \hline
-thermostat	&scaleTitle, min, max, level, icon, title	&exact with get-param level	&apiURL/devices/:deviceId/command/exact?level=22.5\\
+thermostat	&scaleTitle, min, max, level, icon, title	&exact with get-param level	&apiURL/devices/:deviceId/command/exact?
+level=22.5\\
 \hline
 switchBinary (Thermostat)	&level, icon, title	&on, off or update&	apiURL/devices/:deviceId/command/on\\
 \hline
 switchBinary&	level, icon, title	&on, off or update	&apiURL/devices/:deviceId/command/on\\
 \hline
-switchMultilevel	&level, icon, title	& on Set(255), off Set(0), min Set(10), max Set(99), increase Set(l+10), decrease Set(l-10), update, exact + get params level	&apiURL/devices/:deviceId/command/exact?level=40 \\
+switchMultilevel	&level, icon, title	& on Set(255), off Set(0), min Set(10), max Set(99), increase Set(l+10), decrease Set(l-10), update, exact + get params level	&apiURL/devices/:deviceId/command/exact? level=40 \\
 \hline
 switchMultilevel (Blinds)&	level, icon, title	&up Set(255), down Set(0), upMax Set(99), increase Set(l+10), decrease Set(l-10), startUp StartLevelChange(0), startDown StartLevelChange(1), stop StopLevelChange(), update, excactSmooth + get params level	& apiURL/devices/:deviceId/command/stop  \\
 \hline
@@ -760,7 +762,8 @@ text	&title, text, icon	&-	&- \\
 \hline
 sensorMultiline	&multilineType, title, icon, level, (scaleTitle, ...)	&depends on apps	&apiURL/devices/:deviceId/command/:cmd \\
 \hline
-switchRGB	&icon, title, color: {r:255,g:255,b:255}, &level	on, off, exact with get-params: red, green and blue	& apiURL/devices/:deviceId/command/exact?red=20\&green=240\&blue=0 \\
+switchRGB	&icon, title, color: {r:255,g:255,b:255}, &level	on, off, exact with get-params: red, green and blue	& apiURL/devices/:deviceId/command/exact?
+red=20\&green=240\&blue=0 \\
 \hline
 \end{tabular}
 \caption{vDev device types with metrics and commands} 
@@ -782,7 +785,7 @@ Device API. The vDev also unifies the commands 'command' and the parameters, her
 
 On the server side the very same command would be encoded in a JavaScript style.
 
-\begin{lstlisting}[caption=Access vDevs]{}
+\begin{lstlisting}[caption=Access vDevs,basicstyle=\small,columns=fullflexible]{}
 
 vdevId = vdev.id;
 
@@ -820,7 +823,7 @@ Virtual devices have inner values. They are called metrics. A metric can be set 
 Each virtual device can define its own metrics. Metrics can be level, title icon and 
 other device specific values like scale (\%, kWh, ...)
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small]
 vDev.set("metrics:...", ...);  
 vDev.get("metrics:...");
 \end{lstlisting}
@@ -836,7 +839,7 @@ superclass' methods.
 
 \subsubsection{Step 1. Define a VirtualDevice subclass}
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
 // Important: constructor SHOULD always be successful
 BatteryPollingDevice = function (id, controller) {
     // Always call superconstructor first
@@ -861,7 +864,7 @@ widget's class name in the widgetClass property.
 
 \subsubsection{Step 2. Override performCommand() method}
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
 BatteryPollingDevice.prototype.performCommand = function (command) {
     var handled = true;
 
@@ -873,7 +876,8 @@ BatteryPollingDevice.prototype.performCommand = function (command) {
         handled = false;
     }
 
-    return handled ? true : BatteryPollingDevice.super_.prototype.performCommand.call(this, command);
+    return handled ? true : 
+    BatteryPollingDevice.super_.prototype.performCommand.call(this, command);
 }
 \end{lstlisting}
 
@@ -890,7 +894,7 @@ ZWaveGate module as an example of such tree.
 
 \subsubsection{Step 3. Instantiate your VDev by the module}
 
-\begin{lstlisting}
+\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
 // ...part of the BatteryPolling.init() method
 executeFile(this.moduleBasePath()+"/BatteryPollingDevice.js");
 this.vdev = new BatteryPollingDevice("BatteryPolling", this.controller);
@@ -905,7 +909,7 @@ The last line calls controller's registerDevice method to register and VDev inst
 
 \subsubsection{Step 4. Register device}
 
-\begin{lstlisting}[caption=Register Device]{Name} 
+\begin{lstlisting}[caption=Register Device,basicstyle=\small,columns=fullflexible]{Name} 
         vDev = this.controller.devices.create(vDevId, {
             deviceType: "deviceType",
             metrics: {
@@ -931,6 +935,7 @@ In order to perform certain functions on these changes the function needs to be
 bound to the change to the vdev. The syntax for this is
 
 \paragraph{vDev.on('change:metrics:...", function (vDev) { ... });}
+
 
 Unbinding then works as one can expect:
 
@@ -1045,7 +1050,7 @@ functions.
 Each modules code is located in a sub directory of the sub folder module as described 
 in chapter \ref{c11:zwayfolder}. The name of the subfolder equals the name of the module. The sub folder 
 contains files to define the behavior of the module.
-
+{\footnotesize
 \begin{forest}
   for tree={
     font=\ttfamily,
@@ -1073,7 +1078,7 @@ contains files to define the behavior of the module.
 [lang: translation into local languages] 
 ]
 \end{forest}
-
+}
 \subsection{Module.json}
 
 This file contains the module meta-definition used by the AutomationController. It must 
@@ -1100,7 +1105,7 @@ During initialization the module script must define the variable '\_module' cont
 
 Example of a minimal automation module:
 
-\begin{lstlisting}[caption=Minimal Module]{MMIN}
+\begin{lstlisting}[caption=Minimal Module,basicstyle=\small,columns=fullflexible]{MMIN}
 
 function SampleModule (id, controller) {
 SampleModule.super_.call.init(this, id, controller);
@@ -1199,7 +1204,7 @@ will fire every minute within every hour within every weekday on every day of th
 every month. Another example of an event emitted towards the cron 
 module for registering an timer event can be found in the Battery Polling Module:
 
-\begin{lstlisting}[caption=Registering a Battery Polling Command]{SJSON3}
+\begin{lstlisting}[caption=Registering a Battery Polling Command,basicstyle=\small,columns=fullflexible]{SJSON3}
     this.controller.emit("cron.addTask", "batteryPolling.poll", {
         minute: 0,
         hour: 0,
