@@ -734,7 +734,156 @@ accounts including login name, password, and recovery email.
 For more information about the creation of new modules that will be placed into the user 
 modules, please refer to Chapter \ref{developownapps}.
 
-\subsection{C-Library test project}
+\subsection{The use of  the C-Library}
+
+
+The \zway library is a middleware between Sigma Designs \zwave transceiver and your application. 
+\zway offers pretty high level API to control \zwave devices and manage wireless network.
+
+Interaction with the library covers three aspects:
+\begin{itemize}
+\item sending commands to \zwave devices;
+\item sending network management commands to the transceiver;
+\item receiving updates from the network.
+\item Sending commands
+\end{itemize}
+
+Every command request generates an outgoing packet (job). Before generating a packet, 
+library will validate parameters and check whether the command is supported by recipient. 
+In case of failure command will return error immediately.
+
+Once a job is generated, it is placed into outgoing queue for future send. The queued jobs 
+are handled internally by \zway engine according to commands priorities, nodes states 
+and capabilities, transceiver state etc.
+
+Once the job is sent, it must be first confirmed it was successfully delivered to 
+\zwave stack, and then confirmed it was delivered to recipient. All these operations are 
+performed asynchronously, so command may provide a callback function to call in case of 
+success or failure if it is needed to know delivery result.
+
+After the delivery was confirmed, command is considered executed. If it was a state 
+request command (i.e. {\texttt SensorMultilevel Get}), response packet may be delayed 
+(or even not sent at all), so command's success/failure callbacks cannot be used to get 
+requested state immediately.
+
+\subsubsection{Receiving updates}
+
+All incoming packets from \zwave network are automatically parsed by \zway and stored in 
+special variables called data holders. Data holder is a named variable that stores a value 
+along with its data type and time the value was last updated and "invalidated". Each data
+holder may also contain a set of child data holders, so they form a hierarchical data 
+storage. Data holders also support callbacks, so custom code may be executed each time 
+the value is updated.
+
+
+For example, \texttt{level} data holder stores dimming level of a dimmer. Once application 
+executes a \texttt{Get} command for that dimmer, \zway will update \texttt{invalidateTime} property on 
+the \texttt{level} data holder, so application knows the current value is assumed to be 
+outdated, but the new one was not received yet.
+
+Once \zway received a packet with new value of the dimmer, it will store it in \texttt{level 
+data holder} and update \texttt{updateTime} property. Since \texttt{updateTime} is 
+greater that \texttt{invalidateTime}, the value is considered valid now.
+
+\zwave device can also send unsolicited state reports to controller (without a request 
+from controller's side; e.g. due to local operation or periodically). Due to asynchronous 
+nature of \zwave protocol, controller can't tell whether the packet was sent unsolicited 
+or it is a response to the previous command. So unsolicited packet will be handled the 
+same way exactly.
+
+\subsubsection{Command Classes}
+
+\zway inherits structure of \zwave protocol and divides data holders and command on 
+different Command Classes (CC). Command Classes are building blocks of \zwave functionality.
+For example, dimming is provided by Command Class {\texttt SwitchMultilevel}, relay 
+operation by Command Class {\texttt SwitchBinary}, sensors by command class 
+{\texttt SensorMultilevel} and {\texttt SensorBinary} etc. Please consult \zwave 
+protocol basics to understand \zwave Command Classes.
+
+All Command Classes share a minimal subset of common data holders:
+
+\begin{itemize}
+\item {\texttt supported} says if CC is supported by device (it implements that 
+functionality) or only controlled (it can control other devices implementing that 
+functionality).
+\item {\texttt version} stores version of the CC. Used internally to know how to deal 
+with that Command Class.
+\item {\texttt security} tells if CC communications should be encrypted using \zwave 
+AES security mechanism.
+\item {\texttt interviewDone} and {\texttt interviewCounter} describe the status of 
+initial interview process during which \zway asks the device about its CC capabilities. 
+If the interview is incomplete, \zway might fail to use some Command Classes with this 
+device. All \zwave certified devices MUST pass interview process.
+All the other data holders are specific to each Command Class. For example, 
+{\texttt SwitchMultilevel Command Class} contains {\texttt level} data holder, 
+{\texttt SensorBinary} has two-level storage, grouping data by sensor types:
+{\texttt  0 -> {sensorTypeString, level}, 5 -> {sensorTypeString, level}, ... }
+where type identifiers are \zwave specific constants. Every \zwave specific constant 
+value will have corresponding verbal description (in case of {\texttt SensorBinary} it is in 
+{\texttt sensorTypeString} data holder).
+\end{itemize}
+
+Some Command Classes are hidden under the hood of \zway: 
+{\texttt MultiCmd, Security, CRC16, MultiChannel, ApplicationStatus}. They're handled 
+internally by \zway software, and shouldn't be used directly.
+
+Some Command Classes have no public APIs, but their data holders may be very useful 
+in your application: {\texttt AssociationGroupInformation, DeviceResetLocally, ManufacturerSpecific, 
+Version, ZWavePlusInfo}.
+
+All the remaing Command Classes have their {\texttt Get} and {\texttt Set }commands 
+specific to functionality of the Command Class. Consult 
+{\texttt CommandClassesPublic.h} header file for more info about available commands 
+for different Command Classes and their meaning.
+
+\subsubsection{Network management}
+
+\zway offers API for network management operations: include new devices, exclude devices, 
+discover neighbor devices, remove failed nodes, frequency selection, controller reset etc. 
+These functions are described in {\texttt ZWayLib.h} header file.
+
+\zway also provides a low level access to \zwave transceiver functionality through Sigma 
+Designs Serial API. These functions are provided by Function Classes. You should use 
+them only if you have deep knowledge of \zwave networking. Check 
+{\texttt FunctionClassesPublic.h} for more info.
+
+\subsubsection{Using \zway Library in C-Code}
+
+To use \zway one need to include few header files:
+\begin{lstlisting}[]{}
+#include <ZWayLib.h>
+#include <ZLogging.h>
+\end{lstlisting}
+
+\zway will need to know where to write the log to, so first of all you need to create 
+logging context using \texttt{zlog\_create()} call. You can disable logging by passing NULL 
+instead of logging context to \zway.
+
+Then create new \zway context using {\texttt zway\_init()}. It will only allocate memory, 
+read log files, initialize internal structures. At this point you can already attach your 
+handlers on new {\texttt device/instance/Command Class} creation (you will also be able 
+to do it at any time later). Do it using {\texttt zway\_device\_add\_callback()} call. 
+
+Warning: you should initialize ZWay pointer with NULL before passing it to {\texttt zway\_init}!
+
+Executing z{\texttt zway\_start()} will open serial port and start a new thread that 
+will handle all communications with the transceiver. From now \zway can receive packets 
+from the network, but can not parse them yet, since devices were not discovered yet. 
+All received packets will just be queued to be parsed later after discovery process.
+
+Last step to run \zway is {\texttt zway\_discover()} call. It will start communications 
+with the \zwave transceiver and ask about devices in the network, their capabilities, 
+network state etc. During discovery phase \zway will create structures for all devices and 
+load saved data from file stored in {\texttt /zddx} folder.
+
+From now on, \zway is ready to operate. Incoming events will trigger callback functions 
+attached by application, and executing commands will put new packets in the queue.
+
+You will also need few other functions {\texttt zway\_is\_running(), zway\_is\_idle(), 
+zway\_stop(), zway\_terminate()} to handler termination process.
+
+
+
 
 The link
 \murl{http://razberry.z-wave.me/fileadmin/z-way-test.tgz}

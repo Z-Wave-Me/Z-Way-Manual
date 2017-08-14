@@ -1,28 +1,27 @@
-\chapter{Develop Code for Z-Way}
+\chapter{Develop Code for \zway}
 \label{c:developer}
 
-
-\section{Z-Way software structure overview}
+\section{\zway software structure overview}
 
 \begin{figure}
 \includegraphics[width=0.9\textwidth]{pngs/cap11/apis.png}
-\caption{Z-Way APIs and their use by GUI demos}
+\caption{\zway APIs and their use by GUI demos}
 \label{apis}
 \end{figure}
 
-Z-Way offers multiple Application Program Interfaces (API) that are partly built on each 
-other. Figure \ref{apis} shows the general structure of Z-Way with focus on the APIs. The 
-most important part of Z-Way is the Z-Wave core. The Z-Wave core uses the standard Sigma 
-Designs Serial API to communicate with a Z-Wave compatible transceiver hardware but enhanced 
-with some Z-Way specific functions such as frequency change. The standard interface is 
+\zway offers multiple Application Program Interfaces (API) that are partly built on each 
+other. Figure \ref{apis} shows the general structure of \zway with focus on the APIs. The 
+most important part of \zway is the \zwave core. The \zwave core uses the standard Sigma 
+Designs Serial API to communicate with a \zwave compatible transceiver hardware but enhanced 
+with some \zway specific functions such as frequency change. The standard interface is 
 not public but available for owners of the Sigma Designs Development Kit (SDK)
 \footnote{The Sigma Designs SDK is available from Digikey (www.digikey.com). Depending 
 on the hardware options chosen the price varies between 2000 and 4000 USD only.}
 
-The Z-Wave core services can be accessed directly using the Z-Wave Device API (zDev API). 
-There are two Z-Wave device API versions available:
+The \zwave core services can be accessed directly using the \zwave Device API (zDev API). 
+There are two \zwave device API versions available:
 \begin{itemize}
-\item Z-Wave API as JSON API: All functions are available using a JSON API implemented 
+\item \zwave API as JSON API: All functions are available using a JSON API implemented 
 by an embedded webserver. This web server can be used in two ways:
 \begin{itemize}
 \item web sockets, a permanent IP connection
@@ -30,10 +29,10 @@ by an embedded webserver. This web server can be used in two ways:
 \end{itemize}
 Both ways to use the JSON API have the same data structures and commands. The 
 \zweui as described in chapter \ref{eui} uses the REST option of this JSON API. This user 
-interface is a very good reference how to apply the Z-Wave Device API. For oore 
-information about the Z-Wave Device API please refer to Section \ref{zwavedeviceapi}.
+interface is a very good reference how to apply the \zwave Device API. For oore 
+information about the \zwave Device API please refer to Section \ref{zwavedeviceapi}.
 
-\item Z-Wave API as C Library API: All functions of the JSON API are available as C 
+\item \zwave API as C Library API: All functions of the JSON API are available as C 
 library function too. The URL
 
 \murl{razberry.z-wave.me/fileadmin/z-way-test.tgz}
@@ -46,17 +45,17 @@ level API you find in Section \ref{clevelapi}.
 \end{itemize}
 
 
-The \textbf{Z-Wave device API only allows the management of the Z-Wave network} and 
+The \textbf{\zwave device API only allows the management of the \zwave network} and 
 the control and management of the devices as such. No higher order logic except the 
-so-called Z-Wave associations between two Z-Wave devices can be used.
+so-called \zwave associations between two \zwave devices can be used.
 
 For all \textbf{automation and higher order logic a JavaScript automation engine} 
-is available. This engine is also shipped with Z-Way.
+is available. This engine is also shipped with \zway.
 
-The JavaScript API on top of the JS engine mirrors all functions of the Z-Wave Device API 
+The JavaScript API on top of the JS engine mirrors all functions of the \zwave Device API 
 but also allows access to third-party  device APIs (e.g. EnOcean). This means the JS API 
 is the common ground for all further application logic and user interfaces (with the 
-exception of the \zweui that uses the Z-Wave Device API.
+exception of the \zweui that uses the \zwave Device API.
 
 The JavaScript layer makes use of a JavaScript implementation provided by Google it 
 is also used in Googles Chrome web browser. All JavaScript API functions can also be 
@@ -82,30 +81,30 @@ for more information about the app concept and existing apps. Please refer to Ch
 
 \end{itemize}
 
-\section{Z-Way APIs Quick Reference}
+\section{\zway APIs Quick Reference}
 
-\subsection{Z-Wave Device API}
+\subsection{\zwave Device API}
 \label{zwavedeviceapi}
 
-The Z-Wave Device API implements the direct access to the Z-Wave network. All Z-Wave devices 
+The \zwave Device API implements the direct access to the \zwave network. All \zwave devices 
 are referred to by their unique identification in the wireless network---the Node ID. 
-Z-Wave devices may have different instances of the same function, also called channels 
-(for example sockets in a power strip). The Z-Wave Device API refers to them as daughter 
+\zwave devices may have different instances of the same function, also called channels 
+(for example sockets in a power strip). The \zwave Device API refers to them as daughter 
 objects of the physical device object identified by an instance ID. In case there is 
 only one instance, the instance ID = 0 is used.
 
-\subsubsection {Sending Z-Wave Commands}
+\subsubsection {Sending \zwave Commands}
 
-All device variables and available commands in a Z-Wave device are grouped in the so-called 
-command classes. The Z-Wave API allows direct access to all parameters, values and commands 
+All device variables and available commands in a \zwave device are grouped in the so-called 
+command classes. The \zwave API allows direct access to all parameters, values and commands 
 of these command class structures. Annex \ref{ccs} gives you the complete reference of 
 the implemented command classes.
 
-Beside the devices the Z-Wave Device API also offers access to the management interface of 
+Beside the devices the \zwave Device API also offers access to the management interface of 
 the network. Annex \ref{FunctionClasses} gives you a full reference of the implemented 
 function classes.
 
-The Z-Wave Device API can be accessed on the JSON API with any standard web browser using the URL
+The \zwave Device API can be accessed on the JSON API with any standard web browser using the URL
 
 \murl{http://YOURIP:8083/ ZWaveAPI/*}.
 
@@ -117,7 +116,7 @@ Device objects or commands of these objects are accessed by
 
 \murl{http://YOURIP:8083/ ZWaveAPI/Run/devices[x].instances[y].commandClasses[z].*}
 
-The whole data tree of the Z-Wave network is accessed using
+The whole data tree of the \zwave network is accessed using
 
 
 \murl{http://YOURIP:8083/ZWaveAPI/Data/*}.
@@ -131,11 +130,11 @@ All acces ot the webserver require authentication of the user. Please refer to C
 
 \subsection{JavaScript API (JS API)}
 
-The Z-Wave Device API or any other third-party technology API do not offer any higher order
+The \zwave Device API or any other third-party technology API do not offer any higher order
 logic support but the pure access to functions and parameters of devices only.
 
-Z-Way offers an automation engine to overcome this restriction. A server-side JavaScript 
-runtime environment allows writing JavaScript modules that are executed within Z-Way 
+\zway offers an automation engine to overcome this restriction. A server-side JavaScript 
+runtime environment allows writing JavaScript modules that are executed within \zway 
 (means on the server). The same time all functions of the JS API can also be accessed on 
 the client side (the web browser). This offers some cool debug and test capabilities. 
 Among others it is possible to write whole JS functions right into the URL or the browser.
@@ -145,7 +144,7 @@ The JS API can be accessed from the web browser with the URL
 \murl{http://YOURIP:8083/JS/Run/*}
 
 
-Among others the whole Z-Wave Device API is available within the JS API using 
+Among others the whole \zwave Device API is available within the JS API using 
 the object ``zway’‘. As a result, the following three statements refer to the very same function:
 
 \begin{enumerate}
@@ -200,10 +199,10 @@ are written in URL style starting with the word ``ZAutomation’’:
 \subsection{Virtual Device API}
 
 All functions and instances of a physical device, which are represented as daughter objects
-in the Z-Wave Device API, are enrolled into individual virtual devices.
+in the \zwave Device API, are enrolled into individual virtual devices.
 
-In case the Z-Wave API shows one single physical device with two channels, the Virtual 
-Device API will show two devices with similar functionality. In case the Z-Wave API shows 
+In case the \zwave API shows one single physical device with two channels, the Virtual 
+Device API will show two devices with similar functionality. In case the \zwave API shows 
 a physical device with several functions (like a binary switch and an analog sensor in 
 one device), the Virtual Device API (vDev API) will show them as several devices with 
 one function each.
@@ -217,7 +216,7 @@ in AJAX code. A typical client-side command in the vDev API looks like
 
 
 ``API’’ points to the vDev API function, ``v1’’ is just a constant to allow future extensions. 
-The devices are referred to by a name that is automatically generated from the Z-Wave Device 
+The devices are referred to by a name that is automatically generated from the \zwave Device 
 API. The vDev also unifies the commands ``command’’ and the parameters, here ``off.’’
 
 On the server side, the very same command would be encoded in a JavaScript style.
@@ -239,10 +238,10 @@ Table \ref{c1:comp} summarizes the functions of the different APIs.
 \hline
 API Type &	Core Function & Network Management & Automation\\
 \hline
-Z-Wave Dev API (JSON)	& Access to physical network and physical devices via JSON	&
+\zwave Dev API (JSON)	& Access to physical network and physical devices via JSON	&
 Yes	&No\\
 \hline
-Z-Wave Dev API (C lib) 	& Access to physical network and physical devices via C style calls &
+\zwave Dev API (C lib) 	& Access to physical network and physical devices via C style calls &
 Yes	&No\\
 \hline
 JavaScript API & Access to physical network and devices plus JS type functions	&
@@ -253,6 +252,6 @@ No	&Yes\\
 \hline
 \hline
 \end{tabular}
-\caption{Different APIs of the Z-Way system}
+\caption{Different APIs of the \zway system}
 \label{c1:comp}
 \end{table}		
