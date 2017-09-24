@@ -156,3 +156,67 @@ openHAB (www.openhab.org) is one example of an open source smart home control sy
 uses \zway to manage the \zwave network part. Once the connection is set up, it is possible 
 to use one of the mobile openHAB apps to control \zway-connected devices. For more information 
 about this binding between \zway and openHAB, please refer to the openHAB website.
+
+\section {Shortcuts for Android and Integration into Third party software}
+\index{Integration}
+\index{PHP Script}
+
+All access to the \zway backend can be done using simple HTTP request doable from any 
+webserver. However the client needs to be authenticated. For more information about 
+authentication and client access please refer to chapter \ref{c:developer} and 
+particularly \ref{cap:authentication}.
+
+To access the UI with a one HTTP command you need to have a small script on your server.
+A PHP version of such a script is available at
+
+\murl{http://www.z-wave.me/download/zcmd.php.zip}.
+
+Please unzip and adapt - if needed - to your needs. We have installed the very same script at
+
+\murl{https://service.z-wave.me/zcmd.php}
+
+Please note that this script - if not running on your own server - bears a security risk 
+since all of your commands run on our server. You will need to trust our server and the safety
+of the script. Hence we encourage you to use and adapt the script and run in on your own
+webserver if you have any.
+
+One nice application of the single-line access is placing a shortcut on the Android 
+home screen. This allows to execute important functions in the Smart Home with one click 
+without even opening the app.
+
+First, install the Android App 'HTTP Request Shortcuts' by 'Waboodoo'
+
+\murl{https://play.google.com/store/apps/details?id=ch.rmy.android.http_shortcuts}
+
+The you need two important information from Z-Way beside your login credentials:
+\begin{itemize}
+\item The name of the device: Click on the Configuration Menu of the element you want to 
+control. Element names look like \cmdline{ZWayVDev\_zway\_83-0-37} where 83 is the Z-Wave device
+Id, 0 is the instance, 37 is the command class Id (here Switch Binary).
+
+\item The command you want to execute. For switches or dimmers it is 'on' and 'off',
+for a door lock its 'open' and 'close'. 
+\end{itemize}
+
+Now start the app 'HTTP Shortcuts' and add a new shortcut. Choose name, icon and 
+description. Pick 'POST' as Access method and enter the url 
+
+\murl{https://service.z-wave.me/zcmd.php or the script on your server}.
+
+For security reasons we strongly recommend to use HTTPS only. HTTP is not protecting your credentials.
+Leave authentication and request header untouched. Using the button 'Add parameter' add your 
+credentials and the command:
+\begin{itemize}
+\item id: boxId/login:password 
+\item cmd: deviceId:command
+\end{itemize}
+
+Then save the settings and try to execute it by hitting the icon from the list of Shortcuts.
+Once everything is ok, make a long push to the icon and choose 'Place on home screen'.
+On some phones you need to long push on an empty place on the home screen, then select widgets,
+find 'HTTP Request Shortcuts' among the list and then select the desired shortcut to show.
+
+
+
+
+
