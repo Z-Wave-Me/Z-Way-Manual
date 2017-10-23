@@ -347,6 +347,13 @@
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: controllerState, lastExcludedDevice, lastIncludedDevice\end{quote}
 
+\paragraph{Function Class SmartStartEnable}
+\begin{quote}Syntax: SmartStartEnable(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Enable Smart Start mode\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
 \paragraph{Function Class RemoveNodeFromNetwork}
 \begin{quote}Syntax: RemoveNodeFromNetwork(startStop, highPower = FALSE, successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}Description: Start/stop exclusion of a node. Note that this function can be used to exclude a device from previous network before including in ours. Available on primary and inclusion controllers\end{quote}
