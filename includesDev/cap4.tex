@@ -451,6 +451,32 @@ Please refer to Chapter \ref{expertuserinterface} for a detailed description of 
 technical, the so-called \zweui. Please note that all day-to-day management functions 
 can be done without involving this very specific and technical interface.
 
+\textcolor{blue}{In case the controller hardware supports the new Smart Start feature of 
+\zwave, there will be 
+another button to include new devices - the QR code san as sown in Figure} \ref{shui-ss1}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{pngs/cap4/shui-ss1.png}
+\caption{Scan QR Code for Smart Start}
+\label{shui-ss1}
+\end{center}
+\end{figure}
+
+\textcolor{blue}{Smart Start is a new way to include devices into Z-Wave using the QR code 
+provided with S2 authentication.  The user scans the QR code thats is stored in an internal 
+so called  provisioning list. Smart Start Devices will then announce to be included when 
+powered up. In case the S2 key is in the provisioning list the controller will automatically 
+include  this new device without any further user interaction.}
+
+\textcolor{blue}{The button 'QR Code' opens a dialog to capture the Device Key, either by 
+typing them in or by scanning the QR. Another menu tab allows managing the Device Keys 
+already captured by not used for inclusion.}
+
+\textcolor{blue}{Please note that a standard
+web browser running on a standard PC may not provide the capability to scan QR codes. } 
+
+
 \subsubsection{Inclusion}
 \label{inclusion}
 \index{Inclusion}
@@ -619,7 +645,7 @@ management menu. Clicking on the button \keystroke{Manage} button opens a menu w
 \item Figure \ref{incl6} shows a list of the physical \zwave devices. The \keystroke{*} button 
 will open the very same device management dialog as described during manual post-inclusion 
 configuration in Section \ref{inclusion}. The \keystroke{x} button opens a dialog to remove 
-the device. As shown in Figure \ref{} there are two options:
+the device. As shown in Figure \ref{incldr} there are two options:
 \begin{itemize}
 \item Reset and Remove: This button will start the normal Z-Wave Exclusion Process. Exclusion
 requires that the device to be excluded is still functioning and accessable.
@@ -665,10 +691,6 @@ lists all the elements created by this physical device.
 \label{incldr}
 \end{center}
 \end{figure}
-
-Figure \ref{incldr} @@@@
-
-
 
 \subsection{Customize}
 \label{customize}

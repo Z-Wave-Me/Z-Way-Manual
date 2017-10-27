@@ -627,6 +627,53 @@ just included is really the device in hand.
 If authentication fails, an error message is displayed. It is not possible to redo 
 the key authentication only. You must exclude and re-include the device.}
 
+
+\subsubsection{Smart Start}
+
+\textcolor{blue}{Smart Start is a new way to include devices into Z-Wave using the QR code provided with S2
+authentication.  The user scans the QR code thats is stored in an internal so called 
+provisioning list. Smart Start Devices will then announce to be included when powered up.
+In case the S2 key is in the provisioning list the controller will automatically include 
+this new device without any further user interaction.}
+
+\textcolor{blue}{Smart Start is controlled by the button} \keystroke{Activate/Deactivate Smart Start}.
+The button \keystroke{Smart Start} \textcolor{blue}{opens a submenu allowing to register Device keys either 
+by typing the 8 groups of numbers as shown in Figure }\ref{ss1} \textcolor{blue}{or using 
+a QR code scanner as shown in Figure } \ref{ss2}. \textcolor{blue}{Please note that a standard
+web browser running on a standard PC may not provide the capability to scan QR codes. } 
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{pngs/cap7/ss1.png}
+\caption{Smart Start - enter Device Key (DSK)}
+\label{ss1}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{pngs/cap7/ss2.png}
+\caption{Smart Start - scan QR code (on smart phones only}
+\label{ss2}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{pngs/cap7/ss3.png}
+\caption{Smart Start Provisioning list}
+\label{ss3}
+\end{center}
+\end{figure}
+
+Figure \ref{ss3} \textcolor{blue}{finally shows the lost of Device keys already registered 
+in the system and not used. Used means in this context that the corresponding device
+was powered up in proximity of the controller and got included automatically. Please note that
+the Razberry Shield or UZB or any hardware used must provide a firmware with SDK >=6.81. 
+Otherwise Smart Start will not work.}
+
+
+
 \subsubsection{Enter/Leave different Network}
 
 
@@ -638,7 +685,7 @@ Learn button confirm the process.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.9\textwidth]{pngs/cap7/security2_5.png}
+\includegraphics[width=0.5\textwidth]{pngs/cap7/security2_5.png}
 \caption{\zway -  own key for authentication}
 \label{security2_5}
 \end{center}
@@ -753,15 +800,49 @@ be queued. For more information about job queuing, please refer to Chapter \ref{
 
 \subsection{Network Map}
 
+The \textbf{Poltorak-Chart} as a way to map the network is an extremely powerful, informative but the same time very complex
+viewgraph of the network situation in a home.  The chart visualizes the possible links between
+the nodes and how they are used. If provided by the devices the chart will furthermore show
+complete routes and the signal strength of the individual links of a route. However only 
+devices with SDK greater or equal to 6.71 will provide this additional information.
+ 
+Initially all nodes are displayed with equal distances. It is possible to drag and drop
+the nodes to match the distances between them with the real distances. This will always 
+work quite well if the Z-Wave network is in one floor only. 
+A 2D map can be uploaded as background image to support the mapping.
+If the network is distributed  on multiple floors it is recommended to do a best guess 
+to keep the round initial view.
+
+Figure \ref{c5:poltos} shows a typical chart. By clicking on a certain node and then 
+moving the mouse over it again, it is possible to analyse the traffic from and to this 
+very node. This allows focusing on the situation of this node only.
+
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.9\textwidth]{pngs/cap7/eui24.png}
-\caption{Network Map}
-\label{eui24}
+\includegraphics[width=1.0\textwidth]{pngs/cap7/eui24.png}
+\caption {Poltorak-Chart}
+\label{c5:poltos}
 \end{center}
 \end{figure}
 
-The network map, as shown in Figure \ref{eui24}, plots 2D map of all devices and their direct wireless connections.
+The lines between the nodes represent the wireless connections and the communication between
+the nodes. The following information is encoded in these lines:
+
+\begin{itemize}
+\item Color: The color indicates the wireless signal strength of the connection if it can be
+measured. Red means a very high wireless signal.
+The device is likely very closed or in direct sight of the each other. A black color means a
+standard wireless strength, gray indicates that the received signal strength (RSSI value) 
+is not known.
+
+\item Thickness: The Thickness of the line indicates the amount of traffic running over
+this line. This can be direct communication between the two links or routed traffic. If a 
+route exist there will be a single pixel line. Every line thicker than a pixel shows real 
+traffic.
+
+\item Dotted versus solid: A dotted line indicates that this link is sometimes just not working.
+\end{itemize}
+
 
 \subsection{Timing Info}
 
