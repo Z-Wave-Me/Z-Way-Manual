@@ -378,7 +378,7 @@ Data holders:
 
 \section{Command Class SensorMultilevel (0x31/49)}
 
-\textit{Version 9, Controlled}
+\textit{Version 11, Controlled}
 \newline
 
 Allows to read different kind of sensor. Z-Wave differentiates different sensor types and different scales of this sensor. Please refer to the file /translations/scales.xml for details about possible sensor types and values.
@@ -700,7 +700,7 @@ Data holders:
 
 \section{Command Class Node Naming (0x77/119)}
 
-\textit{Version 1, Controlled}
+\textit{Version 1, Supported and Controlled}
 \newline
 
 Allows assigning a readable string for a name and a location to a physical device. The two strings are stored inside the device and can be obtained upon request. There are no restrictions to the name except the maximum length up to 16 characters.
@@ -711,7 +711,7 @@ Data holders:
 
 \begin{itemize}
 \item \textbf{nodename}: Node name
-\item \textbf{nameEncoding}: NodeNmae encoding
+\item \textbf{nameEncoding}: NodeName encoding
 \item \textbf{location}: Location
 \item \textbf{locationEncoding}: Location encoding
 \end{itemize}
@@ -2086,6 +2086,14 @@ Data holders:
 \item \textbf{sequenceId}: Internal
 \item \textbf{toFollow}: Internal
 \end{itemize}
+
+\paragraph{Command Security Inject}
+\begin{quote}Syntax: Inject(data, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Send Security Inject\end{quote}
+\begin{quote}Parameter data: Data to set\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
 
 
 \section{Command Class CRC16 (0x56/86)}
