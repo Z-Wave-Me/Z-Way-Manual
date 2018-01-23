@@ -2096,6 +2096,35 @@ Data holders:
 
 
 
+\section{Command Class SecurityS2 (0x9F/159)}
+
+\textit{Version 1, Supported and Controlled}
+\newline
+
+This Command Class is transparently implemented in the library. There are no functions to execute.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{controller->data->secureControllerId}: Node Id of secure controller: node that established secure channel when we are secondary controller (this data is on controller data tree)
+\item \textbf{device->data->secureChannelEstablished}: Flag describing if security interview was successful and secure channel is established (this data is on device data tree)
+\item \textbf{secureNodeInfoFrames}: Secure Node Information Frames for each security level
+\item \textbf{securityAbandoned}: Security interview failed
+\item \textbf{securityRequested}: Internal
+\end{itemize}
+
+\paragraph{Command SecurityS2 Inject}
+\begin{quote}Syntax: Inject(data, keyClass, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Send Security S2 Inject\end{quote}
+\begin{quote}Parameter data: Data to set\end{quote}
+\begin{quote}Parameter keyClass: Security S2 key class\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
 \section{Command Class CRC16 (0x56/86)}
 
 \textit{Version 1, Supported and Controlled}
