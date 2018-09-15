@@ -737,7 +737,7 @@ modules, please refer to Chapter \ref{developownapps}.
 \subsection{The use of  the C-Library}
 
 
-The \zway library is a middleware between Sigma Designs \zwave transceiver and your application. 
+The \zway library is a middleware between Silicon Labs \zwave transceiver and your application. 
 \zway offers pretty high level API to control \zwave devices and manage wireless network.
 
 Interaction with the library covers three aspects:
@@ -745,11 +745,12 @@ Interaction with the library covers three aspects:
 \item sending commands to \zwave devices;
 \item sending network management commands to the transceiver;
 \item receiving updates from the network.
-\item Sending commands
 \end{itemize}
 
+\subsubsection{Sending commands}
+
 Every command request generates an outgoing packet (job). Before generating a packet, 
-library will validate parameters and check whether the command is supported by recipient. 
+library will validate parameters and check whether the command is supported by the recipient. 
 In case of failure command will return error immediately.
 
 Once a job is generated, it is placed into outgoing queue for future send. The queued jobs 
@@ -757,18 +758,18 @@ are handled internally by \zway engine according to commands priorities, nodes s
 and capabilities, transceiver state etc.
 
 Once the job is sent, it must be first confirmed it was successfully delivered to 
-\zwave stack, and then confirmed it was delivered to recipient. All these operations are 
+the \zwave stack, and then confirmed it was delivered to the recipient. All these operations are 
 performed asynchronously, so command may provide a callback function to call in case of 
 success or failure if it is needed to know delivery result.
 
 After the delivery was confirmed, command is considered executed. If it was a state 
-request command (i.e. {\texttt SensorMultilevel Get}), response packet may be delayed 
+request command (i.e. \texttt{SensorMultilevel Get}), response packet may be delayed 
 (or even not sent at all), so command's success/failure callbacks cannot be used to get 
 requested state immediately.
 
 \subsubsection{Receiving updates}
 
-All incoming packets from \zwave network are automatically parsed by \zway and stored in 
+All incoming packets from the \zwave network are automatically parsed by \zway and stored in 
 special variables called data holders. Data holder is a named variable that stores a value 
 along with its data type and time the value was last updated and "invalidated". Each data
 holder may also contain a set of child data holders, so they form a hierarchical data 
