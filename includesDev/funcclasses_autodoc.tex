@@ -237,7 +237,7 @@
 
 \paragraph{Function Class AssignReturnRoute}
 \begin{quote}Syntax: AssignReturnRoute(nodeId, destId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}Description: Assign return route to specified node. Get Serial API capabilities\end{quote}
+\begin{quote}Description: Assign return route to specified node\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device that have to store new route\end{quote}
 \begin{quote}Parameter destId: Destination Node Id of the route\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -559,7 +559,7 @@
 \begin{quote}Parameter repeater2: Hop \#2 in the route. Value 0 means end of route\end{quote}
 \begin{quote}Parameter repeater3: Hop \#3 in the route. Value 0 means end of route\end{quote}
 \begin{quote}Parameter repeater4: Hop \#4 in the route. Value 0 means end of route\end{quote}
-\begin{quote}Parameter routeSpeed: Baudrate to use: 1 for 9.6 kbps, 2 for 40 kbps, 3 for 100 kbps. Value 0 means end of route\end{quote}
+\begin{quote}Parameter routeSpeed: Baudrate to use: 1 for 9.6 kbps, 2 for 40 kbps, 3 for 100 kbps\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
@@ -568,6 +568,33 @@
 \begin{quote}Syntax: SetPromiscuousMode(enable, successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}Description: Enable or disable promiscuous mode\end{quote}
 \begin{quote}Parameter enable: True to enable functionality, False to disable\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class AssignPriorityReturnRoute}
+\begin{quote}Syntax: AssignPriorityReturnRoute(nodeId, destId, repeater1, repeater2, repeater3, repeater4, routeSpeed, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Assign priority return route to specified node\end{quote}
+\begin{quote}Parameter nodeId: Node Id of the device that have to store new route\end{quote}
+\begin{quote}Parameter destId: Destination Node Id of the route\end{quote}
+\begin{quote}Parameter repeater1: Hop \#1 in the route. Value 0 means direct range\end{quote}
+\begin{quote}Parameter repeater2: Hop \#2 in the route. Value 0 means end of route\end{quote}
+\begin{quote}Parameter repeater3: Hop \#3 in the route. Value 0 means end of route\end{quote}
+\begin{quote}Parameter repeater4: Hop \#4 in the route. Value 0 means end of route\end{quote}
+\begin{quote}Parameter routeSpeed: Baudrate to use: 1 for 9.6 kbps, 2 for 40 kbps, 3 for 100 kbps\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class AssignPrioritySUCReturnRoute}
+\begin{quote}Syntax: AssignPrioritySUCReturnRoute(nodeId, repeater1, repeater2, repeater3, repeater4, routeSpeed, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Assign priority return route to SUC\end{quote}
+\begin{quote}Parameter nodeId: Node Id of the device that have to store route to SUC\end{quote}
+\begin{quote}Parameter repeater1: Hop \#1 in the route. Value 0 means direct range\end{quote}
+\begin{quote}Parameter repeater2: Hop \#2 in the route. Value 0 means end of route\end{quote}
+\begin{quote}Parameter repeater3: Hop \#3 in the route. Value 0 means end of route\end{quote}
+\begin{quote}Parameter repeater4: Hop \#4 in the route. Value 0 means end of route\end{quote}
+\begin{quote}Parameter routeSpeed: Baudrate to use: 1 for 9.6 kbps, 2 for 40 kbps, 3 for 100 kbps\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
