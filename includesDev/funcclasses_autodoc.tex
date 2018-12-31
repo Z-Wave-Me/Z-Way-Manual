@@ -598,3 +598,21 @@
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
+
+\paragraph{Function Class ZMESerialAPIOptionsJammingDetectionSet}
+\begin{quote}Syntax: ZMESerialAPIOptionsJammingDetectionSet(ch1Threshold, ch2Threshold, ch3Threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Set Jamming Detection threshold. Jamming detection fine tuning in NVM:. address 6530, 3 bytes: ch1\_threshold ch2\_threshold ch3\_threshold. address 6533, 2 bytes: how many times should measurements exceed in last 10 seconds to trigger the alarm, default 2 times. address 6535, 2 bytes: repeat the alarm in N*0.1 seconds if the jamming persists, default 0100 = 25.6 sec\end{quote}
+\begin{quote}Parameter ch1Threshold: Threshold for channel 1\end{quote}
+\begin{quote}Parameter ch2Threshold: Threshold for channel 2\end{quote}
+\begin{quote}Parameter ch3Threshold: Threshold for channel 3\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class ZMESerialAPIOptionsAdvancedIMASet}
+\begin{quote}Syntax: ZMESerialAPIOptionsAdvancedIMASet(enable, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Enable/disable advanced IMA by Z0Wave.Me that includes incoming route path information\end{quote}
+\begin{quote}Parameter enable: Turn on or off\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
