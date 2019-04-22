@@ -2108,11 +2108,26 @@ This Command Class is transparently implemented in the library. There are no fun
 Data holders:
 
 \begin{itemize}
-\item \textbf{controller->data->secureControllerId}: Node Id of secure controller: node that established secure channel when we are secondary controller (this data is on controller data tree)
+\item \textbf{ctrlDevice->data->secureControllerId}: Node Id of secure controller: node that established secure channel when we are secondary controller (this data is on controller data tree)
 \item \textbf{device->data->secureChannelEstablished}: Flag describing if security interview was successful and secure channel is established (this data is on device data tree)
 \item \textbf{secureNodeInfoFrames}: Secure Node Information Frames for each security level
 \item \textbf{securityAbandoned}: Security interview failed
 \item \textbf{securityRequested}: Internal
+\item \textbf{requestedKeys}: Subtree of requested keys
+\item \qquad\textbf{S0}: True if requested
+\item \qquad\textbf{S2Unauthenticated}: True if requested
+\item \qquad\textbf{S2Authenticated}: True if requested
+\item \qquad\textbf{S2Access}: True if requested
+\item \textbf{grantedKeys}: Subtree of granted keys
+\item \qquad\textbf{S0}: True if granted
+\item \qquad\textbf{S2Unauthenticated}: True if granted
+\item \qquad\textbf{S2Authenticated}: True if granted
+\item \qquad\textbf{S2Access}: True if granted
+\item \textbf{device->data->securityS2ExchangedKeys}: Mask of granted keys (for re-interview)
+\item \textbf{publicKey}: Public key of the device
+\item \textbf{publicKeyVerified}: Verified public key of the device by the user
+\item \textbf{publicKeyAuthenticationRequired}: True if the user have to verify
+\item \textbf{controller->data->S2RequireCSA}: Require Client Side Authentication during joining network as secondary
 \end{itemize}
 
 \paragraph{Command SecurityS2 Inject}
@@ -2248,3 +2263,50 @@ Data holders:
 \item \textbf{sceneSupportedKeyAttributesMask}: Holds the list of supported key attributes for each scene
 \item \qquad\textbf{[sceneId]}: Array of supported key attributes for Scene Id: 0 for 1 press, 1 for release after hold, 2 for hold, 3..6 for 2..5 presses
 \end{itemize}
+
+
+\section{Command Class NodeProvisioning (0x78/120)}
+
+\textit{Version 1, Supported and Controlled}
+\newline
+
+Allows to interact with the DSK Provisioning List.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{smartStart.dskProvisioningList}: DSK Provisioning List
+\end{itemize}
+
+\paragraph{Command NodeProvisioning Get}
+\begin{quote}Syntax: Get(dsk, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Send NodeProvisioning Get\end{quote}
+\begin{quote}Parameter dsk: DSK value\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command NodeProvisioning Set}
+\begin{quote}Syntax: Set(dsk, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Send NodeProvisioning Set\end{quote}
+\begin{quote}Parameter dsk: DSK value\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command NodeProvisioning Delete}
+\begin{quote}Syntax: Delete(dsk, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Send NodeProvisioning Delete\end{quote}
+\begin{quote}Parameter dsk: DSK value\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command NodeProvisioning IterationGet}
+\begin{quote}Syntax: IterationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Send NodeProvisioning Iteration Get\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
