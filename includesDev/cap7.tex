@@ -950,6 +950,115 @@ the transceiver’s firmware did not report to offer this service.
 
 Annex \ref{FunctionClasses} gives a full overview of the Functions used and supported by \zway .
 
+\subsection{Basic Set Handling}
+
+Z-Wave protocol defines a minimal level of interoperability via Basic
+Command Class. Most devices do act on \texttt{Basic Set} commands mapping it
+to \texttt{Switch Binary Set} or \texttt{Thermostat Mode Set} or some other.
+Z-Way is able to control other devices using speical Command Classes or
+using Basic Set.
+
+Z-Way is handling incoming \texttt{Basic Set} and creates a virtual device that
+reflects the state of the last \texttt{Basic Set} command recieved. This
+allows to work with old devices that do not send \texttt{Reports} or
+\texttt{Central Scene Notification} to the LifeLine association group. Z-Way is
+ignoring \texttt{Basic Get} commands.
+
+\subsection{Security Considerations}
+
+Z-Way supports both Security S2 and Security S0 protocols and implements
+very strict security rules. See Table \ref{c7:security} for more
+information.
+
+\begin{table}
+\begin{tabular}{|p{0.19\textwidth}|p{0.27\textwidth}|p{0.27\textwidth}|p{0.27\textwidth}|}
+\hline
+\textbf{Negociated security} & \textbf{Unsecure NIF} & \textbf{Security S0 NIF} & \textbf{Security S2 NIF} \\
+\hline
+No or failed security &
+ \begin{tabular}{l}
+  ZWavePlusInfo \\
+  Version \\
+  MultiCmd \\
+  Security \\
+  SecurityS2 \\
+  Supervision \\
+  ManufacturerSpecific \\
+  NodeNaming \\
+  ApplicationStatus \\
+  CRC16 \\
+  PowerLevel \\
+  Association \\
+  AssociationGroupInformation \\
+  MultiChannelAssociation \\
+  DeviceResetLocally \\
+  TransportService \\
+  InclusionController
+ \end{tabular}
+ & - & - \\
+\hline
+Security S0 &
+ \begin{tabular}{l}
+  ZWavePlusInfo \\
+  MultiCmd \\
+  Security \\
+  SecurityS2 \\
+  Supervision \\
+  NodeNaming \\
+  ApplicationStatus \\
+  CRC16 \\
+  PowerLevel \\
+  AssociationGroupInformation \\
+  DeviceResetLocally \\
+  TransportService \\
+  InclusionController
+ \end{tabular}
+ &
+ \begin{tabular}{l}
+  Version \\
+  MultiCmd \\
+  ManufacturerSpecific \\
+  NodeNaming \\
+  ApplicationStatus \\
+  CRC16 \\
+  PowerLevel \\
+  Association \\
+  AssociationGroupInformation \\
+  MultiChannelAssociation \\
+  DeviceResetLocally \\
+  InclusionController
+ \end{tabular}
+ & - \\
+\hline
+Security S2 &
+ \begin{tabular}{l}
+  ZWavePlusInfo \\
+  SecurityS2 \\
+  Supervision \\
+  TransportService
+ \end{tabular}
+ & - &
+ \begin{tabular}{l}
+  Version \\
+  MultiCmd \\
+  ManufacturerSpecific \\
+  NodeNaming \\
+  ApplicationStatus \\
+  CRC16 \\
+  PowerLevel \\
+  Association \\
+  AssociationGroupInformation \\
+  MultiChannelAssociation \\
+  DeviceResetLocally \\
+  InclusionController
+ \end{tabular}
+ \\
+\hline
+\end{tabular}
+\caption{Supported Command Classes depending on the security level negociated}
+\label{c7:security}
+\end{table}
+
 \section {Analytics}
 
 The analytics menu offers functions to troubleshoot a \zwave network. Details about the 
