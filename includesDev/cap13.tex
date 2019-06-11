@@ -4,15 +4,29 @@
 \label{cap:authentication}
 
 In order to access API one need to authenticate itself. \zway uses sessions
-to authenticate users. Session can be obtained by sending login and password
-in JSON format using POST to URL 
-\murl{/ZAutomation/api/v1/login}
-User
-credentials should look like \texttt{\{"login":"admin", "password":"admin"\}}
+to authenticate users. \zway session is called \textbf{ZWAYSession}.
 
-In return the session will be sent in two forms:
+If remote access is used, the find.z-wave.me service will issue an additional token called \textbf{ZBW\_SESSID}.
+
+Please read in \ref{cap:authentication_usage} about the token lifetime, permanent tokens and token usage guide before selecting your preferred authentication method.
+
+\subsection{Local authentication}
+\label{cap:authentication_local}
+
+If used in local network, \zway can be directly addressed via \murl{http://IP:8083}
+
+Note that if \zway is used in trusted network and only \zwave API is supposed to be used, you might consider to skip authentication and check option \textit{Public API access} in \zwave Binding app.
+
+\zway session can be obtained by sending login and password
+in JSON format using POST to URL \murl{/ZAutomation/api/v1/login}
+User credentials should look like \texttt{\{"login":"admin", "password":"admin"\}}.
+
+It is also possible to use Basic Authentication to transmit login and password.
+
+In return the session will be sent in three forms:
 \begin{itemize}
-\item as \textbf{data.sid} field in JSON structure,
+\item as \textbf{data.sid} field in JSON structure (only for login using JSON),
+\item as a header called \textbf{ZWAYSession},
 \item as a cookie called \textbf{ZWAYSession}.
 \end{itemize}
 
@@ -50,28 +64,220 @@ Example of successful login will look like:
 }
 \end{lstlisting}
 
-One obtained, the session can be sent to the server via cookie (as set by
-\zway) or via HTTP header.
+Once obtained, the session can be sent to the \zway server via the following ways:
+\begin{itemize}
+\item as an HTTP header called \textbf{ZWAYSession},
+\item as a cookie called \textbf{ZWAYSession},
+\item as an HTTP Authentication Bearer header (see \ref{cap:authentication_usage})
+\end{itemize}
 
-An elegant way to execute a command using URL including authentication is:
+Below are few examples of local authentication.
 
+With cURL using cookies:
 {\scriptsize
 \begin{quote} 
-\cmdline{wget --auth-no-challenge --user=admin --password=pwd IP:8083/ZAutomation/api/v1/...}
-\end{quote}  
+\cmdline{curl -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '\{"form": true, "login": "admin", "password": "admin"\}' http://192.168.0.62:8083/ZAutomation/api/v1/login -c cookie.txt}
+\cmdline{curl http://192.168.0.62:8083/ZAutomation/api/v1/... -b cookie.txt}
+\end{quote}
 }
-As jquery function the authentication will look like this:
 
+With cURL using Basic Authentication:
+{\scriptsize
+\begin{quote} 
+\cmdline{curl -u admin:admin http://192.168.0.62:8083/ZAutomation/api/v1/...}
+\end{quote}
+}
+
+With wget using Basic Authentication:
+{\scriptsize
+\begin{quote} 
+\cmdline{wget --auth-no-challenge --user=admin --password=pwd 192.168.0.62:8083/ZAutomation/api/v1/...}
+\end{quote}
+}
+
+From the browser using jQuery and Basic Authentication:
 \begin{lstlisting}[caption=Login with jQuery,basicstyle=\small,columns=fullflexible]
 $('img').click(function() {
-$.ajax({
-url: "https://find.z-wave.me/ZWave.zway/Run/devices[3].Basic.Set(255)",
-username: "56033/admin",
-password: "pwd",
-xhrFields: { withCredentials: true }
-});
+    $.ajax({
+        url: "http://192.168.0.62:8083/ZAutomation/api/v1/...",
+        beforeSend: function (xhr) { xhr.setRequestHeader ("Authorization", "Basic " + btoa("admin" + ":" + "password")); }
+    });
 });
 \end{lstlisting}
+
+\subsection{Remote authentication}
+\label{cap:authentication_remote}
+
+If not disabled by the user, \zway provides remote access service to the controller via \murl{https://find.z-wave.me}
+See section \ref{remoteaccess} for more information on the \zway remote access service.
+
+This service accepts \zwaydeviceid, username and password, checks entered
+credentials agains your \zway and if accepted returns back two sessions \textbf{ZWAYSession}
+and \textbf{ZBW\_SESSID} in two forms:
+\begin{itemize}
+\item as a header,
+\item as a cookie.
+\end{itemize}
+
+The session can be obtained by
+\begin{itemize}
+\item logging in the form on \murl{https://find.z-wave.me/zboxweb}
+\item sending a POST request to \murl{https://find.z-wave.me/zboxweb} with form data \texttt{act=login\&login=id/admin\&pass=password}
+\end{itemize}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{pngs/cap13/find-login-postman.png}
+\caption{Example of login on find.z-wave.me using Postman}
+\label{authenticatioln_remote_find}
+\end{center}
+\end{figure}
+
+Once logged in, the user is redirected to the / of the \zway (in most cases it then redirects to /smarthome/).
+If you want the user to be redirected to some specific URL after log in add one more parameter \texttt{ruri=...} (see examples below).
+
+The obtained session will be returned
+\begin{itemize}
+\item as an HTTP header,
+\item as a cookie.
+\end{itemize}
+
+Below are examples of remote authentication.
+
+With cURL using cookies:
+{\scriptsize
+\begin{quote} 
+\cmdline{curl -H "Accept: application/json" -X POST -d 'act=login\&login=132339/admin\&pass=admin1' https://find.z-wave.me/zboxweb -c cookie.txt}
+\cmdline{curl https://find.z-wave.me/ZAutomation/api/v1/... -b cookie.txt}
+\end{quote}
+}
+
+%With cURL using cookies in one single command (with follow redirect):
+%{\scriptsize
+%\begin{quote} 
+%\cmdline{curl -H "Accept: application/json" -X POST -d 'act=login\&login=132339/admin\&pass=admin1\&ruri=/ZAutomation/api/v1/devices' https://find.z-wave.me/zboxweb -c cookie.txt -b cookie.txt -L}
+%\end{quote}
+%}
+
+If you want the user to be redirected to a specific page after login, you can also use the following url: \murl{https://find.z-wave.me/zboxweb?ruri=/expert} or \murl{https://find.z-wave.me/zboxweb?ruri=/expert&id=123456&login=admin} to pre-fill \zwaydeviceid and user name.
+
+\subsection{Token lifetime}
+\label{cap:authentication_usage}
+
+Each time you log in using methods described above a new session is created. This session will live for one week (might be changed on \zway side and on find.z-wave.me side, do not rely on this period).
+
+Those login methods are good to obtain the token once to the access the API via token or for rare single actions. Creating a new session each time will pollute user profile in \zway.
+
+Tokens can be deleted at any time in User management (\ref{cap4:user_management}) panel. This will lead to log-out of the application that is using this token. This application will loose access to \zway and will require again a log in via username and password.
+
+To use tokens long term we recommend to make them permanent. You can make any token permanent by pressing a button in User management (\ref{cap4:user_management}).
+Permanent token do never expire until deleted. Only \zway token can be made permanent that way.
+
+To make both find.z-wave.me and \zway token permanent use \textbf{Authentication Bearer} way to transmit tokens.
+
+Both find.z-wave.me remote access service and \zway do support \textbf{Authentication Bearer} HTTP header. This header is commonly used in OAuth2 authentication protocol, but you can use it without OAuth2 too.
+
+\zway and find.z-wave.me will automatically mark tokens as permanent if they are received in \textbf{Authentication Bearer} header.
+
+The format of the header is: \texttt{Authorization: Bearer \textbf{ZBW\_SESSID}/\textbf{ZWAYSession}}.
+
+A typical application should take usename and password to log in via find.z-wave.me and get both \textbf{ZWAYSession} and \textbf{ZBW\_SESSID} tokens to form Authentication Bearer token.
+The username and password should then be erased from the memory, while Authentication Bearer token should be saved for future use. It is not recommended to save user credentials.
+
+Like other tokens user can delete the permanent token in the User management (\ref{cap4:user_management}) panel.
+
+\subsection{OAuth2}
+\label{cap:authentication_oauth2}
+
+\zway do also support OAuth2 authentication method to provide access to smart home devices to third party services like voice assistances (Amazon Alexa, Google Home, Yandex Alice), IFTTT and some others.
+
+To get integrated one should provide to the \zwaveme team redirect\_uri and get back OAuth2 server URL, client\_id and client\_secret. Please contact info@z-wave.me.
+
+To let the user authenticate and grant access to his devices you should redirect him to one of the two pages:
+\murl{https://z-wave.me/oauth2/?state=...\&redirect\_uri=https://...\&response\_type=code\&client_id=...}
+\murl{https://find.z-wave.me/zboxweb?lang=...\&ruri=/smarthome/\%23/oauth2\%3Fstate\%3D...\%26redirect_uri\%3Dhttps\%3A\%2F\%2F...\%26response\_type\%3Dcode\%26client\_id\%3D...}
+
+In this request:
+\begin{itemize}
+\item lang (optional --- English if omitted) — pre-selects the find.z-wave.me interface language (see ZBW\_IFLANG cookie for the correct value)
+\item ruri --- URL encoded link to the target page in \zway user interface to OAuth2 page:
+	\murl{/smarthome/\#/oauth2?state=...\&redirect\_uri=https://...\&response\_type=code\&client\_id=...}
+\begin{itemize}
+	\item state --- specific value used by your service to match the OAuth2 reply with the original request --- used with redirected to redirect\_uri
+	\item redirect\_uri --- the URL to redirect the user to once the authorization was granted
+	\item response\_type --- the type of OAuth2 authorization; only \textit{code} is currently supported
+	\item client\_id --- id of the client that should match redirect\_uri on \zwaveme OAuth2 server.
+\end{itemize}
+\end{itemize}
+
+After the user logs in to \zway he is asked to mark rooms and devices to be granted access to.
+A new user will then be created with the corresponding permissions and a session token will be generated.
+The session is saved on the \zwaveme OAuth2 server together with an authorization code.
+
+On the next step the user is redirected back to the service using URL \murl{redirect\_uri?state=...&code=...}
+In this request:
+\begin{itemize}
+\item state --- specific value used by your service to match the OAuth2 reply with the original request (see above)
+\item code --- the authorization code to be used to get access token from the OAuth2 server
+\end{itemize}
+
+The service can now make a POST request to the \zwaveme OAuth2 server on \murl{/token} providing \texttt{client\_id}, \texttt{client\_secret} and \texttt{code}.
+The request can use JSON format or form data or url encoded form. The response is a JSON with access\_token or error message.
+
+The resulting access\_token is to be used in the Authentication Bearer HTTP header.
+This token never expires unless deleted by the user.
+
+\begin{lstlisting}[caption=Request of Access token via Authorization code (JSON format),basicstyle=\small,columns=fullflexible]
+Content-type: application/json
+{
+    "client_id": "...",
+    "client_secret": "...",
+    "code": "..."
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Request of Access token via Authorization code (URL encoded form),basicstyle=\small,columns=fullflexible]
+Content-Type: application/x-www-form-urlencoded
+client_id=...&client_secret=...&code=... (URL encoded!)
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Request of Access token via Authorization code (form data),basicstyle=\small,columns=fullflexible]
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundarytufRVLxOz9VdsQbA
+
+------WebKitFormBoundarytufRVLxOz9VdsQbA
+Content-Disposition: form-data; name="client_id"
+
+...
+------WebKitFormBoundarytufRVLxOz9VdsQbA
+Content-Disposition: form-data; name="client_secret"
+
+...
+------WebKitFormBoundarytufRVLxOz9VdsQbA
+Content-Disposition: form-data; name="code"
+
+...
+------WebKitFormBoundarytufRVLxOz9VdsQbA--
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Access token successfuly retrieved,basicstyle=\small,columns=fullflexible]
+{
+    "access_token": ".../...",
+    "token_type": "bearer"
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Authorization code is invalid (400 Bad request),basicstyle=\small,columns=fullflexible]
+{
+    "error": "invalid_grant"
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Wrong credentials (400 Bad request),basicstyle=\small,columns=fullflexible]
+{
+    "error": "invalid_client"
+}
+\end{lstlisting}
+
 
 \section{How to write own Apps for \zway}
 \label{developownapps}
