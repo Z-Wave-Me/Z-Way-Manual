@@ -57,15 +57,18 @@
   ;
 }
 
+\newlength\myboxwidth
+\setlength{\myboxwidth}{\dimexpr\textwidth-2\fboxsep}
+
 \newcommand*\murl[1]{\noindent\begin{quote}\url{#1}\end{quote}\xspace}
-\newcommand*\cmdline[1]{\sffamily\colorbox{black!25}{\bfseries\textcolor{white}{#1}}}
+\newcommand*\cmdline[1]{\sffamily\colorbox{black!25}{\parbox{\myboxwidth}{\textcolor{white}{\bfseries#1}}}}
 \newcommand*\app[1]{\textbf{\textsc{ '#1'}}}
 \newcommand{\zway}{\textbf{Z-Way\textsuperscript{\texttrademark} }}
 \newcommand{\zwaveme}{\textbf{Z-Wave.Me}\xspace}
 \newcommand{\zwave}{\textbf{Z-Wave}\xspace}
-\newcommand{\zwaydeviceid}{\textbf{Z-Way Platform ID}}
+\newcommand{\zwaydeviceid}{\textbf{Z-Way Platform ID }}
 \newcommand{\zweui}{\textbf{\textsc{Z-Wave Expert User Interface }}}
-\newcommand{\zwshui}{\textsc{Z-Way Smart Home Interface}}
+\newcommand{\zwshui}{\textsc{Z-Way Smart Home Interface }}
 
 \begin{document}
 %=========================================
