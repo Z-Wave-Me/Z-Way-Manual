@@ -395,6 +395,31 @@ arguments. RegExp allows only few control characters: * is a wildcard, (1|2|3) -
 the incoming data. You can also extract all the interesting values right when the 
 data is received and bind update functions to them.}
 
+\subsubsection{Handling S2 inclusion process}
+
+Security S2 inclusion process require additional interaction with the user
+during inclusion process. In addition to putting the device in Learn Mode
+and \zway in Add mode the user will be asked to grant different Security S2 keys
+and enter the PIN code.
+
+To implement Security S2 inclusion process in your own app follow the steps
+below:
+\begin {itemize}
+\item Include the device
+\item Check if it supports S2 (if the Command Class exists)
+\item If Smart Start is in progress, nothing to be done --- \zway will handle
+everything automatically
+\item Wait for {\small{\texttt{devices[N].instances[0].commandClasses[159].data.requestedKeys}}} to become True
+\item Check {\small{\texttt{data.requestedKeys}}} children and set {\small{\texttt{data.grantedKeys}}} children accordingly. In most cases you would just copy from requested to granted
+(grant all keys the device requested for).
+\item Set {\small{\texttt{data.grantedKeys}}} to True to notify \zway that you are done with keys selection
+\item Wait for {\small{\texttt{data.publicKeyAuthenticationRequired}}} to be set. If False (device was not granted Access or Authenticated keys), copy in
+{\small{\texttt{data.publicKeyVerified}}} the {\small{\texttt{data.publicKey}}} (it is recommended to show first two bytes in decimal form to the user to confirm). Otherwise copy and fill first two bytes with the PIN code.
+\item A failed Security S2 interview will result in {\small{\texttt{data.securityAbandoned}}} to be
+set to True. A successfull one will have {\small{\texttt{data.securityAbandoned}}}
+equal to False and {\small{\texttt{data.interviewDone}}} equal to True.
+\end{itemize}
+
 
 \section{C-Library API and a general view on the \zway file structure}
 \label{clevelapi}
