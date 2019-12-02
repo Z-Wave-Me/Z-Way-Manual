@@ -1981,6 +1981,61 @@ Data holders:
 
 
 
+\section{Command Class SoundSwitch (0x79/121)}
+
+\textit{Version 2, Controlled}
+\newline
+
+Allows to play tones and configure volume.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{currentTone}: Currently played tone Id
+\item \textbf{currentVolume}: The volume of the currently played tone
+\item \textbf{defaultTone}: Default tone Id
+\item \textbf{defaultVolume}: Default volume
+\item \textbf{tonesNumber}: Number of tones
+\item \textbf{[toneId]}: Subtree for toneId
+\item \qquad\textbf{toneName}: Tone name
+\item \qquad\textbf{duration}: Duration in seconds
+\end{itemize}
+
+\paragraph{Command SoundSwitch TonePlayGet}
+\begin{quote}Syntax: TonePlayGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Send SoundSwitch TonePlayGet\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command SoundSwitch TonePlaySet}
+\begin{quote}Syntax: TonePlaySet(toneId, volume = 0x00, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Send SoundSwitch TonePlaySet\end{quote}
+\begin{quote}Parameter toneId: Tone Id. 1...254 tone Id. 255 play default tone\end{quote}
+\begin{quote}Parameter volume: Tone volume:. 0 use default. 1...100 specific volume. 255 last used volume\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command SoundSwitch ConfigurationGet}
+\begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Send SoundSwitch ConfigurationGet\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command SoundSwitch ConfigurationSet}
+\begin{quote}Syntax: ConfigurationSet(toneId, volume = 0x00, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Description: Send SoundSwitch ConfigurationSet\end{quote}
+\begin{quote}Parameter toneId: Tone Id. 1...254 tone Id. 255 play default tone\end{quote}
+\begin{quote}Parameter volume: Tone volume:. 0 use default. 1...100 specific volume. 255 last used volume\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
 \section{Command Class BarrierOperator (0x66/102)}
 
 \textit{Version 1, Controlled}
