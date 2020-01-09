@@ -1,7 +1,7 @@
 
 \paragraph{Function Class GetSerialAPICapabilities}
 \begin{quote}Syntax: GetSerialAPICapabilities(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_get_serial_api_capabilities(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_get\_serial\_api\_capabilities(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Request Serial API capabilities\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -9,7 +9,7 @@
 
 \paragraph{Function Class SerialAPISetTimeouts}
 \begin{quote}Syntax: SerialAPISetTimeouts(ackTimeout, byteTimeout, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_serial_api_set_timeouts(ZWay zway, ZWBYTE ackTimeout, ZWBYTE byteTimeout, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_serial\_api\_set\_timeouts(ZWay zway, ZWBYTE ackTimeout, ZWBYTE byteTimeout, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Serial API timeouts\end{quote}
 \begin{quote}Parameter ackTimeout: Time for the stick to wait for ACK (in 10ms units)\end{quote}
 \begin{quote}Parameter byteTimeout: Time for the stick to assemble a full packet (in 10ms units)\end{quote}
@@ -19,7 +19,7 @@
 
 \paragraph{Function Class SerialAPIGetInitData}
 \begin{quote}Syntax: SerialAPIGetInitData(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_serial_api_get_init_data(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_serial\_api\_get\_init\_data(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Request initial information about devices in network\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -27,7 +27,7 @@
 
 \paragraph{Function Class SerialAPIApplicationNodeInfo}
 \begin{quote}Syntax: SerialAPIApplicationNodeInfo(listening, optional, flirs1000, flirs250, genericClass, specificClass, nif, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_serial_api_application_node_info(ZWay zway, ZWBOOL listening, ZWBOOL optional, ZWBOOL flirs1000, ZWBOOL flirs250, ZWBYTE generic_class, ZWBYTE specific_class, const ZWBYTE * nif, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_serial\_api\_application\_node\_info(ZWay zway, ZWBOOL listening, ZWBOOL optional, ZWBOOL flirs1000, ZWBOOL flirs250, ZWBYTE generic\_class, ZWBYTE specific\_class, const ZWBYTE * nif, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set controller node information\end{quote}
 \begin{quote}Parameter listening: Listening flag\end{quote}
 \begin{quote}Parameter optional: Optional flag (set if device supports more CCs than described as mandatory for it's Device Type)\end{quote}
@@ -42,7 +42,7 @@
 
 \paragraph{Function Class WatchDogStart}
 \begin{quote}Syntax: WatchDogStart(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_watchdog_start(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_watchdog\_start(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Start WatchDog\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -50,7 +50,7 @@
 
 \paragraph{Function Class WatchDogStop}
 \begin{quote}Syntax: WatchDogStop(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_watchdog_stop(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_watchdog\_stop(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Stop WatchDog\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -58,7 +58,7 @@
 
 \paragraph{Function Class GetHomeId}
 \begin{quote}Syntax: GetHomeId(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_get_home_id(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_get\_home\_id(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Request Home Id and controller Node Id\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -66,7 +66,7 @@
 
 \paragraph{Function Class GetControllerCapabilities}
 \begin{quote}Syntax: GetControllerCapabilities(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_get_controller_capabilities(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_get\_controller\_capabilities(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Request controller capabilities (primary role, SUC/SIS availability)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -74,7 +74,7 @@
 
 \paragraph{Function Class GetVersion}
 \begin{quote}Syntax: GetVersion(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_get_version(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_get\_version(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Request controller hardware version\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -82,7 +82,7 @@
 
 \paragraph{Function Class GetSUCNodeId}
 \begin{quote}Syntax: GetSUCNodeId(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_get_suc_node_id(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_get\_suc\_node\_id(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Request SUC Node Id\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -90,7 +90,7 @@
 
 \paragraph{Function Class EnableSUC}
 \begin{quote}Syntax: EnableSUC(enable, sis, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_enable_suc(ZWay zway, ZWBOOL enable, ZWBOOL sis, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_enable\_suc(ZWay zway, ZWBOOL enable, ZWBOOL sis, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Enable or disable SUC/SIS functionality of the controller\end{quote}
 \begin{quote}Parameter enable: True to enable functionality, False to disable\end{quote}
 \begin{quote}Parameter sis: True to enable SIS functionality, False to enable SUC only\end{quote}
@@ -100,7 +100,7 @@
 
 \paragraph{Function Class SetSUCNodeId}
 \begin{quote}Syntax: SetSUCNodeId(nodeId, enable, sis, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_set_suc_node_id(ZWay zway, ZWBYTE node_id, ZWBOOL enable, ZWBOOL sis, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_set\_suc\_node\_id(ZWay zway, ZWBYTE node\_id, ZWBOOL enable, ZWBOOL sis, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Assign new SUC/SIS or disable existing\end{quote}
 \begin{quote}Parameter nodeId: Node Id to be assigned/disabled as SUC/SIS\end{quote}
 \begin{quote}Parameter enable: True to enable, False to disable\end{quote}
@@ -111,7 +111,7 @@
 
 \paragraph{Function Class MemoryGetByte}
 \begin{quote}Syntax: MemoryGetByte(offset, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_memory_get_byte(ZWay zway, unsigned short offset, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_memory\_get\_byte(ZWay zway, unsigned short offset, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Read single byte from EEPROM\end{quote}
 \begin{quote}Parameter offset: Offset in application memory in EEPROM\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -120,7 +120,7 @@
 
 \paragraph{Function Class MemoryGetBuffer}
 \begin{quote}Syntax: MemoryGetBuffer(offset, length, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_memory_get_buffer(ZWay zway, unsigned short offset, ZWBYTE length, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_memory\_get\_buffer(ZWay zway, unsigned short offset, ZWBYTE length, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Read multiple bytes from EEPROM\end{quote}
 \begin{quote}Parameter offset: Offset in application memory in EEPROM\end{quote}
 \begin{quote}Parameter length: Number of byte to be read\end{quote}
@@ -130,7 +130,7 @@
 
 \paragraph{Function Class MemoryPutByte}
 \begin{quote}Syntax: MemoryPutByte(offset, data, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_memory_put_byte(ZWay zway, unsigned short offset, ZWBYTE data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_memory\_put\_byte(ZWay zway, unsigned short offset, ZWBYTE data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Write single byte to EEPROM\end{quote}
 \begin{quote}Parameter offset: Offset in application memory in EEPROM\end{quote}
 \begin{quote}Parameter data: Byte to be written\end{quote}
@@ -140,7 +140,7 @@
 
 \paragraph{Function Class MemoryPutBuffer}
 \begin{quote}Syntax: MemoryPutBuffer(offset, data, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_memory_put_buffer(ZWay zway, unsigned short offset, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_memory\_put\_buffer(ZWay zway, unsigned short offset, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Write multiple bytes to EEPROM\end{quote}
 \begin{quote}Parameter offset: Offset in application memory in EEPROM\end{quote}
 \begin{quote}Parameter data: Bytes to be written\end{quote}
@@ -150,7 +150,7 @@
 
 \paragraph{Function Class NVMGetId}
 \begin{quote}Syntax: NVMGetId(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_nvm_get_id(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_nvm\_get\_id(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Read type of extended EEPROM\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -158,7 +158,7 @@
 
 \paragraph{Function Class NVMExtReadLongByte}
 \begin{quote}Syntax: NVMExtReadLongByte(offset, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_nvm_ext_read_long_byte(ZWay zway, unsigned int offset, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_nvm\_ext\_read\_long\_byte(ZWay zway, unsigned int offset, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Read single byte from extended EEPROM\end{quote}
 \begin{quote}Parameter offset: Offset in application memory in EEPROM\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -167,7 +167,7 @@
 
 \paragraph{Function Class NVMExtReadLongBuffer}
 \begin{quote}Syntax: NVMExtReadLongBuffer(offset, length, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_nvm_ext_read_long_buffer(ZWay zway, unsigned int offset, unsigned short length, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_nvm\_ext\_read\_long\_buffer(ZWay zway, unsigned int offset, unsigned short length, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Read multiple bytes from exended EEPROM\end{quote}
 \begin{quote}Parameter offset: Offset in application memory in EEPROM\end{quote}
 \begin{quote}Parameter length: Number of byte to be read\end{quote}
@@ -177,7 +177,7 @@
 
 \paragraph{Function Class NVMExtWriteLongByte}
 \begin{quote}Syntax: NVMExtWriteLongByte(offset, data, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_nvm_ext_write_long_byte(ZWay zway, unsigned int offset, ZWBYTE data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_nvm\_ext\_write\_long\_byte(ZWay zway, unsigned int offset, ZWBYTE data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Write single byte to extended EEPROM\end{quote}
 \begin{quote}Parameter offset: Offset in application memory in EEPROM\end{quote}
 \begin{quote}Parameter data: Byte to be written\end{quote}
@@ -187,7 +187,7 @@
 
 \paragraph{Function Class NVMExtWriteLongBuffer}
 \begin{quote}Syntax: NVMExtWriteLongBuffer(offset, data, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_nvm_ext_write_long_buffer(ZWay zway, unsigned int offset, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_nvm\_ext\_write\_long\_buffer(ZWay zway, unsigned int offset, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Write multiple bytes to extended EEPROM\end{quote}
 \begin{quote}Parameter offset: Offset in application memory in EEPROM\end{quote}
 \begin{quote}Parameter data: Bytes to be written\end{quote}
@@ -197,7 +197,7 @@
 
 \paragraph{Function Class IsFailedNode}
 \begin{quote}Syntax: IsFailedNode(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_is_failed_node(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_is\_failed\_node(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Checks if node is failed\end{quote}
 \begin{quote}Parameter nodeId: Node Id to be checked\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -206,7 +206,7 @@
 
 \paragraph{Function Class SendDataAbort}
 \begin{quote}Syntax: SendDataAbort(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_send_data_abort(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_send\_data\_abort(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Abort send data. Note that this function works unpredictably in multi callback environment !\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -214,7 +214,7 @@
 
 \paragraph{Function Class SerialAPISoftReset}
 \begin{quote}Syntax: SerialAPISoftReset(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_serial_api_soft_reset(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_serial\_api\_soft\_reset(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Soft reset. Restarts Z-Wave chip\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -222,7 +222,7 @@
 
 \paragraph{Function Class SendData}
 \begin{quote}Syntax: SendData(nodeId, data, description = NULL, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_send_data(ZWay zway, ZWBYTE node_id, const ZWBYTE * data, ZWCSTR description, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_send\_data(ZWay zway, ZWBYTE node\_id, const ZWBYTE * data, ZWCSTR description, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send data. Packets are sent in AUTO\_ROUTE mode with EXPLRER\_FRAME enabled for listening devices (ignored if not supported by the hardware [based on 5.0x branch])\end{quote}
 \begin{quote}Parameter nodeId: Destination Node Id (NODE\_BROADCAST to send non-routed broadcast packet)\end{quote}
 \begin{quote}Parameter data: Paket payload\end{quote}
@@ -233,7 +233,7 @@
 
 \paragraph{Function Class SendDataSecure}
 \begin{quote}Syntax: SendDataSecure(nodeId, data, description = NULL, keyClass = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_send_data_secure(ZWay zway, ZWBYTE node_id, const ZWBYTE * data, ZWCSTR description, ZWBYTE key_class, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_send\_data\_secure(ZWay zway, ZWBYTE node\_id, const ZWBYTE * data, ZWCSTR description, ZWBYTE key\_class, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send data using security. Packets are sent in AUTO\_ROUTE mode with EXPLRER\_FRAME enabled for listening devices (ignored if not supported by the hardware [based on 5.0x branch]). Explicitelly use security\end{quote}
 \begin{quote}Parameter nodeId: Destination Node Id (NODE\_BROADCAST to send non-routed broadcast packet)\end{quote}
 \begin{quote}Parameter data: Paket payload\end{quote}
@@ -245,7 +245,7 @@
 
 \paragraph{Function Class GetNodeProtocolInfo}
 \begin{quote}Syntax: GetNodeProtocolInfo(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_get_node_protocol_info(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_get\_node\_protocol\_info(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get node protocol info\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device in question\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -254,7 +254,7 @@
 
 \paragraph{Function Class GetRoutingTableLine}
 \begin{quote}Syntax: GetRoutingTableLine(nodeId, removeBad = FALSE, removeRepeaters = FALSE, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_get_routing_table_line(ZWay zway, ZWBYTE node_id, ZWBOOL remove_bad, ZWBOOL remove_repeaters, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_get\_routing\_table\_line(ZWay zway, ZWBYTE node\_id, ZWBOOL remove\_bad, ZWBOOL remove\_repeaters, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get routing table line\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device in question\end{quote}
 \begin{quote}Parameter removeBad: Exclude failed nodes from the listing\end{quote}
@@ -265,7 +265,7 @@
 
 \paragraph{Function Class AssignReturnRoute}
 \begin{quote}Syntax: AssignReturnRoute(nodeId, destId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_assign_return_route(ZWay zway, ZWBYTE node_id, ZWBYTE dest_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_assign\_return\_route(ZWay zway, ZWBYTE node\_id, ZWBYTE dest\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Assign return route to specified node\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device that have to store new route\end{quote}
 \begin{quote}Parameter destId: Destination Node Id of the route\end{quote}
@@ -275,7 +275,7 @@
 
 \paragraph{Function Class AssignSUCReturnRoute}
 \begin{quote}Syntax: AssignSUCReturnRoute(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_assign_suc_return_route(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_assign\_suc\_return\_route(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Assign return route to SUC\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device that have to store route to SUC\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -284,7 +284,7 @@
 
 \paragraph{Function Class DeleteReturnRoute}
 \begin{quote}Syntax: DeleteReturnRoute(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_delete_return_route(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_delete\_return\_route(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Delete return route\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device that have to delete all assigned return routes\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -293,7 +293,7 @@
 
 \paragraph{Function Class DeleteSUCReturnRoute}
 \begin{quote}Syntax: DeleteSUCReturnRoute(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_delete_suc_return_route(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_delete\_suc\_return\_route(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Delete return route to SUC\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device that have to delete route to SUC\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -302,7 +302,7 @@
 
 \paragraph{Function Class SetDefault}
 \begin{quote}Syntax: SetDefault(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_set_default(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_set\_default(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Reset the controller. Note: this function will delete ALL data from the Z-Wave chip and restore it to factory default !. Sticks based on 4.5x and 6.x SDKs will also generate a new Home Id\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -310,7 +310,7 @@
 
 \paragraph{Function Class SendSUCNodeId}
 \begin{quote}Syntax: SendSUCNodeId(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_send_suc_node_id(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_send\_suc\_node\_id(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SUC Node Id. Informs portable and static controllers about new or deleted SUC/SIS\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device that have to be informed about new or deleted SIC/SIS\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -319,7 +319,7 @@
 
 \paragraph{Function Class SendNodeInformation}
 \begin{quote}Syntax: SendNodeInformation(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_send_node_information(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_send\_node\_information(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send NIF of the stick\end{quote}
 \begin{quote}Parameter nodeId: Destination Node Id (NODE\_BROADCAST to send non-routed broadcast packet)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -328,7 +328,7 @@
 
 \paragraph{Function Class RequestNodeInformation}
 \begin{quote}Syntax: RequestNodeInformation(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_request_node_information(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_request\_node\_information(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Request NIF of a device\end{quote}
 \begin{quote}Parameter nodeId: Node Id to be requested for a NIF\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -337,7 +337,7 @@
 
 \paragraph{Function Class RemoveFailedNode}
 \begin{quote}Syntax: RemoveFailedNode(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_remove_failed_node(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_remove\_failed\_node(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Remove failed node from network. Before removing SDK will check that the device is really unreachable\end{quote}
 \begin{quote}Parameter nodeId: Node Id to be removed from network\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -346,7 +346,7 @@
 
 \paragraph{Function Class ReplaceFailedNode}
 \begin{quote}Syntax: ReplaceFailedNode(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_replace_failed_node(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_replace\_failed\_node(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Replace failed node with a new one. Be ware that a failed node can be replaced by a node of another type. This can lead to probles!. Always request device NIF and force re-interview after successful replace process\end{quote}
 \begin{quote}Parameter nodeId: Node Id to be replaced by new one\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -355,7 +355,7 @@
 
 \paragraph{Function Class RequestNetworkUpdate}
 \begin{quote}Syntax: RequestNetworkUpdate(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_request_network_update(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_request\_network\_update(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Request network topology update from SUC/SIS. Note that this process may also fail due more than 64 changes from last sync. In this case a re-inclusion of the controller (self) is required\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -363,7 +363,7 @@
 
 \paragraph{Function Class RequestNodeNeighbourUpdate}
 \begin{quote}Syntax: RequestNodeNeighbourUpdate(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_request_node_neighbour_update(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_request\_node\_neighbour\_update(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Request neighbours update for specific node\end{quote}
 \begin{quote}Parameter nodeId: Node Id to be requested for it's neighbours\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -372,7 +372,7 @@
 
 \paragraph{Function Class SetLearnMode}
 \begin{quote}Syntax: SetLearnMode(startStop, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_set_learn_mode(ZWay zway, ZWBOOL startStop, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_set\_learn\_mode(ZWay zway, ZWBOOL startStop, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set/stop Learn mode. Tries first classical inclusion then falls back to NWI automatically. Use zway\_controller\_set\_learn\_mode instead to get correctly set up the environment after inclusion\end{quote}
 \begin{quote}Parameter startStop: Start Learn mode if True, stop if False\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -381,7 +381,7 @@
 
 \paragraph{Function Class AddNodeToNetwork}
 \begin{quote}Syntax: AddNodeToNetwork(startStop, highPower = TRUE, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_add_node_to_network(ZWay zway, ZWBOOL startStop, ZWBOOL highPower, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_add\_node\_to\_network(ZWay zway, ZWBOOL startStop, ZWBOOL highPower, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Start/stop Inclusion of a new node. Available on primary and inclusion controllers\end{quote}
 \begin{quote}Parameter startStop: Start inclusion mode if True, stop if False\end{quote}
 \begin{quote}Parameter highPower: Use full power during this operation if True. On False use low power mode\end{quote}
@@ -391,7 +391,7 @@
 
 \paragraph{Function Class SmartStartEnable}
 \begin{quote}Syntax: SmartStartEnable(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_smart_start_enable(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_smart\_start\_enable(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Enable Smart Start mode\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -399,7 +399,7 @@
 
 \paragraph{Function Class RemoveNodeFromNetwork}
 \begin{quote}Syntax: RemoveNodeFromNetwork(startStop, highPower = FALSE, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_remove_node_from_network(ZWay zway, ZWBOOL startStop, ZWBOOL highPower, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_remove\_node\_from\_network(ZWay zway, ZWBOOL startStop, ZWBOOL highPower, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Start/stop exclusion of a node. Note that this function can be used to exclude a device from previous network before including in ours. Available on primary and inclusion controllers\end{quote}
 \begin{quote}Parameter startStop: Start exclusion mode if True, stop if False\end{quote}
 \begin{quote}Parameter highPower: Use full power during this operation if True. On False use low power mode\end{quote}
@@ -409,7 +409,7 @@
 
 \paragraph{Function Class RemoveNodeIdFromNetwork}
 \begin{quote}Syntax: RemoveNodeIdFromNetwork(nodeId, startStop, highPower = FALSE, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_remove_node_id_from_network(ZWay zway, ZWBYTE nodeId, ZWBOOL startStop, ZWBOOL highPower, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_remove\_node\_id\_from\_network(ZWay zway, ZWBYTE nodeId, ZWBOOL startStop, ZWBOOL highPower, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Start/stop exclusion of a node id. Note that this function can be used to exclude a device from previous network before including in ours. Available on primary and inclusion controllers\end{quote}
 \begin{quote}Parameter nodeId: NodeId to exclude. If 0 or > 232, any node will be excluded (like with zway\_fc\_remove\_node\_from\_network / RemoveNodeFromNetwork)\end{quote}
 \begin{quote}Parameter startStop: Start exclusion mode if True, stop if False\end{quote}
@@ -420,7 +420,7 @@
 
 \paragraph{Function Class ControllerChange}
 \begin{quote}Syntax: ControllerChange(startStop, highPower = TRUE, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_controller_change(ZWay zway, ZWBOOL startStop, ZWBOOL highPower, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_controller\_change(ZWay zway, ZWBOOL startStop, ZWBOOL highPower, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set new primary controller (also known as Controller Shift). Same as Inclusion, but the newly included device will get the role of primary. Available only on primary controller\end{quote}
 \begin{quote}Parameter startStop: Start controller shift mode if True, stop if False\end{quote}
 \begin{quote}Parameter highPower: Use full power during this operation if True. On False use low power mode\end{quote}
@@ -430,7 +430,7 @@
 
 \paragraph{Function Class CreateNewPrimary}
 \begin{quote}Syntax: CreateNewPrimary(startStop, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_create_new_primary(ZWay zway, ZWBOOL startStop, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_create\_new\_primary(ZWay zway, ZWBOOL startStop, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Create new primary controller by SUC controller. Same as Inclusion, but the newly included device will get the role of primary. Available only on SUC. Be careful not to create two primary controllers! This can lead to network malfunction!\end{quote}
 \begin{quote}Parameter startStop: Start create new primary mode if True, stop if False\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -439,7 +439,7 @@
 
 \paragraph{Function Class ZMEFreqChange}
 \begin{quote}Syntax: ZMEFreqChange(freq, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_zme_freq_change(ZWay zway, ZWBYTE freq, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zme\_freq\_change(ZWay zway, ZWBYTE freq, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Change Z-Wave.Me Z-Stick 4 frequency. This function is specific for Z-Wave.Me hardware\end{quote}
 \begin{quote}Parameter freq: 0x01 RU. 0x02 IN. 0x03 US. 0x04 ANZ. 0x05 HK. 0x06 CN. 0x07 JP. 0x08 KR. 0x09 IL. 0x0A MY. 0xFF request current frequency (ZME firmwares prior to 5.03 don't support this feature)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -448,7 +448,7 @@
 
 \paragraph{Function Class RFPowerLevelSet}
 \begin{quote}Syntax: RFPowerLevelSet(level, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_rf_power_level_set(ZWay zway, ZWBYTE level, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_rf\_power\_level\_set(ZWay zway, ZWBYTE level, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set RF power level to specified value\end{quote}
 \begin{quote}Parameter level: 0 to 9\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -457,7 +457,7 @@
 
 \paragraph{Function Class RFPowerLevelGet}
 \begin{quote}Syntax: RFPowerLevelGet(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_rf_power_level_get(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_rf\_power\_level\_get(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get RF power level current value\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -465,7 +465,7 @@
 
 \paragraph{Function Class SendTestFrame}
 \begin{quote}Syntax: SendTestFrame(nodeId, level, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_send_test_frame(ZWay zway, ZWBYTE node_id, ZWBYTE level, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_send\_test\_frame(ZWay zway, ZWBYTE node\_id, ZWBYTE level, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send test frame to a node at a specified RF level\end{quote}
 \begin{quote}Parameter nodeId: Node Id to make test against\end{quote}
 \begin{quote}Parameter level: 0 to 9\end{quote}
@@ -475,7 +475,7 @@
 
 \paragraph{Function Class FlashAutoProgSet}
 \begin{quote}Syntax: FlashAutoProgSet(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_flash_auto_prog_set(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_flash\_auto\_prog\_set(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Put Z-Wave chip in Atuo Prog mode for USB/UART reflashing\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -483,7 +483,7 @@
 
 \paragraph{Function Class ExploreRequestInclusion}
 \begin{quote}Syntax: ExploreRequestInclusion(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_explore_request_inclusion(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_explore\_request\_inclusion(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Request NWI. Called from SetLearnMode\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -491,7 +491,7 @@
 
 \paragraph{Function Class ExploreRequestExclusion}
 \begin{quote}Syntax: ExploreRequestExclusion(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_explore_request_exclusion(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_explore\_request\_exclusion(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Request NWE\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -499,7 +499,7 @@
 
 \paragraph{Function Class ZMEBootloaderFlash}
 \begin{quote}Syntax: ZMEBootloaderFlash(addr, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_zme_bootloader_flash(ZWay zway, ZWBYTE addr, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zme\_bootloader\_flash(ZWay zway, ZWBYTE addr, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Start reflashing bootloader of Z-Wave.Me firmware for 5th generation Z-Wave chip. This function is specific for Z-Wave.Me hardware\end{quote}
 \begin{quote}Parameter addr: address of new bootloader location in 2K sectors\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -508,7 +508,7 @@
 
 \paragraph{Function Class ZMECapabilities}
 \begin{quote}Syntax: ZMECapabilities(data = NULL, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_zme_capabilities(ZWay zway, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zme\_capabilities(ZWay zway, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get or set firmware capabilities. This function is specific for Z-Wave.Me hardware\end{quote}
 \begin{quote}Parameter data: data to set (NULL to get)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -517,7 +517,7 @@
 
 \paragraph{Function Class ZMEPHISetLED}
 \begin{quote}Syntax: ZMEPHISetLED(led, status, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_zmephisetled(ZWay zway, ZWBYTE led, ZWBYTE status, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zmephisetled(ZWay zway, ZWBYTE led, ZWBYTE status, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Activate LEDs on Philio hw. This function is specific for Philio hardware\end{quote}
 \begin{quote}Parameter led: LED id: 0x10 (Logo), 0x11 (Around), 0x12 (Misc)\end{quote}
 \begin{quote}Parameter status: LED status 2 (Off), 4 (On), 8 (Flash), 16 (Slow flash), 32 (Slow dimming)\end{quote}
@@ -527,7 +527,7 @@
 
 \paragraph{Function Class ZMEPHIGetButton}
 \begin{quote}Syntax: ZMEPHIGetButton(button, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_zmephigetbutton(ZWay zway, ZWBYTE button, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zmephigetbutton(ZWay zway, ZWBYTE button, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get button state on Philio hw. This function is specific for Philio hardware\end{quote}
 \begin{quote}Parameter button: 0: Tamper Key, 1: Function Key A, 2: Function Key B\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -536,7 +536,7 @@
 
 \paragraph{Function Class ZMEPHIGetPower}
 \begin{quote}Syntax: ZMEPHIGetPower(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_zmephigetpower(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zmephigetpower(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get power state on Philio hw. This function is specific for Philio hardware\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -544,7 +544,7 @@
 
 \paragraph{Function Class ZMEPHIGetBattery}
 \begin{quote}Syntax: ZMEPHIGetBattery(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_zmephigetbattery(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zmephigetbattery(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get battery state on Philio hw. This function is specific for Philio hardware\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -552,7 +552,7 @@
 
 \paragraph{Function Class ZMEPHIGetRTC}
 \begin{quote}Syntax: ZMEPHIGetRTC(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_zmephigetrtc(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zmephigetrtc(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get RTC from Philio hw. This function is specific for Philio hardware\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -560,7 +560,7 @@
 
 \paragraph{Function Class ZMEPHISetRTC}
 \begin{quote}Syntax: ZMEPHISetRTC(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_zmephisetrtc(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zmephisetrtc(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set RTC on Philio hw. This function is specific for Philio hardware\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -568,7 +568,7 @@
 
 \paragraph{Function Class InjectPacket}
 \begin{quote}Syntax: InjectPacket(nodeId, data, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_application_command_handler_inject(ZWay zway, ZWBYTE node_id, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_application\_command\_handler\_inject(ZWay zway, ZWBYTE node\_id, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Inject command in Z-Way as it was received via Z-Wave. This function is for debugging only\end{quote}
 \begin{quote}Parameter nodeId: Source Node Id\end{quote}
 \begin{quote}Parameter data: Paket payload (should looks like ccId, ccCmd, data, ....)\end{quote}
@@ -578,7 +578,7 @@
 
 \paragraph{Function Class GetBackgroundRSSI}
 \begin{quote}Syntax: GetBackgroundRSSI(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_get_background_rssi(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_get\_background\_rssi(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get background noise level\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -586,7 +586,7 @@
 
 \paragraph{Function Class SerialAPISetup}
 \begin{quote}Syntax: SerialAPISetup(function, enable, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_serial_api_setup(ZWay zway, ZWBYTE function, ZWBOOL enable, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_serial\_api\_setup(ZWay zway, ZWBYTE function, ZWBOOL enable, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Configure Z-Wave Serial API\end{quote}
 \begin{quote}Parameter function: Configure specific Serial API function. Currently only enable/disable IMA is supported (function = 0x02)\end{quote}
 \begin{quote}Parameter enable: Set feature state: True to enable, False to disable\end{quote}
@@ -596,7 +596,7 @@
 
 \paragraph{Function Class ClearNetworkStats}
 \begin{quote}Syntax: ClearNetworkStats(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_clear_network_stats(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_clear\_network\_stats(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Clear statistics gathered by the Z-Wave protocol\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -604,7 +604,7 @@
 
 \paragraph{Function Class GetNetworkStats}
 \begin{quote}Syntax: GetNetworkStats(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_get_network_stats(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_get\_network\_stats(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get statistics gathered by the Z-Wave protocol\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -612,7 +612,7 @@
 
 \paragraph{Function Class GetPriorityRoute}
 \begin{quote}Syntax: GetPriorityRoute(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_get_priority_route(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_get\_priority\_route(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get the route with the highest priority\end{quote}
 \begin{quote}Parameter nodeId: Node ID we are interested in\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -621,7 +621,7 @@
 
 \paragraph{Function Class SetPriorityRoute}
 \begin{quote}Syntax: SetPriorityRoute(nodeId, repeater1, repeater2, repeater3, repeater4, routeSpeed, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_set_priority_route(ZWay zway, ZWBYTE node_id, ZWBYTE repeater1, ZWBYTE repeater2, ZWBYTE repeater3, ZWBYTE repeater4, ZWBYTE route_speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_set\_priority\_route(ZWay zway, ZWBYTE node\_id, ZWBYTE repeater1, ZWBYTE repeater2, ZWBYTE repeater3, ZWBYTE repeater4, ZWBYTE route\_speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set the route with the highest priority\end{quote}
 \begin{quote}Parameter nodeId: Node ID we are interested in\end{quote}
 \begin{quote}Parameter repeater1: Hop \#1 in the route. Value 0 means direct range. Values > 232 clears the priority route and LWR (Last Working Route is selected by the protocol)\end{quote}
@@ -635,7 +635,7 @@
 
 \paragraph{Function Class SetPromiscuousMode}
 \begin{quote}Syntax: SetPromiscuousMode(enable, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_set_promiscuous_mode(ZWay zway, ZWBOOL enable, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_set\_promiscuous\_mode(ZWay zway, ZWBOOL enable, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Enable or disable promiscuous mode\end{quote}
 \begin{quote}Parameter enable: True to enable functionality, False to disable\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -644,7 +644,7 @@
 
 \paragraph{Function Class AssignPriorityReturnRoute}
 \begin{quote}Syntax: AssignPriorityReturnRoute(nodeId, destId, repeater1, repeater2, repeater3, repeater4, routeSpeed, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_assign_priority_return_route(ZWay zway, ZWBYTE node_id, ZWBYTE dest_id, ZWBYTE repeater1, ZWBYTE repeater2, ZWBYTE repeater3, ZWBYTE repeater4, ZWBYTE route_speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_assign\_priority\_return\_route(ZWay zway, ZWBYTE node\_id, ZWBYTE dest\_id, ZWBYTE repeater1, ZWBYTE repeater2, ZWBYTE repeater3, ZWBYTE repeater4, ZWBYTE route\_speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Assign priority return route to specified node\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device that have to store new route\end{quote}
 \begin{quote}Parameter destId: Destination Node Id of the route\end{quote}
@@ -659,7 +659,7 @@
 
 \paragraph{Function Class AssignPrioritySUCReturnRoute}
 \begin{quote}Syntax: AssignPrioritySUCReturnRoute(nodeId, repeater1, repeater2, repeater3, repeater4, routeSpeed, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_assign_priority_suc_return_route(ZWay zway, ZWBYTE node_id, ZWBYTE repeater1, ZWBYTE repeater2, ZWBYTE repeater3, ZWBYTE repeater4, ZWBYTE route_speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_assign\_priority\_suc\_return\_route(ZWay zway, ZWBYTE node\_id, ZWBYTE repeater1, ZWBYTE repeater2, ZWBYTE repeater3, ZWBYTE repeater4, ZWBYTE route\_speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Assign priority return route to SUC\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device that have to store route to SUC\end{quote}
 \begin{quote}Parameter repeater1: Hop \#1 in the route. Value 0 means direct range\end{quote}
@@ -673,7 +673,7 @@
 
 \paragraph{Function Class ZMESerialAPIOptionsJammingDetectionSet}
 \begin{quote}Syntax: ZMESerialAPIOptionsJammingDetectionSet(ch1Threshold, ch2Threshold, ch3Threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_zme_serialapi_options_jamming_detection_set(ZWay zway, ZWBYTE ch1_threshold, ZWBYTE ch2_threshold, ZWBYTE ch3_threshold, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zme\_serialapi\_options\_jamming\_detection\_set(ZWay zway, ZWBYTE ch1\_threshold, ZWBYTE ch2\_threshold, ZWBYTE ch3\_threshold, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Jamming Detection threshold. Jamming detection fine tuning in NVM:. address 6530, 3 bytes: ch1\_threshold ch2\_threshold ch3\_threshold. address 6533, 2 bytes: how many times should measurements exceed in last 10 seconds to trigger the alarm, default 2 times. address 6535, 2 bytes: repeat the alarm in N*0.1 seconds if the jamming persists, default 0100 = 25.6 sec\end{quote}
 \begin{quote}Parameter ch1Threshold: Threshold for channel 1\end{quote}
 \begin{quote}Parameter ch2Threshold: Threshold for channel 2\end{quote}
@@ -684,7 +684,7 @@
 
 \paragraph{Function Class ZMESerialAPIOptionsAdvancedIMASet}
 \begin{quote}Syntax: ZMESerialAPIOptionsAdvancedIMASet(enable, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway_fc_zme_serialapi_options_advanced_ima_set(ZWay zway, ZWBOOL enable, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zme\_serialapi\_options\_advanced\_ima\_set(ZWay zway, ZWBOOL enable, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Enable/disable advanced IMA by Z0Wave.Me that includes incoming route path information\end{quote}
 \begin{quote}Parameter enable: Turn on or off\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
