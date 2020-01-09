@@ -17,6 +17,7 @@ Data holders:
 
 \paragraph{Command Basic Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_basic_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Basic Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -24,6 +25,7 @@ Data holders:
 
 \paragraph{Command Basic Set}
 \begin{quote}Syntax: Set(value, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_basic_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE value, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Basic Set\end{quote}
 \begin{quote}Parameter value: Value\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -55,6 +57,7 @@ Data holders:
 
 \paragraph{Command Wakeup Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_wakeup_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Wakeup Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -62,6 +65,7 @@ Data holders:
 
 \paragraph{Command Wakeup CapabilitiesGet}
 \begin{quote}Syntax: CapabilitiesGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_wakeup_capabilities_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Wakeup CapabilityGet\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -69,6 +73,7 @@ Data holders:
 
 \paragraph{Command Wakeup Sleep}
 \begin{quote}Syntax: Sleep(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_wakeup_sleep(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Wakeup NoMoreInformation (Sleep)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -76,6 +81,7 @@ Data holders:
 
 \paragraph{Command Wakeup Set}
 \begin{quote}Syntax: Set(interval, notificationNodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_wakeup_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int interval, ZWBYTE notification_node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Wakeup Set\end{quote}
 \begin{quote}Parameter interval: Wakeup interval in seconds\end{quote}
 \begin{quote}Parameter notificationNodeId: Node Id to be notified about wakeup\end{quote}
@@ -108,6 +114,7 @@ Data holders:
 
 \paragraph{Command Battery Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_battery_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Battery Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -135,6 +142,7 @@ Data holders:
 
 \paragraph{Command ManufacturerSpecific Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_manufacturer_specific_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ManufacturerSpecific Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -142,6 +150,7 @@ Data holders:
 
 \paragraph{Command ManufacturerSpecific DeviceIdGet}
 \begin{quote}Syntax: DeviceIdGet(type, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_manufacturer_specific_device_id_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE type, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ManufacturerSpecific Device Id Get\end{quote}
 \begin{quote}Parameter type: Device Id type to request\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -166,6 +175,7 @@ Data holders:
 
 \paragraph{Command Proprietary Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_proprietary_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Proprietary Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -173,6 +183,7 @@ Data holders:
 
 \paragraph{Command Proprietary Set}
 \begin{quote}Syntax: Set(data, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_proprietary_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Proprietary Set\end{quote}
 \begin{quote}Parameter data: Data to set\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -199,6 +210,7 @@ Data holders:
 
 \paragraph{Command Configuration Get}
 \begin{quote}Syntax: Get(parameter, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_configuration_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE parameter, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Configuration Get\end{quote}
 \begin{quote}Parameter parameter: Parameter number (from 1 to 255)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -207,6 +219,7 @@ Data holders:
 
 \paragraph{Command Configuration Set}
 \begin{quote}Syntax: Set(parameter, value, size = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_configuration_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE parameter, int value, ZWBYTE size, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Configuration Set\end{quote}
 \begin{quote}Parameter parameter: Parameter number (from 1 to 255)\end{quote}
 \begin{quote}Parameter value: Value to be sent (negative and positive values are accepted, but will be stripped to size)\end{quote}
@@ -217,6 +230,7 @@ Data holders:
 
 \paragraph{Command Configuration SetDefault}
 \begin{quote}Syntax: SetDefault(parameter, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_configuration_set_default(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE parameter, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Configuration SetDefault\end{quote}
 \begin{quote}Parameter parameter: Parameter number to be set to device default\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -244,6 +258,7 @@ Data holders:
 
 \paragraph{Command SensorBinary Get}
 \begin{quote}Syntax: Get(sensorType = -1, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_sensor_binary_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int sensorType, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SensorBinary Get\end{quote}
 \begin{quote}Parameter sensorType: Type of sensor to query information for. 0xFF to query information for the first available sensor type. -1 to query information for all supported sensor types\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -273,6 +288,7 @@ Data holders:
 
 \paragraph{Command Association Get}
 \begin{quote}Syntax: Get(groupId = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_association_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE group_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Association Get\end{quote}
 \begin{quote}Parameter groupId: Group Id (from 1 to 255). 0 requests all groups\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -281,6 +297,7 @@ Data holders:
 
 \paragraph{Command Association Set}
 \begin{quote}Syntax: Set(groupId, includeNode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_association_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE group_id, ZWBYTE include_node, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Association Set (Add)\end{quote}
 \begin{quote}Parameter groupId: Group Id (from 1 to 255)\end{quote}
 \begin{quote}Parameter includeNode: Node to be added to the group\end{quote}
@@ -290,6 +307,7 @@ Data holders:
 
 \paragraph{Command Association Remove}
 \begin{quote}Syntax: Remove(groupId, excludeNode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_association_remove(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE group_id, ZWBYTE exclude_node, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Association Remove\end{quote}
 \begin{quote}Parameter groupId: Group Id (from 1 to 255)\end{quote}
 \begin{quote}Parameter excludeNode: Node to be removed from the group\end{quote}
@@ -299,6 +317,7 @@ Data holders:
 
 \paragraph{Command Association GroupingsGet}
 \begin{quote}Syntax: GroupingsGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_association_groupings_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Association GroupingsGet\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -332,6 +351,7 @@ Data holders:
 
 \paragraph{Command Meter Get}
 \begin{quote}Syntax: Get(scale = -1, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_meter_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int scale, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Meter Get\end{quote}
 \begin{quote}Parameter scale: Desired scale. -1 for all scales\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -340,6 +360,7 @@ Data holders:
 
 \paragraph{Command Meter Reset}
 \begin{quote}Syntax: Reset(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_meter_reset(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Meter Reset\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -347,6 +368,7 @@ Data holders:
 
 \paragraph{Command Meter Supported}
 \begin{quote}Syntax: Supported(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_meter_supported(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Meter SupportedGet\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -370,6 +392,7 @@ Data holders:
 
 \paragraph{Command MeterPulse Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_meter_pulse_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send MeterPulse Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -401,6 +424,7 @@ Data holders:
 
 \paragraph{Command SensorMultilevel Get}
 \begin{quote}Syntax: Get(sensorType = -1, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_sensor_multilevel_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int sensor_type, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SensorMultilevel Get\end{quote}
 \begin{quote}Parameter sensorType: Type of sensor to be requested. -1 means all sensor types supported by the device\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -431,6 +455,7 @@ Data holders:
 
 \paragraph{Command SensorConfiguration Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_sensor_configuration_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SensorConfiguration Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -438,6 +463,7 @@ Data holders:
 
 \paragraph{Command SensorConfiguration Set}
 \begin{quote}Syntax: Set(mode, value, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_sensor_configuration_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE mode, float value, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SensorConfiguration Set\end{quote}
 \begin{quote}Parameter mode: Value set mode\end{quote}
 \begin{quote}Parameter value: Value\end{quote}
@@ -464,6 +490,7 @@ Data holders:
 
 \paragraph{Command SwitchAll Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_switch_all_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchAll Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -471,6 +498,7 @@ Data holders:
 
 \paragraph{Command SwitchAll Set}
 \begin{quote}Syntax: Set(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_switch_all_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE mode, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchAll Set\end{quote}
 \begin{quote}Parameter mode: SwitchAll Mode: see definitions below\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -479,6 +507,7 @@ Data holders:
 
 \paragraph{Command SwitchAll SetOn}
 \begin{quote}Syntax: SetOn(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_switch_all_set_on(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchAll Set On\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -486,6 +515,7 @@ Data holders:
 
 \paragraph{Command SwitchAll SetOff}
 \begin{quote}Syntax: SetOff(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_switch_all_set_off(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchAll Set Off\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -509,6 +539,7 @@ Data holders:
 
 \paragraph{Command SwitchBinary Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_switch_binary_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchBinary Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -516,6 +547,7 @@ Data holders:
 
 \paragraph{Command SwitchBinary Set}
 \begin{quote}Syntax: Set(value, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_switch_binary_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBOOL value, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchBinary Set\end{quote}
 \begin{quote}Parameter value: Value\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -545,6 +577,7 @@ Data holders:
 
 \paragraph{Command SwitchMultilevel Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_switch_multilevel_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchMultilevel Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -552,6 +585,7 @@ Data holders:
 
 \paragraph{Command SwitchMultilevel Set}
 \begin{quote}Syntax: Set(level, duration = 0xff, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_switch_multilevel_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE level, ZWBYTE duration, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchMultilevel Set\end{quote}
 \begin{quote}Parameter level: Level to be set\end{quote}
 \begin{quote}Parameter duration: Duration of change:. 0 instantly. 0x01...0x7f in seconds. 0x80...0xfe in minutes mapped to 1...127 (value 0x80=128 is 1 minute). 0xff use device factory default\end{quote}
@@ -561,6 +595,7 @@ Data holders:
 
 \paragraph{Command SwitchMultilevel StartLevelChange}
 \begin{quote}Syntax: StartLevelChange(dir, duration = 0xff, ignoreStartLevel = TRUE, startLevel = 50, incdec = 0, step = 0xff, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_switch_multilevel_start_level_change(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE dir, ZWBYTE duration, ZWBOOL ignoreStartLevel, ZWBYTE startLevel, ZWBYTE incdec, ZWBYTE step, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchMultilevel StartLevelChange\end{quote}
 \begin{quote}Parameter dir: Direction of change: 0 to incrase, 1 to decrase\end{quote}
 \begin{quote}Parameter duration: Duration of change:. 0 instantly. 0x01...0x7f in seconds. 0x80...0xfe in minutes mapped to 1...127 (value 0x80=128 is 1 minute). 0xff use device factory default\end{quote}
@@ -574,6 +609,7 @@ Data holders:
 
 \paragraph{Command SwitchMultilevel StopLevelChange}
 \begin{quote}Syntax: StopLevelChange(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_switch_multilevel_stop_level_change(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchMultilevel StopLevelChange\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -601,6 +637,7 @@ Data holders:
 
 \paragraph{Command MultiChannelAssociation Get}
 \begin{quote}Syntax: Get(groupId = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_multichannel_association_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE group_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send MultiChannelAssociation Get\end{quote}
 \begin{quote}Parameter groupId: Group Id (from 1 to 255). 0 requests all groups\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -609,6 +646,7 @@ Data holders:
 
 \paragraph{Command MultiChannelAssociation Set}
 \begin{quote}Syntax: Set(groupId, includeNode, includeInstance, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_multichannel_association_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE group_id, ZWBYTE include_node, ZWBYTE include_instance, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send MultiChannelAssociation Set (Add)\end{quote}
 \begin{quote}Parameter groupId: Group Id (from 1 to 255)\end{quote}
 \begin{quote}Parameter includeNode: Node to be added to the group\end{quote}
@@ -619,6 +657,7 @@ Data holders:
 
 \paragraph{Command MultiChannelAssociation Remove}
 \begin{quote}Syntax: Remove(groupId, excludeNode, excludeInstance, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_multichannel_association_remove(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE group_id, ZWBYTE exclude_node, ZWBYTE exclude_instance, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send MultiChannelAssociation Remove\end{quote}
 \begin{quote}Parameter groupId: Group Id (from 1 to 255)\end{quote}
 \begin{quote}Parameter excludeNode: Node to be removed from the group\end{quote}
@@ -629,6 +668,7 @@ Data holders:
 
 \paragraph{Command MultiChannelAssociation GroupingsGet}
 \begin{quote}Syntax: GroupingsGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_multichannel_association_groupings_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send MultiChannelAssociation GroupingsGet\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -659,6 +699,7 @@ Data holders:
 
 \paragraph{Command MultiChannel Get}
 \begin{quote}Syntax: Get(ccId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_multichannel_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE cc_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send MultiChannel Get (MultiInstance V1 command). Reports number of channels supporting a defined Command Class. Depricated by MutliChannel V2, needed for old devices only\end{quote}
 \begin{quote}Parameter ccId: Command Class Id in question\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -667,6 +708,7 @@ Data holders:
 
 \paragraph{Command MultiChannel EndpointFind}
 \begin{quote}Syntax: EndpointFind(generic, specific, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_multichannel_endpoint_find(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE generic, ZWBYTE specific, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send MultiChannel Endpoint Find. Note that MultiChannel EndpointFind Report is not supported as useless. But one can still trap the response packet in logs\end{quote}
 \begin{quote}Parameter generic: Generic type in search\end{quote}
 \begin{quote}Parameter specific: Specific type in search\end{quote}
@@ -676,6 +718,7 @@ Data holders:
 
 \paragraph{Command MultiChannel EndpointGet}
 \begin{quote}Syntax: EndpointGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_multichannel_endpoint_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send MultiChannel Endpoint Get. Get the number of available endpoints\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -683,6 +726,7 @@ Data holders:
 
 \paragraph{Command MultiChannel CapabilitiesGet}
 \begin{quote}Syntax: CapabilitiesGet(endpoint, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_multichannel_capabilities_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE endpoint, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send MultiChannel Capabilities Get. Request information about the specified endpoint\end{quote}
 \begin{quote}Parameter endpoint: Endpoint in question\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -691,6 +735,7 @@ Data holders:
 
 \paragraph{Command MultiChannel AggregatedMembersGet}
 \begin{quote}Syntax: AggregatedMembersGet(endpoint, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_multichannel_aggregated_members_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE endpoint, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send MultiChannel Aggregated Members Get. Request information about endpoints in the specified aggregated endpoint (v4 and above)\end{quote}
 \begin{quote}Parameter endpoint: Aggregated endpoint in question\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -718,6 +763,7 @@ Data holders:
 
 \paragraph{Command NodeNaming Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_node_naming_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send NodeNaming GetName and GetLocation\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -725,6 +771,7 @@ Data holders:
 
 \paragraph{Command NodeNaming GetName}
 \begin{quote}Syntax: GetName(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_node_naming_get_name(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send NodeNaming GetName\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -732,6 +779,7 @@ Data holders:
 
 \paragraph{Command NodeNaming GetLocation}
 \begin{quote}Syntax: GetLocation(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_node_naming_get_location(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send NodeNaming GetLocation\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -739,6 +787,7 @@ Data holders:
 
 \paragraph{Command NodeNaming SetName}
 \begin{quote}Syntax: SetName(name, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_node_naming_set_name(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWCSTR name, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send NodeNaming SetName\end{quote}
 \begin{quote}Parameter name: Value\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -747,6 +796,7 @@ Data holders:
 
 \paragraph{Command NodeNaming SetLocation}
 \begin{quote}Syntax: SetLocation(location, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_node_naming_set_location(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWCSTR location, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send NodeNaming SetLocation\end{quote}
 \begin{quote}Parameter location: Value\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -784,6 +834,7 @@ Data holders:
 
 \paragraph{Command ThermostatSetPoint Get}
 \begin{quote}Syntax: Get(mode = -1, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_thermostat_setpoint_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int mode, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ThermostatSetPoint Get\end{quote}
 \begin{quote}Parameter mode: Thermostat Mode. -1 requests for all modes\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -792,6 +843,7 @@ Data holders:
 
 \paragraph{Command ThermostatSetPoint Set}
 \begin{quote}Syntax: Set(mode, value, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_thermostat_setpoint_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int mode, float value, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ThermostatSetPoint Set\end{quote}
 \begin{quote}Parameter mode: Thermostat Mode\end{quote}
 \begin{quote}Parameter value: temperature\end{quote}
@@ -820,6 +872,7 @@ Data holders:
 
 \paragraph{Command ThermostatMode Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_thermostat_mode_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ThermostatMode Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -827,6 +880,7 @@ Data holders:
 
 \paragraph{Command ThermostatMode Set}
 \begin{quote}Syntax: Set(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_thermostat_mode_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE mode, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ThermostatMode Set\end{quote}
 \begin{quote}Parameter mode: Thermostat Mode\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -855,6 +909,7 @@ Data holders:
 
 \paragraph{Command ThermostatFanMode Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_thermostat_fan_mode_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ThermostatFanMode Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -862,6 +917,7 @@ Data holders:
 
 \paragraph{Command ThermostatFanMode Set}
 \begin{quote}Syntax: Set(on, mode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_thermostat_fan_mode_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBOOL on, ZWBYTE mode, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ThermostatFanMode Set\end{quote}
 \begin{quote}Parameter on: TRUE to turn fan on (and set mode), FALSE to comletely turn off (mode is ignored)\end{quote}
 \begin{quote}Parameter mode: Thermostat Fan Mode\end{quote}
@@ -887,6 +943,7 @@ Data holders:
 
 \paragraph{Command ThermostatFanState Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_thermostat_fan_state_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ThermostatFanState Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -914,6 +971,7 @@ Data holders:
 
 \paragraph{Command ThermostatOperatingState Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_thermostat_operating_state_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ThermostatOperatingState Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -921,6 +979,7 @@ Data holders:
 
 \paragraph{Command ThermostatOperatingState LoggingGet}
 \begin{quote}Syntax: LoggingGet(state, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_thermostat_operating_state_logging_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE state, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ThermostatOperatingState Logging Get\end{quote}
 \begin{quote}Parameter state: State number to get logging for. 0 to get log for all supported states\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -951,6 +1010,7 @@ Data holders:
 
 \paragraph{Command AlarmSensor SupportedGet}
 \begin{quote}Syntax: SupportedGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_alarm_sensor_supported_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send AlarmSensor SupportedGet\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -958,6 +1018,7 @@ Data holders:
 
 \paragraph{Command AlarmSensor Get}
 \begin{quote}Syntax: Get(type = -1, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_alarm_sensor_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int type, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send AlarmSensor Get. Requests the status of the alarm sensor of a given type\end{quote}
 \begin{quote}Parameter type: Alarm type to get. -1 means get all types\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1008,6 +1069,7 @@ Data holders:
 
 \paragraph{Command DoorLock Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_door_lock_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send DoorLock Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1015,6 +1077,7 @@ Data holders:
 
 \paragraph{Command DoorLock ConfigurationGet}
 \begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_door_lock_configuration_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send DoorLock Configuration Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1022,6 +1085,7 @@ Data holders:
 
 \paragraph{Command DoorLock Set}
 \begin{quote}Syntax: Set(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_door_lock_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE mode, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send DoorLock Set\end{quote}
 \begin{quote}Parameter mode: Lock mode\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1030,6 +1094,7 @@ Data holders:
 
 \paragraph{Command DoorLock ConfigurationSet}
 \begin{quote}Syntax: ConfigurationSet(opType, outsideState, insideState, lockMin, lockSec, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_door_lock_configuration_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE opType, ZWBYTE outsideState, ZWBYTE insideState, ZWBYTE lockMin, ZWBYTE lockSec, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send DoorLock Configuration Set\end{quote}
 \begin{quote}Parameter opType: Operation type\end{quote}
 \begin{quote}Parameter outsideState: State of outside door handle\end{quote}
@@ -1125,6 +1190,7 @@ Data holders:
 
 \paragraph{Command DoorLockLogging Get}
 \begin{quote}Syntax: Get(record = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_door_lock_logging_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE record, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send DoorLockLogging Get\end{quote}
 \begin{quote}Parameter record: Record number to get, or 0 to get last records\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1153,6 +1219,7 @@ Data holders:
 
 \paragraph{Command UserCode Get}
 \begin{quote}Syntax: Get(user = -1, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_user_code_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int user, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send UserCode Get\end{quote}
 \begin{quote}Parameter user: User index to get code for (1...maxUsers). -1 to get codes for all users\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1161,6 +1228,7 @@ Data holders:
 
 \paragraph{Command UserCode Set}
 \begin{quote}Syntax: Set(user, code, status, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_user_code_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int user, ZWCSTR code, ZWBYTE status, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send UserCode Set\end{quote}
 \begin{quote}Parameter user: User index to set code for (1...maxUsers). 0 means set for all users\end{quote}
 \begin{quote}Parameter code: Code to set (4...10 characters long)\end{quote}
@@ -1171,6 +1239,7 @@ Data holders:
 
 \paragraph{Command UserCode SetRaw}
 \begin{quote}Syntax: SetRaw(user, code, status, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_user_code_set_raw(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int user, const ZWBYTE * code, ZWBYTE status, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send UserCode Set (raw)\end{quote}
 \begin{quote}Parameter user: User index to set code for (1...maxUsers). 0 means set for all users\end{quote}
 \begin{quote}Parameter code: Code to set (4...10 bytes long)\end{quote}
@@ -1188,6 +1257,7 @@ Data holders:
 Allows to report to devices in Z-Wave network time and date as well as time zone offset and daylight savings parameters. The data formats are based on the International Standard ISO 8601.
 \paragraph{Command Time TimeGet}
 \begin{quote}Syntax: TimeGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_time_time_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Time TimeGet\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1195,6 +1265,7 @@ Allows to report to devices in Z-Wave network time and date as well as time zone
 
 \paragraph{Command Time DateGet}
 \begin{quote}Syntax: DateGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_time_date_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Time DateGet\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1202,6 +1273,7 @@ Allows to report to devices in Z-Wave network time and date as well as time zone
 
 \paragraph{Command Time OffsetGet}
 \begin{quote}Syntax: OffsetGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_time_offset_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Time TimeOffsetGet\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1216,6 +1288,7 @@ Allows to report to devices in Z-Wave network time and date as well as time zone
 Used to set date and time. Time zone offset and daylight savings may be set in the Time Command Class. The data formats are based on the International Standard ISO 8601.
 \paragraph{Command TimeParameters Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_time_parameters_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send TimeParameters Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1223,6 +1296,7 @@ Used to set date and time. Time zone offset and daylight savings may be set in t
 
 \paragraph{Command TimeParameters Set}
 \begin{quote}Syntax: Set(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_time_parameters_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send TimeParameters Set\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1237,6 +1311,7 @@ Used to set date and time. Time zone offset and daylight savings may be set in t
 Sync clock on the device with controller system clock.
 \paragraph{Command Clock Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_clock_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Clock Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1244,6 +1319,7 @@ Sync clock on the device with controller system clock.
 
 \paragraph{Command Clock Set}
 \begin{quote}Syntax: Set(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_clock_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Clock Set\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1268,6 +1344,7 @@ Data holders:
 
 \paragraph{Command SceneActivation Set}
 \begin{quote}Syntax: Set(sceneId, dimmingDuration = 0xff, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_scene_activation_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE sceneId, ZWBYTE dimmingDuration, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SceneActivation Set\end{quote}
 \begin{quote}Parameter sceneId: Scene Id\end{quote}
 \begin{quote}Parameter dimmingDuration: Dimming duration\end{quote}
@@ -1295,6 +1372,7 @@ Data holders:
 
 \paragraph{Command SceneControllerConf Get}
 \begin{quote}Syntax: Get(group = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_scene_controller_conf_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE group, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SceneControllerConf Get\end{quote}
 \begin{quote}Parameter group: Group Id. 0 requests all groups\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1303,6 +1381,7 @@ Data holders:
 
 \paragraph{Command SceneControllerConf Set}
 \begin{quote}Syntax: Set(group, scene, duration = 0x0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_scene_controller_conf_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE group, ZWBYTE scene, ZWBYTE duration, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SceneControllerConf Set\end{quote}
 \begin{quote}Parameter group: Group Id\end{quote}
 \begin{quote}Parameter scene: Scene Id\end{quote}
@@ -1332,6 +1411,7 @@ Data holders:
 
 \paragraph{Command SceneActuatorConf Get}
 \begin{quote}Syntax: Get(scene = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_scene_actuator_conf_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE scene, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SceneActuatorConf Get\end{quote}
 \begin{quote}Parameter scene: Scene Id. 0 means get current scene\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1340,6 +1420,7 @@ Data holders:
 
 \paragraph{Command SceneActuatorConf Set}
 \begin{quote}Syntax: Set(scene, level, dimming = 0xff, override = TRUE, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_scene_actuator_conf_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE scene, ZWBYTE level, ZWBYTE dimming, ZWBOOL override, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SceneActuatorConf Set\end{quote}
 \begin{quote}Parameter scene: Scene Id\end{quote}
 \begin{quote}Parameter level: Level\end{quote}
@@ -1367,6 +1448,7 @@ Data holders:
 
 \paragraph{Command Indicator Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_indicator_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Indicator Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1374,6 +1456,7 @@ Data holders:
 
 \paragraph{Command Indicator Set}
 \begin{quote}Syntax: Set(val, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_indicator_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE val, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Indicator Set\end{quote}
 \begin{quote}Parameter val: Value to set\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1405,6 +1488,7 @@ Data holders:
 
 \paragraph{Command Protection Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_protection_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Protection Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1412,6 +1496,7 @@ Data holders:
 
 \paragraph{Command Protection Set}
 \begin{quote}Syntax: Set(state, rfState = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_protection_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE state, ZWBYTE rfState, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Protection Set\end{quote}
 \begin{quote}Parameter state: Local control protection state\end{quote}
 \begin{quote}Parameter rfState: RF control protection state\end{quote}
@@ -1421,6 +1506,7 @@ Data holders:
 
 \paragraph{Command Protection ExclusiveGet}
 \begin{quote}Syntax: ExclusiveGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_protection_exclusive_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Protection Exclusive Control Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1428,6 +1514,7 @@ Data holders:
 
 \paragraph{Command Protection ExclusiveSet}
 \begin{quote}Syntax: ExclusiveSet(controlNodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_protection_exclusive_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE controlNodeId, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Protection Exclusive Control Set\end{quote}
 \begin{quote}Parameter controlNodeId: Node Id to have exclusive control over destination node\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1436,6 +1523,7 @@ Data holders:
 
 \paragraph{Command Protection TimeoutGet}
 \begin{quote}Syntax: TimeoutGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_protection_timeout_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Protection Timeout Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1443,6 +1531,7 @@ Data holders:
 
 \paragraph{Command Protection TimeoutSet}
 \begin{quote}Syntax: TimeoutSet(timeout, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_protection_timeout_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int timeout, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Protection Timeout Set\end{quote}
 \begin{quote}Parameter timeout: Timeout in seconds. 0 is no timer set. -1 is infinite timeout. max value is 191 minute (11460 seconds). values above 1 minute are rounded to 1 minute boundary\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1488,6 +1577,7 @@ Data holders:
 
 \paragraph{Command ScheduleEntryLock Enable}
 \begin{quote}Syntax: Enable(user, enable, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_schedule_entry_lock_enable(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int user, ZWBOOL enable, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ScheduleEntryLock Enable(All)\end{quote}
 \begin{quote}Parameter user: User to enable/disable schedule for. 0 to enable/disable for all users\end{quote}
 \begin{quote}Parameter enable: TRUE to enable schedule, FALSE otherwise\end{quote}
@@ -1497,6 +1587,7 @@ Data holders:
 
 \paragraph{Command ScheduleEntryLock WeekdayGet}
 \begin{quote}Syntax: WeekdayGet(user, slot, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_schedule_entry_lock_weekday_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int user, ZWBYTE slot, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ScheduleEntryLock Weekday Get\end{quote}
 \begin{quote}Parameter user: User to get schedule for. 0 to get for all users\end{quote}
 \begin{quote}Parameter slot: Slot to get schedule for. 0 to get for all slots\end{quote}
@@ -1506,6 +1597,7 @@ Data holders:
 
 \paragraph{Command ScheduleEntryLock WeekdaySet}
 \begin{quote}Syntax: WeekdaySet(user, slot, dayOfWeek, startHour, startMinute, stopHour, stopMinute, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_schedule_entry_lock_weekday_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int user, ZWBYTE slot, ZWBYTE dayOfWeek, ZWBYTE startHour, ZWBYTE startMinute, ZWBYTE stopHour, ZWBYTE stopMinute, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ScheduleEntryLock Weekday Set\end{quote}
 \begin{quote}Parameter user: User to set schedule for\end{quote}
 \begin{quote}Parameter slot: Slot to set schedule for\end{quote}
@@ -1520,6 +1612,7 @@ Data holders:
 
 \paragraph{Command ScheduleEntryLock YearGet}
 \begin{quote}Syntax: YearGet(user, slot, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_schedule_entry_lock_year_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int user, ZWBYTE slot, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ScheduleEntryLock Year Get\end{quote}
 \begin{quote}Parameter user: User to enable/disable schedule for. 0 to get for all users\end{quote}
 \begin{quote}Parameter slot: Slot to get schedule for. 0 to get for all slots\end{quote}
@@ -1529,6 +1622,7 @@ Data holders:
 
 \paragraph{Command ScheduleEntryLock YearSet}
 \begin{quote}Syntax: YearSet(user, slot, startYear, startMonth, startDay, startHour, startMinute, stopYear, stopMonth, stopDay, stopHour, stopMinute, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_schedule_entry_lock_year_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int user, ZWBYTE slot, ZWBYTE startYear, ZWBYTE startMonth, ZWBYTE startDay, ZWBYTE startHour, ZWBYTE startMinute, ZWBYTE stopYear, ZWBYTE stopMonth, ZWBYTE stopDay, ZWBYTE stopHour, ZWBYTE stopMinute, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ScheduleEntryLock Year Set\end{quote}
 \begin{quote}Parameter user: User to set schedule for\end{quote}
 \begin{quote}Parameter slot: Slot to set schedule for\end{quote}
@@ -1565,6 +1659,7 @@ Data holders:
 
 \paragraph{Command ClimateControlSchedule OverrideGet}
 \begin{quote}Syntax: OverrideGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_climate_control_schedule_override_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ClimateControlSchedule Override Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1572,6 +1667,7 @@ Data holders:
 
 \paragraph{Command ClimateControlSchedule OverrideSet}
 \begin{quote}Syntax: OverrideSet(overrideType, overrideState, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_climate_control_schedule_override_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE overrideType, ZWBYTE overrideState, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ClimateControlSchedule Override Set\end{quote}
 \begin{quote}Parameter overrideType: Override type to set. (0 – no override, 1 – temporary override, 2 – permanent override)\end{quote}
 \begin{quote}Parameter overrideState: Override state. -128 (0x80) ... -1 (0xFF): setpoint -12.8 ... -0.1 degrees. 0 (0x00): setpoint. 1 (0x01) ... 120 (0x78): setpoint +0.1 ... +12 degrees. 121 (0x79): frost protection. 122 (0x7A): energy saving. 123 (0x7B) ... 126 (0x7D): reserved. 127 (0x7F): unused\end{quote}
@@ -1618,6 +1714,7 @@ Data holders:
 
 \paragraph{Command MeterTableMonitor StatusDateGet}
 \begin{quote}Syntax: StatusDateGet(maxResults = 0, startDate, endDate, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_meter_table_monitor_status_date_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE maxResults, time_t startDate, time_t endDate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send StatusTableMonitor Status Get for a range of dates\end{quote}
 \begin{quote}Parameter maxResults: Maximum number of entries to get from log. 0 means all matching entries\end{quote}
 \begin{quote}Parameter startDate: Start date and time (local UNIX time)\end{quote}
@@ -1628,6 +1725,7 @@ Data holders:
 
 \paragraph{Command MeterTableMonitor StatusDepthGet}
 \begin{quote}Syntax: StatusDepthGet(maxResults = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_meter_table_monitor_status_depth_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE maxResults, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send StatusTableMonitor Status Get for specified depth\end{quote}
 \begin{quote}Parameter maxResults: Number of entries to get from log. 0 means current status only. 0xFF means all entries\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1636,6 +1734,7 @@ Data holders:
 
 \paragraph{Command MeterTableMonitor CurrentDataGet}
 \begin{quote}Syntax: CurrentDataGet(setId = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_meter_table_monitor_current_data_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE setId, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send StatusTableMonitor Current Data Get\end{quote}
 \begin{quote}Parameter setId: Index of dataset to get data for. 0 to get data for all supported datasets\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1644,6 +1743,7 @@ Data holders:
 
 \paragraph{Command MeterTableMonitor HistoricalDataGet}
 \begin{quote}Syntax: HistoricalDataGet(setId = 0, maxResults = 0, startDate, endDate, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_meter_table_monitor_historical_data_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE setId, ZWBYTE maxResults, time_t startDate, time_t endDate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send StatusTableMonitor Historical Data Get\end{quote}
 \begin{quote}Parameter setId: Index of dataset to get data for. 0 to get data for all supported datasets\end{quote}
 \begin{quote}Parameter maxResults: Maximum number of entries to get from log. 0 means all matching entries\end{quote}
@@ -1705,6 +1805,7 @@ Data holders:
 
 \paragraph{Command Alarm Get}
 \begin{quote}Syntax: Get(type = 0, event = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_alarm_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE type, ZWBYTE event, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Alarm Get. Requests the status of a specific event of a specific alarm type\end{quote}
 \begin{quote}Parameter type: Type of alarm to get level for. 0 to get level for all supported alarms (v2 and higher). 0xFF to get level for first supported alarm (v2 and higher)\end{quote}
 \begin{quote}Parameter event: Notification event to get level for. This argument is ignored prior to Notification v3. Must be 0 if type is 0xFF\end{quote}
@@ -1714,6 +1815,7 @@ Data holders:
 
 \paragraph{Command Alarm Set}
 \begin{quote}Syntax: Set(type, level, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_alarm_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE type, ZWBYTE level, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Alarm Set (v2 and higher). Enable/disable alarms of a specific type\end{quote}
 \begin{quote}Parameter type: Type of alarm to set level for\end{quote}
 \begin{quote}Parameter level: Level to set (0x0 = off, 0xFF = on, other values are reserved)\end{quote}
@@ -1744,6 +1846,7 @@ Data holders:
 
 \paragraph{Command PowerLevel Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_power_level_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send PowerLevel Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1751,6 +1854,7 @@ Data holders:
 
 \paragraph{Command PowerLevel Set}
 \begin{quote}Syntax: Set(level, timeout, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_power_level_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE level, ZWBYTE timeout, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send PowerLevel Set\end{quote}
 \begin{quote}Parameter level: Power level to set (from 0 to 9)\end{quote}
 \begin{quote}Parameter timeout: Timeout in seconds\end{quote}
@@ -1760,6 +1864,7 @@ Data holders:
 
 \paragraph{Command PowerLevel TestNodeGet}
 \begin{quote}Syntax: TestNodeGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_power_level_test_node_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send PowerLevel Test Node Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1767,6 +1872,7 @@ Data holders:
 
 \paragraph{Command PowerLevel TestNodeSet}
 \begin{quote}Syntax: TestNodeSet(testNodeId, level, frameCount, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_power_level_test_node_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE testNodeId, ZWBYTE level, int frameCount, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send PowerLevel Test Node Set. Starts sending specified number of NOP packets to a given device at a given power level. Once finished, unsolicited report MIGHT be sent by the device (at any time you can use TestNodeGet)\end{quote}
 \begin{quote}Parameter testNodeId: Node to set test packets to\end{quote}
 \begin{quote}Parameter level: Power level to use (from 0 to 9)\end{quote}
@@ -1798,6 +1904,7 @@ Data holders:
 
 \paragraph{Command ZWavePlusInfo Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_zwave_plus_info_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ZWave+ Info Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1832,6 +1939,7 @@ Data holders:
 
 \paragraph{Command FirmwareUpdate Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_firmware_update_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Firmware Metadata Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1839,6 +1947,7 @@ Data holders:
 
 \paragraph{Command FirmwareUpdate Perform}
 \begin{quote}Syntax: Perform(manufacturerId, firmwareId, firmwareTarget, data, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_firmware_update_perform(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, int manufacturerId, int firmwareId, ZWBYTE firmwareTarget, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Firmware Update Request Get. On process start Z-Way sets fragmentCount:. devices.N.instances.0.commandClasses.122.data.fragmentCount = 3073 (0x00000c01). Then it asks the device to start the process. The device can refuse it (i.e. if local confirmation timed out). If confirmed, the device will send us a report with adjusted fragment size (if it wants Z-Way to send by smaller packets) and report "Ready" (updateStatus = 255, see below). devices.N.instances.0.commandClasses.122.data.updateStatus = 255 (0x000000ff). devices.N.instances.0.commandClasses.122.data.fragmentCount = 3277 (0x00000ccd). At this point fragmentTransmitted == 0. devices.N.instances.0.commandClasses.122.data.fragmentTransmitted =0. Then device starts asking Z-Way for different packets. Z-Way will update fragmentTransmitted to allow track the process. Once done (fragmentCount == fragmentTransmitted), the device will send again a report if the flashing was successful. updateStatus contains the status: checksum error = 0, assemble error = 1, success, restart manually = 254, success, automatic restart = 255. waitTime refers to the time device will take to reboot. devices.N.instances.0.commandClasses.122.data.updateStatus = 255 (0x000000ff). devices.N.instances.0.commandClasses.122.data.waitTime = 5 (0x00000005)\end{quote}
 \begin{quote}Parameter manufacturerId: Manufacturer Id (2 bytes)\end{quote}
 \begin{quote}Parameter firmwareId: Firmware Id (2 bytes)\end{quote}
@@ -1874,6 +1983,7 @@ Data holders:
 
 \paragraph{Command AssociationGroupInformation GetInfo}
 \begin{quote}Syntax: GetInfo(groupId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_association_group_information_get_info(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE groupId, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send AGI Get Info\end{quote}
 \begin{quote}Parameter groupId: Group Id to get info for (0 for all groups)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1882,6 +1992,7 @@ Data holders:
 
 \paragraph{Command AssociationGroupInformation GetName}
 \begin{quote}Syntax: GetName(groupId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_association_group_information_get_name(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE groupId, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send AGI Get Name\end{quote}
 \begin{quote}Parameter groupId: Group Id to get info for (0 for all groups)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1890,6 +2001,7 @@ Data holders:
 
 \paragraph{Command AssociationGroupInformation GetCommands}
 \begin{quote}Syntax: GetCommands(groupId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_association_group_information_get_commands(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE groupId, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send AGI Get Commands\end{quote}
 \begin{quote}Parameter groupId: Group Id to get info for (0 for all groups)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1935,6 +2047,7 @@ Data holders:
 
 \paragraph{Command SwitchColor Get}
 \begin{quote}Syntax: Get(capabilityId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_switch_color_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE capabilityId, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchColor Get\end{quote}
 \begin{quote}Parameter capabilityId: Capability Id\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1943,6 +2056,7 @@ Data holders:
 
 \paragraph{Command SwitchColor Set}
 \begin{quote}Syntax: Set(capabilityId, state, duration = 0xff, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_switch_color_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE capabilityId, ZWBYTE state, ZWBYTE duration, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchColor Set\end{quote}
 \begin{quote}Parameter capabilityId: Capability Id\end{quote}
 \begin{quote}Parameter state: State to be set for the capability\end{quote}
@@ -1953,6 +2067,7 @@ Data holders:
 
 \paragraph{Command SwitchColor SetMultiple}
 \begin{quote}Syntax: SetMultiple(capabilityIds, states, duration = 0xff, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_switch_color_set_multiple(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, const ZWBYTE * capabilityIds, const ZWBYTE * states, ZWBYTE duration, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchColor SetMultiple\end{quote}
 \begin{quote}Parameter capabilityIds: Array of capabilities to set\end{quote}
 \begin{quote}Parameter states: Array of state values to be set for the capabilities\end{quote}
@@ -1963,6 +2078,7 @@ Data holders:
 
 \paragraph{Command SwitchColor StartStateChange}
 \begin{quote}Syntax: StartStateChange(capabilityId, dir, ignoreStartLevel = TRUE, startLevel = 50, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_switch_color_start_state_change(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE capabilityId, ZWBYTE dir, ZWBOOL ignoreStartLevel, ZWBYTE startLevel, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchColor StartStateChange\end{quote}
 \begin{quote}Parameter capabilityId: Capability Id to start changing state for\end{quote}
 \begin{quote}Parameter dir: Direction of change: 0 to incrase, 1 to decrase\end{quote}
@@ -1974,6 +2090,7 @@ Data holders:
 
 \paragraph{Command SwitchColor StopStateChange}
 \begin{quote}Syntax: StopStateChange(capabilityId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_switch_color_stop_state_change(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE capabilityId, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchColor StopStateChange\end{quote}
 \begin{quote}Parameter capabilityId: Capability Id to stop changing state for\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -2005,6 +2122,7 @@ Data holders:
 
 \paragraph{Command SoundSwitch TonePlayGet}
 \begin{quote}Syntax: TonePlayGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_sound_switch_tone_play_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SoundSwitch TonePlayGet\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -2012,6 +2130,7 @@ Data holders:
 
 \paragraph{Command SoundSwitch TonePlaySet}
 \begin{quote}Syntax: TonePlaySet(toneId, volume = 0x00, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_sound_switch_tone_play_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE toneId, ZWBYTE volume, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SoundSwitch TonePlaySet\end{quote}
 \begin{quote}Parameter toneId: Tone Id. 1...254 tone Id. 255 play default tone\end{quote}
 \begin{quote}Parameter volume: Tone volume:. 0 use default. 1...100 specific volume. 255 last used volume\end{quote}
@@ -2021,6 +2140,7 @@ Data holders:
 
 \paragraph{Command SoundSwitch ConfigurationGet}
 \begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_sound_switch_configuration_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SoundSwitch ConfigurationGet\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -2028,6 +2148,7 @@ Data holders:
 
 \paragraph{Command SoundSwitch ConfigurationSet}
 \begin{quote}Syntax: ConfigurationSet(toneId, volume = 0x00, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_sound_switch_configuration_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE toneId, ZWBYTE volume, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SoundSwitch ConfigurationSet\end{quote}
 \begin{quote}Parameter toneId: Tone Id. 1...254 tone Id. 255 play default tone\end{quote}
 \begin{quote}Parameter volume: Tone volume:. 0 use default. 1...100 specific volume. 255 last used volume\end{quote}
@@ -2057,6 +2178,7 @@ Data holders:
 
 \paragraph{Command BarrierOperator Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_barrier_operator_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send BarrierOperator Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -2064,6 +2186,7 @@ Data holders:
 
 \paragraph{Command BarrierOperator Set}
 \begin{quote}Syntax: Set(state, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_barrier_operator_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE state, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send BarrierOperator Set\end{quote}
 \begin{quote}Parameter state: State to set\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -2072,6 +2195,7 @@ Data holders:
 
 \paragraph{Command BarrierOperator SignalGet}
 \begin{quote}Syntax: SignalGet(signalType, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_barrier_operator_signal_get(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE signalType, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send BarrierOperator Signal Get\end{quote}
 \begin{quote}Parameter signalType: Signal subsystem type to get state for\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -2080,6 +2204,7 @@ Data holders:
 
 \paragraph{Command BarrierOperator SignalSet}
 \begin{quote}Syntax: SignalSet(signalType, state, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_barrier_operator_signal_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE signalType, ZWBYTE state, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send BarrierOperator Signal Set\end{quote}
 \begin{quote}Parameter signalType: Signal subsystem type to set state for\end{quote}
 \begin{quote}Parameter state: State to set\end{quote}
@@ -2108,6 +2233,7 @@ Data holders:
 
 \paragraph{Command SimpleAVControl Set}
 \begin{quote}Syntax: Set(keyAttribute, avCommand, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_simple_av_control_set(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, ZWBYTE keyAttribute, unsigned int avCommand, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SimpleAVControl Set\end{quote}
 \begin{quote}Parameter keyAttribute: 0 for key Down, 1 for key Up, 2 for key Alive (repeated every 100...200 ms)\end{quote}
 \begin{quote}Parameter avCommand: Command to be sent. One of 465 predefined in Z-Wave protocol\end{quote}
@@ -2144,6 +2270,7 @@ Data holders:
 
 \paragraph{Command Security Inject}
 \begin{quote}Syntax: Inject(data, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_security_inject(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Security Inject\end{quote}
 \begin{quote}Parameter data: Data to set\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -2187,6 +2314,7 @@ Data holders:
 
 \paragraph{Command SecurityS2 Inject}
 \begin{quote}Syntax: Inject(data, keyClass, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway_cc_security_s2_inject(ZWay zway, ZWBYTE node_id, ZWBYTE instance_id, const ZWBYTE * data, ZWBYTE keyClass, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Security S2 Inject\end{quote}
 \begin{quote}Parameter data: Data to set\end{quote}
 \begin{quote}Parameter keyClass: Security S2 key class\end{quote}
