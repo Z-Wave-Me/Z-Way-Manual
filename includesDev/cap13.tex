@@ -133,13 +133,22 @@ The session can be obtained by
 \end{center}
 \end{figure}
 
-Once logged in, the user is redirected to the / of the \zway (in most cases it then redirects to /smarthome/).
+Once logged in with \texttt{act=login}, the user is redirected to the / of the \zway (in most cases it then redirects to /smarthome/).
 If you want the user to be redirected to some specific URL after log in add one more parameter \texttt{ruri=...} (see examples below).
 
 The obtained session will be returned
 \begin{itemize}
 \item as an HTTP header,
 \item as a cookie.
+\end{itemize}
+
+To suppress the redirect use \texttt{act=auth}.
+
+The credential can be used in subsequent requests in one of the three forms listed below (in order they are checked in \zway):
+\begin{itemize}
+\item as HTTP \textbf{Authentication: Bearer} header (see below),
+\item as HTTP \textbf{X-ZBW\_SESSID} and \textbf{ZWAYSession} headers,
+\item as \textbf{ZBW\_SESSID} and \textbf{ZWAYSession} cookies.
 \end{itemize}
 
 Below are examples of remote authentication.
@@ -161,6 +170,60 @@ With cURL using cookies:
 
 If you want the user to be redirected to a specific page after login, you can also use the following url: \murl{https://find.z-wave.me/zboxweb?ruri=/expert} or \murl{https://find.z-wave.me/zboxweb?ruri=/expert&id=123456&login=admin} to pre-fill \zwaydeviceid and user name.
 
+\subsection{Remote authentication and access error handling}
+\label{cap:authentication_remote_errors}
+
+The tables below describe possible errors returned by the remote access service. Errors are order exactly as the request is handled.
+
+Authentication on \texttt{https://find.z-wave.me/zboxweb} with \texttt{act=login}: \\
+\begin{tabular}{|p{0.25\textwidth}|p{0.1\textwidth}|p{0.65\textwidth}|}
+\hline
+Condition & HTTP code & Redirect URL \\
+\hline
+Box not connected to the server & 302 & \murl{https://find.z-wave.me/zboxweb?err=bad\_login&ruri=\%2F} \\
+\hline
+Box connected, but default login/password admin/admin is used & 302 & \murl{https://find.z-wave.me/zboxweb?err=insecure\_login\_pass&ruri=\%2F} \\
+\hline
+Box not connected to find.z-wave.me & 502 & \\
+\hline
+Box connected, but login/password is invalid & 302 & \murl{https://find.z-wave.me/zboxweb?err=bad\_login&ruri=\%2F} \\
+\hline
+Box connected and authentication is successful & 302 & \murl{https://find.z-wave.me/} \\
+\hline
+\end{tabular}
+
+Authentication on \texttt{https://find.z-wave.me/zboxweb} with \texttt{act=auth}: \\
+\begin{tabular}{|p{0.25\textwidth}|p{0.1\textwidth}|p{0.65\textwidth}|}
+\hline
+Condition & HTTP code & HTTP error message \\
+\hline
+Box not connected to the server & 403 & Forbidden \newline Wrong username or password \\
+\hline
+Box connected, but default login/password admin/admin is used & 403 & insecure\_login\_pass \newline Your (username, pass) pair is insecure \\
+\hline
+Box not connected to find.z-wave.me & 502 & \\
+\hline
+Box connected, but login/password is invalid & 403 & Forbidden \newline Wrong username or password \\
+\hline
+Box connected and authentication is successful & 200 & \\
+\hline
+\end{tabular}
+
+Subsequent requests to \texttt{https://find.z-wave.me/PATH}, where \texttt{PATH} is not equal to \texttt{zboxweb} or \texttt{zboxweb/*}: \\
+\begin{tabular}{|p{0.25\textwidth}|p{0.1\textwidth}|p{0.65\textwidth}|}
+\hline
+Condition & HTTP code & Redirect URL \\
+\hline
+No token (no Authorization header, no X-ZBW-SESSID header, no ZBW\_SESSID cookie) & 307 & \murl{https://find.z-wave.me/zboxweb/r//PATH} \\
+\hline
+Invalid token (incorrect or expired or revoked) & 307 & \murl{https://find.z-wave.me/zboxweb/r//PATH} \\
+\hline
+Box not connected to find.z-wave.me & 502 & \\
+\hline
+Server side error & 500 & \\
+\hline
+\end{tabular}
+
 \subsection{Token lifetime}
 \label{cap:authentication_usage}
 
@@ -180,6 +243,8 @@ Both find.z-wave.me remote access service and \zway do support \textbf{Authentic
 \zway and find.z-wave.me will automatically mark tokens as permanent if they are received in \textbf{Authentication Bearer} header.
 
 The format of the header is: \texttt{Authorization: Bearer \textbf{ZBW\_SESSID}/\textbf{ZWAYSession}}.
+Note that if direct access is needed (not via find.z-wave.me), \textbf{ZBW\_SESSID} can be omitted.
+In this case a slash \textbf{/} should still preceed \textbf{ZWAYSession}
 
 A typical application should take usename and password to log in via find.z-wave.me and get both \textbf{ZWAYSession} and \textbf{ZBW\_SESSID} tokens to form Authentication Bearer token.
 The username and password should then be erased from the memory, while Authentication Bearer token should be saved for future use. It is not recommended to save user credentials.
