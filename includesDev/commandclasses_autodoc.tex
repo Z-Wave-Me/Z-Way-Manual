@@ -2323,6 +2323,51 @@ Data holders:
 
 
 
+\section{Command Class EntryControl (0x6F/111)}
+
+\textit{Version 1, Controlled}
+\newline
+
+Receive codes from entry control devices like security panels.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{sequence}: Sequence number to prevent duplicates. Internal
+\item \textbf{event}: Event Id
+\item \textbf{eventData}: Additional data to the event
+\item \textbf{keys}: Array with supported keys Id
+\item \textbf{dataTypes}: Array with supported data types
+\item \textbf{eventTypes}: Array with supported event type Id
+\item \textbf{keyCacheSize}: Key cache size before sending to the controller
+\item \textbf{keyCacheSizeMin}: Minumum supported keyCacheSize
+\item \textbf{keyCacheSizeMax}: Maxumum supported keyCacheSize
+\item \textbf{keyCacheTimeout}: Key cache timeout before sending to the controller, in seconds
+\item \textbf{keyCacheTimeoutMin}: Minumum supported keyCacheTimeout
+\item \textbf{keyCacheTimeoutMax}: Maxumum supported keyCacheTimeout
+\end{itemize}
+
+\paragraph{Command EntryControl ConfigurationGet}
+\begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_entry\_control\_configuration\_get(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Request keyCacheSize and keyCacheTimeout\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command EntryControl ConfigurationSet}
+\begin{quote}Syntax: ConfigurationSet(keyCacheSize, keyCacheTimeout, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_entry\_control\_configuration\_set(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBYTE keyCacheSize, ZWBYTE keyCacheTimeout, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set keyCacheSize and keyCacheTimeout\end{quote}
+\begin{quote}Parameter keyCacheSize: Key cache size before sending to the controller\end{quote}
+\begin{quote}Parameter keyCacheTimeout: Key cache timeout before sending to the controller, in seconds\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
 \section{Command Class CRC16 (0x56/86)}
 
 \textit{Version 1, Supported and Controlled}
