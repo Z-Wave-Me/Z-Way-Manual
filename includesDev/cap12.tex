@@ -521,13 +521,13 @@ sock.onerror = function(ev) {
 
 Detailed description of WebSocket API:
 \begin{itemize}
-\item socket.websocket(url, [protocol], [ssl\_ca\_filepath], [ssl\_cert\_filepath, 
+\item sockets.websocket(url, [protocol], [ssl\_ca\_filepath], [ssl\_cert\_filepath, 
 ssl\_private\_key\_filepath]) creates new client WebSocket and connects to the 
 specified URL (should be a string like "ws://host:port" or "wss://host:port" for 
 SSL channel). Optional protocol parameter can be used to specify protocol from server 
 capabilities (comma separated string), default is "default". To use a specific CA file 
 instead of system default use ssl\_ca\_filepath. To send client certificate use  ssl\_cert\_filepath and ssl\_private\_key\_filepath.
-\item socket.websocket(port) creates new WebSocket server on port.
+\item sockets.websocket(port) creates new WebSocket server on port.
 \item close() initiate close of WebSocket.
 \item send(data) sends data to WebSocket. data can be array, ArrayBuffer (sent as binary) or string (sent as text).
 \item onmessage(event) called on new data receiption from remote side. Object event contains only data property. Other properties mentioned in RFC 6455 are not supported.
