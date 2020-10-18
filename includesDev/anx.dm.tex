@@ -128,8 +128,7 @@ and \keystroke{Show controller's device data.}
 \end {itemize}
 \end {itemize}
 
-Function classes as shown in section \ref{FunctionClasses} are called als object functions of the 
-data object zway.controller.
+Function classes as shown in section \ref{FunctionClasses} are called as methods of the object zway.controller.
 
 
 \section{Devices}
@@ -186,6 +185,10 @@ The data object can be accesses in the \zweui in advanced mode of 'Configuration
 \item interviewDone: set to true when device finishes the interview (might not match with interviewDone on individual CCs if they appear after interview done)
 
 \item neightbours: list of neighbour nodes
+\item priorityRoutes: list of priority routes assigned to the node (via AssignPrioritySUCReturnRoute and AssignPriorityReturnRoute) used to restore routes on network reorganization
+\begin {itemize}
+\item hop 1, hop 2, hop 3, hop 4, speed: route hops node Id (1..232 or 0 for end of route), speed flag
+\end {itemize}
 
 \item givenName: name for Expert UI
 \item isFailed: is failed
@@ -195,6 +198,7 @@ The data object can be accesses in the \zweui in advanced mode of 'Configuration
 \item lastPacketInfo: structure with deliveryTime, delivered and packetLength information about last packet sent
 \item queueLength: length of device specific send queue (if countJobs is enabled)
 \item lastNonceGet: internal
+\item acceptSetSecurityLevel: minimal security level that is accepted for Set commands from the device: 0 - accept both secure S0/S2 or unsecure Set commands, 128 - accept S0 and all S2 levels, 1 - accept all S2 levels (Unauthenticated, Authenticated and Access), 2 - accept S2 Authenticated and S2 Access, 4 - accept only S2 Access
 \end {itemize}
 
 \item instances: iInstances list of the device
