@@ -42,6 +42,7 @@
 %===========================
 \usetikzlibrary{shadows}
 
+\ifx\htmloutput\undefined
 \newcommand*\keystroke[1]{%
   \tikz[baseline=(key.base)]
     \node[%
@@ -56,12 +57,20 @@
     ](key) {#1\strut}
   ;
 }
+\else
+\newcommand*\keystroke[1]{#1}
+\fi
 
 \newlength\myboxwidth
 \setlength{\myboxwidth}{\dimexpr\textwidth-2\fboxsep}
 
-\newcommand*\murl[1]{\noindent\begin{quote}\url{#1}\end{quote}\xspace}
+\ifx\htmloutput\undefined
 \newcommand*\cmdline[1]{\sffamily\colorbox{black!25}{\parbox{\myboxwidth}{\textcolor{white}{\bfseries#1}}}}
+\else
+\newcommand*\cmdline[1]{{\sffamily\bfseries#1}}
+\fi
+
+\newcommand*\murl[1]{\noindent\begin{quote}\url{#1}\end{quote}\xspace}
 \newcommand*\app[1]{\textbf{\textsc{ '#1'}}}
 \newcommand{\zway}{\textbf{Z-Way\textsuperscript{\texttrademark} }}
 \newcommand{\zwaveme}{\textbf{Z-Wave.Me}\xspace}

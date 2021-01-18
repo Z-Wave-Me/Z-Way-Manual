@@ -1,0 +1,103 @@
+
+body{
+    font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+    margin-left: 320px !important;
+    margin-right: 30px !important;
+    width: auto !important;
+    max-width: none !important;
+}
+img {max-width: 100%;}
+
+#TOC {
+    width:250px;
+    position:fixed;
+    overflow-y:scroll;
+    left:0;
+    top:0;
+    bottom:0;
+    background:#FAFAFA;
+    border-right:1px solid #e6e6e6;
+    padding:20px 20px;
+}
+
+#TOC ul{
+    border-top:1px solid #e6e6e6;
+    font-weight:400;
+    margin-bottom:30px;
+    list-style:none;
+    padding-inline-start: 0px;
+
+}
+#TOC ul ul{
+    list-style:none;
+}
+#TOC ul li{
+    border-bottom:1px solid #e6e6e6;
+}
+#TOC ul li.active{
+    border-bottom:1px solid #333;
+}
+#TOC ul li.active a{
+    font-weight:700;
+}
+#TOC ul li a:link{
+    color:#333;
+    text-decoration:none;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-size:12px;
+    display:block;
+    padding:10px;
+}
+#TOC ul li a:visited{
+    color:#333;
+}
+#TOC ul li a:active{
+    font-weight:700;
+}
+#TOC ul li a:hover{
+    color:#333;
+}
+#TOC ul li ul{
+    margin-bottom:10px;
+    border-top:none;
+    padding-inline-start: 20px;
+}
+#TOC ul li ul li{
+    border-bottom:none;
+    padding:0.1em;
+}
+#TOC ul li ul li.active{
+    border-bottom:none;
+}
+#TOC ul li ul li.active a{
+    font-weight:700;
+}
+#TOC ul li ul a:link{
+    color:#333;
+    text-decoration:none;
+    text-transform:none;
+    letter-spacing:0;
+    font-size:12px;
+    display:block;
+    margin-left:15px;
+    padding:0 0 3px;
+    border-bottom:none;
+    font-weight:300;
+}
+#TOC ul li ul a:hover{
+    text-decoration:underline;
+    color:#333;
+}
+#TOC h2{
+    font-size:0.75em;
+    font-weight:600;
+    text-transform:lowercase;
+    font-variant:small-caps;
+    color:#999;
+    padding-bottom:0.5em
+}
+
+#TOC ul li ul li a.tocCurrentItem {
+    font-weight: bold;
+}
