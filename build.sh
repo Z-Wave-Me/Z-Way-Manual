@@ -7,7 +7,7 @@ pdflatex ZWayManual.tex
 
 rm -R ZWayManual
 
-latex2html -split +1 -no_auto_link -long_titles 10 -use_pdftex -html_version 5.0,math,unicode -no_navigation ZWayManual.tex
+latex2html -split +1 -no_auto_link -long_titles 20 -use_pdftex -html_version 5.0,math,unicode -no_navigation -no_footnode -info "" ZWayManual.tex
 
 cd ZWayManual
 

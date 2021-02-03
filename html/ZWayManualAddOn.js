@@ -46,14 +46,17 @@
 
     return top;
  }
- 
+
  var anchorPositions = {};
- document.querySelectorAll('a[id]').forEach(function(a) {
-   // the link is SECTION and there is a reference in TOC
-   if (a.id.startsWith("SECTION") && document.querySelector('#TOC > ul > li a[href="' + chapterName + '#' + a.id + '"]')) {
-     anchorPositions[a.id] = absTop(a);
-   }
- });
+ // refresh to update positions on images load and window resize
+ setInterval(function() {
+   document.querySelectorAll('a[id]').forEach(function(a) {
+     // the link is SECTION and there is a reference in TOC
+     if (a.id.startsWith("SECTION") && document.querySelector('#TOC > ul > li a[href="' + chapterName + '#' + a.id + '"]')) {
+       anchorPositions[a.id] = absTop(a);
+     }
+   });
+ }, 10*1000);
  
  document.addEventListener("scroll", function(){
    var top = document.documentElement.scrollTop + 10; // +10 to make sure the same section is active when we click on it
