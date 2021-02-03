@@ -692,33 +692,25 @@ and forward them. This must be configured in the configuration dialog.
 
 \subsection{Push Notifications}
 
-Push notifications are delivered to a mobile phone. As soon as one of the native \zway 
+Push notifications are delivered to a mobile phone. As soon as one of the native Z-Wave.Me 
 apps is installed on the mobile phone, the push notification option is automatically 
 enabled. Push notifications allow gathering events and forwarding them automatically. This 
-can be configured in the app \app{Mobile Phone Support,} which is already running in the 
+can be configured in the apps \app{Mobile Phone Support, Notification Filtering} which is already running in the 
 system. Please go to \keystroke{Active} app management to open the configuration dialog.
 
-\app{Mobile Phone Support} can handle multiple mobile phones in parallel. Every mobile 
-phone connected will create a new element on the element view.
-
-\subsection{Email ME}
+\subsection{Notifications by E-mail}
 
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.3\textwidth]{pngs/cap6/app31.png}
-\caption{Email App}
+\caption{Notifications by E-mail}
 \label{app31}
 \end{center}
 \end{figure}
 
-The email app, as shown in Figure \ref{app31}, allows sending emails to addresses that 
-are already assigned to a user. To prevent spamming, it is not possible to send mails to 
-mail addresses not assigned. Furthermore, there is a mail quota to prevent misuse of 
-the service to annoy people.
+The \app{Notifications by E-mail} app, as shown in Figure \ref{app31}, for each user creates a communication channel for sending events by email.
 
-Every instance of \app{Email Me} has its own email target address and creates its own 
-element in the element view. This element can be used as any normal actuator in the \zway 
-system. It can act as an actuator for the If->Then relations or be a part of a scene, etc.
+In the \app{Notification Filtering} application, you can select the notification channel, it can be email, push, sms or a channel provided by third-party applications: facebook, twitter and others. 
 
 \subsection{Other notifiers}
 
