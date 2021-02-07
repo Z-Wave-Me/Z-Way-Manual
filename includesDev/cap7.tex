@@ -545,7 +545,6 @@ can exclude devices from other networks too but the device need be available and
 functioning. To remove nonfunctioning or disappeared devices please refer to 
 \keystroke{Replace Failed node} or \keystroke{Remove Failed node.}
 
-\textcolor{blue}{
 In case the new device supports enhanced security function (Security Command Class), this 
 controller will include the device securely. After this all data exchange between the 
 controller and the new device is encrypted using AES encryption. For performance reasons, 
@@ -558,7 +557,7 @@ A few basics about this process: Security in \zwave means among others that all
 communication between two nodes over the air is encrypted. Encryption however requires 
 a key to encrypt and all the device communicating shall have the very same key---usually 
 called network key. \zwave Security 2 handles 4 different network key. They differ by 
-their level of trust.}
+their level of trust.
 
 \begin{itemize}
 \item S0:The network key is needed to communicate with a device capable of Security CC 
@@ -580,7 +579,7 @@ must be manually provided to the included controller in order to verify the iden
 \end{center}
 \end{figure}
 
-\textcolor{blue}{Each device will request one of more network keys according to the device 
+Each device will request one of more network keys according to the device 
 usage and implementation idea. The default key is likely  S2 Authenticated but Door Locks 
 will ask for S2 Access control and small devices without external label request S2 
 Unauthenticated only. Figure \ref{security2_2} shows the dialog to grant the keys. The 
@@ -589,7 +588,7 @@ If no selection is made with 20 seconds, the process will time out and the devic
 included unsecure. Please note that some devices may still offer valid functions 
 while other will deny any function outside a secure environment. It is recommended 
 to grant the keys requested, but there may be certain environments where other 
-selections may make sense.}
+selections may make sense.
 
 \begin{figure}
 \begin{center}
@@ -600,11 +599,11 @@ selections may make sense.}
 \end{figure}
 
 
-\textcolor{blue}{Once the selection is made before timeout a second window  will request 
+Once the selection is made before timeout a second window  will request 
 the authentication of the device. In case of S0 or S2 Unauthenticated, the window 
 displays the device-specific key for information only as shown in Figure \ref{security2_3}. 
 If a key is visible on the device, it is recommended to compare the numbers. However, 
-the key is granted without any further interaction by the user.}
+the key is granted without any further interaction by the user.
 
 \begin{figure}
 \begin{center}
@@ -615,32 +614,32 @@ the key is granted without any further interaction by the user.}
 \end{figure}
 
 
-\textcolor{blue}{In case S2 Authenticated or S2 Access Control keys were requested the 
+In case S2 Authenticated or S2 Access Control keys were requested the 
 dialog windows asks for providing the Device information by the user. This can be done 
 by typing in the 5-digit PIN code (first 5 numbers of the device-specific key) as shown
-in Figure} \ref{security2_4} \textcolor{blue}{or by 
-scanning the QR code on the device shown in Figure} \ref{security2_5}.
+in Figure} \ref{security2_4} or by 
+scanning the QR code on the device shown in Figure \ref{security2_5}.
 
-\textcolor{blue}{In case of Access or Authentication, the user must insert either a PIN 
+In case of Access or Authentication, the user must insert either a PIN 
 number or scan a QR code from the device just included. This insures 100\% that the device 
 just included is really the device in hand.
 If authentication fails, an error message is displayed. It is not possible to redo 
-the key authentication only. You must exclude and re-include the device.}
+the key authentication only. You must exclude and re-include the device.
 
 
 \subsubsection{Smart Start}
 
-\textcolor{blue}{Smart Start is a new way to include devices into Z-Wave using the QR code provided with S2
+Smart Start is a new way to include devices into Z-Wave using the QR code provided with S2
 authentication.  The user scans the QR code thats is stored in an internal so called 
 provisioning list. Smart Start Devices will then announce to be included when powered up.
 In case the S2 key is in the provisioning list the controller will automatically include 
-this new device without any further user interaction.}
+this new device without any further user interaction.
 
-\textcolor{blue}{Smart Start is controlled by the button} \keystroke{Activate/Deactivate Smart Start}.
-The button \keystroke{Smart Start} \textcolor{blue}{opens a submenu allowing to register Device keys either 
-by typing the 8 groups of numbers as shown in Figure }\ref{ss1} \textcolor{blue}{or using 
-a QR code scanner as shown in Figure } \ref{ss2}. \textcolor{blue}{Please note that a standard
-web browser running on a standard PC may not provide the capability to scan QR codes. } 
+Smart Start is controlled by the button} \keystroke{Activate/Deactivate Smart Start.
+The button \keystroke{Smart Start} opens a submenu allowing to register Device keys either 
+by typing the 8 groups of numbers as shown in Figure \ref{ss1} or using 
+a QR code scanner as shown in Figure \ref{ss2}. Please note that a standard
+web browser running on a standard PC may not provide the capability to scan QR codes.
 
 \begin{figure}
 \begin{center}
@@ -666,11 +665,11 @@ web browser running on a standard PC may not provide the capability to scan QR c
 \end{center}
 \end{figure}
 
-Figure \ref{ss3} \textcolor{blue}{finally shows the lost of Device keys already registered 
+Figure \ref{ss3} finally shows the lost of Device keys already registered 
 in the system and not used. Used means in this context that the corresponding device
 was powered up in proximity of the controller and got included automatically. Please note that
 the Razberry Shield or UZB or any hardware used must provide a firmware with SDK >=6.81. 
-Otherwise Smart Start will not work.}
+Otherwise Smart Start will not work.
 
 
 
