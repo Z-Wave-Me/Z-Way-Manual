@@ -97,8 +97,8 @@ With wget using Basic Authentication:
 
 From the browser using jQuery and Basic Authentication:
 \begin{lstlisting}[caption=Login with jQuery,basicstyle=\small,columns=fullflexible]
-$('img').click(function() {
-    $.ajax({
+jQuery('img').click(function() {
+    jQuery.ajax({
         url: "http://192.168.0.62:8083/ZAutomation/api/v1/...",
         beforeSend: function (xhr) { xhr.setRequestHeader ("Authorization", "Basic " + btoa("admin" + ":" + "password")); }
     });

@@ -35,6 +35,8 @@
 %\usepackage{amssymb}
 
 
+\usepackage{html} % for LaTeX2HTML
+
 \usepackage{makeidx} 
 \makeindex
 
@@ -42,7 +44,7 @@
 %===========================
 \usetikzlibrary{shadows}
 
-\ifx\htmloutput\undefined
+%\begin{latexonly}
 \newcommand*\keystroke[1]{%
   \tikz[baseline=(key.base)]
     \node[%
@@ -57,24 +59,21 @@
     ](key) {#1\strut}
   ;
 }
-\else
-\newcommand*\keystroke[1]{#1}
-\fi
-
-\newlength\myboxwidth
-\setlength{\myboxwidth}{\dimexpr\textwidth-2\fboxsep}
-
-\ifx\htmloutput\undefined
 \newcommand*\cmdline[1]{\sffamily\colorbox{black!25}{\parbox{\myboxwidth}{\textcolor{white}{\bfseries#1}}}}
-\else
-\newcommand*\cmdline[1]{{\sffamily\bfseries#1}}
-\fi
-
-\newcommand*\murl[1]{\noindent\begin{quote}\url{#1}\end{quote}\xspace}
-\newcommand*\app[1]{\textbf{\textsc{ '#1'}}}
 \newcommand{\zway}{\textbf{Z-Way\textsuperscript{\texttrademark} }}
 \newcommand{\zwaveme}{\textbf{Z-Wave.Me}\xspace}
 \newcommand{\zwave}{\textbf{Z-Wave}\xspace}
+%\end{latexonly}
+\begin{htmlonly}
+\newcommand*\keystroke[1]{\textbf{#1}}
+\newcommand*\cmdline[1]{{\sffamily\bfseries#1}}
+\newcommand{\zway}{Z-Way\xspace}
+\newcommand{\zwaveme}{Z-Wave.Me\xspace}
+\newcommand{\zwave}{Z-Wave\xspace}
+\end{htmlonly}
+
+\newcommand*\murl[1]{\noindent\begin{quote}\url{#1}\end{quote}\xspace}
+\newcommand*\app[1]{\textbf{\textsc{ '#1'}}}
 \newcommand{\zwaydeviceid}{\textbf{Z-Way Platform ID }}
 \newcommand{\zweui}{\textbf{\textsc{Z-Wave Expert User Interface }}}
 \newcommand{\zwshui}{\textsc{Z-Way Smart Home Interface }}
