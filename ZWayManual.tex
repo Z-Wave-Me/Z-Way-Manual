@@ -45,35 +45,34 @@
 \usetikzlibrary{shadows}
 
 %\begin{latexonly}
-\newcommand*\keystroke[1]{%
-  \tikz[baseline=(key.base)]
-    \node[%
-      draw,
-      fill=white,
-      drop shadow={shadow xshift=0.25ex,shadow yshift=0.3ex,fill=gray,opacity=0.75},
-      rectangle,
-      rounded corners=2pt,
-      inner sep=1pt,
-      line width=0.5pt,
-      font=\scriptsize\sffamily
-    ](key) {#1\strut}
-  ;
-}
-\newcommand*\cmdline[1]{\sffamily\colorbox{black!25}{\parbox{\myboxwidth}{\textcolor{white}{\bfseries#1}}}}
-\newcommand{\zway}{\textbf{Z-Way\textsuperscript{\texttrademark} }}
-\newcommand{\zwaveme}{\textbf{Z-Wave.Me}\xspace}
-\newcommand{\zwave}{\textbf{Z-Wave}\xspace}
+  \newcommand*\keystroke[1]{%
+    \tikz[baseline=(key.base)]
+      \node[%
+        draw,
+        fill=white,
+        drop shadow={shadow xshift=0.25ex,shadow yshift=0.3ex,fill=gray,opacity=0.75},
+        rectangle,
+        rounded corners=2pt,
+        inner sep=1pt,
+        line width=0.5pt,
+        font=\scriptsize\sffamily
+      ](key) {#1\strut}
+    ;
+  }
+  \newlength\myboxwidth
+  \setlength{\myboxwidth}{\dimexpr\textwidth-2\fboxsep}
+  \newcommand*\cmdline[1]{\sffamily\colorbox{black!25}{\parbox{\myboxwidth}{\textcolor{white}{\bfseries#1}}}}
 %\end{latexonly}
-\begin{htmlonly}
-\newcommand*\keystroke[1]{\textbf{#1}}
-\newcommand*\cmdline[1]{{\sffamily\bfseries#1}}
-\newcommand{\zway}{Z-Way\xspace}
-\newcommand{\zwaveme}{Z-Wave.Me\xspace}
-\newcommand{\zwave}{Z-Wave\xspace}
-\end{htmlonly}
+%\begin{htmlonly}
+%  \newcommand*\keystroke[1]{\textbf{#1}}
+%  \newcommand*\cmdline[1]{{\sffamily\bfseries#1}}
+%\end{htmlonly}
 
 \newcommand*\murl[1]{\noindent\begin{quote}\url{#1}\end{quote}\xspace}
 \newcommand*\app[1]{\textbf{\textsc{ '#1'}}}
+\newcommand{\zway}{Z-Way\xspace}
+\newcommand{\zwaveme}{Z-Wave.Me\xspace}
+\newcommand{\zwave}{Z-Wave\xspace}
 \newcommand{\zwaydeviceid}{\textbf{Z-Way Platform ID }}
 \newcommand{\zweui}{\textbf{\textsc{Z-Wave Expert User Interface }}}
 \newcommand{\zwshui}{\textsc{Z-Way Smart Home Interface }}
