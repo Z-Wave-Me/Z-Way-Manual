@@ -1,0 +1,2668 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2019.2 (Released June 5, 2019) -->
+<HTML lang="EN">
+<HEAD>
+<TITLE>Z-Way Manual — Develop Code for Z-Way </TITLE>
+<META NAME="description" CONTENT="Develop Code for Z-Way ">
+<META NAME="keywords" CONTENT="Z-Way Manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2019.2">
+
+<LINK REL="STYLESHEET" HREF="ZWayManual.css">
+
+<script src="ZWayManual.js" defer></script>
+</HEAD>
+
+<BODY >
+<div id="TOC">
+<A ID="CHILD_LINKS"></A>
+
+<UL CLASS="ChildLinks">
+<LI><A ID="tex2html264"
+  HREF="Contents.html">Contents</A>
+<LI><A ID="tex2html265"
+  HREF="Introduction.html">Introduction</A>
+<UL>
+<LI><A ID="tex2html266"
+  HREF="Introduction.html#SECTION00210000000000000000">Structure of the book</A>
+<LI><A ID="tex2html267"
+  HREF="Introduction.html#SECTION00220000000000000000">History of Z-Way</A>
+<LI><A ID="tex2html268"
+  HREF="Introduction.html#SECTION00230000000000000000">Status of the document</A>
+</UL>
+<BR>
+<LI><A ID="tex2html269"
+  HREF="Z_Way_enabled_Hardware.html">Z-Way enabled Hardware</A>
+<UL>
+<LI><A ID="tex2html270"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00310000000000000000">RaZberry shield board for Raspberry Pi</A>
+<UL>
+<LI><A ID="tex2html271"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00311000000000000000">Compatibility</A>
+<LI><A ID="tex2html272"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00312000000000000000">Pinout and options on board</A>
+<LI><A ID="tex2html273"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00313000000000000000">Boot-Up Self-Test</A>
+<LI><A ID="tex2html274"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00314000000000000000">LEDs during Operation</A>
+<LI><A ID="tex2html275"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00315000000000000000">Frequencies</A>
+<LI><A ID="tex2html276"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00316000000000000000">Certifications</A>
+<UL>
+<LI><A ID="tex2html277"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00316100000000000000">CE / Europe</A>
+<LI><A ID="tex2html278"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00316200000000000000">FCC / North America</A>
+<LI><A ID="tex2html279"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00316300000000000000">Z-Wave Plus</A>
+</UL>
+</UL>
+<LI><A ID="tex2html280"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00320000000000000000">The USB Stick UZB</A>
+<UL>
+<LI><A ID="tex2html281"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00321000000000000000">Boot-Up Self-Test</A>
+<LI><A ID="tex2html282"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00322000000000000000">Frequencies</A>
+<LI><A ID="tex2html283"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00323000000000000000">Certifications</A>
+<UL>
+<LI><A ID="tex2html284"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00323100000000000000">CE / Europe</A>
+<LI><A ID="tex2html285"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00323200000000000000">FCC / North America</A>
+<LI><A ID="tex2html286"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00323300000000000000">Z-Wave Plus</A>
+</UL>
+</UL>
+<LI><A ID="tex2html287"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00330000000000000000">Other hardware platforms</A>
+</UL>
+<BR>
+<LI><A ID="tex2html288"
+  HREF="Preparation_Ways_Access_Sys.html">Preparation and Ways to Access the  System</A>
+<UL>
+<LI><A ID="tex2html289"
+  HREF="Preparation_Ways_Access_Sys.html#SECTION00410000000000000000">Installation on Raspberry Pi</A>
+<LI><A ID="tex2html290"
+  HREF="Preparation_Ways_Access_Sys.html#SECTION00420000000000000000">Installation on other platforms using UZB</A>
+<UL>
+<LI><A ID="tex2html291"
+  HREF="Preparation_Ways_Access_Sys.html#SECTION00421000000000000000">Unix-based Platforms</A>
+<LI><A ID="tex2html292"
+  HREF="Preparation_Ways_Access_Sys.html#SECTION00422000000000000000">Windows</A>
+</UL>
+<LI><A ID="tex2html293"
+  HREF="Preparation_Ways_Access_Sys.html#SECTION00430000000000000000">Local and Remote Access</A>
+<LI><A ID="tex2html294"
+  HREF="Preparation_Ways_Access_Sys.html#SECTION00440000000000000000">Security and Privacy</A>
+</UL>
+<BR>
+<LI><A ID="tex2html295"
+  HREF="Web_Browser_User_Interface.html">The Web Browser User Interface</A>
+<UL>
+<LI><A ID="tex2html296"
+  HREF="Web_Browser_User_Interface.html#SECTION00510000000000000000">Z-W<SMALL>AY </SMALL>S<SMALL>MART </SMALL>H<SMALL>OME </SMALL>I<SMALL>NTERFACE </SMALL>Daily Usage</A>
+<UL>
+<LI><A ID="tex2html297"
+  HREF="Web_Browser_User_Interface.html#SECTION00511000000000000000">Standard Element View</A>
+<UL>
+<LI><A ID="tex2html298"
+  HREF="Web_Browser_User_Interface.html#SECTION00511100000000000000">Element Configuration</A>
+<LI><A ID="tex2html299"
+  HREF="Web_Browser_User_Interface.html#SECTION00511200000000000000">Room View</A>
+<LI><A ID="tex2html300"
+  HREF="Web_Browser_User_Interface.html#SECTION00511300000000000000">Event Timeline</A>
+</UL>
+<LI><A ID="tex2html301"
+  HREF="Web_Browser_User_Interface.html#SECTION00512000000000000000">News feed</A>
+</UL>
+<LI><A ID="tex2html302"
+  HREF="Web_Browser_User_Interface.html#SECTION00520000000000000000">The Configuration Menu</A>
+<UL>
+<LI><A ID="tex2html303"
+  HREF="Web_Browser_User_Interface.html#SECTION00521000000000000000">Apps</A>
+<LI><A ID="tex2html304"
+  HREF="Web_Browser_User_Interface.html#SECTION00522000000000000000">Devices</A>
+<UL>
+<LI><A ID="tex2html305"
+  HREF="Web_Browser_User_Interface.html#SECTION00522100000000000000">Inclusion</A>
+<LI><A ID="tex2html306"
+  HREF="Web_Browser_User_Interface.html#SECTION00522200000000000000">Z-Wave Device Management</A>
+</UL>
+<LI><A ID="tex2html307"
+  HREF="Web_Browser_User_Interface.html#SECTION00523000000000000000">Customize</A>
+<LI><A ID="tex2html308"
+  HREF="Web_Browser_User_Interface.html#SECTION00524000000000000000">My Settings</A>
+<LI><A ID="tex2html309"
+  HREF="Web_Browser_User_Interface.html#SECTION00525000000000000000">Management</A>
+<UL>
+<LI><A ID="tex2html310"
+  HREF="Web_Browser_User_Interface.html#SECTION00525100000000000000">News</A>
+<LI><A ID="tex2html311"
+  HREF="Web_Browser_User_Interface.html#SECTION00525200000000000000">Logout</A>
+</UL>
+</UL>
+<LI><A ID="tex2html312"
+  HREF="Web_Browser_User_Interface.html#SECTION00530000000000000000">The Management Interface</A>
+<UL>
+<LI><A ID="tex2html313"
+  HREF="Web_Browser_User_Interface.html#SECTION00531000000000000000">User Management</A>
+<LI><A ID="tex2html314"
+  HREF="Web_Browser_User_Interface.html#SECTION00532000000000000000">Remote Access Management</A>
+<LI><A ID="tex2html315"
+  HREF="Web_Browser_User_Interface.html#SECTION00533000000000000000">Time Zone</A>
+<LI><A ID="tex2html316"
+  HREF="Web_Browser_User_Interface.html#SECTION00534000000000000000">Backup &amp; Restore</A>
+<LI><A ID="tex2html317"
+  HREF="Web_Browser_User_Interface.html#SECTION00535000000000000000">Factory default</A>
+<LI><A ID="tex2html318"
+  HREF="Web_Browser_User_Interface.html#SECTION00536000000000000000">Firmware Update</A>
+<LI><A ID="tex2html319"
+  HREF="Web_Browser_User_Interface.html#SECTION00537000000000000000">App Store Access</A>
+<LI><A ID="tex2html320"
+  HREF="Web_Browser_User_Interface.html#SECTION00538000000000000000">Report Problem</A>
+<LI><A ID="tex2html321"
+  HREF="Web_Browser_User_Interface.html#SECTION00539000000000000000">Info</A>
+</UL>
+</UL>
+<BR>
+<LI><A ID="tex2html322"
+  HREF="Mobile_Apps.html">Mobile Apps</A>
+<UL>
+<LI><A ID="tex2html323"
+  HREF="Mobile_Apps.html#SECTION00610000000000000000">Standard mobile web browsers</A>
+<LI><A ID="tex2html324"
+  HREF="Mobile_Apps.html#SECTION00620000000000000000">Native HTML based apps</A>
+<LI><A ID="tex2html325"
+  HREF="Mobile_Apps.html#SECTION00630000000000000000">Pure Native Apps</A>
+<LI><A ID="tex2html326"
+  HREF="Mobile_Apps.html#SECTION00640000000000000000">Third-Party Apps</A>
+<UL>
+<LI><A ID="tex2html327"
+  HREF="Mobile_Apps.html#SECTION00641000000000000000">Imperihome</A>
+<LI><A ID="tex2html328"
+  HREF="Mobile_Apps.html#SECTION00642000000000000000">Fibaro</A>
+<LI><A ID="tex2html329"
+  HREF="Mobile_Apps.html#SECTION00643000000000000000">openHAB</A>
+</UL>
+<LI><A ID="tex2html330"
+  HREF="Mobile_Apps.html#SECTION00650000000000000000">Shortcuts for Android and Integration into Third party software</A>
+</UL>
+<BR>
+<LI><A ID="tex2html331"
+  HREF="App_System_making_it_intell.html">The App System: making it intelligent</A>
+<UL>
+<LI><A ID="tex2html332"
+  HREF="App_System_making_it_intell.html#SECTION00710000000000000000">A simple Apps as starter - <SPAN  CLASS="textbf"> 'L<SMALL>OCAL </SMALL>W<SMALL>EATHER'</SMALL></SPAN></A>
+<LI><A ID="tex2html333"
+  HREF="App_System_making_it_intell.html#SECTION00720000000000000000">Smart Home Logic</A>
+<UL>
+<LI><A ID="tex2html334"
+  HREF="App_System_making_it_intell.html#SECTION00721000000000000000">Scene</A>
+<LI><A ID="tex2html335"
+  HREF="App_System_making_it_intell.html#SECTION00722000000000000000">If -&gt; Then</A>
+<LI><A ID="tex2html336"
+  HREF="App_System_making_it_intell.html#SECTION00723000000000000000">Logical Rule: If-&gt;Then on steroids</A>
+<LI><A ID="tex2html337"
+  HREF="App_System_making_it_intell.html#SECTION00724000000000000000">Tips and Tricks</A>
+</UL>
+<LI><A ID="tex2html338"
+  HREF="App_System_making_it_intell.html#SECTION00730000000000000000">The big apps</A>
+<UL>
+<LI><A ID="tex2html339"
+  HREF="App_System_making_it_intell.html#SECTION00731000000000000000">Leakage Protection</A>
+<LI><A ID="tex2html340"
+  HREF="App_System_making_it_intell.html#SECTION00732000000000000000">Fire Protection</A>
+<LI><A ID="tex2html341"
+  HREF="App_System_making_it_intell.html#SECTION00733000000000000000">Burglar Alarm System</A>
+<LI><A ID="tex2html342"
+  HREF="App_System_making_it_intell.html#SECTION00734000000000000000">Climate Control</A>
+</UL>
+<LI><A ID="tex2html343"
+  HREF="App_System_making_it_intell.html#SECTION00740000000000000000">Out-of-band notifications</A>
+<UL>
+<LI><A ID="tex2html344"
+  HREF="App_System_making_it_intell.html#SECTION00741000000000000000">Push Notifications</A>
+<LI><A ID="tex2html345"
+  HREF="App_System_making_it_intell.html#SECTION00742000000000000000">Notifications by E-mail</A>
+<LI><A ID="tex2html346"
+  HREF="App_System_making_it_intell.html#SECTION00743000000000000000">Other notifiers</A>
+</UL>
+<LI><A ID="tex2html347"
+  HREF="App_System_making_it_intell.html#SECTION00750000000000000000">Useful tools and utilities</A>
+<UL>
+<LI><A ID="tex2html348"
+  HREF="App_System_making_it_intell.html#SECTION00751000000000000000">Apple HomeKit</A>
+<LI><A ID="tex2html349"
+  HREF="App_System_making_it_intell.html#SECTION00752000000000000000">Intchart.com</A>
+<LI><A ID="tex2html350"
+  HREF="App_System_making_it_intell.html#SECTION00753000000000000000">Astronomy App</A>
+<LI><A ID="tex2html351"
+  HREF="App_System_making_it_intell.html#SECTION00754000000000000000">Alexa Integration</A>
+<LI><A ID="tex2html352"
+  HREF="App_System_making_it_intell.html#SECTION00755000000000000000">Philips Hue Integration</A>
+</UL>
+<LI><A ID="tex2html353"
+  HREF="App_System_making_it_intell.html#SECTION00760000000000000000">For Developers</A>
+</UL>
+<BR>
+<LI><A ID="tex2html354"
+  HREF="Z_Wave_Expert_User_Interfac.html">The Z-Wave Expert User Interface</A>
+<UL>
+<LI><A ID="tex2html355"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00810000000000000000">Home Screen</A>
+<LI><A ID="tex2html356"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00820000000000000000">Control</A>
+<UL>
+<LI><A ID="tex2html357"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00821000000000000000">Switch</A>
+<LI><A ID="tex2html358"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00822000000000000000">Sensors</A>
+<LI><A ID="tex2html359"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00823000000000000000">Meters</A>
+<LI><A ID="tex2html360"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00824000000000000000">Thermostats</A>
+<LI><A ID="tex2html361"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00825000000000000000">Locks</A>
+<LI><A ID="tex2html362"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00826000000000000000">Notifications</A>
+</UL>
+<LI><A ID="tex2html363"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00830000000000000000">Device</A>
+<UL>
+<LI><A ID="tex2html364"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00831000000000000000">Status</A>
+<LI><A ID="tex2html365"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00832000000000000000">Type Info</A>
+<LI><A ID="tex2html366"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00833000000000000000">Battery</A>
+<LI><A ID="tex2html367"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00834000000000000000">Active Associations</A>
+</UL>
+<LI><A ID="tex2html368"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00840000000000000000">Configuration</A>
+<UL>
+<LI><A ID="tex2html369"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00841000000000000000">Interview</A>
+<LI><A ID="tex2html370"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00842000000000000000">Configuration</A>
+<LI><A ID="tex2html371"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00843000000000000000">Association</A>
+<LI><A ID="tex2html372"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00844000000000000000">Link Health</A>
+<LI><A ID="tex2html373"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00845000000000000000">Expert Commands</A>
+<LI><A ID="tex2html374"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00846000000000000000">Firmware Update</A>
+</UL>
+<LI><A ID="tex2html375"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00850000000000000000">Network</A>
+<UL>
+<LI><A ID="tex2html376"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851000000000000000">Control</A>
+<UL>
+<LI><A ID="tex2html377"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851100000000000000">Device Management</A>
+<LI><A ID="tex2html378"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851200000000000000">Smart Start</A>
+<LI><A ID="tex2html379"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851300000000000000">Enter/Leave different Network</A>
+<LI><A ID="tex2html380"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851400000000000000">Backup and Restore</A>
+<LI><A ID="tex2html381"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851500000000000000">Controller Maintenance</A>
+<LI><A ID="tex2html382"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851600000000000000">Operating Frequency</A>
+<LI><A ID="tex2html383"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851700000000000000">Network Maintenance</A>
+<LI><A ID="tex2html384"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851800000000000000">SUC/SIS Management</A>
+</UL>
+<LI><A ID="tex2html385"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00852000000000000000">Neighbors</A>
+<LI><A ID="tex2html386"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00853000000000000000">Reorganization</A>
+<LI><A ID="tex2html387"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00854000000000000000">Network Map</A>
+<LI><A ID="tex2html388"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00855000000000000000">Timing Info</A>
+<LI><A ID="tex2html389"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00856000000000000000">Link Status</A>
+<LI><A ID="tex2html390"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00857000000000000000">Controller Info</A>
+<LI><A ID="tex2html391"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00858000000000000000">Basic Set Handling</A>
+<LI><A ID="tex2html392"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00859000000000000000">Security Considerations</A>
+</UL>
+<LI><A ID="tex2html393"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00860000000000000000">Analytics</A>
+<LI><A ID="tex2html394"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00870000000000000000">Setup</A>
+<LI><A ID="tex2html395"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00880000000000000000">Job Queue</A>
+</UL>
+<BR>
+<LI><A ID="tex2html396"
+  HREF="Troubleshoot_Z_Wave_Network.html">Troubleshoot the Z-Wave Network</A>
+<UL>
+<LI><A ID="tex2html397"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00910000000000000000">Radio Layer</A>
+<LI><A ID="tex2html398"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00920000000000000000">Network Layer - Devices</A>
+<LI><A ID="tex2html399"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00930000000000000000">Network Layer - Weak or Wrong Routes</A>
+<LI><A ID="tex2html400"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00940000000000000000">Application Layer Settings</A>
+<UL>
+<LI><A ID="tex2html401"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00941000000000000000">Polling</A>
+<LI><A ID="tex2html402"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00942000000000000000">Dead Associations</A>
+<LI><A ID="tex2html403"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00943000000000000000">Wrong Wakeup Settings</A>
+</UL>
+<LI><A ID="tex2html404"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00950000000000000000">Summary</A>
+</UL>
+<BR>
+<LI><A ID="tex2html405"
+  HREF="Extending_systems_beyond_Z_.html">Extending the systems beyond Z-Wave </A>
+<UL>
+<LI><A ID="tex2html406"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001010000000000000000">IP-Cameras</A>
+<UL>
+<LI><A ID="tex2html407"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001011000000000000000">How to find out if a camera is supported by Z-Way?</A>
+<LI><A ID="tex2html408"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001012000000000000000">How to prepare for integration?</A>
+<LI><A ID="tex2html409"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001013000000000000000">How to find the IP address of the camera?</A>
+<LI><A ID="tex2html410"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001014000000000000000">How to integrate the camera into Z-Way?</A>
+<LI><A ID="tex2html411"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001015000000000000000">How to support a camera not on the list yet?</A>
+</UL>
+<LI><A ID="tex2html412"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001020000000000000000">433 MHz devices</A>
+<UL>
+<LI><A ID="tex2html413"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001021000000000000000">Introduction</A>
+<LI><A ID="tex2html414"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001022000000000000000">433 MHz Gateway</A>
+<LI><A ID="tex2html415"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001023000000000000000">How to setup the 433 MHz Gateway</A>
+<UL>
+<LI><A ID="tex2html416"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001023100000000000000">Power Up the 433 MHz Gateway</A>
+<LI><A ID="tex2html417"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001023200000000000000">Configure the 433 MHz Gateway</A>
+<LI><A ID="tex2html418"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001023300000000000000">Teach In 433 MHz devices</A>
+</UL>
+</UL>
+<LI><A ID="tex2html419"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001030000000000000000">EnOcean devices</A>
+<LI><A ID="tex2html420"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001040000000000000000">Other IP/Internet-based services</A>
+</UL>
+<BR>
+<LI><A ID="tex2html421"
+  HREF="Customize_your_system.html">Customize your system</A>
+<UL>
+<LI><A ID="tex2html422"
+  HREF="Customize_your_system.html#SECTION001110000000000000000">Skins</A>
+<UL>
+<LI><A ID="tex2html423"
+  HREF="Customize_your_system.html#SECTION001111000000000000000">Step 1 - Do you own Skin</A>
+<LI><A ID="tex2html424"
+  HREF="Customize_your_system.html#SECTION001112000000000000000">Step 2 - Do your own Images</A>
+<LI><A ID="tex2html425"
+  HREF="Customize_your_system.html#SECTION001113000000000000000">Step 3 - Test the new Skin</A>
+<LI><A ID="tex2html426"
+  HREF="Customize_your_system.html#SECTION001114000000000000000">Step 4 - Change colors, fonts, shapes – almost</A>
+<LI><A ID="tex2html427"
+  HREF="Customize_your_system.html#SECTION001115000000000000000">Step 5 - Going into the SASS world</A>
+<LI><A ID="tex2html428"
+  HREF="Customize_your_system.html#SECTION001116000000000000000">Step 6 - Changing SASS</A>
+<LI><A ID="tex2html429"
+  HREF="Customize_your_system.html#SECTION001117000000000000000">Step 7 - Create the final Skin for friends, family and the public</A>
+<UL>
+<LI><A ID="tex2html430"
+  HREF="Customize_your_system.html#SECTION001117100000000000000">Create a preview image</A>
+<LI><A ID="tex2html431"
+  HREF="Customize_your_system.html#SECTION001117200000000000000">Collect all files together</A>
+<LI><A ID="tex2html432"
+  HREF="Customize_your_system.html#SECTION001117300000000000000">Pack the files</A>
+</UL>
+<LI><A ID="tex2html433"
+  HREF="Customize_your_system.html#SECTION001118000000000000000">Step 8 - Distribute your Skin</A>
+<LI><A ID="tex2html434"
+  HREF="Customize_your_system.html#SECTION001119000000000000000">Step 9 - Rewind in case something goes wrong</A>
+</UL>
+<LI><A ID="tex2html435"
+  HREF="Customize_your_system.html#SECTION001120000000000000000">Icon Sets</A>
+<UL>
+<LI><A ID="tex2html436"
+  HREF="Customize_your_system.html#SECTION001121000000000000000">Create Your own Icons</A>
+<LI><A ID="tex2html437"
+  HREF="Customize_your_system.html#SECTION001122000000000000000">Create an Icon Pack</A>
+<LI><A ID="tex2html438"
+  HREF="Customize_your_system.html#SECTION001123000000000000000">Upload your Icon Set</A>
+</UL>
+<LI><A ID="tex2html439"
+  HREF="Customize_your_system.html#SECTION001130000000000000000">How to translate the Z-Way to your language</A>
+<UL>
+<LI><A ID="tex2html440"
+  HREF="Customize_your_system.html#SECTION001131000000000000000">Smart-Home User Interface</A>
+<LI><A ID="tex2html441"
+  HREF="Customize_your_system.html#SECTION001132000000000000000">Expert User Interface</A>
+<LI><A ID="tex2html442"
+  HREF="Customize_your_system.html#SECTION001133000000000000000">Backend Code</A>
+<LI><A ID="tex2html443"
+  HREF="Customize_your_system.html#SECTION001134000000000000000">Submission of your Language Pack</A>
+</UL>
+</UL>
+<BR>
+<LI><A ID="tex2html444"
+  HREF="Develop_Code_Z_Way.html">Develop Code for Z-Way </A>
+<UL>
+<LI><A ID="tex2html445"
+  HREF="Develop_Code_Z_Way.html#SECTION001210000000000000000">Z-Way software structure overview</A>
+<LI><A ID="tex2html446"
+  HREF="Develop_Code_Z_Way.html#SECTION001220000000000000000">Z-Way APIs Quick Reference</A>
+<UL>
+<LI><A ID="tex2html447"
+  HREF="Develop_Code_Z_Way.html#SECTION001221000000000000000">Z-Wave Device API</A>
+<UL>
+<LI><A ID="tex2html448"
+  HREF="Develop_Code_Z_Way.html#SECTION001221100000000000000">Sending Z-Wave Commands</A>
+</UL>
+<LI><A ID="tex2html449"
+  HREF="Develop_Code_Z_Way.html#SECTION001222000000000000000">JavaScript API (JS API)</A>
+<LI><A ID="tex2html450"
+  HREF="Develop_Code_Z_Way.html#SECTION001223000000000000000">Virtual Device API</A>
+<LI><A ID="tex2html451"
+  HREF="Develop_Code_Z_Way.html#SECTION001224000000000000000">Comparison</A>
+</UL>
+<LI><A ID="tex2html452"
+  HREF="Develop_Code_Z_Way.html#SECTION001230000000000000000">The Z-Wave Device (JSON) API in detail</A>
+<UL>
+<LI><A ID="tex2html453"
+  HREF="Develop_Code_Z_Way.html#SECTION001231000000000000000">The data model</A>
+<UL>
+<LI><A ID="tex2html454"
+  HREF="Develop_Code_Z_Way.html#SECTION001231100000000000000">The Data object</A>
+<LI><A ID="tex2html455"
+  HREF="Develop_Code_Z_Way.html#SECTION001231200000000000000">The Data and Method Tree</A>
+</UL>
+<LI><A ID="tex2html456"
+  HREF="Develop_Code_Z_Way.html#SECTION001232000000000000000">Timing behavior of Z-Wave data</A>
+<LI><A ID="tex2html457"
+  HREF="Develop_Code_Z_Way.html#SECTION001233000000000000000">Executing Commands</A>
+<UL>
+<LI><A ID="tex2html458"
+  HREF="Develop_Code_Z_Way.html#SECTION001233100000000000000">Function Class Commands</A>
+<LI><A ID="tex2html459"
+  HREF="Develop_Code_Z_Way.html#SECTION001233200000000000000">Device Command Class Commands</A>
+<LI><A ID="tex2html460"
+  HREF="Develop_Code_Z_Way.html#SECTION001233300000000000000">Accessing Data</A>
+<LI><A ID="tex2html461"
+  HREF="Develop_Code_Z_Way.html#SECTION001233400000000000000">/ZWaveAPI/Data/<SPAN CLASS="MATH">&lt;</SPAN>timestamp<SPAN CLASS="MATH">&gt;</SPAN></A>
+<LI><A ID="tex2html462"
+  HREF="Develop_Code_Z_Way.html#SECTION001233500000000000000">/ZWaveAPI/InspectQueue</A>
+<LI><A ID="tex2html463"
+  HREF="Develop_Code_Z_Way.html#SECTION001233600000000000000">Handling of updates coming from Z-Way </A>
+<LI><A ID="tex2html464"
+  HREF="Develop_Code_Z_Way.html#SECTION001233700000000000000">Handling S2 inclusion process</A>
+</UL>
+</UL>
+<LI><A ID="tex2html465"
+  HREF="Develop_Code_Z_Way.html#SECTION001240000000000000000">C-Library API and a general view on the Z-Way file structure</A>
+<UL>
+<LI><A ID="tex2html466"
+  HREF="Develop_Code_Z_Way.html#SECTION001241000000000000000">Files in the /zway folder</A>
+<UL>
+<LI><A ID="tex2html467"
+  HREF="Develop_Code_Z_Way.html#SECTION001241100000000000000">config.xml - the main config file</A>
+<LI><A ID="tex2html468"
+  HREF="Develop_Code_Z_Way.html#SECTION001241200000000000000">config: Various configuration xml files</A>
+<LI><A ID="tex2html469"
+  HREF="Develop_Code_Z_Way.html#SECTION001241300000000000000">translations: XMLs mapping Ids to text</A>
+<LI><A ID="tex2html470"
+  HREF="Develop_Code_Z_Way.html#SECTION001241400000000000000">ZDDX: Device Description Files</A>
+<LI><A ID="tex2html471"
+  HREF="Develop_Code_Z_Way.html#SECTION001241500000000000000">Htdocs: The web servers document folder</A>
+<LI><A ID="tex2html472"
+  HREF="Develop_Code_Z_Way.html#SECTION001241600000000000000">automation: The JavaScript sub system</A>
+</UL>
+<LI><A ID="tex2html473"
+  HREF="Develop_Code_Z_Way.html#SECTION001242000000000000000">The use of  the C-Library</A>
+<UL>
+<LI><A ID="tex2html474"
+  HREF="Develop_Code_Z_Way.html#SECTION001242100000000000000">Sending commands</A>
+<LI><A ID="tex2html475"
+  HREF="Develop_Code_Z_Way.html#SECTION001242200000000000000">Receiving updates</A>
+<LI><A ID="tex2html476"
+  HREF="Develop_Code_Z_Way.html#SECTION001242300000000000000">Command Classes</A>
+<LI><A ID="tex2html477"
+  HREF="Develop_Code_Z_Way.html#SECTION001242400000000000000">Network management</A>
+<LI><A ID="tex2html478"
+  HREF="Develop_Code_Z_Way.html#SECTION001242500000000000000">Using Z-Way Library in C-Code</A>
+</UL>
+</UL>
+</UL>
+<BR>
+<LI><A ID="tex2html479"
+  HREF="JavaScript_Engine.html">The JavaScript Engine</A>
+<UL>
+<LI><A ID="tex2html480"
+  HREF="JavaScript_Engine.html#SECTION001310000000000000000">The JavaScript Core Interpreter and the integration of the Z-Wave function</A>
+<LI><A ID="tex2html481"
+  HREF="JavaScript_Engine.html#SECTION001320000000000000000">Z-Way extensions to the JavaScript Core</A>
+<UL>
+<LI><A ID="tex2html482"
+  HREF="JavaScript_Engine.html#SECTION001321000000000000000">HTTP Access</A>
+<LI><A ID="tex2html483"
+  HREF="JavaScript_Engine.html#SECTION001322000000000000000">XML parser</A>
+<UL>
+<LI><A ID="tex2html484"
+  HREF="JavaScript_Engine.html#SECTION001322100000000000000">var x = new ZXmlDocument()</A>
+<LI><A ID="tex2html485"
+  HREF="JavaScript_Engine.html#SECTION001322200000000000000">x = new ZXmlDocument("xml content")</A>
+<LI><A ID="tex2html486"
+  HREF="JavaScript_Engine.html#SECTION001322300000000000000">x.root</A>
+<LI><A ID="tex2html487"
+  HREF="JavaScript_Engine.html#SECTION001322400000000000000">x.isXML</A>
+<LI><A ID="tex2html488"
+  HREF="JavaScript_Engine.html#SECTION001322500000000000000">x.toString()</A>
+<LI><A ID="tex2html489"
+  HREF="JavaScript_Engine.html#SECTION001322600000000000000">x.findOne(XPathString)</A>
+<LI><A ID="tex2html490"
+  HREF="JavaScript_Engine.html#SECTION001322700000000000000">x.findAll(XPathString)</A>
+<LI><A ID="tex2html491"
+  HREF="JavaScript_Engine.html#SECTION001322800000000000000">x.document</A>
+<LI><A ID="tex2html492"
+  HREF="JavaScript_Engine.html#SECTION001322900000000000000">XML elements</A>
+</UL>
+<LI><A ID="tex2html493"
+  HREF="JavaScript_Engine.html#SECTION001323000000000000000">Cryptographic functions</A>
+<UL>
+<LI><A ID="tex2html494"
+  HREF="JavaScript_Engine.html#SECTION001323100000000000000">var guid = crypto.guid()</A>
+<LI><A ID="tex2html495"
+  HREF="JavaScript_Engine.html#SECTION001323200000000000000">var rnd = crypto.random(n)</A>
+<LI><A ID="tex2html496"
+  HREF="JavaScript_Engine.html#SECTION001323300000000000000">var dgst = crypto.digest(hash, data, ...)</A>
+<LI><A ID="tex2html497"
+  HREF="JavaScript_Engine.html#SECTION001323400000000000000">var hmac = crypto.hmac(cipher, key, data, ...)</A>
+</UL>
+<LI><A ID="tex2html498"
+  HREF="JavaScript_Engine.html#SECTION001324000000000000000">Sockets functions</A>
+<LI><A ID="tex2html499"
+  HREF="JavaScript_Engine.html#SECTION001325000000000000000">WebSockets functions</A>
+<LI><A ID="tex2html500"
+  HREF="JavaScript_Engine.html#SECTION001326000000000000000">Other JavaScript Extensions</A>
+<UL>
+<LI><A ID="tex2html501"
+  HREF="JavaScript_Engine.html#SECTION001326100000000000000">fs.list(folder)</A>
+<LI><A ID="tex2html502"
+  HREF="JavaScript_Engine.html#SECTION001326200000000000000">fs.stat(file)</A>
+<LI><A ID="tex2html503"
+  HREF="JavaScript_Engine.html#SECTION001326300000000000000">fs.loadJSON(filename)</A>
+<LI><A ID="tex2html504"
+  HREF="JavaScript_Engine.html#SECTION001326400000000000000">fs.load(filename)</A>
+<LI><A ID="tex2html505"
+  HREF="JavaScript_Engine.html#SECTION001326500000000000000">executeFile(filename) and executeJS(string)</A>
+<LI><A ID="tex2html506"
+  HREF="JavaScript_Engine.html#SECTION001326600000000000000">system(command)</A>
+<LI><A ID="tex2html507"
+  HREF="JavaScript_Engine.html#SECTION001326700000000000000">Timers</A>
+<LI><A ID="tex2html508"
+  HREF="JavaScript_Engine.html#SECTION001326800000000000000">loadObject(object_name) and saveObject(object_name, object)</A>
+<LI><A ID="tex2html509"
+  HREF="JavaScript_Engine.html#SECTION001326900000000000000">exit()</A>
+<LI><A ID="tex2html510"
+  HREF="JavaScript_Engine.html#SECTION0013261000000000000000">allowExternalAccess(handlerName) and listExternalAccess()</A>
+<LI><A ID="tex2html511"
+  HREF="JavaScript_Engine.html#SECTION0013261100000000000000">debugPrint(object, object, ...)</A>
+</UL>
+<LI><A ID="tex2html512"
+  HREF="JavaScript_Engine.html#SECTION001327000000000000000">Debugging JavaScript code</A>
+</UL>
+<LI><A ID="tex2html513"
+  HREF="JavaScript_Engine.html#SECTION001330000000000000000">The virtual device concept (vDev)</A>
+<UL>
+<LI><A ID="tex2html514"
+  HREF="JavaScript_Engine.html#SECTION001331000000000000000">Names and Ids</A>
+<LI><A ID="tex2html515"
+  HREF="JavaScript_Engine.html#SECTION001332000000000000000">Device Type</A>
+<LI><A ID="tex2html516"
+  HREF="JavaScript_Engine.html#SECTION001333000000000000000">Access to Virtual Devices</A>
+<LI><A ID="tex2html517"
+  HREF="JavaScript_Engine.html#SECTION001334000000000000000">Virtual Device Usage / Commands</A>
+<LI><A ID="tex2html518"
+  HREF="JavaScript_Engine.html#SECTION001335000000000000000">Virtual Device Usage / Values</A>
+<LI><A ID="tex2html519"
+  HREF="JavaScript_Engine.html#SECTION001336000000000000000">How to create your own virtual devices</A>
+<UL>
+<LI><A ID="tex2html520"
+  HREF="JavaScript_Engine.html#SECTION001336100000000000000">Step 1. Define a VirtualDevice subclass</A>
+<LI><A ID="tex2html521"
+  HREF="JavaScript_Engine.html#SECTION001336200000000000000">Step 2. Override performCommand() method</A>
+<LI><A ID="tex2html522"
+  HREF="JavaScript_Engine.html#SECTION001336300000000000000">Step 3. Instantiate your VDev by the module</A>
+<LI><A ID="tex2html523"
+  HREF="JavaScript_Engine.html#SECTION001336400000000000000">Step 4. Register device</A>
+<LI><A ID="tex2html524"
+  HREF="JavaScript_Engine.html#SECTION001336500000000000000">Step 5: Unregister device</A>
+</UL>
+<LI><A ID="tex2html525"
+  HREF="JavaScript_Engine.html#SECTION001337000000000000000">Binding to metric changes</A>
+</UL>
+<LI><A ID="tex2html526"
+  HREF="JavaScript_Engine.html#SECTION001340000000000000000">The event bus</A>
+<UL>
+<LI><A ID="tex2html527"
+  HREF="JavaScript_Engine.html#SECTION001341000000000000000">Emitting events</A>
+<LI><A ID="tex2html528"
+  HREF="JavaScript_Engine.html#SECTION001342000000000000000">Catching (binding to) events</A>
+<LI><A ID="tex2html529"
+  HREF="JavaScript_Engine.html#SECTION001343000000000000000">Notification and Severity</A>
+</UL>
+<LI><A ID="tex2html530"
+  HREF="JavaScript_Engine.html#SECTION001350000000000000000">Modules (for users called 'Apps')</A>
+<UL>
+<LI><A ID="tex2html531"
+  HREF="JavaScript_Engine.html#SECTION001351000000000000000">Module.json</A>
+<LI><A ID="tex2html532"
+  HREF="JavaScript_Engine.html#SECTION001352000000000000000">index.js</A>
+<LI><A ID="tex2html533"
+  HREF="JavaScript_Engine.html#SECTION001353000000000000000">Available Core Modules</A>
+<UL>
+<LI><A ID="tex2html534"
+  HREF="JavaScript_Engine.html#SECTION001353100000000000000">Cron, the timer module</A>
+<LI><A ID="tex2html535"
+  HREF="JavaScript_Engine.html#SECTION001353200000000000000">Z-Wave</A>
+</UL>
+</UL>
+</UL>
+<BR>
+<LI><A ID="tex2html536"
+  HREF="Special_topics_Developers.html">Special topics for Developers</A>
+<UL>
+<LI><A ID="tex2html537"
+  HREF="Special_topics_Developers.html#SECTION001410000000000000000">Authentication</A>
+<UL>
+<LI><A ID="tex2html538"
+  HREF="Special_topics_Developers.html#SECTION001411000000000000000">Local authentication</A>
+<LI><A ID="tex2html539"
+  HREF="Special_topics_Developers.html#SECTION001412000000000000000">Remote authentication</A>
+<LI><A ID="tex2html540"
+  HREF="Special_topics_Developers.html#SECTION001413000000000000000">Remote authentication and access error handling</A>
+<LI><A ID="tex2html541"
+  HREF="Special_topics_Developers.html#SECTION001414000000000000000">Token lifetime</A>
+<LI><A ID="tex2html542"
+  HREF="Special_topics_Developers.html#SECTION001415000000000000000">OAuth2</A>
+</UL>
+<LI><A ID="tex2html543"
+  HREF="Special_topics_Developers.html#SECTION001420000000000000000">How to write own Apps for Z-Way </A>
+<UL>
+<LI><A ID="tex2html544"
+  HREF="Special_topics_Developers.html#SECTION001421000000000000000">module.js</A>
+<LI><A ID="tex2html545"
+  HREF="Special_topics_Developers.html#SECTION001422000000000000000">Schema</A>
+<UL>
+<LI><A ID="tex2html546"
+  HREF="Special_topics_Developers.html#SECTION001422100000000000000">Primitive data types like integer, float or string</A>
+<LI><A ID="tex2html547"
+  HREF="Special_topics_Developers.html#SECTION001422200000000000000">Name Spaces  - Enumerations with a choice</A>
+</UL>
+<LI><A ID="tex2html548"
+  HREF="Special_topics_Developers.html#SECTION001423000000000000000">The file index.js</A>
+</UL>
+<LI><A ID="tex2html549"
+  HREF="Special_topics_Developers.html#SECTION001430000000000000000">Write you own Device Description Files</A>
+<LI><A ID="tex2html550"
+  HREF="Special_topics_Developers.html#SECTION001440000000000000000">Extending EnOcean</A>
+</UL>
+<BR>
+<LI><A ID="tex2html551"
+  HREF="Z_Way_Data_Model_Reference.html">Z-Way Data Model Reference</A>
+<UL>
+<LI><A ID="tex2html552"
+  HREF="Z_Way_Data_Model_Reference.html#SECTION001510000000000000000">Data</A>
+<LI><A ID="tex2html553"
+  HREF="Z_Way_Data_Model_Reference.html#SECTION001520000000000000000">JS object zway</A>
+<LI><A ID="tex2html554"
+  HREF="Z_Way_Data_Model_Reference.html#SECTION001530000000000000000">controller</A>
+<LI><A ID="tex2html555"
+  HREF="Z_Way_Data_Model_Reference.html#SECTION001540000000000000000">Devices</A>
+<LI><A ID="tex2html556"
+  HREF="Z_Way_Data_Model_Reference.html#SECTION001550000000000000000">Device</A>
+<LI><A ID="tex2html557"
+  HREF="Z_Way_Data_Model_Reference.html#SECTION001560000000000000000">Instances</A>
+<LI><A ID="tex2html558"
+  HREF="Z_Way_Data_Model_Reference.html#SECTION001570000000000000000">CommandClass</A>
+</UL>
+<BR>
+<LI><A ID="tex2html559"
+  HREF="Command_Class_Reference.html">Command Class Reference</A>
+<UL>
+<LI><A ID="tex2html560"
+  HREF="Command_Class_Reference.html#SECTION001610000000000000000">Command Class Basic (0x20/32)</A>
+<LI><A ID="tex2html561"
+  HREF="Command_Class_Reference.html#SECTION001620000000000000000">Command Class Wakeup (0x84/132)</A>
+<LI><A ID="tex2html562"
+  HREF="Command_Class_Reference.html#SECTION001630000000000000000">Command Class NoOperation (0x00/0)</A>
+<LI><A ID="tex2html563"
+  HREF="Command_Class_Reference.html#SECTION001640000000000000000">Command Class Battery (0x80/128)</A>
+<LI><A ID="tex2html564"
+  HREF="Command_Class_Reference.html#SECTION001650000000000000000">Command Class ManufacturerSpecific (0x72/114)</A>
+<LI><A ID="tex2html565"
+  HREF="Command_Class_Reference.html#SECTION001660000000000000000">Command Class Proprietary (0x88/136)</A>
+<LI><A ID="tex2html566"
+  HREF="Command_Class_Reference.html#SECTION001670000000000000000">Command Class Configuration (0x70/112)</A>
+<LI><A ID="tex2html567"
+  HREF="Command_Class_Reference.html#SECTION001680000000000000000">Command Class SensorBinary (0x30/48)</A>
+<LI><A ID="tex2html568"
+  HREF="Command_Class_Reference.html#SECTION001690000000000000000">Command Class Association (0x85/133)</A>
+<LI><A ID="tex2html569"
+  HREF="Command_Class_Reference.html#SECTION0016100000000000000000">Command Class Meter (0x32/50)</A>
+<LI><A ID="tex2html570"
+  HREF="Command_Class_Reference.html#SECTION0016110000000000000000">Command Class Meter Pulse (0x35/53)</A>
+<LI><A ID="tex2html571"
+  HREF="Command_Class_Reference.html#SECTION0016120000000000000000">Command Class SensorMultilevel (0x31/49)</A>
+<LI><A ID="tex2html572"
+  HREF="Command_Class_Reference.html#SECTION0016130000000000000000">Command Class Sensor Configuration (0x9E/158)</A>
+<LI><A ID="tex2html573"
+  HREF="Command_Class_Reference.html#SECTION0016140000000000000000">Command Class SwitchAll (0x27/39)</A>
+<LI><A ID="tex2html574"
+  HREF="Command_Class_Reference.html#SECTION0016150000000000000000">Command Class SwitchBinary (0x25/37)</A>
+<LI><A ID="tex2html575"
+  HREF="Command_Class_Reference.html#SECTION0016160000000000000000">Command Class SwitchMultilevel (0x26/38)</A>
+<LI><A ID="tex2html576"
+  HREF="Command_Class_Reference.html#SECTION0016170000000000000000">Command Class MultiChannelAssociation (0x8E/142)</A>
+<LI><A ID="tex2html577"
+  HREF="Command_Class_Reference.html#SECTION0016180000000000000000">Command Class MultiChannel (0x60/96)</A>
+<LI><A ID="tex2html578"
+  HREF="Command_Class_Reference.html#SECTION0016190000000000000000">Command Class Node Naming (0x77/119)</A>
+<LI><A ID="tex2html579"
+  HREF="Command_Class_Reference.html#SECTION0016200000000000000000">Command Class Thermostat SetPoint (0x43/67)</A>
+<LI><A ID="tex2html580"
+  HREF="Command_Class_Reference.html#SECTION0016210000000000000000">Command Class Thermostat Mode (0x40/64)</A>
+<LI><A ID="tex2html581"
+  HREF="Command_Class_Reference.html#SECTION0016220000000000000000">Command Class Thermostat Fan Mode (0x44/68)</A>
+<LI><A ID="tex2html582"
+  HREF="Command_Class_Reference.html#SECTION0016230000000000000000">Command Class Thermostat Fan State (0x45/69)</A>
+<LI><A ID="tex2html583"
+  HREF="Command_Class_Reference.html#SECTION0016240000000000000000">Command Class Thermostat Operating State (0x42/66)</A>
+<LI><A ID="tex2html584"
+  HREF="Command_Class_Reference.html#SECTION0016250000000000000000">Command Class Alarm Sensor (0x9C/156)</A>
+<LI><A ID="tex2html585"
+  HREF="Command_Class_Reference.html#SECTION0016260000000000000000">Command Class Door Lock (0x62/98)</A>
+<LI><A ID="tex2html586"
+  HREF="Command_Class_Reference.html#SECTION0016270000000000000000">Command Class Door Lock Logging (0x4C/76)</A>
+<LI><A ID="tex2html587"
+  HREF="Command_Class_Reference.html#SECTION0016280000000000000000">Command Class User Code (0x63/99)</A>
+<LI><A ID="tex2html588"
+  HREF="Command_Class_Reference.html#SECTION0016290000000000000000">Command Class Time (0x8A/138)</A>
+<LI><A ID="tex2html589"
+  HREF="Command_Class_Reference.html#SECTION0016300000000000000000">Command Class Time Parameters (0x8B/139)</A>
+<LI><A ID="tex2html590"
+  HREF="Command_Class_Reference.html#SECTION0016310000000000000000">Command Class Clock (0x81/129)</A>
+<LI><A ID="tex2html591"
+  HREF="Command_Class_Reference.html#SECTION0016320000000000000000">Command Class Scene Activation (0x2B/43)</A>
+<LI><A ID="tex2html592"
+  HREF="Command_Class_Reference.html#SECTION0016330000000000000000">Command Class Scene Controller Conf (0x2D/45)</A>
+<LI><A ID="tex2html593"
+  HREF="Command_Class_Reference.html#SECTION0016340000000000000000">Command Class Scene Actuator Conf (0x2C/44)</A>
+<LI><A ID="tex2html594"
+  HREF="Command_Class_Reference.html#SECTION0016350000000000000000">Command Class Indicator (0x87/135)</A>
+<LI><A ID="tex2html595"
+  HREF="Command_Class_Reference.html#SECTION0016360000000000000000">Command Class Protection (0x75/117)</A>
+<LI><A ID="tex2html596"
+  HREF="Command_Class_Reference.html#SECTION0016370000000000000000">Command Class Schedule Entry Lock (0x4E/78)</A>
+<LI><A ID="tex2html597"
+  HREF="Command_Class_Reference.html#SECTION0016380000000000000000">Command Class Climate Control Schedule (0x46/70)</A>
+<LI><A ID="tex2html598"
+  HREF="Command_Class_Reference.html#SECTION0016390000000000000000">Command Class MeterTableMonitor (0x3D/61)</A>
+<LI><A ID="tex2html599"
+  HREF="Command_Class_Reference.html#SECTION0016400000000000000000">Command Class Alarm (0x71/113)</A>
+<LI><A ID="tex2html600"
+  HREF="Command_Class_Reference.html#SECTION0016410000000000000000">Command Class PowerLevel (0x73/115)</A>
+<LI><A ID="tex2html601"
+  HREF="Command_Class_Reference.html#SECTION0016420000000000000000">Command Class Z-Wave Plus Info (0x5E/94)</A>
+<LI><A ID="tex2html602"
+  HREF="Command_Class_Reference.html#SECTION0016430000000000000000">Command Class Firmware Update (0x7A/122)</A>
+<LI><A ID="tex2html603"
+  HREF="Command_Class_Reference.html#SECTION0016440000000000000000">Command Class Association Group Information (0x59/89)</A>
+<LI><A ID="tex2html604"
+  HREF="Command_Class_Reference.html#SECTION0016450000000000000000">Command Class SwitchColor (0x33/51)</A>
+<LI><A ID="tex2html605"
+  HREF="Command_Class_Reference.html#SECTION0016460000000000000000">Command Class SoundSwitch (0x79/121)</A>
+<LI><A ID="tex2html606"
+  HREF="Command_Class_Reference.html#SECTION0016470000000000000000">Command Class BarrierOperator (0x66/102)</A>
+<LI><A ID="tex2html607"
+  HREF="Command_Class_Reference.html#SECTION0016480000000000000000">Command Class SimpleAVControl (0x94/148)</A>
+<LI><A ID="tex2html608"
+  HREF="Command_Class_Reference.html#SECTION0016490000000000000000">Command Class Security (0x98/152)</A>
+<LI><A ID="tex2html609"
+  HREF="Command_Class_Reference.html#SECTION0016500000000000000000">Command Class SecurityS2 (0x9F/159)</A>
+<LI><A ID="tex2html610"
+  HREF="Command_Class_Reference.html#SECTION0016510000000000000000">Command Class EntryControl (0x6F/111)</A>
+<LI><A ID="tex2html611"
+  HREF="Command_Class_Reference.html#SECTION0016520000000000000000">Command Class CRC16 (0x56/86)</A>
+<LI><A ID="tex2html612"
+  HREF="Command_Class_Reference.html#SECTION0016530000000000000000">Command Class MultiCmd (0x8F/143)</A>
+<LI><A ID="tex2html613"
+  HREF="Command_Class_Reference.html#SECTION0016540000000000000000">Command Class Supervision (0x6C/108)</A>
+<LI><A ID="tex2html614"
+  HREF="Command_Class_Reference.html#SECTION0016550000000000000000">Command Class Application Status (0x22/34)</A>
+<LI><A ID="tex2html615"
+  HREF="Command_Class_Reference.html#SECTION0016560000000000000000">Command Class Version (0x86/134)</A>
+<LI><A ID="tex2html616"
+  HREF="Command_Class_Reference.html#SECTION0016570000000000000000">Command Class DeviceResetLocally (0x5A/90)</A>
+<LI><A ID="tex2html617"
+  HREF="Command_Class_Reference.html#SECTION0016580000000000000000">Command Class Central Scene (0x5B/91)</A>
+</UL>
+<BR>
+<LI><A ID="tex2html618"
+  HREF="Function_Class_Reference.html">Function Class Reference</A>
+<LI><A ID="tex2html619"
+  HREF="List_supported_EnOcean_devi.html">List of supported EnOcean devices</A>
+<UL>
+<LI><A ID="tex2html620"
+  HREF="List_supported_EnOcean_devi.html#SECTION001810000000000000000">NodOn</A>
+<LI><A ID="tex2html621"
+  HREF="List_supported_EnOcean_devi.html#SECTION001820000000000000000">Thermokon</A>
+<LI><A ID="tex2html622"
+  HREF="List_supported_EnOcean_devi.html#SECTION001830000000000000000">Hubbel</A>
+<LI><A ID="tex2html623"
+  HREF="List_supported_EnOcean_devi.html#SECTION001840000000000000000">AWAG</A>
+<LI><A ID="tex2html624"
+  HREF="List_supported_EnOcean_devi.html#SECTION001850000000000000000">Hoppe</A>
+<LI><A ID="tex2html625"
+  HREF="List_supported_EnOcean_devi.html#SECTION001860000000000000000">Schneider Elektrik</A>
+<LI><A ID="tex2html626"
+  HREF="List_supported_EnOcean_devi.html#SECTION001870000000000000000">PEHA</A>
+<LI><A ID="tex2html627"
+  HREF="List_supported_EnOcean_devi.html#SECTION001880000000000000000">Eltako</A>
+<LI><A ID="tex2html628"
+  HREF="List_supported_EnOcean_devi.html#SECTION001890000000000000000">EnOcean GmbH</A>
+</UL>
+<BR>
+<LI><A ID="tex2html629"
+  HREF="List_Tables.html">List of Tables</A>
+<LI><A ID="tex2html630"
+  HREF="List_Figures.html">List of Figures</A>
+<LI><A ID="tex2html631"
+  HREF="Index.html">Index</A>
+</UL>
+</div>
+
+<H1><A ID="SECTION001200000000000000000"></A>
+<A ID="c:developer"></A>
+<BR>
+Develop Code for Z-Way 
+</H1>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H1><A ID="SECTION001210000000000000000">
+Z-Way software structure overview</A>
+</H1>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<DIV class="CENTER"><A ID="apis"></A><A ID="5220"></A>
+<TABLE>
+<CAPTION class="BOTTOM"><STRONG>Figure 11.1:</STRONG>
+Z-Way APIs and their use by GUI demos</CAPTION>
+<TR><TD><IMG STYLE=""
+ SRC="./apis.png"
+ ALT="Image apis"></TD></TR>
+</TABLE>
+</DIV>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"> Z-Way offers multiple Application Program Interfaces (API) that are partly built on each 
+other. Figure <A HREF="#apis">11.1</A> shows the general structure of Z-Way with focus on the APIs. The 
+most important part of Z-Way is the Z-Wave core. The Z-Wave core uses the standard Silicon
+Labs Serial API to communicate with a Z-Wave compatible transceiver hardware but enhanced 
+with some Z-Way specific functions such as frequency change. The standard interface is 
+not public but available for owners of the Silicon Labs Development Kit (SDK)
+<A ID="tex2html207"
+  HREF="#foot5224"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A></DIV>
+<P>
+<DIV class="CENTER">The Z-Wave core services can be accessed directly using the Z-Wave Device API (zDev API). 
+There are two Z-Wave device API versions available:
+</DIV>
+<UL>
+<LI>Z-Wave API as JSON API: All functions are available using a JSON API implemented 
+by an embedded webserver. This web server can be used in two ways:
+
+<UL>
+<LI>web sockets, a permanent IP connection
+</LI>
+<LI>REST (Representational State Transfer)
+</LI>
+</UL>
+Both ways to use the JSON API have the same data structures and commands. The 
+<SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>as described in chapter <A HREF="Z_Wave_Expert_User_Interfac.html#eui">7</A> uses the REST option of this JSON API. This user 
+interface is a very good reference how to apply the Z-Wave Device API. For oore 
+information about the Z-Wave Device API please refer to Section <A HREF="#zwavedeviceapi">11.2.1</A>.
+
+<P>
+</LI>
+<LI>Z-Wave API as C Library API: All functions of the JSON API are available as C 
+library function too. The URL
+
+<P>
+<BLOCKQUOTE>
+<kbd><A ID="tex2html208"
+  HREF="razberry.z-wave.me/fileadmin/z-way-test.tgz">razberry.z-wave.me/fileadmin/z-way-test.tgz</A></kbd>
+</BLOCKQUOTE> 
+
+<P>
+provides a sample application written in standard C that makes use of the C level 
+API to demonstrate its application. Makefiles and project files for compilation on 
+Linux and OSX are provided together with the sample code. More information on the C 
+level API you find in Section <A HREF="#clevelapi">11.4</A>.
+
+<P>
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The <SPAN  CLASS="textbf">Z-Wave device API only allows the management of the Z-Wave network</SPAN> and 
+the control and management of the devices as such. No higher order logic except the 
+so-called Z-Wave associations between two Z-Wave devices can be used.
+</DIV>
+<P>
+<DIV class="CENTER">For all <SPAN  CLASS="textbf">automation and higher order logic a JavaScript automation engine</SPAN> 
+is available. This engine is also shipped with Z-Way.
+</DIV>
+<P>
+<DIV class="CENTER">The JavaScript API on top of the JS engine mirrors all functions of the Z-Wave Device API 
+but also allows access to third-party  device APIs (e.g. EnOcean). This means the JS API 
+is the common ground for all further application logic and user interfaces (with the 
+exception of the <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>that uses the Z-Wave Device API.
+</DIV>
+<P>
+<DIV class="CENTER">The JavaScript layer makes use of a JavaScript implementation provided by Google it 
+is also used in Googles Chrome web browser. All JavaScript API functions can also be 
+accessed using the embedded webserver. The beauty of this interface is that JavaScript 
+can be executed on the server and on the client. Executing on the client makes sense 
+for small changes to the data model or running small helper programs.
+</DIV>
+<P>
+<DIV class="CENTER">There are two important sub-portions of the JavaScript layer:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<UL>
+<LI>Virtual Devices (vDevs): All functions of the physical devices plus other functions are 
+mapped into virtual devices. Virtual devices have properties and attributes linked to 
+their physical counterpart functions. The Z-W<SMALL>AY </SMALL>S<SMALL>MART </SMALL>H<SMALL>OME </SMALL>I<SMALL>NTERFACE </SMALL>is completely 
+written using the virtual device concept and this user interface can act as a good reference 
+how to use them. Please refer to chapter <A HREF="#c2">11.3</A> for more information about the 
+use of the vdev concept.
+
+<P>
+</LI>
+<LI>The Apps: These are JavaScript portions that are dynamically loaded into the JS 
+core and implement application or user specific function. Please refer to chapter <A HREF="App_System_making_it_intell.html#apps">6</A> 
+for more information about the app concept and existing apps. Please refer to Chapter 
+<A HREF="Special_topics_Developers.html#developownapps">13.2</A> for more information about how to develop own apps.
+
+<P>
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H1><A ID="SECTION001220000000000000000">
+Z-Way APIs Quick Reference</A>
+</H1>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001221000000000000000"></A>
+<A ID="zwavedeviceapi"></A>
+<BR>
+Z-Wave Device API
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The Z-Wave Device API implements the direct access to the Z-Wave network. All Z-Wave devices 
+are referred to by their unique identification in the wireless network&mdash;the Node ID. 
+Z-Wave devices may have different instances of the same function, also called channels 
+(for example sockets in a power strip). The Z-Wave Device API refers to them as daughter 
+objects of the physical device object identified by an instance ID. In case there is 
+only one instance, the instance ID = 0 is used.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001221100000000000000">
+Sending Z-Wave Commands</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">All device variables and available commands in a Z-Wave device are grouped in the so-called 
+command classes. The Z-Wave API allows direct access to all parameters, values and commands 
+of these command class structures. Annex <A HREF="Command_Class_Reference.html#ccs"><IMG  ALT="[*]" SRC="crossref.png"></A> gives you the complete reference of 
+the implemented command classes.
+</DIV>
+<P>
+<DIV class="CENTER">Beside the devices the Z-Wave Device API also offers access to the management interface of 
+the network. Annex <A HREF="Function_Class_Reference.html#FunctionClasses"><IMG  ALT="[*]" SRC="crossref.png"></A> gives you a full reference of the implemented 
+function classes.
+</DIV>
+<P>
+<DIV class="CENTER">The Z-Wave Device API can be accessed on the JSON API with any standard web browser using the URL
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<kbd><A ID="tex2html209"
+  HREF="http://YOURIP:8083/ ZWaveAPI/*">http://YOURIP:8083/ ZWaveAPI/*</A></kbd>
+</BLOCKQUOTE>.
+</DIV>
+<P>
+<DIV class="CENTER">Device objects or commands of these objects are accessed by
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<kbd><A ID="tex2html210"
+  HREF="http://YOURIP:8083/ ZWaveAPI/Run/devices[*].* ">http://YOURIP:8083/ ZWaveAPI/Run/devices[*].* </A></kbd>
+</BLOCKQUOTE> 
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<kbd><A ID="tex2html211"
+  HREF="http://YOURIP:8083/ ZWaveAPI/Run/devices[x].instances[y].*">http://YOURIP:8083/ ZWaveAPI/Run/devices[x].instances[y].*</A></kbd>
+</BLOCKQUOTE> 
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<kbd><A ID="tex2html212"
+  HREF="http://YOURIP:8083/ ZWaveAPI/Run/devices[x].instances[y].commandClasses[z].*">http://YOURIP:8083/ ZWaveAPI/Run/devices[x].instances[y].commandClasses[z].*</A></kbd>
+</BLOCKQUOTE> 
+</DIV>
+<P>
+<DIV class="CENTER">The whole data tree of the Z-Wave network is accessed using
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<kbd><A ID="tex2html213"
+  HREF="http://YOURIP:8083/ZWaveAPI/Data/*">http://YOURIP:8083/ZWaveAPI/Data/*</A></kbd>
+</BLOCKQUOTE>.
+</DIV>
+<P>
+<DIV class="CENTER">Please refer to the Z-Way for information about the context, the 
+commands, and the data used. Section <A HREF="#c2">11.3</A> provides more information
+about the API and the underlying data structure.
+</DIV>
+<P>
+<DIV class="CENTER">All acces ot the webserver require authentication of the user. Please refer to Chapter 
+<A HREF="Special_topics_Developers.html#cap:authentication">13.1</A> for details how to authenticate.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001222000000000000000">
+JavaScript API (JS API)</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The Z-Wave Device API or any other third-party technology API do not offer any higher order
+logic support but the pure access to functions and parameters of devices only.
+</DIV>
+<P>
+<DIV class="CENTER"> Z-Way offers an automation engine to overcome this restriction. A server-side JavaScript 
+runtime environment allows writing JavaScript modules that are executed within Z-Way 
+(means on the server). The same time all functions of the JS API can also be accessed on 
+the client side (the web browser). This offers some cool debug and test capabilities. 
+Among others it is possible to write whole JS functions right into the URL or the browser.
+</DIV>
+<P>
+<DIV class="CENTER">The JS API can be accessed from the web browser with the URL
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<kbd><A ID="tex2html214"
+  HREF="http://YOURIP:8083/JS/Run/*">http://YOURIP:8083/JS/Run/*</A></kbd>
+</BLOCKQUOTE> 
+</DIV>
+<P>
+<DIV class="CENTER">Among others the whole Z-Wave Device API is available within the JS API using 
+the object &ldquo;zway’‘. As a result, the following three statements refer to the very same function:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<OL>
+<LI><SPAN  CLASS="textbf">http://YOURIP:8083/ZWaveAPI/Run/devices[3].*</SPAN> Client Side URL access using the Z-Wave Device API.
+</LI>
+<LI><SPAN  CLASS="textbf">http://YOURIP:8083/JS/Run/zway.devices[3].*</SPAN>: Client Side URL access using the JS API
+</LI>
+<LI><SPAN  CLASS="textbf">zway.devices[3].*</SPAN>: Server Side access using the JS and the public zway object
+</LI>
+</OL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Due to the scripting nature of JavaScript it is possible to &ldquo;inject’‘ code at run time 
+using the interface. Here a nice example how to use the JavaScript setInterval function:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>[Polling of device \#2]
+/JS/Run/setInterval(function() {
+    zway.devices[2].Basic.Get();
+}, 300*1000);
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">This code will, once &ldquo;executed’‘ as URL within a web browser, call the Get() command
+of the command class Basic of Node ID 2 every 300 seconds.
+</DIV>
+<P>
+<DIV class="CENTER">A very powerful function of the JS API is the ability to bind functions to certain values 
+of the device tree. They get then executed when the value changes. Here is an example 
+for this binding. The device No. 3 has a command class SensorMultilevel that offers 
+the variable &ldquo;level.’’ The following call&mdash;both available on the client side and 
+on the server side&mdash;will bind a simple alert function to the change of the variable.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>[Bind a function]
+zway.devices[3].SensorMultilevel.data[1].val.bind( 
+	function() {
+	debugPrint('CHANGED TO:' + this.value + '\n');
+});
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"><A ID="tex2html215"
+  HREF="#foot5264"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A></DIV>
+<P>
+<DIV class="CENTER">Chapter <A HREF="#c2">11.3</A> and <A HREF="#datamodel">11.3.1</A> describe the whole JS API in detail. The 
+names and IDs of the different command classes as well as their instance variables 
+can be found in the Annex <A HREF="Command_Class_Reference.html#ccs"><IMG  ALT="[*]" SRC="crossref.png"></A>.
+</DIV>
+<P>
+<DIV class="CENTER">JavaScript modules can and will generate new functions that are accessible using the 
+JSON interface. For simplification function calls on the API (means on the client side) 
+are written in URL style starting with the word &ldquo;ZAutomation’’:
+</DIV>
+<P>
+<DIV class="CENTER">
+<DIV class="CENTER">
+/ZAutomation/JSfunction/JParameter
+== JSfunction(JParameter)
+
+</DIV>
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001223000000000000000">
+Virtual Device API</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">All functions and instances of a physical device, which are represented as daughter objects
+in the Z-Wave Device API, are enrolled into individual virtual devices.
+</DIV>
+<P>
+<DIV class="CENTER">In case the Z-Wave API shows one single physical device with two channels, the Virtual 
+Device API will show two devices with similar functionality. In case the Z-Wave API shows 
+a physical device with several functions (like a binary switch and an analog sensor in 
+one device), the Virtual Device API (vDev API) will show them as several devices with 
+one function each.
+</DIV>
+<P>
+<DIV class="CENTER">The vDev is accessed using the JSON API in a slightly different style than zDev API. 
+All devices, variables, and commands are encoded into a URL style for easier handling 
+in AJAX code. A typical client-side command in the vDev API looks like
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<kbd><A ID="tex2html216"
+  HREF="http://YOURIP:8083/ZAutomation/api/v1/devices/ZWayVDev_6:0:37/command/off">http://YOURIP:8083/ZAutomation/api/v1/devices/ZWayVDev_6:0:37/command/off</A></kbd>
+</BLOCKQUOTE> 
+</DIV>
+<P>
+<DIV class="CENTER">&ldquo;API’’ points to the vDev API function, &ldquo;v1’’ is just a constant to allow future extensions. 
+The devices are referred to by a name that is automatically generated from the Z-Wave Device 
+API. The vDev also unifies the commands &ldquo;command’’ and the parameters, here &ldquo;off.’’
+</DIV>
+<P>
+<DIV class="CENTER">On the server side, the very same command would be encoded in a JavaScript style.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>[Bind a function]
+dev = this.controller.devices.get('ZWayVDev\_6:0:37');
+dev.command('off');
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The vDev API also offers support for notifications, locations information, the use of other modules, etc.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001224000000000000000">
+Comparison</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Table <A HREF="#c1:comp">11.1</A> summarizes the functions of the different APIs.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<BR><P></P>
+<DIV class="CENTER"><A ID="5283"></A>
+<TABLE>
+<CAPTION><STRONG>Table 11.1:</STRONG>
+Different APIs of the Z-Way system</CAPTION>
+<TR><TD><TABLE class="PAD  BORDER" style="">
+<TR><TD CLASS="LEFT TOP"  WIDTH=100>API Type</TD>
+<TD CLASS="LEFT TOP"  WIDTH=150>Core Function</TD>
+<TD CLASS="LEFT TOP"  WIDTH=75>Network Management</TD>
+<TD CLASS="LEFT TOP"  WIDTH=75>Automation</TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=100>Z-Wave Dev API (JSON)</TD>
+<TD CLASS="LEFT TOP"  WIDTH=150>Access to physical network and physical devices via JSON</TD>
+<TD CLASS="LEFT TOP"  WIDTH=75>Yes</TD>
+<TD CLASS="LEFT TOP"  WIDTH=75>No</TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=100>Z-Wave Dev API (C lib)</TD>
+<TD CLASS="LEFT TOP"  WIDTH=150>Access to physical network and physical devices via C style calls</TD>
+<TD CLASS="LEFT TOP"  WIDTH=75>Yes</TD>
+<TD CLASS="LEFT TOP"  WIDTH=75>No</TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=100>JavaScript API</TD>
+<TD CLASS="LEFT TOP"  WIDTH=150>Access to physical network and devices plus JS type functions</TD>
+<TD CLASS="LEFT TOP"  WIDTH=75>No</TD>
+<TD CLASS="LEFT TOP"  WIDTH=75>Yes, via zDev</TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=100>vDev API</TD>
+<TD CLASS="LEFT TOP"  WIDTH=150>Unified Access to functions of devices, optimized for AJAX GUI</TD>
+<TD CLASS="LEFT TOP"  WIDTH=75>No</TD>
+<TD CLASS="LEFT TOP"  WIDTH=75>Yes</TD>
+</TR>
+</TABLE>
+
+<A ID="c1:comp"></A></TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+<DIV class="CENTER">		
+</DIV>
+<H1><A ID="SECTION001230000000000000000"></A>
+<A ID="c2"></A>
+<BR>
+The Z-Wave Device (JSON) API in detail
+</H1>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">This chapter describes the Z-Wave Device API and its use in detail All examples 
+will use the HTTP/JSON API notation. Please note that the C library notation offers 
+equal functionality.
+</DIV>
+<P>
+<DIV class="CENTER">The Z-Wave Device API is the north-bound interface of the Z-Wave Core. This Z-Wave 
+core implement the whole control logic of the Z-Wave network. The two main functions are
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<UL>
+<LI>Management of the network. This includes including and excluding devices, managing 
+the routing and rerouting of the network an executing some housekeeping functions to 
+keep the network clean and stable. The function classes can be seen as functions offered 
+by the controller itself. Hence the variables and status parameters of the networks are 
+offered by an object called &ldquo;controller.’’
+
+<P>
+</LI>
+<LI>Execution of commands offered by the wireless devices as such switching switches 
+and dimming dimmers. Z-Wave groups the command and their corresponding variables into 
+so-called command classes. The Z-Wave API offers access to these command classes with 
+their variables and their commands according to the abilities of the respective device.
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The description of function classes and command Cclasses and their access using the JSON 
+API complete the description of the Z-Wave Device API. For a full reference of function 
+classes and command classes please refer to the Annex <A HREF="Function_Class_Reference.html#FunctionClasses"><IMG  ALT="[*]" SRC="crossref.png"></A> and <A HREF="Command_Class_Reference.html#CommandClasses"><IMG  ALT="[*]" SRC="crossref.png"></A>.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001231000000000000000"></A>
+<A ID="datamodel"></A>
+<BR>
+The data model
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"> Z-Way holds all data of the Z-Way network in a data holder structure. The data holder 
+structure is a hierarchical tree of data elements.
+</DIV>
+<P>
+<DIV class="CENTER">Following the object-oriented software paradigm the different commands targeting the 
+network or individual devices are also embedded into the data objects as object methods.
+</DIV>
+<P>
+<DIV class="CENTER">Each data element is handled in a data object that contains the data element and some contextual data.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001231100000000000000">
+The Data object</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Each Data element such as devices[nodeID].data.nodeId is an object with the following child elements:
+</DIV>
+<UL>
+<LI>value: the value itself
+</LI>
+<LI>name: the name of the data object
+</LI>
+<LI>updateTime: timestamp of the last update of this particular value
+</LI>
+<LI>invalidateTime: timestamp when the value was invalidated by issuing a Get 
+command to a device and expecting a Report command from the device
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Every time a command is issued that will have impact on a certain data holder value the 
+time of the request is stored in "invalidateTime".
+This allows tracking when a new data value is requested from the network and when this 
+new data value is provided by the network.
+</DIV>
+<P>
+<DIV class="CENTER">This is particularly true if Z-Way is sending a SET command. In this case the data value 
+is invalidated with the "SET" commands and gets validated back when the result of the GET 
+command was finally stored in the data model.
+</DIV>
+<P>
+<DIV class="CENTER">To maintain compatibility with JavaScript the data object has the following methods implemented:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<UL>
+<LI>valueOf(): this allows to obmit .value in JS code, hence write as an example data.level = 255
+</LI>
+<LI>updated(): alias to updateTime
+</LI>
+<LI>invalidated(): alias to invalidateTime
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">These aliases are not enumerated if the dataholder is requested (data.level returns 
+value: 255, name: "level", updatedTime: 12345678, invalidatedTime: 12345678).
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<DIV class="CENTER"><A ID="zwaystructure"></A><A ID="5479"></A>
+<TABLE>
+<CAPTION class="BOTTOM"><STRONG>Figure 11.2:</STRONG>
+Z-Way Object Tree Structure</CAPTION>
+<TR><TD>
+<DIV class="CENTER">
+<IMG STYLE=""
+ SRC="./zwayblocks.png"
+ ALT="Image zwayblocks">
+
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001231200000000000000">
+The Data and Method Tree</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The root of the data tree has two important child objects:
+</DIV>
+<UL>
+<LI>controller, this is the data object that holds all data and methods 
+(commands, mainly function classes) related to the Z-Way controller as such 
+</LI>
+<LI>devices array, this is the object array that holds the device -specific 
+data and methods (commands, mainly command classes).
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001232000000000000000">
+Timing behavior of Z-Wave data</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"><SPAN  CLASS="textbf">Please note that all status variables accessible on the Z-Wave Device APIs
+are only proxy of the real value in the network.</SPAN>
+</DIV>
+<P>
+<DIV class="CENTER">To transport data between the real wireless device and the GUI multiple 
+communication instances are involved. The complexity of this communication 
+chain will be explained in the following example:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<DIV class="CENTER"><A ID="zwaytimings"></A><A ID="5491"></A>
+<TABLE>
+<CAPTION class="BOTTOM"><STRONG>Figure 11.3:</STRONG>
+Z-Way Timings</CAPTION>
+<TR><TD>
+<DIV class="CENTER">
+<IMG STYLE=""
+ SRC="./zway2en.png"
+ ALT="Image zway2en">
+
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Assuming the GUI shows the status of a remote switch and allows changing the switching 
+state of this device. When the user hits the switching button, he expects to see the 
+result of his action as a changing status of the device in the GUI. The first step is 
+to hand over the command (SET) from the GUI to Z-Way using the JSON interface. Z-Way 
+receives the command and will confirm the reception to the GUI. Z-Way recognizes that 
+the execution of the switching command will likely result in a change of the status 
+variable However Z-Way will not immediately change the status variable but invalidate 
+the actual value (mark as outdated). This is the correct action because at the moment 
+when the command was received the status on the remote device has not been changed yet 
+but the status of the switch is now unknown.
+If the GUI polls the value it will still see the old value but marked as invalid. Z-Way 
+will now hand over the switching command to the Z-Wave transceiver chip. Since it is 
+possible that there are other command waiting for execution (sending) by the Z-Wave 
+transceiver chip the job queue is queuing them and will handle certain priorities if 
+needed. Z-Way has recognized that the command will likely change the status of the remote 
+device and is therefore adding another command to call the actual status after the 
+switching command was issued.
+The transceiver is confirming the reception of the command and this confirmation is noted 
+in the job queue. This confirmation however only means that the transceiver (Z-Wave chip) 
+has accepted the command and does neither indicate that the remote device has receives it 
+nor even confirming that the remote device has executed accordingly.
+The transceiver will now try to send the command wirelessly to the remote device. A 
+successful confirmation of the reception from the remote device is the only valid indicator
+ that the remote device has received the command (again, not that it was executed!).
+The second command (GET) is now transmitted the very same way and confirmed by the 
+remote device. This device will now sent a REPORT command back to Z-Way reporting the 
+new status of the switching device. Now the transceiver has to confirm the reception. 
+The transceiver will then send the new value to the Z-Way engine by issuing commands 
+via the serial interface. Z-Way receives the report and will update the switching 
+state and validate the value. From now on the GUI will receive a new state when polling.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001233000000000000000"></A>
+<A ID="jsapiexec"></A>
+<BR>
+Executing Commands
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">JSON API allows executing commands on the server side using HTTP POST or GET requests. 
+The command to execute is taken from the URL.
+</DIV>
+<P>
+<DIV class="CENTER">All functions are executed in form
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<kbd><A ID="tex2html220"
+  HREF="http://YOURIP:8083/Run/ZWaveAPI*">http://YOURIP:8083/Run/ZWaveAPI*</A></kbd>
+</BLOCKQUOTE>.
+</DIV>
+<P>
+<DIV class="CENTER">The best way to learn about the commands and the data is to use the <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>plus 
+a JavaScript Debugger to see the command the AJAX code of the <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>sends to the 
+Z-Way server backend. Additionally the Z-Wave Expert User Interface provides nice and 
+convenient vizualization of all commends (both command classes and function classes).
+</DIV>
+<P>
+<DIV class="CENTER">All acces ot the webserver require authentication of the user. Please refer to Chapter 
+<A HREF="Special_topics_Developers.html#cap:authentication">13.1</A> for details how to authenticate.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001233100000000000000">
+Function Class Commands</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<DIV class="CENTER"><A ID="dev3"></A><A ID="5503"></A>
+<TABLE>
+<CAPTION class="BOTTOM"><STRONG>Figure 11.4:</STRONG>
+Z-Way Function Classes</CAPTION>
+<TR><TD>
+<DIV class="CENTER">
+<IMG STYLE=""
+ SRC="./dev3.png"
+ ALT="Image dev3">
+
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Figure <A HREF="#dev3">11.4</A> shows the Controller Info Page in Network menu with a list of all 
+function classes implemented. The complete reference of the parameters and return 
+values of the functions classes you find in annex <A HREF="Function_Class_Reference.html#FunctionClasses"><IMG  ALT="[*]" SRC="crossref.png"></A>.
+</DIV>
+<P>
+<DIV class="CENTER">Assuming there is a function class &ldquo;SerialAPIGetInitData’’ it is possible to call 
+the function by calling the URL
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<kbd><A ID="tex2html222"
+  HREF="/ZWaveAPI/Run/SerialAPIGetInitData(0)">/ZWaveAPI/Run/SerialAPIGetInitData(0)</A></kbd>
+</BLOCKQUOTE> 
+</DIV>
+<P>
+<DIV class="CENTER">in the web browser. In case the function was completed successfully, a simple &ldquo;null’’ 
+is returned; otherwise, an error code is provided.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001233200000000000000">
+Device Command Class Commands</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<DIV class="CENTER"><A ID="dev0"></A><A ID="5514"></A>
+<TABLE>
+<CAPTION class="BOTTOM"><STRONG>Figure 11.5:</STRONG>
+Z-Way Expert Command Class Commands</CAPTION>
+<TR><TD>
+<DIV class="CENTER">
+<IMG STYLE=""
+ SRC="./eui35.png"
+ ALT="Image eui35">
+
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">In the same manner, it is possible to send a command to a device using one of its command 
+classes. The <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>provides a general menu item called Expert Commands as 
+shown in Figure <A HREF="#dev0">11.5</A>. Z-Way reads out all command classes and its functions and
+ provides here a complete list of command lass-specific commands. The debug window will 
+ reveal the syntax if the complete command class reference in Annex <A HREF="Command_Class_Reference.html#ccs"><IMG  ALT="[*]" SRC="crossref.png"></A> is not 
+available or too inconvenient to use.
+</DIV>
+<P>
+<DIV class="CENTER">For example, to switch ON a device no 2 using the command class BASIC, it is possible to write:
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<SPAN CLASS="SPAN"><SPAN  CLASS="texttt">/ZWaveAPI/Run/devices[2].instances[0].commandClasses[0x20].Set(255)</SPAN>
+
+</SPAN></BLOCKQUOTE>
+or
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+/ZWaveAPI/Run/devices[2].instances[0].Basic.Set(255)
+
+</BLOCKQUOTE>
+</DIV>
+<P>
+<DIV class="CENTER">The <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>has a JavaScript command 
+
+<BLOCKQUOTE>
+<SPAN style="font-family:sans-serif"><B>runCmd(<SPAN CLASS="MATH">&lt;</SPAN>command<SPAN CLASS="MATH">&gt;</SPAN>)</B></SPAN>
+
+</BLOCKQUOTE>
+to simplify such operations. 
+This function is accessible in the JavaScript console of your web browser 
+(in Chrome you find the JavaScript console under View-<SPAN CLASS="MATH">&gt;</SPAN>Debug-<SPAN CLASS="MATH">&gt;</SPAN>JS Console). 
+Using this feature, the command in JS console would look like
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<SPAN style="font-family:sans-serif"><B>runCmd('devices[2].instances[0].Basic.Set(255)')</B></SPAN>
+
+</BLOCKQUOTE>
+</DIV>
+<P>
+<DIV class="CENTER">The usual way to access a command class is using the format 
+<BR>'devices[nodeId].instances[instanceId].
+commandClasses[commandclassId]'.
+There are ways to simplify the syntax:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<UL>
+<LI>&ldquo;devices[nodeId].instances[instanceId].Basic’’ is equivalent to 
+<BR>&ldquo;devices[nodeId].instances[instanceId].commandClasses[0x20]’’
+</LI>
+<LI>the instances[0] can be obmitted: 
+&ldquo;devices[nodeId].instances[instanceId].Basic’’ then turns into &ldquo;devices[nodeId].Basic’’
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001233300000000000000">
+Accessing Data</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The data model or data holder object as described is Section <A HREF="#datamodel">11.3.1</A> can be 
+accessed completely using the <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>. The two 
+buttons <SPAN  CLASS="textbf">Show controller Data</SPAN> and <SPAN  CLASS="textbf">Show controllers device data</SPAN> in 
+Network &gt; Controller
+Info of <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>as shown in Figure <A HREF="#dev3">11.4</A>  lists all variables of the 
+controller as such. One structure is controller-specific and one other structure is the 
+data of the controller as node of the Z-Wave network.
+All nodes of the Z-Wave network have the very same data structure beside their individual 
+array of instances and command classes per instance. This data model for the individual 
+devices can be access using <SPAN  CLASS="textbf">Configuration &gt; Show Interview results</SPAN> in <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>. 
+Figure <A HREF="#dev1">11.6</A> shows this dialog. On the top of the window there is a button with 
+the devices name. This button reveals the data structure of the individual device 
+as shown in Figure <A HREF="#dev2">11.7</A>.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<DIV class="CENTER"><A ID="dev1"></A><A ID="5545"></A>
+<TABLE>
+<CAPTION class="BOTTOM"><STRONG>Figure 11.6:</STRONG>
+Command Class Inerview overview</CAPTION>
+<TR><TD>
+<DIV class="CENTER">
+<IMG STYLE=""
+ SRC="./dev1.png"
+ ALT="Image dev1">
+
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<DIV class="CENTER"><A ID="dev2"></A><A ID="5552"></A>
+<TABLE>
+<CAPTION class="BOTTOM"><STRONG>Figure 11.7:</STRONG>
+Command Class Variables in <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN></CAPTION>
+<TR><TD>
+<DIV class="CENTER">
+<IMG STYLE=""
+ SRC="./dev2.png"
+ ALT="Image dev2">
+
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The dialog has the list of all command classes and clicking on the name of the command 
+class will open a sub dialog showing the data of the commend class. Each command class 
+has some permanent values:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<UL>
+<LI>supported: This indicates if this command classes is supported or controlled only
+</LI>
+<LI>version: This is the version number of the command class as detected during the 
+device interview using the command class &ldquo;VERSION’’
+</LI>
+<LI>security: Indicates if this command class is within the security environment
+</LI>
+<LI>interviewDone: This flag indicates if the interview of this particular command classes passed
+</LI>
+<LI>interviewCounter: This is a helper variable that is counted down on every attempt to 
+interview the devices. Its default value is 10. If it reaches 0 (10 unsuccessful attempts), 
+Z-Way will give up interviewing. This makes sure that Z-Way is not blocked by devices 
+with wrong implementation not passing interview.
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Any data holder object has properties value, updateTime, invalidateTime, name, but for 
+compatibility with JS and previous versions we have valueOf() method (allows 
+omitting .value in JS code, hence write "data.level == 255"), updated (alias to updateTime), 
+invalidated (alias to invalidateTime).
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001233400000000000000">
+/ZWaveAPI/Data/<SPAN CLASS="MATH">&lt;</SPAN>timestamp<SPAN CLASS="MATH">&gt;</SPAN></A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Returns an associative array of changes in Z-Way data tree since <SPAN CLASS="MATH">&lt;</SPAN>timestamp<SPAN CLASS="MATH">&gt;</SPAN>. The array 
+consists of (<SPAN CLASS="MATH">&lt;</SPAN>path<SPAN CLASS="MATH">&gt;</SPAN>: <SPAN CLASS="MATH">&lt;</SPAN>JSON object<SPAN CLASS="MATH">&gt;</SPAN>) object pairs. The client is supposed to assign 
+the new <SPAN CLASS="MATH">&lt;</SPAN>JSON object<SPAN CLASS="MATH">&gt;</SPAN> to the subtree with the <SPAN CLASS="MATH">&lt;</SPAN>path<SPAN CLASS="MATH">&gt;</SPAN> discarding previous content 
+of that subtree. Zero (0) can be used instead of <SPAN CLASS="MATH">&lt;</SPAN>timestamp<SPAN CLASS="MATH">&gt;</SPAN> to obtain the full Z-Way 
+data tree.
+</DIV>
+<P>
+<DIV class="CENTER">The tree have same structure as the backend tree (Figure <A HREF="#zwaystructure">11.2</A>) with one 
+additional root element "updateTime" which contains the time of latest update. This 
+"updateTime" value should be used in the next request for changes. All timestamps 
+(including updateTime) corresponds to server local time.
+</DIV>
+<P>
+<DIV class="CENTER">The object looks like:
+</DIV><PRE>[JSON Data Structure]
+\{
+  "[path from the root]": [updated subtree],
+  "[path from the root]": [updated subtree],
+  ...
+  updateTime: [current timestamp]
+}
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Examples for Commands to update the data tree look like:
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+Get all data: /ZWaveAPI/Data/0
+</BLOCKQUOTE>
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+Get updates since 134500000 (Unix timestamp): /ZWaveAPI/Data/134500000
+</BLOCKQUOTE>
+</DIV>
+<P>
+<DIV class="CENTER">Please note that during data updates some values are updated by big subtrees. For 
+example, in Meter Command Class value of a scale is always updated as a scale 
+subtree by [scale].val object (containing scale and type descriptions).
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001233500000000000000">
+/ZWaveAPI/InspectQueue</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">This function is used to visualize the Z-Way job queue. This is for debugging only but 
+very useful to understand the current state of Z-Way engine.
+</DIV>
+<P>
+<DIV class="CENTER">The information given on this page is only relevant for advanced Z-Wave developers and 
+for debugging.
+</DIV>
+<P>
+<DIV class="CENTER">The table shows the active jobs with their respective status and additional information.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<BR><P></P>
+<DIV class="CENTER"><A ID="5572"></A>
+<TABLE>
+<CAPTION><STRONG>Table 11.2:</STRONG>
+Parameters of the Job Queue Vizualization</CAPTION>
+<TR><TD><TABLE class="PAD  BORDER" style="">
+<TR><TD CLASS="LEFT TOP"  WIDTH=150>n</TD>
+<TD CLASS="LEFT TOP"  WIDTH=300>This column shows the number of sending attempts for a specific job. Z-Way tries three times to dispatch a job to the transceiver.</TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=150>W,S,D:</TD>
+<TD CLASS="LEFT TOP"  WIDTH=300>This shows the status of the job. If no indicator is shown the job is in active state. This means that the controller just tries to execute the job. &ldquo;W’’ states indicated that the controller believes that the target device of this job is in deep sleep state. Jobs in &ldquo;W’’ state will remain in the queue to the moment when the target device announces its wakeup state by sending a wakeup notification to the controller. Jobs in &ldquo;S’’ state remain in the waiting queue to the moment the security token for this secured information exchanged was validated.
+&ldquo;D’’ marks a job as done. The job will remain in the queue for information purposes until a job garbage collection removed it from the queue.</TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=150>ACK:</TD>
+<TD CLASS="LEFT TOP"  WIDTH=300>shows if the Z-Wave transceiver has issued an ACK message to confirm that the message was successfully received by the transceiver. This ACK however does not confirm that the message was delivered successfully. A successful delivery of a message will result in a “D” state of this particular job.
+If the ACK field is blank, then no ACK is expected. A “.” indicates that the controller expects an ACK but the ACK was not received yet. A “+” indicates that an ACK was expected and was received.</TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=150>RESP</TD>
+<TD CLASS="LEFT TOP"  WIDTH=300>shows if a certain command was confirmed with a valid response. Commands are either answered by a response or a callback.
+If the RESP field is blank, then no response is expected. A &ldquo;.’’ indicates that the controller expects a response, but the response has not been received yet. A &ldquo;+’’ indicates that a response was expected and has been received.</TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=150>Cbk</TD>
+<TD CLASS="LEFT TOP"  WIDTH=300>If the Cbk field is blank, then no callback is expected. A “.” indicates that the controller expects a Callback but the Callback was not received yet. A “+” indicates that a Callback was expected and was received.</TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=150>Timeout</TD>
+<TD CLASS="LEFT TOP"  WIDTH=300>Shows the time left until the job is de queued</TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=150>Node Id</TD>
+<TD CLASS="LEFT TOP"  WIDTH=300>shows the ID of the target node. Communication concerning the network, like inclusion of new nodes, will have the controller nodeID as a target node ID. For command classes command the node ID of the destination Node is shown. For commands directed to control the network layer of the protocol, the nodeID is zero.</TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=150>Description</TD>
+<TD CLASS="LEFT TOP"  WIDTH=300>shows a verbal description of the job</TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=150>Progress</TD>
+<TD CLASS="LEFT TOP"  WIDTH=300>shows a success or error message depending on the delivery status of the message. 
+Since Z-Way tries three times to deliver a job up to 3 failure messages may appear.
+Buffer: It shows the hex values of the command sent within this job</TD>
+</TR>
+</TABLE>
+
+<A ID="c1:queuecommands"></A></TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Table <A HREF="#c1:queuecommands">11.2</A> summarizes the different values displayed on the Job Queue 
+visualization. While this info is certainly not relevant for end users of the system it 
+is a great debug tool.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001233600000000000000">
+Handling of updates coming from Z-Way </A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">A good design of a user interface is linking UI objects (label, textbox, slider, ...) to a certain 
+path in the tree object. Any update of a subtree linked to user interface will then update the user interface
+too. This is called bindings.
+</DIV>
+<P>
+<DIV class="CENTER">For web applications Z-Way contains a library called jQuery.triggerPath (extention of 
+jQuery written by Z-Wave.Me), that allows making such links between objects in the 
+tree and HTML DOM objects. Use
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+var tree;
+</BLOCKQUOTE>
+
+<BLOCKQUOTE>
+jQuery.triggerPath.init(tree);
+</BLOCKQUOTE>
+</DIV>
+<P>
+<DIV class="CENTER">during web application initialization to attach the library to a tree object. Then run
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+jQuery([objects selector]).bindPath([path with regexp], [updater function],
+[additional arguments]);
+</BLOCKQUOTE>
+</DIV>
+<P>
+<DIV class="CENTER">to make binding between path changes and updater function. The updater function would be 
+called upon changes in the desired object with this pointing to the DOM object itself, 
+first argument pointing to the updated object in the tree, second argument is the exact 
+path of this object (fulfilling the regexp) and all other arguments copies additional 
+arguments. RegExp allows only few control characters: * is a wildcard, (1|2|3) - is 1 or 2 or 3.
+</DIV>
+<P>
+<DIV class="CENTER"><SPAN  CLASS="textbf">Please note that the use of the triggerpath extension is one option to handle 
+the incoming data. You can also extract all the interesting values right when the 
+data is received and bind update functions to them.</SPAN>
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001233700000000000000">
+Handling S2 inclusion process</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Security S2 inclusion process require additional interaction with the user
+during inclusion process. In addition to putting the device in Learn Mode
+and Z-Way in Add mode the user will be asked to grant different Security S2 keys
+and enter the PIN code.
+</DIV>
+<P>
+<DIV class="CENTER">To implement Security S2 inclusion process in your own app follow the steps
+below:
+</DIV>
+<UL>
+<LI>Include the device
+</LI>
+<LI>Check if it supports S2 (if the Command Class exists)
+</LI>
+<LI>If Smart Start is in progress, nothing to be done &mdash; Z-Way will handle
+everything automatically
+</LI>
+<LI>Wait for <SPAN CLASS="SPAN"><SPAN  CLASS="texttt">devices[N].instances[0].commandClasses[159].data.requestedKeys</SPAN></SPAN> to become True
+</LI>
+<LI>Check <SPAN CLASS="SPAN"><SPAN  CLASS="texttt">data.requestedKeys</SPAN></SPAN> children and set <SPAN CLASS="SPAN"><SPAN  CLASS="texttt">data.grantedKeys</SPAN></SPAN> children accordingly. In most cases you would just copy from requested to granted
+(grant all keys the device requested for).
+</LI>
+<LI>Set <SPAN CLASS="SPAN"><SPAN  CLASS="texttt">data.grantedKeys</SPAN></SPAN> to True to notify Z-Way that you are done with keys selection
+</LI>
+<LI>Wait for <SPAN CLASS="SPAN"><SPAN  CLASS="texttt">data.publicKeyAuthenticationRequired</SPAN></SPAN> to be set. If False (device was not granted Access or Authenticated keys), copy in
+<SPAN CLASS="SPAN"><SPAN  CLASS="texttt">data.publicKeyVerified</SPAN></SPAN> the <SPAN CLASS="SPAN"><SPAN  CLASS="texttt">data.publicKey</SPAN></SPAN> (it is recommended to show first two bytes in decimal form to the user to confirm). Otherwise copy and fill first two bytes with the PIN code.
+</LI>
+<LI>A failed Security S2 interview will result in <SPAN CLASS="SPAN"><SPAN  CLASS="texttt">data.securityAbandoned</SPAN></SPAN> to be
+set to True. A successfull one will have <SPAN CLASS="SPAN"><SPAN  CLASS="texttt">data.securityAbandoned</SPAN></SPAN>
+equal to False and <SPAN CLASS="SPAN"><SPAN  CLASS="texttt">data.interviewDone</SPAN></SPAN> equal to True.
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H1><A ID="SECTION001240000000000000000"></A>
+<A ID="clevelapi"></A>
+<BR>
+C-Library API and a general view on the Z-Way file structure
+</H1>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001241000000000000000"></A>
+<A ID="c11:zwayfolder"></A><A NAME="5601"></A>
+<A NAME="5602"></A>
+<A NAME="5603"></A>
+<A NAME="5604"></A>
+<BR>
+Files in the /zway folder
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"> Z-Way keeps all files in one folder with exception of the log files. In Unix based 
+platforms such as Linux PC, Raspberry Pi or open WRT the standard install folder 
+is usually <SPAN style="font-family:sans-serif"><B>/opt/zway-server</B></SPAN>. The logfile is typically placed in 
+<SPAN style="font-family:sans-serif"><B>/var/log/z-way-server.log</B></SPAN> but this location of the log file can be 
+reconfigured in the config file.
+</DIV>
+<P>
+<DIV class="CENTER">On Windows, the installation wizard asked where to place Z-Way and where to place the log file.
+</DIV>
+<P>
+<DIV class="CENTER">Right after installation, the standard folder has the following content:
+</DIV>
+<P>
+<DIV class="CENTER"><SPAN CLASS="FOOTNOTESIZE">
+<BR>
+<IMG STYLE=""
+ SRC="img4.svg"
+ ALT="\begin{forest}
+for tree={
+font=\ttfamily ,
+grow'=0,
+child anchor=west,
+pare...
+...e: Utility]
+[z-get-tty: Utility]
+[z-way-server: Main Application]
+]
+\end{forest}">
+<BR></SPAN>
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001241100000000000000">
+config.xml - the main config file</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The main config file in the root folder has XML file format. If only allows setting the 
+log level (0 = log all, 9 = log almost nothing), the path to the log file and a debug 
+port if needed. Don't change the setting for automation folder unless you really 
+know what you do and why.
+</DIV>
+<P>
+<DIV class="CENTER">This is an example for the standard config.xml displaying all log right into the console.
+</DIV><PRE>[config.xml]
+&lt;config&gt;
+    &lt;automation-dir&gt;automation&lt;/automation-dir&gt;
+    &lt;log-file&gt;&lt;/log-file&gt;
+    &lt;log-level&gt;0&lt;/log-level&gt;
+    &lt;debug-port&gt;0&lt;/debug-port&gt;
+&lt;/config&gt;
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001241200000000000000">
+config: Various configuration xml files</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">This subfolder has the following structure:
+</DIV>
+<P>
+<DIV class="CENTER"><SPAN CLASS="FOOTNOTESIZE">
+<BR>
+<IMG STYLE=""
+ SRC="img5.svg"
+ ALT="\begin{forest}
+for tree={
+font=\ttfamily ,
+grow'=0,
+child anchor=west,
+pare...
+...re]
+]
+[Defaults.xml: Default Settings]
+[Profiles.xml]
+[Rules.xml]
+]
+\end{forest}">
+<BR></SPAN>
+
+<BR>
+The file <SPAN style="font-family:sans-serif"><B>Defaults.xml</B></SPAN> allows defining various behavior of Z-Way, among them the appearance of Z-Way as secondary controller:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<UL>
+<LI>AutoConfig: Flag if Z-Way shall interview the device right after inclusion (default = 1)
+</LI>
+<LI>DeepInterview: Flag that Interview is only completed after all values are received 
+back. This includes asking the device for all initial values of sensor or status data (default = 1)
+</LI>
+<LI>SaveDataAfterInterviewSteps: Flag whether or not all device data will be saved after each interview step (default = 1)
+</LI>
+<LI>TryToBecomeSIS: Will Z-Way try to become networks SIS if transceiver hardware allows it to (default = 1)?
+
+<P>
+</LI>
+<LI>SecureInterviewAsInclusionController: Z-Way will initiate interview as Inclusion Controller, if 0 - only as Primary/SIS
+</LI>
+<LI>SecureInterviewAcceptedWithoutSchemeInherit: If 1 - Z-Way will not fail secure interview 
+as secondary/inclusion controller if Scheme Inherit is not received, if 0 - fail interview as by Z-Wave protocol
+</LI>
+<LI>SecureAllCCs: Always use Security if possible (even for CCs allowed as non-secure)
+</LI>
+<LI>DeviceReplyTimeout: Delay to wait (in seconds) for a device to reply with a REPORT on a GET command
+</LI>
+<LI>DeviceRelaxDelay: Delay between two subsequent packets sent to one device, measured 
+in ticks (&nbsp;10 ms). Some slow devices might need about 10 to respond correctly to burst of packets
+</LI>
+<LI>SerialAPITimeout: Extra time to be added to Serial API timouts. Set up to 1.0-3.0 
+sec in case of slow channel toward Z-Wave chip (e.g. in cloud applications) 
+</LI>
+<LI>Command Class-Specific Settings
+
+<UL>
+<LI>Wakeup -&gt; WakeupInterval: Default Wakeup Interval
+</LI>
+<LI>Scene Actuator Conf -&gt; Max Scenes: Maximum number of Scenes supported
+</LI>
+<LI>Scene Controller Conf -&gt; Max Scenes: Maximum number of Scenes supported
+</LI>
+<LI>Protection -&gt; Mode: Default Protection Mode
+</LI>
+<LI>SensorMultilevel -&gt; Fahrenheit: Flag what temperature scale is used
+</LI>
+<LI>SwitchAll -&gt; Mode: Default Switch All mode
+</LI>
+<LI>MultiCmd -&gt; MaxNum: The maximum number of commands within multi-command encapsulation. 
+The optimal value would be even, but there are many broken devices in the market that do 
+not support this. A lower number means less efficient but more robust against faulty devices.
+</LI>
+<LI>Firmware Update -&gt; Fragment Size: Fragment size on 3rd gen RaZberry and 3rd gen UZB 
+cannot be more than 32 (max packet size was 37, with possible CRC it gives 32). On UZB 
+and new 5gen it can be up to 40 bytes
+</LI>
+<LI>ThermostatSetPoint: -&gt; Fahrenheit: Flag what temperature scale is used
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>Controller: Description of how Z-Way will behave as a device in the network. This entry has the following subentries:
+
+<P>
+
+<UL>
+<LI>NodeInformationFrame: The command class Z-Way is described as &ldquo;supported’’ in the network
+</LI>
+<LI>SecureNodeInformationFrame: Command Classes available in secure environment
+</LI>
+<LI>InstanceNodeInformationFrame: Command Classes in Instances if Multi Channel is emulated
+</LI>
+<LI>VersionID =iD: Versions to be reported in Command Class Version Get Command for all Command Classes announced in NIF
+</LI>
+<LI>Name: Default Node Name reported by NodeNaming Report
+</LI>
+<LI>Location Default Node Location of Controller reported by NodeNaming Report
+</LI>
+<LI>AppVersion: Application Version reported by ManufacturerSpecific Report
+</LI>
+<LI>Manufacturer Specific: Values report by ManufacturerSpecific Report
+</LI>
+<LI>SpecificDeviceClass: Specific Device Class reported
+</LI>
+<LI>GenericDeviceClass: Generic Device Class reported
+</LI>
+<LI>Icons: Z-Wave Plus Icons
+</LI>
+<LI>Lifeline: Defines how many devices will be in Lifeline Association Group
+</LI>
+<LI>CommandClassSupportedVersion: Defines the version numbers of the supported command classes
+</LI>
+<LI>Channels: Defines the simulated channels
+</LI>
+</UL>
+
+<P>
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The file <SPAN style="font-family:sans-serif"><B>Profiles.xml</B></SPAN> contains the EnOcean profile definition. This clearly 
+reflects the official profile definitions published by the EnOcean alliance.
+</DIV>
+<P>
+<DIV class="CENTER">The file <SPAN style="font-family:sans-serif"><B>Rules.xml</B></SPAN> is a legacy file.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001241300000000000000">
+translations: XMLs mapping Ids to text</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"><SPAN CLASS="FOOTNOTESIZE">
+<BR>
+<IMG STYLE=""
+ SRC="img6.svg"
+ ALT="\begin{forest}
+for tree={
+font=\ttfamily ,
+grow'=0,
+child anchor=west,
+pare...
+...r Name]
+[ZWavePlus.xml: Z-Wave Plus Role Types and Network Types]
+]
+\end{forest}">
+<BR></SPAN>
+</DIV>
+<P>
+<DIV class="CENTER">All files in this subfolder are XML files and some of them require local language 
+translations, as described in Chapter <A HREF="Customize_your_system.html#sec:translation">10.3</A>.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001241400000000000000">
+ZDDX: Device Description Files</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">ZDDX files (Z-Wave Device Description XML Files) are XML files containing verbal 
+description of a specific Z-Wave device that cannot be called from the device itself 
+during the interview process: They are:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<UL>
+<LI>The naming of Association Groups. Modern Z-Wave device provides them in English 
+language using the Association Group Information Command Class. The ZDDX file provides this 
+information for older devices and in various languages.
+
+<P>
+</LI>
+<LI>Configuration Parameters and Values: It is always possible to set a configuration 
+value knowing the integer values from the device manual. Z-Way offers a convenient way 
+to set Z-Wave configuration values utilizing the information from ZDDX files.
+
+<P>
+</LI>
+<LI>An Image of the device.
+
+<P>
+</LI>
+<LI>Information on inclusion, exclusion and wakeup processes.
+
+<P>
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">It is possible to add your own ZDDX files, but Z-Way uses an index file ZDDX.indx to access them. Once a new file is added, run <SPAN style="font-family:sans-serif"><B>python MakeIndex.py</B></SPAN>.
+</DIV>
+<P>
+<DIV class="CENTER">Chapter <A HREF="Special_topics_Developers.html#newddr">13.3</A> explain how to add and to submit new own ZDDX files and how to extend them.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001241500000000000000">
+Htdocs: The web servers document folder</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"><SPAN CLASS="FOOTNOTESIZE">
+<BR>
+<IMG STYLE=""
+ SRC="img7.svg"
+ ALT="\begin{forest}
+for tree={
+font=\ttfamily ,
+grow'=0,
+child anchor=west,
+pare...
+...marthome: Smart Home User Interface]
+[translation]
+[index.html]
+]
+\end{forest}">
+<BR></SPAN>
+</DIV>
+<P>
+<DIV class="CENTER">This subfolder is the root folder of the embedded webserver. The index.html redirects to smarthome/index.html.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001241600000000000000">
+automation: The JavaScript sub system</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"><SPAN CLASS="FOOTNOTESIZE">
+<BR>
+<IMG STYLE=""
+ SRC="img8.svg"
+ ALT="\begin{forest}
+for tree={
+font=\ttfamily ,
+grow'=0,
+child anchor=west,
+pare...
+... hour history display]
+[...: more json files containing data]
+]
+]
+\end{forest}">
+<BR></SPAN>
+</DIV>
+<P>
+<DIV class="CENTER">The subfolder for automation contains the whole JavaScript (JS) subsystem including the
+</DIV>
+<UL>
+<LI>source code of the software core (classes, core, lib),
+</LI>
+<LI>the storage for the apps (modules, user modules),
+</LI>
+<LI>the central storage for configs, images, uploads, history, logging, etc.,
+</LI>
+<LI>some default files for factory default reset and recovery from failures.
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The most sensitive file is configjson-XXX since it contains the information about the user 
+accounts including login name, password, and recovery email.
+</DIV>
+<P>
+<DIV class="CENTER">For more information about the creation of new modules that will be placed into the user 
+modules, please refer to Chapter <A HREF="Special_topics_Developers.html#developownapps">13.2</A>.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001242000000000000000">
+The use of  the C-Library</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The Z-Way library is a middleware between Silicon Labs Z-Wave transceiver and your application. 
+Z-Way offers pretty high level API to control Z-Wave devices and manage wireless network.
+</DIV>
+<P>
+<DIV class="CENTER">Interaction with the library covers three aspects:
+</DIV>
+<UL>
+<LI>sending commands to Z-Wave devices;
+</LI>
+<LI>sending network management commands to the transceiver;
+</LI>
+<LI>receiving updates from the network.
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001242100000000000000">
+Sending commands</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Every command request generates an outgoing packet (job). Before generating a packet, 
+library will validate parameters and check whether the command is supported by the recipient. 
+In case of failure command will return error immediately.
+</DIV>
+<P>
+<DIV class="CENTER">Once a job is generated, it is placed into outgoing queue for future send. The queued jobs 
+are handled internally by Z-Way engine according to commands priorities, nodes states 
+and capabilities, transceiver state etc.
+</DIV>
+<P>
+<DIV class="CENTER">Once the job is sent, it must be first confirmed it was successfully delivered to 
+the Z-Wave stack, and then confirmed it was delivered to the recipient. All these operations are 
+performed asynchronously, so command may provide a callback function to call in case of 
+success or failure if it is needed to know delivery result.
+</DIV>
+<P>
+<DIV class="CENTER">After the delivery was confirmed, command is considered executed. If it was a state 
+request command (i.e. <SPAN  CLASS="texttt">SensorMultilevel Get</SPAN>), response packet may be delayed 
+(or even not sent at all), so command's success/failure callbacks cannot be used to get 
+requested state immediately.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001242200000000000000">
+Receiving updates</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">All incoming packets from the Z-Wave network are automatically parsed by Z-Way and stored in 
+special variables called data holders. Data holder is a named variable that stores a value 
+along with its data type and time the value was last updated and "invalidated". Each data
+holder may also contain a set of child data holders, so they form a hierarchical data 
+storage. Data holders also support callbacks, so custom code may be executed each time 
+the value is updated.
+</DIV>
+<P>
+<DIV class="CENTER">For example, <SPAN  CLASS="texttt">level</SPAN> data holder stores dimming level of a dimmer. Once application 
+executes a <SPAN  CLASS="texttt">Get</SPAN> command for that dimmer, Z-Way will update <SPAN  CLASS="texttt">invalidateTime</SPAN> property on 
+the <SPAN  CLASS="texttt">level</SPAN> data holder, so application knows the current value is assumed to be 
+outdated, but the new one was not received yet.
+</DIV>
+<P>
+<DIV class="CENTER">Once Z-Way received a packet with new value of the dimmer, it will store it in <SPAN  CLASS="texttt">level 
+data holder</SPAN> and update <SPAN  CLASS="texttt">updateTime</SPAN> property. Since <SPAN  CLASS="texttt">updateTime</SPAN> is 
+greater that <SPAN  CLASS="texttt">invalidateTime</SPAN>, the value is considered valid now.
+</DIV>
+<P>
+<DIV class="CENTER"> Z-Wave device can also send unsolicited state reports to controller (without a request 
+from controller's side; e.g. due to local operation or periodically). Due to asynchronous 
+nature of Z-Wave protocol, controller can't tell whether the packet was sent unsolicited 
+or it is a response to the previous command. So unsolicited packet will be handled the 
+same way exactly.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001242300000000000000">
+Command Classes</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"> Z-Way inherits structure of Z-Wave protocol and divides data holders and commanda on
+different Command Classes (CC). Command Classes are building blocks of Z-Wave functionality.
+For example, dimming is provided by Command Class <SPAN  CLASS="texttt">SwitchMultilevel</SPAN>, relay 
+operation by Command Class <SPAN  CLASS="texttt">SwitchBinary</SPAN>, sensors by command class 
+<SPAN  CLASS="texttt">SensorMultilevel</SPAN> and <SPAN  CLASS="texttt">SensorBinary</SPAN> etc. Please consult Z-Wave 
+protocol basics to understand Z-Wave Command Classes.
+</DIV>
+<P>
+<DIV class="CENTER">All Command Classes share a minimal subset of common data holders:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<UL>
+<LI><SPAN  CLASS="texttt">supported</SPAN> says if CC is supported by the device (it implements that 
+functionality) or only controlled (it can control other devices implementing that 
+functionality).
+</LI>
+<LI><SPAN  CLASS="texttt">version</SPAN> stores version of the CC. Used internally to know how to deal 
+with that Command Class.
+</LI>
+<LI><SPAN  CLASS="texttt">security</SPAN> tells if CC communications should be encrypted using Z-Wave 
+AES security mechanism.
+</LI>
+<LI><SPAN  CLASS="texttt">interviewDone</SPAN> and <SPAN  CLASS="texttt">interviewCounter</SPAN> describe the status of 
+initial interview process during which Z-Way asks the device about its CC capabilities. 
+If the interview is incomplete, Z-Way might fail to use some Command Classes with this 
+device. All Z-Wave certified devices MUST pass interview process.
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">All the other data holders are specific to each Command Class. For example, 
+<SPAN  CLASS="texttt">SwitchMultilevel Command Class</SPAN> contains <SPAN  CLASS="texttt">level</SPAN> data holder, 
+<SPAN  CLASS="texttt">SensorBinary</SPAN> has two-level storage, grouping data by sensor types:
+<SPAN  CLASS="texttt"> 0 -&gt; sensorTypeString, level, 5 -&gt; sensorTypeString, level, ... </SPAN>
+where type identifiers are Z-Wave specific constants. Every Z-Wave specific constant 
+value will have corresponding verbal description (in case of <SPAN  CLASS="texttt">SensorBinary</SPAN> it is in 
+<SPAN  CLASS="texttt">sensorTypeString</SPAN> data holder).
+</DIV>
+<P>
+<DIV class="CENTER">Some Command Classes are hidden under the hood of Z-Way: 
+<SPAN  CLASS="texttt">MultiCmd, Security, CRC16, MultiChannel, ApplicationStatus</SPAN>. They're handled 
+internally by Z-Way software, and shouldn't be used directly.
+</DIV>
+<P>
+<DIV class="CENTER">Some Command Classes have no public APIs, but their data holders may be very useful 
+in your application: <SPAN  CLASS="texttt">AssociationGroupInformation, DeviceResetLocally,
+ManufacturerSpecific, Version, ZWavePlusInfo</SPAN>.
+</DIV>
+<P>
+<DIV class="CENTER">All the remaing Command Classes have their <SPAN  CLASS="texttt">Get</SPAN> and <SPAN  CLASS="texttt">Set </SPAN>commands 
+specific to functionality of the Command Class. Consult 
+<SPAN  CLASS="texttt">CommandClassesPublic.h</SPAN> header file for more info about available commands 
+for different Command Classes and their meaning.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001242400000000000000">
+Network management</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"> Z-Way offers API for network management operations: include new devices, exclude devices, 
+discover neighbor devices, remove failed nodes, frequency selection, controller reset etc. 
+These functions are described in <SPAN  CLASS="texttt">ZWayLib.h</SPAN> header file.
+</DIV>
+<P>
+<DIV class="CENTER"> Z-Way also provides a low level access to Z-Wave transceiver functionality through Silicon 
+Labs Serial API. These functions are provided by Function Classes. You should use 
+them only if you have deep knowledge of Z-Wave networking. Check 
+<SPAN  CLASS="texttt">FunctionClassesPublic.h</SPAN> for more info.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001242500000000000000">
+Using Z-Way Library in C-Code</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">To use Z-Way one need to include few header files:
+</DIV><PRE>
+\#include &lt;ZWayLib.h&gt;
+\#include &lt;ZLogging.h&gt;
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"> Z-Way will need to know where to write the log to, so first of all you need to create 
+logging context using <SPAN  CLASS="texttt">zlog_create()</SPAN> call. You can disable logging by passing NULL 
+instead of logging context to Z-Way.
+</DIV>
+<P>
+<DIV class="CENTER">Then create new a Z-Way context using <SPAN  CLASS="texttt">zway_init()</SPAN>. It will only allocate memory, 
+open log files, initialize internal structures. At this point you can already attach your 
+handlers on new <SPAN  CLASS="texttt">device/instance/Command Class</SPAN> creation (you will also be able 
+to do it at any time later). Do it using <SPAN  CLASS="texttt">zway_device_add_callback()</SPAN> call. 
+</DIV>
+<P>
+<DIV class="CENTER">Warning: you should initialize ZWay pointer with NULL before passing it to <SPAN  CLASS="texttt">zway_init</SPAN>!
+</DIV>
+<P>
+<DIV class="CENTER">Executing z<SPAN  CLASS="texttt">zway_start()</SPAN> will open serial port and start a new thread that 
+will handle all communications with the transceiver. From now Z-Way can receive packets 
+from the network, but can not parse them yet, since devices were not discovered yet. 
+All received packets will just be queued to be parsed later after discovery process.
+</DIV>
+<P>
+<DIV class="CENTER">Last step to run Z-Way is <SPAN  CLASS="texttt">zway_discover()</SPAN> call. It will start communications 
+with the Z-Wave transceiver and ask about devices in the network, their capabilities, 
+network state etc. During discovery phase Z-Way will create structures for all devices and 
+load saved data from file stored in <SPAN  CLASS="texttt">config/zddx</SPAN> folder.
+</DIV>
+<P>
+<DIV class="CENTER">From now on, Z-Way is ready to operate. Incoming events will trigger callback functions 
+attached by application, and executing commands will put new packets in the queue.
+</DIV>
+<P>
+<DIV class="CENTER">You will also need few other functions <SPAN  CLASS="texttt">zway_is_running(), zway_is_idle(), 
+zway_stop(), zway_terminate()</SPAN> to handler termination process.
+</DIV>
+<P>
+<DIV class="CENTER">The link
+
+<BLOCKQUOTE>
+<kbd><A ID="tex2html227"
+  HREF="https://storage.z-wave.me/fileadmin/z-way-test.tgz">https://storage.z-wave.me/fileadmin/z-way-test.tgz</A></kbd>
+</BLOCKQUOTE> 
+</DIV>
+<P>
+<DIV class="CENTER">downloads a very simple test project using the Z-Way core library <SPAN  CLASS="texttt">libzway.so</SPAN>. 
+The project contains a simple <SPAN  CLASS="texttt">mains.c</SPAN> plus a <SPAN  CLASS="texttt">Makefile</SPAN>. A Z-Way installation is required 
+too. To compile the test project, some requirements need to be met:
+</DIV>
+<UL>
+<LI>GNU-based tool chain with a compiler, linker, etc.
+</LI>
+<LI>Copy main.c and Makefile into the root folder of Z-Way 
+</LI>
+<LI>Check the path to library and header files and adapt the Makefile is needed
+</LI>
+<LI>Make sure the following libraries are installed:
+
+<UL>
+<LI>libxml2 (apt-get install libxml2-dev)
+</LI>
+<LI>libarchive (apt-get install libarchive-dev)
+</LI>
+<LI>libcrypto (apt-get install libssl-dev)
+</LI>
+</UL>
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Executing the Makefile will generate a binary executable <SPAN style="font-family:sans-serif"><B>z-way-test</B></SPAN> in the same 
+folder. If Z-Way was just downloaded the code will assume a virtual serial Z-Wave device 
+on <SPAN style="font-family:sans-serif"><B>/dev/ttyUSB0</B></SPAN>. if your virtual device is a different node, just make a 
+symlink like <SPAN style="font-family:sans-serif"><B>ln -s /dev/ttyACM0 /dev/ttyUSB0</B></SPAN> or change <SPAN  CLASS="texttt">main.c</SPAN> file.
+</DIV>
+<P>
+<DIV class="CENTER">Now start the code from the folder with <SPAN style="font-family:sans-serif"><B>LD_LIBRARY_PATH=./libs ./z-way-test</B></SPAN>. 
+The header file <SPAN  CLASS="texttt">Z-Waylib.h</SPAN> in <SPAN  CLASS="texttt">libzway</SPAN> gives a brief explanation of the calls 
+into the library. The demo file <SPAN  CLASS="texttt">main.c</SPAN> demonstrates the use of the calls. 
+Figure <A HREF="#libterminal">11.8</A> shows the small help page of the test software.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<DIV class="CENTER"><A ID="libterminal"></A><A ID="5745"></A>
+<TABLE>
+<CAPTION class="BOTTOM"><STRONG>Figure 11.8:</STRONG>
+Terminal running z-way-test</CAPTION>
+<TR><TD>
+<DIV class="CENTER">
+<IMG STYLE=""
+ SRC="./libterminal.png"
+ ALT="Image libterminal">
+
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+<DIV class="CENTER">
+</DIV>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A ID="foot5224">... (SDK)</A><A
+ HREF="Develop_Code_Z_Way.html#tex2html207"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A></DT>
+<DD>The Silicon Labs SDK is available from Arrow (www.arrow.com). Depending 
+on the hardware options chosen the price varies between 2000 and 4000 USD only.
+
+</DD>
+<DT><A ID="foot5264">...&nbsp;</A><A
+ HREF="Develop_Code_Z_Way.html#tex2html215"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A></DT>
+<DD>Please note that the Sensor Multilevel Command class data is an array index 
+by the scale ID. Other command classes such as Basic do not have this index but allow 
+direct access using CommandClassName.data.level
+
+</DD>
+</DL>
+<BR><HR>
+
+</BODY>
+</HTML>

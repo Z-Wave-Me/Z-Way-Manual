@@ -1,0 +1,2879 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2019.2 (Released June 5, 2019) -->
+<HTML lang="EN">
+<HEAD>
+<TITLE>Z-Way Manual — The JavaScript Engine</TITLE>
+<META NAME="description" CONTENT="The JavaScript Engine">
+<META NAME="keywords" CONTENT="Z-Way Manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2019.2">
+
+<LINK REL="STYLESHEET" HREF="ZWayManual.css">
+
+<script src="ZWayManual.js" defer></script>
+</HEAD>
+
+<BODY >
+<div id="TOC">
+<A ID="CHILD_LINKS"></A>
+
+<UL CLASS="ChildLinks">
+<LI><A ID="tex2html264"
+  HREF="Contents.html">Contents</A>
+<LI><A ID="tex2html265"
+  HREF="Introduction.html">Introduction</A>
+<UL>
+<LI><A ID="tex2html266"
+  HREF="Introduction.html#SECTION00210000000000000000">Structure of the book</A>
+<LI><A ID="tex2html267"
+  HREF="Introduction.html#SECTION00220000000000000000">History of Z-Way</A>
+<LI><A ID="tex2html268"
+  HREF="Introduction.html#SECTION00230000000000000000">Status of the document</A>
+</UL>
+<BR>
+<LI><A ID="tex2html269"
+  HREF="Z_Way_enabled_Hardware.html">Z-Way enabled Hardware</A>
+<UL>
+<LI><A ID="tex2html270"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00310000000000000000">RaZberry shield board for Raspberry Pi</A>
+<UL>
+<LI><A ID="tex2html271"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00311000000000000000">Compatibility</A>
+<LI><A ID="tex2html272"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00312000000000000000">Pinout and options on board</A>
+<LI><A ID="tex2html273"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00313000000000000000">Boot-Up Self-Test</A>
+<LI><A ID="tex2html274"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00314000000000000000">LEDs during Operation</A>
+<LI><A ID="tex2html275"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00315000000000000000">Frequencies</A>
+<LI><A ID="tex2html276"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00316000000000000000">Certifications</A>
+<UL>
+<LI><A ID="tex2html277"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00316100000000000000">CE / Europe</A>
+<LI><A ID="tex2html278"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00316200000000000000">FCC / North America</A>
+<LI><A ID="tex2html279"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00316300000000000000">Z-Wave Plus</A>
+</UL>
+</UL>
+<LI><A ID="tex2html280"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00320000000000000000">The USB Stick UZB</A>
+<UL>
+<LI><A ID="tex2html281"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00321000000000000000">Boot-Up Self-Test</A>
+<LI><A ID="tex2html282"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00322000000000000000">Frequencies</A>
+<LI><A ID="tex2html283"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00323000000000000000">Certifications</A>
+<UL>
+<LI><A ID="tex2html284"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00323100000000000000">CE / Europe</A>
+<LI><A ID="tex2html285"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00323200000000000000">FCC / North America</A>
+<LI><A ID="tex2html286"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00323300000000000000">Z-Wave Plus</A>
+</UL>
+</UL>
+<LI><A ID="tex2html287"
+  HREF="Z_Way_enabled_Hardware.html#SECTION00330000000000000000">Other hardware platforms</A>
+</UL>
+<BR>
+<LI><A ID="tex2html288"
+  HREF="Preparation_Ways_Access_Sys.html">Preparation and Ways to Access the  System</A>
+<UL>
+<LI><A ID="tex2html289"
+  HREF="Preparation_Ways_Access_Sys.html#SECTION00410000000000000000">Installation on Raspberry Pi</A>
+<LI><A ID="tex2html290"
+  HREF="Preparation_Ways_Access_Sys.html#SECTION00420000000000000000">Installation on other platforms using UZB</A>
+<UL>
+<LI><A ID="tex2html291"
+  HREF="Preparation_Ways_Access_Sys.html#SECTION00421000000000000000">Unix-based Platforms</A>
+<LI><A ID="tex2html292"
+  HREF="Preparation_Ways_Access_Sys.html#SECTION00422000000000000000">Windows</A>
+</UL>
+<LI><A ID="tex2html293"
+  HREF="Preparation_Ways_Access_Sys.html#SECTION00430000000000000000">Local and Remote Access</A>
+<LI><A ID="tex2html294"
+  HREF="Preparation_Ways_Access_Sys.html#SECTION00440000000000000000">Security and Privacy</A>
+</UL>
+<BR>
+<LI><A ID="tex2html295"
+  HREF="Web_Browser_User_Interface.html">The Web Browser User Interface</A>
+<UL>
+<LI><A ID="tex2html296"
+  HREF="Web_Browser_User_Interface.html#SECTION00510000000000000000">Z-W<SMALL>AY </SMALL>S<SMALL>MART </SMALL>H<SMALL>OME </SMALL>I<SMALL>NTERFACE </SMALL>Daily Usage</A>
+<UL>
+<LI><A ID="tex2html297"
+  HREF="Web_Browser_User_Interface.html#SECTION00511000000000000000">Standard Element View</A>
+<UL>
+<LI><A ID="tex2html298"
+  HREF="Web_Browser_User_Interface.html#SECTION00511100000000000000">Element Configuration</A>
+<LI><A ID="tex2html299"
+  HREF="Web_Browser_User_Interface.html#SECTION00511200000000000000">Room View</A>
+<LI><A ID="tex2html300"
+  HREF="Web_Browser_User_Interface.html#SECTION00511300000000000000">Event Timeline</A>
+</UL>
+<LI><A ID="tex2html301"
+  HREF="Web_Browser_User_Interface.html#SECTION00512000000000000000">News feed</A>
+</UL>
+<LI><A ID="tex2html302"
+  HREF="Web_Browser_User_Interface.html#SECTION00520000000000000000">The Configuration Menu</A>
+<UL>
+<LI><A ID="tex2html303"
+  HREF="Web_Browser_User_Interface.html#SECTION00521000000000000000">Apps</A>
+<LI><A ID="tex2html304"
+  HREF="Web_Browser_User_Interface.html#SECTION00522000000000000000">Devices</A>
+<UL>
+<LI><A ID="tex2html305"
+  HREF="Web_Browser_User_Interface.html#SECTION00522100000000000000">Inclusion</A>
+<LI><A ID="tex2html306"
+  HREF="Web_Browser_User_Interface.html#SECTION00522200000000000000">Z-Wave Device Management</A>
+</UL>
+<LI><A ID="tex2html307"
+  HREF="Web_Browser_User_Interface.html#SECTION00523000000000000000">Customize</A>
+<LI><A ID="tex2html308"
+  HREF="Web_Browser_User_Interface.html#SECTION00524000000000000000">My Settings</A>
+<LI><A ID="tex2html309"
+  HREF="Web_Browser_User_Interface.html#SECTION00525000000000000000">Management</A>
+<UL>
+<LI><A ID="tex2html310"
+  HREF="Web_Browser_User_Interface.html#SECTION00525100000000000000">News</A>
+<LI><A ID="tex2html311"
+  HREF="Web_Browser_User_Interface.html#SECTION00525200000000000000">Logout</A>
+</UL>
+</UL>
+<LI><A ID="tex2html312"
+  HREF="Web_Browser_User_Interface.html#SECTION00530000000000000000">The Management Interface</A>
+<UL>
+<LI><A ID="tex2html313"
+  HREF="Web_Browser_User_Interface.html#SECTION00531000000000000000">User Management</A>
+<LI><A ID="tex2html314"
+  HREF="Web_Browser_User_Interface.html#SECTION00532000000000000000">Remote Access Management</A>
+<LI><A ID="tex2html315"
+  HREF="Web_Browser_User_Interface.html#SECTION00533000000000000000">Time Zone</A>
+<LI><A ID="tex2html316"
+  HREF="Web_Browser_User_Interface.html#SECTION00534000000000000000">Backup &amp; Restore</A>
+<LI><A ID="tex2html317"
+  HREF="Web_Browser_User_Interface.html#SECTION00535000000000000000">Factory default</A>
+<LI><A ID="tex2html318"
+  HREF="Web_Browser_User_Interface.html#SECTION00536000000000000000">Firmware Update</A>
+<LI><A ID="tex2html319"
+  HREF="Web_Browser_User_Interface.html#SECTION00537000000000000000">App Store Access</A>
+<LI><A ID="tex2html320"
+  HREF="Web_Browser_User_Interface.html#SECTION00538000000000000000">Report Problem</A>
+<LI><A ID="tex2html321"
+  HREF="Web_Browser_User_Interface.html#SECTION00539000000000000000">Info</A>
+</UL>
+</UL>
+<BR>
+<LI><A ID="tex2html322"
+  HREF="Mobile_Apps.html">Mobile Apps</A>
+<UL>
+<LI><A ID="tex2html323"
+  HREF="Mobile_Apps.html#SECTION00610000000000000000">Standard mobile web browsers</A>
+<LI><A ID="tex2html324"
+  HREF="Mobile_Apps.html#SECTION00620000000000000000">Native HTML based apps</A>
+<LI><A ID="tex2html325"
+  HREF="Mobile_Apps.html#SECTION00630000000000000000">Pure Native Apps</A>
+<LI><A ID="tex2html326"
+  HREF="Mobile_Apps.html#SECTION00640000000000000000">Third-Party Apps</A>
+<UL>
+<LI><A ID="tex2html327"
+  HREF="Mobile_Apps.html#SECTION00641000000000000000">Imperihome</A>
+<LI><A ID="tex2html328"
+  HREF="Mobile_Apps.html#SECTION00642000000000000000">Fibaro</A>
+<LI><A ID="tex2html329"
+  HREF="Mobile_Apps.html#SECTION00643000000000000000">openHAB</A>
+</UL>
+<LI><A ID="tex2html330"
+  HREF="Mobile_Apps.html#SECTION00650000000000000000">Shortcuts for Android and Integration into Third party software</A>
+</UL>
+<BR>
+<LI><A ID="tex2html331"
+  HREF="App_System_making_it_intell.html">The App System: making it intelligent</A>
+<UL>
+<LI><A ID="tex2html332"
+  HREF="App_System_making_it_intell.html#SECTION00710000000000000000">A simple Apps as starter - <SPAN  CLASS="textbf"> 'L<SMALL>OCAL </SMALL>W<SMALL>EATHER'</SMALL></SPAN></A>
+<LI><A ID="tex2html333"
+  HREF="App_System_making_it_intell.html#SECTION00720000000000000000">Smart Home Logic</A>
+<UL>
+<LI><A ID="tex2html334"
+  HREF="App_System_making_it_intell.html#SECTION00721000000000000000">Scene</A>
+<LI><A ID="tex2html335"
+  HREF="App_System_making_it_intell.html#SECTION00722000000000000000">If -&gt; Then</A>
+<LI><A ID="tex2html336"
+  HREF="App_System_making_it_intell.html#SECTION00723000000000000000">Logical Rule: If-&gt;Then on steroids</A>
+<LI><A ID="tex2html337"
+  HREF="App_System_making_it_intell.html#SECTION00724000000000000000">Tips and Tricks</A>
+</UL>
+<LI><A ID="tex2html338"
+  HREF="App_System_making_it_intell.html#SECTION00730000000000000000">The big apps</A>
+<UL>
+<LI><A ID="tex2html339"
+  HREF="App_System_making_it_intell.html#SECTION00731000000000000000">Leakage Protection</A>
+<LI><A ID="tex2html340"
+  HREF="App_System_making_it_intell.html#SECTION00732000000000000000">Fire Protection</A>
+<LI><A ID="tex2html341"
+  HREF="App_System_making_it_intell.html#SECTION00733000000000000000">Burglar Alarm System</A>
+<LI><A ID="tex2html342"
+  HREF="App_System_making_it_intell.html#SECTION00734000000000000000">Climate Control</A>
+</UL>
+<LI><A ID="tex2html343"
+  HREF="App_System_making_it_intell.html#SECTION00740000000000000000">Out-of-band notifications</A>
+<UL>
+<LI><A ID="tex2html344"
+  HREF="App_System_making_it_intell.html#SECTION00741000000000000000">Push Notifications</A>
+<LI><A ID="tex2html345"
+  HREF="App_System_making_it_intell.html#SECTION00742000000000000000">Notifications by E-mail</A>
+<LI><A ID="tex2html346"
+  HREF="App_System_making_it_intell.html#SECTION00743000000000000000">Other notifiers</A>
+</UL>
+<LI><A ID="tex2html347"
+  HREF="App_System_making_it_intell.html#SECTION00750000000000000000">Useful tools and utilities</A>
+<UL>
+<LI><A ID="tex2html348"
+  HREF="App_System_making_it_intell.html#SECTION00751000000000000000">Apple HomeKit</A>
+<LI><A ID="tex2html349"
+  HREF="App_System_making_it_intell.html#SECTION00752000000000000000">Intchart.com</A>
+<LI><A ID="tex2html350"
+  HREF="App_System_making_it_intell.html#SECTION00753000000000000000">Astronomy App</A>
+<LI><A ID="tex2html351"
+  HREF="App_System_making_it_intell.html#SECTION00754000000000000000">Alexa Integration</A>
+<LI><A ID="tex2html352"
+  HREF="App_System_making_it_intell.html#SECTION00755000000000000000">Philips Hue Integration</A>
+</UL>
+<LI><A ID="tex2html353"
+  HREF="App_System_making_it_intell.html#SECTION00760000000000000000">For Developers</A>
+</UL>
+<BR>
+<LI><A ID="tex2html354"
+  HREF="Z_Wave_Expert_User_Interfac.html">The Z-Wave Expert User Interface</A>
+<UL>
+<LI><A ID="tex2html355"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00810000000000000000">Home Screen</A>
+<LI><A ID="tex2html356"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00820000000000000000">Control</A>
+<UL>
+<LI><A ID="tex2html357"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00821000000000000000">Switch</A>
+<LI><A ID="tex2html358"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00822000000000000000">Sensors</A>
+<LI><A ID="tex2html359"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00823000000000000000">Meters</A>
+<LI><A ID="tex2html360"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00824000000000000000">Thermostats</A>
+<LI><A ID="tex2html361"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00825000000000000000">Locks</A>
+<LI><A ID="tex2html362"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00826000000000000000">Notifications</A>
+</UL>
+<LI><A ID="tex2html363"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00830000000000000000">Device</A>
+<UL>
+<LI><A ID="tex2html364"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00831000000000000000">Status</A>
+<LI><A ID="tex2html365"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00832000000000000000">Type Info</A>
+<LI><A ID="tex2html366"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00833000000000000000">Battery</A>
+<LI><A ID="tex2html367"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00834000000000000000">Active Associations</A>
+</UL>
+<LI><A ID="tex2html368"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00840000000000000000">Configuration</A>
+<UL>
+<LI><A ID="tex2html369"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00841000000000000000">Interview</A>
+<LI><A ID="tex2html370"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00842000000000000000">Configuration</A>
+<LI><A ID="tex2html371"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00843000000000000000">Association</A>
+<LI><A ID="tex2html372"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00844000000000000000">Link Health</A>
+<LI><A ID="tex2html373"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00845000000000000000">Expert Commands</A>
+<LI><A ID="tex2html374"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00846000000000000000">Firmware Update</A>
+</UL>
+<LI><A ID="tex2html375"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00850000000000000000">Network</A>
+<UL>
+<LI><A ID="tex2html376"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851000000000000000">Control</A>
+<UL>
+<LI><A ID="tex2html377"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851100000000000000">Device Management</A>
+<LI><A ID="tex2html378"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851200000000000000">Smart Start</A>
+<LI><A ID="tex2html379"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851300000000000000">Enter/Leave different Network</A>
+<LI><A ID="tex2html380"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851400000000000000">Backup and Restore</A>
+<LI><A ID="tex2html381"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851500000000000000">Controller Maintenance</A>
+<LI><A ID="tex2html382"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851600000000000000">Operating Frequency</A>
+<LI><A ID="tex2html383"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851700000000000000">Network Maintenance</A>
+<LI><A ID="tex2html384"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00851800000000000000">SUC/SIS Management</A>
+</UL>
+<LI><A ID="tex2html385"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00852000000000000000">Neighbors</A>
+<LI><A ID="tex2html386"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00853000000000000000">Reorganization</A>
+<LI><A ID="tex2html387"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00854000000000000000">Network Map</A>
+<LI><A ID="tex2html388"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00855000000000000000">Timing Info</A>
+<LI><A ID="tex2html389"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00856000000000000000">Link Status</A>
+<LI><A ID="tex2html390"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00857000000000000000">Controller Info</A>
+<LI><A ID="tex2html391"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00858000000000000000">Basic Set Handling</A>
+<LI><A ID="tex2html392"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00859000000000000000">Security Considerations</A>
+</UL>
+<LI><A ID="tex2html393"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00860000000000000000">Analytics</A>
+<LI><A ID="tex2html394"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00870000000000000000">Setup</A>
+<LI><A ID="tex2html395"
+  HREF="Z_Wave_Expert_User_Interfac.html#SECTION00880000000000000000">Job Queue</A>
+</UL>
+<BR>
+<LI><A ID="tex2html396"
+  HREF="Troubleshoot_Z_Wave_Network.html">Troubleshoot the Z-Wave Network</A>
+<UL>
+<LI><A ID="tex2html397"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00910000000000000000">Radio Layer</A>
+<LI><A ID="tex2html398"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00920000000000000000">Network Layer - Devices</A>
+<LI><A ID="tex2html399"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00930000000000000000">Network Layer - Weak or Wrong Routes</A>
+<LI><A ID="tex2html400"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00940000000000000000">Application Layer Settings</A>
+<UL>
+<LI><A ID="tex2html401"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00941000000000000000">Polling</A>
+<LI><A ID="tex2html402"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00942000000000000000">Dead Associations</A>
+<LI><A ID="tex2html403"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00943000000000000000">Wrong Wakeup Settings</A>
+</UL>
+<LI><A ID="tex2html404"
+  HREF="Troubleshoot_Z_Wave_Network.html#SECTION00950000000000000000">Summary</A>
+</UL>
+<BR>
+<LI><A ID="tex2html405"
+  HREF="Extending_systems_beyond_Z_.html">Extending the systems beyond Z-Wave </A>
+<UL>
+<LI><A ID="tex2html406"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001010000000000000000">IP-Cameras</A>
+<UL>
+<LI><A ID="tex2html407"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001011000000000000000">How to find out if a camera is supported by Z-Way?</A>
+<LI><A ID="tex2html408"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001012000000000000000">How to prepare for integration?</A>
+<LI><A ID="tex2html409"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001013000000000000000">How to find the IP address of the camera?</A>
+<LI><A ID="tex2html410"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001014000000000000000">How to integrate the camera into Z-Way?</A>
+<LI><A ID="tex2html411"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001015000000000000000">How to support a camera not on the list yet?</A>
+</UL>
+<LI><A ID="tex2html412"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001020000000000000000">433 MHz devices</A>
+<UL>
+<LI><A ID="tex2html413"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001021000000000000000">Introduction</A>
+<LI><A ID="tex2html414"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001022000000000000000">433 MHz Gateway</A>
+<LI><A ID="tex2html415"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001023000000000000000">How to setup the 433 MHz Gateway</A>
+<UL>
+<LI><A ID="tex2html416"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001023100000000000000">Power Up the 433 MHz Gateway</A>
+<LI><A ID="tex2html417"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001023200000000000000">Configure the 433 MHz Gateway</A>
+<LI><A ID="tex2html418"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001023300000000000000">Teach In 433 MHz devices</A>
+</UL>
+</UL>
+<LI><A ID="tex2html419"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001030000000000000000">EnOcean devices</A>
+<LI><A ID="tex2html420"
+  HREF="Extending_systems_beyond_Z_.html#SECTION001040000000000000000">Other IP/Internet-based services</A>
+</UL>
+<BR>
+<LI><A ID="tex2html421"
+  HREF="Customize_your_system.html">Customize your system</A>
+<UL>
+<LI><A ID="tex2html422"
+  HREF="Customize_your_system.html#SECTION001110000000000000000">Skins</A>
+<UL>
+<LI><A ID="tex2html423"
+  HREF="Customize_your_system.html#SECTION001111000000000000000">Step 1 - Do you own Skin</A>
+<LI><A ID="tex2html424"
+  HREF="Customize_your_system.html#SECTION001112000000000000000">Step 2 - Do your own Images</A>
+<LI><A ID="tex2html425"
+  HREF="Customize_your_system.html#SECTION001113000000000000000">Step 3 - Test the new Skin</A>
+<LI><A ID="tex2html426"
+  HREF="Customize_your_system.html#SECTION001114000000000000000">Step 4 - Change colors, fonts, shapes – almost</A>
+<LI><A ID="tex2html427"
+  HREF="Customize_your_system.html#SECTION001115000000000000000">Step 5 - Going into the SASS world</A>
+<LI><A ID="tex2html428"
+  HREF="Customize_your_system.html#SECTION001116000000000000000">Step 6 - Changing SASS</A>
+<LI><A ID="tex2html429"
+  HREF="Customize_your_system.html#SECTION001117000000000000000">Step 7 - Create the final Skin for friends, family and the public</A>
+<UL>
+<LI><A ID="tex2html430"
+  HREF="Customize_your_system.html#SECTION001117100000000000000">Create a preview image</A>
+<LI><A ID="tex2html431"
+  HREF="Customize_your_system.html#SECTION001117200000000000000">Collect all files together</A>
+<LI><A ID="tex2html432"
+  HREF="Customize_your_system.html#SECTION001117300000000000000">Pack the files</A>
+</UL>
+<LI><A ID="tex2html433"
+  HREF="Customize_your_system.html#SECTION001118000000000000000">Step 8 - Distribute your Skin</A>
+<LI><A ID="tex2html434"
+  HREF="Customize_your_system.html#SECTION001119000000000000000">Step 9 - Rewind in case something goes wrong</A>
+</UL>
+<LI><A ID="tex2html435"
+  HREF="Customize_your_system.html#SECTION001120000000000000000">Icon Sets</A>
+<UL>
+<LI><A ID="tex2html436"
+  HREF="Customize_your_system.html#SECTION001121000000000000000">Create Your own Icons</A>
+<LI><A ID="tex2html437"
+  HREF="Customize_your_system.html#SECTION001122000000000000000">Create an Icon Pack</A>
+<LI><A ID="tex2html438"
+  HREF="Customize_your_system.html#SECTION001123000000000000000">Upload your Icon Set</A>
+</UL>
+<LI><A ID="tex2html439"
+  HREF="Customize_your_system.html#SECTION001130000000000000000">How to translate the Z-Way to your language</A>
+<UL>
+<LI><A ID="tex2html440"
+  HREF="Customize_your_system.html#SECTION001131000000000000000">Smart-Home User Interface</A>
+<LI><A ID="tex2html441"
+  HREF="Customize_your_system.html#SECTION001132000000000000000">Expert User Interface</A>
+<LI><A ID="tex2html442"
+  HREF="Customize_your_system.html#SECTION001133000000000000000">Backend Code</A>
+<LI><A ID="tex2html443"
+  HREF="Customize_your_system.html#SECTION001134000000000000000">Submission of your Language Pack</A>
+</UL>
+</UL>
+<BR>
+<LI><A ID="tex2html444"
+  HREF="Develop_Code_Z_Way.html">Develop Code for Z-Way </A>
+<UL>
+<LI><A ID="tex2html445"
+  HREF="Develop_Code_Z_Way.html#SECTION001210000000000000000">Z-Way software structure overview</A>
+<LI><A ID="tex2html446"
+  HREF="Develop_Code_Z_Way.html#SECTION001220000000000000000">Z-Way APIs Quick Reference</A>
+<UL>
+<LI><A ID="tex2html447"
+  HREF="Develop_Code_Z_Way.html#SECTION001221000000000000000">Z-Wave Device API</A>
+<UL>
+<LI><A ID="tex2html448"
+  HREF="Develop_Code_Z_Way.html#SECTION001221100000000000000">Sending Z-Wave Commands</A>
+</UL>
+<LI><A ID="tex2html449"
+  HREF="Develop_Code_Z_Way.html#SECTION001222000000000000000">JavaScript API (JS API)</A>
+<LI><A ID="tex2html450"
+  HREF="Develop_Code_Z_Way.html#SECTION001223000000000000000">Virtual Device API</A>
+<LI><A ID="tex2html451"
+  HREF="Develop_Code_Z_Way.html#SECTION001224000000000000000">Comparison</A>
+</UL>
+<LI><A ID="tex2html452"
+  HREF="Develop_Code_Z_Way.html#SECTION001230000000000000000">The Z-Wave Device (JSON) API in detail</A>
+<UL>
+<LI><A ID="tex2html453"
+  HREF="Develop_Code_Z_Way.html#SECTION001231000000000000000">The data model</A>
+<UL>
+<LI><A ID="tex2html454"
+  HREF="Develop_Code_Z_Way.html#SECTION001231100000000000000">The Data object</A>
+<LI><A ID="tex2html455"
+  HREF="Develop_Code_Z_Way.html#SECTION001231200000000000000">The Data and Method Tree</A>
+</UL>
+<LI><A ID="tex2html456"
+  HREF="Develop_Code_Z_Way.html#SECTION001232000000000000000">Timing behavior of Z-Wave data</A>
+<LI><A ID="tex2html457"
+  HREF="Develop_Code_Z_Way.html#SECTION001233000000000000000">Executing Commands</A>
+<UL>
+<LI><A ID="tex2html458"
+  HREF="Develop_Code_Z_Way.html#SECTION001233100000000000000">Function Class Commands</A>
+<LI><A ID="tex2html459"
+  HREF="Develop_Code_Z_Way.html#SECTION001233200000000000000">Device Command Class Commands</A>
+<LI><A ID="tex2html460"
+  HREF="Develop_Code_Z_Way.html#SECTION001233300000000000000">Accessing Data</A>
+<LI><A ID="tex2html461"
+  HREF="Develop_Code_Z_Way.html#SECTION001233400000000000000">/ZWaveAPI/Data/<SPAN CLASS="MATH">&lt;</SPAN>timestamp<SPAN CLASS="MATH">&gt;</SPAN></A>
+<LI><A ID="tex2html462"
+  HREF="Develop_Code_Z_Way.html#SECTION001233500000000000000">/ZWaveAPI/InspectQueue</A>
+<LI><A ID="tex2html463"
+  HREF="Develop_Code_Z_Way.html#SECTION001233600000000000000">Handling of updates coming from Z-Way </A>
+<LI><A ID="tex2html464"
+  HREF="Develop_Code_Z_Way.html#SECTION001233700000000000000">Handling S2 inclusion process</A>
+</UL>
+</UL>
+<LI><A ID="tex2html465"
+  HREF="Develop_Code_Z_Way.html#SECTION001240000000000000000">C-Library API and a general view on the Z-Way file structure</A>
+<UL>
+<LI><A ID="tex2html466"
+  HREF="Develop_Code_Z_Way.html#SECTION001241000000000000000">Files in the /zway folder</A>
+<UL>
+<LI><A ID="tex2html467"
+  HREF="Develop_Code_Z_Way.html#SECTION001241100000000000000">config.xml - the main config file</A>
+<LI><A ID="tex2html468"
+  HREF="Develop_Code_Z_Way.html#SECTION001241200000000000000">config: Various configuration xml files</A>
+<LI><A ID="tex2html469"
+  HREF="Develop_Code_Z_Way.html#SECTION001241300000000000000">translations: XMLs mapping Ids to text</A>
+<LI><A ID="tex2html470"
+  HREF="Develop_Code_Z_Way.html#SECTION001241400000000000000">ZDDX: Device Description Files</A>
+<LI><A ID="tex2html471"
+  HREF="Develop_Code_Z_Way.html#SECTION001241500000000000000">Htdocs: The web servers document folder</A>
+<LI><A ID="tex2html472"
+  HREF="Develop_Code_Z_Way.html#SECTION001241600000000000000">automation: The JavaScript sub system</A>
+</UL>
+<LI><A ID="tex2html473"
+  HREF="Develop_Code_Z_Way.html#SECTION001242000000000000000">The use of  the C-Library</A>
+<UL>
+<LI><A ID="tex2html474"
+  HREF="Develop_Code_Z_Way.html#SECTION001242100000000000000">Sending commands</A>
+<LI><A ID="tex2html475"
+  HREF="Develop_Code_Z_Way.html#SECTION001242200000000000000">Receiving updates</A>
+<LI><A ID="tex2html476"
+  HREF="Develop_Code_Z_Way.html#SECTION001242300000000000000">Command Classes</A>
+<LI><A ID="tex2html477"
+  HREF="Develop_Code_Z_Way.html#SECTION001242400000000000000">Network management</A>
+<LI><A ID="tex2html478"
+  HREF="Develop_Code_Z_Way.html#SECTION001242500000000000000">Using Z-Way Library in C-Code</A>
+</UL>
+</UL>
+</UL>
+<BR>
+<LI><A ID="tex2html479"
+  HREF="JavaScript_Engine.html">The JavaScript Engine</A>
+<UL>
+<LI><A ID="tex2html480"
+  HREF="JavaScript_Engine.html#SECTION001310000000000000000">The JavaScript Core Interpreter and the integration of the Z-Wave function</A>
+<LI><A ID="tex2html481"
+  HREF="JavaScript_Engine.html#SECTION001320000000000000000">Z-Way extensions to the JavaScript Core</A>
+<UL>
+<LI><A ID="tex2html482"
+  HREF="JavaScript_Engine.html#SECTION001321000000000000000">HTTP Access</A>
+<LI><A ID="tex2html483"
+  HREF="JavaScript_Engine.html#SECTION001322000000000000000">XML parser</A>
+<UL>
+<LI><A ID="tex2html484"
+  HREF="JavaScript_Engine.html#SECTION001322100000000000000">var x = new ZXmlDocument()</A>
+<LI><A ID="tex2html485"
+  HREF="JavaScript_Engine.html#SECTION001322200000000000000">x = new ZXmlDocument("xml content")</A>
+<LI><A ID="tex2html486"
+  HREF="JavaScript_Engine.html#SECTION001322300000000000000">x.root</A>
+<LI><A ID="tex2html487"
+  HREF="JavaScript_Engine.html#SECTION001322400000000000000">x.isXML</A>
+<LI><A ID="tex2html488"
+  HREF="JavaScript_Engine.html#SECTION001322500000000000000">x.toString()</A>
+<LI><A ID="tex2html489"
+  HREF="JavaScript_Engine.html#SECTION001322600000000000000">x.findOne(XPathString)</A>
+<LI><A ID="tex2html490"
+  HREF="JavaScript_Engine.html#SECTION001322700000000000000">x.findAll(XPathString)</A>
+<LI><A ID="tex2html491"
+  HREF="JavaScript_Engine.html#SECTION001322800000000000000">x.document</A>
+<LI><A ID="tex2html492"
+  HREF="JavaScript_Engine.html#SECTION001322900000000000000">XML elements</A>
+</UL>
+<LI><A ID="tex2html493"
+  HREF="JavaScript_Engine.html#SECTION001323000000000000000">Cryptographic functions</A>
+<UL>
+<LI><A ID="tex2html494"
+  HREF="JavaScript_Engine.html#SECTION001323100000000000000">var guid = crypto.guid()</A>
+<LI><A ID="tex2html495"
+  HREF="JavaScript_Engine.html#SECTION001323200000000000000">var rnd = crypto.random(n)</A>
+<LI><A ID="tex2html496"
+  HREF="JavaScript_Engine.html#SECTION001323300000000000000">var dgst = crypto.digest(hash, data, ...)</A>
+<LI><A ID="tex2html497"
+  HREF="JavaScript_Engine.html#SECTION001323400000000000000">var hmac = crypto.hmac(cipher, key, data, ...)</A>
+</UL>
+<LI><A ID="tex2html498"
+  HREF="JavaScript_Engine.html#SECTION001324000000000000000">Sockets functions</A>
+<LI><A ID="tex2html499"
+  HREF="JavaScript_Engine.html#SECTION001325000000000000000">WebSockets functions</A>
+<LI><A ID="tex2html500"
+  HREF="JavaScript_Engine.html#SECTION001326000000000000000">Other JavaScript Extensions</A>
+<UL>
+<LI><A ID="tex2html501"
+  HREF="JavaScript_Engine.html#SECTION001326100000000000000">fs.list(folder)</A>
+<LI><A ID="tex2html502"
+  HREF="JavaScript_Engine.html#SECTION001326200000000000000">fs.stat(file)</A>
+<LI><A ID="tex2html503"
+  HREF="JavaScript_Engine.html#SECTION001326300000000000000">fs.loadJSON(filename)</A>
+<LI><A ID="tex2html504"
+  HREF="JavaScript_Engine.html#SECTION001326400000000000000">fs.load(filename)</A>
+<LI><A ID="tex2html505"
+  HREF="JavaScript_Engine.html#SECTION001326500000000000000">executeFile(filename) and executeJS(string)</A>
+<LI><A ID="tex2html506"
+  HREF="JavaScript_Engine.html#SECTION001326600000000000000">system(command)</A>
+<LI><A ID="tex2html507"
+  HREF="JavaScript_Engine.html#SECTION001326700000000000000">Timers</A>
+<LI><A ID="tex2html508"
+  HREF="JavaScript_Engine.html#SECTION001326800000000000000">loadObject(object_name) and saveObject(object_name, object)</A>
+<LI><A ID="tex2html509"
+  HREF="JavaScript_Engine.html#SECTION001326900000000000000">exit()</A>
+<LI><A ID="tex2html510"
+  HREF="JavaScript_Engine.html#SECTION0013261000000000000000">allowExternalAccess(handlerName) and listExternalAccess()</A>
+<LI><A ID="tex2html511"
+  HREF="JavaScript_Engine.html#SECTION0013261100000000000000">debugPrint(object, object, ...)</A>
+</UL>
+<LI><A ID="tex2html512"
+  HREF="JavaScript_Engine.html#SECTION001327000000000000000">Debugging JavaScript code</A>
+</UL>
+<LI><A ID="tex2html513"
+  HREF="JavaScript_Engine.html#SECTION001330000000000000000">The virtual device concept (vDev)</A>
+<UL>
+<LI><A ID="tex2html514"
+  HREF="JavaScript_Engine.html#SECTION001331000000000000000">Names and Ids</A>
+<LI><A ID="tex2html515"
+  HREF="JavaScript_Engine.html#SECTION001332000000000000000">Device Type</A>
+<LI><A ID="tex2html516"
+  HREF="JavaScript_Engine.html#SECTION001333000000000000000">Access to Virtual Devices</A>
+<LI><A ID="tex2html517"
+  HREF="JavaScript_Engine.html#SECTION001334000000000000000">Virtual Device Usage / Commands</A>
+<LI><A ID="tex2html518"
+  HREF="JavaScript_Engine.html#SECTION001335000000000000000">Virtual Device Usage / Values</A>
+<LI><A ID="tex2html519"
+  HREF="JavaScript_Engine.html#SECTION001336000000000000000">How to create your own virtual devices</A>
+<UL>
+<LI><A ID="tex2html520"
+  HREF="JavaScript_Engine.html#SECTION001336100000000000000">Step 1. Define a VirtualDevice subclass</A>
+<LI><A ID="tex2html521"
+  HREF="JavaScript_Engine.html#SECTION001336200000000000000">Step 2. Override performCommand() method</A>
+<LI><A ID="tex2html522"
+  HREF="JavaScript_Engine.html#SECTION001336300000000000000">Step 3. Instantiate your VDev by the module</A>
+<LI><A ID="tex2html523"
+  HREF="JavaScript_Engine.html#SECTION001336400000000000000">Step 4. Register device</A>
+<LI><A ID="tex2html524"
+  HREF="JavaScript_Engine.html#SECTION001336500000000000000">Step 5: Unregister device</A>
+</UL>
+<LI><A ID="tex2html525"
+  HREF="JavaScript_Engine.html#SECTION001337000000000000000">Binding to metric changes</A>
+</UL>
+<LI><A ID="tex2html526"
+  HREF="JavaScript_Engine.html#SECTION001340000000000000000">The event bus</A>
+<UL>
+<LI><A ID="tex2html527"
+  HREF="JavaScript_Engine.html#SECTION001341000000000000000">Emitting events</A>
+<LI><A ID="tex2html528"
+  HREF="JavaScript_Engine.html#SECTION001342000000000000000">Catching (binding to) events</A>
+<LI><A ID="tex2html529"
+  HREF="JavaScript_Engine.html#SECTION001343000000000000000">Notification and Severity</A>
+</UL>
+<LI><A ID="tex2html530"
+  HREF="JavaScript_Engine.html#SECTION001350000000000000000">Modules (for users called 'Apps')</A>
+<UL>
+<LI><A ID="tex2html531"
+  HREF="JavaScript_Engine.html#SECTION001351000000000000000">Module.json</A>
+<LI><A ID="tex2html532"
+  HREF="JavaScript_Engine.html#SECTION001352000000000000000">index.js</A>
+<LI><A ID="tex2html533"
+  HREF="JavaScript_Engine.html#SECTION001353000000000000000">Available Core Modules</A>
+<UL>
+<LI><A ID="tex2html534"
+  HREF="JavaScript_Engine.html#SECTION001353100000000000000">Cron, the timer module</A>
+<LI><A ID="tex2html535"
+  HREF="JavaScript_Engine.html#SECTION001353200000000000000">Z-Wave</A>
+</UL>
+</UL>
+</UL>
+<BR>
+<LI><A ID="tex2html536"
+  HREF="Special_topics_Developers.html">Special topics for Developers</A>
+<UL>
+<LI><A ID="tex2html537"
+  HREF="Special_topics_Developers.html#SECTION001410000000000000000">Authentication</A>
+<UL>
+<LI><A ID="tex2html538"
+  HREF="Special_topics_Developers.html#SECTION001411000000000000000">Local authentication</A>
+<LI><A ID="tex2html539"
+  HREF="Special_topics_Developers.html#SECTION001412000000000000000">Remote authentication</A>
+<LI><A ID="tex2html540"
+  HREF="Special_topics_Developers.html#SECTION001413000000000000000">Remote authentication and access error handling</A>
+<LI><A ID="tex2html541"
+  HREF="Special_topics_Developers.html#SECTION001414000000000000000">Token lifetime</A>
+<LI><A ID="tex2html542"
+  HREF="Special_topics_Developers.html#SECTION001415000000000000000">OAuth2</A>
+</UL>
+<LI><A ID="tex2html543"
+  HREF="Special_topics_Developers.html#SECTION001420000000000000000">How to write own Apps for Z-Way </A>
+<UL>
+<LI><A ID="tex2html544"
+  HREF="Special_topics_Developers.html#SECTION001421000000000000000">module.js</A>
+<LI><A ID="tex2html545"
+  HREF="Special_topics_Developers.html#SECTION001422000000000000000">Schema</A>
+<UL>
+<LI><A ID="tex2html546"
+  HREF="Special_topics_Developers.html#SECTION001422100000000000000">Primitive data types like integer, float or string</A>
+<LI><A ID="tex2html547"
+  HREF="Special_topics_Developers.html#SECTION001422200000000000000">Name Spaces  - Enumerations with a choice</A>
+</UL>
+<LI><A ID="tex2html548"
+  HREF="Special_topics_Developers.html#SECTION001423000000000000000">The file index.js</A>
+</UL>
+<LI><A ID="tex2html549"
+  HREF="Special_topics_Developers.html#SECTION001430000000000000000">Write you own Device Description Files</A>
+<LI><A ID="tex2html550"
+  HREF="Special_topics_Developers.html#SECTION001440000000000000000">Extending EnOcean</A>
+</UL>
+<BR>
+<LI><A ID="tex2html551"
+  HREF="Z_Way_Data_Model_Reference.html">Z-Way Data Model Reference</A>
+<UL>
+<LI><A ID="tex2html552"
+  HREF="Z_Way_Data_Model_Reference.html#SECTION001510000000000000000">Data</A>
+<LI><A ID="tex2html553"
+  HREF="Z_Way_Data_Model_Reference.html#SECTION001520000000000000000">JS object zway</A>
+<LI><A ID="tex2html554"
+  HREF="Z_Way_Data_Model_Reference.html#SECTION001530000000000000000">controller</A>
+<LI><A ID="tex2html555"
+  HREF="Z_Way_Data_Model_Reference.html#SECTION001540000000000000000">Devices</A>
+<LI><A ID="tex2html556"
+  HREF="Z_Way_Data_Model_Reference.html#SECTION001550000000000000000">Device</A>
+<LI><A ID="tex2html557"
+  HREF="Z_Way_Data_Model_Reference.html#SECTION001560000000000000000">Instances</A>
+<LI><A ID="tex2html558"
+  HREF="Z_Way_Data_Model_Reference.html#SECTION001570000000000000000">CommandClass</A>
+</UL>
+<BR>
+<LI><A ID="tex2html559"
+  HREF="Command_Class_Reference.html">Command Class Reference</A>
+<UL>
+<LI><A ID="tex2html560"
+  HREF="Command_Class_Reference.html#SECTION001610000000000000000">Command Class Basic (0x20/32)</A>
+<LI><A ID="tex2html561"
+  HREF="Command_Class_Reference.html#SECTION001620000000000000000">Command Class Wakeup (0x84/132)</A>
+<LI><A ID="tex2html562"
+  HREF="Command_Class_Reference.html#SECTION001630000000000000000">Command Class NoOperation (0x00/0)</A>
+<LI><A ID="tex2html563"
+  HREF="Command_Class_Reference.html#SECTION001640000000000000000">Command Class Battery (0x80/128)</A>
+<LI><A ID="tex2html564"
+  HREF="Command_Class_Reference.html#SECTION001650000000000000000">Command Class ManufacturerSpecific (0x72/114)</A>
+<LI><A ID="tex2html565"
+  HREF="Command_Class_Reference.html#SECTION001660000000000000000">Command Class Proprietary (0x88/136)</A>
+<LI><A ID="tex2html566"
+  HREF="Command_Class_Reference.html#SECTION001670000000000000000">Command Class Configuration (0x70/112)</A>
+<LI><A ID="tex2html567"
+  HREF="Command_Class_Reference.html#SECTION001680000000000000000">Command Class SensorBinary (0x30/48)</A>
+<LI><A ID="tex2html568"
+  HREF="Command_Class_Reference.html#SECTION001690000000000000000">Command Class Association (0x85/133)</A>
+<LI><A ID="tex2html569"
+  HREF="Command_Class_Reference.html#SECTION0016100000000000000000">Command Class Meter (0x32/50)</A>
+<LI><A ID="tex2html570"
+  HREF="Command_Class_Reference.html#SECTION0016110000000000000000">Command Class Meter Pulse (0x35/53)</A>
+<LI><A ID="tex2html571"
+  HREF="Command_Class_Reference.html#SECTION0016120000000000000000">Command Class SensorMultilevel (0x31/49)</A>
+<LI><A ID="tex2html572"
+  HREF="Command_Class_Reference.html#SECTION0016130000000000000000">Command Class Sensor Configuration (0x9E/158)</A>
+<LI><A ID="tex2html573"
+  HREF="Command_Class_Reference.html#SECTION0016140000000000000000">Command Class SwitchAll (0x27/39)</A>
+<LI><A ID="tex2html574"
+  HREF="Command_Class_Reference.html#SECTION0016150000000000000000">Command Class SwitchBinary (0x25/37)</A>
+<LI><A ID="tex2html575"
+  HREF="Command_Class_Reference.html#SECTION0016160000000000000000">Command Class SwitchMultilevel (0x26/38)</A>
+<LI><A ID="tex2html576"
+  HREF="Command_Class_Reference.html#SECTION0016170000000000000000">Command Class MultiChannelAssociation (0x8E/142)</A>
+<LI><A ID="tex2html577"
+  HREF="Command_Class_Reference.html#SECTION0016180000000000000000">Command Class MultiChannel (0x60/96)</A>
+<LI><A ID="tex2html578"
+  HREF="Command_Class_Reference.html#SECTION0016190000000000000000">Command Class Node Naming (0x77/119)</A>
+<LI><A ID="tex2html579"
+  HREF="Command_Class_Reference.html#SECTION0016200000000000000000">Command Class Thermostat SetPoint (0x43/67)</A>
+<LI><A ID="tex2html580"
+  HREF="Command_Class_Reference.html#SECTION0016210000000000000000">Command Class Thermostat Mode (0x40/64)</A>
+<LI><A ID="tex2html581"
+  HREF="Command_Class_Reference.html#SECTION0016220000000000000000">Command Class Thermostat Fan Mode (0x44/68)</A>
+<LI><A ID="tex2html582"
+  HREF="Command_Class_Reference.html#SECTION0016230000000000000000">Command Class Thermostat Fan State (0x45/69)</A>
+<LI><A ID="tex2html583"
+  HREF="Command_Class_Reference.html#SECTION0016240000000000000000">Command Class Thermostat Operating State (0x42/66)</A>
+<LI><A ID="tex2html584"
+  HREF="Command_Class_Reference.html#SECTION0016250000000000000000">Command Class Alarm Sensor (0x9C/156)</A>
+<LI><A ID="tex2html585"
+  HREF="Command_Class_Reference.html#SECTION0016260000000000000000">Command Class Door Lock (0x62/98)</A>
+<LI><A ID="tex2html586"
+  HREF="Command_Class_Reference.html#SECTION0016270000000000000000">Command Class Door Lock Logging (0x4C/76)</A>
+<LI><A ID="tex2html587"
+  HREF="Command_Class_Reference.html#SECTION0016280000000000000000">Command Class User Code (0x63/99)</A>
+<LI><A ID="tex2html588"
+  HREF="Command_Class_Reference.html#SECTION0016290000000000000000">Command Class Time (0x8A/138)</A>
+<LI><A ID="tex2html589"
+  HREF="Command_Class_Reference.html#SECTION0016300000000000000000">Command Class Time Parameters (0x8B/139)</A>
+<LI><A ID="tex2html590"
+  HREF="Command_Class_Reference.html#SECTION0016310000000000000000">Command Class Clock (0x81/129)</A>
+<LI><A ID="tex2html591"
+  HREF="Command_Class_Reference.html#SECTION0016320000000000000000">Command Class Scene Activation (0x2B/43)</A>
+<LI><A ID="tex2html592"
+  HREF="Command_Class_Reference.html#SECTION0016330000000000000000">Command Class Scene Controller Conf (0x2D/45)</A>
+<LI><A ID="tex2html593"
+  HREF="Command_Class_Reference.html#SECTION0016340000000000000000">Command Class Scene Actuator Conf (0x2C/44)</A>
+<LI><A ID="tex2html594"
+  HREF="Command_Class_Reference.html#SECTION0016350000000000000000">Command Class Indicator (0x87/135)</A>
+<LI><A ID="tex2html595"
+  HREF="Command_Class_Reference.html#SECTION0016360000000000000000">Command Class Protection (0x75/117)</A>
+<LI><A ID="tex2html596"
+  HREF="Command_Class_Reference.html#SECTION0016370000000000000000">Command Class Schedule Entry Lock (0x4E/78)</A>
+<LI><A ID="tex2html597"
+  HREF="Command_Class_Reference.html#SECTION0016380000000000000000">Command Class Climate Control Schedule (0x46/70)</A>
+<LI><A ID="tex2html598"
+  HREF="Command_Class_Reference.html#SECTION0016390000000000000000">Command Class MeterTableMonitor (0x3D/61)</A>
+<LI><A ID="tex2html599"
+  HREF="Command_Class_Reference.html#SECTION0016400000000000000000">Command Class Alarm (0x71/113)</A>
+<LI><A ID="tex2html600"
+  HREF="Command_Class_Reference.html#SECTION0016410000000000000000">Command Class PowerLevel (0x73/115)</A>
+<LI><A ID="tex2html601"
+  HREF="Command_Class_Reference.html#SECTION0016420000000000000000">Command Class Z-Wave Plus Info (0x5E/94)</A>
+<LI><A ID="tex2html602"
+  HREF="Command_Class_Reference.html#SECTION0016430000000000000000">Command Class Firmware Update (0x7A/122)</A>
+<LI><A ID="tex2html603"
+  HREF="Command_Class_Reference.html#SECTION0016440000000000000000">Command Class Association Group Information (0x59/89)</A>
+<LI><A ID="tex2html604"
+  HREF="Command_Class_Reference.html#SECTION0016450000000000000000">Command Class SwitchColor (0x33/51)</A>
+<LI><A ID="tex2html605"
+  HREF="Command_Class_Reference.html#SECTION0016460000000000000000">Command Class SoundSwitch (0x79/121)</A>
+<LI><A ID="tex2html606"
+  HREF="Command_Class_Reference.html#SECTION0016470000000000000000">Command Class BarrierOperator (0x66/102)</A>
+<LI><A ID="tex2html607"
+  HREF="Command_Class_Reference.html#SECTION0016480000000000000000">Command Class SimpleAVControl (0x94/148)</A>
+<LI><A ID="tex2html608"
+  HREF="Command_Class_Reference.html#SECTION0016490000000000000000">Command Class Security (0x98/152)</A>
+<LI><A ID="tex2html609"
+  HREF="Command_Class_Reference.html#SECTION0016500000000000000000">Command Class SecurityS2 (0x9F/159)</A>
+<LI><A ID="tex2html610"
+  HREF="Command_Class_Reference.html#SECTION0016510000000000000000">Command Class EntryControl (0x6F/111)</A>
+<LI><A ID="tex2html611"
+  HREF="Command_Class_Reference.html#SECTION0016520000000000000000">Command Class CRC16 (0x56/86)</A>
+<LI><A ID="tex2html612"
+  HREF="Command_Class_Reference.html#SECTION0016530000000000000000">Command Class MultiCmd (0x8F/143)</A>
+<LI><A ID="tex2html613"
+  HREF="Command_Class_Reference.html#SECTION0016540000000000000000">Command Class Supervision (0x6C/108)</A>
+<LI><A ID="tex2html614"
+  HREF="Command_Class_Reference.html#SECTION0016550000000000000000">Command Class Application Status (0x22/34)</A>
+<LI><A ID="tex2html615"
+  HREF="Command_Class_Reference.html#SECTION0016560000000000000000">Command Class Version (0x86/134)</A>
+<LI><A ID="tex2html616"
+  HREF="Command_Class_Reference.html#SECTION0016570000000000000000">Command Class DeviceResetLocally (0x5A/90)</A>
+<LI><A ID="tex2html617"
+  HREF="Command_Class_Reference.html#SECTION0016580000000000000000">Command Class Central Scene (0x5B/91)</A>
+</UL>
+<BR>
+<LI><A ID="tex2html618"
+  HREF="Function_Class_Reference.html">Function Class Reference</A>
+<LI><A ID="tex2html619"
+  HREF="List_supported_EnOcean_devi.html">List of supported EnOcean devices</A>
+<UL>
+<LI><A ID="tex2html620"
+  HREF="List_supported_EnOcean_devi.html#SECTION001810000000000000000">NodOn</A>
+<LI><A ID="tex2html621"
+  HREF="List_supported_EnOcean_devi.html#SECTION001820000000000000000">Thermokon</A>
+<LI><A ID="tex2html622"
+  HREF="List_supported_EnOcean_devi.html#SECTION001830000000000000000">Hubbel</A>
+<LI><A ID="tex2html623"
+  HREF="List_supported_EnOcean_devi.html#SECTION001840000000000000000">AWAG</A>
+<LI><A ID="tex2html624"
+  HREF="List_supported_EnOcean_devi.html#SECTION001850000000000000000">Hoppe</A>
+<LI><A ID="tex2html625"
+  HREF="List_supported_EnOcean_devi.html#SECTION001860000000000000000">Schneider Elektrik</A>
+<LI><A ID="tex2html626"
+  HREF="List_supported_EnOcean_devi.html#SECTION001870000000000000000">PEHA</A>
+<LI><A ID="tex2html627"
+  HREF="List_supported_EnOcean_devi.html#SECTION001880000000000000000">Eltako</A>
+<LI><A ID="tex2html628"
+  HREF="List_supported_EnOcean_devi.html#SECTION001890000000000000000">EnOcean GmbH</A>
+</UL>
+<BR>
+<LI><A ID="tex2html629"
+  HREF="List_Tables.html">List of Tables</A>
+<LI><A ID="tex2html630"
+  HREF="List_Figures.html">List of Figures</A>
+<LI><A ID="tex2html631"
+  HREF="Index.html">Index</A>
+</UL>
+</div>
+
+<H1><A ID="SECTION001300000000000000000"></A>
+<A ID="cap:js"></A><A NAME="6301"></A>
+<BR>
+The JavaScript Engine
+</H1>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The Z-Way core function engine is the so called JavaScript (JS) automation system.
+It uses the APIs of the technology-dependent 'drivers' and delivers all the functions
+and interface for running a Smart Home controller:
+</DIV>
+<UL>
+<LI>It <SPAN  CLASS="textbf">unifies the functions and properties of the physical devices</SPAN> to a common 
+device structure, the virtual Device (vDev).
+</LI>
+<LI>It allows to <SPAN  CLASS="textbf">create own virtual devices</SPAN> not related to physical devices.
+</LI>
+<LI>It allows to <SPAN  CLASS="textbf">dynamically load 'plugin' modules</SPAN>  - also written in Javascript or 
+even in native C - that extend the function of the JS core and deliver furter functionality.
+Users see these modules as apps. For more information about apps please refer to chapter 
+<A HREF="App_System_making_it_intell.html#apps">6</A>.
+</LI>
+<LI>It organizes the <SPAN  CLASS="textbf">communication between the virtual devices</SPAN> as event bus. Every 
+vDev can inject events into this bus and every vDev can read events from this bus.
+</LI>
+<LI>It provides a <SPAN  CLASS="textbf">higher layer API</SPAN> that is 
+is used among others by the Smart Home User Interface.
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">This chapter explains the different building blocks of the JS Engine:
+</DIV>
+<UL>
+<LI>Javascript Interpreter/Compiler Core Engine
+</LI>
+<LI>Virtual Devices
+</LI>
+<LI>Event Bus
+</LI>
+<LI>User Interface elements referring to the different virtual devices
+</LI>
+<LI>The structure of the Apps
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H1><A ID="SECTION001310000000000000000">
+The JavaScript Core Interpreter and the integration of the Z-Wave function</A>
+</H1>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"> Z-Way uses the JavaScript engine provided by Google referred to as V8. You find more 
+information about this JavaScript implementation on 
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<kbd><A ID="tex2html229"
+  HREF="https://code.google.com/p/v8/.">https://code.google.com/p/v8/.</A></kbd>
+</BLOCKQUOTE> 
+</DIV>
+<P>
+<DIV class="CENTER">V8 implements JavaScript according to the specification ECMA 5
+<A ID="tex2html230"
+  HREF="#foot6314"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A>.
+</DIV>
+<P>
+<DIV class="CENTER">Please note that this V8 core engine only implements the very basic JS functions and need to 
+be extended to be usable in a Smart Home environment.
+</DIV>
+<P>
+<DIV class="CENTER">Javascript code can be executed on the server side and certain functions of the JS core are 
+available on the client side as well since most modern web browsers have a built-in Javascript
+engine as well. The bridge between the server side JS and the web browser client is a built-in
+web server. This is the same embedded web server serving all the web browsers HTML pages etc.
+</DIV>
+<P>
+<DIV class="CENTER">Accessing a server side JS function from the web browsers client side is easy. Just call 
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<kbd><A ID="tex2html231"
+  HREF="http://YOURIP:8083/JS/Run/*">http://YOURIP:8083/JS/Run/*</A></kbd>
+</BLOCKQUOTE> 
+</DIV>
+<P>
+<DIV class="CENTER">with the function desired.
+</DIV>
+<P>
+<DIV class="CENTER">Please note that all accesses using the embedded webserver require an authentication of the 
+web browsers instance. Please refer to chapter <A HREF="Special_topics_Developers.html#cap:authentication">13.1</A> for details how to 
+authenticate against the web server.
+</DIV>
+<P>
+<DIV class="CENTER"> Z-Way offers one central object with the name 'zway' . This object encapsulates all the 
+Z-Wave variables and functions known from the Z-Wave Device API describes in chapter <A HREF="Develop_Code_Z_Way.html#c2">11.3</A>.
+</DIV>
+<P>
+<DIV class="CENTER">Hence its possible to use the very same functions of the Z-Wave Device API using the JS
+engine. The zway objects internal structure is shown in figure <A HREF="Develop_Code_Z_Way.html#zwaystructure">11.2</A> and the data elements 
+are describes in Annex <A HREF="Develop_Code_Z_Way.html#datamodel">11.3.1</A>.
+</DIV>
+<P>
+<DIV class="CENTER">The functions can be accessed using the web browsers function like
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<kbd><A ID="tex2html232"
+  HREF="http://YOURIP:8083/JS/Run/zway.devices[x].*">http://YOURIP:8083/JS/Run/zway.devices[x].*</A></kbd>
+</BLOCKQUOTE> 
+</DIV>
+<P>
+<DIV class="CENTER">Due to the scripting nature of JavaScript its possible to 'inject' code at run time
+using the interface. Here a nice example how to use the Java Script 
+setInterval function:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>[Polling device \#2]
+/JS/Run/setInterval(function() { 
+	zway.devices[2].Basic.Get();
+}, 300*1000);
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">This code will, once 'executed' as URL within a web browser, call the Get() command
+of the command class Basic of Node ID 2 every 300 seconds.  
+</DIV>
+<P>
+<DIV class="CENTER">A very powerful function of the JS API is the ability to bind functions to certain
+values of the device tree. they get then executed when the value changes. Here an 
+example for this binding. The device No. 3 has a command class SensorMultilevel that offers
+the variable level. The following call - both available on the client side 
+and on the server side - will bind a simple alert function to the change of 
+the variable.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>[Bind a function]
+zway.devices[3].SensorMultilevel.data[1].val.bind(function() { 
+	debugPrint('CHANGED TO: ' + this.value + '\n'); 
+});
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H1><A ID="SECTION001320000000000000000">
+Z-Way extensions to the JavaScript Core</A>
+</H1>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"> Z-Way provides some extensions to the JS core that are not part of the ECMA 
+functionality mentioned above.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001321000000000000000">
+HTTP Access</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The JavaScript implementation of Z-Way allows to directly accessing HTTP objects.
+</DIV>
+<P>
+<DIV class="CENTER">The http request is much like jQuery.ajax(): r = http.request(options);
+</DIV>
+<P>
+<DIV class="CENTER">Here's the list of options:
+</DIV>
+<UL>
+<LI>url - required. Url you want to request (might be http, https, or maybe even ftp);
+</LI>
+<LI>method – optional. HTTP method to use (currently one of GET, POST, HEAD). If not 
+specified, GET is used;
+</LI>
+<LI>headers – optional. Object containing additional headers to pass to server:
+
+<P>
+<PRE>
+headers: {
+    "Content-Type": "text/xml",
+    "X-Requested-With": "RaZberry/1.5.0"
+}
+</PRE>
+
+<P>
+</LI>
+<LI>data – used only for POST requests. Data to post to the server. May be either a
+string (to post raw data) or an object with keys and values (will be serialized as 
+'key1=value1&amp;key2=value2&amp;…');
+</LI>
+<LI>auth – optional. Provides credentials for basic authentication. It is an object 
+containing login and password:
+
+<P>
+<PRE>
+auth: {
+    login: 'username',
+    password: 'secret'
+}
+</PRE>
+
+<P>
+</LI>
+<LI>contentType – optional. Allows to override content type returned by server for 
+parsing data (see below);
+</LI>
+<LI>async – optional. Specifies whether request should be sent asynchronously. Default 
+is false. In case of synchronous request result is returned immediately (as function 
+return value), otherwise function exits immediately, and response is delivered later 
+thru callbacks.
+</LI>
+<LI>success, error and complete – optional, valid only for async requests. Success 
+callback is called after successful request, error is called on failure, complete is 
+called nevertheless (even if success/error callback produces exception, so it is like 
+'finally' statement);
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Response (as stated above) is delivered either as function return value, or as callback 
+parameter. Is is always an object containing following members:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<UL>
+<LI>status – HTTP status code (or -1 if some non-HTTP error occurred). Status codes 
+from 200 to 299 are considered success;
+</LI>
+<LI>statusText – status string;
+</LI>
+<LI>URL – response URL (might differ from url requested in case of server redirects);
+</LI>
+<LI>headers – object containing all the headers returned by server;
+</LI>
+<LI>contentType – content type returned by server;
+</LI>
+<LI>data – response data.
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Response data is handled differently depending on content type (if contentType on request 
+is set, it takes priority over server content type):
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<UL>
+<LI>application/json and text/x-json are returned as JSON object;
+</LI>
+<LI>application/xml and text/xml are returned as XML object;
+</LI>
+<LI>application/octet-stream is returned as binary ArrayBuffer;
+</LI>
+<LI>string is returned otherwise.
+</LI>
+</UL>
+<DIV class="CENTER">
+In case data cannot be parsed as valid JSON/XML, it is still returned as string, and 
+additional parseError member is present.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+http.request({
+	url: "http://server.com" (string, required),
+	method: "GET" (GET/POST/HEAD, optional, default "GET"),
+	
+	headers: (object, optional)
+	{
+		"name": "value",
+		...
+	},
+	
+	auth: (object, optional)
+	{
+		"login": "xxx" (string, required),
+		"password": "***" (string, required)
+	},
+	
+	data: (object, optional, for POST only)
+	{
+		"name": "value",
+		...
+	}
+	-- OR --
+	data: "name=value&amp;..." (string, optional, for POST only),
+
+	async: true (boolean, optional, default false),
+
+	timeout: (number, optional, default 20000)
+	
+	success: function(rsp) {} (function, optional, for async only),
+	error: function(rsp) {} (function, optional, for async only),
+	complete: function(rsp) {} (function, optional, for async only)
+});
+
+
+response:
+{
+	status: 200 (integer, -1 for non-http errors),
+	statusText: "OK" (string),
+	url: "http://server.com" (string),
+	contentType: "text/html" (string),
+	headers: (object)
+	{
+		"name": "value"
+	},
+	data: result (object or string, depending on content type)
+}
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001322000000000000000">
+XML parser</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">ZXmlDocument object allows to convert any valid XML document into a JSON object and vice versa.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001322100000000000000">
+var x = new ZXmlDocument()</A>
+</H3>
+<DIV class="CENTER">
+Create new empty XML document
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001322200000000000000">
+x = new ZXmlDocument("xml content")</A>
+</H3>
+<DIV class="CENTER">
+Create new XML document from a string
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001322300000000000000">
+x.root</A>
+</H3>
+<DIV class="CENTER">
+Get/set document root element. Elements are got/set in form of JS objects:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+\{
+    name: "node_name", - mandatory
+    text: "value", - optional, for text nodes
+    attributes: { - optional
+    	name: "value",
+    	...
+    },
+    children: [ - optional, should contain a valid object of same type
+    	{ ... }
+    ]
+}
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">For example:
+</DIV><PRE>
+(new ZXmlDocument('&lt;weather&gt;&lt;city id="1"&gt;&lt;name&gt;Zwickau&lt;/name&gt;
+	&lt;temp&gt;2.6&lt;/temp&gt;&lt;/city&gt; 
+	&lt;city id="2"&gt;&lt;name&gt;Moscow&lt;/name&gt;&lt;temp&gt;-23.4&lt;/temp&gt;&lt;/city&gt;
+	&lt;/weather&gt;')).root =
+{  
+   "children":[  
+      {  
+         "children":[  
+            {  
+               "text":"Zwickau",
+               "name":"name"
+            },
+            {  
+               "text":"2.6",
+               "name":"temp"
+            }
+         ],
+         "attributes":{  
+            "id":"1"
+         },
+         "name":"city"
+      },
+      {  
+         "children":[  
+            {  
+               "text":"Moscow",
+               "name":"name"
+            },
+            {  
+               "text":"-23.4",
+               "name":"temp"
+            }
+         ],
+         "attributes":{  
+            "id":"2"
+         },
+         "name":"city"
+      }
+   ],
+   "name":"weather"
+}
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001322400000000000000">
+x.isXML</A>
+</H3>
+<DIV class="CENTER">
+This hidden readonly property allows to detect if object is XML object or not (it is always true).
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001322500000000000000">
+x.toString()</A>
+</H3>
+<DIV class="CENTER">
+Converts XML object into a string with valid XML content.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001322600000000000000">
+x.findOne(XPathString)</A>
+</H3>
+<DIV class="CENTER">
+Returns first matching to XPathString element or null if not found.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+x.findOne('/weather/city[@id="2"]') // returns only city tag for Moscow
+x.findOne('/weather/city[name="Moscow"]/temp/text()') // returns temperature
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001322700000000000000">
+x.findAll(XPathString)</A>
+</H3>
+<DIV class="CENTER">
+Returns array of all matching to XPathString elements or empty array if not found.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+x.findAll('/weather/city') // returns all city tags
+x.findAll('/weather/city/name/text()') // returns all city names
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001322800000000000000">
+x.document</A>
+</H3>
+<DIV class="CENTER">
+A hidden property that refers to the document root.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001322900000000000000">
+XML elements</A>
+</H3>
+<DIV class="CENTER">
+Each XML element (tag) in addition to properties described above (text, attributes, 
+children) have hidden readonly property parent pointing to parent object and the following methiods:
+</DIV>
+<UL>
+<LI>insertChild(element) Insert new child eleemnt
+</LI>
+<LI>removeChild(element) Remove child element
+</LI>
+<LI>findOne(XPathString) Same as on root object, but relative (no leading / needed in XPathString
+</LI>
+<LI>findAll(XPathString) Same as on root object, but relative (no leading / needed in XPathString
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">ZXmlDocument is returned from http.request() when content type is 'application/xml', 
+'text/xml' or any other ending with '+xml'. Namespaces are not yet supported.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001323000000000000000">
+Cryptographic functions</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">crypto object provides access to some popular cryptographic functions such
+as SHA1, SHA256, SHA512, MD5, HMAC, and provides good random numbers.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001323100000000000000">
+var guid = crypto.guid()</A>
+</H3>
+<DIV class="CENTER">
+Provides standard GUID in string format.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001323200000000000000">
+var rnd = crypto.random(n)</A>
+</H3>
+<DIV class="CENTER">
+Generates n random bytes.
+Returned values is of type ArrayBuffer. To convert it into array use this trick:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+	rnd = (new Uint8Array(crypto.random(10)));
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001323300000000000000">
+var dgst = crypto.digest(hash, data, ...)</A>
+</H3>
+<DIV class="CENTER">
+Returns digest calculated using selected hash algorithm. It supports virtually all the 
+algorithms available in OpenSSL (md4, md5, mdc2, sha, sha1, sha224, sha256, sha384, sha512, ripemd160).
+If no data parameters specified, it returns a digest of an empty value. If more than one 
+data parameters are specified, they're all used to calculate the result. Data parameters 
+may be of different types (strings, arrays, ArrayBuffers).
+Return value is of type ArrayBuffer.
+</DIV>
+<P>
+<DIV class="CENTER">There are also a few shortcut functions for popular algorithms: 'md5', 'sha1', 'sha256', 
+'sha512'. For example, these calls are equivalent:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+	dgst = crypto.digest('sha256', data);
+	dgst = crypto.sha256(data);
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001323400000000000000">
+var hmac = crypto.hmac(cipher, key, data, ...)</A>
+</H3>
+<DIV class="CENTER">
+Returns hmac calculated using selected hash algorithm. Hash algorithms are the same as 
+for digest() function.
+</DIV>
+<P>
+<DIV class="CENTER">Key parameter is required. 
+</DIV>
+<P>
+<DIV class="CENTER">If no data parameters specified, it returns a HMAC of an empty value. If more than one 
+data parameters are specified, they're all used to calculate the result. Key and data 
+parameters may be of different types (strings, arrays, ArrayBuffers).
+Return value is of type ArrayBuffer.
+</DIV>
+<P>
+<DIV class="CENTER">There are also a few shortcut functions for popular algorithms: 'hmac256', 'hmac512'. For 
+example, these calls are equivalent:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+  dgst = crypto.hmac('sha256', key, data);
+  dgst = crypto.hmac256(key, data);
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001324000000000000000">
+Sockets functions</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Socket module allows easy access to TCP and UDP sockets from JavaScript.
+Both connection to distant ports and listening on local are available. This API fully 
+mirrors into JavaScript POSIX TCP/IP sockets.
+This can be used to control third party devices like Global Cache or Sonos
+as well as emulating third party services.
+</DIV>
+<P>
+<DIV class="CENTER">To start communications one need to create socket and either
+<SPAN  CLASS="textbf">connect</SPAN> it or <SPAN  CLASS="textbf">listen</SPAN> it. <SPAN  CLASS="textbf">onrecv</SPAN> method is called
+on data receive from remote, while <SPAN  CLASS="textbf">send</SPAN> is used to send data to remote side.
+</DIV>
+<P>
+<DIV class="CENTER">The example below dumps to log file response to http://ya.ru:80/ (raw HTTP
+protocol is used as an example).
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+var sock = new sockets.tcp();
+
+sock.onrecv = function(data) {
+    debugPrint(data.byteLength);
+};
+
+sock.connect('ya.ru', 80);
+
+sock.send("GET / HTTP/1.0\r\n\r\n");
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Here is an example of TCP echo server on port 8888:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+var sock = new sockets.tcp();
+
+sock.bind(8888);
+
+sock.onrecv = function(data) {
+    this.send(data);
+};
+
+sock.listen();
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">And echo server for UDP:
+</DIV><PRE>
+var sock = new sockets.udp();
+
+sock.bind(8888);
+
+sock.onrecv = function(data, host, port) {
+    this.sendto(data, host, port);
+};
+
+sock.listen();
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Detailed description of Socket API:
+</DIV>
+<UL>
+<LI>bind(ip, port) or bind(port) binds socket to port (integer number). ip should be a 
+string like "192.168.0.1". If omited "0.0.0.0" is used (bind on all IP addresses of all 
+interfaces). Returns false on error.
+</LI>
+<LI>connect(ip, port) connects to remote side ip:port. TCP sockets requires this call 
+before sending data. For UDP sockets it is optional, but once used allows to use send call 
+instead of sendto call. Returns false on error.
+</LI>
+<LI>listen() starts listening port (this is required not only for TCP, but for UDP too). 
+Returns false on error.
+</LI>
+<LI>close() initiate close of socket.
+</LI>
+<LI>send(data) sends data to connected or accepted socket.
+</LI>
+<LI>sendto(data, host, port) sends data to a non-connected UDP socket.
+</LI>
+<LI>onrecv(data, host, port) called on new data receiption from remote side. For UDP 
+sockets and connected TCP sockets "this" object reffers to the socket itself, while for 
+accepted TCP sockets "this" reffers to the client's individual objects.
+</LI>
+<LI>onconnect(remoteHost, remotePort, localHost, localPort) called only for TCP sockets 
+on new connection accept. "this" reffers to the client individual socket object.
+</LI>
+<LI>onclose(remoteHost, remotePort, localHost, localPort) called on socket close by 
+remote or due to close() call. Note that for TCP sockets this callback is called for client 
+sockets on connection close and for binded listening socket if close() is called. "this" 
+object will be defined like in onrecv.
+</LI>
+<LI>reusable() sets SO_REUSEADDR socket option to allow multiple bind() on the same port.
+</LI>
+<LI>broadcast() sets SO_BROADCAST socket option to allow sending broadcast UDP messages.
+</LI>
+<LI>multicastAddMembership(multicastGroup) subscribe socket to multicast group
+</LI>
+<LI>multicastDropMembership(multicastGroup) unsubscribe socket from multicast group
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001325000000000000000">
+WebSockets functions</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Socket module also implements WebSockets (RFC 6455). WebSocket API is made to be
+compatible with browser implementations (some rarely used functions are not
+implemented - see below).
+</DIV>
+<P>
+<DIV class="CENTER">The example below implements basic application using WebSockets client:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+var sock = new sockets.websocket("ws://echo.websocket.org");
+
+sock.onopen = function () {
+    debugPrint('connected, sending ping');
+    sock.send('ping');
+}
+
+sock.onmessage = function(ev) {
+    debugPrint('recv', ev.data);
+}
+
+sock.onclose = function() {
+    debugPrint('closed');
+}
+
+sock.onerror = function(ev) {
+    debugPrint('error', ev.data);
+}
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Next example shows basic application using WebSockets server:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+var sock = new sockets.websocket(9009);
+
+sock.onconnect = function () {
+    debugPrint('client connected, sending ping');
+}
+
+sock.onmessage = function(ev) {
+    debugPrint('recv', ev.data);
+    sock.send('pong');
+}
+
+sock.onclose = function() {
+    if (this === sock) {
+        debugPrint('server websocket closed');
+    } else {
+        debugPrint('client disconnected');
+    }
+}
+
+sock.onerror = function(ev) {
+    debugPrint('error', ev.data);
+}
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Detailed description of WebSocket API:
+</DIV>
+<UL>
+<LI>sockets.websocket(url, [protocol], [ssl_ca_filepath], [ssl_cert_filepath, 
+ssl_private_key_filepath]) creates new client WebSocket and connects to the 
+specified URL (should be a string like "ws://host:port" or "wss://host:port" for 
+SSL channel). Optional protocol parameter can be used to specify protocol from server 
+capabilities (comma separated string), default is "default". To use a specific CA file 
+instead of system default use ssl_ca_filepath. To send client certificate use  ssl_cert_filepath and ssl_private_key_filepath.
+</LI>
+<LI>sockets.websocket(port) creates new WebSocket server on port.
+</LI>
+<LI>close() initiate close of WebSocket.
+</LI>
+<LI>send(data) sends data to WebSocket. data can be array, ArrayBuffer (sent as binary) or string (sent as text).
+</LI>
+<LI>onmessage(event) called on new data receiption from remote side. Object event contains only data property. Other properties mentioned in RFC 6455 are not supported.
+</LI>
+<LI>onopen() or onconnect() called on connection establish. Compared RFC 6455 event parameter is not passed.
+</LI>
+<LI>onclose() called on WebSocket close by remote or due to close() call. For server side will be called on client instance and on listening instance (use this to differenciate). Note that if close() is called before connection was established, onclose() is not executed. Compared RFC 6455 event parameter is not passed.
+</LI>
+<LI>onerror(event) called on error. For example host or port unreachable. Note that new sockets.websocket(..) can throw an exception on DNS resolution error or on network unreachable. Other errors will be reported via onerror. Parameter event contains only propery data. Other properties from RFC 6455 are not implemented.
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001326000000000000000">
+Other JavaScript Extensions</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001326100000000000000">
+fs.list(folder)</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">This returns list of items in the folder or undefined if not folder is not existing.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001326200000000000000">
+fs.stat(file)</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">This returns one of the following values:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<UL>
+<LI>1) undefined if object does not exist or not readable
+</LI>
+<LI>2) object { type: 'file', size: &lt;size&gt;} if it is a file
+</LI>
+<LI>3) object { type: 'dir' } if it is a folder
+</LI>
+</UL>
+<DIV class="CENTER"> 
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001326300000000000000">
+fs.loadJSON(filename)</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">This function reads a file from the file system and loads it into the memory. The file 
+must contain a valid JSON object. The only argument is the name of the file including 
+relative pathname to the automation folder. The functions returns the full JSON object or 
+null in case of error.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001326400000000000000">
+fs.load(filename)</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">This function reads a file from the file system and returns it's content as a string. The 
+only argument is the name of the file including relative pathname to the automation folder.
+ The functions returns null in case of error.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001326500000000000000">
+executeFile(filename) and executeJS(string)</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Loads and executes a particular JavaScript file from the local filesystem or executes 
+JavaScript code represented in string (like eval in browsers).
+</DIV>
+<P>
+<DIV class="CENTER">The script is executed withig the global namespace.
+</DIV>
+<P>
+<DIV class="CENTER">Remark: If an error occurred during the execution it won't stop from further execution, 
+but erroneous script will not be executed completely. It will stop on the first error.
+Exceptions in the callee can be trapped in the caller using standard try-catch mechanism.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001326600000000000000">
+system(command)</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The command system() allows to execute any shell level command available on the operating 
+system. It will return the shell output of the command.  On default the execution of 
+system commands is forbidden. Each command executed need to be permitted by putting one 
+line with the starting commands in the file automation/.syscommands or in an different 
+automation folder as specified in config.xml.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001326700000000000000">
+Timers</A>
+</H3>
+<DIV class="CENTER">
+Timers are implemented exactly as they are used in browsers. They are very helpfull for 
+periodical and delayed operations. Timeout/period is defined in milliseconds.
+</DIV>
+<UL>
+<LI>timerId = setTimeout(function()  , timeout)
+</LI>
+<LI>timerId = setInterval(function()  , period)
+</LI>
+<LI>clearTimeout(timerId)
+</LI>
+<LI>clearInterval(timerId)
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001326800000000000000">
+loadObject(object_name) and saveObject(object_name, object)</A>
+</H3>
+<DIV class="CENTER">
+Loads and saves JSON object from/to storage. These functions implements flat storage for 
+application with access to the object by it's name. No folders are available.
+</DIV>
+<P>
+<DIV class="CENTER">Data is saved in automation/storage folder. Filenames are made from object names by 
+stripping characters but [a-ZA-Z0-9] and adding checksum from original name (to avoid name conflicts).
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001326900000000000000">
+exit()</A>
+</H3>
+<DIV class="CENTER">
+Stops JavaScript engine and shuts down Z-Way server
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION0013261000000000000000">
+allowExternalAccess(handlerName) and listExternalAccess()</A>
+</H3>
+<DIV class="CENTER">
+allowExternalAccess allows to register HTTP handler. handlerName can contain strings like 
+aaa.bbb.ccc.ddd - in that case any HTTP request starting by /aaa/bbb/ccc/ddd will be 
+handled by a function aaa.bbb.ccc.ddd() if present, otherwise aaa.bbb.ccc(), ... up to aaa().
+Handler should return object with at least properties status and body (one can also specify 
+headers like it was in http.request module).
+</DIV>
+<P>
+<DIV class="CENTER">listExternalAccess returns array with names of all registered HTTP handlers.
+</DIV>
+<P>
+<DIV class="CENTER">Here is an example how to attach handlers for /what/timeisit and /what:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+what = function() {
+  return { status: 500, body: 'What do you want to know' };
+};
+
+what.timeisit = function() {
+  return { status: 200, body: (new Date()).toString() }
+};
+
+allowExternalAccess("what");
+allowExternalAccess("what.timeisit");
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION0013261100000000000000">
+debugPrint(object, object, ...)</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Prints arguments converted to string to Z-Way console. Very usefull for debuggin.
+For convenience one can map 'console.log()' to debugPrint().
+</DIV>
+<P>
+<DIV class="CENTER">This is how it was done in automation/main.js in Z-Way Home Automation engine:
+</DIV><PRE>
+var console = {
+    log: debugPrint,
+    warn: debugPrint,
+    error: debugPrint,
+    debug: debugPrint,
+    logJS: function() {
+        var arr = [];
+        for (var key in arguments)
+            arr.push(JSON.stringify(arguments[key]));
+        debugPrint(arr);
+    }
+};
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001327000000000000000">
+Debugging JavaScript code</A>
+</H2>
+<DIV class="CENTER">
+Change in config.xml debug-port to 8183 (or some other) turn on V8 debugger capability on Z-Way start.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+&lt;config&gt;
+    ...
+    &lt;debug-port&gt;8183&lt;/debug-port&gt;
+    ....
+&lt;/config&gt;
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">node-inspector debugger tool is required. It provides web-based UI for debugging similar 
+to Google Chrome debug console.
+</DIV>
+<P>
+<DIV class="CENTER">You might want to run debugger tool on another machine (for example if it is not possible to 
+install it on the same box as Z-Way is running on).
+</DIV>
+<P>
+<DIV class="CENTER">Use the following command to forward debugger port defined in config.xml to your local machine:
+
+<BLOCKQUOTE>
+<SPAN style="font-family:sans-serif"><B>ssh -N USER@IP_OF_Z-WAY_MACHINE -L 8183:127.0.0.1:8183</B></SPAN>
+(for RaZberry USER is pi)
+
+</BLOCKQUOTE> 
+</DIV>
+<P>
+<DIV class="CENTER">Install node-inspector debugger tool and run it:
+
+<BLOCKQUOTE>
+<SPAN style="font-family:sans-serif"><B>npm install -g node-inspector node-inspector &ndash;debug-port 8183</B></SPAN>
+
+</BLOCKQUOTE> 
+</DIV>
+<P>
+<DIV class="CENTER">Then you can connect to 
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<kbd><A ID="tex2html233"
+  HREF="http://IP_OF_MACHINE_WITH_NODE_INSPECTOR:8080/debug?port=8183">http://IP_OF_MACHINE_WITH_NODE_INSPECTOR:8080/debug?port=8183</A></kbd>
+</BLOCKQUOTE> 
+</DIV>
+<P>
+<DIV class="CENTER">If debugging is turned on, Z-Way gives you 5 seconds during startup to reconnect debugger to 
+Z-Way (refresh the page of debugger Web UI withing these 5 seconds).
+This allows you to debug startup code of Z-Way JavaScript engine from the very first line of code.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H1><A ID="SECTION001330000000000000000"></A>
+<A ID="cap:vdev"></A><A NAME="6426"></A>
+<A NAME="6427"></A>
+<BR>
+The virtual device concept (vDev)
+</H1>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">A virtual device is a data object within the JS engine. Virtual devices have 
+properties and functions. Most virtual devices represent a physical device or a part of 
+a physical device but virtual devices are not limited to this. Virtual devices can be 
+pure dummy device doing nothing but pretenting to be a device (There is an app called
+<SPAN  CLASS="textbf"> 'D<SMALL>UMMY </SMALL>D<SMALL>EVICE'</SMALL></SPAN> that works exactly like this). Virtual devices can also connect to
+services via TCP/IP.
+</DIV>
+<P>
+<DIV class="CENTER">The purpose of virtual devices is to unify the appearance on a graphical user interface 
+and to unify the communication between them. At the level of virtual devices 
+and EnOcean controller can switch a Z-Wave switch and trigger a rule in a cloud 
+service.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001331000000000000000">
+Names and Ids</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Every virtual device is identified by a simple string type id. For all virtual devices 
+that are related to physical Z-Wave devices the device name is auto-generated by the 
+module (app) 'Z-Wave' following this logic:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H4><A ID="SECTION001331010000000000000">
+ZWayVDev_[Node ID]:[Instance ID]:[Command Class ID]:[Scale ID]</A>
+</H4>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The Node Id is the node id of the physical device, the Instance ID is the instance id 
+of the device  or '0' if there is only one instance. The command class ID refers to the 
+command class the function is embedded in. The scale id is usually '0' unless the virtual
+device is generated from a Z-Wave device that supports multiple sensors with different 
+scales in one single command class.
+</DIV>
+<P>
+<DIV class="CENTER">Virtual devices not generated by a Z-Wave device may have other Ids. They are either created 
+by other physical device subsystems such as 433MHz or EnOcean or they are generated
+by a module (app).
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001332000000000000000">
+Device Type</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Virtual devices can have a certain types. Table shows the different types plus the defines 
+commands.  Table <A HREF="#tab:devicetypes">12.1</A> shows the list of current device types with their 
+metrics and defines commands.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<BR><P></P>
+<DIV class="CENTER"><A ID="6441"></A>
+<TABLE>
+<CAPTION><STRONG>Table 12.1:</STRONG>
+vDev device types with metrics and commands</CAPTION>
+<TR><TD><SPAN CLASS="SCRIPTSIZE"></SPAN><TABLE class="PAD  BORDER" style="">
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">
+deviceType	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">Metrics	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE">Commands	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE">Examples</SPAN></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE"> 
+
+battery	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">probeTitle,scaleTitle, level, icon, title	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE">-	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE">- </SPAN></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE"> 
+
+doorlock	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">level, icon, title	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE">open or close	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE">apiURL/devices/:deviceId/command/open</SPAN></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE"> 
+
+thermostat	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">scaleTitle, min, max, level, icon, title	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE">exact with get-param level	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE">apiURL/devices/:deviceId/command/exact?
+level=22.5</SPAN></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE"> 
+
+switchBinary (Thermostat)	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">level, icon, title	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE">on, off or update</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE">	apiURL/devices/:deviceId/command/on</SPAN></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE"> 
+
+switchBinary</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">	level, icon, title	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE">on, off or update	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE">apiURL/devices/:deviceId/command/on</SPAN></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE"> 
+
+switchMultilevel	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">level, icon, title	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE"> on Set(255), off Set(0), min Set(10), max Set(99), increase Set(l+10), decrease Set(l-10), update, exact + get params level	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE">apiURL/devices/:deviceId/command/exact? level=40 </SPAN></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE"> 
+
+switchMultilevel (Blinds)</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">	level, icon, title	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE">up Set(255), down Set(0), upMax Set(99), increase Set(l+10), decrease Set(l-10), startUp StartLevelChange(0), startDown StartLevelChange(1), stop StopLevelChange(), update, excactSmooth + get params level	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE"> apiURL/devices/:deviceId/command/stop  </SPAN></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE"> 
+
+sensorBinary	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">probeTitle, level, icon, title	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE">update	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE">apiURL/devices/:deviceId/command/update</SPAN></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE"> 
+
+sensorMultilevel	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">probeTitle, scaleTitle, level, icon, title	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE">update	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE">apiURL/devices/:deviceId/command/update </SPAN></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE"> 
+
+toggleButton	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">level, icon, title</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE">	on	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE">apiURL/devices/:deviceId/command/on </SPAN></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE"> 
+
+camera	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">icon, title	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE">depends on installed camera - could be: zoomIn, zoomOut, up, down, left, right, close, open	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE">apiURL/devices/:deviceId/zoomIn </SPAN></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE"> 
+
+switchControl	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">level, icon, title,</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE"> change	on, off, upstart, upstop, downstart, downstop, exact with get-param level	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE">apiURL/devices/:deviceId/command/on </SPAN></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE"> 
+
+text	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">title, text, icon	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE">-	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE">- </SPAN></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE"> 
+
+sensorMultiline	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">multilineType, title, icon, level, (scaleTitle, ...)	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE">depends on apps	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE">apiURL/devices/:deviceId/command/:cmd </SPAN></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE"> 
+
+switchRGB	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=75><SPAN CLASS="SCRIPTSIZE">icon, title, color: r:255,g:255,b:255, </SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=100><SPAN CLASS="SCRIPTSIZE">level	on, off, exact with get-params: red, green and blue	</SPAN></TD>
+<TD CLASS="LEFT TOP"  WIDTH=200><SPAN CLASS="SCRIPTSIZE"> apiURL/devices/:deviceId/command/exact?
+red=20&amp;green=240&amp;blue=0 </SPAN></TD>
+</TR>
+</TABLE><SPAN CLASS="SCRIPTSIZE">
+ 
+<A ID="tab:devicetypes"></A></SPAN></TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+<DIV class="CENTER">	
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001333000000000000000">
+Access to Virtual Devices</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Virtual devices can be access both on the server side using JS modules and on the client 
+side using the JSON API. On the client they are encoded into a URL style for easier 
+handling  in AJAX code. A typical client side command in the vDev API looks like
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<kbd><A ID="tex2html235"
+  HREF="http://YOURIP:8083/ZAutomation/api/v1/devices/ZWayVDev_6:0:37/command/off">http://YOURIP:8083/ZAutomation/api/v1/devices/ZWayVDev_6:0:37/command/off</A></kbd>
+</BLOCKQUOTE> 
+</DIV>
+<P>
+<DIV class="CENTER">'api' points to the vDev API function, 'v1' is just a constant to allow future extensions. 
+The devices are referred by a name that is automatically generated from the Z-Wave 
+Device API. The vDev also unifies the commands 'command' and the parameters, here 'off'.
+</DIV>
+<P>
+<DIV class="CENTER">On the server side the very same command would be encoded in a JavaScript style.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>[Access vDevs]
+
+vdevId = vdev.id;
+
+vDev = this.controller.devices.get(vdevId);
+
+vDevList = this.controller.devices.filter(function(x) { 
+	return x.get("deviceType") === "switchBinary"; }); 
+
+vDevTypes = this.controller.devices.map(function(x) { 
+	return x.get("deviceType"); });
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001334000000000000000">
+Virtual Device Usage / Commands</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">In case the virtual device is an actor it will accept and execute a command using the 
+syntax:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H4><A ID="SECTION001334010000000000000">
+Vdev.performCommand(„name of the command“)</A>
+</H4>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The name of the accepted command should depend on the device type and can again be defined 
+free of restrictions when implementing the virtual device. For auto-generated devices 
+derived from Z-Wave the following commands are typically implemented.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<OL>
+<LI>'update': updates a sensor value
+</LI>
+<LI>'on': turns a device on.  Only valid for binary commands
+</LI>
+<LI>'off': turns a device off. Only valid for binary commands
+</LI>
+<LI>'exact': sets the device to an exact value. This will be a temperature for 
+thermostats or a percentage value of motor controls or dimmers
+</LI>
+</OL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001335000000000000000">
+Virtual Device Usage / Values</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Virtual devices have inner values. They are called metrics. A metric can be set and get. 
+Each virtual device can define its own metrics. Metrics can be level, title icon and 
+other device specific values like scale (%, kWh, ...)
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+vDev.set("metrics:...", ...);  
+vDev.get("metrics:...");
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001336000000000000000">
+How to create your own virtual devices</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">A Virtual Device (Vdev) is an instance of a VirtualDevice class' descendant which exposes 
+set of metrics and commands (according to it's type/subtype). Virtual devices are the only 
+runtime instances which is controllable and observable through the JS API.
+</DIV>
+<P>
+<DIV class="CENTER">Technically, VDev is a VirtualDevice subclass which concretize, overrides or extends 
+superclass' methods.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001336100000000000000">
+Step 1. Define a VirtualDevice subclass</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+// Important: constructor SHOULD always be successful
+BatteryPollingDevice = function (id, controller) {
+    // Always call superconstructor first
+    BatteryPollingDevice.super_.call(this, id, controller);
+
+    // Define VDevs properties
+    this.deviceType = "virtual";
+    this.deviceSubType = "batteryPolling";
+    this.widgetClass = "BatteryStatusWidget";
+
+    // Setup some additional metrics (many of them is setted up in a base class)
+    this.setMetricValue("someMetric", "someValue");
+}
+inherits(BatteryPollingDevice, VirtualDevice);
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">VDev class should always fill in the deviceType property and often fill in the 
+deviceSubType property.
+</DIV>
+<P>
+<DIV class="CENTER">If the particular VDev class can be controller by the client-side widget, it should define 
+widget's class name in the widgetClass property.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001336200000000000000">
+Step 2. Override performCommand() method</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+BatteryPollingDevice.prototype.performCommand = function (command) {
+    var handled = true;
+
+    if ("update" === command) {
+        for (var id in zway.devices) {
+            zway.devices[id].Battery &amp;&amp; zway.devices[id].Battery.Get();
+        }
+    } else {
+        handled = false;
+    }
+
+    return handled ? true : 
+    BatteryPollingDevice.super_.prototype.performCommand.call(this, command);
+}
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">VDev itself mostly needed to handle commands, triggered by the events, system or the API.
+</DIV>
+<P>
+<DIV class="CENTER">In the example above you could see, that this VDev is capable of performing "update" 
+command. But base class can be capable of performing some other commands, so the last l
+ine calls superclass' performCommand() method if the particular command wasn't handled 
+by the VDev itself.
+</DIV>
+<P>
+<DIV class="CENTER">This extensibility provides the possibility to create a VDev class tree. Take a look at 
+ZWaveGate module as an example of such tree.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001336300000000000000">
+Step 3. Instantiate your VDev by the module</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>
+// ...part of the BatteryPolling.init() method
+executeFile(this.moduleBasePath()+"/BatteryPollingDevice.js");
+this.vdev = new BatteryPollingDevice("BatteryPolling", this.controller);
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">First line of code is loads and executes apropriate .js-file which provides 
+BatteryPollingDevice class.
+</DIV>
+<P>
+<DIV class="CENTER">Secnd line instantiates this class.
+</DIV>
+<P>
+<DIV class="CENTER">The last line calls controller's registerDevice method to register and VDev instance.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001336400000000000000">
+Step 4. Register device</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>[Register Device]
+        vDev = this.controller.devices.create(vDevId, {
+            deviceType: "deviceType",
+            metrics: {
+                level: "level",
+                icon: "icon from lib or url"
+                title: "Default title"
+            }
+        }, function (command, ...) {
+                // handles actions with the widget
+        });
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001336500000000000000">
+Step 5: Unregister device</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Devices can be deleted or unregistered  using the following command:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H4><A ID="SECTION001336510000000000000">
+this.controller.devices.remove(vDevId)</A>
+</H4>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001337000000000000000">
+Binding to metric changes</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The metric - the inner variables of the vDev a changed by the system automatically.
+In order to perform certain functions on these changes the function needs to be 
+bound to the change to the vdev. The syntax for this is
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H4><A ID="SECTION001337010000000000000">
+vDev.on('change:metrics:...", function (vDev)  ... );</A>
+</H4>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Unbinding then works as one can expect:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H4><A ID="SECTION001337020000000000000">
+vDev.off(’change:metrics:...”, function (vDev) ... )</A>
+</H4>
+<DIV class="CENTER"> 
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H1><A ID="SECTION001340000000000000000"></A>
+<A ID="cap:eventbus"></A>
+<BR>
+The event bus
+</H1>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">All communication from and to the automation modules is handled by events. An event 
+is a structure containing certain information that is exchanged using a central 
+distribution place, <B>the event bus</B>. This means that all modules can send events 
+to the event bus and can listen to event in order to execute commands on them. All 
+modules can 'see' all events but need to filter out their events of relevance.  The 
+core objects of the automation are written in JS and they are available as source 
+code in the sub folder 'classes':
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<UL>
+<LI>AutomationController.js: This is the main engine of the automation function
+</LI>
+<LI>AutomationModule.js: the basic object for the module
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The file main.js is the startup file for the automation system and it is loading the three 
+classes just mentioned. The subfolder /lib contains the key JS script for the Event 
+handling: eventemitter.js.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001341000000000000000">
+Emitting events</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The 'Event emitter' emits events into the central event bus. The event emitter can 
+be called from all modules and scripts of the automation system. The syntax is:
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<SPAN  CLASS="texttt">  
+<!-- MATH
+ $controller.emit(eventName, args1,arg2,...argn)$
+ -->
+<SPAN CLASS="MATH"><I>controller</I>.<I>emit</I>(<I>eventName</I>, <I>args</I>1, <I>arg</I>2,...<I>argn</I>)</SPAN></SPAN>
+
+</BLOCKQUOTE>
+</DIV>
+<P>
+<DIV class="CENTER">The event name 'eventName' has to be noted in the form of 'XXX.YYY' where 'XXX' is the name 
+of the event source (e.g. the name of the module issuing the event or the name of the 
+module using the event) and 'YYY' is the name of the event itself.  To allow a scalable 
+system it makes sense to name the events by the name of the module that is supposed to 
+receive and to manage events. This simplifies the filtering of these events by the 
+receiver module(s).
+</DIV>
+<P>
+<DIV class="CENTER">Certain event names are forbidden for general use because they are already used in the 
+existing modules. One example are events with the name cron.XXXX that are used by the 
+cron module handling all timer related events.
+</DIV>
+<P>
+<DIV class="CENTER">Every event can have a list of arguments developers can decide on. For the events used by 
+preloaded modules (first and foremost the cron module) this argument structure is 
+predefined. For all other modules the developer is free to decide on structure and content. 
+It is also possible to have list fields and or any other structure as argument for the event
+</DIV>
+<P>
+<DIV class="CENTER">One example of an issued event can be 
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<SPAN  CLASS="texttt">  
+<!-- MATH
+ $emit(“mymodule.testevent”,”Test”,[“event1”,”event2”])$
+ -->
+<SPAN CLASS="MATH"><I>emit</I>(“<I>mymodule</I>.<I>testevent</I>”,”<I>Test</I>”,[“<I>event</I>1”,”<I>event</I>2”])</SPAN></SPAN>
+
+</BLOCKQUOTE>
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001342000000000000000">
+Catching (binding to) events</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The controller object, part of every module, offers a function called 'on()' to catch events. 
+The 'on(name, function())' function subscribes to events of a certain name type. If not 
+all  events of a certain name tag shall be processed a further filtering needs to be 
+implemented  processing  the further arguments of the event. The function argument contains a reference 
+to the implementation using the event to perform certain actions. The argument list of the event is 
+handed over to this function in its order but need to be declared in the function call statement.
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<SPAN  CLASS="texttt">  
+this.controller.on(“mymodule.testevent”, function (name,eventarray) )
+</SPAN>
+
+</BLOCKQUOTE>
+</DIV>
+<P>
+<DIV class="CENTER">The same way objects can unbind from events:
+</DIV>
+<P>
+<DIV class="CENTER">
+<BLOCKQUOTE>
+<SPAN  CLASS="texttt">  
+this.controller.off(“mymodule.testevent”, function (name,eventarray));
+</SPAN>
+
+</BLOCKQUOTE>
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001343000000000000000">
+Notification and Severity</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Notifications are a special  kind of event to inform the user on the graphical user interface or 
+out-of-band.. This means that normal events are typically describes with numbers or ids 
+while notifications contain a human readable message. 
+</DIV>
+<P>
+<DIV class="CENTER">The UI can be notified on the certain events.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H4><A ID="SECTION001343010000000000000">
+this.controller.addNotification("....severity....", "....message....", "....origin....");</A>
+</H4>
+<DIV class="CENTER"> 
+</DIV>
+<P>
+<DIV class="CENTER">The parameters define
+</DIV>
+<UL>
+<LI>severity is error, info, debug; 
+</LI>
+<LI>origin describes which part of the system it is about: core, module, device, battery.
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The controller can act on notifications or disable them.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H4><A ID="SECTION001343020000000000000">
+this.controller.on('notifications.push', this.handler);</A>
+</H4>
+<DIV class="CENTER">
+</DIV>
+<H4><A ID="SECTION001343030000000000000">
+this.controller.off('notifications.push', this.handler);</A>
+</H4>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H1><A ID="SECTION001350000000000000000"></A>
+<A ID="cap:modules"></A>
+<BR>
+Modules (for users called 'Apps')
+</H1>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">Beside the core functions encoded into the JS core there are extensions to this code called
+modules. Modules extend the JS core by providing internal or external ( visible to the user)
+functions.
+</DIV>
+<P>
+<DIV class="CENTER">Each modules code is located in a sub directory of the sub folder module as described 
+in chapter <A HREF="Develop_Code_Z_Way.html#c11:zwayfolder">11.4.1</A>. The name of the subfolder equals the name of the module. The sub folder 
+contains files to define the behavior of the module.
+<SPAN CLASS="FOOTNOTESIZE">
+<BR>
+<IMG STYLE=""
+ SRC="img9.svg"
+ ALT="\begin{forest}
+for tree={
+font=\ttfamily ,
+grow'=0,
+child anchor=west,
+pare...
+...ible by the web server]
+[lang: translation into local languages]
+]
+\end{forest}">
+<BR></SPAN>
+</DIV>
+<H2><A ID="SECTION001351000000000000000">
+Module.json</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">This file contains the module meta-definition used by the AutomationController. It must 
+be a valid JSON object with the following fields (all of them are required):
+</DIV>
+<UL>
+<LI><SPAN  CLASS="textbf">autoload</SPAN> — Boolean, defines will this module automatically instantiated during Home Automation startup.
+</LI>
+<LI><SPAN  CLASS="textbf">singleton</SPAN> — Boolean, defines this module can be instantiated more than one time or not.
+</LI>
+<LI><SPAN  CLASS="textbf">defaults</SPAN> — Object, default module instance settings. This object will be patched with the particular 
+config object from the controller's configuration and resulting object will be passed to the initializer.
+</LI>
+<LI><SPAN  CLASS="textbf">actions</SPAN> — Object, defines exported module instance actions. Object keys 
+are the names of actions and  values are meta-definitions of exported actions used by 
+AutomationController and API webserver.
+</LI>
+<LI><SPAN  CLASS="textbf">metrics</SPAN> — Object, defines exported module metrics.
+</LI>
+</UL>
+<DIV class="CENTER">
+All configuration fields are required. Types of the object must be equal in every 
+definition in every case. For instance, if module doesn't export any metric corresponding 
+key value should be and empty object “”.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001352000000000000000">
+index.js</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">This script defines an automation module class which is descendant of AutomationModule base class.
+During initialization the module script must define the variable '_module' containing the particular module class.
+</DIV>
+<P>
+<DIV class="CENTER">Example of a minimal automation module:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>[Minimal Module]
+
+function SampleModule (id, controller) {
+SampleModule.super_.call.init(this, id, controller);
+
+this.greeting = "Hello,World!";
+}
+
+inherits(SampleModule, AutomationModule);
+_module = SampleModule;
+
+SampleModule.prototype.init = function () {
+    this.sayHello();
+}
+
+SampleModule.prototype.sayHello = function () {
+    debugPrint(this.greeting);
+} 
+
+SampleModule.prototype.stop = function () {
+    this.sayByeBye();
+}
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The first part of the code illustrates how to define a class function named SampleModule 
+that calls the superclass' constructor. Its highly recommended not to do further 
+instantiations in the constructur. Initializations should be implemented within the 
+'init' function.
+</DIV>
+<P>
+<DIV class="CENTER">The second part of the code is almost immutable for any module. It calls prototypal 
+inheritance support routine and it fills in _module variable.
+</DIV>
+<P>
+<DIV class="CENTER">The third part of the sample code defines module's init() method which is an 
+instance initializer. This initializer must call the superclass's initializer prior to 
+all other tasks. In the initializer module can setup it's private environment, subscribe 
+to the events and do any other stuff.
+Sometimes, whole module code can be placed withing the initializer without creation of 
+any other class's methods. As the reference of such approach you can examine AutoOff 
+module source code.
+</DIV>
+<P>
+<DIV class="CENTER">After the init function a module may contain other functions. The 'sayHello' function 
+of the Sample Module shows this as example.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H2><A ID="SECTION001353000000000000000">
+Available Core Modules</A>
+</H2>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">All modules in Z-Way are designed the same way using the same file structure but they 
+serve different purposes and they are of different importance:
+</DIV>
+<UL>
+<LI>Core Module are modules that provide essential parts of the Z-Way system. They run
+from the beginning and should not be terminated without good reason. Normal users will
+not even see them in the list of active apps. Users with management privilege can set a 
+checkbox in their <SPAN  CLASS="textbf">My Settings</SPAN> to unhide them.
+</LI>
+<LI>Standard Modules can be started and stopped by the user. they are already in the 
+subfolder 'modules' and can not be deleted.
+</LI>
+<LI>Modules from the Online Service must be downloaded first before they can be used. 
+They can be started, stopped and even removed. They are stored in the folder 'userModules'.
+</LI>
+</UL>
+<DIV class="CENTER">
+The two core modules are worth to be explained in detail:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001353100000000000000">
+Cron, the timer module</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">All time driven actions need a timer. The Z-Way automation engine implement a cron-type timer 
+system as a module as well. The basic function of the cron module is
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<UL>
+<LI>It accepts registration of events that are triggered periodically
+</LI>
+<LI>It allows to de-register such events. 
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The registration and deregistration of events is also handled using the event mechanism. 
+The cron module is listening for events with the tags 'cron.addTask' and  'cron.removeTask'. 
+The first argument of these events are the name of the event fired by the cron module. The 
+second argument of the 'addTask' event is an array desricing the times when this event 
+shall be issued. It has the format: 
+</DIV>
+<UL>
+<LI>Minute [start,stop, step] or 0-59 or null
+</LI>
+<LI>Hour [start,stop, step] or 0-23 or null
+</LI>
+<LI>weekDay [start,stop, step] or 0-6 or null
+</LI>
+<LI>dayOfMonth [start,stop, step] or 1-31 or null
+</LI>
+<LI>Month [start,stop, step] or 1-12 or null
+</LI>
+</UL>
+<DIV class="CENTER">
+The argument for the different time parameters has one of three formats
+</DIV>
+<UL>
+<LI>null: the event will be fired on every minute or hour etc.
+</LI>
+<LI>single value: the event will be fired when the value reaches the given value
+</LI>
+<LI>array [start, stop, step]: The event will be fired between start and stop in steps.
+</LI>
+</UL>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The object  
+
+<BLOCKQUOTE>
+<SPAN style="font-family:monospace"><!-- MATH
+ $\{minute: null,hour: null,weekDay: null, day: null, month: null\}$
+ -->
+<SPAN CLASS="MATH">{<I>minute</I> : <I>null</I>, <I>hour</I> : <I>null</I>, <I>weekDay</I> : <I>null</I>, <I>day</I> : <I>null</I>, <I>month</I> : <I>null</I>}</SPAN> </SPAN>
+
+</BLOCKQUOTE> 
+</DIV>
+<P>
+<DIV class="CENTER">will fire every minute within every hour within every weekday on every day of the month 
+every month. Another example of an event emitted towards the cron 
+module for registering an timer event can be found in the Battery Polling Module:
+</DIV>
+<P>
+<DIV class="CENTER"></DIV><PRE>[Registering a Battery Polling Command]
+    this.controller.emit("cron.addTask", "batteryPolling.poll", {
+        minute: 0,
+        hour: 0,
+        weekDay: this.config.launchWeekDay,
+        day: null,
+        month: null        
+    });
+</PRE>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">This call will cause the cron module to emit an event at night (00:00) on a day 
+that is defined in the configuration variable this.config.launchWeekDay, e.g. 0 = Sunday.
+</DIV>
+<P>
+<DIV class="CENTER">The 'cron.removeTask' only needs the name of the registered event to deregister.
+</DIV>
+<P>
+<DIV class="CENTER"></DIV>
+<H3><A ID="SECTION001353200000000000000">
+Z-Wave</A>
+</H3>
+<DIV class="CENTER">
+</DIV>
+<P>
+<DIV class="CENTER">The whole mapping of Z-Wave devices into virtual devices is handled by a module called 
+<SPAN  CLASS="textbf"> 'ZW<SMALL>AVE'</SMALL></SPAN>. This module is quite powerful. It does not only manage the mapping but handles
+various Z-Wave specific functions such as timing recording, etc.
+</DIV>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A ID="foot6314">... 5</A><A
+ HREF="JavaScript_Engine.html#tex2html230"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A></DT>
+<DD>http://www.ecma-international.org/publications/standards/Ecma-262.htm
+
+</DD>
+</DL>
+<BR><HR>
+
+</BODY>
+</HTML>

@@ -109,3 +109,9 @@ sympy-plots-for-*.tex/
 *.xdy
 
 .DS_Store
+
+# latex2html
+ZWayManual/images.pdf
+ZWayManual/images.tex
+ZWayManual/WARNINGS
+ZWayManual/*.pl

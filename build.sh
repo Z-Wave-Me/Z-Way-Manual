@@ -38,3 +38,9 @@ for f in `ls -1 *.html`; do
 	# install JS for TOC
 	sed -i 's|</HEAD>|<script src="ZWayManual.js" defer></script>\n</HEAD>|' $f
 done
+
+rm TOC.html
+
+cd ..
+
+rm TOC.html ZWayManual.css
