@@ -301,14 +301,14 @@ additional root element "updateTime" which contains the time of latest update. T
 (including updateTime) corresponds to server local time.
 
 The object looks like:
-\begin{lstlisting}[caption=JSON Data Structure]{Name}
-{
-"[path from the root]": [updated subtree],
-"[path from the root]": [updated subtree],
-...
-updateTime: [current timestamp]
+\begin{listingverbatim}[JSON Data Structure]
+\{
+  "[path from the root]": [updated subtree],
+  "[path from the root]": [updated subtree],
+  ...
+  updateTime: [current timestamp]
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 Examples for Commands to update the data tree look like:
 
@@ -490,14 +490,14 @@ port if needed. Don't change the setting for automation folder unless you really
 know what you do and why.
 
 This is an example for the standard config.xml displaying all log right into the console.
-\begin{lstlisting}[caption=config.xml]{config.xml}
+\begin{listingverbatim}[config.xml]
 <config>
     <automation-dir>automation</automation-dir>
     <log-file></log-file>
     <log-level>0</log-level>
     <debug-port>0</debug-port>
 </config>
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsubsection{config: Various configuration xml files}
 
@@ -878,10 +878,10 @@ them only if you have deep knowledge of \zwave networking. Check
 \subsubsection{Using \zway Library in C-Code}
 
 To use \zway one need to include few header files:
-\begin{lstlisting}[]{}
-#include <ZWayLib.h>
-#include <ZLogging.h>
-\end{lstlisting}
+\begin{listingverbatim}
+\#include <ZWayLib.h>
+\#include <ZLogging.h>
+\end{listingverbatim}
 
 \zway will need to know where to write the log to, so first of all you need to create 
 logging context using \texttt{zlog\_create()} call. You can disable logging by passing NULL 

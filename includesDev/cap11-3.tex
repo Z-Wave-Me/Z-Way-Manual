@@ -64,11 +64,11 @@ The client-side access to the device data is done like}
 using the interface. Here a nice example how to use the Java Script
 setInterval function:}{Owing to the scripting nature of JavaScript, it’s possible to ``inject’’ code at run time using the interface. Here a nice example how to use the Java Script setInterval function:}
 
-\begin{lstlisting}[caption=Polling device \#2]{Name}
+\begin{listingverbatim}[Polling device \#2]
 /JS/Run/setInterval(function() {
 	zway.devices[2].Basic.Get();
 }, 300*1000);
-\end{lstlisting}
+\end{listingverbatim}
 
 \change{This code will, once 'executed' as URL within a web browser, call the Get() command
 of the command class Basic of Node ID 2 every 300 seconds.
@@ -82,11 +82,11 @@ the variable.}{This code will, once ``executed’’ as a URL within a web brows
 
 A very powerful function of the JS API is the ability to bind functions to certain values of the device tree. they get then executed when the value changes. Here an example for this binding. The device No. 3 has a command class SensorMultilevel that offers the variable level. The following call---both available on the client side and on the server side---will bind a simple alert function to the change of the variable.}
 
-\begin{lstlisting}[caption=Bind a function]{Name}
+\begin{listingverbatim}[Bind a function]
 zway.devices[3].SensorMultilevel.data[1].val.bind( function() {
 	debugPrint('CHANGED TO: ' + this.value + '\n');
 });
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsection{HTTP Access}
 
@@ -105,24 +105,24 @@ Here's the list of options:}
 specified, GET is used;}{If not specified, GET is used;}
 \item headers – optional. Object containing additional headers to pass to server:
 
-\begin{lstlisting}
+\begin{listingverbatim}
 headers: {
     "Content-Type": "text/xml",
     "X-Requested-With": "RaZberry/1.5.0"
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 \item data – used only for POST requests. \change{Data to post to the server. May be either a
 string (to post raw data) or an object with keys and values (will be serialized as}{Data to post to the server. May be either a string (to post raw data) or an object with keys and values (will be serialized as}
 'key1=value1\&key2=value2\&…');
 \item auth – optional. Provides credentials for basic authentication. It is an object
 containing login and password:
-\begin{lstlisting}
+\begin{listingverbatim}
 auth: {
     login: 'username',
     password: 'secret'
 }
-\end{lstlisting}
+\end{listingverbatim}
 \item contentType – optional. \change{Allows to override content type returned by server for
 parsing data}{Allows overriding content type returned by the server for parsing data} (see below);
 \item async – optional. \change{Specifies whether request should be sent asynchronously. Default
@@ -163,7 +163,7 @@ Response data is handled differently depending on content type (if contentType o
 \change{In case data cannot be parsed as valid JSON/XML, it is still returned as string, and additional parseError member is present.}{In case data cannot be parsed as valid JSON/XML, it is still returned as string, and additional parseError member is present.}
 
 
-\begin{lstlisting}
+\begin{listingverbatim}
 http.request({
 	url: "http://server.com" (string, required),
 	method: "GET" (GET/POST/HEAD, optional, default "GET"),
@@ -210,7 +210,7 @@ response:
 	},
 	data: result (object or string, depending on content type)
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsection{XML parser}
 
@@ -225,7 +225,7 @@ Create new XML document from a string
 \subsubsection{x.root}
 Get/set document root element. Elements are got/set in form of JS objects:
 
-\begin{lstlisting}
+\begin{listingverbatim}
 {
     name: "node_name", - mandatory
     text: "value", - optional, for text nodes
@@ -237,10 +237,10 @@ Get/set document root element. Elements are got/set in form of JS objects:
     	{ ... }
     ]
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 For example:
-\begin{lstlisting}
+\begin{listingverbatim}
 (new ZXmlDocument('<weather><city id="1"><name>Zwickau</name><temp>2.6</temp></city><city id="2"><name>Moscow</name><temp>-23.4</temp></city></weather>')).root =
 {
    "children":[
@@ -279,7 +279,7 @@ For example:
    ],
    "name":"weather"
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsubsection{x.isXML}
 \change{This hidden readonly property allows to detect if object is XML object or not (it is always true).}{This hidden read-only property allows detecting if the object is an XML object or not (it is always true).}
@@ -289,17 +289,17 @@ Converts XML object into a string with valid XML content.
 
 \subsubsection{x.findOne(XPathString)}
 Returns first matching to XPathString element or null if not found.
-\begin{lstlisting}
+\begin{listingverbatim}
 x.findOne('/weather/city[@id="2"]') // returns only city tag for Moscow
 x.findOne('/weather/city[name="Moscow"]/temp/text()') // returns temperature in Moscow
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsubsection{x.findAll(XPathString)}
 Returns array of all matching to XPathString elements or empty array if not found.
-\begin{lstlisting}
+\begin{listingverbatim}
 x.findAll('/weather/city') // returns all city tags
 x.findAll('/weather/city/name/text()') // returns all city names
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsubsection{XML elements}
 \change{Each XML element (tag) in addition to properties described above (text, attributes, children) have hidden readonly property parent pointing to parent object and the following methiods:}{Each XML element (tag) in addition to properties described above (text, attributes, children) have hidden read-only property parent pointing to parent object and the following methods:}
@@ -323,9 +323,9 @@ Provides standard GUID in string format.
 \subsubsection{var rnd = crypto.random(n)}
 Generates n random bytes.
 \change{Returned values is of type ArrayBuffer. To convert it into array use this trick:}{Returned value is of type ArrayBuffer. To convert it into array, use this trick:}
-\begin{lstlisting}
+\begin{listingverbatim}
 	rnd = (new Uint8Array(crypto.random(10)));
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsubsection{var dgst = crypto.digest(hash, data, ...)}
 \change{Returns digest calculated using selected hash algorithm. It supports virtually all the algorithms available in OpenSSL (md4, md5, mdc2, sha, sha1, sha224, sha256, sha384, sha512, ripemd160).
@@ -338,10 +338,10 @@ Return value is of type ArrayBuffer.
 
 There are also a few shortcut functions for popular algorithms: ``md5,’’ ``sha1,’’ ``sha256,’’ ``sha512.’’ For example, these calls are equivalent:}
 
-\begin{lstlisting}
+\begin{listingverbatim}
 	dgst = crypto.digest("sha256", data);
 	dgst = crypto.sha256(data);
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsubsection{var hmac = crypto.hmac(cipher, key, data, ...)}
 \change{Returns hmac calculated using selected hash algorithm. Hash algorithms are the same as for digest() function.
@@ -356,10 +356,10 @@ Return value is of type ArrayBuffer.
 
 There are also a few shortcut functions for popular algorithms: ``hmac256,’’ ``hmac512.’’ For example, these calls are equivalent:}
 
-\begin{lstlisting}
+\begin{listingverbatim}
   dgst = crypto.hmac("sha256", key, data);
   dgst = crypto.hmac256(key, data);
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsection{Sockets functions}
 
@@ -380,7 +380,7 @@ To start communication, one needs to create socket and either
 
 The example below dumps to log file response to http://ya.ru:80/ (raw HTTP protocol is used as an example).}
 
-\begin{lstlisting}
+\begin{listingverbatim}
 var sock = new sockets.tcp();
 
 sock.onrecv = function(data) {
@@ -390,11 +390,11 @@ sock.onrecv = function(data) {
 sock.connect("ya.ru", 80);
 
 sock.send("GET / HTTP/1.0\r\n\r\n");
-\end{lstlisting}
+\end{listingverbatim}
 
 Here is an example of TCP echo server on port 8888:
 
-\begin{lstlisting}
+\begin{listingverbatim}
 var sock = new sockets.tcp();
 
 sock.bind(8888);
@@ -404,10 +404,10 @@ sock.onrecv = function(data) {
 };
 
 sock.listen();
-\end{lstlisting}
+\end{listingverbatim}
 
 And echo server for UDP:
-\begin{lstlisting}
+\begin{listingverbatim}
 var sock = new sockets.udp();
 
 sock.bind(8888);
@@ -417,7 +417,7 @@ sock.onrecv = function(data, host, port) {
 };
 
 sock.listen();
-\end{lstlisting}
+\end{listingverbatim}
 
 Detailed description of Socket API:
 \begin{itemize}
@@ -458,7 +458,7 @@ The example below implemnts basic application using WebSockets client:}{Socket m
 
 The example below implements basic application using the WebSocket client:}
 
-\begin{lstlisting}
+\begin{listingverbatim}
 var sock = new sockets.websocket("ws://echo.websocket.org");
 
 sock.onopen = function () {
@@ -477,11 +477,11 @@ sock.onclose = function() {
 sock.onerror = function(ev) {
     debugPrint('error', ev.data);
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 \change{Next}{The next} example shows basic application using WebSockets server:
 
-\begin{lstlisting}
+\begin{listingverbatim}
 var sock = new sockets.websocket(9009);
 
 sock.onconnect = function () {
@@ -504,7 +504,7 @@ sock.onclose = function() {
 sock.onerror = function(ev) {
     debugPrint('error', ev.data);
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 Detailed description of WebSocket API:
 \begin{itemize}
@@ -611,7 +611,7 @@ listExternalAccess returns array with names of all registered HTTP handlers.
 
 Here is an example how to attach handlers for /what/timeisit and /what:}
 
-\begin{lstlisting}
+\begin{listingverbatim}
 what = function() {
   return { status: 500, body: 'What do you want to know' };
 };
@@ -622,7 +622,7 @@ what.timeisit = function() {
 
 allowExternalAccess("what");
 allowExternalAccess("what.timeisit");
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsubsection{debugPrint(object, object, ...)}
 
@@ -632,7 +632,7 @@ For convenience one can map 'console.log()' to debugPrint().
 This is how it was done in automation/main.js in Z-Way Home Automation engine:}{Prints arguments converted to string to Z-Way console. Very useful for debugging. For convenience, one can map ``console.log()’’ to debugPrint().
 
 This is how it was done in automation/main.js in the Z-Way Home Automation engine:}
-\begin{lstlisting}
+\begin{listingverbatim}
 var console = {
     log: debugPrint,
     warn: debugPrint,
@@ -645,18 +645,18 @@ var console = {
         debugPrint(arr);
     }
 };
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsection{Debugging JavaScript code}
 Change in config.xml debug-port to 8183 (or some other) turn on V8 debugger capability on Z-Way start.
 
-\begin{lstlisting}
+\begin{listingverbatim}
 <config>
     ...
     <debug-port>8183</debug-port>
     ....
 </config>
-\end{lstlisting}
+\end{listingverbatim}
 
 \change{node-inspector debugger tool is required. It provides web-based UI for debugging similar to Google Chrome debug console.
 
@@ -667,16 +667,16 @@ Use the following command to forward debugger port defined in config.xml to your
 You might want to run debugger tool on another machine (for example if it is not possible to install it on the same box as Z-Way is running on).
 
 Use the following command to forward debugger port defined in config.xml to your local machine:}
-\begin{lstlisting}
+\begin{listingverbatim}
 ssh -N USER@IP_OF_Z-WAY_MACHINE -L 8183:127.0.0.1:8183
-\end{lstlisting}
+\end{listingverbatim}
 (for RaZberry USER is pi)
 
 Install node-inspector debugger tool and run it:
-\begin{lstlisting}
+\begin{listingverbatim}
 npm install -g node-inspector
 node-inspector --debug-port 8183
-\end{lstlisting}
+\end{listingverbatim}
 
 Then you can connect to http://IP\_OF\_MACHINE\_WITH\_NODE\_INSPECTOR:8080/debug?port=8183
 

@@ -156,11 +156,11 @@ the object ``zway’‘. As a result, the following three statements refer to th
 Due to the scripting nature of JavaScript it is possible to ``inject’‘ code at run time 
 using the interface. Here a nice example how to use the JavaScript setInterval function:
 
-\begin{lstlisting}[caption=Polling of device \#2, basicstyle=\small]{Name}
+\begin{listingverbatim}[Polling of device \#2]
 /JS/Run/setInterval(function() {
-	zway.devices[2].Basic.Get();
+    zway.devices[2].Basic.Get();
 }, 300*1000);
-\end{lstlisting}
+\end{listingverbatim}
 
 This code will, once ``executed’‘ as URL within a web browser, call the Get() command
 of the command class Basic of Node ID 2 every 300 seconds.
@@ -171,12 +171,12 @@ for this binding. The device No. 3 has a command class SensorMultilevel that off
 the variable ``level.’’ The following call---both available on the client side and 
 on the server side---will bind a simple alert function to the change of the variable.
 
-\begin{lstlisting}[caption=Bind a function, basicstyle=\small]{Name}
+\begin{listingverbatim}[Bind a function]
 zway.devices[3].SensorMultilevel.data[1].val.bind( 
 	function() {
 	debugPrint('CHANGED TO:' + this.value + '\n');
 });
-\end{lstlisting}
+\end{listingverbatim}
 
 \footnote{Please note that the Sensor Multilevel Command class data is an array index 
 by the scale ID. Other command classes such as Basic do not have this index but allow 
@@ -221,10 +221,10 @@ API. The vDev also unifies the commands ``command’’ and the parameters, here
 
 On the server side, the very same command would be encoded in a JavaScript style.
 
-\begin{lstlisting}[caption=Bind a function, basicstyle=\small]{Name}
+\begin{listingverbatim}[Bind a function]
 dev = this.controller.devices.get('ZWayVDev\_6:0:37');
 dev.command('off');
-\end{lstlisting}
+\end{listingverbatim}
 
 The vDev API also offers support for notifications, locations information, the use of other modules, etc.
 

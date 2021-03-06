@@ -31,7 +31,7 @@ In return the session will be sent in three forms:
 \end{itemize}
 
 Example of successful login will look like:
-\begin{lstlisting}[caption=Successful login reply,basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}[Successful login reply]
 {
     "data": {
         "sid": "ba69cb5b-b2fd-5ce0-5b75-9bae3e8bc369",
@@ -53,16 +53,16 @@ Example of successful login will look like:
     "message": "200 OK",
     "error": null
 }
-\end{lstlisting}
+\end{listingverbatim}
 
-\begin{lstlisting}[caption=Wrong login/password reply,basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}[Wrong login/password reply]
 {
     "data": null,
     "code": 401,
     "message": "401 Unauthorized",
     "error": "User login/password is wrong."
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 Once obtained, the session can be sent to the \zway server via the following ways:
 \begin{itemize}
@@ -96,14 +96,14 @@ With wget using Basic Authentication:
 }
 
 From the browser using jQuery and Basic Authentication:
-\begin{lstlisting}[caption=Login with jQuery,basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}[Login with jQuery]
 jQuery('img').click(function() {
     jQuery.ajax({
         url: "http://192.168.0.62:8083/ZAutomation/api/v1/...",
         beforeSend: function (xhr) { xhr.setRequestHeader ("Authorization", "Basic " + btoa("admin" + ":" + "password")); }
     });
 });
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsection{Remote authentication}
 \label{cap:authentication_remote}
@@ -292,21 +292,21 @@ The request can use JSON format or form data or url encoded form. The response i
 The resulting access\_token is to be used in the Authentication Bearer HTTP header.
 This token never expires unless deleted by the user.
 
-\begin{lstlisting}[caption=Request of Access token via Authorization code (JSON format),basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}[Request of Access token via Authorization code (JSON format)]
 Content-type: application/json
 {
     "client_id": "...",
     "client_secret": "...",
     "code": "..."
 }
-\end{lstlisting}
+\end{listingverbatim}
 
-\begin{lstlisting}[caption=Request of Access token via Authorization code (URL encoded form),basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}[Request of Access token via Authorization code (URL encoded form)]
 Content-Type: application/x-www-form-urlencoded
 client_id=...&client_secret=...&code=... (URL encoded!)
-\end{lstlisting}
+\end{listingverbatim}
 
-\begin{lstlisting}[caption=Request of Access token via Authorization code (form data),basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}[Request of Access token via Authorization code (form data)]
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundarytufRVLxOz9VdsQbA
 
 ------WebKitFormBoundarytufRVLxOz9VdsQbA
@@ -322,26 +322,26 @@ Content-Disposition: form-data; name="code"
 
 ...
 ------WebKitFormBoundarytufRVLxOz9VdsQbA--
-\end{lstlisting}
+\end{listingverbatim}
 
-\begin{lstlisting}[caption=Access token successfuly retrieved,basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}[Access token successfuly retrieved]
 {
     "access_token": ".../...",
     "token_type": "bearer"
 }
-\end{lstlisting}
+\end{listingverbatim}
 
-\begin{lstlisting}[caption=Authorization code is invalid (400 Bad request),basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}[Authorization code is invalid (400 Bad request)]
 {
     "error": "invalid_grant"
 }
-\end{lstlisting}
+\end{listingverbatim}
 
-\begin{lstlisting}[caption=Wrong credentials (400 Bad request),basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}[Wrong credentials (400 Bad request)]
 {
     "error": "invalid_client"
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 
 \section{How to write own Apps for \zway}
@@ -427,15 +427,15 @@ The description placeholder for the language files \\
 The \textbf{schema} is a JSON Structure to define the user interface of the module.
 It lists all input parameters and  options to be shown in the setup dialog of the app:
 
-\begin{lstlisting}[caption=Schema Structure,basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}[Schema Structure]
 {
-"schema": {
-"type": "object",
-"properties": {
+  "schema": {
+    "type": "object",
+    "properties": {
+    }
+  }
 }
-}
-}
-\end{lstlisting}
+\end{listingverbatim}
 
 
 The structure of the schema is the following. Inside the 'properties' space the single 'properties' 
@@ -446,44 +446,42 @@ types of input parameters:
 
 \subsubsection{Primitive data types like integer, float or string}
 
-\begin{lstlisting}[caption=Schema Structure Simple Type,basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}[Schema Structure Simple Type]
 {
-//Parametername
-"name": {
-
-"type": "array",
-"items": {
-"title": "Device",
-"type": "radio",
-//array of choosable items
-"enum": ["Adult", "Child"],
-"default": "Child",
-"required": true
+  //Parametername
+  "name": {
+    "type": "array",
+    "items": {
+      "title": "Device",
+      "type": "radio",
+      //array of choosable items
+      "enum": ["Adult", "Child"],
+      "default": "Child",
+      "required": true
+    }
+  },
+  //Parametername
+  "name": {
+    "type": "integer",
+    "required": true
+  },
 }
-},
-//Parametername
-"name": {
-"type": "integer",
-"required": true
-},
-}
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsubsection{Name Spaces  - Enumerations with a choice}
 
-\begin{lstlisting}[caption=Schema Structure Enumerations with a choice,basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}[Schema Structure Enumerations with a choice]
 {
-
-//Parametername
-"name": {
-"field": "enum",
-"datasource": "namespaces",
-//special namespacedestination
-"enum": "namespaces:devices\_all:deviceId",
-"required": true
-},
+  //Parametername
+  "name": {
+    "field": "enum",
+    "datasource": "namespaces",
+    //special namespacedestination
+    "enum": "namespaces:devices\_all:deviceId",
+    "required": true
+  },
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 
 
@@ -566,13 +564,12 @@ How to include a new EnOcean Device (example Hoppe Door handle)
 you just need to know the profile the given product supports. There is no way 
 to find out automatically! 
 
-\begin{lstlisting}[caption=EnOcean Profile Entry,basicstyle=\small,columns=fullflexible]{Name}
-<Profile rorg="0xf6" func="0x10" type="0x00" rorgDescription="RPS Telegram" 
-funcDescription="Mechanical Handle" typeDescription="Window Handle">
-<Field offset="0" size="4" name="windowHandle" type="int" 
-description="Movement of the window handle" short="WIN" />
+\begin{listingverbatim}[EnOcean Profile Entry]
+<Profile rorg="0xf6" func="0x10" type="0x00" rorgDescription="RPS Telegram"
+    funcDescription="Mechanical Handle" typeDescription="Window Handle">
+  <Field offset="0" size="4" name="windowHandle" type="int" description="Movement of the window handle" short="WIN" />
 </Profile>
-\end{lstlisting}
+\end{listingverbatim}
 
 (2) Add the device record of the device to 
 
@@ -586,17 +583,17 @@ in \cmdline{/opt/z-wave-server/automation/modules/Enocean/index.js}
 
 First add a filter to catch the events and call the correct function:
 
-\begin{lstlisting}[caption=Catch Device IDs,basicstyle=\small,columns=fullflexible]{Name}
+\begin{listingverbatim}[Catch Device IDs]
 if (matchDevice(0xf6, 0x10, 0x01)) {
-// Hoppe Window handle
-windowHandle("contact", "window", "Windor Handle"); 
+  // Hoppe Window handle
+  windowHandle("contact", "window", "Windor Handle");
 }
-\end{lstlisting}
+\end{listingverbatim}
 now you add the function that handles the value changes and renders the element 
 accordingly. For the window handle we use the binary sensor element but overwrite 
 the status information according to the information of the window handle moves.  
 
-\begin{lstlisting}[caption=Handle Device,basicstyle=\small,columns=fullflexible]{Name} 
+\begin{listingverbatim}[Handle Device]
 function windowHandle(dh, type, title) {
 	var vDev = self.controller.devices.create({
 	deviceId: vDevIdPrefix + type,
@@ -629,4 +626,4 @@ if (vDev) {
 	}, "value");
 }
 }
-\end{lstlisting}
+\end{listingverbatim}

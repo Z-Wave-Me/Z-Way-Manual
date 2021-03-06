@@ -71,11 +71,11 @@ Due to the scripting nature of JavaScript its possible to 'inject' code at run t
 using the interface. Here a nice example how to use the Java Script 
 setInterval function:
 
-\begin{lstlisting}[caption=Polling device \#2, basicstyle=\small,columns=fullflexible]{Name}
+\begin{listingverbatim}[Polling device \#2]
 /JS/Run/setInterval(function() { 
 	zway.devices[2].Basic.Get();
 }, 300*1000);
-\end{lstlisting}
+\end{listingverbatim}
 
 This code will, once 'executed' as URL within a web browser, call the Get() command
 of the command class Basic of Node ID 2 every 300 seconds.  
@@ -87,11 +87,11 @@ the variable level. The following call - both available on the client side
 and on the server side - will bind a simple alert function to the change of 
 the variable.
 
-\begin{lstlisting}[caption=Bind a function, basicstyle=\small,columns=fullflexible]{Name}
+\begin{listingverbatim}[Bind a function]
 zway.devices[3].SensorMultilevel.data[1].val.bind(function() { 
 	debugPrint('CHANGED TO: ' + this.value + '\n'); 
 });  
-\end{lstlisting}
+\end{listingverbatim}
 
 
 
@@ -113,12 +113,12 @@ Here's the list of options:
 specified, GET is used;
 \item headers – optional. Object containing additional headers to pass to server:
 
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 headers: {
     "Content-Type": "text/xml",
     "X-Requested-With": "RaZberry/1.5.0"
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 \item data – used only for POST requests. Data to post to the server. May be either a
 string (to post raw data) or an object with keys and values (will be serialized as 
@@ -126,12 +126,12 @@ string (to post raw data) or an object with keys and values (will be serialized 
 \item auth – optional. Provides credentials for basic authentication. It is an object 
 containing login and password:
 
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 auth: {
     login: 'username',
     password: 'secret'
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 \item contentType – optional. Allows to override content type returned by server for 
 parsing data (see below);
@@ -171,7 +171,7 @@ In case data cannot be parsed as valid JSON/XML, it is still returned as string,
 additional parseError member is present.
 
 
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 http.request({
 	url: "http://server.com" (string, required),
 	method: "GET" (GET/POST/HEAD, optional, default "GET"),
@@ -218,7 +218,7 @@ response:
 	},
 	data: result (object or string, depending on content type)
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsection{XML parser}
 
@@ -233,8 +233,8 @@ Create new XML document from a string
 \subsubsection{x.root}
 Get/set document root element. Elements are got/set in form of JS objects:
 
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
-{
+\begin{listingverbatim}
+\{
     name: "node_name", - mandatory
     text: "value", - optional, for text nodes
     attributes: { - optional
@@ -245,10 +245,10 @@ Get/set document root element. Elements are got/set in form of JS objects:
     	{ ... }
     ]
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 For example:
-\begin{lstlisting} [basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 (new ZXmlDocument('<weather><city id="1"><name>Zwickau</name>
 	<temp>2.6</temp></city> 
 	<city id="2"><name>Moscow</name><temp>-23.4</temp></city>
@@ -290,7 +290,7 @@ For example:
    ],
    "name":"weather"
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsubsection{x.isXML}
 This hidden readonly property allows to detect if object is XML object or not (it is always true).
@@ -301,18 +301,18 @@ Converts XML object into a string with valid XML content.
 \subsubsection{x.findOne(XPathString)}
 Returns first matching to XPathString element or null if not found.
 
-\begin{lstlisting} [basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 x.findOne('/weather/city[@id="2"]') // returns only city tag for Moscow
 x.findOne('/weather/city[name="Moscow"]/temp/text()') // returns temperature 
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsubsection{x.findAll(XPathString)}
 Returns array of all matching to XPathString elements or empty array if not found.
 
-\begin{lstlisting} [basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 x.findAll('/weather/city') // returns all city tags
 x.findAll('/weather/city/name/text()') // returns all city names
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsubsection{x.document}
 A hidden property that refers to the document root.
@@ -342,9 +342,9 @@ Provides standard GUID in string format.
 Generates n random bytes.
 Returned values is of type ArrayBuffer. To convert it into array use this trick:
 
-\begin{lstlisting} [basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 	rnd = (new Uint8Array(crypto.random(10)));
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsubsection{var dgst = crypto.digest(hash, data, ...)}
 Returns digest calculated using selected hash algorithm. It supports virtually all the 
@@ -357,10 +357,10 @@ Return value is of type ArrayBuffer.
 There are also a few shortcut functions for popular algorithms: 'md5', 'sha1', 'sha256', 
 'sha512'. For example, these calls are equivalent:
 
-\begin{lstlisting} [basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 	dgst = crypto.digest('sha256', data);
 	dgst = crypto.sha256(data);
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsubsection{var hmac = crypto.hmac(cipher, key, data, ...)}
 Returns hmac calculated using selected hash algorithm. Hash algorithms are the same as 
@@ -376,10 +376,10 @@ Return value is of type ArrayBuffer.
 There are also a few shortcut functions for popular algorithms: 'hmac256', 'hmac512'. For 
 example, these calls are equivalent:
 
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
   dgst = crypto.hmac('sha256', key, data);
   dgst = crypto.hmac256(key, data);
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsection{Sockets functions}
 
@@ -396,7 +396,7 @@ on data receive from remote, while \textbf{send} is used to send data to remote 
 The example below dumps to log file response to http://ya.ru:80/ (raw HTTP
 protocol is used as an example).
 
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 var sock = new sockets.tcp();
 
 sock.onrecv = function(data) {
@@ -406,11 +406,11 @@ sock.onrecv = function(data) {
 sock.connect('ya.ru', 80);
 
 sock.send("GET / HTTP/1.0\r\n\r\n");
-\end{lstlisting}
+\end{listingverbatim}
 
 Here is an example of TCP echo server on port 8888:
 
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 var sock = new sockets.tcp();
 
 sock.bind(8888);
@@ -420,10 +420,10 @@ sock.onrecv = function(data) {
 };
 
 sock.listen();
-\end{lstlisting}
+\end{listingverbatim}
 
 And echo server for UDP:
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 var sock = new sockets.udp();
 
 sock.bind(8888);
@@ -433,7 +433,7 @@ sock.onrecv = function(data, host, port) {
 };
 
 sock.listen();
-\end{lstlisting}
+\end{listingverbatim}
 
 Detailed description of Socket API:
 \begin{itemize}
@@ -471,7 +471,7 @@ implemented - see below).
 
 The example below implements basic application using WebSockets client:
 
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 var sock = new sockets.websocket("ws://echo.websocket.org");
 
 sock.onopen = function () {
@@ -490,11 +490,11 @@ sock.onclose = function() {
 sock.onerror = function(ev) {
     debugPrint('error', ev.data);
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 Next example shows basic application using WebSockets server:
 
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 var sock = new sockets.websocket(9009);
 
 sock.onconnect = function () {
@@ -517,7 +517,7 @@ sock.onclose = function() {
 sock.onerror = function(ev) {
     debugPrint('error', ev.data);
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 Detailed description of WebSocket API:
 \begin{itemize}
@@ -618,7 +618,7 @@ listExternalAccess returns array with names of all registered HTTP handlers.
 
 Here is an example how to attach handlers for /what/timeisit and /what:
 
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 what = function() {
   return { status: 500, body: 'What do you want to know' };
 };
@@ -629,7 +629,7 @@ what.timeisit = function() {
 
 allowExternalAccess("what");
 allowExternalAccess("what.timeisit");
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsubsection{debugPrint(object, object, ...)}
 
@@ -637,7 +637,7 @@ Prints arguments converted to string to \zway console. Very usefull for debuggin
 For convenience one can map 'console.log()' to debugPrint().
 
 This is how it was done in automation/main.js in \zway Home Automation engine:
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 var console = {
     log: debugPrint,
     warn: debugPrint,
@@ -650,18 +650,18 @@ var console = {
         debugPrint(arr);
     }
 };
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsection{Debugging JavaScript code}
 Change in config.xml debug-port to 8183 (or some other) turn on V8 debugger capability on \zway start.
 
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 <config>
     ...
     <debug-port>8183</debug-port>
     ....
 </config>
-\end{lstlisting}
+\end{listingverbatim}
 
 node-inspector debugger tool is required. It provides web-based UI for debugging similar 
 to Google Chrome debug console.
@@ -788,7 +788,7 @@ Device API. The vDev also unifies the commands 'command' and the parameters, her
 
 On the server side the very same command would be encoded in a JavaScript style.
 
-\begin{lstlisting}[caption=Access vDevs,basicstyle=\small,columns=fullflexible]{}
+\begin{listingverbatim}[Access vDevs]
 
 vdevId = vdev.id;
 
@@ -799,7 +799,7 @@ vDevList = this.controller.devices.filter(function(x) {
 
 vDevTypes = this.controller.devices.map(function(x) { 
 	return x.get("deviceType"); }); 
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsection{Virtual Device Usage / Commands}
 
@@ -826,10 +826,10 @@ Virtual devices have inner values. They are called metrics. A metric can be set 
 Each virtual device can define its own metrics. Metrics can be level, title icon and 
 other device specific values like scale (\%, kWh, ...)
 
-\begin{lstlisting}[basicstyle=\small]
+\begin{listingverbatim}
 vDev.set("metrics:...", ...);  
 vDev.get("metrics:...");
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsection{How to create your own virtual devices}
 
@@ -842,7 +842,7 @@ superclass' methods.
 
 \subsubsection{Step 1. Define a VirtualDevice subclass}
 
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 // Important: constructor SHOULD always be successful
 BatteryPollingDevice = function (id, controller) {
     // Always call superconstructor first
@@ -857,7 +857,7 @@ BatteryPollingDevice = function (id, controller) {
     this.setMetricValue("someMetric", "someValue");
 }
 inherits(BatteryPollingDevice, VirtualDevice);
-\end{lstlisting}
+\end{listingverbatim}
 
 VDev class should always fill in the deviceType property and often fill in the 
 deviceSubType property.
@@ -867,7 +867,7 @@ widget's class name in the widgetClass property.
 
 \subsubsection{Step 2. Override performCommand() method}
 
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 BatteryPollingDevice.prototype.performCommand = function (command) {
     var handled = true;
 
@@ -882,7 +882,7 @@ BatteryPollingDevice.prototype.performCommand = function (command) {
     return handled ? true : 
     BatteryPollingDevice.super_.prototype.performCommand.call(this, command);
 }
-\end{lstlisting}
+\end{listingverbatim}
 
 
 VDev itself mostly needed to handle commands, triggered by the events, system or the API.
@@ -897,11 +897,11 @@ ZWaveGate module as an example of such tree.
 
 \subsubsection{Step 3. Instantiate your VDev by the module}
 
-\begin{lstlisting}[basicstyle=\small,columns=fullflexible]
+\begin{listingverbatim}
 // ...part of the BatteryPolling.init() method
 executeFile(this.moduleBasePath()+"/BatteryPollingDevice.js");
 this.vdev = new BatteryPollingDevice("BatteryPolling", this.controller);
-\end{lstlisting}
+\end{listingverbatim}
 
 First line of code is loads and executes apropriate .js-file which provides 
 BatteryPollingDevice class.
@@ -912,7 +912,7 @@ The last line calls controller's registerDevice method to register and VDev inst
 
 \subsubsection{Step 4. Register device}
 
-\begin{lstlisting}[caption=Register Device,basicstyle=\small,columns=fullflexible]{Name} 
+\begin{listingverbatim}[Register Device]
         vDev = this.controller.devices.create(vDevId, {
             deviceType: "deviceType",
             metrics: {
@@ -923,7 +923,7 @@ The last line calls controller's registerDevice method to register and VDev inst
         }, function (command, ...) {
                 // handles actions with the widget
         });  
-\end{lstlisting}
+\end{listingverbatim}
 
 \subsubsection{Step 5: Unregister device}
 
@@ -1108,7 +1108,7 @@ During initialization the module script must define the variable '\_module' cont
 
 Example of a minimal automation module:
 
-\begin{lstlisting}[caption=Minimal Module,basicstyle=\small,columns=fullflexible]{MMIN}
+\begin{listingverbatim}[Minimal Module]
 
 function SampleModule (id, controller) {
 SampleModule.super_.call.init(this, id, controller);
@@ -1131,7 +1131,7 @@ SampleModule.prototype.stop = function () {
     this.sayByeBye();
 }    
 
-\end{lstlisting} 
+\end{listingverbatim}
  
 The first part of the code illustrates how to define a class function named SampleModule 
 that calls the superclass' constructor. Its highly recommended not to do further 
@@ -1207,7 +1207,7 @@ will fire every minute within every hour within every weekday on every day of th
 every month. Another example of an event emitted towards the cron 
 module for registering an timer event can be found in the Battery Polling Module:
 
-\begin{lstlisting}[caption=Registering a Battery Polling Command,basicstyle=\small,columns=fullflexible]{SJSON3}
+\begin{listingverbatim}[Registering a Battery Polling Command]
     this.controller.emit("cron.addTask", "batteryPolling.poll", {
         minute: 0,
         hour: 0,
@@ -1215,7 +1215,7 @@ module for registering an timer event can be found in the Battery Polling Module
         day: null,
         month: null        
     });
-\end{lstlisting}
+\end{listingverbatim}
 
 This call will cause the cron module to emit an event at night (00:00) on a day 
 that is defined in the configuration variable this.config.launchWeekDay, e.g. 0 = Sunday.

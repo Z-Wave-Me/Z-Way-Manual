@@ -27,7 +27,6 @@
 %blocks
 
 \usepackage{longtable} % for longer tables
-\usepackage{listings} % for comments
 \usepackage{forest} % for folders
 
 
@@ -63,10 +62,10 @@
   \setlength{\myboxwidth}{\dimexpr\textwidth-2\fboxsep}
   \newcommand*\cmdline[1]{\sffamily\colorbox{black!25}{\parbox{\myboxwidth}{\textcolor{white}{\bfseries#1}}}}
 %\end{latexonly}
-%\begin{htmlonly}
-%  \newcommand*\keystroke[1]{\textbf{#1}}
-%  \newcommand*\cmdline[1]{{\sffamily\bfseries#1}}
-%\end{htmlonly}
+\begin{htmlonly}
+  \newcommand*\keystroke[1]{\textbf{#1}}
+  \newcommand*\cmdline[1]{{\sffamily\bfseries#1}}
+\end{htmlonly}
 
 \newcommand*\murl[1]{\noindent\begin{quote}\url{#1}\end{quote}\xspace}
 \newcommand*\app[1]{\textbf{\textsc{ '#1'}}}
@@ -76,6 +75,16 @@
 \newcommand{\zwaydeviceid}{\textbf{Z-Way Platform ID }}
 \newcommand{\zweui}{\textbf{\textsc{Z-Wave Expert User Interface }}}
 \newcommand{\zwshui}{\textsc{Z-Way Smart Home Interface }}
+
+\newcounter{listingverbatim}[section]
+\newenvironment{listingverbatim}[1][]{
+	\refstepcounter{listingverbatim}\par\medskip
+	\noindent \textbf{Listing~\thelistingverbatim. #1}
+	\verbatim
+}{
+	\endverbatim
+	\medskip
+}
 
 \begin{document}
 %=========================================
