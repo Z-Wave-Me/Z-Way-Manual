@@ -1,5 +1,7 @@
 #!/bin/bash
 
+find -name *.aux -exec rm {} \;
+
 # PDF version
 pdflatex ZWayManual.tex
 
