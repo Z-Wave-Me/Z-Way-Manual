@@ -48,3 +48,7 @@ rm TOC.html
 cd ..
 
 rm -f TOC.html ZWayManual.css
+
+# Copy to the server
+
+scp ZWayManual.pdf ZWayManual/* zwm1.z-wave.me:/var/www/z-wave.me/manual/z-way/
