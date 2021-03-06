@@ -913,2544 +913,1964 @@
 <BR>
 Function Class Reference
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001700010000000000000">
 Function Class GetSerialAPICapabilities</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: GetSerialAPICapabilities(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_get_serial_api_capabilities(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Request Serial API capabilities
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: capabilities, manufacturerId, manufacturerProductId, manufacturerProductType, APIVersion, vendor
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001700020000000000000">
 Function Class SerialAPISetTimeouts</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SerialAPISetTimeouts(ackTimeout, byteTimeout, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_serial_api_set_timeouts(ZWay zway, ZWBYTE ackTimeout, ZWBYTE byteTimeout, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Set Serial API timeouts
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter ackTimeout: Time for the stick to wait for ACK (in 10ms units)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter byteTimeout: Time for the stick to assemble a full packet (in 10ms units)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: curSerialAPIAckTimeout10ms, curSerialAPIByteTimeout10ms, oldSerialAPIAckTimeout10ms, oldSerialAPIByteTimeout10ms
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001700030000000000000">
 Function Class SerialAPIGetInitData</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SerialAPIGetInitData(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_serial_api_get_init_data(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Request initial information about devices in network
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: ZWVersion, ZWaveChip, list of Z-Wave devices is generated
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001700040000000000000">
 Function Class SerialAPIApplicationNodeInfo</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SerialAPIApplicationNodeInfo(listening, optional, flirs1000, flirs250, genericClass, specificClass, nif, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_serial_api_application_node_info(ZWay zway, ZWBOOL listening, ZWBOOL optional, ZWBOOL flirs1000, ZWBOOL flirs250, ZWBYTE generic_class, ZWBYTE specific_class, const ZWBYTE * nif, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Set controller node information
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter listening: Listening flag
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter optional: Optional flag (set if device supports more CCs than described as mandatory for it's Device Type)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter flirs1000: FLiRS 1000 flag (hardware have to be based on FLiRS library to support it)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter flirs250: FLiRS 250 flag (hardware have to be based on FLiRS library to support it)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter genericClass: Generic Device Type
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter specificClass: Specific Device Type
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nif: New NIF
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001700050000000000000">
 Function Class WatchDogStart</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: WatchDogStart(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_watchdog_start(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Start WatchDog
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001700060000000000000">
 Function Class WatchDogStop</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: WatchDogStop(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_watchdog_stop(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Stop WatchDog
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001700070000000000000">
 Function Class GetHomeId</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: GetHomeId(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_get_home_id(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Request Home Id and controller Node Id
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: homeId, nodeId
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001700080000000000000">
 Function Class GetControllerCapabilities</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: GetControllerCapabilities(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_get_controller_capabilities(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Request controller capabilities (primary role, SUC/SIS availability)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: isInOthersNetwork, isPrimary, isRealPrimary, isSUC, isSUC, SISPresent
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001700090000000000000">
 Function Class GetVersion</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: GetVersion(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_get_version(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Request controller hardware version
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: ZWLib, ZWProtocolMajor, ZWProtocolMinor, libType, SDK, devices[ctrlId].data.ZWLib, devices[ctrlId].data.ZWProtocolMajor, devices[ctrlId].data.ZWProtocolMinor, devices[ctrlId].data.SDK
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000100000000000000">
 Function Class GetSUCNodeId</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: GetSUCNodeId(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_get_suc_node_id(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Request SUC Node Id
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: SUCNodeId
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000110000000000000">
 Function Class EnableSUC</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: EnableSUC(enable, sis, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_enable_suc(ZWay zway, ZWBOOL enable, ZWBOOL sis, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Enable or disable SUC/SIS functionality of the controller
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter enable: True to enable functionality, False to disable
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter sis: True to enable SIS functionality, False to enable SUC only
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000120000000000000">
 Function Class SetSUCNodeId</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SetSUCNodeId(nodeId, enable, sis, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_set_suc_node_id(ZWay zway, ZWBYTE node_id, ZWBOOL enable, ZWBOOL sis, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Assign new SUC/SIS or disable existing
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id to be assigned/disabled as SUC/SIS
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter enable: True to enable, False to disable
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter sis: True to assign SIS role, False to enable SUC role only
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000130000000000000">
 Function Class MemoryGetByte</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: MemoryGetByte(offset, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_memory_get_byte(ZWay zway, unsigned short offset, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Read single byte from EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter offset: Offset in application memory in EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: memoryGetData, memoryGetAddress
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000140000000000000">
 Function Class MemoryGetBuffer</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: MemoryGetBuffer(offset, length, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_memory_get_buffer(ZWay zway, unsigned short offset, ZWBYTE length, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Read multiple bytes from EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter offset: Offset in application memory in EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter length: Number of byte to be read
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: memoryGetData, memoryGetAddress
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000150000000000000">
 Function Class MemoryPutByte</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: MemoryPutByte(offset, data, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_memory_put_byte(ZWay zway, unsigned short offset, ZWBYTE data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Write single byte to EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter offset: Offset in application memory in EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter data: Byte to be written
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000160000000000000">
 Function Class MemoryPutBuffer</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: MemoryPutBuffer(offset, data, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_memory_put_buffer(ZWay zway, unsigned short offset, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Write multiple bytes to EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter offset: Offset in application memory in EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter data: Bytes to be written
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000170000000000000">
 Function Class NVMGetId</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: NVMGetId(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_nvm_get_id(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Read type of extended EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: memoryCapacity, memoryManufacturerId, memoryType
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000180000000000000">
 Function Class NVMExtReadLongByte</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: NVMExtReadLongByte(offset, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_nvm_ext_read_long_byte(ZWay zway, unsigned int offset, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Read single byte from extended EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter offset: Offset in application memory in EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: memoryGetData, memoryGetAddress
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000190000000000000">
 Function Class NVMExtReadLongBuffer</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: NVMExtReadLongBuffer(offset, length, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_nvm_ext_read_long_buffer(ZWay zway, unsigned int offset, unsigned short length, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Read multiple bytes from exended EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter offset: Offset in application memory in EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter length: Number of byte to be read
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: memoryGetData, memoryGetAddress
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000200000000000000">
 Function Class NVMExtWriteLongByte</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: NVMExtWriteLongByte(offset, data, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_nvm_ext_write_long_byte(ZWay zway, unsigned int offset, ZWBYTE data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Write single byte to extended EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter offset: Offset in application memory in EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter data: Byte to be written
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000210000000000000">
 Function Class NVMExtWriteLongBuffer</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: NVMExtWriteLongBuffer(offset, data, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_nvm_ext_write_long_buffer(ZWay zway, unsigned int offset, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Write multiple bytes to extended EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter offset: Offset in application memory in EEPROM
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter data: Bytes to be written
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000220000000000000">
 Function Class IsFailedNode</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: IsFailedNode(nodeId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_is_failed_node(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Checks if node is failed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id to be checked
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: device[node_id].data.isFailed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000230000000000000">
 Function Class SendDataAbort</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SendDataAbort(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_send_data_abort(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Abort send data. Note that this function works unpredictably in multi callback environment !
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000240000000000000">
 Function Class SerialAPISoftReset</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SerialAPISoftReset(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_serial_api_soft_reset(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Soft reset. Restarts Z-Wave chip
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000250000000000000">
 Function Class SendData</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SendData(nodeId, data, description = NULL, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_send_data(ZWay zway, ZWBYTE node_id, const ZWBYTE * data, ZWCSTR description, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Send data. Packets are sent in AUTO_ROUTE mode with EXPLRER_FRAME enabled for listening devices (ignored if not supported by the hardware [based on 5.0x branch])
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Destination Node Id (NODE_BROADCAST to send non-routed broadcast packet)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter data: Paket payload
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter description: Packet description for queue inspector and logging
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: devices[node_id].data.lastSend
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000260000000000000">
 Function Class SendDataSecure</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SendDataSecure(nodeId, data, description = NULL, keyClass = 0, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_send_data_secure(ZWay zway, ZWBYTE node_id, const ZWBYTE * data, ZWCSTR description, ZWBYTE key_class, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Send data using security. Packets are sent in AUTO_ROUTE mode with EXPLRER_FRAME enabled for listening devices (ignored if not supported by the hardware [based on 5.0x branch]). Explicitelly use security
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Destination Node Id (NODE_BROADCAST to send non-routed broadcast packet)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter data: Paket payload
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter description: Packet description for queue inspector and logging
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter keyClass: Security class to use: 0 - S0, 1 - S2 Unauthenticated, 2 - S2 Authenticated, 4 - S2 Access
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: devices[node_id].data.lastSend
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000270000000000000">
 Function Class GetNodeProtocolInfo</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: GetNodeProtocolInfo(nodeId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_get_node_protocol_info(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Get node protocol info
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id of the device in question
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: devices[node_id].data.isListening, devices[node_id].data.isRouting, devices[node_id].data.optional, devices[node_id].data.sensor1000, devices[node_id].data.sensor250, devices[node_id].data.infoProtocolSpecific
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000280000000000000">
 Function Class GetRoutingTableLine</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: GetRoutingTableLine(nodeId, removeBad = FALSE, removeRepeaters = FALSE, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_get_routing_table_line(ZWay zway, ZWBYTE node_id, ZWBOOL remove_bad, ZWBOOL remove_repeaters, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Get routing table line
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id of the device in question
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter removeBad: Exclude failed nodes from the listing
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter removeRepeaters: Exclude repeater nodes from the listing
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: devices[node_id].data.neighbours
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000290000000000000">
 Function Class AssignReturnRoute</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: AssignReturnRoute(nodeId, destId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_assign_return_route(ZWay zway, ZWBYTE node_id, ZWBYTE dest_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Assign return route to specified node
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id of the device that have to store new route
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter destId: Destination Node Id of the route
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000300000000000000">
 Function Class AssignSUCReturnRoute</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: AssignSUCReturnRoute(nodeId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_assign_suc_return_route(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Assign return route to SUC
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id of the device that have to store route to SUC
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000310000000000000">
 Function Class DeleteReturnRoute</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: DeleteReturnRoute(nodeId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_delete_return_route(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Delete return route
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id of the device that have to delete all assigned return routes
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000320000000000000">
 Function Class DeleteSUCReturnRoute</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: DeleteSUCReturnRoute(nodeId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_delete_suc_return_route(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Delete return route to SUC
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id of the device that have to delete route to SUC
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000330000000000000">
 Function Class SetDefault</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SetDefault(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_set_default(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Reset the controller. Note: this function will delete ALL data from the Z-Wave chip and restore it to factory default !. Sticks based on 4.5x and 6.x SDKs will also generate a new Home Id
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: lastExcludedDevice, lastIncludedDevice
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000340000000000000">
 Function Class SendSUCNodeId</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SendSUCNodeId(nodeId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_send_suc_node_id(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Send SUC Node Id. Informs portable and static controllers about new or deleted SUC/SIS
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id of the device that have to be informed about new or deleted SIC/SIS
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000350000000000000">
 Function Class SendNodeInformation</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SendNodeInformation(nodeId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_send_node_information(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Send NIF of the stick
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Destination Node Id (NODE_BROADCAST to send non-routed broadcast packet)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000360000000000000">
 Function Class RequestNodeInformation</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: RequestNodeInformation(nodeId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_request_node_information(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Request NIF of a device
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id to be requested for a NIF
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: devices[node_id].data.nodeInfoFrame
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000370000000000000">
 Function Class RemoveFailedNode</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: RemoveFailedNode(nodeId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_remove_failed_node(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Remove failed node from network. Before removing SDK will check that the device is really unreachable
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id to be removed from network
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: lastExcludedDevice
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000380000000000000">
 Function Class ReplaceFailedNode</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ReplaceFailedNode(nodeId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_replace_failed_node(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Replace failed node with a new one. Be ware that a failed node can be replaced by a node of another type. This can lead to probles!. Always request device NIF and force re-interview after successful replace process
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id to be replaced by new one
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: lastIncludedDevice, controllerState
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000390000000000000">
 Function Class RequestNetworkUpdate</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: RequestNetworkUpdate(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_request_network_update(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Request network topology update from SUC/SIS. Note that this process may also fail due more than 64 changes from last sync. In this case a re-inclusion of the controller (self) is required
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000400000000000000">
 Function Class RequestNodeNeighbourUpdate</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: RequestNodeNeighbourUpdate(nodeId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_request_node_neighbour_update(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Request neighbours update for specific node
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id to be requested for it's neighbours
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: devices[node_id].data.neighbours
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000410000000000000">
 Function Class SetLearnMode</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SetLearnMode(startStop, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_set_learn_mode(ZWay zway, ZWBOOL startStop, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Set/stop Learn mode. Tries first classical inclusion then falls back to NWI automatically. Use zway_controller_set_learn_mode instead to get correctly set up the environment after inclusion
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter startStop: Start Learn mode if True, stop if False
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: controllerState, lastExcludedDevice, lastIncludedDevice
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000420000000000000">
 Function Class AddNodeToNetwork</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: AddNodeToNetwork(startStop, highPower = TRUE, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_add_node_to_network(ZWay zway, ZWBOOL startStop, ZWBOOL highPower, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Start/stop Inclusion of a new node. Available on primary and inclusion controllers
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter startStop: Start inclusion mode if True, stop if False
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter highPower: Use full power during this operation if True. On False use low power mode
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: controllerState, lastExcludedDevice, lastIncludedDevice
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000430000000000000">
 Function Class SmartStartEnable</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SmartStartEnable(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_smart_start_enable(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Enable Smart Start mode
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000440000000000000">
 Function Class RemoveNodeFromNetwork</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: RemoveNodeFromNetwork(startStop, highPower = FALSE, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_remove_node_from_network(ZWay zway, ZWBOOL startStop, ZWBOOL highPower, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Start/stop exclusion of a node. Note that this function can be used to exclude a device from previous network before including in ours. Available on primary and inclusion controllers
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter startStop: Start exclusion mode if True, stop if False
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter highPower: Use full power during this operation if True. On False use low power mode
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: controllerState, lastExcludedDevice, lastIncludedDevice
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000450000000000000">
 Function Class RemoveNodeIdFromNetwork</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: RemoveNodeIdFromNetwork(nodeId, startStop, highPower = FALSE, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_remove_node_id_from_network(ZWay zway, ZWBYTE nodeId, ZWBOOL startStop, ZWBOOL highPower, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Start/stop exclusion of a node id. Note that this function can be used to exclude a device from previous network before including in ours. Available on primary and inclusion controllers
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: NodeId to exclude. If 0 or &gt; 232, any node will be excluded (like with zway_fc_remove_node_from_network / RemoveNodeFromNetwork)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter startStop: Start exclusion mode if True, stop if False
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter highPower: Use full power during this operation if True. On False use low power mode
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: controllerState, lastExcludedDevice, lastIncludedDevice
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000460000000000000">
 Function Class ControllerChange</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ControllerChange(startStop, highPower = TRUE, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_controller_change(ZWay zway, ZWBOOL startStop, ZWBOOL highPower, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Set new primary controller (also known as Controller Shift). Same as Inclusion, but the newly included device will get the role of primary. Available only on primary controller
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter startStop: Start controller shift mode if True, stop if False
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter highPower: Use full power during this operation if True. On False use low power mode
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: controllerState, lastExcludedDevice, lastIncludedDevice
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000470000000000000">
 Function Class CreateNewPrimary</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: CreateNewPrimary(startStop, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_create_new_primary(ZWay zway, ZWBOOL startStop, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Create new primary controller by SUC controller. Same as Inclusion, but the newly included device will get the role of primary. Available only on SUC. Be careful not to create two primary controllers! This can lead to network malfunction!
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter startStop: Start create new primary mode if True, stop if False
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: controllerState, lastExcludedDevice, lastIncludedDevice
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000480000000000000">
 Function Class ZMEFreqChange</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ZMEFreqChange(freq, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_zme_freq_change(ZWay zway, ZWBYTE freq, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Change Z-Wave.Me Z-Stick 4 frequency. This function is specific for Z-Wave.Me hardware
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter freq: 0x01 RU. 0x02 IN. 0x03 US. 0x04 ANZ. 0x05 HK. 0x06 CN. 0x07 JP. 0x08 KR. 0x09 IL. 0x0A MY. 0xFF request current frequency (ZME firmwares prior to 5.03 don't support this feature)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: frequency
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000490000000000000">
 Function Class RFPowerLevelSet</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: RFPowerLevelSet(level, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_rf_power_level_set(ZWay zway, ZWBYTE level, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Set RF power level to specified value
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter level: 0 to 9
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000500000000000000">
 Function Class RFPowerLevelGet</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: RFPowerLevelGet(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_rf_power_level_get(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Get RF power level current value
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000510000000000000">
 Function Class SendTestFrame</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SendTestFrame(nodeId, level, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_send_test_frame(ZWay zway, ZWBYTE node_id, ZWBYTE level, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Send test frame to a node at a specified RF level
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id to make test against
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter level: 0 to 9
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000520000000000000">
 Function Class FlashAutoProgSet</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: FlashAutoProgSet(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_flash_auto_prog_set(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Put Z-Wave chip in Atuo Prog mode for USB/UART reflashing
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000530000000000000">
 Function Class ExploreRequestInclusion</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ExploreRequestInclusion(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_explore_request_inclusion(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Request NWI. Called from SetLearnMode
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000540000000000000">
 Function Class ExploreRequestExclusion</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ExploreRequestExclusion(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_explore_request_exclusion(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Request NWE
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000550000000000000">
 Function Class ZMEBootloaderFlash</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ZMEBootloaderFlash(addr, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_zme_bootloader_flash(ZWay zway, ZWBYTE addr, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Start reflashing bootloader of Z-Wave.Me firmware for 5th generation Z-Wave chip. This function is specific for Z-Wave.Me hardware
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter addr: address of new bootloader location in 2K sectors
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000560000000000000">
 Function Class ZMECapabilities</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ZMECapabilities(data = NULL, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_zme_capabilities(ZWay zway, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Get or set firmware capabilities. This function is specific for Z-Wave.Me hardware
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter data: data to set (NULL to get)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: caps, uuid
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000570000000000000">
 Function Class ZMEPHISetLED</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ZMEPHISetLED(led, status, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_zmephisetled(ZWay zway, ZWBYTE led, ZWBYTE status, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Activate LEDs on Philio hw. This function is specific for Philio hardware
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter led: LED id: 0x10 (Logo), 0x11 (Around), 0x12 (Misc)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter status: LED status 2 (Off), 4 (On), 8 (Flash), 16 (Slow flash), 32 (Slow dimming)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000580000000000000">
 Function Class ZMEPHIGetButton</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ZMEPHIGetButton(button, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_zmephigetbutton(ZWay zway, ZWBYTE button, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Get button state on Philio hw. This function is specific for Philio hardware
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter button: 0: Tamper Key, 1: Function Key A, 2: Function Key B
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: philiohw.tamper, philiohw.funcA, philiohw.funcB
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000590000000000000">
 Function Class ZMEPHIGetPower</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ZMEPHIGetPower(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_zmephigetpower(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Get power state on Philio hw. This function is specific for Philio hardware
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: philiohw.powerFail, philiohw.batteryLevel, philiohw.charging, philiohw.batteryFail
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000600000000000000">
 Function Class ZMEPHIGetBattery</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ZMEPHIGetBattery(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_zmephigetbattery(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Get battery state on Philio hw. This function is specific for Philio hardware
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: philiohw.batteryADCLevel
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000610000000000000">
 Function Class ZMEPHIGetRTC</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ZMEPHIGetRTC(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_zmephigetrtc(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Get RTC from Philio hw. This function is specific for Philio hardware
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Report: set system time
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000620000000000000">
 Function Class ZMEPHISetRTC</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ZMEPHISetRTC(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_zmephisetrtc(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Set RTC on Philio hw. This function is specific for Philio hardware
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000630000000000000">
 Function Class InjectPacket</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: InjectPacket(nodeId, data, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_application_command_handler_inject(ZWay zway, ZWBYTE node_id, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Inject command in Z-Way as it was received via Z-Wave. This function is for debugging only
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Source Node Id
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter data: Paket payload (should looks like ccId, ccCmd, data, ....)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000640000000000000">
 Function Class GetBackgroundRSSI</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: GetBackgroundRSSI(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_get_background_rssi(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Get background noise level
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000650000000000000">
 Function Class SerialAPISetup</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SerialAPISetup(function, enable, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_serial_api_setup(ZWay zway, ZWBYTE function, ZWBOOL enable, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Configure Z-Wave Serial API
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter function: Configure specific Serial API function. Currently only enable/disable IMA is supported (function = 0x02)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter enable: Set feature state: True to enable, False to disable
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000660000000000000">
 Function Class ClearNetworkStats</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ClearNetworkStats(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_clear_network_stats(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Clear statistics gathered by the Z-Wave protocol
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000670000000000000">
 Function Class GetNetworkStats</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: GetNetworkStats(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_get_network_stats(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Get statistics gathered by the Z-Wave protocol
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000680000000000000">
 Function Class GetPriorityRoute</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: GetPriorityRoute(nodeId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_get_priority_route(ZWay zway, ZWBYTE node_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Get the route with the highest priority
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node ID we are interested in
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000690000000000000">
 Function Class SetPriorityRoute</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SetPriorityRoute(nodeId, repeater1, repeater2, repeater3, repeater4, routeSpeed, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_set_priority_route(ZWay zway, ZWBYTE node_id, ZWBYTE repeater1, ZWBYTE repeater2, ZWBYTE repeater3, ZWBYTE repeater4, ZWBYTE route_speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Set the route with the highest priority
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node ID we are interested in
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter repeater1: Hop #1 in the route. Value 0 means direct range. Values &gt; 232 clears the priority route and LWR (Last Working Route is selected by the protocol)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter repeater2: Hop #2 in the route. Value 0 means end of route
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter repeater3: Hop #3 in the route. Value 0 means end of route
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter repeater4: Hop #4 in the route. Value 0 means end of route
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter routeSpeed: Baudrate to use: 1 for 9.6 kbps, 2 for 40 kbps, 3 for 100 kbps
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000700000000000000">
 Function Class SetPromiscuousMode</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: SetPromiscuousMode(enable, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_set_promiscuous_mode(ZWay zway, ZWBOOL enable, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Enable or disable promiscuous mode
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter enable: True to enable functionality, False to disable
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000710000000000000">
 Function Class AssignPriorityReturnRoute</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: AssignPriorityReturnRoute(nodeId, destId, repeater1, repeater2, repeater3, repeater4, routeSpeed, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_assign_priority_return_route(ZWay zway, ZWBYTE node_id, ZWBYTE dest_id, ZWBYTE repeater1, ZWBYTE repeater2, ZWBYTE repeater3, ZWBYTE repeater4, ZWBYTE route_speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Assign priority return route to specified node
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id of the device that have to store new route
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter destId: Destination Node Id of the route
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter repeater1: Hop #1 in the route. Value 0 means direct range
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter repeater2: Hop #2 in the route. Value 0 means end of route
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter repeater3: Hop #3 in the route. Value 0 means end of route
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter repeater4: Hop #4 in the route. Value 0 means end of route
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter routeSpeed: Baudrate to use: 1 for 9.6 kbps, 2 for 40 kbps, 3 for 100 kbps
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000720000000000000">
 Function Class AssignPrioritySUCReturnRoute</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: AssignPrioritySUCReturnRoute(nodeId, repeater1, repeater2, repeater3, repeater4, routeSpeed, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_assign_priority_suc_return_route(ZWay zway, ZWBYTE node_id, ZWBYTE repeater1, ZWBYTE repeater2, ZWBYTE repeater3, ZWBYTE repeater4, ZWBYTE route_speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Assign priority return route to SUC
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter nodeId: Node Id of the device that have to store route to SUC
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter repeater1: Hop #1 in the route. Value 0 means direct range
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter repeater2: Hop #2 in the route. Value 0 means end of route
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter repeater3: Hop #3 in the route. Value 0 means end of route
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter repeater4: Hop #4 in the route. Value 0 means end of route
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter routeSpeed: Baudrate to use: 1 for 9.6 kbps, 2 for 40 kbps, 3 for 100 kbps
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000730000000000000">
 Function Class ZMESerialAPIOptionsJammingDetectionSet</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ZMESerialAPIOptionsJammingDetectionSet(ch1Threshold, ch2Threshold, ch3Threshold, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_zme_serialapi_options_jamming_detection_set(ZWay zway, ZWBYTE ch1_threshold, ZWBYTE ch2_threshold, ZWBYTE ch3_threshold, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Set Jamming Detection threshold. Jamming detection fine tuning in NVM:. address 6530, 3 bytes: ch1_threshold ch2_threshold ch3_threshold. address 6533, 2 bytes: how many times should measurements exceed in last 10 seconds to trigger the alarm, default 2 times. address 6535, 2 bytes: repeat the alarm in N*0.1 seconds if the jamming persists, default 0100 = 25.6 sec
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter ch1Threshold: Threshold for channel 1
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter ch2Threshold: Threshold for channel 2
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter ch3Threshold: Threshold for channel 3
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION0017000740000000000000">
 Function Class ZMESerialAPIOptionsAdvancedIMASet</A>
 </H4>
-<DIV class="CENTER">
-
 <BLOCKQUOTE>
 Syntax: ZMESerialAPIOptionsAdvancedIMASet(enable, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 C Syntax: ZWError zway_fc_zme_serialapi_options_advanced_ima_set(ZWay zway, ZWBOOL enable, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Description: Enable/disable advanced IMA by Z0Wave.Me that includes incoming route path information
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter enable: Turn on or off
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
-</DIV>
 <BR><HR>
 
 </BODY>

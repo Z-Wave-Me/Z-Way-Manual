@@ -911,61 +911,56 @@
 <H1><A ID="SECTION001400000000000000000">
 Special topics for Developers</A>
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION001410000000000000000"></A>
 <A ID="cap:authentication"></A>
 <BR>
 Authentication
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">In order to access API one need to authenticate itself. Z-Way uses sessions
+In order to access API one need to authenticate itself. Z-Way uses sessions
 to authenticate users. Z-Way session is called <SPAN  CLASS="textbf">ZWAYSession</SPAN>.
-</DIV>
+
 <P>
-<DIV class="CENTER">If remote access is used, the find.z-wave.me service will issue an additional token called <SPAN  CLASS="textbf">ZBW_SESSID</SPAN>.
-</DIV>
+If remote access is used, the find.z-wave.me service will issue an additional token called <SPAN  CLASS="textbf">ZBW_SESSID</SPAN>.
+
 <P>
-<DIV class="CENTER">Please read in <A HREF="#cap:authentication_usage">13.1.4</A> about the token lifetime, permanent tokens and token usage guide before selecting your preferred authentication method.
-</DIV>
+Please read in <A HREF="#cap:authentication_usage">13.1.4</A> about the token lifetime, permanent tokens and token usage guide before selecting your preferred authentication method.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001411000000000000000"></A>
 <A ID="cap:authentication_local"></A>
 <BR>
 Local authentication
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">If used in local network, Z-Way can be directly addressed via 
-<BLOCKQUOTE>
+If used in local network, Z-Way can be directly addressed via <BLOCKQUOTE>
 <kbd><A ID="tex2html236"
   HREF="http://IP:8083">http://IP:8083</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">Note that if Z-Way is used in trusted network and only Z-Wave API is supposed to be used, you might consider to skip authentication and check option <SPAN  CLASS="textit">Public API access</SPAN> in Z-Wave Binding app.
-</DIV>
+Note that if Z-Way is used in trusted network and only Z-Wave API is supposed to be used, you might consider to skip authentication and check option <SPAN  CLASS="textit">Public API access</SPAN> in Z-Wave Binding app.
+
 <P>
-<DIV class="CENTER"> Z-Way session can be obtained by sending login and password
-in JSON format using POST to URL 
-<BLOCKQUOTE>
+Z-Way session can be obtained by sending login and password
+in JSON format using POST to URL <BLOCKQUOTE>
 <kbd><A ID="tex2html237"
   HREF="/ZAutomation/api/v1/login">/ZAutomation/api/v1/login</A></kbd>
 </BLOCKQUOTE> 
 User credentials should look like <SPAN  CLASS="texttt">{"login":"admin", "password":"admin"}</SPAN>.
-</DIV>
+
 <P>
-<DIV class="CENTER">It is also possible to use Basic Authentication to transmit login and password.
-</DIV>
+It is also possible to use Basic Authentication to transmit login and password.
+
 <P>
-<DIV class="CENTER">In return the session will be sent in three forms:
-</DIV>
+In return the session will be sent in three forms:
+
 <UL>
 <LI>as <SPAN  CLASS="textbf">data.sid</SPAN> field in JSON structure (only for login using JSON),
 </LI>
@@ -974,11 +969,10 @@ User credentials should look like <SPAN  CLASS="texttt">{"login":"admin", "passw
 <LI>as a cookie called <SPAN  CLASS="textbf">ZWAYSession</SPAN>.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Example of successful login will look like:
-</DIV><PRE>[Successful login reply]
+Example of successful login will look like:
+<PRE>[Successful login reply]
 {
     "data": {
         "sid": "ba69cb5b-b2fd-5ce0-5b75-9bae3e8bc369",
@@ -1001,10 +995,9 @@ User credentials should look like <SPAN  CLASS="texttt">{"login":"admin", "passw
     "error": null
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Wrong login/password reply]
+<PRE>[Wrong login/password reply]
 {
     "data": null,
     "code": 401,
@@ -1012,11 +1005,10 @@ User credentials should look like <SPAN  CLASS="texttt">{"login":"admin", "passw
     "error": "User login/password is wrong."
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Once obtained, the session can be sent to the Z-Way server via the following ways:
-</DIV>
+Once obtained, the session can be sent to the Z-Way server via the following ways:
+
 <UL>
 <LI>as an HTTP header called <SPAN  CLASS="textbf">ZWAYSession</SPAN>,
 </LI>
@@ -1025,39 +1017,32 @@ User credentials should look like <SPAN  CLASS="texttt">{"login":"admin", "passw
 <LI>as an HTTP Authentication Bearer header (see <A HREF="#cap:authentication_usage">13.1.4</A>)
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Below are few examples of local authentication.
-</DIV>
+Below are few examples of local authentication.
+
 <P>
-<DIV class="CENTER">With cURL using cookies:
-<SPAN CLASS="SCRIPTSIZE"></SPAN></DIV>
-<BLOCKQUOTE>
-<DIV class="CENTER"><SPAN CLASS="SCRIPTSIZE"><SPAN style="font-family:sans-serif"><B>curl -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"form": true, "login": "admin", "password": "admin"}' http://192.168.0.62:8083/ZAutomation/api/v1/login -c cookie.txt</B></SPAN>
+With cURL using cookies:
+<SPAN CLASS="SCRIPTSIZE"></SPAN>
+<BLOCKQUOTE><SPAN CLASS="SCRIPTSIZE"><SPAN style="font-family:sans-serif"><B>curl -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"form": true, "login": "admin", "password": "admin"}' http://192.168.0.62:8083/ZAutomation/api/v1/login -c cookie.txt</B></SPAN>
 <SPAN style="font-family:sans-serif"><B>curl http://192.168.0.62:8083/ZAutomation/api/v1/... -b cookie.txt</B></SPAN>
-</SPAN></DIV></BLOCKQUOTE>
-<DIV class="CENTER"><SPAN CLASS="SCRIPTSIZE"></SPAN>
-</DIV>
+</SPAN></BLOCKQUOTE><SPAN CLASS="SCRIPTSIZE"></SPAN>
+
 <P>
-<DIV class="CENTER">With cURL using Basic Authentication:
-<SPAN CLASS="SCRIPTSIZE"></SPAN></DIV>
-<BLOCKQUOTE>
-<DIV class="CENTER"><SPAN CLASS="SCRIPTSIZE"><SPAN style="font-family:sans-serif"><B>curl -u admin:admin http://192.168.0.62:8083/ZAutomation/api/v1/...</B></SPAN>
-</SPAN></DIV></BLOCKQUOTE>
-<DIV class="CENTER"><SPAN CLASS="SCRIPTSIZE"></SPAN>
-</DIV>
+With cURL using Basic Authentication:
+<SPAN CLASS="SCRIPTSIZE"></SPAN>
+<BLOCKQUOTE><SPAN CLASS="SCRIPTSIZE"><SPAN style="font-family:sans-serif"><B>curl -u admin:admin http://192.168.0.62:8083/ZAutomation/api/v1/...</B></SPAN>
+</SPAN></BLOCKQUOTE><SPAN CLASS="SCRIPTSIZE"></SPAN>
+
 <P>
-<DIV class="CENTER">With wget using Basic Authentication:
-<SPAN CLASS="SCRIPTSIZE"></SPAN></DIV>
-<BLOCKQUOTE>
-<DIV class="CENTER"><SPAN CLASS="SCRIPTSIZE"><SPAN style="font-family:sans-serif"><B>wget &ndash;auth-no-challenge &ndash;user=admin &ndash;password=pwd 192.168.0.62:8083/ZAutomation/api/v1/...</B></SPAN>
-</SPAN></DIV></BLOCKQUOTE>
-<DIV class="CENTER"><SPAN CLASS="SCRIPTSIZE"></SPAN>
-</DIV>
+With wget using Basic Authentication:
+<SPAN CLASS="SCRIPTSIZE"></SPAN>
+<BLOCKQUOTE><SPAN CLASS="SCRIPTSIZE"><SPAN style="font-family:sans-serif"><B>wget &ndash;auth-no-challenge &ndash;user=admin &ndash;password=pwd 192.168.0.62:8083/ZAutomation/api/v1/...</B></SPAN>
+</SPAN></BLOCKQUOTE><SPAN CLASS="SCRIPTSIZE"></SPAN>
+
 <P>
-<DIV class="CENTER">From the browser using jQuery and Basic Authentication:
-</DIV><PRE>[Login with jQuery]
+From the browser using jQuery and Basic Authentication:
+<PRE>[Login with jQuery]
 jQuery('img').click(function() {
     jQuery.ajax({
         url: "http://192.168.0.62:8083/ZAutomation/api/v1/...",
@@ -1065,41 +1050,37 @@ jQuery('img').click(function() {
     });
 });
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001412000000000000000"></A>
 <A ID="cap:authentication_remote"></A>
 <BR>
 Remote authentication
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">If not disabled by the user, Z-Way provides remote access service to the controller via 
-<BLOCKQUOTE>
+If not disabled by the user, Z-Way provides remote access service to the controller via <BLOCKQUOTE>
 <kbd><A ID="tex2html238"
   HREF="https://find.z-wave.me">https://find.z-wave.me</A></kbd>
 </BLOCKQUOTE> 
 See section <A HREF="Preparation_Ways_Access_Sys.html#remoteaccess">3.3</A> for more information on the Z-Way remote access service.
-</DIV>
+
 <P>
-<DIV class="CENTER">This service accepts <SPAN  CLASS="textbf">Z-Way Platform ID </SPAN>, username and password, checks entered
+This service accepts <SPAN  CLASS="textbf">Z-Way Platform ID </SPAN>, username and password, checks entered
 credentials agains your Z-Way and if accepted returns back two sessions <SPAN  CLASS="textbf">ZWAYSession</SPAN>
 and <SPAN  CLASS="textbf">ZBW_SESSID</SPAN> in two forms:
-</DIV>
+
 <UL>
 <LI>as a header,
 </LI>
 <LI>as a cookie.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The session can be obtained by
-</DIV>
+The session can be obtained by
+
 <UL>
 <LI>logging in the form on <BLOCKQUOTE>
 <kbd><A ID="tex2html239"
@@ -1112,11 +1093,10 @@ and <SPAN  CLASS="textbf">ZBW_SESSID</SPAN> in two forms:
 </BLOCKQUOTE> with form data <SPAN  CLASS="texttt">act=login&amp;login=id/admin&amp;pass=password</SPAN>
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="authenticatioln_remote_find"></A><A ID="7097"></A>
+
+<DIV class="CENTER"><A ID="authenticatioln_remote_find"></A><A ID="7098"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 13.1:</STRONG>
 Example of login on find.z-wave.me using Postman</CAPTION>
@@ -1129,29 +1109,27 @@ Example of login on find.z-wave.me using Postman</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Once logged in with <SPAN  CLASS="texttt">act=login</SPAN>, the user is redirected to the / of the Z-Way (in most cases it then redirects to /smarthome/).
+Once logged in with <SPAN  CLASS="texttt">act=login</SPAN>, the user is redirected to the / of the Z-Way (in most cases it then redirects to /smarthome/).
 If you want the user to be redirected to some specific URL after log in add one more parameter <SPAN  CLASS="texttt">ruri=...</SPAN> (see examples below).
-</DIV>
+
 <P>
-<DIV class="CENTER">The obtained session will be returned
-</DIV>
+The obtained session will be returned
+
 <UL>
 <LI>as an HTTP header,
 </LI>
 <LI>as a cookie.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">To suppress the redirect use <SPAN  CLASS="texttt">act=auth</SPAN>.
-</DIV>
+To suppress the redirect use <SPAN  CLASS="texttt">act=auth</SPAN>.
+
 <P>
-<DIV class="CENTER">The credential can be used in subsequent requests in one of the three forms listed below (in order they are checked in Z-Way):
-</DIV>
+The credential can be used in subsequent requests in one of the three forms listed below (in order they are checked in Z-Way):
+
 <UL>
 <LI>as HTTP <SPAN  CLASS="textbf">Authentication: Bearer</SPAN> header (see below),
 </LI>
@@ -1160,45 +1138,39 @@ If you want the user to be redirected to some specific URL after log in add one 
 <LI>as <SPAN  CLASS="textbf">ZBW_SESSID</SPAN> and <SPAN  CLASS="textbf">ZWAYSession</SPAN> cookies.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Below are examples of remote authentication.
-</DIV>
+Below are examples of remote authentication.
+
 <P>
-<DIV class="CENTER">With cURL using cookies:
-<SPAN CLASS="SCRIPTSIZE"></SPAN></DIV>
-<BLOCKQUOTE>
-<DIV class="CENTER"><SPAN CLASS="SCRIPTSIZE"><SPAN style="font-family:sans-serif"><B>curl -H "Accept: application/json" -X POST -d 'act=login&amp;login=132339/admin&amp;pass=admin1' https://find.z-wave.me/zboxweb -c cookie.txt</B></SPAN>
+With cURL using cookies:
+<SPAN CLASS="SCRIPTSIZE"></SPAN>
+<BLOCKQUOTE><SPAN CLASS="SCRIPTSIZE"><SPAN style="font-family:sans-serif"><B>curl -H "Accept: application/json" -X POST -d 'act=login&amp;login=132339/admin&amp;pass=admin1' https://find.z-wave.me/zboxweb -c cookie.txt</B></SPAN>
 <SPAN style="font-family:sans-serif"><B>curl https://find.z-wave.me/ZAutomation/api/v1/... -b cookie.txt</B></SPAN>
-</SPAN></DIV></BLOCKQUOTE>
-<DIV class="CENTER"><SPAN CLASS="SCRIPTSIZE"></SPAN>
-</DIV>
+</SPAN></BLOCKQUOTE><SPAN CLASS="SCRIPTSIZE"></SPAN>
+
 <P>
-<DIV class="CENTER">If you want the user to be redirected to a specific page after login, you can also use the following url: 
-<BLOCKQUOTE>
+If you want the user to be redirected to a specific page after login, you can also use the following url: <BLOCKQUOTE>
 <kbd><A ID="tex2html242"
   HREF="https://find.z-wave.me/zboxweb?ruri=/expert">https://find.z-wave.me/zboxweb?ruri=/expert</A></kbd>
-</BLOCKQUOTE> or 
-<BLOCKQUOTE>
+</BLOCKQUOTE> or <BLOCKQUOTE>
 <kbd><A ID="tex2html243"
   HREF="https://find.z-wave.me/zboxweb?ruri=/expert&amp;id=123456&amp;login=admin">https://find.z-wave.me/zboxweb?ruri=/expert&amp;id=123456&amp;login=admin</A></kbd>
 </BLOCKQUOTE> to pre-fill <SPAN  CLASS="textbf">Z-Way Platform ID </SPAN>and user name.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001413000000000000000"></A>
 <A ID="cap:authentication_remote_errors"></A>
 <BR>
 Remote authentication and access error handling
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The tables below describe possible errors returned by the remote access service. Errors are order exactly as the request is handled.
-</DIV>
+The tables below describe possible errors returned by the remote access service. Errors are order exactly as the request is handled.
+
 <P>
-<DIV class="CENTER">Authentication on <SPAN  CLASS="texttt">https://find.z-wave.me/zboxweb</SPAN> with <SPAN  CLASS="texttt">act=login</SPAN>: 
+Authentication on <SPAN  CLASS="texttt">https://find.z-wave.me/zboxweb</SPAN> with <SPAN  CLASS="texttt">act=login</SPAN>: 
 <BR><TABLE class="PAD  BORDER" style="">
 <TR><TD CLASS="LEFT TOP"  WIDTH=125>Condition</TD>
 <TD CLASS="LEFT TOP"  WIDTH=50>HTTP code</TD>
@@ -1234,9 +1206,9 @@ Remote authentication and access error handling
 </BLOCKQUOTE></TD>
 </TR>
 </TABLE>
-</DIV>
+
 <P>
-<DIV class="CENTER">Authentication on <SPAN  CLASS="texttt">https://find.z-wave.me/zboxweb</SPAN> with <SPAN  CLASS="texttt">act=auth</SPAN>: 
+Authentication on <SPAN  CLASS="texttt">https://find.z-wave.me/zboxweb</SPAN> with <SPAN  CLASS="texttt">act=auth</SPAN>: 
 <BR><TABLE class="PAD  BORDER" style="">
 <TR><TD CLASS="LEFT TOP"  WIDTH=125>Condition</TD>
 <TD CLASS="LEFT TOP"  WIDTH=50>HTTP code</TD>
@@ -1266,9 +1238,9 @@ Wrong username or password</TD>
 <TD CLASS="LEFT TOP"  WIDTH=325>&nbsp;</TD>
 </TR>
 </TABLE>
-</DIV>
+
 <P>
-<DIV class="CENTER">Subsequent requests to <SPAN  CLASS="texttt">https://find.z-wave.me/PATH</SPAN>, where <SPAN  CLASS="texttt">PATH</SPAN> is not equal to <SPAN  CLASS="texttt">zboxweb</SPAN> or <SPAN  CLASS="texttt">zboxweb/*</SPAN>: 
+Subsequent requests to <SPAN  CLASS="texttt">https://find.z-wave.me/PATH</SPAN>, where <SPAN  CLASS="texttt">PATH</SPAN> is not equal to <SPAN  CLASS="texttt">zboxweb</SPAN> or <SPAN  CLASS="texttt">zboxweb/*</SPAN>: 
 <BR><TABLE class="PAD  BORDER" style="">
 <TR><TD CLASS="LEFT TOP"  WIDTH=125>Condition</TD>
 <TD CLASS="LEFT TOP"  WIDTH=50>HTTP code</TD>
@@ -1297,81 +1269,77 @@ Wrong username or password</TD>
 <TD CLASS="LEFT TOP"  WIDTH=325>&nbsp;</TD>
 </TR>
 </TABLE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001414000000000000000"></A>
 <A ID="cap:authentication_usage"></A>
 <BR>
 Token lifetime
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Each time you log in using methods described above a new session is created. This session will live for one week (might be changed on Z-Way side and on find.z-wave.me side, do not rely on this period).
-</DIV>
+Each time you log in using methods described above a new session is created. This session will live for one week (might be changed on Z-Way side and on find.z-wave.me side, do not rely on this period).
+
 <P>
-<DIV class="CENTER">Those login methods are good to obtain the token once to the access the API via token or for rare single actions. Creating a new session each time will pollute user profile in Z-Way.
-</DIV>
+Those login methods are good to obtain the token once to the access the API via token or for rare single actions. Creating a new session each time will pollute user profile in Z-Way.
+
 <P>
-<DIV class="CENTER">Tokens can be deleted at any time in User management (<A HREF="Web_Browser_User_Interface.html#cap4:user_management">4.3.1</A>) panel. This will lead to log-out of the application that is using this token. This application will loose access to Z-Way and will require again a log in via username and password.
-</DIV>
+Tokens can be deleted at any time in User management (<A HREF="Web_Browser_User_Interface.html#cap4:user_management">4.3.1</A>) panel. This will lead to log-out of the application that is using this token. This application will loose access to Z-Way and will require again a log in via username and password.
+
 <P>
-<DIV class="CENTER">To use tokens long term we recommend to make them permanent. You can make any token permanent by pressing a button in User management (<A HREF="Web_Browser_User_Interface.html#cap4:user_management">4.3.1</A>).
+To use tokens long term we recommend to make them permanent. You can make any token permanent by pressing a button in User management (<A HREF="Web_Browser_User_Interface.html#cap4:user_management">4.3.1</A>).
 Permanent token do never expire until deleted. Only Z-Way token can be made permanent that way.
-</DIV>
+
 <P>
-<DIV class="CENTER">To make both find.z-wave.me and Z-Way token permanent use <SPAN  CLASS="textbf">Authentication Bearer</SPAN> way to transmit tokens.
-</DIV>
+To make both find.z-wave.me and Z-Way token permanent use <SPAN  CLASS="textbf">Authentication Bearer</SPAN> way to transmit tokens.
+
 <P>
-<DIV class="CENTER">Both find.z-wave.me remote access service and Z-Way do support <SPAN  CLASS="textbf">Authentication Bearer</SPAN> HTTP header. This header is commonly used in OAuth2 authentication protocol, but you can use it without OAuth2 too.
-</DIV>
+Both find.z-wave.me remote access service and Z-Way do support <SPAN  CLASS="textbf">Authentication Bearer</SPAN> HTTP header. This header is commonly used in OAuth2 authentication protocol, but you can use it without OAuth2 too.
+
 <P>
-<DIV class="CENTER"> Z-Way and find.z-wave.me will automatically mark tokens as permanent if they are received in <SPAN  CLASS="textbf">Authentication Bearer</SPAN> header.
-</DIV>
+Z-Way and find.z-wave.me will automatically mark tokens as permanent if they are received in <SPAN  CLASS="textbf">Authentication Bearer</SPAN> header.
+
 <P>
-<DIV class="CENTER">The format of the header is: <SPAN  CLASS="texttt">Authorization: Bearer <SPAN  CLASS="textbf">ZBW_SESSID</SPAN>/<SPAN  CLASS="textbf">ZWAYSession</SPAN></SPAN>.
+The format of the header is: <SPAN  CLASS="texttt">Authorization: Bearer <SPAN  CLASS="textbf">ZBW_SESSID</SPAN>/<SPAN  CLASS="textbf">ZWAYSession</SPAN></SPAN>.
 Note that if direct access is needed (not via find.z-wave.me), <SPAN  CLASS="textbf">ZBW_SESSID</SPAN> can be omitted.
 In this case a slash <SPAN  CLASS="textbf">/</SPAN> should still preceed <SPAN  CLASS="textbf">ZWAYSession</SPAN>
-</DIV>
+
 <P>
-<DIV class="CENTER">A typical application should take usename and password to log in via find.z-wave.me and get both <SPAN  CLASS="textbf">ZWAYSession</SPAN> and <SPAN  CLASS="textbf">ZBW_SESSID</SPAN> tokens to form Authentication Bearer token.
+A typical application should take usename and password to log in via find.z-wave.me and get both <SPAN  CLASS="textbf">ZWAYSession</SPAN> and <SPAN  CLASS="textbf">ZBW_SESSID</SPAN> tokens to form Authentication Bearer token.
 The username and password should then be erased from the memory, while Authentication Bearer token should be saved for future use. It is not recommended to save user credentials.
-</DIV>
+
 <P>
-<DIV class="CENTER">Like other tokens user can delete the permanent token in the User management (<A HREF="Web_Browser_User_Interface.html#cap4:user_management">4.3.1</A>) panel.
-</DIV>
+Like other tokens user can delete the permanent token in the User management (<A HREF="Web_Browser_User_Interface.html#cap4:user_management">4.3.1</A>) panel.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001415000000000000000"></A>
 <A ID="cap:authentication_oauth2"></A>
 <BR>
 OAuth2
 </H2>
-<DIV class="CENTER">
-</DIV>
-<P>
-<DIV class="CENTER"> Z-Way do also support OAuth2 authentication method to provide access to smart home devices to third party services like voice assistances (Amazon Alexa, Google Home, Yandex Alice), IFTTT and some others.
-</DIV>
-<P>
-<DIV class="CENTER">To get integrated one should provide to the Z-Wave.Me team redirect_uri and get back OAuth2 server URL, client_id and client_secret. Please contact info@z-wave.me.
-</DIV>
-<P>
-<DIV class="CENTER">To let the user authenticate and grant access to his devices you should redirect him to one of the two pages:
 
+<P>
+Z-Way do also support OAuth2 authentication method to provide access to smart home devices to third party services like voice assistances (Amazon Alexa, Google Home, Yandex Alice), IFTTT and some others.
+
+<P>
+To get integrated one should provide to the Z-Wave.Me team redirect_uri and get back OAuth2 server URL, client_id and client_secret. Please contact info@z-wave.me.
+
+<P>
+To let the user authenticate and grant access to his devices you should redirect him to one of the two pages:
 <BLOCKQUOTE>
 <kbd><A ID="tex2html250"
   HREF="https://z-wave.me/oauth2/?state=...&amp;redirect_uri=https://...&amp;response_type=code&amp;client_id=...">https://z-wave.me/oauth2/?state=...&amp;redirect_uri=https://...&amp;response_type=code&amp;client_id=...</A></kbd>
 </BLOCKQUOTE> 
-
 <BLOCKQUOTE>
 <kbd><A ID="tex2html251"
   HREF="https://find.z-wave.me/zboxweb?lang=...&amp;hide_diruris=1&amp;ruri=/smarthome/%23/oauth2%3Fstate%3D...%26redirect_uri%3Dhttps%3A%2F%2F...%26response_type%3Dcode%26client_id%3D...">https://find.z-wave.me/zboxweb?lang=...&amp;hide_diruris=1&amp;ruri=/smarthome/%23/oauth2%3Fstate%3D...%26redirect_uri%3Dhttps%3A%2F%2F...%26response_type%3Dcode%26client_id%3D...</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">In this request:
-</DIV>
+In this request:
+
 <UL>
 <LI>lang (optional &mdash; English if omitted) — pre-selects the find.z-wave.me interface language (see ZBW_IFLANG cookie for the correct value)
 </LI>
@@ -1393,43 +1361,39 @@ OAuth2
 </UL>
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">After the user logs in to Z-Way he is asked to mark rooms and devices to be granted access to.
+After the user logs in to Z-Way he is asked to mark rooms and devices to be granted access to.
 A new user will then be created with the corresponding permissions and a session token will be generated.
 The session is saved on the Z-Wave.Me OAuth2 server together with an authorization code.
-</DIV>
+
 <P>
-<DIV class="CENTER">On the next step the user is redirected back to the service using URL 
-<BLOCKQUOTE>
+On the next step the user is redirected back to the service using URL <BLOCKQUOTE>
 <kbd><A ID="tex2html253"
   HREF="redirect_uri?state=...&amp;code=...">redirect_uri?state=...&amp;code=...</A></kbd>
 </BLOCKQUOTE> 
 In this request:
-</DIV>
+
 <UL>
 <LI>state &mdash; specific value used by your service to match the OAuth2 reply with the original request (see above)
 </LI>
 <LI>code &mdash; the authorization code to be used to get access token from the OAuth2 server
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The service can now make a POST request to the Z-Wave.Me OAuth2 server on 
-<BLOCKQUOTE>
+The service can now make a POST request to the Z-Wave.Me OAuth2 server on <BLOCKQUOTE>
 <kbd><A ID="tex2html254"
   HREF="/token">/token</A></kbd>
 </BLOCKQUOTE> providing <SPAN  CLASS="texttt">client_id</SPAN>, <SPAN  CLASS="texttt">client_secret</SPAN> and <SPAN  CLASS="texttt">code</SPAN>.
 The request can use JSON format or form data or url encoded form. The response is a JSON with access_token or error message.
-</DIV>
+
 <P>
-<DIV class="CENTER">The resulting access_token is to be used in the Authentication Bearer HTTP header.
+The resulting access_token is to be used in the Authentication Bearer HTTP header.
 This token never expires unless deleted by the user.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Request of Access token via Authorization code (JSON format)]
+<PRE>[Request of Access token via Authorization code (JSON format)]
 Content-type: application/json
 {
     "client_id": "...",
@@ -1437,17 +1401,15 @@ Content-type: application/json
     "code": "..."
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Request of Access token via Authorization code (URL encoded form)]
+<PRE>[Request of Access token via Authorization code (URL encoded form)]
 Content-Type: application/x-www-form-urlencoded
 client_id=...&amp;client_secret=...&amp;code=... (URL encoded!)
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Request of Access token via Authorization code (form data)]
+<PRE>[Request of Access token via Authorization code (form data)]
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundarytufRVLxOz9VdsQbA
 
 ------WebKitFormBoundarytufRVLxOz9VdsQbA
@@ -1464,74 +1426,66 @@ Content-Disposition: form-data; name="code"
 ...
 ------WebKitFormBoundarytufRVLxOz9VdsQbA--
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Access token successfuly retrieved]
+<PRE>[Access token successfuly retrieved]
 {
     "access_token": ".../...",
     "token_type": "bearer"
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Authorization code is invalid (400 Bad request)]
+<PRE>[Authorization code is invalid (400 Bad request)]
 {
     "error": "invalid_grant"
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Wrong credentials (400 Bad request)]
+<PRE>[Wrong credentials (400 Bad request)]
 {
     "error": "invalid_client"
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION001420000000000000000"></A>
 <A ID="developownapps"></A>
 <BR>
 How to write own Apps for Z-Way 
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">According to Chapter <A HREF="JavaScript_Engine.html#cap:modules">12.5</A> apps have two core files:
-</DIV>
+According to Chapter <A HREF="JavaScript_Engine.html#cap:modules">12.5</A> apps have two core files:
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>module.js
 </LI>
 <LI>index.js
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The following chapter explains these two files more in detail. 
-</DIV>
+The following chapter explains these two files more in detail. 
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001421000000000000000">
 module.js</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Module.js defines the general behavior of the app and the interface to the user side.
+Module.js defines the general behavior of the app and the interface to the user side.
 Table <A HREF="#tab:module.json">13.1</A> 
 shows the structure of the file module.js with an explanation of each line item.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
 <BR><P></P>
-<DIV class="CENTER"><A ID="7206"></A>
+<DIV class="CENTER"><A ID="7207"></A>
 <TABLE>
 <CAPTION><STRONG>Table 13.1:</STRONG>
 Module.json details</CAPTION>
@@ -1602,22 +1556,20 @@ instantiating the module. See explanation of schema for details</TD>
 <A ID="tab:module.json"></A></TD></TR>
 </TABLE>
 </DIV><P></P>
-<BR>
-<DIV class="CENTER">	
-</DIV>
+<BR>	
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001422000000000000000">
 Schema</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The <SPAN  CLASS="textbf">schema</SPAN> is a JSON Structure to define the user interface of the module.
+The <SPAN  CLASS="textbf">schema</SPAN> is a JSON Structure to define the user interface of the module.
 It lists all input parameters and  options to be shown in the setup dialog of the app:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Schema Structure]
+<PRE>[Schema Structure]
 {
   "schema": {
     "type": "object",
@@ -1626,23 +1578,21 @@ It lists all input parameters and  options to be shown in the setup dialog of th
   }
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The structure of the schema is the following. Inside the 'properties' space the single 'properties' 
+The structure of the schema is the following. Inside the 'properties' space the single 'properties' 
 can be defined. They become the parameter of the module during the initiation and they 
 are shown as configuration parameters in the setup dialog. There are different
 types of input parameters:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001422100000000000000">
 Primitive data types like integer, float or string</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Schema Structure Simple Type]
+<PRE>[Schema Structure Simple Type]
 {
   //Parametername
   "name": {
@@ -1663,17 +1613,15 @@ Primitive data types like integer, float or string</A>
   },
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001422200000000000000">
 Name Spaces  - Enumerations with a choice</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Schema Structure Enumerations with a choice]
+<PRE>[Schema Structure Enumerations with a choice]
 {
   //Parametername
   "name": {
@@ -1685,50 +1633,45 @@ Name Spaces  - Enumerations with a choice</A>
   },
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Name spaces refer to the internal Z-Way structure. It allows to list elements from 
+Name spaces refer to the internal Z-Way structure. It allows to list elements from 
 the Z-Way data model and filter it. The statement 
 <SPAN  CLASS="texttt">"namespaces:devices_all:deviceId"</SPAN> will offer a selection of all devices.
-</DIV>
+
 <P>
-<DIV class="CENTER">Namespaces can also be combined like
-</DIV>
+Namespaces can also be combined like
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html256"
   HREF="namespaces:devices_doorlock:deviceId,namespaces:devices_switchBinary:deviceId">namespaces:devices_doorlock:deviceId,namespaces:devices_switchBinary:deviceId</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">which means devices doorlock and all binary switches.
+which means devices doorlock and all binary switches.
 Namespaces can also be REST paths like
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html257"
   HREF="server:port/v1/namespaces/devices_DEVICETYPE.PATH">server:port/v1/namespaces/devices_DEVICETYPE.PATH</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001423000000000000000">
 The file index.js</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Thew file index.js contains the application as such. It can include other js files is needed 
+Thew file index.js contains the application as such. It can include other js files is needed 
 but Z-Way will always look for a index.js file to load first. Table <A HREF="#tab:detailindexjs">13.2</A>
 list the basic structure of index.js with the minimum functions.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
 <BR><P></P>
-<DIV class="CENTER"><A ID="7237"></A>
+<DIV class="CENTER"><A ID="7238"></A>
 <TABLE>
 <CAPTION><STRONG>Table 13.2:</STRONG>
 Details of index.js</CAPTION>
@@ -1765,86 +1708,80 @@ function(parameter) </SPAN></SPAN></TD>
 <A ID="tab:detailindexjs"></A></TD></TR>
 </TABLE>
 </DIV><P></P>
-<BR>
-<DIV class="CENTER">	
-</DIV>
+<BR>	
+
 <P>
-<DIV class="CENTER">More information e.g. about the list of probe types etc. you find on 
-</DIV>
+More information e.g. about the list of probe types etc. you find on 
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html259"
   HREF="http://docs.zwayhomeautomation.apiary.io/">http://docs.zwayhomeautomation.apiary.io/</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION001430000000000000000"></A>
 <A ID="newddr"></A>
 <BR>
 Write you own Device Description Files
-</H1>
-<DIV class="CENTER"> 
-</DIV>
+</H1> 
+
 <P>
-<DIV class="CENTER">This part of the manual is not yet published because the service for creating own Device 
+This part of the manual is not yet published because the service for creating own Device 
 Description Files is not yet available.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION001440000000000000000"></A>
 <A ID="addenocean"></A>
 <BR>
 Extending EnOcean
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">How to include a new EnOcean Device (example Hoppe Door handle)
-</DIV>
+How to include a new EnOcean Device (example Hoppe Door handle)
+
 <P>
-<DIV class="CENTER">(1) Check if the profile is in <SPAN style="font-family:sans-serif"><B>/opt/z-way-server/config/Profile.xml</B></SPAN>. Not that 
+(1) Check if the profile is in <SPAN style="font-family:sans-serif"><B>/opt/z-way-server/config/Profile.xml</B></SPAN>. Not that 
 you just need to know the profile the given product supports. There is no way 
 to find out automatically! 
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[EnOcean Profile Entry]
+<PRE>[EnOcean Profile Entry]
 &lt;Profile rorg="0xf6" func="0x10" type="0x00" rorgDescription="RPS Telegram"
     funcDescription="Mechanical Handle" typeDescription="Window Handle"&gt;
   &lt;Field offset="0" size="4" name="windowHandle" type="int" description="Movement of the window handle" short="WIN" /&gt;
 &lt;/Profile&gt;
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">(2) Add the device record of the device to 
-</DIV>
+(2) Add the device record of the device to 
+
 <P>
-<DIV class="CENTER"><SPAN CLASS="SPAN"><SPAN style="font-family:sans-serif"><B>/opt/z-wave-server/htdocs/smarthome/storage/data/devices_encoean.json</B></SPAN>. 
+<SPAN CLASS="SPAN"><SPAN style="font-family:sans-serif"><B>/opt/z-wave-server/htdocs/smarthome/storage/data/devices_encoean.json</B></SPAN>. 
 </SPAN>
 Here the rorg, funcid and type are set. Now the device record will be created and the 
 right values are changed on message reception. Now you need to make sure the right  
 element is rendered and updated. This is 
 in <SPAN style="font-family:sans-serif"><B>/opt/z-wave-server/automation/modules/Enocean/index.js</B></SPAN>
-</DIV>
+
 <P>
-<DIV class="CENTER">First add a filter to catch the events and call the correct function:
-</DIV>
+First add a filter to catch the events and call the correct function:
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Catch Device IDs]
+<PRE>[Catch Device IDs]
 if (matchDevice(0xf6, 0x10, 0x01)) {
   // Hoppe Window handle
   windowHandle("contact", "window", "Windor Handle");
 }
 </PRE>
-<DIV class="CENTER">
 now you add the function that handles the value changes and renders the element 
 accordingly. For the window handle we use the binary sensor element but overwrite 
 the status information according to the information of the window handle moves.  
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Handle Device]
+<PRE>[Handle Device]
 function windowHandle(dh, type, title) {
 	var vDev = self.controller.devices.create({
 	deviceId: vDevIdPrefix + type,
@@ -1878,9 +1815,7 @@ if (vDev) {
 }
 }
 </PRE>
-<DIV class="CENTER">
  
-</DIV>
 <BR><HR>
 
 </BODY>

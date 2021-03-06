@@ -911,27 +911,25 @@
 <H1><A ID="SECTION001100000000000000000">
 Customize your system</A>
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION001110000000000000000"></A>
 <A ID="MakeSkins"></A>
 <BR>
 Skins
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Wouldn’t it be cool to have your own individual user interface controlling your own 
+Wouldn’t it be cool to have your own individual user interface controlling your own 
 individually designed Smart Home? Z-Way offers you exactly this feature&mdash;it is called <SPAN  CLASS="textbf">'Skin'</SPAN>.
 The Skin is a software package redefining all visual elements of your mobile and browser 
 interface including images, fonts, colors, wallpaper, etc. Figure <A HREF="#skin1">10.1</A> shows the 
 menu option for customization on the setup menu in the user interface.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="skin1"></A><A ID="4824"></A>
+
+<DIV class="CENTER"><A ID="skin1"></A><A ID="4825"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 10.1:</STRONG>
 Skin Setup</CAPTION>
@@ -944,40 +942,37 @@ Skin Setup</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Designing a new skin from scratch is a lot of work. It is easier to choose an already 
+Designing a new skin from scratch is a lot of work. It is easier to choose an already 
 existing skin. Go to Setup &gt; Management &gt; Customize and activate a new 
 skin. You can also download skins from the online server.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001111000000000000000">
 Step 1 - Do you own Skin</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">A skin consists of a set of images and a description file for fonts, colors, etc., 
+A skin consists of a set of images and a description file for fonts, colors, etc., 
 called CSS (Cascaded Style Sheets). See Annex A for links to more information about CSS.
-</DIV>
+
 <P>
-<DIV class="CENTER">The starting point for a new skin is a blank template you can download from
-</DIV>
+The starting point for a new skin is a blank template you can download from
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html194"
   HREF="http://github/z-wave-me/Skin-blank">http://github/z-wave-me/Skin-blank</A></kbd>
 </BLOCKQUOTE>.
-</DIV>
+
 <P>
-<DIV class="CENTER">This file is a zip archive you need to unzip into a temporary folder. This folder contains 
+This file is a zip archive you need to unzip into a temporary folder. This folder contains 
 two sub folders:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI><SPAN style="font-family:sans-serif"><B>/blank</B></SPAN>: This is the blank skin template including the CSS file main.css, a screenshot 
 image for the selection in the store and a subdirectory with all the images needed for the skin.
@@ -985,18 +980,16 @@ image for the selection in the store and a subdirectory with all the images need
 <LI><SPAN style="font-family:sans-serif"><B>/sass</B></SPAN>: This is the source code to generate the main.css&mdash;more on this magic later!
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001112000000000000000">
 Step 2 - Do your own Images</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="skin2"></A><A ID="4839"></A>
+
+<DIV class="CENTER"><A ID="skin2"></A><A ID="4840"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 10.2:</STRONG>
 Skin directory structue</CAPTION>
@@ -1009,14 +1002,13 @@ Skin directory structue</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Images are a central part of any skin. As shown in Figure <A HREF="#skin2">10.2</A> the /blank/img subdirectory 
+Images are a central part of any skin. As shown in Figure <A HREF="#skin2">10.2</A> the /blank/img subdirectory 
 contains two sub-directories and two files:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI><SPAN style="font-family:sans-serif"><B>/icons</B></SPAN>: The images of all the different elements. Please be aware that some element 
 types like dimmers have three, some have two, and some have only one icon. The names of the 
@@ -1033,123 +1025,115 @@ icons are self-explaining.
 <LI>Wallpaper.png: the wallpaper of the User Interface
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">There are plenty of tools to redesign and change images. This short write up will not 
+There are plenty of tools to redesign and change images. This short write up will not 
 explain this in detail but the Internet if full of resources for image editing. Just a few remarks:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>Use exactly the names of the icons as they are provided in the blank skins. Otherwise, they will not be used.
 </LI>
 <LI>Icons should be 64x64 pixels. Make them as small as possible allow fast loading
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Hint: The easiest change of a skin is just to replace the wallpaper image by something individual.
-</DIV>
+Hint: The easiest change of a skin is just to replace the wallpaper image by something individual.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001113000000000000000">
 Step 3 - Test the new Skin</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">A quick way to test a new skin is to load it directly to your Smart Home gateway running the 
+A quick way to test a new skin is to load it directly to your Smart Home gateway running the 
 Z-Way controller software. This is possible for all Z-Way installations running on a PC 
 (Linux, Windows) or on a Raspberry PI. Z-Way installations on other &ldquo;closed’’ boxes such 
 as Popp Hub are not suited for such a quick test drive&mdash;sorry!
-</DIV>
+
 <P>
-<DIV class="CENTER">First of all you <SPAN  CLASS="textbf">need to choose the &ldquo;Default Skin’’</SPAN> in your Z-W<SMALL>AY </SMALL>S<SMALL>MART </SMALL>H<SMALL>OME </SMALL>I<SMALL>NTERFACE </SMALL>on
+First of all you <SPAN  CLASS="textbf">need to choose the &ldquo;Default Skin’’</SPAN> in your Z-W<SMALL>AY </SMALL>S<SMALL>MART </SMALL>H<SMALL>OME </SMALL>I<SMALL>NTERFACE </SMALL>on
 Setup &gt; Management &gt; Customize. <SPAN  CLASS="textbf">Only the Default Skin</SPAN> 
 can be changed in the quick way described below.
-</DIV>
+
 <P>
-<DIV class="CENTER">Then you need a way to copy files of your new Skin on the Z-Way installation. This can 
+Then you need a way to copy files of your new Skin on the Z-Way installation. This can 
 be done using simple file copy (when developing on the PC running Z-Way) or using FTP. 
 You can replace all images by copying them into the folder.
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html196"
   HREF="/opt/z-way-server/automation/storage/images/">/opt/z-way-server/automation/storage/images/</A></kbd>
 </BLOCKQUOTE>.
-</DIV>
+
 <P>
-<DIV class="CENTER">One exception is the wallpager.png which is in the folder
-</DIV>
+One exception is the wallpager.png which is in the folder
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html197"
   HREF="/opt/z-way-server/htdocs/smarthome/app/css">/opt/z-way-server/htdocs/smarthome/app/css</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">like the main.css that holds all other settings.
-</DIV>
+like the main.css that holds all other settings.
+
 <P>
-<DIV class="CENTER">Once a new file is changed or uploaded reload the UI on your browser or restart your 
+Once a new file is changed or uploaded reload the UI on your browser or restart your 
 native app, and voila, your changes are visible.
-</DIV>
+
 <P>
-<DIV class="CENTER">Hint: To test a new wallpaper, just copy your file of choice to
-</DIV>
+Hint: To test a new wallpaper, just copy your file of choice to
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html198"
   HREF="/opt/z-way-server/htdocs/smarthome/app/css/wallpaper.png">/opt/z-way-server/htdocs/smarthome/app/css/wallpaper.png</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">and reload the page.
-</DIV>
+and reload the page.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001114000000000000000">
 Step 4 - Change colors, fonts, shapes – almost</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Colors, fonts, etc. are all controlled by the file main.css. Open this file in a text 
+Colors, fonts, etc. are all controlled by the file main.css. Open this file in a text 
 editor and you will be shocked by the about 10.000 lines of code. If you are a CSS pro 
 you may be able to edit this but this is not the recommended way to do this. CSS is great
  tool for shaping web pages but it has much legacy that makes it hard to edit manuals.
 However, if you really like to go that route Annex B will provide you some hints where to 
 find the important lines of code. Use at your own risk&mdash;you are warned.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001115000000000000000">
 Step 5 - Going into the SASS world</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">SASS is a preprocessor for generating CSS files. It extends CSS syntax and adds a few 
+SASS is a preprocessor for generating CSS files. It extends CSS syntax and adds a few 
 very useful functions such as central variables. This and a few other advantages caused 
 many web designers moving away from writing CSS directly but using SASS.
-</DIV>
+
 <P>
-<DIV class="CENTER">The disadvantage is that you need to have another software on your developer PC 
+The disadvantage is that you need to have another software on your developer PC 
 translating the SASS files into the final CSS (main.css). Annex B provides some links to 
 SASS tutorials and to some tools to translate from SASS into CSS.
-</DIV>
+
 <P>
-<DIV class="CENTER">We recommend the tool &ldquo;Scout’’ because it works equally well on Windows and on MAC, 
+We recommend the tool &ldquo;Scout’’ because it works equally well on Windows and on MAC, 
 is well documented and does most of the magic automatically.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>Download Scout from http://scout-app.io/ and install the tool
 </LI>
@@ -1165,13 +1149,12 @@ is well documented and does most of the magic automatically.
 for instructions on how to set up and use Scout.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Few Hints:
-</DIV>
+Few Hints:
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>Start Scout and setup as shown in the movie. Point to the folder /sass as source 
 folder and to the final folder of your skin as destination.
@@ -1181,17 +1164,15 @@ Whenever you change a SASS file the Scout application will detect it and automat
 update the generated main.css. Then you can upload the main.css to your test controller.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001116000000000000000">
 Step 6 - Changing SASS</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Finally we come to the point of making a real new Skin by changing the layout, color and 
+Finally we come to the point of making a real new Skin by changing the layout, color and 
 font definitions of the blank skin. For this you need to edit the sass files provided with 
 the blank skin.
 The central sass file is main.scss. It does not contain any layout definitions but loads 
@@ -1199,10 +1180,10 @@ all the other needed files only. The idea behind sass is among others to have di
 functions separated into different files. For the Skin in Z-Way however 98 % of all 
 changes will happen in only one file - /common/_variables.scss. This file contains 
 all major definitions for colors, shapes, sizes, fonts, etc.
-</DIV>
+
 <P>
-<DIV class="CENTER">Hint: A first run should be like:
-</DIV>
+Hint: A first run should be like:
+
 <OL>
 <LI>Change an important color, e.g. $app-color-primary: #000000;
 </LI>
@@ -1215,44 +1196,39 @@ all major definitions for colors, shapes, sizes, fonts, etc.
 <LI>Reload (and empty cache !!!) the web page and see the result
 </LI>
 </OL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001117000000000000000">
 Step 7 - Create the final Skin for friends, family and the public</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">In order to create a final skin file, a few more work needs to be done.
-</DIV>
+In order to create a final skin file, a few more work needs to be done.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001117100000000000000">
 Create a preview image</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Just make a screenshot of the new skin as preview. For the skin selection in the Z-W<SMALL>AY </SMALL>S<SMALL>MART </SMALL>H<SMALL>OME </SMALL>I<SMALL>NTERFACE </SMALL>
+Just make a screenshot of the new skin as preview. For the skin selection in the Z-W<SMALL>AY </SMALL>S<SMALL>MART </SMALL>H<SMALL>OME </SMALL>I<SMALL>NTERFACE </SMALL>
 the screenshot must be stored in the folder skinname/ and must be named screenshot.png 
 Recommended dimension for this image is 300px X 150px.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001117200000000000000">
 Collect all files together</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">You need a folder with the name of the skin. This contains the screenshot.png, the 
+You need a folder with the name of the skin. This contains the screenshot.png, the 
 wallpager.png and the main.css plus the subfolder (img that has two further subfolders 
 /logos and /icons)
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BR>
 <IMG STYLE=""
  SRC="img3.svg"
@@ -1271,29 +1247,27 @@ pare...
 ]
 \end{forest}">
 <BR>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001117300000000000000">
 Pack the files</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The whole folder needs to be packed now using ZIP archive program. On MAC please make sure 
+The whole folder needs to be packed now using ZIP archive program. On MAC please make sure 
 to use the ZIP command line and not the built-in compression tool of the finder. This 
 will not work. Move inside the folder of your skin (example above is /myskin) and execute &ldquo;zip -r -X myskin.zip *.’’
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001118000000000000000">
 Step 8 - Distribute your Skin</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="skin3"></A><A ID="4883"></A>
+
+<DIV class="CENTER"><A ID="skin3"></A><A ID="4884"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 10.3:</STRONG>
 Go to menu Skin</CAPTION>
@@ -1306,11 +1280,10 @@ Go to menu Skin</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="skin4"></A><A ID="4890"></A>
+
+<DIV class="CENTER"><A ID="skin4"></A><A ID="4891"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 10.4:</STRONG>
 Upload new Skin</CAPTION>
@@ -1323,11 +1296,10 @@ Upload new Skin</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="skin5"></A><A ID="4897"></A>
+
+<DIV class="CENTER"><A ID="skin5"></A><A ID="4898"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 10.5:</STRONG>
 Select the packed Skin</CAPTION>
@@ -1340,10 +1312,9 @@ Select the packed Skin</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <OL>
 <LI>If not done yet create your personal account on the https://developer.z-wave.me/
 </LI>
@@ -1358,51 +1329,46 @@ form is shown. In the form activate skin, enter title, UI version, Skin version,
 description, author name, homepage and upload a skin image. Click on update.
 </LI>
 </OL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001119000000000000000">
 Step 9 - Rewind in case something goes wrong</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">For sure you will end up with skin attempts that don't work well. In a worst-case scenario, 
+For sure you will end up with skin attempts that don't work well. In a worst-case scenario, 
 you can't even pick a different skin anymore and your default Skin was messed up. For 
 such a case, there is an emergency reset Just call the URL
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html203"
   HREF="http://IP:8083/ZAutomation/api/v1/skins/setToDefault">http://IP:8083/ZAutomation/api/v1/skins/setToDefault</A></kbd>
 </BLOCKQUOTE>.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION001120000000000000000">
 Icon Sets</A>
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">It is possible to add individual icon sets to the Z-Way and share it with others.
-</DIV>
+It is possible to add individual icon sets to the Z-Way and share it with others.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001121000000000000000">
 Create Your own Icons</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">First to the icon as such. They must have a size of 64x64 pixel and must be encoded in PNG 
+First to the icon as such. They must have a size of 64x64 pixel and must be encoded in PNG 
 image file format. You are free to make every icon you can imagine. Please note that 
 there is a list of typical devices where standard icons are applied:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>battery
 </LI>
@@ -1449,69 +1415,64 @@ there is a list of typical devices where standard icons are applied:
 <P>
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Please note as well that certain elements need two or even three icons to indicate 
+Please note as well that certain elements need two or even three icons to indicate 
 different status of their operation.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001122000000000000000">
 Create an Icon Pack</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">It is certainly possible to just replace the icons right in the User interface exchanging 
+It is certainly possible to just replace the icons right in the User interface exchanging 
 the file in the filesystem on /opt/zway-server but there is a much better way. Icons 
 should be grouped into icon sets and should be placed on the server to be available 
 for all Z-Way users.
 The grouped icons are called icon packs.
-</DIV>
+
 <P>
-<DIV class="CENTER">An icon pack is essentially a gz or zip archive file containing different icons. All 
+An icon pack is essentially a gz or zip archive file containing different icons. All 
 icons need to be stored in a subfolder with the name of the icon set. The archive must 
 then have the very same name.
 Only store the icons in the archive and not the subfolder itself!
 or Unix OS these commands will work:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <OL>
 <LI>cd /icons/youriconpack
 </LI>
 <LI>tar -cvzf youriconpack.gz *
 </LI>
 </OL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The total size of the archive must not exceed 2 MB.
-</DIV>
+The total size of the archive must not exceed 2 MB.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001123000000000000000">
 Upload your Icon Set</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">For this please register at
-</DIV>
+For this please register at
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <SPAN  CLASS="textbf">http://developer.z-wave.me/</SPAN>.
 
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER">Once logged in, the right-hand side menu icon allows opening the icon set management dialog as shown in Figure <A HREF="#iconspack1">10.6</A>
-</DIV>
+Once logged in, the right-hand side menu icon allows opening the icon set management dialog as shown in Figure <A HREF="#iconspack1">10.6</A>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="iconspack1"></A><A ID="4923"></A>
+
+<DIV class="CENTER"><A ID="iconspack1"></A><A ID="4924"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 10.6:</STRONG>
 Select the Icon pack</CAPTION>
@@ -1524,14 +1485,13 @@ Select the Icon pack</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Here you can create a new Icon pack record and manage you existing ones:
-</DIV>
+Here you can create a new Icon pack record and manage you existing ones:
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="iconspack2"></A><A ID="4930"></A>
+
+<DIV class="CENTER"><A ID="iconspack2"></A><A ID="4931"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 10.7:</STRONG>
 Manage an Icon pack</CAPTION>
@@ -1544,95 +1504,89 @@ Manage an Icon pack</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Please choose the title of your icon pack and provide a screenshot. This is the image shown 
+Please choose the title of your icon pack and provide a screenshot. This is the image shown 
 in the icon set preview as described in Section <A HREF="Web_Browser_User_Interface.html#customize">4.2.3</A>.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION001130000000000000000"></A>
 <A ID="sec:translation"></A>
 <BR>
 How to translate the Z-Way to your language
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"> Z-Way operates with two different user interface both having its own translation engines 
+Z-Way operates with two different user interface both having its own translation engines 
 and translation files. Additionally, the backend code will translate certain tokens already 
 when handling the data. Finally, the applications from the app store may need to be translated as well.
-</DIV>
+
 <P>
-<DIV class="CENTER">You can call all relevant files from info@z-wave.me or download from GitHub
-</DIV>
+You can call all relevant files from info@z-wave.me or download from GitHub
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <SPAN  CLASS="textbf">https://github.com/Z-Wave-Me/zwave-smarthome/tree/dev</SPAN>.
 
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER">You can also use the installation of Z-Way on your system if you have access to the file 
+You can also use the installation of Z-Way on your system if you have access to the file 
 system. The following tutorial assumes you have this access. This also allows you to 
 translate the strings and subsequently test the new UI. All Z-Way code you find in the 
 folder and subfolders of /z-way-server.
-</DIV>
+
 <P>
-<DIV class="CENTER">Please note that you can include your name, email, and company web page link to both UIs 
+Please note that you can include your name, email, and company web page link to both UIs 
 as a reward for doing the work. 
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001131000000000000000">
 Smart-Home User Interface</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">All translation tokens for the Smart Home UI can be found in /htdocs/smarthome/app/lang.
+All translation tokens for the Smart Home UI can be found in /htdocs/smarthome/app/lang.
 Just copy the file en.json to XX.json with XX as ISO 2 char code of your language. Start 
 translating the new file into your language.
-</DIV>
+
 <P>
-<DIV class="CENTER">In app/config.js find a language list array &ldquo;lang_list’’: ['en', 'de', 'ru', 'cn', 'fr']. 
+In app/config.js find a language list array &ldquo;lang_list’’: ['en', 'de', 'ru', 'cn', 'fr']. 
 Just add your 2-char code. In / htdocs /smarthome/app/images/flags the flag of 
 your country/language needs to be added. The code expects the file name XX.png with a 24x24 pixel PNG image.
-</DIV>
+
 <P>
-<DIV class="CENTER">For the standardized form dialogs of the application setups you find the language 
+For the standardized form dialogs of the application setups you find the language 
 tokens in app/core/config.js. The array &ldquo;lang_codes’’ need to be extended by your language.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001132000000000000000">
 Expert User Interface</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">All translation tokens for the Smart Home UI can be found in /htdocs/expert/app/lang. Just 
+All translation tokens for the Smart Home UI can be found in /htdocs/expert/app/lang. Just 
 copy the file en.json to XX.json with XX as ISO 2 char code of your language. Start 
 translating the new file into your language.
-</DIV>
+
 <P>
-<DIV class="CENTER">In app/config.js find a language list array &ldquo;lang_list’’: ['en', 'de', 'ru', 'cn', 'fr']. 
+In app/config.js find a language list array &ldquo;lang_list’’: ['en', 'de', 'ru', 'cn', 'fr']. 
 Just add your 2-char code.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001133000000000000000">
 Backend Code</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The subfolder /translations contains some XML files that are required for backend 
+The subfolder /translations contains some XML files that are required for backend 
 actions and rendering. These renderings are done in the backend and used in both Browser 
 Type User Interfaces. The main files to extend with own language are:
-</DIV>
+
 <OL>
 <LI>ScaleIDs.xml: Contains the scales for multilevel sensors. These Scale Strings are 
 displayed on both Expert UI and Smart Home UI whenever a sensor value is shown
@@ -1644,22 +1598,19 @@ strings are used in Expert UI and for the initial device name in Smart Home UI.
 the initial device name in Z-W<SMALL>AY </SMALL>S<SMALL>MART </SMALL>H<SMALL>OME </SMALL>I<SMALL>NTERFACE </SMALL>.
 </LI>
 </OL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">To alter and extend these files, please find out the ISO 2 char code of your language and add one line for each token.
-</DIV>
+To alter and extend these files, please find out the ISO 2 char code of your language and add one line for each token.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001134000000000000000">
 Submission of your Language Pack</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Please send the translated language files XX.json plus your flag plus any changed XML 
+Please send the translated language files XX.json plus your flag plus any changed XML 
 file zipped to info@z-wave.me for inclusion into the next release of the software.
-</DIV>
 <BR><HR>
 
 </BODY>

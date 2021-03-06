@@ -911,27 +911,25 @@
 <H1><A ID="SECTION00400000000000000000">
 Preparation and Ways to Access the  System</A>
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION00410000000000000000"></A>
-<A NAME="614"></A>
 <A NAME="615"></A>
+<A NAME="616"></A>
 <BR>
 Installation on Raspberry Pi
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Before you can use the RaZberry solution, you need to complete your gateway hardware 
+Before you can use the RaZberry solution, you need to complete your gateway hardware 
 and install the software.
-</DIV>
+
 <P>
-<DIV class="CENTER">Here are two ways to install and start Z-Way:
-</DIV>
+Here are two ways to install and start Z-Way:
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>A:  You do not have Linux OS on your Raspberry Pi installed yet. Please download 
 an SD card image (minimum 8 GB) from the download section of 
@@ -954,39 +952,35 @@ execute the following command line:
 <P>
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">You may need to configure the Wi-Fi access point of your Raspberry Pi in order to allow 
+You may need to configure the Wi-Fi access point of your Raspberry Pi in order to allow 
 direct wireless access.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION00420000000000000000"></A>
-<A NAME="623"></A>
+<A NAME="624"></A>
 <BR>
 Installation on other platforms using UZB
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION00421000000000000000">
 Unix-based Platforms</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Let’s assume you already have shell access to your system. You can download a binary 
-distribution from 
-<BLOCKQUOTE>
+Let’s assume you already have shell access to your system. You can download a binary 
+distribution from <BLOCKQUOTE>
 <kbd><A ID="tex2html17"
   HREF="https://razberry.z-wave.me/z-way-server">https://razberry.z-wave.me/z-way-server</A></kbd>
 </BLOCKQUOTE>.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="rootfile"></A><A ID="629"></A>
+
+<DIV class="CENTER"><A ID="rootfile"></A><A ID="630"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 3.1:</STRONG>
 Folder Content of Z-Way </CAPTION>
@@ -999,41 +993,38 @@ Folder Content of Z-Way </CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">and unpack it. The code can run on every place in the filesystem. Nevertheless, we 
+and unpack it. The code can run on every place in the filesystem. Nevertheless, we 
 recommend using <SPAN style="font-family:sans-serif"><B>/opt/z-way-server</B></SPAN> as the folder to store the codebase. The 
 folder content looks as shown in Figure <A HREF="#rootfile">3.1</A>. For more information on the 
 files and the file structure of Z-Way, please refer to Chapter <A HREF="Develop_Code_Z_Way.html#clevelapi">11.4</A>.
-</DIV>
+
 <P>
-<DIV class="CENTER"> Z-Way can then be started using the simple shell command from inside the Z-Way folder:
-</DIV>
+Z-Way can then be started using the simple shell command from inside the Z-Way folder:
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <SPAN style="font-family:sans-serif"><B>LD_LIBRARY_PATH=./libs ./z-way-server</B></SPAN>
 
 </BLOCKQUOTE>
-</DIV>
-<P>
-<DIV class="CENTER">Once the code is started, it is possible to access the standard user interface using 
 
+<P>
+Once the code is started, it is possible to access the standard user interface using 
 <BLOCKQUOTE>
 <kbd><A ID="tex2html19"
   HREF="http://localhost:8083">http://localhost:8083</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">To use Z-Wave, the correct port of the Z-Wave transceivers virtual serial port must be 
+To use Z-Wave, the correct port of the Z-Wave transceivers virtual serial port must be 
 configured. Please  go to the user interface menu and open the app <SPAN  CLASS="textbf"> 'Z-W<SMALL>AY </SMALL>N<SMALL>ETWORK </SMALL>A<SMALL>CCESS'</SMALL></SPAN> 
 as shown in Figure <A HREF="#zwaynetworkapp">3.2</A>. for more information about Z-Way aps please refer 
 to Chapter <A HREF="App_System_making_it_intell.html#apps">6</A>.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="zwaynetworkapp"></A><A ID="646"></A>
+
+<DIV class="CENTER"><A ID="zwaynetworkapp"></A><A ID="647"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 3.2:</STRONG>
 Z-Wave Network Access App</CAPTION>
@@ -1046,30 +1037,28 @@ Z-Wave Network Access App</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">After checking the right virtual port created by the operating system, please configure 
+After checking the right virtual port created by the operating system, please configure 
 this port name and save the settings. Now Z-Way should be up and running, and you may 
 want to create a startup script to make sure Z-Way is running right after booting.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION00422000000000000000"></A>
-<A NAME="651"></A>
+<A NAME="652"></A>
 <BR>
 Windows
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">First, note that the Windows platform is only partly supported. There is a binary distribution 
+First, note that the Windows platform is only partly supported. There is a binary distribution 
 for Windows, but it certainly lacks the level of testing required. Please use the binary 
 Windows distribution at your own risk.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="winsetup1"></A><A ID="655"></A>
+
+<DIV class="CENTER"><A ID="winsetup1"></A><A ID="656"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 3.3:</STRONG>
 Z-Way Windows Setup Wizard</CAPTION>
@@ -1082,15 +1071,14 @@ Z-Way Windows Setup Wizard</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Install the MSI file and start it. You will see a nice wizard&mdash;see Figure <A HREF="#winsetup1">3.3</A>
+Install the MSI file and start it. You will see a nice wizard&mdash;see Figure <A HREF="#winsetup1">3.3</A>
 &mdash;guiding you through the setup process.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="winsetup2"></A><A ID="663"></A>
+
+<DIV class="CENTER"><A ID="winsetup2"></A><A ID="664"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 3.4:</STRONG>
 Z-Way Windows Installation</CAPTION>
@@ -1103,14 +1091,13 @@ Z-Way Windows Installation</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The files are installed on the folder of choice as shown in Figure <A HREF="#winsetup2">3.4</A>.
-</DIV>
+The files are installed on the folder of choice as shown in Figure <A HREF="#winsetup2">3.4</A>.
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="winsetup3"></A><A ID="671"></A>
+
+<DIV class="CENTER"><A ID="winsetup3"></A><A ID="672"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 3.5:</STRONG>
 Windows Hardware manager with new COM port</CAPTION>
@@ -1123,21 +1110,20 @@ Windows Hardware manager with new COM port</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">If the UZB stick is plugged into the system, there is a new COM port created for this stick. 
+If the UZB stick is plugged into the system, there is a new COM port created for this stick. 
 Figure <A HREF="#winsetup3">3.5</A> shows the Windows hardware manager with the new port. After passing 
 the initial setup page, open the app <SPAN  CLASS="textbf"> 'Z-W<SMALL>AY </SMALL>N<SMALL>ETWORK </SMALL>A<SMALL>CCESS'</SMALL></SPAN> and double check the 
 right COM port. Note that there is a very special syntax for the COM port 
 <SPAN  CLASS="textbf">'\\.\COM3'</SPAN> for serial port 3.
-</DIV>
+
 <P>
-<DIV class="CENTER">Figure <A HREF="#winsetup4">3.6</A> shows this dialog.
-</DIV>
+Figure <A HREF="#winsetup4">3.6</A> shows this dialog.
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="winsetup4"></A><A ID="682"></A>
+
+<DIV class="CENTER"><A ID="winsetup4"></A><A ID="683"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 3.6:</STRONG>
 Z-Wave Network Access App with COM Port</CAPTION>
@@ -1150,16 +1136,15 @@ Z-Wave Network Access App with COM Port</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Under Windows, Z-Way runs as a service. You find the service entry in the Windows Service 
+Under Windows, Z-Way runs as a service. You find the service entry in the Windows Service 
 Management as shown in Figure <A HREF="#winsetup5">3.7</A>. This dialog also allows starting and stopping 
 the service.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="winsetup5"></A><A ID="690"></A>
+
+<DIV class="CENTER"><A ID="winsetup5"></A><A ID="691"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 3.7:</STRONG>
 Z-Wave as Windows service</CAPTION>
@@ -1172,25 +1157,23 @@ Z-Wave as Windows service</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION00430000000000000000"></A>
-<A ID="remoteaccess"></A><A NAME="696"></A>
+<A ID="remoteaccess"></A><A NAME="697"></A>
 <BR>
 Local and Remote Access
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"> Z-Way can be accessed in several ways:
-</DIV>
+Z-Way can be accessed in several ways:
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>Using a standard web browser<A ID="tex2html26"
-  HREF="#foot698"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A> on the controller’s IP address. There is an 
+  HREF="#foot699"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A> on the controller’s IP address. There is an 
 embedded webserver on Port 8083 providing the web pages of the user interface.
 </LI>
 <LI>Using a standard web browser but the redirection service <BLOCKQUOTE>
@@ -1208,16 +1191,14 @@ will only render the user interface differently.
 of the two options mentioned above.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Both the local access and the remote access using the find-service have their pros and 
+Both the local access and the remote access using the find-service have their pros and 
 cons as listed in Table <A HREF="#compaccess">3.1</A>:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
 <BR><P></P>
-<DIV class="CENTER"><A ID="708"></A>
+<DIV class="CENTER"><A ID="709"></A>
 <TABLE>
 <CAPTION><STRONG>Table 3.1:</STRONG>
 Comparison of Access methods</CAPTION>
@@ -1245,19 +1226,17 @@ due to complete end-2-end security</TD>
 <A ID="compaccess"></A></TD></TR>
 </TABLE>
 </DIV><P></P>
-<BR>
-<DIV class="CENTER">		
-</DIV>
+<BR>		
+
 <P>
-<DIV class="CENTER">The initial access to the user interface must be done using one of the local access routes. 
+The initial access to the user interface must be done using one of the local access routes. 
 Once Z-Way is running, the first access to the interface asks for some basic setup such 
 as the admin password and an email address to recover this password. Figure <A HREF="#init1">3.8</A> 
 shows this screen.
 The number provided in the title (1) is the unique <SPAN  CLASS="textbf">Z-Way Platform ID </SPAN>of the device and it will be needed 
 in the future to access the controller remotely using the find service. 
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BR>
 <BR>
 <!-- MATH
@@ -1276,19 +1255,19 @@ in the future to access the controller remotely using the find service.
 \end{center}\end{minipage}}">
 <BR>
 <BR>
-</DIV>
+
 <P>
-<DIV class="CENTER">The  <IMG STYLE=""
+The  <IMG STYLE=""
  SRC="./world.png"
  ALT="Image world"> on the upper right side 
 allows changing the interface language from 
 standard English to your chosen language. If your language is not yet available, you 
 may want to consider contributing a translation. Please refer to Chapter <A HREF="Customize_your_system.html#sec:translation">10.3</A> 
 for details on how to do this.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="init1"></A><A ID="726"></A>
+
+<DIV class="CENTER"><A ID="init1"></A><A ID="727"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 3.8:</STRONG>
 Initial setup of the Z-Way User Interface</CAPTION>
@@ -1301,25 +1280,24 @@ Initial setup of the Z-Way User Interface</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The language selection can be used for the user interface from this time on, but it can 
+The language selection can be used for the user interface from this time on, but it can 
 be changed in <IMG STYLE=""
  SRC="./smenu.png"
  ALT="Image smenu"> &gt; My Settings.
-</DIV>
+
 <P>
-<DIV class="CENTER">Please note that the email address provided for email recovery will not be stored outside 
+Please note that the email address provided for email recovery will not be stored outside 
 your controller, e.g. in a cloud service. This provides extra security but also means that 
 certain processes like restore are a bit more complicated than is usual.
-</DIV>
+
 <P>
-<DIV class="CENTER">After completing the setup, a welcome screen will guide you through the system and 
+After completing the setup, a welcome screen will guide you through the system and 
 introduce the basic user interface terms/dialogs.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>Element,
 </LI>
@@ -1336,35 +1314,32 @@ introduce the basic user interface terms/dialogs.
 <LI>Apps
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">It also offers buttons for direct access to the two most common actions right after installation:
-</DIV>
+It also offers buttons for direct access to the two most common actions right after installation:
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>Add a new physical device.
 </LI>
 <LI>Add some virtual device, internet service or application.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">After completing the setup, it is possible to access Z-Way using the find service, or install 
-a native app for the mobile phone. Open the url 
-<BLOCKQUOTE>
+After completing the setup, it is possible to access Z-Way using the find service, or install 
+a native app for the mobile phone. Open the url <BLOCKQUOTE>
 <kbd><A ID="tex2html30"
   HREF="https://find.z-wave.me/">https://find.z-wave.me/</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">The dialog on this find service, as shown in Figure <A HREF="#sh1">3.10</A>, is intentionally 
+The dialog on this find service, as shown in Figure <A HREF="#sh1">3.10</A>, is intentionally 
 simple. It offers two ways to log in:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>Using your <SPAN  CLASS="textbf">Z-Way Platform ID </SPAN>, along with your login name (Example: '23333/admin') and 
 your password for remote login and redirection
@@ -1377,11 +1352,10 @@ local IP login screen, as shown in Figure <A HREF="#init2">3.9</A>, where only n
 password are required.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="init2"></A><A ID="743"></A>
+
+<DIV class="CENTER"><A ID="init2"></A><A ID="744"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 3.9:</STRONG>
 Login on local IP address</CAPTION>
@@ -1394,11 +1368,10 @@ Login on local IP address</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="sh1"></A><A ID="750"></A>
+
+<DIV class="CENTER"><A ID="sh1"></A><A ID="751"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 3.10:</STRONG>
 Remote Login Screen</CAPTION>
@@ -1411,34 +1384,31 @@ Remote Login Screen</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The menu option <SPAN  CLASS="textbf">Logout</SPAN> in the setup menu of the user interface will terminate 
+The menu option <SPAN  CLASS="textbf">Logout</SPAN> in the setup menu of the user interface will terminate 
 the session and return you to the login screen or the find service depending on how to 
 log in. You can always force the termination of the find session by calling the 
-URL 
-<BLOCKQUOTE>
+URL <BLOCKQUOTE>
 <kbd><A ID="tex2html33"
   HREF="https://find.z-wave.me/zboxweb">https://find.z-wave.me/zboxweb</A></kbd>
 </BLOCKQUOTE>.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION00440000000000000000"></A>
-<A NAME="757"></A>
 <A NAME="758"></A>
+<A NAME="759"></A>
 <BR>
 Security and Privacy
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Security and privacy are of great importance. Z-Way tries to maximize security and privacy 
+Security and privacy are of great importance. Z-Way tries to maximize security and privacy 
 and will not compromise them in order to improve user experience and convenience.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>All user data including login name and email address are stored only locally, which 
 means that the controller must be available and connected to restore passwords. We 
@@ -1490,11 +1460,9 @@ only since Wi-Fi comes with its own very secure encryption based on WPA.
 <P>
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
 <BR><HR><H4>Footnotes</H4>
 <DL>
-<DT><A ID="foot698">... browser</A><A
+<DT><A ID="foot699">... browser</A><A
  HREF="Preparation_Ways_Access_Sys.html#tex2html26"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A></DT>
 <DD>We recommend Chrome, Firefox, or Safari 
 since we frequently see problems with MSIE.

@@ -913,18 +913,16 @@
 <BR>
 Develop Code for Z-Way 
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION001210000000000000000">
 Z-Way software structure overview</A>
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="apis"></A><A ID="5220"></A>
+
+<DIV class="CENTER"><A ID="apis"></A><A ID="5221"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 11.1:</STRONG>
 Z-Way APIs and their use by GUI demos</CAPTION>
@@ -933,21 +931,20 @@ Z-Way APIs and their use by GUI demos</CAPTION>
  ALT="Image apis"></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"> Z-Way offers multiple Application Program Interfaces (API) that are partly built on each 
+Z-Way offers multiple Application Program Interfaces (API) that are partly built on each 
 other. Figure <A HREF="#apis">11.1</A> shows the general structure of Z-Way with focus on the APIs. The 
 most important part of Z-Way is the Z-Wave core. The Z-Wave core uses the standard Silicon
 Labs Serial API to communicate with a Z-Wave compatible transceiver hardware but enhanced 
 with some Z-Way specific functions such as frequency change. The standard interface is 
 not public but available for owners of the Silicon Labs Development Kit (SDK)
 <A ID="tex2html207"
-  HREF="#foot5224"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A></DIV>
+  HREF="#foot5225"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A>
 <P>
-<DIV class="CENTER">The Z-Wave core services can be accessed directly using the Z-Wave Device API (zDev API). 
+The Z-Wave core services can be accessed directly using the Z-Wave Device API (zDev API). 
 There are two Z-Wave device API versions available:
-</DIV>
+
 <UL>
 <LI>Z-Wave API as JSON API: All functions are available using a JSON API implemented 
 by an embedded webserver. This web server can be used in two ways:
@@ -983,35 +980,34 @@ level API you find in Section <A HREF="#clevelapi">11.4</A>.
 <P>
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The <SPAN  CLASS="textbf">Z-Wave device API only allows the management of the Z-Wave network</SPAN> and 
+The <SPAN  CLASS="textbf">Z-Wave device API only allows the management of the Z-Wave network</SPAN> and 
 the control and management of the devices as such. No higher order logic except the 
 so-called Z-Wave associations between two Z-Wave devices can be used.
-</DIV>
+
 <P>
-<DIV class="CENTER">For all <SPAN  CLASS="textbf">automation and higher order logic a JavaScript automation engine</SPAN> 
+For all <SPAN  CLASS="textbf">automation and higher order logic a JavaScript automation engine</SPAN> 
 is available. This engine is also shipped with Z-Way.
-</DIV>
+
 <P>
-<DIV class="CENTER">The JavaScript API on top of the JS engine mirrors all functions of the Z-Wave Device API 
+The JavaScript API on top of the JS engine mirrors all functions of the Z-Wave Device API 
 but also allows access to third-party  device APIs (e.g. EnOcean). This means the JS API 
 is the common ground for all further application logic and user interfaces (with the 
 exception of the <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>that uses the Z-Wave Device API.
-</DIV>
+
 <P>
-<DIV class="CENTER">The JavaScript layer makes use of a JavaScript implementation provided by Google it 
+The JavaScript layer makes use of a JavaScript implementation provided by Google it 
 is also used in Googles Chrome web browser. All JavaScript API functions can also be 
 accessed using the embedded webserver. The beauty of this interface is that JavaScript 
 can be executed on the server and on the client. Executing on the client makes sense 
 for small changes to the data model or running small helper programs.
-</DIV>
+
 <P>
-<DIV class="CENTER">There are two important sub-portions of the JavaScript layer:
-</DIV>
+There are two important sub-portions of the JavaScript layer:
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>Virtual Devices (vDevs): All functions of the physical devices plus other functions are 
 mapped into virtual devices. Virtual devices have properties and attributes linked to 
@@ -1030,137 +1026,126 @@ for more information about the app concept and existing apps. Please refer to Ch
 <P>
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION001220000000000000000">
 Z-Way APIs Quick Reference</A>
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001221000000000000000"></A>
 <A ID="zwavedeviceapi"></A>
 <BR>
 Z-Wave Device API
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The Z-Wave Device API implements the direct access to the Z-Wave network. All Z-Wave devices 
+The Z-Wave Device API implements the direct access to the Z-Wave network. All Z-Wave devices 
 are referred to by their unique identification in the wireless network&mdash;the Node ID. 
 Z-Wave devices may have different instances of the same function, also called channels 
 (for example sockets in a power strip). The Z-Wave Device API refers to them as daughter 
 objects of the physical device object identified by an instance ID. In case there is 
 only one instance, the instance ID = 0 is used.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001221100000000000000">
 Sending Z-Wave Commands</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">All device variables and available commands in a Z-Wave device are grouped in the so-called 
+All device variables and available commands in a Z-Wave device are grouped in the so-called 
 command classes. The Z-Wave API allows direct access to all parameters, values and commands 
 of these command class structures. Annex <A HREF="Command_Class_Reference.html#ccs"><IMG  ALT="[*]" SRC="crossref.png"></A> gives you the complete reference of 
 the implemented command classes.
-</DIV>
+
 <P>
-<DIV class="CENTER">Beside the devices the Z-Wave Device API also offers access to the management interface of 
+Beside the devices the Z-Wave Device API also offers access to the management interface of 
 the network. Annex <A HREF="Function_Class_Reference.html#FunctionClasses"><IMG  ALT="[*]" SRC="crossref.png"></A> gives you a full reference of the implemented 
 function classes.
-</DIV>
+
 <P>
-<DIV class="CENTER">The Z-Wave Device API can be accessed on the JSON API with any standard web browser using the URL
-</DIV>
+The Z-Wave Device API can be accessed on the JSON API with any standard web browser using the URL
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html209"
   HREF="http://YOURIP:8083/ ZWaveAPI/*">http://YOURIP:8083/ ZWaveAPI/*</A></kbd>
 </BLOCKQUOTE>.
-</DIV>
+
 <P>
-<DIV class="CENTER">Device objects or commands of these objects are accessed by
-</DIV>
+Device objects or commands of these objects are accessed by
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html210"
   HREF="http://YOURIP:8083/ ZWaveAPI/Run/devices[*].* ">http://YOURIP:8083/ ZWaveAPI/Run/devices[*].* </A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html211"
   HREF="http://YOURIP:8083/ ZWaveAPI/Run/devices[x].instances[y].*">http://YOURIP:8083/ ZWaveAPI/Run/devices[x].instances[y].*</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html212"
   HREF="http://YOURIP:8083/ ZWaveAPI/Run/devices[x].instances[y].commandClasses[z].*">http://YOURIP:8083/ ZWaveAPI/Run/devices[x].instances[y].commandClasses[z].*</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">The whole data tree of the Z-Wave network is accessed using
-</DIV>
+The whole data tree of the Z-Wave network is accessed using
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html213"
   HREF="http://YOURIP:8083/ZWaveAPI/Data/*">http://YOURIP:8083/ZWaveAPI/Data/*</A></kbd>
 </BLOCKQUOTE>.
-</DIV>
+
 <P>
-<DIV class="CENTER">Please refer to the Z-Way for information about the context, the 
+Please refer to the Z-Way for information about the context, the 
 commands, and the data used. Section <A HREF="#c2">11.3</A> provides more information
 about the API and the underlying data structure.
-</DIV>
+
 <P>
-<DIV class="CENTER">All acces ot the webserver require authentication of the user. Please refer to Chapter 
+All acces ot the webserver require authentication of the user. Please refer to Chapter 
 <A HREF="Special_topics_Developers.html#cap:authentication">13.1</A> for details how to authenticate.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001222000000000000000">
 JavaScript API (JS API)</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The Z-Wave Device API or any other third-party technology API do not offer any higher order
+The Z-Wave Device API or any other third-party technology API do not offer any higher order
 logic support but the pure access to functions and parameters of devices only.
-</DIV>
+
 <P>
-<DIV class="CENTER"> Z-Way offers an automation engine to overcome this restriction. A server-side JavaScript 
+Z-Way offers an automation engine to overcome this restriction. A server-side JavaScript 
 runtime environment allows writing JavaScript modules that are executed within Z-Way 
 (means on the server). The same time all functions of the JS API can also be accessed on 
 the client side (the web browser). This offers some cool debug and test capabilities. 
 Among others it is possible to write whole JS functions right into the URL or the browser.
-</DIV>
+
 <P>
-<DIV class="CENTER">The JS API can be accessed from the web browser with the URL
-</DIV>
+The JS API can be accessed from the web browser with the URL
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html214"
   HREF="http://YOURIP:8083/JS/Run/*">http://YOURIP:8083/JS/Run/*</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">Among others the whole Z-Wave Device API is available within the JS API using 
+Among others the whole Z-Wave Device API is available within the JS API using 
 the object &ldquo;zway’‘. As a result, the following three statements refer to the very same function:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <OL>
 <LI><SPAN  CLASS="textbf">http://YOURIP:8083/ZWaveAPI/Run/devices[3].*</SPAN> Client Side URL access using the Z-Wave Device API.
 </LI>
@@ -1169,123 +1154,114 @@ the object &ldquo;zway’‘. As a result, the following three statements refer 
 <LI><SPAN  CLASS="textbf">zway.devices[3].*</SPAN>: Server Side access using the JS and the public zway object
 </LI>
 </OL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Due to the scripting nature of JavaScript it is possible to &ldquo;inject’‘ code at run time 
+Due to the scripting nature of JavaScript it is possible to &ldquo;inject’‘ code at run time 
 using the interface. Here a nice example how to use the JavaScript setInterval function:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Polling of device \#2]
+<PRE>[Polling of device \#2]
 /JS/Run/setInterval(function() {
     zway.devices[2].Basic.Get();
 }, 300*1000);
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">This code will, once &ldquo;executed’‘ as URL within a web browser, call the Get() command
+This code will, once &ldquo;executed’‘ as URL within a web browser, call the Get() command
 of the command class Basic of Node ID 2 every 300 seconds.
-</DIV>
+
 <P>
-<DIV class="CENTER">A very powerful function of the JS API is the ability to bind functions to certain values 
+A very powerful function of the JS API is the ability to bind functions to certain values 
 of the device tree. They get then executed when the value changes. Here is an example 
 for this binding. The device No. 3 has a command class SensorMultilevel that offers 
 the variable &ldquo;level.’’ The following call&mdash;both available on the client side and 
 on the server side&mdash;will bind a simple alert function to the change of the variable.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Bind a function]
+<PRE>[Bind a function]
 zway.devices[3].SensorMultilevel.data[1].val.bind( 
 	function() {
 	debugPrint('CHANGED TO:' + this.value + '\n');
 });
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"><A ID="tex2html215"
-  HREF="#foot5264"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A></DIV>
+<A ID="tex2html215"
+  HREF="#foot5265"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A>
 <P>
-<DIV class="CENTER">Chapter <A HREF="#c2">11.3</A> and <A HREF="#datamodel">11.3.1</A> describe the whole JS API in detail. The 
+Chapter <A HREF="#c2">11.3</A> and <A HREF="#datamodel">11.3.1</A> describe the whole JS API in detail. The 
 names and IDs of the different command classes as well as their instance variables 
 can be found in the Annex <A HREF="Command_Class_Reference.html#ccs"><IMG  ALT="[*]" SRC="crossref.png"></A>.
-</DIV>
+
 <P>
-<DIV class="CENTER">JavaScript modules can and will generate new functions that are accessible using the 
+JavaScript modules can and will generate new functions that are accessible using the 
 JSON interface. For simplification function calls on the API (means on the client side) 
 are written in URL style starting with the word &ldquo;ZAutomation’’:
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <DIV class="CENTER">
 /ZAutomation/JSfunction/JParameter
 == JSfunction(JParameter)
 
 </DIV>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001223000000000000000">
 Virtual Device API</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">All functions and instances of a physical device, which are represented as daughter objects
+All functions and instances of a physical device, which are represented as daughter objects
 in the Z-Wave Device API, are enrolled into individual virtual devices.
-</DIV>
+
 <P>
-<DIV class="CENTER">In case the Z-Wave API shows one single physical device with two channels, the Virtual 
+In case the Z-Wave API shows one single physical device with two channels, the Virtual 
 Device API will show two devices with similar functionality. In case the Z-Wave API shows 
 a physical device with several functions (like a binary switch and an analog sensor in 
 one device), the Virtual Device API (vDev API) will show them as several devices with 
 one function each.
-</DIV>
+
 <P>
-<DIV class="CENTER">The vDev is accessed using the JSON API in a slightly different style than zDev API. 
+The vDev is accessed using the JSON API in a slightly different style than zDev API. 
 All devices, variables, and commands are encoded into a URL style for easier handling 
 in AJAX code. A typical client-side command in the vDev API looks like
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html216"
   HREF="http://YOURIP:8083/ZAutomation/api/v1/devices/ZWayVDev_6:0:37/command/off">http://YOURIP:8083/ZAutomation/api/v1/devices/ZWayVDev_6:0:37/command/off</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">&ldquo;API’’ points to the vDev API function, &ldquo;v1’’ is just a constant to allow future extensions. 
+&ldquo;API’’ points to the vDev API function, &ldquo;v1’’ is just a constant to allow future extensions. 
 The devices are referred to by a name that is automatically generated from the Z-Wave Device 
 API. The vDev also unifies the commands &ldquo;command’’ and the parameters, here &ldquo;off.’’
-</DIV>
+
 <P>
-<DIV class="CENTER">On the server side, the very same command would be encoded in a JavaScript style.
-</DIV>
+On the server side, the very same command would be encoded in a JavaScript style.
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Bind a function]
+<PRE>[Bind a function]
 dev = this.controller.devices.get('ZWayVDev\_6:0:37');
 dev.command('off');
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The vDev API also offers support for notifications, locations information, the use of other modules, etc.
-</DIV>
+The vDev API also offers support for notifications, locations information, the use of other modules, etc.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001224000000000000000">
 Comparison</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Table <A HREF="#c1:comp">11.1</A> summarizes the functions of the different APIs.
-</DIV>
+Table <A HREF="#c1:comp">11.1</A> summarizes the functions of the different APIs.
+
 <P>
-<DIV class="CENTER"></DIV>
 <BR><P></P>
-<DIV class="CENTER"><A ID="5283"></A>
+<DIV class="CENTER"><A ID="5284"></A>
 <TABLE>
 <CAPTION><STRONG>Table 11.1:</STRONG>
 Different APIs of the Z-Way system</CAPTION>
@@ -1320,27 +1296,25 @@ Different APIs of the Z-Way system</CAPTION>
 <A ID="c1:comp"></A></TD></TR>
 </TABLE>
 </DIV><P></P>
-<BR>
-<DIV class="CENTER">		
-</DIV>
+<BR>		
+
 <H1><A ID="SECTION001230000000000000000"></A>
 <A ID="c2"></A>
 <BR>
 The Z-Wave Device (JSON) API in detail
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">This chapter describes the Z-Wave Device API and its use in detail All examples 
+This chapter describes the Z-Wave Device API and its use in detail All examples 
 will use the HTTP/JSON API notation. Please note that the C library notation offers 
 equal functionality.
-</DIV>
+
 <P>
-<DIV class="CENTER">The Z-Wave Device API is the north-bound interface of the Z-Wave Core. This Z-Wave 
+The Z-Wave Device API is the north-bound interface of the Z-Wave Core. This Z-Wave 
 core implement the whole control logic of the Z-Wave network. The two main functions are
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>Management of the network. This includes including and excluding devices, managing 
 the routing and rerouting of the network an executing some housekeeping functions to 
@@ -1356,43 +1330,40 @@ so-called command classes. The Z-Wave API offers access to these command classes
 their variables and their commands according to the abilities of the respective device.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The description of function classes and command Cclasses and their access using the JSON 
+The description of function classes and command Cclasses and their access using the JSON 
 API complete the description of the Z-Wave Device API. For a full reference of function 
 classes and command classes please refer to the Annex <A HREF="Function_Class_Reference.html#FunctionClasses"><IMG  ALT="[*]" SRC="crossref.png"></A> and <A HREF="Command_Class_Reference.html#CommandClasses"><IMG  ALT="[*]" SRC="crossref.png"></A>.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001231000000000000000"></A>
 <A ID="datamodel"></A>
 <BR>
 The data model
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"> Z-Way holds all data of the Z-Way network in a data holder structure. The data holder 
+Z-Way holds all data of the Z-Way network in a data holder structure. The data holder 
 structure is a hierarchical tree of data elements.
-</DIV>
+
 <P>
-<DIV class="CENTER">Following the object-oriented software paradigm the different commands targeting the 
+Following the object-oriented software paradigm the different commands targeting the 
 network or individual devices are also embedded into the data objects as object methods.
-</DIV>
+
 <P>
-<DIV class="CENTER">Each data element is handled in a data object that contains the data element and some contextual data.
-</DIV>
+Each data element is handled in a data object that contains the data element and some contextual data.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001231100000000000000">
 The Data object</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Each Data element such as devices[nodeID].data.nodeId is an object with the following child elements:
-</DIV>
+Each Data element such as devices[nodeID].data.nodeId is an object with the following child elements:
+
 <UL>
 <LI>value: the value itself
 </LI>
@@ -1404,24 +1375,23 @@ The Data object</A>
 command to a device and expecting a Report command from the device
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Every time a command is issued that will have impact on a certain data holder value the 
+Every time a command is issued that will have impact on a certain data holder value the 
 time of the request is stored in "invalidateTime".
 This allows tracking when a new data value is requested from the network and when this 
 new data value is provided by the network.
-</DIV>
+
 <P>
-<DIV class="CENTER">This is particularly true if Z-Way is sending a SET command. In this case the data value 
+This is particularly true if Z-Way is sending a SET command. In this case the data value 
 is invalidated with the "SET" commands and gets validated back when the result of the GET 
 command was finally stored in the data model.
-</DIV>
+
 <P>
-<DIV class="CENTER">To maintain compatibility with JavaScript the data object has the following methods implemented:
-</DIV>
+To maintain compatibility with JavaScript the data object has the following methods implemented:
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>valueOf(): this allows to obmit .value in JS code, hence write as an example data.level = 255
 </LI>
@@ -1430,15 +1400,14 @@ command was finally stored in the data model.
 <LI>invalidated(): alias to invalidateTime
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">These aliases are not enumerated if the dataholder is requested (data.level returns 
+These aliases are not enumerated if the dataholder is requested (data.level returns 
 value: 255, name: "level", updatedTime: 12345678, invalidatedTime: 12345678).
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="zwaystructure"></A><A ID="5479"></A>
+
+<DIV class="CENTER"><A ID="zwaystructure"></A><A ID="5480"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 11.2:</STRONG>
 Z-Way Object Tree Structure</CAPTION>
@@ -1451,18 +1420,16 @@ Z-Way Object Tree Structure</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001231200000000000000">
 The Data and Method Tree</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The root of the data tree has two important child objects:
-</DIV>
+The root of the data tree has two important child objects:
+
 <UL>
 <LI>controller, this is the data object that holds all data and methods 
 (commands, mainly function classes) related to the Z-Way controller as such 
@@ -1471,27 +1438,25 @@ The Data and Method Tree</A>
 data and methods (commands, mainly command classes).
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001232000000000000000">
 Timing behavior of Z-Wave data</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"><SPAN  CLASS="textbf">Please note that all status variables accessible on the Z-Wave Device APIs
+<SPAN  CLASS="textbf">Please note that all status variables accessible on the Z-Wave Device APIs
 are only proxy of the real value in the network.</SPAN>
-</DIV>
+
 <P>
-<DIV class="CENTER">To transport data between the real wireless device and the GUI multiple 
+To transport data between the real wireless device and the GUI multiple 
 communication instances are involved. The complexity of this communication 
 chain will be explained in the following example:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="zwaytimings"></A><A ID="5491"></A>
+
+<DIV class="CENTER"><A ID="zwaytimings"></A><A ID="5492"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 11.3:</STRONG>
 Z-Way Timings</CAPTION>
@@ -1504,10 +1469,9 @@ Z-Way Timings</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Assuming the GUI shows the status of a remote switch and allows changing the switching 
+Assuming the GUI shows the status of a remote switch and allows changing the switching 
 state of this device. When the user hits the switching button, he expects to see the 
 result of his action as a changing status of the device in the GUI. The first step is 
 to hand over the command (SET) from the GUI to Z-Way using the JSON interface. Z-Way 
@@ -1537,50 +1501,47 @@ new status of the switching device. Now the transceiver has to confirm the recep
 The transceiver will then send the new value to the Z-Way engine by issuing commands 
 via the serial interface. Z-Way receives the report and will update the switching 
 state and validate the value. From now on the GUI will receive a new state when polling.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001233000000000000000"></A>
 <A ID="jsapiexec"></A>
 <BR>
 Executing Commands
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">JSON API allows executing commands on the server side using HTTP POST or GET requests. 
+JSON API allows executing commands on the server side using HTTP POST or GET requests. 
 The command to execute is taken from the URL.
-</DIV>
+
 <P>
-<DIV class="CENTER">All functions are executed in form
-</DIV>
+All functions are executed in form
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html220"
   HREF="http://YOURIP:8083/Run/ZWaveAPI*">http://YOURIP:8083/Run/ZWaveAPI*</A></kbd>
 </BLOCKQUOTE>.
-</DIV>
+
 <P>
-<DIV class="CENTER">The best way to learn about the commands and the data is to use the <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>plus 
+The best way to learn about the commands and the data is to use the <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>plus 
 a JavaScript Debugger to see the command the AJAX code of the <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>sends to the 
 Z-Way server backend. Additionally the Z-Wave Expert User Interface provides nice and 
 convenient vizualization of all commends (both command classes and function classes).
-</DIV>
+
 <P>
-<DIV class="CENTER">All acces ot the webserver require authentication of the user. Please refer to Chapter 
+All acces ot the webserver require authentication of the user. Please refer to Chapter 
 <A HREF="Special_topics_Developers.html#cap:authentication">13.1</A> for details how to authenticate.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001233100000000000000">
 Function Class Commands</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="dev3"></A><A ID="5503"></A>
+
+<DIV class="CENTER"><A ID="dev3"></A><A ID="5504"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 11.4:</STRONG>
 Z-Way Function Classes</CAPTION>
@@ -1593,38 +1554,35 @@ Z-Way Function Classes</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Figure <A HREF="#dev3">11.4</A> shows the Controller Info Page in Network menu with a list of all 
+Figure <A HREF="#dev3">11.4</A> shows the Controller Info Page in Network menu with a list of all 
 function classes implemented. The complete reference of the parameters and return 
 values of the functions classes you find in annex <A HREF="Function_Class_Reference.html#FunctionClasses"><IMG  ALT="[*]" SRC="crossref.png"></A>.
-</DIV>
+
 <P>
-<DIV class="CENTER">Assuming there is a function class &ldquo;SerialAPIGetInitData’’ it is possible to call 
+Assuming there is a function class &ldquo;SerialAPIGetInitData’’ it is possible to call 
 the function by calling the URL
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html222"
   HREF="/ZWaveAPI/Run/SerialAPIGetInitData(0)">/ZWaveAPI/Run/SerialAPIGetInitData(0)</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">in the web browser. In case the function was completed successfully, a simple &ldquo;null’’ 
+in the web browser. In case the function was completed successfully, a simple &ldquo;null’’ 
 is returned; otherwise, an error code is provided.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001233200000000000000">
 Device Command Class Commands</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="dev0"></A><A ID="5514"></A>
+
+<DIV class="CENTER"><A ID="dev0"></A><A ID="5515"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 11.5:</STRONG>
 Z-Way Expert Command Class Commands</CAPTION>
@@ -1637,37 +1595,33 @@ Z-Way Expert Command Class Commands</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">In the same manner, it is possible to send a command to a device using one of its command 
+In the same manner, it is possible to send a command to a device using one of its command 
 classes. The <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>provides a general menu item called Expert Commands as 
 shown in Figure <A HREF="#dev0">11.5</A>. Z-Way reads out all command classes and its functions and
  provides here a complete list of command lass-specific commands. The debug window will 
  reveal the syntax if the complete command class reference in Annex <A HREF="Command_Class_Reference.html#ccs"><IMG  ALT="[*]" SRC="crossref.png"></A> is not 
 available or too inconvenient to use.
-</DIV>
+
 <P>
-<DIV class="CENTER">For example, to switch ON a device no 2 using the command class BASIC, it is possible to write:
-</DIV>
+For example, to switch ON a device no 2 using the command class BASIC, it is possible to write:
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <SPAN CLASS="SPAN"><SPAN  CLASS="texttt">/ZWaveAPI/Run/devices[2].instances[0].commandClasses[0x20].Set(255)</SPAN>
 
 </SPAN></BLOCKQUOTE>
 or
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 /ZWaveAPI/Run/devices[2].instances[0].Basic.Set(255)
 
 </BLOCKQUOTE>
-</DIV>
-<P>
-<DIV class="CENTER">The <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>has a JavaScript command 
 
+<P>
+The <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>has a JavaScript command 
 <BLOCKQUOTE>
 <SPAN style="font-family:sans-serif"><B>runCmd(<SPAN CLASS="MATH">&lt;</SPAN>command<SPAN CLASS="MATH">&gt;</SPAN>)</B></SPAN>
 
@@ -1676,22 +1630,21 @@ to simplify such operations.
 This function is accessible in the JavaScript console of your web browser 
 (in Chrome you find the JavaScript console under View-<SPAN CLASS="MATH">&gt;</SPAN>Debug-<SPAN CLASS="MATH">&gt;</SPAN>JS Console). 
 Using this feature, the command in JS console would look like
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <SPAN style="font-family:sans-serif"><B>runCmd('devices[2].instances[0].Basic.Set(255)')</B></SPAN>
 
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER">The usual way to access a command class is using the format 
+The usual way to access a command class is using the format 
 <BR>'devices[nodeId].instances[instanceId].
 commandClasses[commandclassId]'.
 There are ways to simplify the syntax:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>&ldquo;devices[nodeId].instances[instanceId].Basic’’ is equivalent to 
 <BR>&ldquo;devices[nodeId].instances[instanceId].commandClasses[0x20]’’
@@ -1700,17 +1653,15 @@ There are ways to simplify the syntax:
 &ldquo;devices[nodeId].instances[instanceId].Basic’’ then turns into &ldquo;devices[nodeId].Basic’’
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001233300000000000000">
 Accessing Data</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The data model or data holder object as described is Section <A HREF="#datamodel">11.3.1</A> can be 
+The data model or data holder object as described is Section <A HREF="#datamodel">11.3.1</A> can be 
 accessed completely using the <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>. The two 
 buttons <SPAN  CLASS="textbf">Show controller Data</SPAN> and <SPAN  CLASS="textbf">Show controllers device data</SPAN> in 
 Network &gt; Controller
@@ -1723,10 +1674,10 @@ devices can be access using <SPAN  CLASS="textbf">Configuration &gt; Show Interv
 Figure <A HREF="#dev1">11.6</A> shows this dialog. On the top of the window there is a button with 
 the devices name. This button reveals the data structure of the individual device 
 as shown in Figure <A HREF="#dev2">11.7</A>.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="dev1"></A><A ID="5545"></A>
+
+<DIV class="CENTER"><A ID="dev1"></A><A ID="5546"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 11.6:</STRONG>
 Command Class Inerview overview</CAPTION>
@@ -1739,11 +1690,10 @@ Command Class Inerview overview</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="dev2"></A><A ID="5552"></A>
+
+<DIV class="CENTER"><A ID="dev2"></A><A ID="5553"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 11.7:</STRONG>
 Command Class Variables in <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN></CAPTION>
@@ -1756,15 +1706,14 @@ Command Class Variables in <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMALL>E<SMALL>X
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The dialog has the list of all command classes and clicking on the name of the command 
+The dialog has the list of all command classes and clicking on the name of the command 
 class will open a sub dialog showing the data of the commend class. Each command class 
 has some permanent values:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>supported: This indicates if this command classes is supported or controlled only
 </LI>
@@ -1781,37 +1730,35 @@ Z-Way will give up interviewing. This makes sure that Z-Way is not blocked by de
 with wrong implementation not passing interview.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Any data holder object has properties value, updateTime, invalidateTime, name, but for 
+Any data holder object has properties value, updateTime, invalidateTime, name, but for 
 compatibility with JS and previous versions we have valueOf() method (allows 
 omitting .value in JS code, hence write "data.level == 255"), updated (alias to updateTime), 
 invalidated (alias to invalidateTime).
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001233400000000000000">
 /ZWaveAPI/Data/<SPAN CLASS="MATH">&lt;</SPAN>timestamp<SPAN CLASS="MATH">&gt;</SPAN></A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Returns an associative array of changes in Z-Way data tree since <SPAN CLASS="MATH">&lt;</SPAN>timestamp<SPAN CLASS="MATH">&gt;</SPAN>. The array 
+Returns an associative array of changes in Z-Way data tree since <SPAN CLASS="MATH">&lt;</SPAN>timestamp<SPAN CLASS="MATH">&gt;</SPAN>. The array 
 consists of (<SPAN CLASS="MATH">&lt;</SPAN>path<SPAN CLASS="MATH">&gt;</SPAN>: <SPAN CLASS="MATH">&lt;</SPAN>JSON object<SPAN CLASS="MATH">&gt;</SPAN>) object pairs. The client is supposed to assign 
 the new <SPAN CLASS="MATH">&lt;</SPAN>JSON object<SPAN CLASS="MATH">&gt;</SPAN> to the subtree with the <SPAN CLASS="MATH">&lt;</SPAN>path<SPAN CLASS="MATH">&gt;</SPAN> discarding previous content 
 of that subtree. Zero (0) can be used instead of <SPAN CLASS="MATH">&lt;</SPAN>timestamp<SPAN CLASS="MATH">&gt;</SPAN> to obtain the full Z-Way 
 data tree.
-</DIV>
+
 <P>
-<DIV class="CENTER">The tree have same structure as the backend tree (Figure <A HREF="#zwaystructure">11.2</A>) with one 
+The tree have same structure as the backend tree (Figure <A HREF="#zwaystructure">11.2</A>) with one 
 additional root element "updateTime" which contains the time of latest update. This 
 "updateTime" value should be used in the next request for changes. All timestamps 
 (including updateTime) corresponds to server local time.
-</DIV>
+
 <P>
-<DIV class="CENTER">The object looks like:
-</DIV><PRE>[JSON Data Structure]
+The object looks like:
+<PRE>[JSON Data Structure]
 \{
   "[path from the root]": [updated subtree],
   "[path from the root]": [updated subtree],
@@ -1819,50 +1766,45 @@ additional root element "updateTime" which contains the time of latest update. T
   updateTime: [current timestamp]
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Examples for Commands to update the data tree look like:
-</DIV>
+Examples for Commands to update the data tree look like:
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 Get all data: /ZWaveAPI/Data/0
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 Get updates since 134500000 (Unix timestamp): /ZWaveAPI/Data/134500000
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER">Please note that during data updates some values are updated by big subtrees. For 
+Please note that during data updates some values are updated by big subtrees. For 
 example, in Meter Command Class value of a scale is always updated as a scale 
 subtree by [scale].val object (containing scale and type descriptions).
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001233500000000000000">
 /ZWaveAPI/InspectQueue</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">This function is used to visualize the Z-Way job queue. This is for debugging only but 
+This function is used to visualize the Z-Way job queue. This is for debugging only but 
 very useful to understand the current state of Z-Way engine.
-</DIV>
+
 <P>
-<DIV class="CENTER">The information given on this page is only relevant for advanced Z-Wave developers and 
+The information given on this page is only relevant for advanced Z-Wave developers and 
 for debugging.
-</DIV>
+
 <P>
-<DIV class="CENTER">The table shows the active jobs with their respective status and additional information.
-</DIV>
+The table shows the active jobs with their respective status and additional information.
+
 <P>
-<DIV class="CENTER"></DIV>
 <BR><P></P>
-<DIV class="CENTER"><A ID="5572"></A>
+<DIV class="CENTER"><A ID="5573"></A>
 <TABLE>
 <CAPTION><STRONG>Table 11.2:</STRONG>
 Parameters of the Job Queue Vizualization</CAPTION>
@@ -1905,79 +1847,73 @@ Buffer: It shows the hex values of the command sent within this job</TD>
 </TABLE>
 </DIV><P></P>
 <BR>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Table <A HREF="#c1:queuecommands">11.2</A> summarizes the different values displayed on the Job Queue 
+Table <A HREF="#c1:queuecommands">11.2</A> summarizes the different values displayed on the Job Queue 
 visualization. While this info is certainly not relevant for end users of the system it 
 is a great debug tool.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001233600000000000000">
 Handling of updates coming from Z-Way </A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">A good design of a user interface is linking UI objects (label, textbox, slider, ...) to a certain 
+A good design of a user interface is linking UI objects (label, textbox, slider, ...) to a certain 
 path in the tree object. Any update of a subtree linked to user interface will then update the user interface
 too. This is called bindings.
-</DIV>
+
 <P>
-<DIV class="CENTER">For web applications Z-Way contains a library called jQuery.triggerPath (extention of 
+For web applications Z-Way contains a library called jQuery.triggerPath (extention of 
 jQuery written by Z-Wave.Me), that allows making such links between objects in the 
 tree and HTML DOM objects. Use
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 var tree;
 </BLOCKQUOTE>
-
 <BLOCKQUOTE>
 jQuery.triggerPath.init(tree);
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER">during web application initialization to attach the library to a tree object. Then run
-</DIV>
+during web application initialization to attach the library to a tree object. Then run
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 jQuery([objects selector]).bindPath([path with regexp], [updater function],
 [additional arguments]);
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER">to make binding between path changes and updater function. The updater function would be 
+to make binding between path changes and updater function. The updater function would be 
 called upon changes in the desired object with this pointing to the DOM object itself, 
 first argument pointing to the updated object in the tree, second argument is the exact 
 path of this object (fulfilling the regexp) and all other arguments copies additional 
 arguments. RegExp allows only few control characters: * is a wildcard, (1|2|3) - is 1 or 2 or 3.
-</DIV>
+
 <P>
-<DIV class="CENTER"><SPAN  CLASS="textbf">Please note that the use of the triggerpath extension is one option to handle 
+<SPAN  CLASS="textbf">Please note that the use of the triggerpath extension is one option to handle 
 the incoming data. You can also extract all the interesting values right when the 
 data is received and bind update functions to them.</SPAN>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001233700000000000000">
 Handling S2 inclusion process</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Security S2 inclusion process require additional interaction with the user
+Security S2 inclusion process require additional interaction with the user
 during inclusion process. In addition to putting the device in Learn Mode
 and Z-Way in Add mode the user will be asked to grant different Security S2 keys
 and enter the PIN code.
-</DIV>
+
 <P>
-<DIV class="CENTER">To implement Security S2 inclusion process in your own app follow the steps
+To implement Security S2 inclusion process in your own app follow the steps
 below:
-</DIV>
+
 <UL>
 <LI>Include the device
 </LI>
@@ -2001,44 +1937,41 @@ set to True. A successfull one will have <SPAN CLASS="SPAN"><SPAN  CLASS="texttt
 equal to False and <SPAN CLASS="SPAN"><SPAN  CLASS="texttt">data.interviewDone</SPAN></SPAN> equal to True.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION001240000000000000000"></A>
 <A ID="clevelapi"></A>
 <BR>
 C-Library API and a general view on the Z-Way file structure
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001241000000000000000"></A>
-<A ID="c11:zwayfolder"></A><A NAME="5601"></A>
-<A NAME="5602"></A>
+<A ID="c11:zwayfolder"></A><A NAME="5602"></A>
 <A NAME="5603"></A>
 <A NAME="5604"></A>
+<A NAME="5605"></A>
 <BR>
 Files in the /zway folder
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"> Z-Way keeps all files in one folder with exception of the log files. In Unix based 
+Z-Way keeps all files in one folder with exception of the log files. In Unix based 
 platforms such as Linux PC, Raspberry Pi or open WRT the standard install folder 
 is usually <SPAN style="font-family:sans-serif"><B>/opt/zway-server</B></SPAN>. The logfile is typically placed in 
 <SPAN style="font-family:sans-serif"><B>/var/log/z-way-server.log</B></SPAN> but this location of the log file can be 
 reconfigured in the config file.
-</DIV>
+
 <P>
-<DIV class="CENTER">On Windows, the installation wizard asked where to place Z-Way and where to place the log file.
-</DIV>
+On Windows, the installation wizard asked where to place Z-Way and where to place the log file.
+
 <P>
-<DIV class="CENTER">Right after installation, the standard folder has the following content:
-</DIV>
+Right after installation, the standard folder has the following content:
+
 <P>
-<DIV class="CENTER"><SPAN CLASS="FOOTNOTESIZE">
+<SPAN CLASS="FOOTNOTESIZE">
 <BR>
 <IMG STYLE=""
  SRC="img4.svg"
@@ -2054,23 +1987,22 @@ pare...
 ]
 \end{forest}">
 <BR></SPAN>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001241100000000000000">
 config.xml - the main config file</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The main config file in the root folder has XML file format. If only allows setting the 
+The main config file in the root folder has XML file format. If only allows setting the 
 log level (0 = log all, 9 = log almost nothing), the path to the log file and a debug 
 port if needed. Don't change the setting for automation folder unless you really 
 know what you do and why.
-</DIV>
+
 <P>
-<DIV class="CENTER">This is an example for the standard config.xml displaying all log right into the console.
-</DIV><PRE>[config.xml]
+This is an example for the standard config.xml displaying all log right into the console.
+<PRE>[config.xml]
 &lt;config&gt;
     &lt;automation-dir&gt;automation&lt;/automation-dir&gt;
     &lt;log-file&gt;&lt;/log-file&gt;
@@ -2078,20 +2010,18 @@ know what you do and why.
     &lt;debug-port&gt;0&lt;/debug-port&gt;
 &lt;/config&gt;
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001241200000000000000">
 config: Various configuration xml files</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">This subfolder has the following structure:
-</DIV>
+This subfolder has the following structure:
+
 <P>
-<DIV class="CENTER"><SPAN CLASS="FOOTNOTESIZE">
+<SPAN CLASS="FOOTNOTESIZE">
 <BR>
 <IMG STYLE=""
  SRC="img5.svg"
@@ -2112,9 +2042,9 @@ pare...
 
 <BR>
 The file <SPAN style="font-family:sans-serif"><B>Defaults.xml</B></SPAN> allows defining various behavior of Z-Way, among them the appearance of Z-Way as secondary controller:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>AutoConfig: Flag if Z-Way shall interview the device right after inclusion (default = 1)
 </LI>
@@ -2209,24 +2139,22 @@ and new 5gen it can be up to 40 bytes
 <P>
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The file <SPAN style="font-family:sans-serif"><B>Profiles.xml</B></SPAN> contains the EnOcean profile definition. This clearly 
+The file <SPAN style="font-family:sans-serif"><B>Profiles.xml</B></SPAN> contains the EnOcean profile definition. This clearly 
 reflects the official profile definitions published by the EnOcean alliance.
-</DIV>
+
 <P>
-<DIV class="CENTER">The file <SPAN style="font-family:sans-serif"><B>Rules.xml</B></SPAN> is a legacy file.
-</DIV>
+The file <SPAN style="font-family:sans-serif"><B>Rules.xml</B></SPAN> is a legacy file.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001241300000000000000">
 translations: XMLs mapping Ids to text</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"><SPAN CLASS="FOOTNOTESIZE">
+<SPAN CLASS="FOOTNOTESIZE">
 <BR>
 <IMG STYLE=""
  SRC="img6.svg"
@@ -2241,25 +2169,24 @@ pare...
 ]
 \end{forest}">
 <BR></SPAN>
-</DIV>
+
 <P>
-<DIV class="CENTER">All files in this subfolder are XML files and some of them require local language 
+All files in this subfolder are XML files and some of them require local language 
 translations, as described in Chapter <A HREF="Customize_your_system.html#sec:translation">10.3</A>.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001241400000000000000">
 ZDDX: Device Description Files</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">ZDDX files (Z-Wave Device Description XML Files) are XML files containing verbal 
+ZDDX files (Z-Wave Device Description XML Files) are XML files containing verbal 
 description of a specific Z-Wave device that cannot be called from the device itself 
 during the interview process: They are:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>The naming of Association Groups. Modern Z-Wave device provides them in English 
 language using the Association Group Information Command Class. The ZDDX file provides this 
@@ -2282,23 +2209,21 @@ to set Z-Wave configuration values utilizing the information from ZDDX files.
 <P>
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">It is possible to add your own ZDDX files, but Z-Way uses an index file ZDDX.indx to access them. Once a new file is added, run <SPAN style="font-family:sans-serif"><B>python MakeIndex.py</B></SPAN>.
-</DIV>
+It is possible to add your own ZDDX files, but Z-Way uses an index file ZDDX.indx to access them. Once a new file is added, run <SPAN style="font-family:sans-serif"><B>python MakeIndex.py</B></SPAN>.
+
 <P>
-<DIV class="CENTER">Chapter <A HREF="Special_topics_Developers.html#newddr">13.3</A> explain how to add and to submit new own ZDDX files and how to extend them.
-</DIV>
+Chapter <A HREF="Special_topics_Developers.html#newddr">13.3</A> explain how to add and to submit new own ZDDX files and how to extend them.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001241500000000000000">
 Htdocs: The web servers document folder</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"><SPAN CLASS="FOOTNOTESIZE">
+<SPAN CLASS="FOOTNOTESIZE">
 <BR>
 <IMG STYLE=""
  SRC="img7.svg"
@@ -2314,19 +2239,18 @@ pare...
 ]
 \end{forest}">
 <BR></SPAN>
-</DIV>
+
 <P>
-<DIV class="CENTER">This subfolder is the root folder of the embedded webserver. The index.html redirects to smarthome/index.html.
-</DIV>
+This subfolder is the root folder of the embedded webserver. The index.html redirects to smarthome/index.html.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001241600000000000000">
 automation: The JavaScript sub system</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"><SPAN CLASS="FOOTNOTESIZE">
+<SPAN CLASS="FOOTNOTESIZE">
 <BR>
 <IMG STYLE=""
  SRC="img8.svg"
@@ -2342,10 +2266,10 @@ pare...
 ]
 \end{forest}">
 <BR></SPAN>
-</DIV>
+
 <P>
-<DIV class="CENTER">The subfolder for automation contains the whole JavaScript (JS) subsystem including the
-</DIV>
+The subfolder for automation contains the whole JavaScript (JS) subsystem including the
+
 <UL>
 <LI>source code of the software core (classes, core, lib),
 </LI>
@@ -2356,30 +2280,28 @@ pare...
 <LI>some default files for factory default reset and recovery from failures.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The most sensitive file is configjson-XXX since it contains the information about the user 
+The most sensitive file is configjson-XXX since it contains the information about the user 
 accounts including login name, password, and recovery email.
-</DIV>
+
 <P>
-<DIV class="CENTER">For more information about the creation of new modules that will be placed into the user 
+For more information about the creation of new modules that will be placed into the user 
 modules, please refer to Chapter <A HREF="Special_topics_Developers.html#developownapps">13.2</A>.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001242000000000000000">
 The use of  the C-Library</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The Z-Way library is a middleware between Silicon Labs Z-Wave transceiver and your application. 
+The Z-Way library is a middleware between Silicon Labs Z-Wave transceiver and your application. 
 Z-Way offers pretty high level API to control Z-Wave devices and manage wireless network.
-</DIV>
+
 <P>
-<DIV class="CENTER">Interaction with the library covers three aspects:
-</DIV>
+Interaction with the library covers three aspects:
+
 <UL>
 <LI>sending commands to Z-Wave devices;
 </LI>
@@ -2388,90 +2310,86 @@ Z-Way offers pretty high level API to control Z-Wave devices and manage wireless
 <LI>receiving updates from the network.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001242100000000000000">
 Sending commands</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Every command request generates an outgoing packet (job). Before generating a packet, 
+Every command request generates an outgoing packet (job). Before generating a packet, 
 library will validate parameters and check whether the command is supported by the recipient. 
 In case of failure command will return error immediately.
-</DIV>
+
 <P>
-<DIV class="CENTER">Once a job is generated, it is placed into outgoing queue for future send. The queued jobs 
+Once a job is generated, it is placed into outgoing queue for future send. The queued jobs 
 are handled internally by Z-Way engine according to commands priorities, nodes states 
 and capabilities, transceiver state etc.
-</DIV>
+
 <P>
-<DIV class="CENTER">Once the job is sent, it must be first confirmed it was successfully delivered to 
+Once the job is sent, it must be first confirmed it was successfully delivered to 
 the Z-Wave stack, and then confirmed it was delivered to the recipient. All these operations are 
 performed asynchronously, so command may provide a callback function to call in case of 
 success or failure if it is needed to know delivery result.
-</DIV>
+
 <P>
-<DIV class="CENTER">After the delivery was confirmed, command is considered executed. If it was a state 
+After the delivery was confirmed, command is considered executed. If it was a state 
 request command (i.e. <SPAN  CLASS="texttt">SensorMultilevel Get</SPAN>), response packet may be delayed 
 (or even not sent at all), so command's success/failure callbacks cannot be used to get 
 requested state immediately.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001242200000000000000">
 Receiving updates</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">All incoming packets from the Z-Wave network are automatically parsed by Z-Way and stored in 
+All incoming packets from the Z-Wave network are automatically parsed by Z-Way and stored in 
 special variables called data holders. Data holder is a named variable that stores a value 
 along with its data type and time the value was last updated and "invalidated". Each data
 holder may also contain a set of child data holders, so they form a hierarchical data 
 storage. Data holders also support callbacks, so custom code may be executed each time 
 the value is updated.
-</DIV>
+
 <P>
-<DIV class="CENTER">For example, <SPAN  CLASS="texttt">level</SPAN> data holder stores dimming level of a dimmer. Once application 
+For example, <SPAN  CLASS="texttt">level</SPAN> data holder stores dimming level of a dimmer. Once application 
 executes a <SPAN  CLASS="texttt">Get</SPAN> command for that dimmer, Z-Way will update <SPAN  CLASS="texttt">invalidateTime</SPAN> property on 
 the <SPAN  CLASS="texttt">level</SPAN> data holder, so application knows the current value is assumed to be 
 outdated, but the new one was not received yet.
-</DIV>
+
 <P>
-<DIV class="CENTER">Once Z-Way received a packet with new value of the dimmer, it will store it in <SPAN  CLASS="texttt">level 
+Once Z-Way received a packet with new value of the dimmer, it will store it in <SPAN  CLASS="texttt">level 
 data holder</SPAN> and update <SPAN  CLASS="texttt">updateTime</SPAN> property. Since <SPAN  CLASS="texttt">updateTime</SPAN> is 
 greater that <SPAN  CLASS="texttt">invalidateTime</SPAN>, the value is considered valid now.
-</DIV>
+
 <P>
-<DIV class="CENTER"> Z-Wave device can also send unsolicited state reports to controller (without a request 
+Z-Wave device can also send unsolicited state reports to controller (without a request 
 from controller's side; e.g. due to local operation or periodically). Due to asynchronous 
 nature of Z-Wave protocol, controller can't tell whether the packet was sent unsolicited 
 or it is a response to the previous command. So unsolicited packet will be handled the 
 same way exactly.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001242300000000000000">
 Command Classes</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"> Z-Way inherits structure of Z-Wave protocol and divides data holders and commanda on
+Z-Way inherits structure of Z-Wave protocol and divides data holders and commanda on
 different Command Classes (CC). Command Classes are building blocks of Z-Wave functionality.
 For example, dimming is provided by Command Class <SPAN  CLASS="texttt">SwitchMultilevel</SPAN>, relay 
 operation by Command Class <SPAN  CLASS="texttt">SwitchBinary</SPAN>, sensors by command class 
 <SPAN  CLASS="texttt">SensorMultilevel</SPAN> and <SPAN  CLASS="texttt">SensorBinary</SPAN> etc. Please consult Z-Wave 
 protocol basics to understand Z-Wave Command Classes.
-</DIV>
+
 <P>
-<DIV class="CENTER">All Command Classes share a minimal subset of common data holders:
-</DIV>
+All Command Classes share a minimal subset of common data holders:
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI><SPAN  CLASS="texttt">supported</SPAN> says if CC is supported by the device (it implements that 
 functionality) or only controlled (it can control other devices implementing that 
@@ -2489,113 +2407,108 @@ If the interview is incomplete, Z-Way might fail to use some Command Classes wit
 device. All Z-Wave certified devices MUST pass interview process.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">All the other data holders are specific to each Command Class. For example, 
+All the other data holders are specific to each Command Class. For example, 
 <SPAN  CLASS="texttt">SwitchMultilevel Command Class</SPAN> contains <SPAN  CLASS="texttt">level</SPAN> data holder, 
 <SPAN  CLASS="texttt">SensorBinary</SPAN> has two-level storage, grouping data by sensor types:
 <SPAN  CLASS="texttt"> 0 -&gt; sensorTypeString, level, 5 -&gt; sensorTypeString, level, ... </SPAN>
 where type identifiers are Z-Wave specific constants. Every Z-Wave specific constant 
 value will have corresponding verbal description (in case of <SPAN  CLASS="texttt">SensorBinary</SPAN> it is in 
 <SPAN  CLASS="texttt">sensorTypeString</SPAN> data holder).
-</DIV>
+
 <P>
-<DIV class="CENTER">Some Command Classes are hidden under the hood of Z-Way: 
+Some Command Classes are hidden under the hood of Z-Way: 
 <SPAN  CLASS="texttt">MultiCmd, Security, CRC16, MultiChannel, ApplicationStatus</SPAN>. They're handled 
 internally by Z-Way software, and shouldn't be used directly.
-</DIV>
+
 <P>
-<DIV class="CENTER">Some Command Classes have no public APIs, but their data holders may be very useful 
+Some Command Classes have no public APIs, but their data holders may be very useful 
 in your application: <SPAN  CLASS="texttt">AssociationGroupInformation, DeviceResetLocally,
 ManufacturerSpecific, Version, ZWavePlusInfo</SPAN>.
-</DIV>
+
 <P>
-<DIV class="CENTER">All the remaing Command Classes have their <SPAN  CLASS="texttt">Get</SPAN> and <SPAN  CLASS="texttt">Set </SPAN>commands 
+All the remaing Command Classes have their <SPAN  CLASS="texttt">Get</SPAN> and <SPAN  CLASS="texttt">Set </SPAN>commands 
 specific to functionality of the Command Class. Consult 
 <SPAN  CLASS="texttt">CommandClassesPublic.h</SPAN> header file for more info about available commands 
 for different Command Classes and their meaning.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001242400000000000000">
 Network management</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"> Z-Way offers API for network management operations: include new devices, exclude devices, 
+Z-Way offers API for network management operations: include new devices, exclude devices, 
 discover neighbor devices, remove failed nodes, frequency selection, controller reset etc. 
 These functions are described in <SPAN  CLASS="texttt">ZWayLib.h</SPAN> header file.
-</DIV>
+
 <P>
-<DIV class="CENTER"> Z-Way also provides a low level access to Z-Wave transceiver functionality through Silicon 
+Z-Way also provides a low level access to Z-Wave transceiver functionality through Silicon 
 Labs Serial API. These functions are provided by Function Classes. You should use 
 them only if you have deep knowledge of Z-Wave networking. Check 
 <SPAN  CLASS="texttt">FunctionClassesPublic.h</SPAN> for more info.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001242500000000000000">
 Using Z-Way Library in C-Code</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">To use Z-Way one need to include few header files:
-</DIV><PRE>
+To use Z-Way one need to include few header files:
+<PRE>
 \#include &lt;ZWayLib.h&gt;
 \#include &lt;ZLogging.h&gt;
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"> Z-Way will need to know where to write the log to, so first of all you need to create 
+Z-Way will need to know where to write the log to, so first of all you need to create 
 logging context using <SPAN  CLASS="texttt">zlog_create()</SPAN> call. You can disable logging by passing NULL 
 instead of logging context to Z-Way.
-</DIV>
+
 <P>
-<DIV class="CENTER">Then create new a Z-Way context using <SPAN  CLASS="texttt">zway_init()</SPAN>. It will only allocate memory, 
+Then create new a Z-Way context using <SPAN  CLASS="texttt">zway_init()</SPAN>. It will only allocate memory, 
 open log files, initialize internal structures. At this point you can already attach your 
 handlers on new <SPAN  CLASS="texttt">device/instance/Command Class</SPAN> creation (you will also be able 
 to do it at any time later). Do it using <SPAN  CLASS="texttt">zway_device_add_callback()</SPAN> call. 
-</DIV>
+
 <P>
-<DIV class="CENTER">Warning: you should initialize ZWay pointer with NULL before passing it to <SPAN  CLASS="texttt">zway_init</SPAN>!
-</DIV>
+Warning: you should initialize ZWay pointer with NULL before passing it to <SPAN  CLASS="texttt">zway_init</SPAN>!
+
 <P>
-<DIV class="CENTER">Executing z<SPAN  CLASS="texttt">zway_start()</SPAN> will open serial port and start a new thread that 
+Executing z<SPAN  CLASS="texttt">zway_start()</SPAN> will open serial port and start a new thread that 
 will handle all communications with the transceiver. From now Z-Way can receive packets 
 from the network, but can not parse them yet, since devices were not discovered yet. 
 All received packets will just be queued to be parsed later after discovery process.
-</DIV>
+
 <P>
-<DIV class="CENTER">Last step to run Z-Way is <SPAN  CLASS="texttt">zway_discover()</SPAN> call. It will start communications 
+Last step to run Z-Way is <SPAN  CLASS="texttt">zway_discover()</SPAN> call. It will start communications 
 with the Z-Wave transceiver and ask about devices in the network, their capabilities, 
 network state etc. During discovery phase Z-Way will create structures for all devices and 
 load saved data from file stored in <SPAN  CLASS="texttt">config/zddx</SPAN> folder.
-</DIV>
-<P>
-<DIV class="CENTER">From now on, Z-Way is ready to operate. Incoming events will trigger callback functions 
-attached by application, and executing commands will put new packets in the queue.
-</DIV>
-<P>
-<DIV class="CENTER">You will also need few other functions <SPAN  CLASS="texttt">zway_is_running(), zway_is_idle(), 
-zway_stop(), zway_terminate()</SPAN> to handler termination process.
-</DIV>
-<P>
-<DIV class="CENTER">The link
 
+<P>
+From now on, Z-Way is ready to operate. Incoming events will trigger callback functions 
+attached by application, and executing commands will put new packets in the queue.
+
+<P>
+You will also need few other functions <SPAN  CLASS="texttt">zway_is_running(), zway_is_idle(), 
+zway_stop(), zway_terminate()</SPAN> to handler termination process.
+
+<P>
+The link
 <BLOCKQUOTE>
 <kbd><A ID="tex2html227"
   HREF="https://storage.z-wave.me/fileadmin/z-way-test.tgz">https://storage.z-wave.me/fileadmin/z-way-test.tgz</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">downloads a very simple test project using the Z-Way core library <SPAN  CLASS="texttt">libzway.so</SPAN>. 
+downloads a very simple test project using the Z-Way core library <SPAN  CLASS="texttt">libzway.so</SPAN>. 
 The project contains a simple <SPAN  CLASS="texttt">mains.c</SPAN> plus a <SPAN  CLASS="texttt">Makefile</SPAN>. A Z-Way installation is required 
 too. To compile the test project, some requirements need to be met:
-</DIV>
+
 <UL>
 <LI>GNU-based tool chain with a compiler, linker, etc.
 </LI>
@@ -2615,23 +2528,22 @@ too. To compile the test project, some requirements need to be met:
 </UL>
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Executing the Makefile will generate a binary executable <SPAN style="font-family:sans-serif"><B>z-way-test</B></SPAN> in the same 
+Executing the Makefile will generate a binary executable <SPAN style="font-family:sans-serif"><B>z-way-test</B></SPAN> in the same 
 folder. If Z-Way was just downloaded the code will assume a virtual serial Z-Wave device 
 on <SPAN style="font-family:sans-serif"><B>/dev/ttyUSB0</B></SPAN>. if your virtual device is a different node, just make a 
 symlink like <SPAN style="font-family:sans-serif"><B>ln -s /dev/ttyACM0 /dev/ttyUSB0</B></SPAN> or change <SPAN  CLASS="texttt">main.c</SPAN> file.
-</DIV>
+
 <P>
-<DIV class="CENTER">Now start the code from the folder with <SPAN style="font-family:sans-serif"><B>LD_LIBRARY_PATH=./libs ./z-way-test</B></SPAN>. 
+Now start the code from the folder with <SPAN style="font-family:sans-serif"><B>LD_LIBRARY_PATH=./libs ./z-way-test</B></SPAN>. 
 The header file <SPAN  CLASS="texttt">Z-Waylib.h</SPAN> in <SPAN  CLASS="texttt">libzway</SPAN> gives a brief explanation of the calls 
 into the library. The demo file <SPAN  CLASS="texttt">main.c</SPAN> demonstrates the use of the calls. 
 Figure <A HREF="#libterminal">11.8</A> shows the small help page of the test software.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
-<DIV class="CENTER"><A ID="libterminal"></A><A ID="5745"></A>
+
+<DIV class="CENTER"><A ID="libterminal"></A><A ID="5746"></A>
 <TABLE>
 <CAPTION class="BOTTOM"><STRONG>Figure 11.8:</STRONG>
 Terminal running z-way-test</CAPTION>
@@ -2644,17 +2556,16 @@ Terminal running z-way-test</CAPTION>
 </DIV></TD></TR>
 </TABLE>
 </DIV>
-<DIV class="CENTER">
-</DIV>
+
 <BR><HR><H4>Footnotes</H4>
 <DL>
-<DT><A ID="foot5224">... (SDK)</A><A
+<DT><A ID="foot5225">... (SDK)</A><A
  HREF="Develop_Code_Z_Way.html#tex2html207"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A></DT>
 <DD>The Silicon Labs SDK is available from Arrow (www.arrow.com). Depending 
 on the hardware options chosen the price varies between 2000 and 4000 USD only.
 
 </DD>
-<DT><A ID="foot5264">...&nbsp;</A><A
+<DT><A ID="foot5265">...P</A><A
  HREF="Develop_Code_Z_Way.html#tex2html215"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A></DT>
 <DD>Please note that the Sensor Multilevel Command class data is an array index 
 by the scale ID. Other command classes such as Basic do not have this index but allow 

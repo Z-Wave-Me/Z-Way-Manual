@@ -1,6 +1,6 @@
  var link = location.href.substr(location.href.lastIndexOf('/') + 1);
  var indx = link.indexOf('#');
- var chapterName = indx > -1 ? link.substr(0, indx) : link;
+ var chapterName = (indx > -1 ? link.substr(0, indx) : link) || "__FrontPage__";
  var sectionName = indx > -1 ? link.substr(indx + 1) : "";
 
  // delete unused br in the TOC

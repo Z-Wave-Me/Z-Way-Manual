@@ -909,17 +909,16 @@
 </div>
 
 <H1><A ID="SECTION001300000000000000000"></A>
-<A ID="cap:js"></A><A NAME="6301"></A>
+<A ID="cap:js"></A><A NAME="6302"></A>
 <BR>
 The JavaScript Engine
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The Z-Way core function engine is the so called JavaScript (JS) automation system.
+The Z-Way core function engine is the so called JavaScript (JS) automation system.
 It uses the APIs of the technology-dependent 'drivers' and delivers all the functions
 and interface for running a Smart Home controller:
-</DIV>
+
 <UL>
 <LI>It <SPAN  CLASS="textbf">unifies the functions and properties of the physical devices</SPAN> to a common 
 device structure, the virtual Device (vDev).
@@ -938,11 +937,10 @@ vDev can inject events into this bus and every vDev can read events from this bu
 is used among others by the Smart Home User Interface.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">This chapter explains the different building blocks of the JS Engine:
-</DIV>
+This chapter explains the different building blocks of the JS Engine:
+
 <UL>
 <LI>Javascript Interpreter/Compiler Core Engine
 </LI>
@@ -955,138 +953,129 @@ is used among others by the Smart Home User Interface.
 <LI>The structure of the Apps
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION001310000000000000000">
 The JavaScript Core Interpreter and the integration of the Z-Wave function</A>
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"> Z-Way uses the JavaScript engine provided by Google referred to as V8. You find more 
+Z-Way uses the JavaScript engine provided by Google referred to as V8. You find more 
 information about this JavaScript implementation on 
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html229"
   HREF="https://code.google.com/p/v8/.">https://code.google.com/p/v8/.</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">V8 implements JavaScript according to the specification ECMA 5
+V8 implements JavaScript according to the specification ECMA 5
 <A ID="tex2html230"
-  HREF="#foot6314"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A>.
-</DIV>
+  HREF="#foot6315"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A>.
+
 <P>
-<DIV class="CENTER">Please note that this V8 core engine only implements the very basic JS functions and need to 
+Please note that this V8 core engine only implements the very basic JS functions and need to 
 be extended to be usable in a Smart Home environment.
-</DIV>
+
 <P>
-<DIV class="CENTER">Javascript code can be executed on the server side and certain functions of the JS core are 
+Javascript code can be executed on the server side and certain functions of the JS core are 
 available on the client side as well since most modern web browsers have a built-in Javascript
 engine as well. The bridge between the server side JS and the web browser client is a built-in
 web server. This is the same embedded web server serving all the web browsers HTML pages etc.
-</DIV>
+
 <P>
-<DIV class="CENTER">Accessing a server side JS function from the web browsers client side is easy. Just call 
-</DIV>
+Accessing a server side JS function from the web browsers client side is easy. Just call 
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html231"
   HREF="http://YOURIP:8083/JS/Run/*">http://YOURIP:8083/JS/Run/*</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">with the function desired.
-</DIV>
+with the function desired.
+
 <P>
-<DIV class="CENTER">Please note that all accesses using the embedded webserver require an authentication of the 
+Please note that all accesses using the embedded webserver require an authentication of the 
 web browsers instance. Please refer to chapter <A HREF="Special_topics_Developers.html#cap:authentication">13.1</A> for details how to 
 authenticate against the web server.
-</DIV>
+
 <P>
-<DIV class="CENTER"> Z-Way offers one central object with the name 'zway' . This object encapsulates all the 
+Z-Way offers one central object with the name 'zway' . This object encapsulates all the 
 Z-Wave variables and functions known from the Z-Wave Device API describes in chapter <A HREF="Develop_Code_Z_Way.html#c2">11.3</A>.
-</DIV>
+
 <P>
-<DIV class="CENTER">Hence its possible to use the very same functions of the Z-Wave Device API using the JS
+Hence its possible to use the very same functions of the Z-Wave Device API using the JS
 engine. The zway objects internal structure is shown in figure <A HREF="Develop_Code_Z_Way.html#zwaystructure">11.2</A> and the data elements 
 are describes in Annex <A HREF="Develop_Code_Z_Way.html#datamodel">11.3.1</A>.
-</DIV>
+
 <P>
-<DIV class="CENTER">The functions can be accessed using the web browsers function like
-</DIV>
+The functions can be accessed using the web browsers function like
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html232"
   HREF="http://YOURIP:8083/JS/Run/zway.devices[x].*">http://YOURIP:8083/JS/Run/zway.devices[x].*</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">Due to the scripting nature of JavaScript its possible to 'inject' code at run time
+Due to the scripting nature of JavaScript its possible to 'inject' code at run time
 using the interface. Here a nice example how to use the Java Script 
 setInterval function:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Polling device \#2]
+<PRE>[Polling device \#2]
 /JS/Run/setInterval(function() { 
 	zway.devices[2].Basic.Get();
 }, 300*1000);
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">This code will, once 'executed' as URL within a web browser, call the Get() command
+This code will, once 'executed' as URL within a web browser, call the Get() command
 of the command class Basic of Node ID 2 every 300 seconds.  
-</DIV>
+
 <P>
-<DIV class="CENTER">A very powerful function of the JS API is the ability to bind functions to certain
+A very powerful function of the JS API is the ability to bind functions to certain
 values of the device tree. they get then executed when the value changes. Here an 
 example for this binding. The device No. 3 has a command class SensorMultilevel that offers
 the variable level. The following call - both available on the client side 
 and on the server side - will bind a simple alert function to the change of 
 the variable.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Bind a function]
+<PRE>[Bind a function]
 zway.devices[3].SensorMultilevel.data[1].val.bind(function() { 
 	debugPrint('CHANGED TO: ' + this.value + '\n'); 
 });
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION001320000000000000000">
 Z-Way extensions to the JavaScript Core</A>
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"> Z-Way provides some extensions to the JS core that are not part of the ECMA 
+Z-Way provides some extensions to the JS core that are not part of the ECMA 
 functionality mentioned above.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001321000000000000000">
 HTTP Access</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The JavaScript implementation of Z-Way allows to directly accessing HTTP objects.
-</DIV>
+The JavaScript implementation of Z-Way allows to directly accessing HTTP objects.
+
 <P>
-<DIV class="CENTER">The http request is much like jQuery.ajax(): r = http.request(options);
-</DIV>
+The http request is much like jQuery.ajax(): r = http.request(options);
+
 <P>
-<DIV class="CENTER">Here's the list of options:
-</DIV>
+Here's the list of options:
+
 <UL>
 <LI>url - required. Url you want to request (might be http, https, or maybe even ftp);
 </LI>
@@ -1136,14 +1125,13 @@ called nevertheless (even if success/error callback produces exception, so it is
 'finally' statement);
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Response (as stated above) is delivered either as function return value, or as callback 
+Response (as stated above) is delivered either as function return value, or as callback 
 parameter. Is is always an object containing following members:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>status – HTTP status code (or -1 if some non-HTTP error occurred). Status codes 
 from 200 to 299 are considered success;
@@ -1159,14 +1147,13 @@ from 200 to 299 are considered success;
 <LI>data – response data.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Response data is handled differently depending on content type (if contentType on request 
+Response data is handled differently depending on content type (if contentType on request 
 is set, it takes priority over server content type):
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>application/json and text/x-json are returned as JSON object;
 </LI>
@@ -1177,12 +1164,11 @@ is set, it takes priority over server content type):
 <LI>string is returned otherwise.
 </LI>
 </UL>
-<DIV class="CENTER">
 In case data cannot be parsed as valid JSON/XML, it is still returned as string, and 
 additional parseError member is present.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 http.request({
 	url: "http://server.com" (string, required),
 	method: "GET" (GET/POST/HEAD, optional, default "GET"),
@@ -1230,44 +1216,39 @@ response:
 	data: result (object or string, depending on content type)
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001322000000000000000">
 XML parser</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">ZXmlDocument object allows to convert any valid XML document into a JSON object and vice versa.
-</DIV>
+ZXmlDocument object allows to convert any valid XML document into a JSON object and vice versa.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001322100000000000000">
 var x = new ZXmlDocument()</A>
 </H3>
-<DIV class="CENTER">
 Create new empty XML document
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001322200000000000000">
 x = new ZXmlDocument("xml content")</A>
 </H3>
-<DIV class="CENTER">
 Create new XML document from a string
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001322300000000000000">
 x.root</A>
 </H3>
-<DIV class="CENTER">
 Get/set document root element. Elements are got/set in form of JS objects:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 \{
     name: "node_name", - mandatory
     text: "value", - optional, for text nodes
@@ -1280,11 +1261,10 @@ Get/set document root element. Elements are got/set in form of JS objects:
     ]
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">For example:
-</DIV><PRE>
+For example:
+<PRE>
 (new ZXmlDocument('&lt;weather&gt;&lt;city id="1"&gt;&lt;name&gt;Zwickau&lt;/name&gt;
 	&lt;temp&gt;2.6&lt;/temp&gt;&lt;/city&gt; 
 	&lt;city id="2"&gt;&lt;name&gt;Moscow&lt;/name&gt;&lt;temp&gt;-23.4&lt;/temp&gt;&lt;/city&gt;
@@ -1327,71 +1307,62 @@ Get/set document root element. Elements are got/set in form of JS objects:
    "name":"weather"
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001322400000000000000">
 x.isXML</A>
 </H3>
-<DIV class="CENTER">
 This hidden readonly property allows to detect if object is XML object or not (it is always true).
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001322500000000000000">
 x.toString()</A>
 </H3>
-<DIV class="CENTER">
 Converts XML object into a string with valid XML content.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001322600000000000000">
 x.findOne(XPathString)</A>
 </H3>
-<DIV class="CENTER">
 Returns first matching to XPathString element or null if not found.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 x.findOne('/weather/city[@id="2"]') // returns only city tag for Moscow
 x.findOne('/weather/city[name="Moscow"]/temp/text()') // returns temperature
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001322700000000000000">
 x.findAll(XPathString)</A>
 </H3>
-<DIV class="CENTER">
 Returns array of all matching to XPathString elements or empty array if not found.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 x.findAll('/weather/city') // returns all city tags
 x.findAll('/weather/city/name/text()') // returns all city names
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001322800000000000000">
 x.document</A>
 </H3>
-<DIV class="CENTER">
 A hidden property that refers to the document root.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001322900000000000000">
 XML elements</A>
 </H3>
-<DIV class="CENTER">
 Each XML element (tag) in addition to properties described above (text, attributes, 
 children) have hidden readonly property parent pointing to parent object and the following methiods:
-</DIV>
+
 <UL>
 <LI>insertChild(element) Insert new child eleemnt
 </LI>
@@ -1402,124 +1373,114 @@ children) have hidden readonly property parent pointing to parent object and the
 <LI>findAll(XPathString) Same as on root object, but relative (no leading / needed in XPathString
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">ZXmlDocument is returned from http.request() when content type is 'application/xml', 
+ZXmlDocument is returned from http.request() when content type is 'application/xml', 
 'text/xml' or any other ending with '+xml'. Namespaces are not yet supported.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001323000000000000000">
 Cryptographic functions</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">crypto object provides access to some popular cryptographic functions such
+crypto object provides access to some popular cryptographic functions such
 as SHA1, SHA256, SHA512, MD5, HMAC, and provides good random numbers.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001323100000000000000">
 var guid = crypto.guid()</A>
 </H3>
-<DIV class="CENTER">
 Provides standard GUID in string format.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001323200000000000000">
 var rnd = crypto.random(n)</A>
 </H3>
-<DIV class="CENTER">
 Generates n random bytes.
 Returned values is of type ArrayBuffer. To convert it into array use this trick:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 	rnd = (new Uint8Array(crypto.random(10)));
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001323300000000000000">
 var dgst = crypto.digest(hash, data, ...)</A>
 </H3>
-<DIV class="CENTER">
 Returns digest calculated using selected hash algorithm. It supports virtually all the 
 algorithms available in OpenSSL (md4, md5, mdc2, sha, sha1, sha224, sha256, sha384, sha512, ripemd160).
 If no data parameters specified, it returns a digest of an empty value. If more than one 
 data parameters are specified, they're all used to calculate the result. Data parameters 
 may be of different types (strings, arrays, ArrayBuffers).
 Return value is of type ArrayBuffer.
-</DIV>
+
 <P>
-<DIV class="CENTER">There are also a few shortcut functions for popular algorithms: 'md5', 'sha1', 'sha256', 
+There are also a few shortcut functions for popular algorithms: 'md5', 'sha1', 'sha256', 
 'sha512'. For example, these calls are equivalent:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 	dgst = crypto.digest('sha256', data);
 	dgst = crypto.sha256(data);
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001323400000000000000">
 var hmac = crypto.hmac(cipher, key, data, ...)</A>
 </H3>
-<DIV class="CENTER">
 Returns hmac calculated using selected hash algorithm. Hash algorithms are the same as 
 for digest() function.
-</DIV>
+
 <P>
-<DIV class="CENTER">Key parameter is required. 
-</DIV>
+Key parameter is required. 
+
 <P>
-<DIV class="CENTER">If no data parameters specified, it returns a HMAC of an empty value. If more than one 
+If no data parameters specified, it returns a HMAC of an empty value. If more than one 
 data parameters are specified, they're all used to calculate the result. Key and data 
 parameters may be of different types (strings, arrays, ArrayBuffers).
 Return value is of type ArrayBuffer.
-</DIV>
+
 <P>
-<DIV class="CENTER">There are also a few shortcut functions for popular algorithms: 'hmac256', 'hmac512'. For 
+There are also a few shortcut functions for popular algorithms: 'hmac256', 'hmac512'. For 
 example, these calls are equivalent:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
   dgst = crypto.hmac('sha256', key, data);
   dgst = crypto.hmac256(key, data);
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001324000000000000000">
 Sockets functions</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Socket module allows easy access to TCP and UDP sockets from JavaScript.
+Socket module allows easy access to TCP and UDP sockets from JavaScript.
 Both connection to distant ports and listening on local are available. This API fully 
 mirrors into JavaScript POSIX TCP/IP sockets.
 This can be used to control third party devices like Global Cache or Sonos
 as well as emulating third party services.
-</DIV>
+
 <P>
-<DIV class="CENTER">To start communications one need to create socket and either
+To start communications one need to create socket and either
 <SPAN  CLASS="textbf">connect</SPAN> it or <SPAN  CLASS="textbf">listen</SPAN> it. <SPAN  CLASS="textbf">onrecv</SPAN> method is called
 on data receive from remote, while <SPAN  CLASS="textbf">send</SPAN> is used to send data to remote side.
-</DIV>
+
 <P>
-<DIV class="CENTER">The example below dumps to log file response to http://ya.ru:80/ (raw HTTP
+The example below dumps to log file response to http://ya.ru:80/ (raw HTTP
 protocol is used as an example).
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 var sock = new sockets.tcp();
 
 sock.onrecv = function(data) {
@@ -1530,13 +1491,12 @@ sock.connect('ya.ru', 80);
 
 sock.send("GET / HTTP/1.0\r\n\r\n");
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Here is an example of TCP echo server on port 8888:
-</DIV>
+Here is an example of TCP echo server on port 8888:
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 var sock = new sockets.tcp();
 
 sock.bind(8888);
@@ -1547,11 +1507,10 @@ sock.onrecv = function(data) {
 
 sock.listen();
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">And echo server for UDP:
-</DIV><PRE>
+And echo server for UDP:
+<PRE>
 var sock = new sockets.udp();
 
 sock.bind(8888);
@@ -1562,11 +1521,10 @@ sock.onrecv = function(data, host, port) {
 
 sock.listen();
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Detailed description of Socket API:
-</DIV>
+Detailed description of Socket API:
+
 <UL>
 <LI>bind(ip, port) or bind(port) binds socket to port (integer number). ip should be a 
 string like "192.168.0.1". If omited "0.0.0.0" is used (bind on all IP addresses of all 
@@ -1606,25 +1564,23 @@ object will be defined like in onrecv.
 <LI>multicastDropMembership(multicastGroup) unsubscribe socket from multicast group
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001325000000000000000">
 WebSockets functions</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Socket module also implements WebSockets (RFC 6455). WebSocket API is made to be
+Socket module also implements WebSockets (RFC 6455). WebSocket API is made to be
 compatible with browser implementations (some rarely used functions are not
 implemented - see below).
-</DIV>
+
 <P>
-<DIV class="CENTER">The example below implements basic application using WebSockets client:
-</DIV>
+The example below implements basic application using WebSockets client:
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 var sock = new sockets.websocket("ws://echo.websocket.org");
 
 sock.onopen = function () {
@@ -1644,13 +1600,12 @@ sock.onerror = function(ev) {
     debugPrint('error', ev.data);
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Next example shows basic application using WebSockets server:
-</DIV>
+Next example shows basic application using WebSockets server:
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 var sock = new sockets.websocket(9009);
 
 sock.onconnect = function () {
@@ -1674,11 +1629,10 @@ sock.onerror = function(ev) {
     debugPrint('error', ev.data);
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Detailed description of WebSocket API:
-</DIV>
+Detailed description of WebSocket API:
+
 <UL>
 <LI>sockets.websocket(url, [protocol], [ssl_ca_filepath], [ssl_cert_filepath, 
 ssl_private_key_filepath]) creates new client WebSocket and connects to the 
@@ -1702,37 +1656,33 @@ instead of system default use ssl_ca_filepath. To send client certificate use  s
 <LI>onerror(event) called on error. For example host or port unreachable. Note that new sockets.websocket(..) can throw an exception on DNS resolution error or on network unreachable. Other errors will be reported via onerror. Parameter event contains only propery data. Other properties from RFC 6455 are not implemented.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001326000000000000000">
 Other JavaScript Extensions</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001326100000000000000">
 fs.list(folder)</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">This returns list of items in the folder or undefined if not folder is not existing.
-</DIV>
+This returns list of items in the folder or undefined if not folder is not existing.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001326200000000000000">
 fs.stat(file)</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">This returns one of the following values:
-</DIV>
+This returns one of the following values:
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>1) undefined if object does not exist or not readable
 </LI>
@@ -1740,76 +1690,70 @@ fs.stat(file)</A>
 </LI>
 <LI>3) object { type: 'dir' } if it is a folder
 </LI>
-</UL>
-<DIV class="CENTER"> 
-</DIV>
+</UL> 
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001326300000000000000">
 fs.loadJSON(filename)</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">This function reads a file from the file system and loads it into the memory. The file 
+This function reads a file from the file system and loads it into the memory. The file 
 must contain a valid JSON object. The only argument is the name of the file including 
 relative pathname to the automation folder. The functions returns the full JSON object or 
 null in case of error.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001326400000000000000">
 fs.load(filename)</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">This function reads a file from the file system and returns it's content as a string. The 
+This function reads a file from the file system and returns it's content as a string. The 
 only argument is the name of the file including relative pathname to the automation folder.
  The functions returns null in case of error.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001326500000000000000">
 executeFile(filename) and executeJS(string)</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Loads and executes a particular JavaScript file from the local filesystem or executes 
+Loads and executes a particular JavaScript file from the local filesystem or executes 
 JavaScript code represented in string (like eval in browsers).
-</DIV>
+
 <P>
-<DIV class="CENTER">The script is executed withig the global namespace.
-</DIV>
+The script is executed withig the global namespace.
+
 <P>
-<DIV class="CENTER">Remark: If an error occurred during the execution it won't stop from further execution, 
+Remark: If an error occurred during the execution it won't stop from further execution, 
 but erroneous script will not be executed completely. It will stop on the first error.
 Exceptions in the callee can be trapped in the caller using standard try-catch mechanism.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001326600000000000000">
 system(command)</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The command system() allows to execute any shell level command available on the operating 
+The command system() allows to execute any shell level command available on the operating 
 system. It will return the shell output of the command.  On default the execution of 
 system commands is forbidden. Each command executed need to be permitted by putting one 
 line with the starting commands in the file automation/.syscommands or in an different 
 automation folder as specified in config.xml.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001326700000000000000">
 Timers</A>
 </H3>
-<DIV class="CENTER">
 Timers are implemented exactly as they are used in browsers. They are very helpfull for 
 periodical and delayed operations. Timeout/period is defined in milliseconds.
-</DIV>
+
 <UL>
 <LI>timerId = setTimeout(function()  , timeout)
 </LI>
@@ -1820,49 +1764,45 @@ periodical and delayed operations. Timeout/period is defined in milliseconds.
 <LI>clearInterval(timerId)
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001326800000000000000">
 loadObject(object_name) and saveObject(object_name, object)</A>
 </H3>
-<DIV class="CENTER">
 Loads and saves JSON object from/to storage. These functions implements flat storage for 
 application with access to the object by it's name. No folders are available.
-</DIV>
+
 <P>
-<DIV class="CENTER">Data is saved in automation/storage folder. Filenames are made from object names by 
+Data is saved in automation/storage folder. Filenames are made from object names by 
 stripping characters but [a-ZA-Z0-9] and adding checksum from original name (to avoid name conflicts).
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001326900000000000000">
 exit()</A>
 </H3>
-<DIV class="CENTER">
 Stops JavaScript engine and shuts down Z-Way server
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION0013261000000000000000">
 allowExternalAccess(handlerName) and listExternalAccess()</A>
 </H3>
-<DIV class="CENTER">
 allowExternalAccess allows to register HTTP handler. handlerName can contain strings like 
 aaa.bbb.ccc.ddd - in that case any HTTP request starting by /aaa/bbb/ccc/ddd will be 
 handled by a function aaa.bbb.ccc.ddd() if present, otherwise aaa.bbb.ccc(), ... up to aaa().
 Handler should return object with at least properties status and body (one can also specify 
 headers like it was in http.request module).
-</DIV>
+
 <P>
-<DIV class="CENTER">listExternalAccess returns array with names of all registered HTTP handlers.
-</DIV>
+listExternalAccess returns array with names of all registered HTTP handlers.
+
 <P>
-<DIV class="CENTER">Here is an example how to attach handlers for /what/timeisit and /what:
-</DIV>
+Here is an example how to attach handlers for /what/timeisit and /what:
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 what = function() {
   return { status: 500, body: 'What do you want to know' };
 };
@@ -1874,22 +1814,20 @@ what.timeisit = function() {
 allowExternalAccess("what");
 allowExternalAccess("what.timeisit");
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION0013261100000000000000">
 debugPrint(object, object, ...)</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Prints arguments converted to string to Z-Way console. Very usefull for debuggin.
+Prints arguments converted to string to Z-Way console. Very usefull for debuggin.
 For convenience one can map 'console.log()' to debugPrint().
-</DIV>
+
 <P>
-<DIV class="CENTER">This is how it was done in automation/main.js in Z-Way Home Automation engine:
-</DIV><PRE>
+This is how it was done in automation/main.js in Z-Way Home Automation engine:
+<PRE>
 var console = {
     log: debugPrint,
     warn: debugPrint,
@@ -1903,137 +1841,126 @@ var console = {
     }
 };
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001327000000000000000">
 Debugging JavaScript code</A>
 </H2>
-<DIV class="CENTER">
 Change in config.xml debug-port to 8183 (or some other) turn on V8 debugger capability on Z-Way start.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 &lt;config&gt;
     ...
     &lt;debug-port&gt;8183&lt;/debug-port&gt;
     ....
 &lt;/config&gt;
 </PRE>
-<DIV class="CENTER">
-</DIV>
-<P>
-<DIV class="CENTER">node-inspector debugger tool is required. It provides web-based UI for debugging similar 
-to Google Chrome debug console.
-</DIV>
-<P>
-<DIV class="CENTER">You might want to run debugger tool on another machine (for example if it is not possible to 
-install it on the same box as Z-Way is running on).
-</DIV>
-<P>
-<DIV class="CENTER">Use the following command to forward debugger port defined in config.xml to your local machine:
 
+<P>
+node-inspector debugger tool is required. It provides web-based UI for debugging similar 
+to Google Chrome debug console.
+
+<P>
+You might want to run debugger tool on another machine (for example if it is not possible to 
+install it on the same box as Z-Way is running on).
+
+<P>
+Use the following command to forward debugger port defined in config.xml to your local machine:
 <BLOCKQUOTE>
 <SPAN style="font-family:sans-serif"><B>ssh -N USER@IP_OF_Z-WAY_MACHINE -L 8183:127.0.0.1:8183</B></SPAN>
 (for RaZberry USER is pi)
 
 </BLOCKQUOTE> 
-</DIV>
-<P>
-<DIV class="CENTER">Install node-inspector debugger tool and run it:
 
+<P>
+Install node-inspector debugger tool and run it:
 <BLOCKQUOTE>
 <SPAN style="font-family:sans-serif"><B>npm install -g node-inspector node-inspector &ndash;debug-port 8183</B></SPAN>
 
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">Then you can connect to 
-</DIV>
+Then you can connect to 
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html233"
   HREF="http://IP_OF_MACHINE_WITH_NODE_INSPECTOR:8080/debug?port=8183">http://IP_OF_MACHINE_WITH_NODE_INSPECTOR:8080/debug?port=8183</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">If debugging is turned on, Z-Way gives you 5 seconds during startup to reconnect debugger to 
+If debugging is turned on, Z-Way gives you 5 seconds during startup to reconnect debugger to 
 Z-Way (refresh the page of debugger Web UI withing these 5 seconds).
 This allows you to debug startup code of Z-Way JavaScript engine from the very first line of code.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION001330000000000000000"></A>
-<A ID="cap:vdev"></A><A NAME="6426"></A>
-<A NAME="6427"></A>
+<A ID="cap:vdev"></A><A NAME="6427"></A>
+<A NAME="6428"></A>
 <BR>
 The virtual device concept (vDev)
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">A virtual device is a data object within the JS engine. Virtual devices have 
+A virtual device is a data object within the JS engine. Virtual devices have 
 properties and functions. Most virtual devices represent a physical device or a part of 
 a physical device but virtual devices are not limited to this. Virtual devices can be 
 pure dummy device doing nothing but pretenting to be a device (There is an app called
 <SPAN  CLASS="textbf"> 'D<SMALL>UMMY </SMALL>D<SMALL>EVICE'</SMALL></SPAN> that works exactly like this). Virtual devices can also connect to
 services via TCP/IP.
-</DIV>
+
 <P>
-<DIV class="CENTER">The purpose of virtual devices is to unify the appearance on a graphical user interface 
+The purpose of virtual devices is to unify the appearance on a graphical user interface 
 and to unify the communication between them. At the level of virtual devices 
 and EnOcean controller can switch a Z-Wave switch and trigger a rule in a cloud 
 service.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001331000000000000000">
 Names and Ids</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Every virtual device is identified by a simple string type id. For all virtual devices 
+Every virtual device is identified by a simple string type id. For all virtual devices 
 that are related to physical Z-Wave devices the device name is auto-generated by the 
 module (app) 'Z-Wave' following this logic:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001331010000000000000">
 ZWayVDev_[Node ID]:[Instance ID]:[Command Class ID]:[Scale ID]</A>
 </H4>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The Node Id is the node id of the physical device, the Instance ID is the instance id 
+The Node Id is the node id of the physical device, the Instance ID is the instance id 
 of the device  or '0' if there is only one instance. The command class ID refers to the 
 command class the function is embedded in. The scale id is usually '0' unless the virtual
 device is generated from a Z-Wave device that supports multiple sensors with different 
 scales in one single command class.
-</DIV>
+
 <P>
-<DIV class="CENTER">Virtual devices not generated by a Z-Wave device may have other Ids. They are either created 
+Virtual devices not generated by a Z-Wave device may have other Ids. They are either created 
 by other physical device subsystems such as 433MHz or EnOcean or they are generated
 by a module (app).
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001332000000000000000">
 Device Type</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Virtual devices can have a certain types. Table shows the different types plus the defines 
+Virtual devices can have a certain types. Table shows the different types plus the defines 
 commands.  Table <A HREF="#tab:devicetypes">12.1</A> shows the list of current device types with their 
 metrics and defines commands.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
 <BR><P></P>
-<DIV class="CENTER"><A ID="6441"></A>
+<DIV class="CENTER"><A ID="6442"></A>
 <TABLE>
 <CAPTION><STRONG>Table 12.1:</STRONG>
 vDev device types with metrics and commands</CAPTION>
@@ -2156,38 +2083,35 @@ red=20&amp;green=240&amp;blue=0 </SPAN></TD>
 <A ID="tab:devicetypes"></A></SPAN></TD></TR>
 </TABLE>
 </DIV><P></P>
-<BR>
-<DIV class="CENTER">	
-</DIV>
+<BR>	
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001333000000000000000">
 Access to Virtual Devices</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Virtual devices can be access both on the server side using JS modules and on the client 
+Virtual devices can be access both on the server side using JS modules and on the client 
 side using the JSON API. On the client they are encoded into a URL style for easier 
 handling  in AJAX code. A typical client side command in the vDev API looks like
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <kbd><A ID="tex2html235"
   HREF="http://YOURIP:8083/ZAutomation/api/v1/devices/ZWayVDev_6:0:37/command/off">http://YOURIP:8083/ZAutomation/api/v1/devices/ZWayVDev_6:0:37/command/off</A></kbd>
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">'api' points to the vDev API function, 'v1' is just a constant to allow future extensions. 
+'api' points to the vDev API function, 'v1' is just a constant to allow future extensions. 
 The devices are referred by a name that is automatically generated from the Z-Wave 
 Device API. The vDev also unifies the commands 'command' and the parameters, here 'off'.
-</DIV>
+
 <P>
-<DIV class="CENTER">On the server side the very same command would be encoded in a JavaScript style.
-</DIV>
+On the server side the very same command would be encoded in a JavaScript style.
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Access vDevs]
+<PRE>[Access vDevs]
 
 vdevId = vdev.id;
 
@@ -2199,33 +2123,30 @@ vDevList = this.controller.devices.filter(function(x) {
 vDevTypes = this.controller.devices.map(function(x) { 
 	return x.get("deviceType"); });
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001334000000000000000">
 Virtual Device Usage / Commands</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">In case the virtual device is an actor it will accept and execute a command using the 
+In case the virtual device is an actor it will accept and execute a command using the 
 syntax:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001334010000000000000">
 Vdev.performCommand(„name of the command“)</A>
 </H4>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The name of the accepted command should depend on the device type and can again be defined 
+The name of the accepted command should depend on the device type and can again be defined 
 free of restrictions when implementing the virtual device. For auto-generated devices 
 derived from Z-Wave the following commands are typically implemented.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <OL>
 <LI>'update': updates a sensor value
 </LI>
@@ -2237,52 +2158,47 @@ derived from Z-Wave the following commands are typically implemented.
 thermostats or a percentage value of motor controls or dimmers
 </LI>
 </OL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001335000000000000000">
 Virtual Device Usage / Values</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Virtual devices have inner values. They are called metrics. A metric can be set and get. 
+Virtual devices have inner values. They are called metrics. A metric can be set and get. 
 Each virtual device can define its own metrics. Metrics can be level, title icon and 
 other device specific values like scale (%, kWh, ...)
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 vDev.set("metrics:...", ...);  
 vDev.get("metrics:...");
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001336000000000000000">
 How to create your own virtual devices</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">A Virtual Device (Vdev) is an instance of a VirtualDevice class' descendant which exposes 
+A Virtual Device (Vdev) is an instance of a VirtualDevice class' descendant which exposes 
 set of metrics and commands (according to it's type/subtype). Virtual devices are the only 
 runtime instances which is controllable and observable through the JS API.
-</DIV>
+
 <P>
-<DIV class="CENTER">Technically, VDev is a VirtualDevice subclass which concretize, overrides or extends 
+Technically, VDev is a VirtualDevice subclass which concretize, overrides or extends 
 superclass' methods.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001336100000000000000">
 Step 1. Define a VirtualDevice subclass</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 // Important: constructor SHOULD always be successful
 BatteryPollingDevice = function (id, controller) {
     // Always call superconstructor first
@@ -2298,25 +2214,23 @@ BatteryPollingDevice = function (id, controller) {
 }
 inherits(BatteryPollingDevice, VirtualDevice);
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">VDev class should always fill in the deviceType property and often fill in the 
+VDev class should always fill in the deviceType property and often fill in the 
 deviceSubType property.
-</DIV>
+
 <P>
-<DIV class="CENTER">If the particular VDev class can be controller by the client-side widget, it should define 
+If the particular VDev class can be controller by the client-side widget, it should define 
 widget's class name in the widgetClass property.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001336200000000000000">
 Step 2. Override performCommand() method</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 BatteryPollingDevice.prototype.performCommand = function (command) {
     var handled = true;
 
@@ -2332,55 +2246,51 @@ BatteryPollingDevice.prototype.performCommand = function (command) {
     BatteryPollingDevice.super_.prototype.performCommand.call(this, command);
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">VDev itself mostly needed to handle commands, triggered by the events, system or the API.
-</DIV>
+VDev itself mostly needed to handle commands, triggered by the events, system or the API.
+
 <P>
-<DIV class="CENTER">In the example above you could see, that this VDev is capable of performing "update" 
+In the example above you could see, that this VDev is capable of performing "update" 
 command. But base class can be capable of performing some other commands, so the last l
 ine calls superclass' performCommand() method if the particular command wasn't handled 
 by the VDev itself.
-</DIV>
+
 <P>
-<DIV class="CENTER">This extensibility provides the possibility to create a VDev class tree. Take a look at 
+This extensibility provides the possibility to create a VDev class tree. Take a look at 
 ZWaveGate module as an example of such tree.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001336300000000000000">
 Step 3. Instantiate your VDev by the module</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>
+<PRE>
 // ...part of the BatteryPolling.init() method
 executeFile(this.moduleBasePath()+"/BatteryPollingDevice.js");
 this.vdev = new BatteryPollingDevice("BatteryPolling", this.controller);
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">First line of code is loads and executes apropriate .js-file which provides 
+First line of code is loads and executes apropriate .js-file which provides 
 BatteryPollingDevice class.
-</DIV>
+
 <P>
-<DIV class="CENTER">Secnd line instantiates this class.
-</DIV>
+Secnd line instantiates this class.
+
 <P>
-<DIV class="CENTER">The last line calls controller's registerDevice method to register and VDev instance.
-</DIV>
+The last line calls controller's registerDevice method to register and VDev instance.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001336400000000000000">
 Step 4. Register device</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Register Device]
+<PRE>[Register Device]
         vDev = this.controller.devices.create(vDevId, {
             deviceType: "deviceType",
             metrics: {
@@ -2392,100 +2302,90 @@ Step 4. Register device</A>
                 // handles actions with the widget
         });
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001336500000000000000">
 Step 5: Unregister device</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Devices can be deleted or unregistered  using the following command:
-</DIV>
+Devices can be deleted or unregistered  using the following command:
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001336510000000000000">
 this.controller.devices.remove(vDevId)</A>
 </H4>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001337000000000000000">
 Binding to metric changes</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The metric - the inner variables of the vDev a changed by the system automatically.
+The metric - the inner variables of the vDev a changed by the system automatically.
 In order to perform certain functions on these changes the function needs to be 
 bound to the change to the vdev. The syntax for this is
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001337010000000000000">
 vDev.on('change:metrics:...", function (vDev)  ... );</A>
 </H4>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Unbinding then works as one can expect:
-</DIV>
+Unbinding then works as one can expect:
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001337020000000000000">
 vDev.off(’change:metrics:...”, function (vDev) ... )</A>
-</H4>
-<DIV class="CENTER"> 
-</DIV>
+</H4> 
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION001340000000000000000"></A>
 <A ID="cap:eventbus"></A>
 <BR>
 The event bus
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">All communication from and to the automation modules is handled by events. An event 
+All communication from and to the automation modules is handled by events. An event 
 is a structure containing certain information that is exchanged using a central 
 distribution place, <B>the event bus</B>. This means that all modules can send events 
 to the event bus and can listen to event in order to execute commands on them. All 
 modules can 'see' all events but need to filter out their events of relevance.  The 
 core objects of the automation are written in JS and they are available as source 
 code in the sub folder 'classes':
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>AutomationController.js: This is the main engine of the automation function
 </LI>
 <LI>AutomationModule.js: the basic object for the module
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The file main.js is the startup file for the automation system and it is loading the three 
+The file main.js is the startup file for the automation system and it is loading the three 
 classes just mentioned. The subfolder /lib contains the key JS script for the Event 
 handling: eventemitter.js.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001341000000000000000">
 Emitting events</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The 'Event emitter' emits events into the central event bus. The event emitter can 
+The 'Event emitter' emits events into the central event bus. The event emitter can 
 be called from all modules and scripts of the automation system. The syntax is:
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <SPAN  CLASS="texttt">  
 <!-- MATH
@@ -2494,31 +2394,30 @@ be called from all modules and scripts of the automation system. The syntax is:
 <SPAN CLASS="MATH"><I>controller</I>.<I>emit</I>(<I>eventName</I>, <I>args</I>1, <I>arg</I>2,...<I>argn</I>)</SPAN></SPAN>
 
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER">The event name 'eventName' has to be noted in the form of 'XXX.YYY' where 'XXX' is the name 
+The event name 'eventName' has to be noted in the form of 'XXX.YYY' where 'XXX' is the name 
 of the event source (e.g. the name of the module issuing the event or the name of the 
 module using the event) and 'YYY' is the name of the event itself.  To allow a scalable 
 system it makes sense to name the events by the name of the module that is supposed to 
 receive and to manage events. This simplifies the filtering of these events by the 
 receiver module(s).
-</DIV>
+
 <P>
-<DIV class="CENTER">Certain event names are forbidden for general use because they are already used in the 
+Certain event names are forbidden for general use because they are already used in the 
 existing modules. One example are events with the name cron.XXXX that are used by the 
 cron module handling all timer related events.
-</DIV>
+
 <P>
-<DIV class="CENTER">Every event can have a list of arguments developers can decide on. For the events used by 
+Every event can have a list of arguments developers can decide on. For the events used by 
 preloaded modules (first and foremost the cron module) this argument structure is 
 predefined. For all other modules the developer is free to decide on structure and content. 
 It is also possible to have list fields and or any other structure as argument for the event
-</DIV>
+
 <P>
-<DIV class="CENTER">One example of an issued event can be 
-</DIV>
+One example of an issued event can be 
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <SPAN  CLASS="texttt">  
 <!-- MATH
@@ -2527,107 +2426,98 @@ It is also possible to have list fields and or any other structure as argument f
 <SPAN CLASS="MATH"><I>emit</I>(“<I>mymodule</I>.<I>testevent</I>”,”<I>Test</I>”,[“<I>event</I>1”,”<I>event</I>2”])</SPAN></SPAN>
 
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001342000000000000000">
 Catching (binding to) events</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The controller object, part of every module, offers a function called 'on()' to catch events. 
+The controller object, part of every module, offers a function called 'on()' to catch events. 
 The 'on(name, function())' function subscribes to events of a certain name type. If not 
 all  events of a certain name tag shall be processed a further filtering needs to be 
 implemented  processing  the further arguments of the event. The function argument contains a reference 
 to the implementation using the event to perform certain actions. The argument list of the event is 
 handed over to this function in its order but need to be declared in the function call statement.
-</DIV>
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <SPAN  CLASS="texttt">  
 this.controller.on(“mymodule.testevent”, function (name,eventarray) )
 </SPAN>
 
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER">The same way objects can unbind from events:
-</DIV>
+The same way objects can unbind from events:
+
 <P>
-<DIV class="CENTER">
 <BLOCKQUOTE>
 <SPAN  CLASS="texttt">  
 this.controller.off(“mymodule.testevent”, function (name,eventarray));
 </SPAN>
 
 </BLOCKQUOTE>
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001343000000000000000">
 Notification and Severity</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Notifications are a special  kind of event to inform the user on the graphical user interface or 
+Notifications are a special  kind of event to inform the user on the graphical user interface or 
 out-of-band.. This means that normal events are typically describes with numbers or ids 
 while notifications contain a human readable message. 
-</DIV>
+
 <P>
-<DIV class="CENTER">The UI can be notified on the certain events.
-</DIV>
+The UI can be notified on the certain events.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001343010000000000000">
 this.controller.addNotification("....severity....", "....message....", "....origin....");</A>
-</H4>
-<DIV class="CENTER"> 
-</DIV>
+</H4> 
+
 <P>
-<DIV class="CENTER">The parameters define
-</DIV>
+The parameters define
+
 <UL>
 <LI>severity is error, info, debug; 
 </LI>
 <LI>origin describes which part of the system it is about: core, module, device, battery.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The controller can act on notifications or disable them.
-</DIV>
+The controller can act on notifications or disable them.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H4><A ID="SECTION001343020000000000000">
 this.controller.on('notifications.push', this.handler);</A>
 </H4>
-<DIV class="CENTER">
-</DIV>
+
 <H4><A ID="SECTION001343030000000000000">
 this.controller.off('notifications.push', this.handler);</A>
 </H4>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H1><A ID="SECTION001350000000000000000"></A>
 <A ID="cap:modules"></A>
 <BR>
 Modules (for users called 'Apps')
 </H1>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">Beside the core functions encoded into the JS core there are extensions to this code called
+Beside the core functions encoded into the JS core there are extensions to this code called
 modules. Modules extend the JS core by providing internal or external ( visible to the user)
 functions.
-</DIV>
+
 <P>
-<DIV class="CENTER">Each modules code is located in a sub directory of the sub folder module as described 
+Each modules code is located in a sub directory of the sub folder module as described 
 in chapter <A HREF="Develop_Code_Z_Way.html#c11:zwayfolder">11.4.1</A>. The name of the subfolder equals the name of the module. The sub folder 
 contains files to define the behavior of the module.
 <SPAN CLASS="FOOTNOTESIZE">
@@ -2645,16 +2535,15 @@ pare...
 ]
 \end{forest}">
 <BR></SPAN>
-</DIV>
+
 <H2><A ID="SECTION001351000000000000000">
 Module.json</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">This file contains the module meta-definition used by the AutomationController. It must 
+This file contains the module meta-definition used by the AutomationController. It must 
 be a valid JSON object with the following fields (all of them are required):
-</DIV>
+
 <UL>
 <LI><SPAN  CLASS="textbf">autoload</SPAN> — Boolean, defines will this module automatically instantiated during Home Automation startup.
 </LI>
@@ -2670,27 +2559,25 @@ AutomationController and API webserver.
 <LI><SPAN  CLASS="textbf">metrics</SPAN> — Object, defines exported module metrics.
 </LI>
 </UL>
-<DIV class="CENTER">
 All configuration fields are required. Types of the object must be equal in every 
 definition in every case. For instance, if module doesn't export any metric corresponding 
 key value should be and empty object “”.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001352000000000000000">
 index.js</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">This script defines an automation module class which is descendant of AutomationModule base class.
+This script defines an automation module class which is descendant of AutomationModule base class.
 During initialization the module script must define the variable '_module' containing the particular module class.
-</DIV>
+
 <P>
-<DIV class="CENTER">Example of a minimal automation module:
-</DIV>
+Example of a minimal automation module:
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Minimal Module]
+<PRE>[Minimal Module]
 
 function SampleModule (id, controller) {
 SampleModule.super_.call.init(this, id, controller);
@@ -2713,42 +2600,40 @@ SampleModule.prototype.stop = function () {
     this.sayByeBye();
 }
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The first part of the code illustrates how to define a class function named SampleModule 
+The first part of the code illustrates how to define a class function named SampleModule 
 that calls the superclass' constructor. Its highly recommended not to do further 
 instantiations in the constructur. Initializations should be implemented within the 
 'init' function.
-</DIV>
+
 <P>
-<DIV class="CENTER">The second part of the code is almost immutable for any module. It calls prototypal 
+The second part of the code is almost immutable for any module. It calls prototypal 
 inheritance support routine and it fills in _module variable.
-</DIV>
+
 <P>
-<DIV class="CENTER">The third part of the sample code defines module's init() method which is an 
+The third part of the sample code defines module's init() method which is an 
 instance initializer. This initializer must call the superclass's initializer prior to 
 all other tasks. In the initializer module can setup it's private environment, subscribe 
 to the events and do any other stuff.
 Sometimes, whole module code can be placed withing the initializer without creation of 
 any other class's methods. As the reference of such approach you can examine AutoOff 
 module source code.
-</DIV>
+
 <P>
-<DIV class="CENTER">After the init function a module may contain other functions. The 'sayHello' function 
+After the init function a module may contain other functions. The 'sayHello' function 
 of the Sample Module shows this as example.
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H2><A ID="SECTION001353000000000000000">
 Available Core Modules</A>
 </H2>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">All modules in Z-Way are designed the same way using the same file structure but they 
+All modules in Z-Way are designed the same way using the same file structure but they 
 serve different purposes and they are of different importance:
-</DIV>
+
 <UL>
 <LI>Core Module are modules that provide essential parts of the Z-Way system. They run
 from the beginning and should not be terminated without good reason. Normal users will
@@ -2762,37 +2647,34 @@ subfolder 'modules' and can not be deleted.
 They can be started, stopped and even removed. They are stored in the folder 'userModules'.
 </LI>
 </UL>
-<DIV class="CENTER">
 The two core modules are worth to be explained in detail:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001353100000000000000">
 Cron, the timer module</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">All time driven actions need a timer. The Z-Way automation engine implement a cron-type timer 
+All time driven actions need a timer. The Z-Way automation engine implement a cron-type timer 
 system as a module as well. The basic function of the cron module is
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <UL>
 <LI>It accepts registration of events that are triggered periodically
 </LI>
 <LI>It allows to de-register such events. 
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The registration and deregistration of events is also handled using the event mechanism. 
+The registration and deregistration of events is also handled using the event mechanism. 
 The cron module is listening for events with the tags 'cron.addTask' and  'cron.removeTask'. 
 The first argument of these events are the name of the event fired by the cron module. The 
 second argument of the 'addTask' event is an array desricing the times when this event 
 shall be issued. It has the format: 
-</DIV>
+
 <UL>
 <LI>Minute [start,stop, step] or 0-59 or null
 </LI>
@@ -2805,9 +2687,8 @@ shall be issued. It has the format:
 <LI>Month [start,stop, step] or 1-12 or null
 </LI>
 </UL>
-<DIV class="CENTER">
 The argument for the different time parameters has one of three formats
-</DIV>
+
 <UL>
 <LI>null: the event will be fired on every minute or hour etc.
 </LI>
@@ -2816,11 +2697,9 @@ The argument for the different time parameters has one of three formats
 <LI>array [start, stop, step]: The event will be fired between start and stop in steps.
 </LI>
 </UL>
-<DIV class="CENTER">
-</DIV>
-<P>
-<DIV class="CENTER">The object  
 
+<P>
+The object  
 <BLOCKQUOTE>
 <SPAN style="font-family:monospace"><!-- MATH
  $\{minute: null,hour: null,weekDay: null, day: null, month: null\}$
@@ -2828,14 +2707,14 @@ The argument for the different time parameters has one of three formats
 <SPAN CLASS="MATH">{<I>minute</I> : <I>null</I>, <I>hour</I> : <I>null</I>, <I>weekDay</I> : <I>null</I>, <I>day</I> : <I>null</I>, <I>month</I> : <I>null</I>}</SPAN> </SPAN>
 
 </BLOCKQUOTE> 
-</DIV>
+
 <P>
-<DIV class="CENTER">will fire every minute within every hour within every weekday on every day of the month 
+will fire every minute within every hour within every weekday on every day of the month 
 every month. Another example of an event emitted towards the cron 
 module for registering an timer event can be found in the Battery Polling Module:
-</DIV>
+
 <P>
-<DIV class="CENTER"></DIV><PRE>[Registering a Battery Polling Command]
+<PRE>[Registering a Battery Polling Command]
     this.controller.emit("cron.addTask", "batteryPolling.poll", {
         minute: 0,
         hour: 0,
@@ -2844,30 +2723,27 @@ module for registering an timer event can be found in the Battery Polling Module
         month: null        
     });
 </PRE>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">This call will cause the cron module to emit an event at night (00:00) on a day 
+This call will cause the cron module to emit an event at night (00:00) on a day 
 that is defined in the configuration variable this.config.launchWeekDay, e.g. 0 = Sunday.
-</DIV>
+
 <P>
-<DIV class="CENTER">The 'cron.removeTask' only needs the name of the registered event to deregister.
-</DIV>
+The 'cron.removeTask' only needs the name of the registered event to deregister.
+
 <P>
-<DIV class="CENTER"></DIV>
+
 <H3><A ID="SECTION001353200000000000000">
 Z-Wave</A>
 </H3>
-<DIV class="CENTER">
-</DIV>
+
 <P>
-<DIV class="CENTER">The whole mapping of Z-Wave devices into virtual devices is handled by a module called 
+The whole mapping of Z-Wave devices into virtual devices is handled by a module called 
 <SPAN  CLASS="textbf"> 'ZW<SMALL>AVE'</SMALL></SPAN>. This module is quite powerful. It does not only manage the mapping but handles
 various Z-Wave specific functions such as timing recording, etc.
-</DIV>
 <BR><HR><H4>Footnotes</H4>
 <DL>
-<DT><A ID="foot6314">... 5</A><A
+<DT><A ID="foot6315">... 5</A><A
  HREF="JavaScript_Engine.html#tex2html230"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A></DT>
 <DD>http://www.ecma-international.org/publications/standards/Ecma-262.htm
 
