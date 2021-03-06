@@ -1,6 +1,8 @@
 #!/bin/bash
 
-find -name *.aux -exec rm {} \;
+if [ "$1" == "clean" ]; then
+	find -name *.aux -exec rm {} \;
+fi
 
 # PDF version
 pdflatex ZWayManual.tex
@@ -39,8 +41,10 @@ for f in `ls -1 *.html`; do
 	sed -i 's|</HEAD>|<script src="ZWayManual.js" defer></script>\n</HEAD>|' $f
 done
 
+ln -s ZWayManual.html index.html
+
 rm TOC.html
 
 cd ..
 
-rm TOC.html ZWayManual.css
+rm -f TOC.html ZWayManual.css
