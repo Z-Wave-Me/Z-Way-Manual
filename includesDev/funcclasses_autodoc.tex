@@ -498,10 +498,19 @@
 
 
 \paragraph{Function Class ZMEBootloaderFlash}
-\begin{quote}Syntax: ZMEBootloaderFlash(addr, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_zme\_bootloader\_flash(ZWay zway, ZWBYTE addr, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Syntax: ZMEBootloaderFlash(seg, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zme\_bootloader\_flash(ZWay zway, ZWBYTE seg, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Start reflashing bootloader of Z-Wave.Me firmware for 5th generation Z-Wave chip. This function is specific for Z-Wave.Me hardware\end{quote}
-\begin{quote}Parameter addr: address of new bootloader location in 2K sectors\end{quote}
+\begin{quote}Parameter seg: address of new bootloader location in 2K segments\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class ZMEBootloaderLoadFlash}
+\begin{quote}Syntax: ZMEBootloaderLoadFlash(data, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zme\_bootloader\_load\_flash(ZWay zway, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Load and start reflashing bootloader of Z-Wave.Me firmware for 7th generation Z-Wave chip. This function is specific for Z-Wave.Me hardware\end{quote}
+\begin{quote}Parameter data: Firmware image data in binary format (use hex2bin to convert from Intel Hex)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
@@ -514,6 +523,15 @@
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: caps, uuid\end{quote}
+
+\paragraph{Function Class ZMELicenseSet}
+\begin{quote}Syntax: ZMELicenseSet(data = NULL, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zme\_license\_set(ZWay zway, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Z-Wave.Me firmware capabilities. This function is specific for Z-Wave.Me hardware\end{quote}
+\begin{quote}Parameter data: data to set (NULL to get)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: caps\end{quote}
 
 \paragraph{Function Class ZMEPHISetLED}
 \begin{quote}Syntax: ZMEPHISetLED(led, status, successCallback = NULL, failureCallback = NULL)\end{quote}
@@ -584,12 +602,20 @@
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
 
-\paragraph{Function Class SerialAPISetup}
-\begin{quote}Syntax: SerialAPISetup(function, enable, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_serial\_api\_setup(ZWay zway, ZWBYTE function, ZWBOOL enable, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
-\begin{quote}Description: Configure Z-Wave Serial API\end{quote}
-\begin{quote}Parameter function: Configure specific Serial API function. Currently only enable/disable IMA is supported (function = 0x02)\end{quote}
+\paragraph{Function Class SerialAPISetupSetIMA}
+\begin{quote}Syntax: SerialAPISetupSetIMA(enable, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_serial\_api\_setup\_set\_ima(ZWay zway, ZWBOOL enable, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Enable Advanced IMA in Z-Wave.Me firmware\end{quote}
 \begin{quote}Parameter enable: Set feature state: True to enable, False to disable\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class SerialAPISetupSetTxPower}
+\begin{quote}Syntax: SerialAPISetupSetTxPower(power, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_serial\_api\_setup\_set\_tx\_power(ZWay zway, ZWBYTE power, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Tx power in Z-Wave.Me firmware\end{quote}
+\begin{quote}Parameter power: Power level in 10*dBm\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
@@ -685,8 +711,26 @@
 \paragraph{Function Class ZMESerialAPIOptionsAdvancedIMASet}
 \begin{quote}Syntax: ZMESerialAPIOptionsAdvancedIMASet(enable, successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}C Syntax: ZWError zway\_fc\_zme\_serialapi\_options\_advanced\_ima\_set(ZWay zway, ZWBOOL enable, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
-\begin{quote}Description: Enable/disable advanced IMA by Z0Wave.Me that includes incoming route path information\end{quote}
+\begin{quote}Description: Enable/disable advanced IMA by Z-Wave.Me that includes incoming route path information\end{quote}
 \begin{quote}Parameter enable: Turn on or off\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class ZMESerialAPIOptionsStaticAPISet}
+\begin{quote}Syntax: ZMESerialAPIOptionsStaticAPISet(enable, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zme\_serialapi\_options\_static\_api\_set(ZWay zway, ZWBOOL enable, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Switch between Static and Bridge API for Z-Wave.Me firmware\end{quote}
+\begin{quote}Parameter enable: Turn on or off Static API\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class ZMESerialAPIOptionsUARTSpeedSet}
+\begin{quote}Syntax: ZMESerialAPIOptionsUARTSpeedSet(speed = 115200, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_zme\_serialapi\_options\_uart\_speed\_set(ZWay zway, speed\_t speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set high speed for UART interface for Z-Wave.Me firmware\end{quote}
+\begin{quote}Parameter speed: UART speed. Valid values are listed in UART\_SPEEDS macro definition\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
