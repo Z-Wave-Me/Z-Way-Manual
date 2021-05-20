@@ -2,7 +2,8 @@
 \label{cap:js}
 \index{JavaScript Engine}
 
-The \zway  core function engine is the so called JavaScript (JS) automation system.
+
+The \zway core function engine is the so called JavaScript (JS) automation system.
 It uses the APIs of the technology-dependent 'drivers' and delivers all the functions
 and interface for running a Smart Home controller:
 \begin{itemize}
@@ -28,7 +29,7 @@ This chapter explains the different building blocks of the JS Engine:
 \item The structure of the Apps
 \end{itemize}
 
-\section{The JavaScript Core Interpreter and the integration of the Z-Wave function}
+\section{{JavaScript API}
 
 \zway uses the JavaScript engine provided by Google referred to as V8. You find more 
 information about this JavaScript implementation on 
@@ -41,20 +42,35 @@ V8 implements JavaScript according to the specification ECMA 5
 Please note that this V8 core engine only implements the very basic JS functions and need to 
 be extended to be usable in a Smart Home environment.
 
+Z-Way extends the basic functionality provided by V8 with plenty of application-specific functions.
+
 Javascript code can be executed on the server side and certain functions of the JS core are 
 available on the client side as well since most modern web browsers have a built-in Javascript
 engine as well. The bridge between the server side JS and the web browser client is a built-in
 web server. This is the same embedded web server serving all the web browsers HTML pages etc.
 
-Accessing a server side JS function from the web browsers client side is easy. Just call 
- 
-\murl{http://YOURIP:8083/JS/Run/*}
+There are three ways to run JavaScript code in Z-Way backend.
+\begin{itemize}
+\item It can be executed in via web browser using a special URL string containitg the code to be executed (using /JS/Run/ prefix),
+\item It can be stored as a file on the server in automation folder and executed using 'executeFile' function,
+\item It can be implemented as an App running.
+\end{itemize}
 
-with the function desired.
+All options have their pros and cons. Running JS code via the browser is a very nice and convenient way to test things but the code is not persistent across \zway restarts.
+
+Storing the it in a file allows to run it on \zway start (if 'executeFile("myfile.js")' is placed in main.js) but is not really convenient to distribute.
+
+Writing a module requires more knowledge, but includes a nice graphical interface for App configuration. Upload your App in the \zway App Store for easy deployment and distribution of your App.
+
+Check \zway App Store on \murl{https://developer.z-wave.me/} for more information. There are many other open source Apps made by the community.
+
+Accessing a server side JS function from the web browsers client side is easy. Just call 
+
+\murl{http://YOURIP:8083/JS/Run/<any JS code>}
 
 Please note that all accesses using the embedded webserver require an authentication of the 
 web browsers instance. Please refer to chapter \ref{cap:authentication} for details how to 
-authenticate against the web server.
+authenticate in the \zway web server.
 
 \zway offers one central object with the name 'zway' . This object encapsulates all the 
 Z-Wave variables and functions known from the Z-Wave Device API describes in chapter \ref{c2}.
@@ -67,7 +83,7 @@ The functions can be accessed using the web browsers function like
 
 \murl{http://YOURIP:8083/JS/Run/zway.devices[x].*}
 
-Due to the scripting nature of JavaScript its possible to 'inject' code at run time
+Due to the scripting nature of JavaScript it is possible to 'inject' code at run time
 using the interface. Here a nice example how to use the Java Script 
 setInterval function:
 
@@ -77,7 +93,7 @@ setInterval function:
 }, 300*1000);
 \end{listingverbatim}
 
-This code will, once 'executed' as URL within a web browser, call the Get() command
+This code will, once 'executed' as a URL within a web browser, calls the Get() command
 of the command class Basic of Node ID 2 every 300 seconds.  
 
 A very powerful function of the JS API is the ability to bind functions to certain
@@ -102,7 +118,7 @@ functionality mentioned above.
 
 \subsection{HTTP Access}
 
-The JavaScript implementation of \zway allows to directly accessing HTTP objects.
+The JavaScript implementation of \zway allows directly accessing HTTP objects.
 
 The http request is much like jQuery.ajax(): r = http.request(options);
 
@@ -133,26 +149,26 @@ auth: {
 }
 \end{listingverbatim}
 
-\item contentType – optional. Allows to override content type returned by server for 
+\item contentType – optional. Allows overriding content type returned by the server for 
 parsing data (see below);
 \item async – optional. Specifies whether request should be sent asynchronously. Default 
-is false. In case of synchronous request result is returned immediately (as function 
-return value), otherwise function exits immediately, and response is delivered later 
+is false. In case of synchronous request, result is returned immediately (as function 
+return value); otherwise, function exits immediately, and response is delivered later 
 thru callbacks.
 \item success, error and complete – optional, valid only for async requests. Success 
 callback is called after successful request, error is called on failure, complete is 
 called nevertheless (even if success/error callback produces exception, so it is like 
-'finally' statement);
+the 'finally' statement);
 \end{itemize}
 
 Response (as stated above) is delivered either as function return value, or as callback 
-parameter. Is is always an object containing following members:
+parameter. It is always an object containing the following members:
 
 \begin{itemize}
 \item status – HTTP status code (or -1 if some non-HTTP error occurred). Status codes 
 from 200 to 299 are considered success;
 \item statusText – status string;
-\item URL – response URL (might differ from url requested in case of server redirects);
+\item URL – response URL (might differ from URL requested in case of server redirects);
 \item headers – object containing all the headers returned by server;
 \item contentType – content type returned by server;
 \item data – response data.
@@ -222,7 +238,7 @@ response:
 
 \subsection{XML parser}
 
-ZXmlDocument object allows to convert any valid XML document into a JSON object and vice versa.
+ZXmlDocument object allows converting any valid XML document into a JSON object and vice versa.
 
 \subsubsection{var x = new ZXmlDocument()}
 Create new empty XML document
@@ -293,7 +309,7 @@ For example:
 \end{listingverbatim}
 
 \subsubsection{x.isXML}
-This hidden readonly property allows to detect if object is XML object or not (it is always true).
+This hidden read-only property allows detecting if the object is an XML object or not (it is always true).
 
 \subsubsection{x.toString()}
 Converts XML object into a string with valid XML content.
@@ -303,7 +319,7 @@ Returns first matching to XPathString element or null if not found.
 
 \begin{listingverbatim}
 x.findOne('/weather/city[@id="2"]') // returns only city tag for Moscow
-x.findOne('/weather/city[name="Moscow"]/temp/text()') // returns temperature 
+x.findOne('/weather/city[name="Moscow"]/temp/text()') // returns temperature in Moscow
 \end{listingverbatim}
 
 \subsubsection{x.findAll(XPathString)}
@@ -319,7 +335,7 @@ A hidden property that refers to the document root.
 
 \subsubsection{XML elements}
 Each XML element (tag) in addition to properties described above (text, attributes, 
-children) have hidden readonly property parent pointing to parent object and the following methiods:
+children) have hidden read-only property parent pointing to parent object and the following methods:
 \begin{itemize}
 \item insertChild(element) Insert new child eleemnt
 \item removeChild(element) Remove child element
@@ -332,7 +348,7 @@ ZXmlDocument is returned from http.request() when content type is 'application/x
 
 \subsection{Cryptographic functions}
 
-crypto object provides access to some popular cryptographic functions such
+\textbf{crypto} object provides access to some popular cryptographic functions such
 as SHA1, SHA256, SHA512, MD5, HMAC, and provides good random numbers.
 
 \subsubsection{var guid = crypto.guid()}
@@ -340,7 +356,7 @@ Provides standard GUID in string format.
 
 \subsubsection{var rnd = crypto.random(n)}
 Generates n random bytes.
-Returned values is of type ArrayBuffer. To convert it into array use this trick:
+Returned value is of type ArrayBuffer. To convert it into array, use this trick:
 
 \begin{listingverbatim}
 	rnd = (new Uint8Array(crypto.random(10)));
@@ -351,7 +367,7 @@ Returns digest calculated using selected hash algorithm. It supports virtually a
 algorithms available in OpenSSL (md4, md5, mdc2, sha, sha1, sha224, sha256, sha384, sha512, ripemd160).
 If no data parameters specified, it returns a digest of an empty value. If more than one 
 data parameters are specified, they're all used to calculate the result. Data parameters 
-may be of different types (strings, arrays, ArrayBuffers).
+may be of several types: strings, arrays, ArrayBuffers.
 Return value is of type ArrayBuffer.
 
 There are also a few shortcut functions for popular algorithms: 'md5', 'sha1', 'sha256', 
@@ -369,7 +385,7 @@ for digest() function.
 Key parameter is required. 
 
 If no data parameters specified, it returns a HMAC of an empty value. If more than one 
-data parameters are specified, they're all used to calculate the result. Key and data 
+data parameter is specified, they're all used to calculate the result. Key and data 
 parameters may be of different types (strings, arrays, ArrayBuffers).
 Return value is of type ArrayBuffer.
 
@@ -389,7 +405,7 @@ mirrors into JavaScript POSIX TCP/IP sockets.
 This can be used to control third party devices like Global Cache or Sonos
 as well as emulating third party services.
 
-To start communications one need to create socket and either
+To start communication, one needs to create socket and either
 \textbf{connect} it or \textbf{listen} it. \textbf{onrecv} method is called
 on data receive from remote, while \textbf{send} is used to send data to remote side.
 
@@ -441,22 +457,21 @@ Detailed description of Socket API:
 string like "192.168.0.1". If omited "0.0.0.0" is used (bind on all IP addresses of all 
 interfaces). Returns false on error.
 \item connect(ip, port) connects to remote side ip:port. TCP sockets requires this call 
-before sending data. For UDP sockets it is optional, but once used allows to use send call 
-instead of sendto call. Returns false on error.
+before sending data. For UDP sockets it is optional, but once used, it allows using send call  instead of sendto call. Returns false on error.
 \item listen() starts listening port (this is required not only for TCP, but for UDP too). 
 Returns false on error.
 \item close() initiate close of socket.
 \item send(data) sends data to connected or accepted socket.
 \item sendto(data, host, port) sends data to a non-connected UDP socket.
 \item onrecv(data, host, port) called on new data receiption from remote side. For UDP 
-sockets and connected TCP sockets "this" object reffers to the socket itself, while for 
+sockets and connected TCP sockets "this" object refers to the socket itself, while for 
 accepted TCP sockets "this" reffers to the client's individual objects.
-\item onconnect(remoteHost, remotePort, localHost, localPort) is called for TCP sockets 
+\item onconnect(remoteHost, remotePort, localHost, localPort) is called only for TCP sockets 
 on new connection accept or for established connection on client socket.
-"this" reffers to the client individual socket object.
+"this" refers to the client individual socket object.
 \item onclose(remoteHost, remotePort, localHost, localPort) called on socket close by 
 remote or due to close() call. Note that for TCP sockets this callback is called for client 
-sockets on connection close and for binded listening socket if close() is called. "this" 
+sockets on connection close and for bindound listening socket if close() is called. "this" 
 object will be defined like in onrecv.
 \item reusable() sets SO\_REUSEADDR socket option to allow multiple bind() on the same port.
 \item broadcast() sets SO\_BROADCAST socket option to allow sending broadcast UDP messages.
@@ -468,9 +483,9 @@ object will be defined like in onrecv.
 
 Socket module also implements WebSockets (RFC 6455). WebSocket API is made to be
 compatible with browser implementations (some rarely used functions are not
-implemented - see below).
+implemented, see below).
 
-The example below implements basic application using WebSockets client:
+The example below implements basic application using the WebSockets client:
 
 \begin{listingverbatim}
 var sock = new sockets.websocket("ws://echo.websocket.org");
@@ -531,17 +546,17 @@ instead of system default use ssl\_ca\_filepath. To send client certificate use 
 \item sockets.websocket(port) creates new WebSocket server on port.
 \item close() initiate close of WebSocket.
 \item send(data) sends data to WebSocket. data can be array, ArrayBuffer (sent as binary) or string (sent as text).
-\item onmessage(event) called on new data receiption from remote side. Object event contains only data property. Other properties mentioned in RFC 6455 are not supported.
+\item onmessage(event) called on new data reception from remote side. Object event contains only data property. Other properties mentioned in RFC 6455 are not supported.
 \item onopen() or onconnect() called on connection establish. Compared RFC 6455 event parameter is not passed.
 \item onclose() called on WebSocket close by remote or due to close() call. For server side will be called on client instance and on listening instance (use this to differenciate). Note that if close() is called before connection was established, onclose() is not executed. Compared RFC 6455 event parameter is not passed.
-\item onerror(event) called on error. For example host or port unreachable. Note that new sockets.websocket(..) can throw an exception on DNS resolution error or on network unreachable. Other errors will be reported via onerror. Parameter event contains only propery data. Other properties from RFC 6455 are not implemented.
+\item onerror(event) called on error. For example, host or port unreachable. Note that new sockets.websocket(..) can throw an exception on DNS resolution error or on network unreachable. Other errors will be reported via onerror. Parameter event contains only propery data. Other properties from RFC 6455 are not implemented.
 \end{itemize}
 
 \subsection{Other JavaScript Extensions}
 
 \subsubsection{fs.list(folder)}
 
-This returns list of items in the folder or undefined if not folder is not existing.
+This returns the list of items in the folder or undefined if the folder does not exist.
 
 
 \subsubsection{fs.stat(file)}
@@ -559,36 +574,35 @@ This returns one of the following values:
 
 This function reads a file from the file system and loads it into the memory. The file 
 must contain a valid JSON object. The only argument is the name of the file including 
-relative pathname to the automation folder. The functions returns the full JSON object or 
-null in case of error.
+relative pathname to the automation folder. Returns the full JSON object or null in case of error.
 
 \subsubsection{fs.load(filename)}
 
-This function reads a file from the file system and returns it's content as a string. The 
+This function reads a file from the file system and returns its content as a string. The 
 only argument is the name of the file including relative pathname to the automation folder.
- The functions returns null in case of error.
+Returns null in case of error.
 
 \subsubsection{executeFile(filename) and executeJS(string)}
 
 Loads and executes a particular JavaScript file from the local filesystem or executes 
 JavaScript code represented in string (like eval in browsers).
 
-The script is executed withig the global namespace.
+The script is executed within the global namespace.
 
-Remark: If an error occurred during the execution it won't stop from further execution, 
-but erroneous script will not be executed completely. It will stop on the first error.
-Exceptions in the callee can be trapped in the caller using standard try-catch mechanism.
+Remark: If an error occurrs during the execution, it won't stop from further execution, 
+but erroneous scripts will not be executed completely. It will stop at the first error.
+Exceptions in the executed code can be trapped in the caller using standard try-catch mechanism.
 
 \subsubsection{system(command)}
 
-The command system() allows to execute any shell level command available on the operating 
-system. It will return the shell output of the command.  On default the execution of 
+The command system() allows executing any shell level command available on the operating 
+system. It will return the shell output of the command.  By default the execution of 
 system commands is forbidden. Each command executed need to be permitted by putting one 
 line with the starting commands in the file automation/.syscommands or in an different 
 automation folder as specified in config.xml.
 
 \subsubsection{Timers}
-Timers are implemented exactly as they are used in browsers. They are very helpfull for 
+Timers are implemented exactly as they are used in browsers. They are very helpful for 
 periodical and delayed operations. Timeout/period is defined in milliseconds.
 \begin{itemize}
 \item timerId = setTimeout(function() { }, timeout)
@@ -598,8 +612,8 @@ periodical and delayed operations. Timeout/period is defined in milliseconds.
 \end{itemize}
 
 \subsubsection{loadObject(object\_name) and saveObject(object\_name, object)}
-Loads and saves JSON object from/to storage. These functions implements flat storage for 
-application with access to the object by it's name. No folders are available.
+Loads and saves JSON object from/to storage. These functions implement flat storage for 
+application with access to the object by its name. No folders are available.
 
 Data is saved in automation/storage folder. Filenames are made from object names by 
 stripping characters but [a-ZA-Z0-9] and adding checksum from original name (to avoid name conflicts).
@@ -609,10 +623,10 @@ Stops JavaScript engine and shuts down \zway server
 
 
 \subsubsection{allowExternalAccess(handlerName) and listExternalAccess()}
-allowExternalAccess allows to register HTTP handler. handlerName can contain strings like 
-aaa.bbb.ccc.ddd - in that case any HTTP request starting by /aaa/bbb/ccc/ddd will be 
+allowExternalAccess allows registering HTTP handler. handlerName can contain strings like 
+aaa.bbb.ccc.ddd --- in that case any HTTP request starting by /aaa/bbb/ccc/ddd will be 
 handled by a function aaa.bbb.ccc.ddd() if present, otherwise aaa.bbb.ccc(), ... up to aaa().
-Handler should return object with at least properties status and body (one can also specify 
+The handler should return object with at least property status and body (one can also specify 
 headers like it was in http.request module).
 
 listExternalAccess returns array with names of all registered HTTP handlers.
@@ -634,8 +648,8 @@ allowExternalAccess("what.timeisit");
 
 \subsubsection{debugPrint(object, object, ...)}
 
-Prints arguments converted to string to \zway console. Very usefull for debuggin.
-For convenience one can map 'console.log()' to debugPrint().
+Prints arguments converted to string to \zway console. Very useful for debugging.
+For convenience, one can map 'console.log()' to debugPrint().
 
 This is how it was done in automation/main.js in \zway Home Automation engine:
 \begin{listingverbatim}
@@ -686,8 +700,8 @@ Then you can connect to
 
 \murl{http://IP\_OF\_MACHINE\_WITH\_NODE\_INSPECTOR:8080/debug?port=8183}
 
-If debugging is turned on, \zway gives you 5 seconds during startup to reconnect debugger to 
-\zway (refresh the page of debugger Web UI withing these 5 seconds).
+If debugging is turned on, \zway gives you five seconds during startup to reconnect debugger to 
+\zway (refresh the page of debugger Web UI within these five seconds).
 This allows you to debug startup code of \zway JavaScript engine from the very first line of code.
 
 \section{The virtual device concept (vDev)}
