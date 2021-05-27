@@ -451,6 +451,10 @@ sock.onrecv = function(data, host, port) {
 sock.listen();
 \end{listingverbatim}
 
+Important! Callbacks can only be specified before the connection is established.
+
+``this`` inside callbacks refers to the socket object itself.
+
 Detailed description of Socket API:
 \begin{itemize}
 \item bind(ip, port) or bind(port) binds socket to port (integer number). ip should be a 
@@ -550,6 +554,85 @@ instead of system default use ssl\_ca\_filepath. To send client certificate use 
 \item onopen() or onconnect() called on connection establish. Compared RFC 6455 event parameter is not passed.
 \item onclose() called on WebSocket close by remote or due to close() call. For server side will be called on client instance and on listening instance (use this to differenciate). Note that if close() is called before connection was established, onclose() is not executed. Compared RFC 6455 event parameter is not passed.
 \item onerror(event) called on error. For example, host or port unreachable. Note that new sockets.websocket(..) can throw an exception on DNS resolution error or on network unreachable. Other errors will be reported via onerror. Parameter event contains only propery data. Other properties from RFC 6455 are not implemented.
+\end{itemize}
+
+\subsection{MQTT functions}
+
+MQTT module allows to connect to MQTT broker from JavaScript.
+Both subscribtion to remote to topics and publishing own topics are possible.
+TCP and WebSocket transports are supported as well as TLS (requires libmosquitto 2.1.0 or upper).
+
+The example below connects to a server using and publishes a topic.
+
+\begin{listingverbatim}
+var m = new mqtt("broker.emqx.io", 1883);
+
+m.onconnect = function() {
+	debugPrint("Connected");
+};
+
+m.ondisconnect = function() {
+	debugPrint("Disconnected");
+};
+
+m.onpublish = function() {
+	debugPrint("Published");
+};
+it will work when the sent message is published;
+
+m.onsubscribe = function () {
+	debugPrint("Subscribed");
+};
+
+m.onmessage = function (topic, message) {
+	debugPrint("New topic " + topic + ": " + message);
+};
+
+m.connect();
+\end{listingverbatim}
+
+Here is an example of WebSocket based connection:
+
+\begin{listingverbatim}
+var m = new mqtt("ws://broker.emqx.io", 8083);
+\end{listingverbatim}
+
+Important! Callbacks can only be specified before the connection is established.
+
+``this`` inside callbacks refers to the mqtt object itself.
+
+Detailed description of WebSocket API:
+\begin{itemize}
+\item new mqtt(host, port, [login], [password], [clientId]) host can be just a host name or ws://hostname or wss://hostname. login/password allows to use authentication if the broker requires it. Instead of login/password it is possible to use clientId.
+\item onconnect() called when the connection is established
+\item ondisconnect() called when the client is disconnected
+\item onpublish() called when the message is successfully published
+\item onsubscribe() called when the broker confirms the subscription
+\item onmessage(topic, message) called on a new publication received
+\end{itemize}
+
+You can to set the TSL settings before the connection is established.
+Configure the client for certificate based SSL/TLS support:
+\begin{itemize}
+\item tlsset(ca\_file, ca\_path, cert\_file, key\_file) set TLS settings.
+ca\_file: path to a file containing the PEM encoded trusted CA certificate files. Either cafile or ca\_path must not be empty string.
+ca\_path: path to a directory containing the PEM encoded trusted CA certificate files. Either cafile or ca\_path must not be empty string.
+cert\_file: path to a file containing the PEM encoded certificate file for this client. If empty string, key\_file must also be empty string and no client certificate will be used.
+key\_file: path to a file containing the PEM encoded private key for this client. If empty string, cert\_file must also be empty string and no client certificate will be used.
+\item tlsinsecure() disables the verification of the server hostname in the server certificate. This is unsecure, use for debugging only!
+\item tlsadvanced(cert\_reqs, tls\_version, ciphers) Set advanced SSL/TLS options.
+cert\_reqs: 1 to enable the server certificate verification, or 0 to disable during debugging.
+tls\_version: tlv1, tlsv1.1, tlv1.2 or empty for default.
+ciphers: a string describing the ciphers available for use. If empty string, the default ciphers will be used.
+\end{itemize}
+
+The MQTT object provides the following methods:
+\begin{itemize}
+\item connect() to connect to the broker
+\item publish(topic, message) to pblish a message on a given topic
+\item subscribe(topic) to subscribe to a topic
+\item unsubscribe(topic) to unsubscribe to a topic
+\item disconnect() to disconnect from the broker, you can connect again later
 \end{itemize}
 
 \subsection{Other JavaScript Extensions}
