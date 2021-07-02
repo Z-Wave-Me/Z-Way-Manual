@@ -608,7 +608,7 @@ Detailed description of MQTT API:
 You can to set the TSL settings before the connection is established.
 Configure the client for certificate based SSL/TLS support:
 \begin{itemize}
-\item protocolversion(v) set MQTT protocol version. Possible values are mqtt.MQTT_PROTOCOL\_V31, mqtt.MQTT_PROTOCOL\_V311 or mqtt.MQTT\_PROTOCOL_V5.
+\item protocolversion(v) set MQTT protocol version. Possible values are mqtt.MQTT\_PROTOCOL\_V31, mqtt.MQTT\_PROTOCOL\_V311 or mqtt.MQTT\_PROTOCOL\_V5.
 \item tlsset() or tlsset(ca\_file) or tlsset(ca\_file, ca\_path) or tlsset(ca\_file, ca\_path, cert\_file, key\_file) set TLS settings.
 Enalbes TLS encryption. Automatically enabled if port 8883 is used. If no parameters, default CA provided by the OS will be used.
 Otherwise a CA provided by the user is used. It is also possible to specify client side certificate.
@@ -1206,9 +1206,9 @@ Example of a minimal automation module:
 \begin{listingverbatim}[Minimal Module]
 
 function SampleModule (id, controller) {
-SampleModule.super_.call.init(this, id, controller);
-
-this.greeting = "Hello,World!";
+    SampleModule.super_.call.init(this, id, controller);
+    
+    this.greeting = "Hello, World!";
 }
 
 inherits(SampleModule, AutomationModule);
@@ -1216,15 +1216,17 @@ _module = SampleModule;
 
 SampleModule.prototype.init = function () {
     this.sayHello();
-}
+    
+    // subscriptions and initializations
+};
+
+SampleModule.prototype.stop = function () {
+    // unsubscriptions and cleanup of allocated obkects
+};
 
 SampleModule.prototype.sayHello = function () {
     debugPrint(this.greeting);
-} 
-
-SampleModule.prototype.stop = function () {
-    this.sayByeBye();
-}    
+};
 
 \end{listingverbatim}
  
