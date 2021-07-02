@@ -166,6 +166,10 @@ The data object can be accesses in the \zweui in advanced mode of 'Configuration
 \item infoProtocolSpecific: internal information about the device
 \item interviewDone: set to true when device finishes the interview (might not match with interviewDone on individual CCs if they appear after interview done)
 
+\item unsolicitedReportOnSet: if Z-Way is added to this group, do not send a Get after Set and wait for an unsolicited Report. If no Report within few seconds, send an explicit Get. By default for all Z-Wave Plus product set to 1 (LifeLine group).
+\item acceptSetSecurityLevel: accept Set commands from devices to Z-Way with
+lower security levels. 0 - accept all packets, 128 - accept S0 and S2 packets, 1 - accept S2 packets, 2 - accept S2 Authenticated and Access packets, 4 - accept only S2 Access packets, -1 - not set (used default most secure level).
+
 \item neightbours: list of neighbour nodes
 \item priorityRoutes: list of priority routes assigned to the node (via AssignPrioritySUCReturnRoute and AssignPriorityReturnRoute) used to restore routes on network reorganization
 \begin {itemize}
