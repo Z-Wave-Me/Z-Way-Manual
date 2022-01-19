@@ -35,7 +35,7 @@ Data holders:
 
 \section{Command Class Wakeup (0x84/132)}
 
-\textit{Version 2, Controlled}
+\textit{Version 3, Controlled}
 \newline
 
 Allows to manage periodical wakeup of sleeping battery operated device. Upon wakeup device will notify one node listed in nodeId. NB! If the device can wake up by interrupt (user interaction, button press, sensor trigger), it might happen that the device never wakes up. This can happen if you wake up the device by interrupe each time before internal chip wakeup period (usually from 1 to 4 minutes) reaches. (Z-Wave chip can not count for remaining time to next wakeup, so will restart timer again). This means that strictly speaking you can not rely on long time no wake up as an indicator of lost/damaged device or battery empty. NB! To save battery it is recommended to tune wakeup period to one week or even more for devices that do only need to report battery on wakeup (remote controls). For sensors it is recommended to have at least one hour wakeup period.
@@ -193,7 +193,7 @@ Data holders:
 
 \section{Command Class Configuration (0x70/112)}
 
-\textit{Version 1, Controlled}
+\textit{Version 4, Controlled}
 \newline
 
 Used to set certian configuration valeus that change the behavior of the device. Z-Wave requires that every device works out of the box without further configuration. However different configuration value significantly enhance the value a device. Z-Wave does not provide any information about the configuration values by wireless commands. User have to look into the device manual to learn about configuration parameters. The Device Description Record (ZDDX), incoprotated by Z-Way gives information about valid parameters and the meaning of the values to be set.
@@ -210,18 +210,18 @@ Data holders:
 
 \paragraph{Command Configuration Get}
 \begin{quote}Syntax: Get(parameter, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_configuration\_get(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBYTE parameter, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_configuration\_get(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, unsigned short int parameter, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Configuration Get\end{quote}
-\begin{quote}Parameter parameter: Parameter number (from 1 to 255)\end{quote}
+\begin{quote}Parameter parameter: Parameter number\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: parameter subtree updated or created if absent\end{quote}
 
 \paragraph{Command Configuration Set}
 \begin{quote}Syntax: Set(parameter, value, size = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_configuration\_set(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBYTE parameter, int value, ZWBYTE size, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_configuration\_set(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, unsigned short int parameter, int value, ZWBYTE size, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Configuration Set\end{quote}
-\begin{quote}Parameter parameter: Parameter number (from 1 to 255)\end{quote}
+\begin{quote}Parameter parameter: Parameter number\end{quote}
 \begin{quote}Parameter value: Value to be sent (negative and positive values are accepted, but will be stripped to size)\end{quote}
 \begin{quote}Parameter size: Size of the value (1, 2 or 4 bytes). Use 0 to guess from previously reported value if any. 0 means use size previously obtained Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -230,9 +230,17 @@ Data holders:
 
 \paragraph{Command Configuration SetDefault}
 \begin{quote}Syntax: SetDefault(parameter, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_configuration\_set\_default(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBYTE parameter, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_configuration\_set\_default(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, unsigned short int parameter, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Configuration SetDefault\end{quote}
 \begin{quote}Parameter parameter: Parameter number to be set to device default\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: parameter subtree updated or created if absent\end{quote}
+
+\paragraph{Command Configuration DefaultReset}
+\begin{quote}Syntax: DefaultReset(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_configuration\_default\_reset(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send Configuration DefaultReset\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: parameter subtree updated or created if absent\end{quote}
@@ -546,10 +554,11 @@ Data holders:
 \begin{quote}Report: level updated\end{quote}
 
 \paragraph{Command SwitchBinary Set}
-\begin{quote}Syntax: Set(value, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_switch\_binary\_set(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBOOL value, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Syntax: Set(value, duration = 0xff, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_switch\_binary\_set(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBOOL value, ZWBYTE duration, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchBinary Set\end{quote}
 \begin{quote}Parameter value: Value\end{quote}
+\begin{quote}Parameter duration: Duration of change:. 0 instantly. 0x01...0x7f in seconds. 0x80...0xfe in minutes mapped to 1...127 (value 0x80=128 is 1 minute). 0xff use device factory default\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: level updated\end{quote}
@@ -868,6 +877,7 @@ Data holders:
 \item \textbf{mode}: Current mode
 \item \textbf{[modeId]}: Mode subtree
 \item \qquad\textbf{modeName}: Mode description
+\item \textbf{manufacturerSpecific}: Manufacturer specific data for mode 0x1F
 \end{itemize}
 
 \paragraph{Command ThermostatMode Get}
@@ -883,6 +893,15 @@ Data holders:
 \begin{quote}C Syntax: ZWError zway\_cc\_thermostat\_mode\_set(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBYTE mode, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ThermostatMode Set\end{quote}
 \begin{quote}Parameter mode: Thermostat Mode\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command ThermostatMode SetManufacturerSpecific}
+\begin{quote}Syntax: SetManufacturerSpecific(manufacturerSpecifc, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_thermostat\_mode\_set\_manufacturer\_specific(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, const ZWBYTE * manufacturerSpecifc, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send ThermostatMode Set Manufacturer Specific\end{quote}
+\begin{quote}Parameter manufacturerSpecifc: Manufacturer specific data\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
@@ -1055,16 +1074,33 @@ Data holders:
 
 \begin{itemize}
 \item \textbf{mode}: Operating mode of the lock
-\item \textbf{insideMode}: Bit mask describing if a specific handles (1..4) can open the door from inside
-\item \textbf{outsideMode}: Bit mask describing if a specific handles (1..4) can open the door from outside
-\item \textbf{lockMinutes}: Time remaind before autolock (minutes, 0xFE for no autolock)
-\item \textbf{lockSeconds}: Time remaind before autolock (seconds, 0xFE for no autolock)
-\item \textbf{condition}: Bit mask describing lock components: bit 0: Door Open(0)/Close(1), bit 1: Bolt Locked(0)/Unlocked(1), bit 2: Latch Open(0)/Close(1)
-\item \textbf{insideState}: Bit mask describing if a specific handles (1..4) can open the door from inside
-\item \textbf{outsideState}: Bit mask describing if a specific handles (1..4) can open the door from outside
-\item \textbf{timeoutMinutes}: Timeout for autolock (minutes, 0xFE for no autolock)
-\item \textbf{timeoutSeconds}: Timeout for autolock (seconds, 0xFE for no autolock)
-\item \textbf{opType}: 0x01 for constant operation, 0x02 for autolock
+\item \textbf{targetMode}: Mode the lock goes into
+\item \textbf{duration}: Time to reach the targetMode
+\item \textbf{insideHandlesMode}: Bit mask (4 bits) describing specific handles (1..4) state
+\item \textbf{outsideHandlesMode}: Bit mask (4 bits) describing specific handles (1..4) state
+\item \textbf{remainingLockTimeout}: Time remained before autolock (in seconds)
+\item \textbf{latchLocked}: Latch state
+\item \textbf{boltLocked}: Bolt state
+\item \textbf{doorClosed}: Door state
+\item \textbf{operationType}: 0x01 for constant operation, 0x02 for timed operation
+\item \textbf{insideHandlesEnabled}: Bit mask (4 bits) describing if a specific handle (1..4) can open the door from inside
+\item \textbf{outsideHandlesEnabled}: Bit mask (4 bits) describing if a specific handle (1..4) can open the door from outside
+\item \textbf{lockTimeout}: Time before lock in timed operation (in seconds)
+\item \textbf{autolockTime}: Autolock time (in seconds)
+\item \textbf{holdReleaseTime}: Hold and release time (in seconds)
+\item \textbf{twistAssist}: Twist Assist enabled
+\item \textbf{blockToBlock}: Block to Block enabled
+\item \textbf{supportedOperationTypes}: Supported operation types
+\item \textbf{supportedModes}: Supported modes
+\item \textbf{insideHandlesSupported}: Bit mask (4 bits) describing if a specific handle (1..4) is supported
+\item \textbf{outsideHandlesSupported}: Bit mask (4 bits) describing if a specific handle (1..4) is supported
+\item \textbf{latchSupported}: Is Latch state supported
+\item \textbf{boltSupported}: Is Bolt state supported
+\item \textbf{doorSupported}: Is Door state supported
+\item \textbf{autolockSupported}: Is Autolock supported
+\item \textbf{holdReleaseSupported}: Is Hold and release supported
+\item \textbf{twistAssistSupported}: Twist Assist enabled
+\item \textbf{blockToBlockSupported}: Is Block to Block supported
 \end{itemize}
 
 \paragraph{Command DoorLock Get}
@@ -1073,7 +1109,7 @@ Data holders:
 \begin{quote}Description: Send DoorLock Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
-\begin{quote}Report: mode, insideMode, outsideMode, lockMinutes, lockSeconds and condition updated\end{quote}
+\begin{quote}Report: mode, insideHandlesMode, outsideHandlesMode, latchLocked, boltLocked, doorClosed, remainingLockTimeout, targetMode, duration updated\end{quote}
 
 \paragraph{Command DoorLock ConfigurationGet}
 \begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
@@ -1081,7 +1117,7 @@ Data holders:
 \begin{quote}Description: Send DoorLock Configuration Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
-\begin{quote}Report: insideState, outsideState, timeoutMinutes, timeoutSeconds, opType updated\end{quote}
+\begin{quote}Report: operationType, outsideHandlesEnabled, insideHandlesEnabled, lockTimeout, autolockTime, holdReleaseTime, twistAssist, blockToBlock updated\end{quote}
 
 \paragraph{Command DoorLock Set}
 \begin{quote}Syntax: Set(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
@@ -1090,20 +1126,23 @@ Data holders:
 \begin{quote}Parameter mode: Lock mode\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
-\begin{quote}Report: mode, insideMode, outsideMode, lockMinutes, lockSeconds and condition updated\end{quote}
+\begin{quote}Report: mode, insideHandlesMode, outsideHandlesMode, latchLocked, boltLocked, doorClosed, remainingLockTimeout, targetMode, duration updated\end{quote}
 
 \paragraph{Command DoorLock ConfigurationSet}
-\begin{quote}Syntax: ConfigurationSet(opType, outsideState, insideState, lockMin, lockSec, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_door\_lock\_configuration\_set(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBYTE opType, ZWBYTE outsideState, ZWBYTE insideState, ZWBYTE lockMin, ZWBYTE lockSec, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Syntax: ConfigurationSet(operationType, outsideHandlesEnabled, insideHandlesEnabled, lockTimeout, autolockTime, holdReleaseTime, twistAssist, blockToBlock, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_door\_lock\_configuration\_set(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBYTE operationType, ZWBYTE outsideHandlesEnabled, ZWBYTE insideHandlesEnabled, int lockTimeout, int autolockTime, int holdReleaseTime, ZWBOOL twistAssist, ZWBOOL blockToBlock, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send DoorLock Configuration Set\end{quote}
-\begin{quote}Parameter opType: Operation type\end{quote}
-\begin{quote}Parameter outsideState: State of outside door handle\end{quote}
-\begin{quote}Parameter insideState: State of inside door handle\end{quote}
-\begin{quote}Parameter lockMin: Lock after a specified time (minutes part)\end{quote}
-\begin{quote}Parameter lockSec: Lock after a specified time (seconds part)\end{quote}
+\begin{quote}Parameter operationType: Operation type\end{quote}
+\begin{quote}Parameter outsideHandlesEnabled: State of outside door handle\end{quote}
+\begin{quote}Parameter insideHandlesEnabled: State of inside door handle\end{quote}
+\begin{quote}Parameter lockTimeout: Lock after a specified time if in timed operation mode (in seconds)\end{quote}
+\begin{quote}Parameter autolockTime: Autolock time (in seconds)\end{quote}
+\begin{quote}Parameter holdReleaseTime: Hold and release time (in seconds)\end{quote}
+\begin{quote}Parameter twistAssist: Twist assist enabled\end{quote}
+\begin{quote}Parameter blockToBlock: Block to block enabled\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
-\begin{quote}Report: insideState, outsideState, timeoutMinutes, timeoutSeconds, opType updated\end{quote}
+\begin{quote}Report: operationType, outsideHandlesEnabled, insideHandlesEnabled, lockTimeout, autolockTime, holdReleaseTime, twistAssist, blockToBlock updated\end{quote}
 
 
 \section{Command Class Door Lock Logging (0x4C/76)}
@@ -1210,6 +1249,18 @@ Allows to define individual user entry code in electrnic door lock.
 Data holders:
 
 \begin{itemize}
+\item \textbf{masterCodeSupported}: TRUE if device supports Master code
+\item \textbf{masterCodeDeactivationSupported}: TRUE if device supports deactivation of Master code
+\item \textbf{masterCode}: Master code
+\item \textbf{checksumSupported}: TRUE if device supports code database checksum
+\item \textbf{checksum}: Checksum of codes database
+\item \textbf{multipleUserCodeReportSupported}: TRUE if device supports multiple user codes in one ExtendedGet
+\item \textbf{multipleUserCodeSetSupported}: TRUE if device supports multiple user codes in one ExtendedSet
+\item \textbf{supportedUserIdStatuses}: Mask of supported statuses
+\item \qquad\textbf{[id]}: User status name
+\item \textbf{supportedKeypadModes}: Mask of supported keypad modes
+\item \qquad\textbf{[id]}: Keypad mode name
+\item \textbf{supportedKeys}: Array with supported keys chars
 \item \textbf{maxUsers}: Maximum number of supported users
 \item \textbf{[userId]}: User subtree
 \item \qquad\textbf{code}: User code
@@ -1219,16 +1270,24 @@ Data holders:
 
 \paragraph{Command UserCode Get}
 \begin{quote}Syntax: Get(user = -1, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_get(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, int user, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_get(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, unsigned int user, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send UserCode Get\end{quote}
 \begin{quote}Parameter user: User index to get code for (1...maxUsers). -1 to get codes for all users\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: userId subtree updated\end{quote}
 
+\paragraph{Command UserCode GetAll}
+\begin{quote}Syntax: GetAll(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_get\_all(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send UserCode GetAll\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: all userId subtrees updated\end{quote}
+
 \paragraph{Command UserCode Set}
 \begin{quote}Syntax: Set(user, code, status, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_set(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, int user, ZWCSTR code, ZWBYTE status, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_set(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, unsigned int user, ZWCSTR code, ZWBYTE status, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send UserCode Set\end{quote}
 \begin{quote}Parameter user: User index to set code for (1...maxUsers). 0 means set for all users\end{quote}
 \begin{quote}Parameter code: Code to set (4...10 characters long)\end{quote}
@@ -1239,14 +1298,65 @@ Data holders:
 
 \paragraph{Command UserCode SetRaw}
 \begin{quote}Syntax: SetRaw(user, code, status, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_set\_raw(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, int user, const ZWBYTE * code, ZWBYTE status, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
-\begin{quote}Description: Send UserCode Set (raw)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_set\_raw(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, unsigned int user, const ZWBYTE * code, ZWBYTE status, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send UserCode SetRaw\end{quote}
 \begin{quote}Parameter user: User index to set code for (1...maxUsers). 0 means set for all users\end{quote}
 \begin{quote}Parameter code: Code to set (4...10 bytes long)\end{quote}
 \begin{quote}Parameter status: Code status to set\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: userId subtree updated\end{quote}
+
+\paragraph{Command UserCode MasterCodeGet}
+\begin{quote}Syntax: MasterCodeGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_master\_code\_get(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send UserCode MasterCodeGet\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: masterCode updated\end{quote}
+
+\paragraph{Command UserCode MasterCodeSet}
+\begin{quote}Syntax: MasterCodeSet(code, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_master\_code\_set(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWCSTR code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send UserCode MasterCodeSet\end{quote}
+\begin{quote}Parameter code: Code to set (4...10 characters long or zero length to deactivate)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: masterCode updated\end{quote}
+
+\paragraph{Command UserCode MasterCodeSetRaw}
+\begin{quote}Syntax: MasterCodeSetRaw(code, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_master\_code\_set\_raw(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, const ZWBYTE * code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send UserCode MasterCodeSet\end{quote}
+\begin{quote}Parameter code: Code to set (4...10 characters long or zero length to deactivate)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: masterCode updated\end{quote}
+
+\paragraph{Command UserCode KeypadModeGet}
+\begin{quote}Syntax: KeypadModeGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_keypad\_mode\_get(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send UserCode KeypadModeGet\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: keypadMode updated\end{quote}
+
+\paragraph{Command UserCode KeypadModeSet}
+\begin{quote}Syntax: KeypadModeSet(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_keypad\_mode\_set(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBYTE mode, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send UserCode KeypadModeSet\end{quote}
+\begin{quote}Parameter mode: Keypad mode\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: keypadMode updated\end{quote}
+
+\paragraph{Command UserCode ChecksumGet}
+\begin{quote}Syntax: ChecksumGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_checksum\_get(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send UserCode ChecksumGet\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: checksum updated\end{quote}
 
 
 \section{Command Class Time (0x8A/138)}
@@ -1433,7 +1543,7 @@ Data holders:
 
 \section{Command Class Indicator (0x87/135)}
 
-\textit{Version 1, Controlled}
+\textit{Version 4, Supported and Controlled}
 \newline
 
 Operates the indicator on the device if available. Can be used to identify a device or use the indicator for special purposes (show away/at home mode).
@@ -1443,22 +1553,47 @@ Operates the indicator on the device if available. Can be used to identify a dev
 Data holders:
 
 \begin{itemize}
-\item \textbf{stat}: Status of the indicator
+\item \textbf{[indicatorId]}: Indicator Id
+\item \qquad\textbf{description}: Indicator name
+\item \qquad\textbf{[propertyId]}: Property Id
+\item \qquad\qquad\textbf{state}: Status of the indicator
 \end{itemize}
 
 \paragraph{Command Indicator Get}
-\begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_indicator\_get(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Syntax: Get(indicatorId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_indicator\_get(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBYTE indicator\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Indicator Get\end{quote}
+\begin{quote}Parameter indicatorId: Indicator ID\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: stat updated\end{quote}
 
 \paragraph{Command Indicator Set}
-\begin{quote}Syntax: Set(val, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_indicator\_set(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBYTE val, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Syntax: Set(indicatorId, propertyId, state, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_indicator\_set(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBYTE indicator\_id, ZWBYTE property\_id, ZWBYTE state, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Indicator Set\end{quote}
-\begin{quote}Parameter val: Value to set\end{quote}
+\begin{quote}Parameter indicatorId: Indicator ID\end{quote}
+\begin{quote}Parameter propertyId: Property ID (type) of the indicator\end{quote}
+\begin{quote}Parameter state: Value to set\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: stat updated\end{quote}
+
+\paragraph{Command Indicator SetMultiple}
+\begin{quote}Syntax: SetMultiple(indicatorId, propertyIds, states, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_indicator\_set\_multiple(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBYTE indicator\_id, const ZWBYTE * property\_ids, const ZWBYTE * states, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send Indicator SetMultiple\end{quote}
+\begin{quote}Parameter indicatorId: Indicator ID\end{quote}
+\begin{quote}Parameter propertyIds: Property IDs (type) of the indicator\end{quote}
+\begin{quote}Parameter states: Values to set\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: stat updated\end{quote}
+
+\paragraph{Command Indicator Identify}
+\begin{quote}Syntax: Identify(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_indicator\_identify(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send Indicator Identify\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: stat updated\end{quote}
@@ -1913,7 +2048,7 @@ Data holders:
 
 \section{Command Class Firmware Update (0x7A/122)}
 
-\textit{Version 4, Controlled}
+\textit{Version 7, Supported and Controlled}
 \newline
 
 Allows to update firmware of the device (OTA, Over-The-Air upgrade).
@@ -1946,16 +2081,40 @@ Data holders:
 \begin{quote}Report: upgradeable, firmwareCount, updateStatus, manufacturerId, manufacturerId, firmwareId, firmware[n], checksum updated\end{quote}
 
 \paragraph{Command FirmwareUpdate Perform}
-\begin{quote}Syntax: Perform(manufacturerId, firmwareId, firmwareTarget, data, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_firmware\_update\_perform(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, int manufacturerId, int firmwareId, ZWBYTE firmwareTarget, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Syntax: Perform(manufacturerId, firmwareId, firmwareTarget, data, delayActivation = FALSE, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_firmware\_update\_perform(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, int manufacturerId, int firmwareId, ZWBYTE firmwareTarget, const ZWBYTE * data, ZWBOOL delayActivation, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Firmware Update Request Get. On process start Z-Way sets fragmentCount:. devices.N.instances.0.commandClasses.122.data.fragmentCount = 3073 (0x00000c01). Then it asks the device to start the process. The device can refuse it (i.e. if local confirmation timed out). If confirmed, the device will send us a report with adjusted fragment size (if it wants Z-Way to send by smaller packets) and report "Ready" (updateStatus = 255, see below). devices.N.instances.0.commandClasses.122.data.updateStatus = 255 (0x000000ff). devices.N.instances.0.commandClasses.122.data.fragmentCount = 3277 (0x00000ccd). At this point fragmentTransmitted == 0. devices.N.instances.0.commandClasses.122.data.fragmentTransmitted =0. Then device starts asking Z-Way for different packets. Z-Way will update fragmentTransmitted to allow track the process. Once done (fragmentCount == fragmentTransmitted), the device will send again a report if the flashing was successful. updateStatus contains the status: checksum error = 0, assemble error = 1, success, restart manually = 254, success, automatic restart = 255. waitTime refers to the time device will take to reboot. devices.N.instances.0.commandClasses.122.data.updateStatus = 255 (0x000000ff). devices.N.instances.0.commandClasses.122.data.waitTime = 5 (0x00000005)\end{quote}
+\begin{quote}Parameter manufacturerId: Manufacturer Id (2 bytes)\end{quote}
+\begin{quote}Parameter firmwareId: Firmware Id (2 bytes)\end{quote}
+\begin{quote}Parameter firmwareTarget: Firmware target number (0 for main chip, 1..255 for additional chips). Used only for CC v3 and above\end{quote}
+\begin{quote}Parameter data: Firmware image data in binary format (use hex2bin to convert from Intel Hex)\end{quote}
+\begin{quote}Parameter delayActivation: Set to TRUE to delay the activation of the uploaded firmware. Use zway\_cc\_firmware\_update\_activation\_set to initiate the activation\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: updateStatus, updateStatusStr, waitTime, fragmentCount, fragmentTransmitted updated\end{quote}
+
+\paragraph{Command FirmwareUpdate Activation}
+\begin{quote}Syntax: Activation(manufacturerId, firmwareId, firmwareTarget, data, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_firmware\_update\_activation(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, int manufacturerId, int firmwareId, ZWBYTE firmwareTarget, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send Firmware Update Activation Set. Apply previously loaded firmware\end{quote}
 \begin{quote}Parameter manufacturerId: Manufacturer Id (2 bytes)\end{quote}
 \begin{quote}Parameter firmwareId: Firmware Id (2 bytes)\end{quote}
 \begin{quote}Parameter firmwareTarget: Firmware target number (0 for main chip, 1..255 for additional chips). Used only for CC v3 and above\end{quote}
 \begin{quote}Parameter data: Firmware image data in binary format (use hex2bin to convert from Intel Hex)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
-\begin{quote}Report: updateStatus, waitTime, fragmentCount, fragmentTransmitted updated\end{quote}
+\begin{quote}Report: activationStatus, activationStatusStr updated\end{quote}
+
+\paragraph{Command FirmwareUpdate Prepare}
+\begin{quote}Syntax: Prepare(manufacturerId, firmwareId, firmwareTarget, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_firmware\_update\_prepare(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, int manufacturerId, int firmwareId, ZWBYTE firmwareTarget, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send Firmware Update Prepare Set. Fetch the firmware from the device\end{quote}
+\begin{quote}Parameter manufacturerId: Manufacturer Id (2 bytes)\end{quote}
+\begin{quote}Parameter firmwareId: Firmware Id (2 bytes)\end{quote}
+\begin{quote}Parameter firmwareTarget: Firmware target number (0 for main chip, 1..255 for additional chips). Used only for CC v3 and above\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: prepareStatus, prepareStatusStr updated\end{quote}
 
 
 \section{Command Class Association Group Information (0x59/89)}
@@ -2077,11 +2236,12 @@ Data holders:
 
 
 \paragraph{Command SwitchColor StartStateChange}
-\begin{quote}Syntax: StartStateChange(capabilityId, dir, ignoreStartLevel = TRUE, startLevel = 50, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_switch\_color\_start\_state\_change(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBYTE capabilityId, ZWBYTE dir, ZWBOOL ignoreStartLevel, ZWBYTE startLevel, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Syntax: StartStateChange(capabilityId, dir, duration = 0xff, ignoreStartLevel = TRUE, startLevel = 50, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_switch\_color\_start\_state\_change(ZWay zway, ZWBYTE node\_id, ZWBYTE instance\_id, ZWBYTE capabilityId, ZWBYTE dir, ZWBYTE duration, ZWBOOL ignoreStartLevel, ZWBYTE startLevel, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchColor StartStateChange\end{quote}
 \begin{quote}Parameter capabilityId: Capability Id to start changing state for\end{quote}
 \begin{quote}Parameter dir: Direction of change: 0 to incrase, 1 to decrase\end{quote}
+\begin{quote}Parameter duration: Duration of change:. 0 instantly. 0x01...0x7f in seconds. 0x80...0xfe in minutes mapped to 1...127 (value 0x80=128 is 1 minute). 0xff use device factory default\end{quote}
 \begin{quote}Parameter ignoreStartLevel: If set to True, device will ignore start level value and will use it's curent value\end{quote}
 \begin{quote}Parameter startLevel: Start level to change from\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -2402,7 +2562,7 @@ Data holders:
 
 \section{Command Class Supervision (0x6C/108)}
 
-\textit{Version 1, Supported and Controlled}
+\textit{Version 2, Supported and Controlled}
 \newline
 
 This Command Class is transparently implemented in the library to guarantee delivery report on every command (even on Set). There are no functions to execute.
