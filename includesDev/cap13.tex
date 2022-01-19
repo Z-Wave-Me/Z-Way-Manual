@@ -73,6 +73,13 @@ Once obtained, the session can be sent to the \zway server via the following way
 
 Below are few examples of local authentication.
 
+With cURL using Authentication Bearer token:
+{\scriptsize
+\begin{quote} 
+\cmdline{curl -H "Authorization: Bearer .../..." http://192.168.0.62:8083/ZAutomation/api/v1/...}
+\end{quote}
+}
+
 With cURL using cookies:
 {\scriptsize
 \begin{quote} 
@@ -147,11 +154,18 @@ To suppress the redirect use \texttt{act=auth}.
 The credential can be used in subsequent requests in one of the three forms listed below (in order they are checked in \zway):
 \begin{itemize}
 \item as HTTP \textbf{Authentication: Bearer} header (see below),
-\item as HTTP \textbf{X-ZBW\_SESSID} and \textbf{ZWAYSession} headers,
+\item as HTTP \textbf{X-ZBW-SESSID} and \textbf{ZWAYSession} headers,
 \item as \textbf{ZBW\_SESSID} and \textbf{ZWAYSession} cookies.
 \end{itemize}
 
 Below are examples of remote authentication.
+
+With cURL using Authentication Bearer token:
+{\scriptsize
+\begin{quote} 
+\cmdline{curl -H "Authorization: Bearer .../..." https://find.z-wave.me/ZAutomation/api/v1/...}
+\end{quote}
+}
 
 With cURL using cookies:
 {\scriptsize
