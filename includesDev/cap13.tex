@@ -358,6 +358,36 @@ Content-Disposition: form-data; name="code"
 \end{listingverbatim}
 
 
+\section{Integration with third party systems}
+\label{integratingzway}
+
+\subsection{Node-RED}
+Node-RED is a JavaScript (node.js) based home automation system that uses
+concept of flows to link devices together.
+
+There is a community supported contribution:
+\url{https://flows.nodered.org/node/node-red-contrib-zway}
+
+To set up the integration enter the URL to Z-Way (e.g ws://192.168.0.200:8083
+for local access or wss://find.z-wave.me for remote access). For the token
+enter the API token taken from user settings page on the bottom.
+
+Check \url{https://github.com/Z-Wave-Me/node-red-contrib-zway} for more
+info.
+
+\subsection{Home Assistant}
+Home Assistant is a popular multiprotocol home automation system with
+configurable user interface. Z-Wave.Me is supporting an integration with
+Home Assistant via Z-Wave.Me integration. It is part of the Home Assistant
+core.
+
+To set up the integration enter the URL to Z-Way (e.g ws://192.168.0.200:8083
+for local access or wss://find.z-wave.me for remote access). For the token
+enter the API token taken from user settings page on the bottom.
+
+Check \url{https://github.com/Z-Wave-Me/ha-core} for more info.
+
+
 \section{How to write own Apps for \zway}
 \label{developownapps}
 
