@@ -543,6 +543,7 @@ Data holders:
 
 \begin{itemize}
 \item \textbf{level}: State: False for Off, True for On
+\item \textbf{overrideDefaultDuration}: Override default duration (0xff) with this value
 \end{itemize}
 
 \paragraph{Command SwitchBinary Get}
@@ -580,6 +581,7 @@ Data holders:
 \item \textbf{startChange}: Dimming up or down. Updated on dimming start. Allows to trap events from remotes to controller.
 \item \textbf{stopChange}: Updated on dimming end. Allows to trap events from remotes to controller.
 \item \textbf{prevLevel}: Internal
+\item \textbf{overrideDefaultDuration}: Override default duration (0xff) with this value
 \item \textbf{primary}: Unused
 \item \textbf{secondary}: Unsued
 \end{itemize}
@@ -2198,6 +2200,7 @@ Allows to control color for multicolor lights including LED bulbs and LED strips
 Data holders:
 
 \begin{itemize}
+\item \textbf{overrideDefaultDuration}: Override default duration (0xff) with this value
 \item \textbf{capabilityMask}: Internal. Bit mask with supported capabilities
 \item \textbf{[capabilityId]}: Subtree for capabilityId
 \item \qquad\textbf{capabilityString}: Capability description
