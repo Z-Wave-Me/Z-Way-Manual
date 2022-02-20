@@ -129,7 +129,9 @@ and \textbf{ZBW\_SESSID} in two forms:
 The session can be obtained by
 \begin{itemize}
 \item logging in the form on \murl{https://find.z-wave.me/zboxweb}
-\item sending a POST request to \murl{https://find.z-wave.me/zboxweb} with form data \texttt{act=login\&login=id/admin\&pass=password}
+\item sending a POST request to \murl{https://find.z-wave.me/zboxweb} with form data \texttt{act=auth\&login=id/admin\&pass=password}
+\item sending a GET request to \murl{https://find.z-wave.me/zboxweb?act=auth\&login=id/admin\&pass=password}
+\item sending a POST request to \murl{https://find.z-wave.me/zboxweb} with form data \texttt{act=login\&boxid=id\&login=admin\&pass=password}
 \end{itemize}
 
 \begin{figure}
@@ -140,16 +142,17 @@ The session can be obtained by
 \end{center}
 \end{figure}
 
-Once logged in with \texttt{act=login}, the user is redirected to the / of the \zway (in most cases it then redirects to /smarthome/).
+POST request with \texttt{act=login} will set cookies and redirect to the / of the \zway (in most cases it then redirects to /smarthome/).
 If you want the user to be redirected to some specific URL after log in add one more parameter \texttt{ruri=...} (see examples below).
+
+GET and POST request with \texttt{act=auth} will return the token and set cookies accordingly. No redirect takes place in this case. This way is better for integrations thru the API.
 
 The obtained session will be returned
 \begin{itemize}
 \item as an HTTP header,
-\item as a cookie.
+\item as a cookie,
+\item in the body (for act=auth).
 \end{itemize}
-
-To suppress the redirect use \texttt{act=auth}.
 
 The credential can be used in subsequent requests in one of the three forms listed below (in order they are checked in \zway):
 \begin{itemize}
