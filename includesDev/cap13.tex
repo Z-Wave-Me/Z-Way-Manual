@@ -415,6 +415,33 @@ Content-Disposition: form-data; name="code"
 }
 \end{listingverbatim}
 
+\section{Create app instances}
+\label{createappinstances}
+
+Using the Javascript API, you can create an instance of any App. When creating an App instance, you need to pass it's settings in JSON format. To find out the settings scheme, you can look into the browser developer tools log. As an example, let's look at how a Dummy Device App instance is created in browser.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{pngs/cap13/requst-api-dummy-device.png}
+\caption{Example of creating a Dummy Device in browser}
+\label{requst_api_dummy_device}
+\end{center}
+\end{figure}
+
+You should see a POST request with data in the log: \murl{http://192.168.1.39:8083/ZAutomation/api/v1/instances}
+{"moduleId":"DummyDevice","active":"true","title":"Dummy Device","params":{"deviceType":"switchBinary"}}
+
+The curl example looks like this:
+{\scriptsize
+\begin{quote} 
+\cmdline{curl -X POST http://192.168.1.39:8083/ZAutomation/api/v1/instances -H "ZWAYSession: e452740f-3988-a20b-4bd6-cd98e1697247" -H 'Content-Type: application/json' -d '{"moduleId":"DummyDevice","active":"true","title":"Dummy Device","params":{"deviceType":"switchBinary"}}'}
+\end{quote}
+}
+
+Response with a new instance of the module DummyDevice ID 28:
+\begin{listingverbatim}
+{"data":{"module":"DummyDevice","id":28,"config":{"deviceType":"switchBinary"}},"code":201,"message":"201 Created","error":null}
+\end{listingverbatim}
 
 \section{Integration with third party systems}
 \label{integratingzway}
