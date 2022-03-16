@@ -3,7 +3,7 @@
 \section{Authentication}
 \label{cap:authentication}
 
-In order to access API one need to authenticate itself. \zway uses sessions
+In order to access the API one need to authenticate itself. \zway uses sessions
 to authenticate users. \zway session is called \textbf{ZWAYSession}.
 
 If remote access is used, the find.z-wave.me service will issue an additional token called \textbf{ZBW\_SESSID}.
@@ -13,22 +13,26 @@ Please read in \ref{cap:authentication_usage} about the token lifetime, permanen
 \subsection{First login}
 \label{cap:first_login}
 
-The first access should be from a local network to set an administrator password.
-To be able to send API requests, you need to get a session token using GET to url \murl{/ZAutomation/api/v1/system/first-access}
-The session token is stored in:
+The first access should be made from the local network to set the initial administrator password.
+The administrator user is called \textbf{admin}. Access thru the remote access
+service (desribed in \ref{cap:authentication_remote}) is not available until the administrator password is set.
+
+To be able to send API requests, you need to get the session token using GET request to the URL \murl{/ZAutomation/api/v1/system/first-access}
+
+The session token is stored in the reply as:
 \begin{itemize}
-\header called \textbf{ZWAYSession},
-\cookie called \textbf{ZWAYSession}.
+\item \textbf{ZWAYSession} header, and
+\item \textbf{ZWAYSession} cookie.
 \end{itemize}
 
-Below is an example to get a session token with curl.
+Below is an example of the session token request with \cmdline{curl}.
 {\scriptsize
 \begin{quote} 
 \cmdline{curl -X GET http://192.168.1.109:8083/ZAutomation/api/v1/system/first-access -D -}
 \end{quote}
 }
 
-Example of successful response:
+Example of a successful response:
 \begin{listingverbatim}[Successful response]
 HTTP/1.1 200 OK
 Server: Mongoose/6.4
@@ -47,13 +51,17 @@ Content-Length: 667
 {"data":{"defaultProfile":{"id":1,"role":1,"login":"admin","name":"Administrator","lang":"en","dashboard":[],"interval":2000,"devices":[],"rooms":[0],"expert_view":true,"hide_all_device_events":false,"hide_system_events":false,"hide_single_device_events":[],"email":"admin@mail.com","skin":"","night_mode":false,"beta":false,"uuid":"03b97bd3-964b-4cb4-884f-e83183e8071e","sid":"75817f4d-1ad2-a595-fb21-2bda3d053510","showWelcome":true},"firstaccess":true,"uuid":"42e955ed-c166-c19d-59c4-acf391cf9f0a","serial":"42e955ed-c166-c19d-59c4-acf391cf9f0a","mac":"b8:27:eb:f3:ed:9f","remote_id":177252,"ip_address":"192.168.1.109"},"code":200,"message":"200 OK","error":null}
 \end{listingverbatim}
 
-The administrator password can be set by sending the new password in JSON format using PUT to URL \murl{/ZAutomation/api/v1/auth/update/1}
-User credentials should look like {"id":1,"password":"12345678","passwordConfirm":"12345678","email":"admin@mail.com"}.
+The administrator password can be set by sending the new password in JSON format using PUT to the URL \murl{/ZAutomation/api/v1/auth/update/1}
+User credentials should look like (the email field is optional):
 
-Below is an example to set an administrator password.
+\begin{listingverbatim}[Example of the JSON format for credential update]
+{"id": 1, "password": "12345678", "passwordConfirm": "12345678", "email": "admin@mail.com"}
+\end{listingverbatim}
+
+Below is an example of the administrator password setup:
 {\scriptsize
 \begin{quote} 
-\cmdline{curl -X PUT -H "ZWAYSession: 75817f4d-1ad2-a595-fb21-2bda3d053510" -H "Content-Type: application/json" -d '{"id":1,"password":"12345678","passwordConfirm":"12345678","email":"admin@mail.com"}' http://192.168.1.109:8083/ZAutomation/api/v1/auth/update/1 -D -}
+\cmdline{curl -X PUT -H "ZWAYSession: 75817f4d-1ad2-a595-fb21-2bda3d053510" -H "Content-Type: application/json" -d '\{"id":1,"password":"12345678","passwordConfirm":"12345678","email":"admin@mail.com"\}' http://192.168.1.109:8083/ZAutomation/api/v1/auth/update/1 -D -}
 \end{quote}
 }
 
