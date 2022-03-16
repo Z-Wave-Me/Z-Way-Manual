@@ -428,8 +428,13 @@ Using the Javascript API, you can create an instance of any App. When creating a
 \end{center}
 \end{figure}
 
-You should see a POST request with data in the log: \murl{http://192.168.1.39:8083/ZAutomation/api/v1/instances}
-{"moduleId":"DummyDevice","active":"true","title":"Dummy Device","params":{"deviceType":"switchBinary"}}
+In the network log you should see a POST request to: \murl{http://192.168.1.39:8083/ZAutomation/api/v1/instances}
+with data:
+{\scriptsize
+\begin{quote} 
+\{"moduleId": "DummyDevice", "active": "true", "title": "Dummy Device", "params": \{"deviceType": "switchBinary"\}\}
+\end{quote}
+}
 
 The curl example looks like this:
 {\scriptsize
@@ -440,7 +445,18 @@ The curl example looks like this:
 
 Response with a new instance of the module DummyDevice ID 28:
 \begin{listingverbatim}
-{"data":{"module":"DummyDevice","id":28,"config":{"deviceType":"switchBinary"}},"code":201,"message":"201 Created","error":null}
+\{
+  "data": {
+    "module": "DummyDevice",
+    "id": 28,
+    "config": {
+      "deviceType": "switchBinary"
+    }
+  },
+  "code": 201,
+  "message": "201 Created",
+  "error": null
+}
 \end{listingverbatim}
 
 \section{Integration with third party systems}
