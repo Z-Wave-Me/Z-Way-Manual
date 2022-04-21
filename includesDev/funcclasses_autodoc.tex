@@ -100,7 +100,7 @@
 
 \paragraph{Function Class SetSUCNodeId}
 \begin{quote}Syntax: SetSUCNodeId(nodeId, enable, sis, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_set\_suc\_node\_id(ZWay zway, ZWBYTE node\_id, ZWBOOL enable, ZWBOOL sis, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_set\_suc\_node\_id(ZWay zway, ZWNODE node\_id, ZWBOOL enable, ZWBOOL sis, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Assign new SUC/SIS or disable existing\end{quote}
 \begin{quote}Parameter nodeId: Node Id to be assigned/disabled as SUC/SIS\end{quote}
 \begin{quote}Parameter enable: True to enable, False to disable\end{quote}
@@ -197,7 +197,7 @@
 
 \paragraph{Function Class IsFailedNode}
 \begin{quote}Syntax: IsFailedNode(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_is\_failed\_node(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_is\_failed\_node(ZWay zway, ZWNODE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Checks if node is failed\end{quote}
 \begin{quote}Parameter nodeId: Node Id to be checked\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -222,7 +222,7 @@
 
 \paragraph{Function Class SendData}
 \begin{quote}Syntax: SendData(nodeId, data, description = NULL, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_send\_data(ZWay zway, ZWBYTE node\_id, const ZWBYTE * data, ZWCSTR description, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_send\_data(ZWay zway, ZWNODE node\_id, const ZWBYTE * data, ZWCSTR description, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send data. Packets are sent in AUTO\_ROUTE mode with EXPLRER\_FRAME enabled for listening devices (ignored if not supported by the hardware [based on 5.0x branch])\end{quote}
 \begin{quote}Parameter nodeId: Destination Node Id (NODE\_BROADCAST to send non-routed broadcast packet)\end{quote}
 \begin{quote}Parameter data: Paket payload\end{quote}
@@ -233,7 +233,7 @@
 
 \paragraph{Function Class SendDataSecure}
 \begin{quote}Syntax: SendDataSecure(nodeId, data, description = NULL, keyClass = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_send\_data\_secure(ZWay zway, ZWBYTE node\_id, const ZWBYTE * data, ZWCSTR description, ZWBYTE key\_class, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_send\_data\_secure(ZWay zway, ZWNODE node\_id, const ZWBYTE * data, ZWCSTR description, ZWBYTE key\_class, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send data using security. Packets are sent in AUTO\_ROUTE mode with EXPLRER\_FRAME enabled for listening devices (ignored if not supported by the hardware [based on 5.0x branch]). Explicitelly use security\end{quote}
 \begin{quote}Parameter nodeId: Destination Node Id (NODE\_BROADCAST to send non-routed broadcast packet)\end{quote}
 \begin{quote}Parameter data: Paket payload\end{quote}
@@ -245,7 +245,7 @@
 
 \paragraph{Function Class GetNodeProtocolInfo}
 \begin{quote}Syntax: GetNodeProtocolInfo(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_get\_node\_protocol\_info(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_get\_node\_protocol\_info(ZWay zway, ZWNODE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get node protocol info\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device in question\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -254,7 +254,7 @@
 
 \paragraph{Function Class GetRoutingTableLine}
 \begin{quote}Syntax: GetRoutingTableLine(nodeId, removeBad = FALSE, removeRepeaters = FALSE, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_get\_routing\_table\_line(ZWay zway, ZWBYTE node\_id, ZWBOOL remove\_bad, ZWBOOL remove\_repeaters, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_get\_routing\_table\_line(ZWay zway, ZWNODE node\_id, ZWBOOL remove\_bad, ZWBOOL remove\_repeaters, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get routing table line\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device in question\end{quote}
 \begin{quote}Parameter removeBad: Exclude failed nodes from the listing\end{quote}
@@ -265,7 +265,7 @@
 
 \paragraph{Function Class AssignReturnRoute}
 \begin{quote}Syntax: AssignReturnRoute(nodeId, destId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_assign\_return\_route(ZWay zway, ZWBYTE node\_id, ZWBYTE dest\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_assign\_return\_route(ZWay zway, ZWNODE node\_id, ZWNODE dest\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Assign return route to specified node\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device that have to store new route\end{quote}
 \begin{quote}Parameter destId: Destination Node Id of the route\end{quote}
@@ -275,7 +275,7 @@
 
 \paragraph{Function Class AssignSUCReturnRoute}
 \begin{quote}Syntax: AssignSUCReturnRoute(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_assign\_suc\_return\_route(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_assign\_suc\_return\_route(ZWay zway, ZWNODE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Assign return route to SUC\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device that have to store route to SUC\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -284,7 +284,7 @@
 
 \paragraph{Function Class DeleteReturnRoute}
 \begin{quote}Syntax: DeleteReturnRoute(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_delete\_return\_route(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_delete\_return\_route(ZWay zway, ZWNODE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Delete return route\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device that have to delete all assigned return routes\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -293,7 +293,7 @@
 
 \paragraph{Function Class DeleteSUCReturnRoute}
 \begin{quote}Syntax: DeleteSUCReturnRoute(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_delete\_suc\_return\_route(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_delete\_suc\_return\_route(ZWay zway, ZWNODE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Delete return route to SUC\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device that have to delete route to SUC\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -310,7 +310,7 @@
 
 \paragraph{Function Class SendSUCNodeId}
 \begin{quote}Syntax: SendSUCNodeId(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_send\_suc\_node\_id(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_send\_suc\_node\_id(ZWay zway, ZWNODE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SUC Node Id. Informs portable and static controllers about new or deleted SUC/SIS\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device that have to be informed about new or deleted SIC/SIS\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -319,7 +319,7 @@
 
 \paragraph{Function Class SendNodeInformation}
 \begin{quote}Syntax: SendNodeInformation(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_send\_node\_information(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_send\_node\_information(ZWay zway, ZWNODE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send NIF of the stick\end{quote}
 \begin{quote}Parameter nodeId: Destination Node Id (NODE\_BROADCAST to send non-routed broadcast packet)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -328,7 +328,7 @@
 
 \paragraph{Function Class RequestNodeInformation}
 \begin{quote}Syntax: RequestNodeInformation(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_request\_node\_information(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_request\_node\_information(ZWay zway, ZWNODE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Request NIF of a device\end{quote}
 \begin{quote}Parameter nodeId: Node Id to be requested for a NIF\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -337,7 +337,7 @@
 
 \paragraph{Function Class RemoveFailedNode}
 \begin{quote}Syntax: RemoveFailedNode(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_remove\_failed\_node(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_remove\_failed\_node(ZWay zway, ZWNODE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Remove failed node from network. Before removing SDK will check that the device is really unreachable\end{quote}
 \begin{quote}Parameter nodeId: Node Id to be removed from network\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -346,7 +346,7 @@
 
 \paragraph{Function Class ReplaceFailedNode}
 \begin{quote}Syntax: ReplaceFailedNode(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_replace\_failed\_node(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_replace\_failed\_node(ZWay zway, ZWNODE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Replace failed node with a new one. Be ware that a failed node can be replaced by a node of another type. This can lead to probles!. Always request device NIF and force re-interview after successful replace process\end{quote}
 \begin{quote}Parameter nodeId: Node Id to be replaced by new one\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -363,7 +363,7 @@
 
 \paragraph{Function Class RequestNodeNeighbourUpdate}
 \begin{quote}Syntax: RequestNodeNeighbourUpdate(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_request\_node\_neighbour\_update(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_request\_node\_neighbour\_update(ZWay zway, ZWNODE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Request neighbours update for specific node\end{quote}
 \begin{quote}Parameter nodeId: Node Id to be requested for it's neighbours\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -409,7 +409,7 @@
 
 \paragraph{Function Class RemoveNodeIdFromNetwork}
 \begin{quote}Syntax: RemoveNodeIdFromNetwork(nodeId, startStop, highPower = FALSE, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_remove\_node\_id\_from\_network(ZWay zway, ZWBYTE nodeId, ZWBOOL startStop, ZWBOOL highPower, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_remove\_node\_id\_from\_network(ZWay zway, ZWNODE nodeId, ZWBOOL startStop, ZWBOOL highPower, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Start/stop exclusion of a node id. Note that this function can be used to exclude a device from previous network before including in ours. Available on primary and inclusion controllers\end{quote}
 \begin{quote}Parameter nodeId: NodeId to exclude. If 0 or > 232, any node will be excluded (like with zway\_fc\_remove\_node\_from\_network / RemoveNodeFromNetwork)\end{quote}
 \begin{quote}Parameter startStop: Start exclusion mode if True, stop if False\end{quote}
@@ -465,7 +465,7 @@
 
 \paragraph{Function Class SendTestFrame}
 \begin{quote}Syntax: SendTestFrame(nodeId, level, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_send\_test\_frame(ZWay zway, ZWBYTE node\_id, ZWBYTE level, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_send\_test\_frame(ZWay zway, ZWNODE node\_id, ZWBYTE level, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send test frame to a node at a specified RF level\end{quote}
 \begin{quote}Parameter nodeId: Node Id to make test against\end{quote}
 \begin{quote}Parameter level: 0 to 9\end{quote}
@@ -586,7 +586,7 @@
 
 \paragraph{Function Class InjectPacket}
 \begin{quote}Syntax: InjectPacket(nodeId, data, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_application\_command\_handler\_inject(ZWay zway, ZWBYTE node\_id, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_application\_command\_handler\_inject(ZWay zway, ZWNODE node\_id, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Inject command in Z-Way as it was received via Z-Wave. This function is for debugging only\end{quote}
 \begin{quote}Parameter nodeId: Source Node Id\end{quote}
 \begin{quote}Parameter data: Paket payload (should looks like ccId, ccCmd, data, ....)\end{quote}
@@ -638,7 +638,7 @@
 
 \paragraph{Function Class GetPriorityRoute}
 \begin{quote}Syntax: GetPriorityRoute(nodeId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_get\_priority\_route(ZWay zway, ZWBYTE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_get\_priority\_route(ZWay zway, ZWNODE node\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get the route with the highest priority\end{quote}
 \begin{quote}Parameter nodeId: Node ID we are interested in\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -647,7 +647,7 @@
 
 \paragraph{Function Class SetPriorityRoute}
 \begin{quote}Syntax: SetPriorityRoute(nodeId, repeater1, repeater2, repeater3, repeater4, routeSpeed, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_set\_priority\_route(ZWay zway, ZWBYTE node\_id, ZWBYTE repeater1, ZWBYTE repeater2, ZWBYTE repeater3, ZWBYTE repeater4, ZWBYTE route\_speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_set\_priority\_route(ZWay zway, ZWNODE node\_id, ZWBYTE repeater1, ZWBYTE repeater2, ZWBYTE repeater3, ZWBYTE repeater4, ZWBYTE route\_speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set the route with the highest priority\end{quote}
 \begin{quote}Parameter nodeId: Node ID we are interested in\end{quote}
 \begin{quote}Parameter repeater1: Hop \#1 in the route. Value 0 means direct range. Values > 232 clears the priority route and LWR (Last Working Route is selected by the protocol)\end{quote}
@@ -670,7 +670,7 @@
 
 \paragraph{Function Class AssignPriorityReturnRoute}
 \begin{quote}Syntax: AssignPriorityReturnRoute(nodeId, destId, repeater1, repeater2, repeater3, repeater4, routeSpeed, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_assign\_priority\_return\_route(ZWay zway, ZWBYTE node\_id, ZWBYTE dest\_id, ZWBYTE repeater1, ZWBYTE repeater2, ZWBYTE repeater3, ZWBYTE repeater4, ZWBYTE route\_speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_assign\_priority\_return\_route(ZWay zway, ZWNODE node\_id, ZWNODE dest\_id, ZWBYTE repeater1, ZWBYTE repeater2, ZWBYTE repeater3, ZWBYTE repeater4, ZWBYTE route\_speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Assign priority return route to specified node\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device that have to store new route\end{quote}
 \begin{quote}Parameter destId: Destination Node Id of the route\end{quote}
@@ -685,7 +685,7 @@
 
 \paragraph{Function Class AssignPrioritySUCReturnRoute}
 \begin{quote}Syntax: AssignPrioritySUCReturnRoute(nodeId, repeater1, repeater2, repeater3, repeater4, routeSpeed, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_fc\_assign\_priority\_suc\_return\_route(ZWay zway, ZWBYTE node\_id, ZWBYTE repeater1, ZWBYTE repeater2, ZWBYTE repeater3, ZWBYTE repeater4, ZWBYTE route\_speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_assign\_priority\_suc\_return\_route(ZWay zway, ZWNODE node\_id, ZWBYTE repeater1, ZWBYTE repeater2, ZWBYTE repeater3, ZWBYTE repeater4, ZWBYTE route\_speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Assign priority return route to SUC\end{quote}
 \begin{quote}Parameter nodeId: Node Id of the device that have to store route to SUC\end{quote}
 \begin{quote}Parameter repeater1: Hop \#1 in the route. Value 0 means direct range\end{quote}
@@ -731,6 +731,31 @@
 \begin{quote}C Syntax: ZWError zway\_fc\_zme\_serialapi\_options\_uart\_speed\_set(ZWay zway, speed\_t speed, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set high speed for UART interface for Z-Wave.Me firmware\end{quote}
 \begin{quote}Parameter speed: UART speed. Valid values are listed in UART\_SPEEDS macro definition\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class GetLongRangeChannel}
+\begin{quote}Syntax: GetLongRangeChannel(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_get\_get\_long\_range\_channel(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get Long Range channel\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class SetLongRangeChannel}
+\begin{quote}Syntax: SetLongRangeChannel(channel, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_set\_get\_long\_range\_channel(ZWay zway, ZWBYTE channel, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Long Range channel\end{quote}
+\begin{quote}Parameter channel: Long Range channel. 1 for channel A. 2 for channel B\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class GetLongRangeNodes}
+\begin{quote}Syntax: GetLongRangeNodes(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_get\_long\_range\_nodes(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get Long Range nodes\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
