@@ -221,26 +221,28 @@ Below are examples of remote authentication.
 With cURL using Authentication Bearer token:
 {\scriptsize
 \begin{quote} 
-\cmdline{curl -H "Authorization: Bearer .../..." https://find.z-wave.me/ZAutomation/api/v1/...}
+\cmdline{curl -H 'Authorization: Bearer .../...' https://find.z-wave.me/ZAutomation/api/v1/...}
 \end{quote}
 }
 
 With cURL using cookies:
 {\scriptsize
 \begin{quote} 
-\cmdline{curl -H "Accept: application/json" -X POST -d 'act=login\&login=132339/admin\&pass=admin1' https://find.z-wave.me/zboxweb -c cookie.txt}
+\cmdline{curl -H 'Accept: application/json' -X POST -d 'act=login\&boxid=132339\&login=admin\&pass=admin1' https://find.z-wave.me/zboxweb -c cookie.txt}
 \cmdline{curl https://find.z-wave.me/ZAutomation/api/v1/... -b cookie.txt}
 \end{quote}
 }
 
-%With cURL using cookies in one single command (with follow redirect):
-%{\scriptsize
-%\begin{quote} 
-%\cmdline{curl -H "Accept: application/json" -X POST -d 'act=login\&login=132339/admin\&pass=admin1\&ruri=/ZAutomation/api/v1/devices' https://find.z-wave.me/zboxweb -c cookie.txt -b cookie.txt -L}
-%\end{quote}
-%}
-
 If you want the user to be redirected to a specific page after login, you can also use the following url: \murl{https://find.z-wave.me/zboxweb?ruri=/expert} or \murl{https://find.z-wave.me/zboxweb?ruri=/expert&id=123456&login=admin} to pre-fill \zwaydeviceid and user name.
+
+In some cases one might need to get a remote authentication token based on a local authentication token and remote ID. To do this make a request to \murl{https://find.z-wave.me/zboxweb?act=session_login&zboxid=id} where id is remote ID and the local token is passed via the Authorization Bearer header.
+
+For example:
+{\scriptsize
+\begin{quote} 
+\cmdline{curl -H 'Authorization: Bearer /0fa324dc-b089-754e-8379-01fc8ec5a446' 'https://find.z-wave.me/zboxweb?act=session\_login\&zboxid=123456' -c cookie.txt}
+\end{quote}
+}
 
 \subsection{Remote authentication and access error handling}
 \label{cap:authentication_remote_errors}
@@ -252,13 +254,13 @@ Authentication on \texttt{https://find.z-wave.me/zboxweb} with \texttt{act=login
 \hline
 Condition & HTTP code & Redirect URL \\
 \hline
-Box not connected to the server & 302 & \murl{https://find.z-wave.me/zboxweb?err=bad\_login&ruri=\%2F} \\
+Box not connected to the server & 302 & \murl{https://find.z-wave.me/zboxweb?err=bad\_login\&ruri=/} \\
 \hline
-Box connected, but default login/password admin/admin is used & 302 & \murl{https://find.z-wave.me/zboxweb?err=insecure\_login\_pass&ruri=\%2F} \\
+Box connected, but default login/password admin/admin is used & 302 & \murl{https://find.z-wave.me/zboxweb?err=insecure\_login\_pass\&ruri=/} \\
 \hline
 Box not connected to find.z-wave.me & 502 & \\
 \hline
-Box connected, but login/password is invalid & 302 & \murl{https://find.z-wave.me/zboxweb?err=bad\_login&ruri=\%2F} \\
+Box connected, but login/password is invalid & 302 & \murl{https://find.z-wave.me/zboxweb?err=bad\_login\&ruri=/} \\
 \hline
 Box connected and authentication is successful & 302 & \murl{https://find.z-wave.me/} \\
 \hline
