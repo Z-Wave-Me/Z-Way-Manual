@@ -910,8 +910,42 @@ attached by application, and executing commands will put new packets in the queu
 You will also need few other functions \texttt{zway\_is\_running(), zway\_is\_idle(), 
 zway\_stop(), zway\_terminate()} to handler termination process.
 
+\subsubsection{Handling secure inclusion}
 
+Security S0 inclusion is completely handled by the Z-Way library.
 
+Security S2 inclusion with Z-Way library requires user interaction. Z-Way offers various options:
+
+\begin{itemize}
+\item Use Smart Start technology:
+   Call zway\_fc\_smart\_start\_enable() on start (this is done by the library on start).
+
+   Add the device DSK using zway\_node\_provisioning\_dsk\_add() with a pointer to 16 bytes DSK and filled the NodeProvisioningData structure (instead of filling it one can fill it with zeros).
+
+   The inclusion and key exchange will happen automatically on the device's power-up.
+
+   All keys will be granted to the device.
+
+   zway\_dsk\_string\_to\_bytes() can be used to convert AAAAA-BBBBB-...-HHHHH into 16 bytes.
+\item Use the standard key grant process:
+
+   After inclusion start subscribe to Command Classes creation (using zway\_device\_add\_callback() with CommandAdded flag) and wait for SecurityS2 creation. Then subscribe to the change of requestedKeys and puclickKey data holders on SecurityS2 Command Class data (using zdata\_add\_callback()).
+
+   On requestedKeys change inspect inner data holders for the list of requested keys and fill all grantedKeys inner data holders (by setting TRUE or FALSE).
+
+   Once done, set TRUE on the grantedKeys data holder.
+
+   On puclickKey update check it against the DSK on the device (it is good to show the full key to the customer to allow full check).
+
+   Copy the key in the puclickKeyVerified data holder to confirm. If publicKeyVerificationRequires is set to TRUE, the user should also be asked for the PIN code. This two-bytes code should replace the two leading zero bytes of the puclickKey.
+\item Set the PIN and the list of desired security keys before inclusion:
+
+    Just before starting the inclusion process with zway\_controller\_add\_node\_to\_network set data holders on the controller S2AutoInclude.pin=XXXXX (PIN number) and S2AutoInclude.keys=Y (-1 for all keys, 0x80 for S0 only, 0x01 for S2 Unauthenticated, 0x02 for S2 Authenticated, 0x04 for S2 Access, or any ORed combination to provide multiple keys)
+
+    If there is no need for S2 Authentication or S2 Access keys, just specify pin=0 and keys=0x01. This will give S2Unauthenticated without entering the PIN code. keys=0x81 will grant S0 and S2 Unauthenticated.
+\end{itemize}
+
+\subsubsection{Sample project}
 
 The link
 \murl{https://storage.z-wave.me/fileadmin/z-way-test.tgz}
