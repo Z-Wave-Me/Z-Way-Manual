@@ -358,10 +358,11 @@ Data holders:
 \end{itemize}
 
 \paragraph{Command Meter Get}
-\begin{quote}Syntax: Get(scale = -1, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_meter\_get(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, int scale, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Syntax: Get(scale = -1, ratetype = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_meter\_get(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, int scale, int ratetype, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Meter Get\end{quote}
 \begin{quote}Parameter scale: Desired scale. -1 for all scales\end{quote}
+\begin{quote}Parameter ratetype: Rate:. 0 for default. 1 for import (consumed). 2 for export (produced)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: scale subtree updated\end{quote}
@@ -2134,12 +2135,12 @@ Data holders:
 
 \paragraph{Command FirmwareUpdate Activation}
 \begin{quote}Syntax: Activation(manufacturerId, firmwareId, firmwareTarget, data, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_firmware\_update\_activation(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, int manufacturerId, int firmwareId, ZWBYTE firmwareTarget, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_firmware\_update\_activation(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, int manufacturerId, int firmwareId, ZWBYTE firmwareTarget, size\_t length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Firmware Update Activation Set. Apply previously loaded firmware\end{quote}
 \begin{quote}Parameter manufacturerId: Manufacturer Id (2 bytes)\end{quote}
 \begin{quote}Parameter firmwareId: Firmware Id (2 bytes)\end{quote}
 \begin{quote}Parameter firmwareTarget: Firmware target number (0 for main chip, 1..255 for additional chips). Used only for CC v3 and above\end{quote}
-\begin{quote}Parameter data: Firmware image data in binary format (use hex2bin to convert from Intel Hex)\end{quote}
+\begin{quote}Parameter data: Firmware image data in binary format (use hex2bin to convert from Intel Hex). This data is used to calculate (again) the CRC of the image and send it to the device to specify which firmware update to activate\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: activationStatus, activationStatusStr updated\end{quote}
