@@ -183,7 +183,7 @@ Data holders:
 
 \paragraph{Command Proprietary Set}
 \begin{quote}Syntax: Set(data, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_proprietary\_set(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_proprietary\_set(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, ZWBYTE length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Proprietary Set\end{quote}
 \begin{quote}Parameter data: Data to set\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -901,7 +901,7 @@ Data holders:
 
 \paragraph{Command ThermostatMode SetManufacturerSpecific}
 \begin{quote}Syntax: SetManufacturerSpecific(manufacturerSpecifc, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_thermostat\_mode\_set\_manufacturer\_specific(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, const ZWBYTE * manufacturerSpecifc, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_thermostat\_mode\_set\_manufacturer\_specific(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, size\_t manufacturerSpecifcSize, const ZWBYTE * manufacturerSpecifc, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ThermostatMode Set Manufacturer Specific\end{quote}
 \begin{quote}Parameter manufacturerSpecifc: Manufacturer specific data\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1337,7 +1337,7 @@ Data holders:
 
 \paragraph{Command UserCode SetRaw}
 \begin{quote}Syntax: SetRaw(user, code, status, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_set\_raw(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, unsigned int user, const ZWBYTE * code, ZWBYTE status, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_set\_raw(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, unsigned int user, ZWBYTE length, const ZWBYTE * code, ZWBYTE status, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send UserCode SetRaw\end{quote}
 \begin{quote}Parameter user: User index to set code for (1...maxUsers). 0 means set for all users\end{quote}
 \begin{quote}Parameter code: Code to set (4...10 bytes long)\end{quote}
@@ -1365,7 +1365,7 @@ Data holders:
 
 \paragraph{Command UserCode MasterCodeSetRaw}
 \begin{quote}Syntax: MasterCodeSetRaw(code, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_master\_code\_set\_raw(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, const ZWBYTE * code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_code\_master\_code\_set\_raw(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, ZWBYTE length, const ZWBYTE * code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send UserCode MasterCodeSet\end{quote}
 \begin{quote}Parameter code: Code to set (4...10 characters long or zero length to deactivate)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1620,7 +1620,7 @@ Data holders:
 
 \paragraph{Command Indicator SetMultiple}
 \begin{quote}Syntax: SetMultiple(indicatorId, propertyIds, states, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_indicator\_set\_multiple(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, ZWBYTE indicator\_id, const ZWBYTE * property\_ids, const ZWBYTE * states, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_indicator\_set\_multiple(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, ZWBYTE indicator\_id, ZWBYTE length, const ZWBYTE * property\_ids, ZWBYTE length, const ZWBYTE * states, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Indicator SetMultiple\end{quote}
 \begin{quote}Parameter indicatorId: Indicator ID\end{quote}
 \begin{quote}Parameter propertyIds: Property IDs (type) of the indicator\end{quote}
@@ -2121,7 +2121,7 @@ Data holders:
 
 \paragraph{Command FirmwareUpdate Perform}
 \begin{quote}Syntax: Perform(manufacturerId, firmwareId, firmwareTarget, data, delayActivation = FALSE, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_firmware\_update\_perform(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, int manufacturerId, int firmwareId, ZWBYTE firmwareTarget, const ZWBYTE * data, ZWBOOL delayActivation, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_firmware\_update\_perform(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, int manufacturerId, int firmwareId, ZWBYTE firmwareTarget, size\_t length, const ZWBYTE * data, ZWBOOL delayActivation, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Firmware Update Request Get. On process start Z-Way sets fragmentCount:. devices.N.instances.0.commandClasses.122.data.fragmentCount = 3073 (0x00000c01). Then it asks the device to start the process. The device can refuse it (i.e. if local confirmation timed out). If confirmed, the device will send us a report with adjusted fragment size (if it wants Z-Way to send by smaller packets) and report "Ready" (updateStatus = 255, see below). devices.N.instances.0.commandClasses.122.data.updateStatus = 255 (0x000000ff). devices.N.instances.0.commandClasses.122.data.fragmentCount = 3277 (0x00000ccd). At this point fragmentTransmitted == 0. devices.N.instances.0.commandClasses.122.data.fragmentTransmitted =0. Then device starts asking Z-Way for different packets. Z-Way will update fragmentTransmitted to allow track the process. Once done (fragmentCount == fragmentTransmitted), the device will send again a report if the flashing was successful. updateStatus contains the status: checksum error = 0, assemble error = 1, success, restart manually = 254, success, automatic restart = 255. waitTime refers to the time device will take to reboot. devices.N.instances.0.commandClasses.122.data.updateStatus = 255 (0x000000ff). devices.N.instances.0.commandClasses.122.data.waitTime = 5 (0x00000005)\end{quote}
 \begin{quote}Parameter manufacturerId: Manufacturer Id (2 bytes)\end{quote}
 \begin{quote}Parameter firmwareId: Firmware Id (2 bytes)\end{quote}
@@ -2266,7 +2266,7 @@ Data holders:
 
 \paragraph{Command SwitchColor SetMultiple}
 \begin{quote}Syntax: SetMultiple(capabilityIds, states, duration = 0xff, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_switch\_color\_set\_multiple(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, const ZWBYTE * capabilityIds, const ZWBYTE * states, ZWBYTE duration, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_switch\_color\_set\_multiple(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, ZWBYTE length, const ZWBYTE * capabilityIds, ZWBYTE length, const ZWBYTE * states, ZWBYTE duration, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send SwitchColor SetMultiple\end{quote}
 \begin{quote}Parameter capabilityIds: Array of capabilities to set\end{quote}
 \begin{quote}Parameter states: Array of state values to be set for the capabilities\end{quote}
@@ -2470,7 +2470,7 @@ Data holders:
 
 \paragraph{Command Security Inject}
 \begin{quote}Syntax: Inject(data, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_security\_inject(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_security\_inject(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, ZWBYTE length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Security Inject\end{quote}
 \begin{quote}Parameter data: Data to set\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -2514,7 +2514,7 @@ Data holders:
 
 \paragraph{Command SecurityS2 Inject}
 \begin{quote}Syntax: Inject(data, keyClass, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_security\_s2\_inject(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, const ZWBYTE * data, ZWBYTE keyClass, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_security\_s2\_inject(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, ZWBYTE length, const ZWBYTE * data, ZWBYTE keyClass, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Security S2 Inject\end{quote}
 \begin{quote}Parameter data: Data to set\end{quote}
 \begin{quote}Parameter keyClass: Security S2 key class\end{quote}
