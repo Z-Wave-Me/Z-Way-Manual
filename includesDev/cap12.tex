@@ -626,7 +626,7 @@ ciphers: a string describing the ciphers available for use. If empty string, the
 The MQTT object provides the following methods:
 \begin{itemize}
 \item connect() to connect to the broker
-\item publish(topic, message) to pblish a message on a given topic
+\item publish(topic, message, retain) to publish a message on a given topic with retain boolean flag
 \item subscribe(topic) to subscribe to a topic
 \item unsubscribe(topic) to unsubscribe to a topic
 \item disconnect() to disconnect from the broker, you can connect again later
