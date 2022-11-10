@@ -1025,7 +1025,7 @@ Function Class SerialAPIApplicationNodeInfo</A>
 Syntax: SerialAPIApplicationNodeInfo(listening, optional, flirs1000, flirs250, genericClass, specificClass, nif, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_fc_serial_api_application_node_info(ZWay zway, ZWBOOL listening, ZWBOOL optional, ZWBOOL flirs1000, ZWBOOL flirs250, ZWBYTE generic_class, ZWBYTE specific_class, const ZWBYTE * nif, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_fc_serial_api_application_node_info(ZWay zway, ZWBOOL listening, ZWBOOL optional, ZWBOOL flirs1000, ZWBOOL flirs250, ZWBYTE generic_class, ZWBYTE specific_class, ZWBYTE nif_size, const ZWBYTE * nif, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Set controller node information
@@ -1346,7 +1346,7 @@ Function Class MemoryPutBuffer</A>
 Syntax: MemoryPutBuffer(offset, data, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_fc_memory_put_buffer(ZWay zway, unsigned short offset, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_fc_memory_put_buffer(ZWay zway, unsigned short offset, ZWBYTE length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Write multiple bytes to EEPROM
@@ -1481,7 +1481,7 @@ Function Class NVMExtWriteLongBuffer</A>
 Syntax: NVMExtWriteLongBuffer(offset, data, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_fc_nvm_ext_write_long_buffer(ZWay zway, unsigned int offset, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_fc_nvm_ext_write_long_buffer(ZWay zway, unsigned int offset, unsigned short length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Write multiple bytes to extended EEPROM
@@ -1577,7 +1577,7 @@ Function Class SendData</A>
 Syntax: SendData(nodeId, data, description = NULL, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_fc_send_data(ZWay zway, ZWNODE node_id, const ZWBYTE * data, ZWCSTR description, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_fc_send_data(ZWay zway, ZWNODE node_id, ZWBYTE length, const ZWBYTE * data, ZWCSTR description, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send data. Packets are sent in AUTO_ROUTE mode with EXPLRER_FRAME enabled for listening devices (ignored if not supported by the hardware [based on 5.0x branch])
@@ -1610,7 +1610,7 @@ Function Class SendDataSecure</A>
 Syntax: SendDataSecure(nodeId, data, description = NULL, keyClass = 0, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_fc_send_data_secure(ZWay zway, ZWNODE node_id, const ZWBYTE * data, ZWCSTR description, ZWBYTE key_class, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_fc_send_data_secure(ZWay zway, ZWNODE node_id, ZWBYTE length, const ZWBYTE * data, ZWCSTR description, ZWBYTE key_class, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send data using security. Packets are sent in AUTO_ROUTE mode with EXPLRER_FRAME enabled for listening devices (ignored if not supported by the hardware [based on 5.0x branch]). Explicitelly use security
@@ -2390,7 +2390,7 @@ Function Class ZMEBootloaderLoadFlash</A>
 Syntax: ZMEBootloaderLoadFlash(data, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_fc_zme_bootloader_load_flash(ZWay zway, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_fc_zme_bootloader_load_flash(ZWay zway, size_t length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Load and start reflashing bootloader of Z-Wave.Me firmware for 7th generation Z-Wave chip. This function is specific for Z-Wave.Me hardware
@@ -2414,7 +2414,7 @@ Function Class ZMECapabilities</A>
 Syntax: ZMECapabilities(data = NULL, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_fc_zme_capabilities(ZWay zway, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_fc_zme_capabilities(ZWay zway, ZWBYTE length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Get or set firmware capabilities. This function is specific for Z-Wave.Me hardware
@@ -2441,7 +2441,7 @@ Function Class ZMELicenseSet</A>
 Syntax: ZMELicenseSet(data = NULL, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_fc_zme_license_set(ZWay zway, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_fc_zme_license_set(ZWay zway, ZWBYTE length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Set Z-Wave.Me firmware capabilities. This function is specific for Z-Wave.Me hardware
@@ -2615,7 +2615,7 @@ Function Class InjectPacket</A>
 Syntax: InjectPacket(nodeId, data, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_fc_application_command_handler_inject(ZWay zway, ZWNODE node_id, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_fc_application_command_handler_inject(ZWay zway, ZWNODE node_id, ZWBYTE length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Inject command in Z-Way as it was received via Z-Wave. This function is for debugging only

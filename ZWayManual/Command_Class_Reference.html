@@ -1358,7 +1358,7 @@ Command Proprietary Set</A>
 Syntax: Set(data, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_cc_proprietary_set(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_cc_proprietary_set(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, ZWBYTE length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send Proprietary Set
@@ -3040,7 +3040,7 @@ Command ThermostatMode SetManufacturerSpecific</A>
 Syntax: SetManufacturerSpecific(manufacturerSpecifc, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_cc_thermostat_mode_set_manufacturer_specific(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, const ZWBYTE * manufacturerSpecifc, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_cc_thermostat_mode_set_manufacturer_specific(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, size_t manufacturerSpecifcSize, const ZWBYTE * manufacturerSpecifc, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send ThermostatMode Set Manufacturer Specific
@@ -3972,7 +3972,7 @@ Command UserCode SetRaw</A>
 Syntax: SetRaw(user, code, status, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_cc_user_code_set_raw(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, unsigned int user, const ZWBYTE * code, ZWBYTE status, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_cc_user_code_set_raw(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, unsigned int user, ZWBYTE length, const ZWBYTE * code, ZWBYTE status, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send UserCode SetRaw
@@ -4056,7 +4056,7 @@ Command UserCode MasterCodeSetRaw</A>
 Syntax: MasterCodeSetRaw(code, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_cc_user_code_master_code_set_raw(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, const ZWBYTE * code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_cc_user_code_master_code_set_raw(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, ZWBYTE length, const ZWBYTE * code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send UserCode MasterCodeSet
@@ -4665,7 +4665,7 @@ Command Indicator SetMultiple</A>
 Syntax: SetMultiple(indicatorId, propertyIds, states, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_cc_indicator_set_multiple(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, ZWBYTE indicator_id, const ZWBYTE * property_ids, const ZWBYTE * states, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_cc_indicator_set_multiple(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, ZWBYTE indicator_id, ZWBYTE length, const ZWBYTE * property_ids, ZWBYTE length, const ZWBYTE * states, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send Indicator SetMultiple
@@ -5824,7 +5824,7 @@ Command FirmwareUpdate Perform</A>
 Syntax: Perform(manufacturerId, firmwareId, firmwareTarget, data, delayActivation = FALSE, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_cc_firmware_update_perform(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, int manufacturerId, int firmwareId, ZWBYTE firmwareTarget, const ZWBYTE * data, ZWBOOL delayActivation, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_cc_firmware_update_perform(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, int manufacturerId, int firmwareId, ZWBYTE firmwareTarget, size_t length, const ZWBYTE * data, ZWBOOL delayActivation, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send Firmware Update Request Get. On process start Z-Way sets fragmentCount:. devices.N.instances.0.commandClasses.122.data.fragmentCount = 3073 (0x00000c01). Then it asks the device to start the process. The device can refuse it (i.e. if local confirmation timed out). If confirmed, the device will send us a report with adjusted fragment size (if it wants Z-Way to send by smaller packets) and report "Ready" (updateStatus = 255, see below). devices.N.instances.0.commandClasses.122.data.updateStatus = 255 (0x000000ff). devices.N.instances.0.commandClasses.122.data.fragmentCount = 3277 (0x00000ccd). At this point fragmentTransmitted == 0. devices.N.instances.0.commandClasses.122.data.fragmentTransmitted =0. Then device starts asking Z-Way for different packets. Z-Way will update fragmentTransmitted to allow track the process. Once done (fragmentCount == fragmentTransmitted), the device will send again a report if the flashing was successful. updateStatus contains the status: checksum error = 0, assemble error = 1, success, restart manually = 254, success, automatic restart = 255. waitTime refers to the time device will take to reboot. devices.N.instances.0.commandClasses.122.data.updateStatus = 255 (0x000000ff). devices.N.instances.0.commandClasses.122.data.waitTime = 5 (0x00000005)
@@ -5863,7 +5863,7 @@ Command FirmwareUpdate Activation</A>
 Syntax: Activation(manufacturerId, firmwareId, firmwareTarget, data, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_cc_firmware_update_activation(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, int manufacturerId, int firmwareId, ZWBYTE firmwareTarget, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_cc_firmware_update_activation(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, int manufacturerId, int firmwareId, ZWBYTE firmwareTarget, size_t length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send Firmware Update Activation Set. Apply previously loaded firmware
@@ -5878,7 +5878,7 @@ Parameter firmwareId: Firmware Id (2 bytes)
 Parameter firmwareTarget: Firmware target number (0 for main chip, 1..255 for additional chips). Used only for CC v3 and above
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-Parameter data: Firmware image data in binary format (use hex2bin to convert from Intel Hex)
+Parameter data: Firmware image data in binary format (use hex2bin to convert from Intel Hex). This data is used to calculate (again) the CRC of the image and send it to the device to specify which firmware update to activate
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
@@ -6157,7 +6157,7 @@ Command SwitchColor SetMultiple</A>
 Syntax: SetMultiple(capabilityIds, states, duration = 0xff, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_cc_switch_color_set_multiple(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, const ZWBYTE * capabilityIds, const ZWBYTE * states, ZWBYTE duration, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_cc_switch_color_set_multiple(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, ZWBYTE length, const ZWBYTE * capabilityIds, ZWBYTE length, const ZWBYTE * states, ZWBYTE duration, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send SwitchColor SetMultiple
@@ -6612,7 +6612,7 @@ Command Security Inject</A>
 Syntax: Inject(data, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_cc_security_inject(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_cc_security_inject(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, ZWBYTE length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send Security Inject
@@ -6698,7 +6698,7 @@ Command SecurityS2 Inject</A>
 Syntax: Inject(data, keyClass, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_cc_security_s2_inject(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, const ZWBYTE * data, ZWBYTE keyClass, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_cc_security_s2_inject(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, ZWBYTE length, const ZWBYTE * data, ZWBYTE keyClass, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send Security S2 Inject

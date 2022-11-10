@@ -879,8 +879,8 @@ them only if you have deep knowledge of \zwave networking. Check
 
 To use \zway one need to include few header files:
 \begin{listingverbatim}
-\#include <ZWayLib.h>
-\#include <ZLogging.h>
+#include <ZWayLib.h>
+#include <ZLogging.h>
 \end{listingverbatim}
 
 \zway will need to know where to write the log to, so first of all you need to create 
@@ -894,7 +894,7 @@ to do it at any time later). Do it using \texttt{zway\_device\_add\_callback()} 
 
 Warning: you should initialize ZWay pointer with NULL before passing it to \texttt{zway\_init}!
 
-Executing z\texttt{zway\_start()} will open serial port and start a new thread that 
+Executing \texttt{zway\_start()} will open serial port and start a new thread that 
 will handle all communications with the transceiver. From now \zway can receive packets 
 from the network, but can not parse them yet, since devices were not discovered yet. 
 All received packets will just be queued to be parsed later after discovery process.
