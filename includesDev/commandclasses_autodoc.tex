@@ -889,7 +889,7 @@ Data holders:
 \begin{quote}Description: Send ThermostatMode Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
-
+\begin{quote}Report: mode updated\end{quote}
 
 \paragraph{Command ThermostatMode Set}
 \begin{quote}Syntax: Set(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
@@ -898,7 +898,7 @@ Data holders:
 \begin{quote}Parameter mode: Thermostat Mode\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
-
+\begin{quote}Report: mode updated\end{quote}
 
 \paragraph{Command ThermostatMode SetManufacturerSpecific}
 \begin{quote}Syntax: SetManufacturerSpecific(manufacturerSpecifc, successCallback = NULL, failureCallback = NULL)\end{quote}
@@ -907,7 +907,7 @@ Data holders:
 \begin{quote}Parameter manufacturerSpecifc: Manufacturer specific data\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
-
+\begin{quote}Report: mode updated\end{quote}
 
 
 \section{Command Class Thermostat Fan Mode (0x44/68)}
@@ -1771,9 +1771,10 @@ Data holders:
 \begin{quote}Report: userId->Weekday->slotId subtree updated\end{quote}
 
 \paragraph{Command ScheduleEntryLock WeekdaySet}
-\begin{quote}Syntax: WeekdaySet(user, slot, dayOfWeek, startHour, startMinute, stopHour, stopMinute, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_schedule\_entry\_lock\_weekday\_set(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, int user, ZWBYTE slot, ZWBYTE dayOfWeek, ZWBYTE startHour, ZWBYTE startMinute, ZWBYTE stopHour, ZWBYTE stopMinute, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Syntax: WeekdaySet(modifyErase, user, slot, dayOfWeek, startHour, startMinute, stopHour, stopMinute, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_schedule\_entry\_lock\_weekday\_set(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, ZWBOOL modifyErase, int user, ZWBYTE slot, ZWBYTE dayOfWeek, ZWBYTE startHour, ZWBYTE startMinute, ZWBYTE stopHour, ZWBYTE stopMinute, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ScheduleEntryLock Weekday Set\end{quote}
+\begin{quote}Parameter modifyErase: TRUE if the the slot is modified, FALSE if erased\end{quote}
 \begin{quote}Parameter user: User to set schedule for\end{quote}
 \begin{quote}Parameter slot: Slot to set schedule for\end{quote}
 \begin{quote}Parameter dayOfWeek: Weekday number (0..6). 0 = Sunday. . 6 = Saturday\end{quote}
@@ -1796,9 +1797,10 @@ Data holders:
 \begin{quote}Report: userId->Year->slotId subtree updated\end{quote}
 
 \paragraph{Command ScheduleEntryLock YearSet}
-\begin{quote}Syntax: YearSet(user, slot, startYear, startMonth, startDay, startHour, startMinute, stopYear, stopMonth, stopDay, stopHour, stopMinute, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zway\_cc\_schedule\_entry\_lock\_year\_set(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, int user, ZWBYTE slot, ZWBYTE startYear, ZWBYTE startMonth, ZWBYTE startDay, ZWBYTE startHour, ZWBYTE startMinute, ZWBYTE stopYear, ZWBYTE stopMonth, ZWBYTE stopDay, ZWBYTE stopHour, ZWBYTE stopMinute, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Syntax: YearSet(modifyErase, user, slot, startYear, startMonth, startDay, startHour, startMinute, stopYear, stopMonth, stopDay, stopHour, stopMinute, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_schedule\_entry\_lock\_year\_set(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, ZWBOOL modifyErase, int user, ZWBYTE slot, ZWBYTE startYear, ZWBYTE startMonth, ZWBYTE startDay, ZWBYTE startHour, ZWBYTE startMinute, ZWBYTE stopYear, ZWBYTE stopMonth, ZWBYTE stopDay, ZWBYTE stopHour, ZWBYTE stopMinute, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send ScheduleEntryLock Year Set\end{quote}
+\begin{quote}Parameter modifyErase: TRUE if the the slot is modified, FALSE if erased\end{quote}
 \begin{quote}Parameter user: User to set schedule for\end{quote}
 \begin{quote}Parameter slot: Slot to set schedule for\end{quote}
 \begin{quote}Parameter startYear: Year in current century when schedule starts (0..99)\end{quote}

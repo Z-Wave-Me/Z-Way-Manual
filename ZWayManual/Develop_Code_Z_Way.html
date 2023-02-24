@@ -990,7 +990,7 @@ library function too. The URL
 <P>
 <BLOCKQUOTE>
 <kbd><A ID="tex2html208"
-  HREF="razberry.z-wave.me/fileadmin/z-way-test.tgz">razberry.z-wave.me/fileadmin/z-way-test.tgz</A></kbd>
+  HREF="https://storage.z-wave.me/z-way-server/z-way-test.tgz">https://storage.z-wave.me/z-way-server/z-way-test.tgz</A></kbd>
 </BLOCKQUOTE> 
 
 <P>
@@ -2481,8 +2481,8 @@ Using Z-Way Library in C-Code</A>
 <P>
 To use Z-Way one need to include few header files:
 <PRE>
-\#include &lt;ZWayLib.h&gt;
-\#include &lt;ZLogging.h&gt;
+\string#include &lt;ZWayLib.h&gt;
+\string#include &lt;ZLogging.h&gt;
 </PRE>
 
 <P>
@@ -2500,7 +2500,7 @@ to do it at any time later). Do it using <SPAN  CLASS="texttt">zway_device_add_c
 Warning: you should initialize ZWay pointer with NULL before passing it to <SPAN  CLASS="texttt">zway_init</SPAN>!
 
 <P>
-Executing z<SPAN  CLASS="texttt">zway_start()</SPAN> will open serial port and start a new thread that 
+Executing <SPAN  CLASS="texttt">zway_start()</SPAN> will open serial port and start a new thread that 
 will handle all communications with the transceiver. From now Z-Way can receive packets 
 from the network, but can not parse them yet, since devices were not discovered yet. 
 All received packets will just be queued to be parsed later after discovery process.
@@ -2586,7 +2586,7 @@ Sample project</A>
 The link
 <BLOCKQUOTE>
 <kbd><A ID="tex2html227"
-  HREF="https://storage.z-wave.me/fileadmin/z-way-test.tgz">https://storage.z-wave.me/fileadmin/z-way-test.tgz</A></kbd>
+  HREF="https://storage.z-wave.me/z-way-server/z-way-test.tgz">https://storage.z-wave.me/z-way-server/z-way-test.tgz</A></kbd>
 </BLOCKQUOTE> 
 
 <P>
