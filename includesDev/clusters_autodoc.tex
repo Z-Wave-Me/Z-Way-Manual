@@ -1,0 +1,723 @@
+
+
+\section{Cluster Class Node Descriptor Request (0x0002/2)}
+
+
+
+\Profile Zigbee Device Profile (0x0000/0)}
+
+The Node\_Desc\_req command is generated from a local device wishing to inquire. as to the node descriptor of a remote device. This command shall be unicast either. to the remote device itself or to an alternative device that contains the discovery. information of the remote device.
+\paragraph{Cluster NodeDescriptorRequest Run}
+\begin{quote}Syntax: Run(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_node\_descriptor\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Node Descriptor Request\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: Node Descriptor updated and called Active\_EP\_req\end{quote}
+
+
+\section{Cluster Class Active EndPoints Request (0x0005/5)}
+
+
+
+\Profile Zigbee Device Profile (0x0000/0)}
+
+The Active\_EP\_req command is generated from a local device wishing to acquire. the list of endpoints on a remote device with simple descriptors. This command. shall be unicast either to the remote device itself or to an alternative device that. contains the discovery information of the remote device.
+\paragraph{Cluster ActiveEndPointsRequest Run}
+\begin{quote}Syntax: Run(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_active\_endpoints\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Active EndPoints Request\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: list of EndPoints updated and called Simple\_Desc\_req for each EndPoint\end{quote}
+
+
+\section{Cluster Class Simple Descriptor Request (0x0004/4)}
+
+
+
+\Profile Zigbee Device Profile (0x0000/0)}
+
+The Simple\_Desc\_req command is generated from a local device wishing to. inquire as to the simple descriptor of a remote device on a specified endpoint. This. command shall be unicast either to the remote device itself or to an alternative. device that contains the discovery information of the remote device.
+\paragraph{Cluster SimpleDescriptorRequest Run}
+\begin{quote}Syntax: Run(newEndpointId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_simple\_descriptor\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE new\_endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Simple Descriptor Request\end{quote}
+\begin{quote}Parameter newEndpointId: Inquired EndPoint Id\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class End Device Announce (0x0013/19)}
+
+
+
+\Profile Zigbee Device Profile (0x0000/0)}
+
+The End\_Device\_annce is provided to enable Zigbee end devices on the network. to notify other Zigbee devices that the end device has joined or re-joined the. network, identifying the end devices 64-bit IEEE address and new 16-bit. NWKaddress and informing the Remote Devices of the capability of the Zigbee. EndDevice. The destination addressing on this primitive is broadcast to all. devices.
+\paragraph{Cluster EndDeviceAnnounce Run}
+\begin{quote}Syntax: Run(ieee, capability, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_end\_device\_announce(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, const ZBEUI64 ieee, ZWBYTE capability, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: End Device Announce\end{quote}
+\begin{quote}Parameter ieee: IEEE address for Local Device\end{quote}
+\begin{quote}Parameter capability: Capability of the local device\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class Network Address Request (0x0000/0)}
+
+
+
+\Profile Zigbee Device Profile (0x0000/0)}
+
+The NWK\_addr\_req is generated from a Local Device wishing to inquire as to the. 16 bit address of the Remote Device based on its known IEEE address. The. destination addressing on this command shall be broadcast to all RxOnWhenIdle. devices.
+\paragraph{Cluster NetworkAddressRequest Run}
+\begin{quote}Syntax: Run(ieee, requestType, startIndex, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_network\_address\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, const ZBEUI64 ieee, ZWBYTE request\_type, ZWBYTE start\_index, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Network Address Request\end{quote}
+\begin{quote}Parameter ieee: The IEEE address to be matched by the Remote Device\end{quote}
+\begin{quote}Parameter requestType: Request Type for this command:. 0x00        - Single device response. 0x01        - Extended response. 0x02...0xFF - Reserved\end{quote}
+\begin{quote}Parameter startIndex: If the Request type for this command is. Extended response, the start\_index. provides the starting index for the. requested elements of the associated. devices list\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class OnOff (0x0006/6)}
+
+
+
+\Profile Zigbee Device Profile (0x0104/260)}
+
+Attributes and commands for switching devices between ‘On’ and ‘Off’ states.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{onOff}: Current state
+\item \textbf{globalSceneControl}: Global Scene state
+\item \textbf{onTime}: Time the “on” state SHALL be maintained before automatically transitioning to the “off” state when using the On with timed off command.
+\item \textbf{offWaitTime}: Time the “off” state SHALL be guarded to prevent an on command turning the device back to its “on” state
+\end{itemize}
+
+\paragraph{Cluster OnOff Set}
+\begin{quote}Syntax: Set(value, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_set(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL value, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send On (0x00/0) or Off (0x01/1)\end{quote}
+\begin{quote}Parameter value: New onOff state:. TRUE  - send On command. FALSE - send Off command\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster OnOff Toggle}
+\begin{quote}Syntax: Toggle(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_toggle(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send Toggle (0x02/2)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster OnOff OffWithEffect}
+\begin{quote}Syntax: OffWithEffect(effectId, effectVar, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_off\_with\_effect(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE effect\_id, ZWBYTE effect\_var, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send Off with Effect (0x40/64)\end{quote}
+\begin{quote}Parameter effectId: Effect Id:. 0x00        - Delayed All Off. 0x01        - Dying Light. 0x02...0xFF - Reserved\end{quote}
+\begin{quote}Parameter effectVar: Effect Variant:. if effect\_id 0x00:. @default: 0x00. 0x00        - Fade to off in 0.8 seconds. 0x01        - No fade. 0x02        - 50\% dim down in 0.8 seconds then fade to off in 12 seconds. 0x03...0xFF - Reserved. if effect\_id 0x01:. @default: 0x00. 0x00        - 20\% dim up in 0.5s then fade to off in 1 second. 0x01...0xFF - Reserved. if effect\_id 0x02...0xFF:. 0x00...0xFF - Reserved\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster OnOff OnWithRecallGlobalScene}
+\begin{quote}Syntax: OnWithRecallGlobalScene(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_on\_with\_recall\_global\_scene(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send On with Recall Global Scene (0x41/65)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster OnOff OnWithTimedOff}
+\begin{quote}Syntax: OnWithTimedOff(control, onTime, offWaitTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_on\_with\_timed\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL control, ZWWORD on\_time, ZWWORD off\_wait\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send On with Time Off (0x42/66)\end{quote}
+\begin{quote}Parameter control: Contains information on how the device is to be operated. 0x00        -  The On With Timed Off command SHALL be processed unconditionally. 0x01...0x7F - Reserved. 0x80        - The On With Timed Off command SHALL only be accepted if the OnOff attribute is equal to 0x01. 0x81...0xFF - Reserved\end{quote}
+\begin{quote}Parameter onTime: The length of time (in 1/10ths second) that the device is to remain “on”. 0x0000...0xFFFE - time in 1/10th second. 0xFFFF          - Reserved\end{quote}
+\begin{quote}Parameter offWaitTime: The length of time (in 1/10ths second) that the device SHALL remain “off”. 0x0000...0xFFFE - time in 1/10th second. 0xFFFF          - Reserved\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster OnOff SetOnTime}
+\begin{quote}Syntax: SetOnTime(onTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_set\_on\_time(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD on\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Time of On Time\end{quote}
+\begin{quote}Parameter onTime: The length of time (in 1/10ths second) that the device SHALL remain “off”. 0x0000...0xFFFE - time in 1/10th second. 0xFFFF          - Reserved\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster OnOff SetOffWaitTime}
+\begin{quote}Syntax: SetOffWaitTime(offWaitTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_set\_off\_wait\_time(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD off\_wait\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Time of On with Time Off\end{quote}
+\begin{quote}Parameter offWaitTime: The length of time (in 1/10ths second) that the device SHALL remain “off”. 0x0000...0xFFFE - time in 1/10th second. 0xFFFF          - Reserved\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class Mgmt Permit Joining Request (0x0036/54)}
+
+
+
+\Profile Zigbee Device Profile (0x0000/0)}
+
+The Mgmt\_Permit\_Joining\_req is generated from a Local Device requesting that. a remote device or devices allow or disallow association. The. Mgmt\_Permit\_Joining\_req is generated by a management application or. commissioning tool which directs the request to a remote device(s) where the. NLME-PERMIT-JOINING.request is executed using the PermitDuration. parameter supplied by Mgmt\_Permit\_Joining\_req. Additionally, if the remote. device is the Trust Center and TC\_Significance is set to 1, the trust center. authentication policy will be affected. The addressing may be unicast or. ‘broadcast to all RxOnWhenIdle devices’.
+\paragraph{Cluster MgmtPermitJoiningRequest Run}
+\begin{quote}Syntax: Run(permitDuration, tcSignificance, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_mgmt\_permit\_joining\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE permit\_duration, ZWBOOL tc\_significance, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Mgmt Permit Joining Request\end{quote}
+\begin{quote}Parameter permitDuration: Permit duration in seconds\end{quote}
+\begin{quote}Parameter tcSignificance: Effect on Trust Center:. TRUE  - If the remote device is the trust center, the command affects the trust center authentication policy. FALSE - There is no effect on the trust center\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class Mgmt Leave Request (0x0034/52)}
+
+
+
+\Profile Zigbee Device Profile (0x0000/0)}
+
+The Mgmt\_Leave\_req is generated from a Local Device requesting that a Remote. Device leave the network or to request that another device leave the network. The. Mgmt\_Leave\_req is generated by a management application which directs the. request to a Remote Device where the NLME-LEAVE.request is to be executed. using the parameter supplied by Mgmt\_Leave\_req.
+\paragraph{Cluster MgmtLeaveRequest Run}
+\begin{quote}Syntax: Run(removeChildren, rejoin, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_mgmt\_leave\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL remove\_children, ZWBOOL rejoin, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Mgmt Leave Request\end{quote}
+\begin{quote}Parameter removeChildren: Remove children flag:. TRUE  - If the device being asked to leave the network is also being asked to remove its child devices, if any. FALSE - None children will be removed\end{quote}
+\begin{quote}Parameter rejoin: Effect on Trust Center:. TRUE  - If the device being asked to leave from the current parent is requested to rejoin the network. FALSE - Otherwise\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class Basic (0x0000/0)}
+
+
+
+\Profile ZigBee Device Profile (0x0104/260)}
+
+This cluster supports an interface to the node or physical device. It provides attributes and commands for determining basic information,. setting user information such as location, and resetting to factory defaults. 				0x00 - Unknown. 				0x01 - Mains (single phase). 				0x02 - Mains (3 phase). 				0x03 - Battery. 				0x04 - DC Source. 				0x05 - Emergency mains constrants. 				0x06 - Emergency mains and transfer switch. 				0x00 - Unspecified environment. 				0x01 - Mirror (ZSE Profile). 				0x01 - Atrium. 				0x02 - Bar. 				0x03 - Courtyard. 				0x04 - Bathroom. 				0x05 - Bedroom. 				0x06 - Billiard Room. 				0x07 - Utility Room. 				0x08 - Cellar. 				0x09 - Storage Closet. 				0x0a - Theater. 				0x0b - Office. 				0x0c - Deck. 				0x0d - Den. 				0x0e - Dining Room. 				0x0f - Electrical Room. 				0x10 - Elevator. 				0x11 - Entry. 				0x12 - Family Room. 				0x13 - Main Floor. 				0x14 - Upstairs. 				0x15 - Downstairs. 				0x16 - Basement/Lower Level. 				0x17 - Gallery. 				0x18 - Game Room. 				0x19 - Garage. 				0x1a - Gym. 				0x1b - Hallway. 				0x1c - House. 				0x1d - Kitchen. 				0x1e - Laundry Room. 				0x1f - Library. 				0x20 - Master Bedroom. 				0x21 - Mud Room (small room for coats and boots). 				0x22 - Nursery. 				0x23 - Pantry. 				0x24 - Office. 				0x25 - Outside. 				0x26 - Pool. 				0x27 - Porch. 				0x28 - Sewing Room. 				0x29 - Sitting Room. 				0x2a - Stairway. 				0x2b - Yard. 				0x2c - Attic. 				0x2d - Hot Tub. 				0x2e - Living Room. 				0x2f - Sauna. 				0x30 - Shop/Workshop. 				0x31 - Guest Bedroom. 				0x32 - Guest Bath. 				0x33 - Powder Room (1/2 bath). 				0x34 - Back Yard. 				0x35 - Front Yard. 				0x36 - Patio. 				0x37 - Driveway. 				0x38 - Sun Room. 				0x39 - Living Room. 				0x3a - Spa. 				0x3b - Whirlpool. 				0x3c - Shed. 				0x3d - Equipment Storage. 				0x3e - Hobby/Craft Room. 				0x3f - Fountain. 				0x40 - Pond. 				0x41 - Reception Room. 				0x42 - Breakfast Room. 				0x43 - Nook. 				0x44 - Garden. 				0x45 - Balcony. 				0x46 - Panic Room. 				0x47 - Terrace. 				0x48 - Roof. 				0x49 - Toilet. 				0x4a - Toilet Main. 				0x4b - Outside Toilet. 				0x4c - Shower room. 				0x4d - Study. 				0x4e - Front Garden. 				0x4f - Back Garden. 				0x50 - Kettle. 				0x51 - Television. 				0x52 - Stove. 				0x53 - Microwave. 				0x54 - Toaster. 				0x55 - Vacuum. 				0x56 - Appliance. 				0x57 - Front Door. 				0x58 - Back Door. 				0x59 - Fridge Door. 				0x60 - Medication Cabinet Door. 				0x61 - Wardrobe Door. 				0x62 - Front Cupboard Door. 				0x63 - Other Door. 				0x64 - Waiting Room. 				0x65 - Triage Room. 				0x66 - Doctor’s Office. 				0x67 - Patient’s Private Room. 				0x68 - Consultation Room. 				0x69 - Nurse Station. 				0x6a - Ward. 				0x6b - Corridor. 				0x6c - Operating Theatre. 				0x6d - Dental Surgery Room. 				0x6e - Medical Imaging Room. 				0x6f - Decontamination Room. 				0xff - Unknown environment. 				0x00 - Disable. 				0x01 - Enable. 				0x00 - General hardware fault. 				0x01 - General software fault. 				0th bit. 				 0 - Reset (to factory defaults) enabled. 				 1 - Reset (to factory defaults) disabled. 				1st bit. 				 0 - Device configuration enabled. 				 1 - Device configuration disabled.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{zclVersion}: The ZCLVersion attribute represents a published set of foundation items, such as global commands and functional descriptions.
+\item \textbf{applicationVersion}: The ApplicationVersion attribute is 8 bits in length and specifies the version number of the application software contained in the device. The usage of this attribute is manufacturer dependent
+\item \textbf{stackVersion}: The StackVersion attribute is 8 bits in length and specifies the version number of the implementation of the ZigBee stack contained in the device. The usage of this attribute is manufacturer dependent.
+\item \textbf{hwVersion}: The HWVersion attribute is 8 bits in length and specifies the version number of the hardware of the device. The usage of this attribute is manufacturer dependent
+\item \textbf{manufacturerName}: The ManufacturerName attribute is a maximum of 32 bytes in length and specifies the name of the manufacturer as a ZigBee character string
+\item \textbf{modelIdentifier}: The ModelIdentifier attribute is a maximum of 32 bytes in length and specifies the model number (or other identifier) assigned by the manufacturer as a ZigBee character string.
+\item \textbf{dateCode}: The DateCode attribute is a ZigBee character string with a maximum length of 16 bytes. The first 8 characters specify the date of manufacturer of the device in international date notation according to ISO 8601, i.e., YYYYMMDD, e.g., 20060814. The final 8 characters MAY include country, factory, line, shift or other related information at the option of the manufacturer. The format of this information is manufacturer dependent
+\item \textbf{powerSource}: The PowerSource attribute is 8 bits in length and specifies the source(s) of power available to the device. Bits b0–b6 of this attribute represent the primary power source of the device and bit b7 indicates whether the device has a secondary power source in the form of a battery backup.
+\item \textbf{locationDescription}: The LocationDescription attribute is a maximum of 16 bytes in length and describes the physical location of the device as a ZigBee character string. This location description MAY be added into the device during commissioning
+\item \textbf{physicalEnvironment}: The PhysicalEnvironment attribute is 8 bits in length and specifies the type of physical environment in which the device will operate. This attribute SHALL be set to one of the non-reserved values. All values are valid for endpoints supporting all profiles except when noted
+\item \textbf{deviceEnabled}: The DeviceEnabled attribute is a Boolean and specifies whether the device is enabled or disabled. This attribute SHALL be set to one of the non-reserved value 'Disabled' means that the device does not send or respond to application level commands, other than commands to read or write attributes. Values of attributes which depend on the operation of the application MAY be invalid, and any functionality triggered by writing to such attributes MAY be disabled. ZigBee networking functionality remains operational. If implemented, the identify cluster cannot be disabled, i.e., it remains functional regardless of this setting
+\item \textbf{alarmMask}: The AlarmMask attribute is 8 bits in length and specifies which of a number of general alarms MAY be generated. These alarms are provided as basic alarms that a device MAY use even if no other clusters with alarms are present on the device
+\item \textbf{disableLocalConfig}: The DisableLocalConfig attribute allows a number of local device configuration functions to be disable. The intention of this attribute is to allow disabling of any local configuration user interface, for example to prevent reset or binding buttons being activated by non-authorized persons in a public building. Bit 0 of the DisableLocalConfig attribute disables any factory reset button (or equivalent) on the device. Bit 1 disables any device configuration button(s) (or equivalent)—for example, a bind button.
+\item \textbf{swBuildIs}: The SWBuildID attribute represents a detailed, manufacturer-specific reference to the version of the software
+\end{itemize}
+
+\paragraph{Cluster Basic Reset}
+\begin{quote}Syntax: Reset(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_basic\_reset(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Basic Reset\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class Identify (0x0003/3)}
+
+
+
+\Profile ZigBee Device Profile (0x0104/260)}
+
+Attributes and commands to put a device into an Identification mode (e.g., flashing a light), that indicates to an observer – e.g., an installer - which of several devices it is, also to request any device that is identifying itself to respond to the initiator.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{identifyTime}: The IdentifyTime attribute specifies the remaining length of time, in seconds, that the device will continue to identify itself.
+\end{itemize}
+
+\paragraph{Cluster Identify Identify}
+\begin{quote}Syntax: Identify(identifyTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_identify\_identify(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD identify\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Identify Identify\end{quote}
+\begin{quote}Parameter identifyTime: Identify Time\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Identify IdentifyQuery}
+\begin{quote}Syntax: IdentifyQuery(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_identify\_identify\_query(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Identify Identify Query\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Identify TriggerEffect}
+\begin{quote}Syntax: TriggerEffect(effectId, effectVar = 0x00, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_identify\_trigger\_effect(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE effect\_id, ZWBYTE effect\_var, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Identify Trigger Effect\end{quote}
+\begin{quote}Parameter effectId: The Effect Identifier field specifies the identify effect to use:. 0x00 - Blink. e.g., Light is turned on/off once. 0x01 - Breathe. e.g., Light turned on/off over 1 second and repeated 15 times. 0x02 - Okay. e.g., Colored light turns green for 1 second; noncolored light flashes twice. 0x0b - Channel change. e.g., Colored light turns orange for 8 seconds; noncolored light switches to maximum brightness for 0.5s and then minimum brightness for 7.5s. 0xfe - Finish effect. Complete the current effect sequence before terminating. e.g., if in the middle of a breathe effect (as above), first complete the current 1s breathe effect and then terminate the effect. 0xff - Stop effect. Terminate the effect as soon as possible. \end{quote}
+\begin{quote}Parameter effectVar: Effect Variant:. 0x00 - Default\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Identify SetIdentifyTime}
+\begin{quote}Syntax: SetIdentifyTime(identifyTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_identify\_set\_identify\_time(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD identify\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Identify Set Identify Time\end{quote}
+\begin{quote}Parameter identifyTime: It specifies the remaining length of time, in seconds, that the device will continue to identify itself\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class Ias Zone (0x0500/1280)}
+
+
+
+\Profile ZigBee Device Profile (0x0104/260)}
+
+The IAS Zone cluster defines an interface to the functionality of an IAS security zone device. IAS Zone supports up to two alarm types per zone, low battery reports and supervision of the IAS network. 			0x00 - NotEnroll. 			0x00...0xFE - The unique identifier of zone. 			0xFF - Invalid zone identifier.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{zoneState}: The ZoneState attribute contains the values summarized in Table.
+\item \textbf{zoneType}: The Zone Type dictates the meaning of Alarm1 and Alarm2 bits of the ZoneStatus attribute, as also indicated in this table.
+\item \textbf{zoneStatus}: The ZoneStatus attribute is a bit map.
+\item \textbf{iasCieAddress}: The IAS\_CIE\_Address attribute specifies the address that commands generated by the server SHALL be sent to. All commands received by the server must also come from this address. It is up to the zone's specific implementation to permit or deny change (write) of this attribute at specific times
+\item \textbf{zoneId}: A unique reference number allocated by the CIE at zone enrollment time.
+\item \textbf{numberOfZoneSensitivityLevelsSupported}: Provides the total number of sensitivity levels supported by the IAS Zone server.
+\item \textbf{CurrentZoneSensitivityLevel}: Allows an IAS Zone client to query and configure the IAS Zone server’s sensitivity level.
+\item \textbf{delay}: The Delay field is defined as the amount of time, in quarter-seconds, from the moment when a change takes place in one or more bits of the Zone Status attribute and the successful transmission of the Zone Status Change Notification. This is designed to help congested networks or offline servers quantify the amount of time from when an event was detected and when it could be reported to the client.
+\end{itemize}
+
+\paragraph{Cluster IasZone InitiateNormalOperationMode}
+\begin{quote}Syntax: InitiateNormalOperationMode(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_initiate\_normal\_operation\_mode(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: IAS Zone Initiate Normal Operation Mode\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster IasZone InitiateTestMode}
+\begin{quote}Syntax: InitiateTestMode(testModeDuration, currentZoneSensivityLevel, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_initiate\_test\_mode(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE test\_mode\_duration, ZWBYTE current\_zone\_sensivity\_level, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: IAS Zone Initiate Test Mode\end{quote}
+\begin{quote}Parameter testModeDuration: Specifies the duration, in seconds, for which the IAS Zone server SHALL operate in its test mode\end{quote}
+\begin{quote}Parameter currentZoneSensivityLevel: Specifies the sensitivity level the IAS Zone server SHALL use for the duration of the Test Mode and with which it must update its CurrentZoneSensitivityLevel attribute\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster IasZone Enroll}
+\begin{quote}Syntax: Enroll(zoneId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_enroll(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE zone\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Enroll Device\end{quote}
+\begin{quote}Parameter zoneId: Zone Identifier\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class Color Control (0x0300/768)}
+
+
+
+\Profile ZigBee Device Profile (0x0104/260)}
+
+This cluster provides an interface for changing the color of a light. Color is specified according to the Commission Internationale de l'Éclairage (CIE) specification CIE 1931 Color Space. Color control is carried out in terms of x,y values, as defined by this specification.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{currentHue}: It contains the current hue value of the light. It is updated as fast as practical during commands that change the hue. The hue in degrees SHALL be related to the CurrentHue attribute by the relationship Hue = CurrentHue x 360 / 254 (CurrentHue in the range 0 - 254 inclusive)
+\item \textbf{currentSaturation}: It holds the current saturation value of the light. It is updated as fast as practical during commands that change the saturation. The saturation SHALL be related to the CurrentSaturation attribute by the relationship Saturation = CurrentSaturation/254 (CurrentSaturation in the range 0 - 254 inclusive)
+\item \textbf{remainingTime  }: It holds the time remaining, in 1/10ths of a second, until the currently active command will be complete.
+\item \textbf{currentX}: The currentX attribute contains the current value of the normalized chromaticity value x, as defined in the CIE xyY Color Space. It is updated as fast as practical during commands that change the color. The value of x SHALL be related to the CurrentX attribute by the relationship x = CurrentX / 65536 (CurrentX in the range 0 to 65279 inclusive)
+\item \textbf{currentY}: The currentY attribute contains the current value of the normalized chromaticity value y, as defined in the CIE xyY Color Space. It is updated as fast as practical during commands that change the color. The value of y SHALL be related to the CurrentY attribute by the relationship y = CurrentY / 65536 (CurrentY in the range 0 to 65279 inclusive)
+\item \textbf{driftCompensation}: It indicates what mechanism, if any, is in use for compensation for color/intensity drift over time
+\item \textbf{compensationText}: It holds a textual indication of what mechanism, if any, is in use to compensate for color/intensity drift over time.
+\item \textbf{colorTemperatureMireds}: The ColorTemperatureMireds attribute contains a scaled inverse of the current value of the color temperature. The unit of ColorTemperatureMireds is the mired (micro reciprocal degree), AKA mirek (micro reciprocal kelvin). It is updated as fast as practical during commands that change the color. Color temperature in kelvins = 1,000,000 / ColorTemperatureMireds, where ColorTemperatureMireds is in the range 1 to 65279 mireds inclusive, giving a color temperature range from 1,000,000 kelvins to 15.32 kelvins.
+\item \textbf{colorMode}: It indicates which attributes are currently determining the color of the device.
+\item \textbf{enhancedCurrentHue}: It represents non-equidistant steps along the CIE 1931 color triangle, and it provides 16-bits precision. The upper 8 bits of this attribute SHALL be used as an index in the implementation specific XY lookup table to provide the non-equidistance steps (see the ZLL test specification for an example). The lower 8 bits SHALL be used to interpolate between these steps in a linear way in order to provide color zoom for the user. To provide compatibility with standard ZCL, the CurrentHue attribute SHALL contain a hue value in the range 0 to 254, calculated from the EnhancedCurrentHue attribute.
+\item \textbf{enhancedColorMode}: It specifies which attributes are currently determining the color of the device.
+\item \textbf{colorLoopActive}: It specifies the current active status of the color loop.
+\item \textbf{colorLoopDirection}: It specifies the current direction of the color loop.
+\item \textbf{colorLoopTime}: It specifies the number of seconds it SHALL take to perform a full color loop, i.e., to cycle all values of the EnhancedCurrentHue attribute (between 0x0000 and 0xffff)
+\item \textbf{colorLoopStartEnhancedHue}: It specifies the value of the EnhancedCurrentHue attribute from which the color loop SHALL be started
+\item \textbf{colorLoopStoredEnhancedHue}: It pecifies the value of the EnhancedCurrentHue attribute before the color loop was started. Once the color loop is complete, the EnhancedCurrentHue attribute SHALL be restored to this value.
+\item \textbf{colorCapabilities}: It specifies the color capabilities of the device supporting the color control cluster. If a bit is set to 1, the corresponding attributes and commands SHALL become mandatory. If a bit is set to 0, the corresponding attributes and commands need not be implemented
+\item \textbf{colorTempPhysicalMinMireds}: It indicates the minimum mired value supported by the hardware. ColorTempPhysicalMinMireds corresponds to the maximum color temperature in kelvins supported by the hardware. ColorTempPhysicalMinMireds ≤ ColorTemperatureMireds.
+\item \textbf{colorTempPhysicalMaxMireds}: It indicates the maximum mired value supported by the hardware. ColorTempPhysicalMaxMireds corresponds to the minimum color temperature in kelvins supported by the hardware. ColorTemperatureMireds ≤ ColorTempPhysicalMaxMireds.
+\item \textbf{numberOfPrimaries}: It contains the number of color primaries implemented on this device. A value of 0xff SHALL indicate that the number of primaries is unknown Where this attribute is implemented, the attributes below for indicating the “x” and “y” color values of the primaries SHALL also be implemented for each of the primaries from 1 to NumberOfPrimaries, without leaving gaps. Implementation of the Primary1Intensity attribute and subsequent intensity attributes is optional.
+\item \textbf{primary1X}: It contains the normalized chromaticity value x for this primary, as defined in the CIE xyY Color Space. The value of x SHALL be related to the Primary1X attribute by the relationship x = Primary1X / 65536 (Primary1X in the range 0 to 65279 inclusive)
+\item \textbf{primary1Y}: It contains the normalized chromaticity value y for this primary, as defined in the CIE xyY Color Space. The value of y SHALL be related to the Primary1Y attribute by the relationship y = Primary1Y / 65536 (Primary1Y in the range 0 to 65279 inclusive)
+\item \textbf{primary1Intensity}: It contains a representation of the maximum intensity of this primary as defined in the Dimming Light Curve in the Ballast Configuration cluster, normalized such that the primary with the highest maximum intensity contains the value 0xfe. A value of 0xff SHALL indicate that this primary is not available.
+\item \textbf{primary2X}: It contains the normalized chromaticity value x for this primary, as defined in the CIE xyY Color Space. The value of x SHALL be related to the Primary2X attribute by the relationship x = Primary2X / 65536 (Primary2X in the range 0 to 65279 inclusive)
+\item \textbf{primary2Y}: It contains the normalized chromaticity value y for this primary, as defined in the CIE xyY Color Space. The value of y SHALL be related to the Primary2Y attribute by the relationship y = Primary2Y / 65536 (Primary2Y in the range 0 to 65279 inclusive)
+\item \textbf{primary2Intensity}: It contains a representation of the maximum intensity of this primary as defined in the Dimming Light Curve in the Ballast Configuration cluster, normalized such that the primary with the highest maximum intensity contains the value 0xfe. A value of 0xff SHALL indicate that this primary is not available.
+\item \textbf{primary3X}: It contains the normalized chromaticity value x for this primary, as defined in the CIE xyY Color Space. The value of x SHALL be related to the Primary3X attribute by the relationship x = Primary3X / 65536 (Primary3X in the range 0 to 65279 inclusive)
+\item \textbf{primary3Y}: It contains the normalized chromaticity value y for this primary, as defined in the CIE xyY Color Space. The value of y SHALL be related to the Primary3Y attribute by the relationship y = Primary3Y / 65536 (Primary3Y in the range 0 to 65279 inclusive)
+\item \textbf{primary3Intensity}: It contains a representation of the maximum intensity of this primary as defined in the Dimming Light Curve in the Ballast Configuration cluster, normalized such that the primary with the highest maximum intensity contains the value 0xfe. A value of 0xff SHALL indicate that this primary is not available.
+\item \textbf{primary4X}: It contains the normalized chromaticity value x for this primary, as defined in the CIE xyY Color Space. The value of x SHALL be related to the Primary4X attribute by the relationship x = Primary4X / 65536 (Primary4X in the range 0 to 65279 inclusive)
+\item \textbf{primary4Y}: It contains the normalized chromaticity value y for this primary, as defined in the CIE xyY Color Space. The value of y SHALL be related to the Primary4Y attribute by the relationship y = Primary4Y / 65536 (Primary4Y in the range 0 to 65279 inclusive)
+\item \textbf{primary4Intensity}: It contains a representation of the maximum intensity of this primary as defined in the Dimming Light Curve in the Ballast Configuration cluster, normalized such that the primary with the highest maximum intensity contains the value 0xfe. A value of 0xff SHALL indicate that this primary is not available.
+\item \textbf{primary5X}: It contains the normalized chromaticity value x for this primary, as defined in the CIE xyY Color Space. The value of x SHALL be related to the Primary5X attribute by the relationship x = Primary5X / 65536 (Primary5X in the range 0 to 65279 inclusive)
+\item \textbf{primary5Y}: It contains the normalized chromaticity value y for this primary, as defined in the CIE xyY Color Space. The value of y SHALL be related to the Primary5Y attribute by the relationship y = Primary5Y / 65536 (Primary5Y in the range 0 to 65279 inclusive)
+\item \textbf{primary5Intensity}: It contains a representation of the maximum intensity of this primary as defined in the Dimming Light Curve in the Ballast Configuration cluster, normalized such that the primary with the highest maximum intensity contains the value 0xfe. A value of 0xff SHALL indicate that this primary is not available.
+\item \textbf{primary6X}: It contains the normalized chromaticity value x for this primary, as defined in the CIE xyY Color Space. The value of x SHALL be related to the Primary6X attribute by the relationship x = Primary6X / 65536 (Primary6X in the range 0 to 65279 inclusive)
+\item \textbf{primary6Y}: It contains the normalized chromaticity value y for this primary, as defined in the CIE xyY Color Space. The value of y SHALL be related to the Primary6Y attribute by the relationship y = Primary6Y / 65536 (Primary6Y in the range 0 to 65279 inclusive)
+\item \textbf{primary6Intensity}: It contains a representation of the maximum intensity of this primary as defined in the Dimming Light Curve in the Ballast Configuration cluster, normalized such that the primary with the highest maximum intensity contains the value 0xfe. A value of 0xff SHALL indicate that this primary is not available.
+\item \textbf{whitePointX}: It contains the normalized chromaticity value x, as defined in the CIE xyY Color Space, of the current white point of the device. The value of x SHALL be related to the WhitePointX attribute by the relationship x = WhitePointX / 65536 (WhitePointX in the range 0 to 65279 inclusive)
+\item \textbf{whitePointY}: It contains the normalized chromaticity value y, as defined in the CIE xyY Color Space, of the current white point of the device. The value of y SHALL be related to the WhitePointY attribute by the relationship y = WhitePointY / 65536 (WhitePointY in the range 0 to 65279 inclusive)
+\item \textbf{colorPointRX}: It contains the normalized chromaticity value x, as defined in the CIE xyY Color Space, of the red color point of the device. The value of x SHALL be related to the ColorPointRX attribute by the relationship x = ColorPointRX / 65536 (ColorPointRX in the range 0 to 65279 inclusive)
+\item \textbf{colorPointRY}: It contains the normalized chromaticity value y, as defined in the CIE xyY Color Space, of the red color point of the device. The value of y SHALL be related to the ColorPointRY attribute by the relationship y = ColorPointRY / 65536 (ColorPointRY in the range 0 to 65279 inclusive)
+\item \textbf{colorPointRIntensity}: It contains a representation of the relative intensity of the red color point as defined in the Dimming Light Curve in the Ballast Configuration cluster, normalized such that the color point with the highest relative intensity contains the value 0xfe. A value of 0xff SHALL indicate an invalid value.
+\item \textbf{colorPointGX}: It contains the normalized chromaticity value x, as defined in the CIE xyY Color Space, of the green color point of the device. The value of x SHALL be related to the ColorPointGX attribute by the relationship x = ColorPointRX / 65536 (ColorPointRX in the range 0 to 65279 inclusive)
+\item \textbf{colorPointGY}: It contains the normalized chromaticity value y, as defined in the CIE xyY Color Space, of the green color point of the device. The value of y SHALL be related to the ColorPointGY attribute by the relationship y = ColorPointRY / 65536 (ColorPointRY in the range 0 to 65279 inclusive)
+\item \textbf{colorPointGIntensity}: It contains a representation of the relative intensity of the red color point as defined in the Dimming Light Curve in the Ballast Configuration cluster, normalized such that the color point with the highest relative intensity contains the value 0xfe. A value of 0xff SHALL indicate an invalid value.
+\item \textbf{colorPointBX}: It contains the normalized chromaticity value x, as defined in the CIE xyY Color Space, of the blue color point of the device. The value of x SHALL be related to the ColorPointBX attribute by the relationship x = ColorPointRX / 65536 (ColorPointRX in the range 0 to 65279 inclusive)
+\item \textbf{colorPointBY}: It contains the normalized chromaticity value y, as defined in the CIE xyY Color Space, of the blue color point of the device. The value of y SHALL be related to the ColorPointBY attribute by the relationship y = ColorPointRY / 65536 (ColorPointRY in the range 0 to 65279 inclusive)
+\item \textbf{colorPointBIntensity}: It contains a representation of the relative intensity of the red color point as defined in the Dimming Light Curve in the Ballast Configuration cluster, normalized such that the color point with the highest relative intensity contains the value 0xfe. A value of 0xff SHALL indicate an invalid value.
+\end{itemize}
+
+\paragraph{Cluster ColorControl MoveToHue}
+\begin{quote}Syntax: MoveToHue(hue, direction, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_to\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE hue, ZWBYTE direction, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Move to Hue (0x00/0)\end{quote}
+\begin{quote}Parameter hue: Hue\end{quote}
+\begin{quote}Parameter direction: Direction:. 0x00 - Shortest distance. 0x01 - Longest distance. 0x02 - Up. 0x03 - Down. \end{quote}
+\begin{quote}Parameter transitionTime: The Transition Time field specifies, in 1/10ths of a second, the time that SHALL be taken to move to the new hue\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl MoveHue}
+\begin{quote}Syntax: MoveHue(moveMode, rate, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWBYTE rate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Move Hue (0x01/1)\end{quote}
+\begin{quote}Parameter moveMode: Move mode. 0x00 - Stop. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
+\begin{quote}Parameter rate: The Rate field specifies the rate of movement in steps per second. A step is a change in the device’s hue of one unit. If the Rate field has a value of zero, the command has no effect and a default response command is sent in response, with the status code set to INVALID\_FIELD\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl StepHue}
+\begin{quote}Syntax: StepHue(stepMode, stepSize, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_step\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWBYTE step\_size, ZWBYTE transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Step Hue (0x02/2)\end{quote}
+\begin{quote}Parameter stepMode: Move mode. 0x00 - Reserved. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
+\begin{quote}Parameter stepSize: The change to be added to (or subtracted from) the current value of the device’s hue\end{quote}
+\begin{quote}Parameter transitionTime: The Transition Time field specifies, in 1/10ths of a second, the time that SHALL be taken to perform the step. A step is a change in the device’s hue of ‘Step size’ units\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl MoveToSaturation}
+\begin{quote}Syntax: MoveToSaturation(saturation, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_to\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE saturation, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Move to Saturation (0x03/3)\end{quote}
+\begin{quote}Parameter saturation: Desired Saturation\end{quote}
+\begin{quote}Parameter transitionTime: The Transition Time field specifies, in 1/10ths of a second, the time that SHALL be taken to perform the step\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl MoveSaturation}
+\begin{quote}Syntax: MoveSaturation(moveMode, rate, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWBYTE rate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Move Saturation (0x04/4)\end{quote}
+\begin{quote}Parameter moveMode: Move Mode. 0x00 - Stop. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
+\begin{quote}Parameter rate: The Rate field specifies the rate of movement in steps per second. A step is a change in the device’s hue of one unit. If the Rate field has a value of zero, the command has no effect and a default response command is sent in response, with the status code set to INVALID\_FIELD\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl StepSaturation}
+\begin{quote}Syntax: StepSaturation(stepMode, stepSize, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_step\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWBYTE step\_size, ZWBYTE transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Step Saturation (0x05/5)\end{quote}
+\begin{quote}Parameter stepMode: Move mode. 0x00 - Reserved. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
+\begin{quote}Parameter stepSize: The change to be added to (or subtracted from) the current value of the device’s saturation\end{quote}
+\begin{quote}Parameter transitionTime: The Transition Time field specifies, in 1/10ths of a second, the time that SHALL be taken to perform the step. A step is a change in the device’s hue of ‘Step size’ units\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl MoveToHueAndSaturation}
+\begin{quote}Syntax: MoveToHueAndSaturation(hue, saturation, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_to\_hue\_and\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE hue, ZWBYTE saturation, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Move to Hue and Saturation (0x06/6)\end{quote}
+\begin{quote}Parameter hue: Desired hue\end{quote}
+\begin{quote}Parameter saturation: Desired Saturation\end{quote}
+\begin{quote}Parameter transitionTime: The Transition Time field specifies, in 1/10ths of a second, the time that SHALL be taken to perform the step\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl MoveToColor}
+\begin{quote}Syntax: MoveToColor(colorX, colorY, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_to\_color(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD color\_x, ZWWORD color\_y, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Move to Color (0x07/7)\end{quote}
+\begin{quote}Parameter colorX: Desired Color X\end{quote}
+\begin{quote}Parameter colorY: Desired Color Y\end{quote}
+\begin{quote}Parameter transitionTime: The Transition Time field specifies, in 1/10ths of a second, the time that SHALL be taken to perform the step\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl MoveColor}
+\begin{quote}Syntax: MoveColor(rateX, rateY, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_color(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD rate\_x, ZWWORD rate\_y, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Move Color (0x08/8)\end{quote}
+\begin{quote}Parameter rateX: The RateX field specifies the rate of movement in steps per second. A step is a change in the device's CurrentX attribute of one unit\end{quote}
+\begin{quote}Parameter rateY: The RateY field specifies the rate of movement in steps per second. A step is a change in the device's CurrentY attribute of one unit\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl StepColor}
+\begin{quote}Syntax: StepColor(stepX, stepY, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_step\_color(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD step\_x, ZWWORD step\_y, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Step Color (0x09/9)\end{quote}
+\begin{quote}Parameter stepX: The StepX fields specify the change to be added to the device's CurrentX attribute attribute\end{quote}
+\begin{quote}Parameter stepY: The StepY fields specify the change to be added to the device's CurrentY attribute attribute\end{quote}
+\begin{quote}Parameter transitionTime: The Transition Time field specifies, in 1/10ths of a second, the time that SHALL be taken to perform the step\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl MoveToColorTemperature}
+\begin{quote}Syntax: MoveToColorTemperature(colorTempMireds, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_to\_color\_temperature(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD color\_temp\_mireds, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Step Color (0x0A/10)\end{quote}
+\begin{quote}Parameter colorTempMireds: Move from its current color to the color given by the Color Temperature Mireds field\end{quote}
+\begin{quote}Parameter transitionTime: The Transition Time field specifies, in 1/10ths of a second, the time that SHALL be taken to perform the step\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl EnhanceMoveToHue}
+\begin{quote}Syntax: EnhanceMoveToHue(enhancedHue, direction, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_enhance\_move\_to\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD enhanced\_hue, ZWBYTE direction, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Enhanced Move to Hue (0x40/64)\end{quote}
+\begin{quote}Parameter enhancedHue: Enhanced Hue\end{quote}
+\begin{quote}Parameter direction: Direction:. 0x00 - Shortest distance. 0x01 - Longest distance. 0x02 - Up. 0x03 - Down. \end{quote}
+\begin{quote}Parameter transitionTime: The Transition Time field specifies, in 1/10ths of a second, the time that SHALL be taken to move to the new hue\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl EnhanceMoveHue}
+\begin{quote}Syntax: EnhanceMoveHue(moveMode, rate, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_enhance\_move\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWWORD rate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Enhanced Move Hue (0x41/65)\end{quote}
+\begin{quote}Parameter moveMode: Move mode. 0x00 - Stop. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
+\begin{quote}Parameter rate: The Rate field specifies the rate of movement in steps per second. A step is a change in the device’s hue of one unit. If the Rate field has a value of zero, the command has no effect and a default response command is sent in response, with the status code set to INVALID\_FIELD\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl EnhanceStepHue}
+\begin{quote}Syntax: EnhanceStepHue(stepMode, stepSize, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_enhance\_step\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWWORD step\_size, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Enhanced Step Hue (0x42/66)\end{quote}
+\begin{quote}Parameter stepMode: Move mode. 0x00 - Reserved. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
+\begin{quote}Parameter stepSize: The change to be added to (or subtracted from) the current value of the device’s hue\end{quote}
+\begin{quote}Parameter transitionTime: The Transition Time field specifies, in 1/10ths of a second, the time that SHALL be taken to perform the step. A step is a change in the device’s hue of ‘Step size’ units\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl EnhanceMoveHueAndSaturation}
+\begin{quote}Syntax: EnhanceMoveHueAndSaturation(enhancedHue, saturation, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_enhance\_move\_hue\_and\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD enhanced\_hue, ZWBYTE saturation, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Enhanced Move to Hue and Saturation (0x43/67)\end{quote}
+\begin{quote}Parameter enhancedHue: Desired Enhanced Hue\end{quote}
+\begin{quote}Parameter saturation: Desired Saturation\end{quote}
+\begin{quote}Parameter transitionTime: The Transition Time field specifies, in 1/10ths of a second, the time that SHALL be taken to perform the step\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl ColorLoopSet}
+\begin{quote}Syntax: ColorLoopSet(updateFlags, action, direction, time, startHue, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_color\_loop\_set(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE update\_flags, ZWBYTE action, ZWBYTE direction, ZWWORD time, ZWWORD start\_hue, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Color Loop Set (0x44/68)\end{quote}
+\begin{quote}Parameter updateFlags: The Update Flags field is 8 bits in length and specifies which color loop attributes to update before the color loop is started\end{quote}
+\begin{quote}Parameter action: The Action field is 8 bits in length and specifies the action to take for the color loop if the Update Action sub-field of the Update Flags field is set to 1. 0x00 - De-activate the color loop. 0x01 - Activate the color loop from the value in the ColorLoopStartEnhancedHue field. 0x02 - Activate the color loop from the value of the EnhancedCurrentHue attribute\end{quote}
+\begin{quote}Parameter direction: The Direction field is 8 bits in length and specifies the direction for the color loop if the Update Direction field of the Update Flags field is set to 1. 0x00 - Decrement the hue in the color loop. 0x01 - Increment the hue in the color loop\end{quote}
+\begin{quote}Parameter time: The Time field is 16 bits in length and specifies the number of seconds over which to perform a full color loop if the Update Time field of the Update Flags field is set to 1\end{quote}
+\begin{quote}Parameter startHue: The Start Hue field is 16 bits in length and specifies the starting hue to use for the color loop if the Update Start Hue field of the Update Flags field is set to 1\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl StopMoveStep}
+\begin{quote}Syntax: StopMoveStep(moveMode, rate, colorTempMinMireds, colorTempMaxMireds, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_stop\_move\_step(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWWORD rate, ZWWORD color\_temp\_min\_mireds, ZWWORD color\_temp\_max\_mireds, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Stop Move Step (0x47/71)\end{quote}
+\begin{quote}Parameter moveMode: Move mode:. 0x00 - Stop. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
+\begin{quote}Parameter rate: The Rate field is 16-bits in length and specifies the rate of movement in steps per second. A step is a change in the color temperature of a device by one unit. If the Rate field has a value of zero, the command has no effect and a ZCL Default Response command SHALL be sent in response, with the status code set to INVALID\_FIELD\end{quote}
+\begin{quote}Parameter colorTempMinMireds: The Color Temperature Minimum Mireds field is 16-bits in length and specifies a lower bound on the ColorTemperatureMireds attribute (≡ an upper bound on the color temperature in kelvins) for the current move operation such that: ColorTempPhysicalMinMireds ≤ Color Temperature Minimum Mireds field ≤ ColorTemperatureMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Minimum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Minimum Mireds field is set to 0x0000, ColorTempPhysicalMinMireds SHALL be used as the lower bound for the ColorTemperatureMireds attribute\end{quote}
+\begin{quote}Parameter colorTempMaxMireds: The Color Temperature Maximum Mireds field is 16-bits in length and specifies an upper bound on the ColorTemperatureMireds attribute (≡ a lower bound on the color temperature in kelvins) for the current move operation such that: ColorTemperatureMireds ≤ Color Temperature Maximum Mireds field ≤ ColorTempPhysicalMaxMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Maximum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Maximum Mireds field is set to 0x0000, ColorTempPhysicalMaxMireds SHALL be used as the upper bound for the ColorTemperatureMireds attribute\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl MoveColorTemperature}
+\begin{quote}Syntax: MoveColorTemperature(moveMode, rate, colorTempMinMireds, colorTempMaxMireds, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_color\_temperature(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWWORD rate, ZWWORD color\_temp\_min\_mireds, ZWWORD color\_temp\_max\_mireds, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Move Color Temperature (0x4b/75)\end{quote}
+\begin{quote}Parameter moveMode: Move mode:. 0x00 - Stop. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
+\begin{quote}Parameter rate: The Rate field is 16-bits in length and specifies the rate of movement in steps per second. A step is a change in the color temperature of a device by one unit. If the Rate field has a value of zero, the command has no effect and a ZCL Default Response command SHALL be sent in response, with the status code set to INVALID\_FIELD\end{quote}
+\begin{quote}Parameter colorTempMinMireds: The Color Temperature Minimum Mireds field is 16-bits in length and specifies a lower bound on the ColorTemperatureMireds attribute (≡ an upper bound on the color temperature in kelvins) for the current move operation such that: ColorTempPhysicalMinMireds ≤ Color Temperature Minimum Mireds field ≤ ColorTemperatureMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Minimum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Minimum Mireds field is set to 0x0000, ColorTempPhysicalMinMireds SHALL be used as the lower bound for the ColorTemperatureMireds attribute\end{quote}
+\begin{quote}Parameter colorTempMaxMireds: The Color Temperature Maximum Mireds field is 16-bits in length and specifies an upper bound on the ColorTemperatureMireds attribute (≡ a lower bound on the color temperature in kelvins) for the current move operation such that: ColorTemperatureMireds ≤ Color Temperature Maximum Mireds field ≤ ColorTempPhysicalMaxMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Maximum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Maximum Mireds field is set to 0x0000, ColorTempPhysicalMaxMireds SHALL be used as the upper bound for the ColorTemperatureMireds attribute\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl StepColorTemperature}
+\begin{quote}Syntax: StepColorTemperature(stepMode, stepSize, transitionTime, colorTempMinMireds, colorTempMaxMireds, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_step\_color\_temperature(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWWORD step\_size, ZWWORD transition\_time, ZWWORD color\_temp\_min\_mireds, ZWWORD color\_temp\_max\_mireds, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Move Color Temperature (0x4c/76)\end{quote}
+\begin{quote}Parameter stepMode: Move mode:. 0x00 - Reserved. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
+\begin{quote}Parameter stepSize: The Step Size field is 16-bits in length and specifies the change to be added to (or subtracted from) the current value of the device’s color temperature\end{quote}
+\begin{quote}Parameter transitionTime: The Transition Time field is 16-bits in length and specifies, in units of 1/10ths of a second, the time that SHALL be taken to perform the step. A step is a change to the device’s color temperature of a magnitude corresponding to the Step Size field\end{quote}
+\begin{quote}Parameter colorTempMinMireds: The Color Temperature Minimum Mireds field is 16-bits in length and specifies a lower bound on the ColorTemperatureMireds attribute (≡ an upper bound on the color temperature in kelvins) for the current move operation such that: ColorTempPhysicalMinMireds ≤ Color Temperature Minimum Mireds field ≤ ColorTemperatureMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Minimum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Minimum Mireds field is set to 0x0000, ColorTempPhysicalMinMireds SHALL be used as the lower bound for the ColorTemperatureMireds attribute\end{quote}
+\begin{quote}Parameter colorTempMaxMireds: The Color Temperature Maximum Mireds field is 16-bits in length and specifies an upper bound on the ColorTemperatureMireds attribute (≡ a lower bound on the color temperature in kelvins) for the current move operation such that: ColorTemperatureMireds ≤ Color Temperature Maximum Mireds field ≤ ColorTempPhysicalMaxMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Maximum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Maximum Mireds field is set to 0x0000, ColorTempPhysicalMaxMireds SHALL be used as the upper bound for the ColorTemperatureMireds attribute\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class Level Control (0x0008/8)}
+
+
+
+\Profile ZigBee Device Profile (0x0104/260)}
+
+This cluster provides an interface for controlling a characteristic of a device that can be set to a level, for example the brightness of a light, the degree of closure of a door, or the power output of a heater.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{currentLevel}: It represents the current level of this device. The meaning of 'level' is device dependent.
+\item \textbf{remainingTime}: It represents the time remaining until the current command is complete - it is specified in 1/10ths of a second.
+\item \textbf{onOffTransitionTime}: It represents the time taken to move to or from the target level when On of Off commands are received by an On/Off cluster on the same endpoint. It is specified in 1/10ths of a second. The actual time taken SHOULD be as close to OnOffTransitionTime as the device is able. N.B. If the device is not able to move at a variable rate, the OnOffTransitionTime attribute SHOULD not be implemented.
+\item \textbf{onLevel}: It determines the value that the CurrentLevel attribute is set to when the OnOff attribute of an On/Off cluster on the same endpoint is set to On. If the OnLevel attribute is not implemented, or is set to 0xff, it has no effect.
+\item \textbf{onTransitionTime}: It represents the time taken to move the current level from the minimum level to the maximum level when an On command is received by an On/Off cluster on the same endpoint. It is specified in 10ths of a second. If this command is not implemented, or contains a value of 0xffff, the On/OffTransitionTime will be used instead
+\item \textbf{offTransitionTime}: It represents the time taken to move the current level from the maximum level to the minimum level when an Off command is received by an On/Off cluster on the same endpoint. It is specified in 10ths of a second. If this command is not implemented, or contains a value of 0xffff, the On/OffTransitionTime will be used instead.
+\item \textbf{defaultMoveRat}: It determines the movement rate, in units per second, when a Move command is received with a Rate parameter of 0xFF
+\end{itemize}
+
+\paragraph{Cluster LevelControl MoveToLevel}
+\begin{quote}Syntax: MoveToLevel(level, transitionTime = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_move\_to\_level(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE level, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Move to Level (0x00/0)\end{quote}
+\begin{quote}Parameter level: Device dependent level\end{quote}
+\begin{quote}Parameter transitionTime: Transition time\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster LevelControl Move}
+\begin{quote}Syntax: Move(moveMode, rate = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_move(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWBYTE rate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Move (0x01/1)\end{quote}
+\begin{quote}Parameter moveMode: Move mode:. 0x00 - Up. 0x01 - Down\end{quote}
+\begin{quote}Parameter rate: The Rate field specifies the rate of movement in units per second:. 0x00...0xFE - used value. 0xFF        - used value from DefaultMoveRate\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster LevelControl Step}
+\begin{quote}Syntax: Step(stepMode, stepSize, transitionTime = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_step(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWBYTE step\_size, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Step (0x02/2)\end{quote}
+\begin{quote}Parameter stepMode: Move mode:. 0x00 - Up. 0x01 - Down\end{quote}
+\begin{quote}Parameter stepSize: Step size\end{quote}
+\begin{quote}Parameter transitionTime: The Transition time field specifies the time that SHALL be taken to perform the step, in tenths of a second\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster LevelControl Stop}
+\begin{quote}Syntax: Stop(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_stop(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Stop (0x03/3)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster LevelControl MoveToLevelOnOff}
+\begin{quote}Syntax: MoveToLevelOnOff(level, transitionTime = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_move\_to\_level\_on\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE level, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Move to Level (with On/Off) (0x04/4)\end{quote}
+\begin{quote}Parameter level: Device dependent level\end{quote}
+\begin{quote}Parameter transitionTime: Transition time\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster LevelControl MoveOnOff}
+\begin{quote}Syntax: MoveOnOff(moveMode, rate = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_move\_on\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWBYTE rate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Move (with On/Off) (0x05/5)\end{quote}
+\begin{quote}Parameter moveMode: Move mode:. 0x00 - Up. 0x01 - Down\end{quote}
+\begin{quote}Parameter rate: The Rate field specifies the rate of movement in units per second:. 0x00...0xFE - used value. 0xFF        - used value from DefaultMoveRate\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster LevelControl StepOnOff}
+\begin{quote}Syntax: StepOnOff(stepMode, stepSize, transitionTime = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_step\_on\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWBYTE step\_size, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Step (with On/Off) (0x06/6)\end{quote}
+\begin{quote}Parameter stepMode: Move mode:. 0x00 - Up. 0x01 - Down\end{quote}
+\begin{quote}Parameter stepSize: Step size\end{quote}
+\begin{quote}Parameter transitionTime: The Transition time field specifies the time that SHALL be taken to perform the step, in tenths of a second\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster LevelControl StopOnOff}
+\begin{quote}Syntax: StopOnOff(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_stop\_on\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Stop (with On/Off) (0x07/7)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
