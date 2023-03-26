@@ -166,9 +166,15 @@ The data object can be accesses in the \zweui in advanced mode of 'Configuration
 \item infoProtocolSpecific: internal information about the device
 \item interviewDone: set to true when device finishes the interview (might not match with interviewDone on individual CCs if they appear after interview done)
 
-\item unsolicitedReportOnSet: if Z-Way is added to this group, do not send a Get after Set and wait for an unsolicited Report. If no Report within few seconds, send an explicit Get. By default for all Z-Wave Plus product set to 1 (LifeLine group).
-\item acceptSetSecurityLevel: accept Set commands from devices to Z-Way with
-lower security levels. 0 - accept all packets, 128 - accept S0 and S2 packets, 1 - accept S2 packets, 2 - accept S2 Authenticated and Access packets, 4 - accept only S2 Access packets, -1 - not set (used default most secure level).
+\item unsolicitedReportOnSet: if set, do not send a Get after Set and wait for an unsolicited Report. If no Report within few seconds, send an explicit Get. By default for all Z-Wave Plus product where Z-Way is in association group 1 (LifeLine group).
+\item acceptSetSecurityLevel: accept Set commands from devices to Z-Way with lower security levels. 0 - accept all packets, 128 - accept S0 and S2 packets, 1 - accept S2 packets, 2 - accept S2 Authenticated and Access packets, 4 - accept only S2 Access packets, -1 or not set - use the most secure level (default).
+\item acceptReportSecurityLevel: accept Report commands from devices to Z-Way with lower security levels. 0 - accept all packets, 128 - accept S0 and S2 packets, 1 - accept S2 packets, 2 - accept S2 Authenticated and Access packets, 4 - accept only S2 Access packets, -1 or not set - use the most secure level (default).
+\item mapBasicSetToSpecificReport: if set, interpret Basic Set commands as if it was a specific Report (Sensor Binary or Switch Binary report)
+
+\item securityS2ExchangedKeys: the bitmast of exchanged security keys. 128 for S0, 1 for S2 Unauthenticated, 2 for S2 Authenticated, 4 for S2 Access
+\item secureChannelEstablished: set to true if secure channel was established
+\item guessS2Keys: set to true to force guest security keys on force interview
+\item secureAllCCs: if set, Z-Way will encrypt all packets a device with negociated security even if the CC is allowed unsecure (default is from Defaults.xml SecureAllCCs)
 
 \item neightbours: list of neighbour nodes
 \item priorityRoutes: list of priority routes assigned to the node (via AssignPrioritySUCReturnRoute and AssignPriorityReturnRoute) used to restore routes on network reorganization
@@ -187,7 +193,7 @@ lower security levels. 0 - accept all packets, 128 - accept S0 and S2 packets, 1
 \item acceptSetSecurityLevel: minimal security level that is accepted for Set commands from the device: 0 - accept both secure S0/S2 or unsecure Set commands, 128 - accept S0 and all S2 levels, 1 - accept all S2 levels (Unauthenticated, Authenticated and Access), 2 - accept S2 Authenticated and S2 Access, 4 - accept only S2 Access
 \end {itemize}
 
-\item instances: iInstances list of the device
+\item instances: Instances list of the device
 \item RequestNodeInformation(): Request NIF
 \item RequestNodeNeighbourUpdate(): Request routes update
 \item InterviewForce(): Purge all command classes and start interview based on device's NIF
