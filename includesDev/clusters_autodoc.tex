@@ -67,6 +67,66 @@ The End\_Device\_annce is provided to enable Zigbee end devices on the network. 
 
 
 
+\section{Cluster Class Bind Request (0x0021/33)}
+
+
+
+\Profile Zigbee Device Profile (0x0000/0)}
+
+The End\_Device\_annce is provided to enable Zigbee end devices on the network. to notify other Zigbee devices that the end device has joined or re-joined the. network, identifying the end devices 64-bit IEEE address and new 16-bit. NWKaddress and informing the Remote Devices of the capability of the Zigbee. EndDevice. The destination addressing on this primitive is broadcast to all. devices.
+\paragraph{Cluster BindRequest ByGroupAddr}
+\begin{quote}Syntax: ByGroupAddr(srcAddress, srcEndpointId, clusterId, groupAddr, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_bind\_request\_by\_group\_addr(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, const ZBEUI64 src\_address, ZWBYTE src\_endpoint\_id, ZWWORD cluster\_id, ZWWORD group\_addr, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Bind By Group Address\end{quote}
+\begin{quote}Parameter srcAddress: The IEEE address for the source\end{quote}
+\begin{quote}Parameter srcEndpointId: The source endpoint for the binding entry\end{quote}
+\begin{quote}Parameter clusterId: The identifier of the cluster on the source device that is bound to the destination\end{quote}
+\begin{quote}Parameter groupAddr: The destination address for the binding entry\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster BindRequest ByIeee}
+\begin{quote}Syntax: ByIeee(srcAddress, srcEndpointId, clusterId, dstAddr, dstEndpointId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_bind\_request\_by\_ieee(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, const ZBEUI64 src\_address, ZWBYTE src\_endpoint\_id, ZWWORD cluster\_id, const ZBEUI64 dst\_addr, ZWBYTE dst\_endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Bind By IEEE\end{quote}
+\begin{quote}Parameter srcAddress: The IEEE address for the source\end{quote}
+\begin{quote}Parameter srcEndpointId: The source endpoint for the binding entry\end{quote}
+\begin{quote}Parameter clusterId: The identifier of the cluster on the source device that is bound to the destination\end{quote}
+\begin{quote}Parameter dstAddr: The destination address for the binding entry\end{quote}
+\begin{quote}Parameter dstEndpointId: It is the destination endpoint for the binding entry\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster BindRequest ToLocalDeviceByDeviceId}
+\begin{quote}Syntax: ToLocalDeviceByDeviceId(srcEndpointId, clusterId, dstEndpointId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_bind\_request\_to\_local\_device\_by\_device\_id(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE src\_endpoint\_id, ZWWORD cluster\_id, ZWBYTE dst\_endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Bind By Device Id\end{quote}
+\begin{quote}Parameter srcEndpointId: The source endpoint for the binding entry\end{quote}
+\begin{quote}Parameter clusterId: The identifier of the cluster on the source device that is bound to the destination\end{quote}
+\begin{quote}Parameter dstEndpointId: It is the destination endpoint for the binding entry\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class Power Descriptor Request (0x0003/3)}
+
+
+
+\Profile Zigbee Device Profile (0x0000/0)}
+
+The Power\_Desc\_req command is generated from a local device wishing to inquire. as to the power descriptor of a remote device. This command shall be unicast. either to the remote device itself or. to an alternative device that contains the discovery information of the remote device.
+\paragraph{Cluster PowerDescriptorRequest Run}
+\begin{quote}Syntax: Run(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_power\_descriptor\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Power Descriptor Request\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
 \section{Cluster Class Network Address Request (0x0000/0)}
 
 
@@ -165,6 +225,55 @@ Data holders:
 \begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_set\_off\_wait\_time(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD off\_wait\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Time of On with Time Off\end{quote}
 \begin{quote}Parameter offWaitTime: The length of time (in 1/10ths second) that the device SHALL remain “off”. 0x0000...0xFFFE - time in 1/10th second. 0xFFFF          - Reserved\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class PollControl (0x0020/32)}
+
+
+
+\Profile Zigbee Device Profile (0x0104/260)}
+
+This cluster provides a mechanism for the management of an end device’s MAC Data Request rate. For the purposes of this cluster, the term “poll” always refers to the sending of a MAC Data Request from the end device to the end device’s parent.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{checkInInterval}: The Check-inInterval represents the default amount of time between check-ins by the poll control server with the poll control client. The Check-inInterval is measured in quarterseconds. A value of 0 indicates that the Poll Control Server is turned off and the poll control server will not check-in with the poll control client.
+\item \textbf{longPollInterval    }: The LongPollInterval defines the frequency of polling that an end device does when it is NOT in fast poll mode. The LongPollInterval SHOULD be longer than the ShortPollInterval attribute but shorter than the Check-inInterval attribute.
+\item \textbf{shortPollInterval}: An end device that implements the Poll Control server MAY optionally expose the ShortPollInterval attribute. The ShortPollInterval represents the number of quarterseconds that an end device waits between MAC Data Requests to its parent when it is expecting data (i.e., in fast poll mode
+\item \textbf{fastPollTimeout}:     The FastPollTimeout attribute represents the number of quarterseconds that an end device will stay in fast poll mode by default. It is suggested that the FastPollTimeout attribute value be greater than 7.68 seconds.
+\item \textbf{checkInIntervalMin}: The Poll Control Server MAY optionally provide its own minimum value for the Check-inInterval to protect against the Check-inInterval being set too low and draining the battery on the end device implementing the Poll Control Server
+\item \textbf{shortPollIntervalMin}: The Poll Control Server MAY optionally provide its own minimum value for the LongPollInterval to protect against another device setting the value to too short a time resulting in an inadvertent power drain on the device.
+\item \textbf{fastPollTimeoutMax}: The Poll Control Server MAY optionally provide its own maximum value for the FastPollTimeout to avoid it being set to too high a value resulting in an inadvertent power drain on the device
+\end{itemize}
+
+\paragraph{Cluster PollControl FastPollStop}
+\begin{quote}Syntax: FastPollStop(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_poll\_control\_fast\_poll\_stop(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Fast Poll Stop\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster PollControl SetLongPollInterval}
+\begin{quote}Syntax: SetLongPollInterval(newLongPollInterval, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_poll\_control\_set\_long\_poll\_interval(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, int new\_long\_poll\_interval, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Long Poll Interval\end{quote}
+\begin{quote}Parameter newLongPollInterval: New Long Poll Interval\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster PollControl SetShortPollInterval}
+\begin{quote}Syntax: SetShortPollInterval(newShortPollInterval, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_poll\_control\_set\_short\_poll\_interval(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD new\_short\_poll\_interval, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Short Poll Interval\end{quote}
+\begin{quote}Parameter newShortPollInterval: New Short Poll Interval\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 

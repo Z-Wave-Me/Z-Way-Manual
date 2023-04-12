@@ -1,8 +1,9 @@
 
 \paragraph{Function Class Version}
-\begin{quote}Syntax: Version(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_version(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Syntax: Version(desiredVersion, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_version(ZBee zbee, ZWBYTE desired\_version, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
+\begin{quote}Parameter desiredVersion: Desired EZSP Version\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: TODO\end{quote}
@@ -128,7 +129,7 @@
 
 \paragraph{Function Class SetPolicy}
 \begin{quote}Syntax: SetPolicy(policyId, decisionId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_set\_policy(ZBee zbee, ZWBYTE policy\_id, ZWBYTE decision\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_policy(ZBee zbee, ZWBYTE policy\_id, ZWWORD decision\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter policyId: TODO\end{quote}
 \begin{quote}Parameter decisionId: TODO\end{quote}
@@ -209,3 +210,52 @@
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: TODO\end{quote}
+
+\paragraph{Function Class SetBinding}
+\begin{quote}Syntax: SetBinding(index, type, local, clusterId, remoteEndpointId, destinationIeee, networkIndex, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_binding(ZBee zbee, ZWBYTE index, ZWBYTE type, ZWBYTE local, ZBClusterId cluster\_id, ZWBYTE remote\_endpoint\_id, const ZBEUI64 destination\_ieee, ZWBYTE network\_index, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Binding\end{quote}
+\begin{quote}Parameter index: The index of a binding table entry\end{quote}
+\begin{quote}Parameter type: The type of binding\end{quote}
+\begin{quote}Parameter local: The endpoint on the local node\end{quote}
+\begin{quote}Parameter clusterId: A cluster ID that matches one from the local endpoint's simple descriptor\end{quote}
+\begin{quote}Parameter remoteEndpointId: The endpoint on the remote node (specified by identifier)\end{quote}
+\begin{quote}Parameter destinationIeee: A 64-bit identifier. This is either the destination EUI64 (for unicasts) or the 64-bit group address (for multicasts)\end{quote}
+\begin{quote}Parameter networkIndex: The index of the network the binding belongs to\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class ZllSetRadioIdleMode}
+\begin{quote}Syntax: ZllSetRadioIdleMode(radioPowerMode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_zll\_set\_radio\_idle\_mode(ZBee zbee, ZWBYTE radio\_power\_mode, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: ZLL Set Radio Idle Mode\end{quote}
+\begin{quote}Parameter radioPowerMode: The power mode to be set. 0x00 - The radio receiver is switched on. 0x01 - The radio receiver is switched off\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class SetValue}
+\begin{quote}Syntax: SetValue(valueId, valueData, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_value(ZBee zbee, ZWBYTE value\_id, ZWBYTE value\_length, const ZWBYTE * value\_data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Value\end{quote}
+\begin{quote}Parameter valueId: Value Id\end{quote}
+\begin{quote}Parameter valueData: Value Data\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class SetConcentrator}
+\begin{quote}Syntax: SetConcentrator(on, concentratorType, minTime, maxTime, routeErrorThreshold, deliveryFailureThreshold, maxHops, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_concentrator(ZBee zbee, ZWBOOL on, ZWWORD concentrator\_type, ZWWORD min\_time, ZWWORD max\_time, ZWBYTE route\_error\_threshold, ZWBYTE delivery\_failure\_threshold, ZWBYTE max\_hops, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Concentrator\end{quote}
+\begin{quote}Parameter on: Is Enable\end{quote}
+\begin{quote}Parameter concentratorType: Concentrator Type:. 0xFFF8 - A concentrator with insufficient memory to store source routes for the entire network. Route records are sent to the concentrator prior to every inbound APS unicast. 0xFFF9 - A concentrator with sufficient memory to store source routes for the entire network. Remote nodes stop sending route records once the concentrator has successfully received one\end{quote}
+\begin{quote}Parameter minTime: Min Time between MTORR\end{quote}
+\begin{quote}Parameter maxTime: Max Time between MTORR\end{quote}
+\begin{quote}Parameter routeErrorThreshold: The number of route errors that will trigger a re-broadcast of the MTORR\end{quote}
+\begin{quote}Parameter deliveryFailureThreshold: The number of APS delivery failures that will trigger a re-broadcast of the MTORR\end{quote}
+\begin{quote}Parameter maxHops: The maximum number of hops that the MTORR broadcast will be allowed to have. A value of 0 will be converted to the EMBER\_MAX\_HOPS value set by the stack\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
