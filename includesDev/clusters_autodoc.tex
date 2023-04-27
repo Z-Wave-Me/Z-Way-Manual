@@ -2,9 +2,7 @@
 
 \section{Cluster Class Node Descriptor Request (0x0002/2)}
 
-
-
-\Profile Zigbee Device Profile (0x0000/0)}
+Profile Zigbee Device Profile (0x0000/0)
 
 The Node\_Desc\_req command is generated from a local device wishing to inquire. as to the node descriptor of a remote device. This command shall be unicast either. to the remote device itself or to an alternative device that contains the discovery. information of the remote device.
 \paragraph{Cluster NodeDescriptorRequest Run}
@@ -18,9 +16,7 @@ The Node\_Desc\_req command is generated from a local device wishing to inquire.
 
 \section{Cluster Class Active EndPoints Request (0x0005/5)}
 
-
-
-\Profile Zigbee Device Profile (0x0000/0)}
+Profile Zigbee Device Profile (0x0000/0)
 
 The Active\_EP\_req command is generated from a local device wishing to acquire. the list of endpoints on a remote device with simple descriptors. This command. shall be unicast either to the remote device itself or to an alternative device that. contains the discovery information of the remote device.
 \paragraph{Cluster ActiveEndPointsRequest Run}
@@ -34,9 +30,7 @@ The Active\_EP\_req command is generated from a local device wishing to acquire.
 
 \section{Cluster Class Simple Descriptor Request (0x0004/4)}
 
-
-
-\Profile Zigbee Device Profile (0x0000/0)}
+Profile Zigbee Device Profile (0x0000/0)
 
 The Simple\_Desc\_req command is generated from a local device wishing to. inquire as to the simple descriptor of a remote device on a specified endpoint. This. command shall be unicast either to the remote device itself or to an alternative. device that contains the discovery information of the remote device.
 \paragraph{Cluster SimpleDescriptorRequest Run}
@@ -51,9 +45,7 @@ The Simple\_Desc\_req command is generated from a local device wishing to. inqui
 
 \section{Cluster Class End Device Announce (0x0013/19)}
 
-
-
-\Profile Zigbee Device Profile (0x0000/0)}
+Profile Zigbee Device Profile (0x0000/0)
 
 The End\_Device\_annce is provided to enable Zigbee end devices on the network. to notify other Zigbee devices that the end device has joined or re-joined the. network, identifying the end devices 64-bit IEEE address and new 16-bit. NWKaddress and informing the Remote Devices of the capability of the Zigbee. EndDevice. The destination addressing on this primitive is broadcast to all. devices.
 \paragraph{Cluster EndDeviceAnnounce Run}
@@ -69,9 +61,7 @@ The End\_Device\_annce is provided to enable Zigbee end devices on the network. 
 
 \section{Cluster Class Bind Request (0x0021/33)}
 
-
-
-\Profile Zigbee Device Profile (0x0000/0)}
+Profile Zigbee Device Profile (0x0000/0)
 
 The End\_Device\_annce is provided to enable Zigbee end devices on the network. to notify other Zigbee devices that the end device has joined or re-joined the. network, identifying the end devices 64-bit IEEE address and new 16-bit. NWKaddress and informing the Remote Devices of the capability of the Zigbee. EndDevice. The destination addressing on this primitive is broadcast to all. devices.
 \paragraph{Cluster BindRequest ByGroupAddr}
@@ -113,9 +103,7 @@ The End\_Device\_annce is provided to enable Zigbee end devices on the network. 
 
 \section{Cluster Class Power Descriptor Request (0x0003/3)}
 
-
-
-\Profile Zigbee Device Profile (0x0000/0)}
+Profile Zigbee Device Profile (0x0000/0)
 
 The Power\_Desc\_req command is generated from a local device wishing to inquire. as to the power descriptor of a remote device. This command shall be unicast. either to the remote device itself or. to an alternative device that contains the discovery information of the remote device.
 \paragraph{Cluster PowerDescriptorRequest Run}
@@ -129,9 +117,7 @@ The Power\_Desc\_req command is generated from a local device wishing to inquire
 
 \section{Cluster Class Network Address Request (0x0000/0)}
 
-
-
-\Profile Zigbee Device Profile (0x0000/0)}
+Profile Zigbee Device Profile (0x0000/0)
 
 The NWK\_addr\_req is generated from a Local Device wishing to inquire as to the. 16 bit address of the Remote Device based on its known IEEE address. The. destination addressing on this command shall be broadcast to all RxOnWhenIdle. devices.
 \paragraph{Cluster NetworkAddressRequest Run}
@@ -148,9 +134,7 @@ The NWK\_addr\_req is generated from a Local Device wishing to inquire as to the
 
 \section{Cluster Class OnOff (0x0006/6)}
 
-
-
-\Profile Zigbee Device Profile (0x0104/260)}
+Profile Zigbee Device Profile (0x0104/260)
 
 Attributes and commands for switching devices between ‘On’ and ‘Off’ states.
 \newline
@@ -232,9 +216,7 @@ Data holders:
 
 \section{Cluster Class PollControl (0x0020/32)}
 
-
-
-\Profile Zigbee Device Profile (0x0104/260)}
+Profile Zigbee Device Profile (0x0104/260)
 
 This cluster provides a mechanism for the management of an end device’s MAC Data Request rate. For the purposes of this cluster, the term “poll” always refers to the sending of a MAC Data Request from the end device to the end device’s parent.
 \newline
@@ -281,9 +263,7 @@ Data holders:
 
 \section{Cluster Class Mgmt Permit Joining Request (0x0036/54)}
 
-
-
-\Profile Zigbee Device Profile (0x0000/0)}
+Profile Zigbee Device Profile (0x0000/0)
 
 The Mgmt\_Permit\_Joining\_req is generated from a Local Device requesting that. a remote device or devices allow or disallow association. The. Mgmt\_Permit\_Joining\_req is generated by a management application or. commissioning tool which directs the request to a remote device(s) where the. NLME-PERMIT-JOINING.request is executed using the PermitDuration. parameter supplied by Mgmt\_Permit\_Joining\_req. Additionally, if the remote. device is the Trust Center and TC\_Significance is set to 1, the trust center. authentication policy will be affected. The addressing may be unicast or. ‘broadcast to all RxOnWhenIdle devices’.
 \paragraph{Cluster MgmtPermitJoiningRequest Run}
@@ -299,9 +279,7 @@ The Mgmt\_Permit\_Joining\_req is generated from a Local Device requesting that.
 
 \section{Cluster Class Mgmt Leave Request (0x0034/52)}
 
-
-
-\Profile Zigbee Device Profile (0x0000/0)}
+Profile Zigbee Device Profile (0x0000/0)
 
 The Mgmt\_Leave\_req is generated from a Local Device requesting that a Remote. Device leave the network or to request that another device leave the network. The. Mgmt\_Leave\_req is generated by a management application which directs the. request to a Remote Device where the NLME-LEAVE.request is to be executed. using the parameter supplied by Mgmt\_Leave\_req.
 \paragraph{Cluster MgmtLeaveRequest Run}
@@ -317,9 +295,7 @@ The Mgmt\_Leave\_req is generated from a Local Device requesting that a Remote. 
 
 \section{Cluster Class Basic (0x0000/0)}
 
-
-
-\Profile ZigBee Device Profile (0x0104/260)}
+Profile ZigBee Device Profile (0x0104/260)
 
 This cluster supports an interface to the node or physical device. It provides attributes and commands for determining basic information,. setting user information such as location, and resetting to factory defaults. 				0x00 - Unknown. 				0x01 - Mains (single phase). 				0x02 - Mains (3 phase). 				0x03 - Battery. 				0x04 - DC Source. 				0x05 - Emergency mains constrants. 				0x06 - Emergency mains and transfer switch. 				0x00 - Unspecified environment. 				0x01 - Mirror (ZSE Profile). 				0x01 - Atrium. 				0x02 - Bar. 				0x03 - Courtyard. 				0x04 - Bathroom. 				0x05 - Bedroom. 				0x06 - Billiard Room. 				0x07 - Utility Room. 				0x08 - Cellar. 				0x09 - Storage Closet. 				0x0a - Theater. 				0x0b - Office. 				0x0c - Deck. 				0x0d - Den. 				0x0e - Dining Room. 				0x0f - Electrical Room. 				0x10 - Elevator. 				0x11 - Entry. 				0x12 - Family Room. 				0x13 - Main Floor. 				0x14 - Upstairs. 				0x15 - Downstairs. 				0x16 - Basement/Lower Level. 				0x17 - Gallery. 				0x18 - Game Room. 				0x19 - Garage. 				0x1a - Gym. 				0x1b - Hallway. 				0x1c - House. 				0x1d - Kitchen. 				0x1e - Laundry Room. 				0x1f - Library. 				0x20 - Master Bedroom. 				0x21 - Mud Room (small room for coats and boots). 				0x22 - Nursery. 				0x23 - Pantry. 				0x24 - Office. 				0x25 - Outside. 				0x26 - Pool. 				0x27 - Porch. 				0x28 - Sewing Room. 				0x29 - Sitting Room. 				0x2a - Stairway. 				0x2b - Yard. 				0x2c - Attic. 				0x2d - Hot Tub. 				0x2e - Living Room. 				0x2f - Sauna. 				0x30 - Shop/Workshop. 				0x31 - Guest Bedroom. 				0x32 - Guest Bath. 				0x33 - Powder Room (1/2 bath). 				0x34 - Back Yard. 				0x35 - Front Yard. 				0x36 - Patio. 				0x37 - Driveway. 				0x38 - Sun Room. 				0x39 - Living Room. 				0x3a - Spa. 				0x3b - Whirlpool. 				0x3c - Shed. 				0x3d - Equipment Storage. 				0x3e - Hobby/Craft Room. 				0x3f - Fountain. 				0x40 - Pond. 				0x41 - Reception Room. 				0x42 - Breakfast Room. 				0x43 - Nook. 				0x44 - Garden. 				0x45 - Balcony. 				0x46 - Panic Room. 				0x47 - Terrace. 				0x48 - Roof. 				0x49 - Toilet. 				0x4a - Toilet Main. 				0x4b - Outside Toilet. 				0x4c - Shower room. 				0x4d - Study. 				0x4e - Front Garden. 				0x4f - Back Garden. 				0x50 - Kettle. 				0x51 - Television. 				0x52 - Stove. 				0x53 - Microwave. 				0x54 - Toaster. 				0x55 - Vacuum. 				0x56 - Appliance. 				0x57 - Front Door. 				0x58 - Back Door. 				0x59 - Fridge Door. 				0x60 - Medication Cabinet Door. 				0x61 - Wardrobe Door. 				0x62 - Front Cupboard Door. 				0x63 - Other Door. 				0x64 - Waiting Room. 				0x65 - Triage Room. 				0x66 - Doctor’s Office. 				0x67 - Patient’s Private Room. 				0x68 - Consultation Room. 				0x69 - Nurse Station. 				0x6a - Ward. 				0x6b - Corridor. 				0x6c - Operating Theatre. 				0x6d - Dental Surgery Room. 				0x6e - Medical Imaging Room. 				0x6f - Decontamination Room. 				0xff - Unknown environment. 				0x00 - Disable. 				0x01 - Enable. 				0x00 - General hardware fault. 				0x01 - General software fault. 				0th bit. 				 0 - Reset (to factory defaults) enabled. 				 1 - Reset (to factory defaults) disabled. 				1st bit. 				 0 - Device configuration enabled. 				 1 - Device configuration disabled.
 \newline
@@ -355,9 +331,7 @@ Data holders:
 
 \section{Cluster Class Identify (0x0003/3)}
 
-
-
-\Profile ZigBee Device Profile (0x0104/260)}
+Profile ZigBee Device Profile (0x0104/260)
 
 Attributes and commands to put a device into an Identification mode (e.g., flashing a light), that indicates to an observer – e.g., an installer - which of several devices it is, also to request any device that is identifying itself to respond to the initiator.
 \newline
@@ -408,9 +382,7 @@ Data holders:
 
 \section{Cluster Class Ias Zone (0x0500/1280)}
 
-
-
-\Profile ZigBee Device Profile (0x0104/260)}
+Profile ZigBee Device Profile (0x0104/260)
 
 The IAS Zone cluster defines an interface to the functionality of an IAS security zone device. IAS Zone supports up to two alarm types per zone, low battery reports and supervision of the IAS network. 			0x00 - NotEnroll. 			0x00...0xFE - The unique identifier of zone. 			0xFF - Invalid zone identifier.
 \newline
@@ -459,9 +431,7 @@ Data holders:
 
 \section{Cluster Class Color Control (0x0300/768)}
 
-
-
-\Profile ZigBee Device Profile (0x0104/260)}
+Profile ZigBee Device Profile (0x0104/260)
 
 This cluster provides an interface for changing the color of a light. Color is specified according to the Commission Internationale de l'Éclairage (CIE) specification CIE 1931 Color Space. Color control is carried out in terms of x,y values, as defined by this specification.
 \newline
@@ -487,8 +457,8 @@ Data holders:
 \item \textbf{colorLoopStartEnhancedHue}: It specifies the value of the EnhancedCurrentHue attribute from which the color loop SHALL be started
 \item \textbf{colorLoopStoredEnhancedHue}: It pecifies the value of the EnhancedCurrentHue attribute before the color loop was started. Once the color loop is complete, the EnhancedCurrentHue attribute SHALL be restored to this value.
 \item \textbf{colorCapabilities}: It specifies the color capabilities of the device supporting the color control cluster. If a bit is set to 1, the corresponding attributes and commands SHALL become mandatory. If a bit is set to 0, the corresponding attributes and commands need not be implemented
-\item \textbf{colorTempPhysicalMinMireds}: It indicates the minimum mired value supported by the hardware. ColorTempPhysicalMinMireds corresponds to the maximum color temperature in kelvins supported by the hardware. ColorTempPhysicalMinMireds ≤ ColorTemperatureMireds.
-\item \textbf{colorTempPhysicalMaxMireds}: It indicates the maximum mired value supported by the hardware. ColorTempPhysicalMaxMireds corresponds to the minimum color temperature in kelvins supported by the hardware. ColorTemperatureMireds ≤ ColorTempPhysicalMaxMireds.
+\item \textbf{colorTempPhysicalMinMireds}: It indicates the minimum mired value supported by the hardware. ColorTempPhysicalMinMireds corresponds to the maximum color temperature in kelvins supported by the hardware. ColorTempPhysicalMinMireds <= ColorTemperatureMireds.
+\item \textbf{colorTempPhysicalMaxMireds}: It indicates the maximum mired value supported by the hardware. ColorTempPhysicalMaxMireds corresponds to the minimum color temperature in kelvins supported by the hardware. ColorTemperatureMireds <= ColorTempPhysicalMaxMireds.
 \item \textbf{numberOfPrimaries}: It contains the number of color primaries implemented on this device. A value of 0xff SHALL indicate that the number of primaries is unknown Where this attribute is implemented, the attributes below for indicating the “x” and “y” color values of the primaries SHALL also be implemented for each of the primaries from 1 to NumberOfPrimaries, without leaving gaps. Implementation of the Primary1Intensity attribute and subsequent intensity attributes is optional.
 \item \textbf{primary1X}: It contains the normalized chromaticity value x for this primary, as defined in the CIE xyY Color Space. The value of x SHALL be related to the Primary1X attribute by the relationship x = Primary1X / 65536 (Primary1X in the range 0 to 65279 inclusive)
 \item \textbf{primary1Y}: It contains the normalized chromaticity value y for this primary, as defined in the CIE xyY Color Space. The value of y SHALL be related to the Primary1Y attribute by the relationship y = Primary1Y / 65536 (Primary1Y in the range 0 to 65279 inclusive)
@@ -699,8 +669,8 @@ Data holders:
 \begin{quote}Description: Stop Move Step (0x47/71)\end{quote}
 \begin{quote}Parameter moveMode: Move mode:. 0x00 - Stop. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
 \begin{quote}Parameter rate: The Rate field is 16-bits in length and specifies the rate of movement in steps per second. A step is a change in the color temperature of a device by one unit. If the Rate field has a value of zero, the command has no effect and a ZCL Default Response command SHALL be sent in response, with the status code set to INVALID\_FIELD\end{quote}
-\begin{quote}Parameter colorTempMinMireds: The Color Temperature Minimum Mireds field is 16-bits in length and specifies a lower bound on the ColorTemperatureMireds attribute (≡ an upper bound on the color temperature in kelvins) for the current move operation such that: ColorTempPhysicalMinMireds ≤ Color Temperature Minimum Mireds field ≤ ColorTemperatureMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Minimum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Minimum Mireds field is set to 0x0000, ColorTempPhysicalMinMireds SHALL be used as the lower bound for the ColorTemperatureMireds attribute\end{quote}
-\begin{quote}Parameter colorTempMaxMireds: The Color Temperature Maximum Mireds field is 16-bits in length and specifies an upper bound on the ColorTemperatureMireds attribute (≡ a lower bound on the color temperature in kelvins) for the current move operation such that: ColorTemperatureMireds ≤ Color Temperature Maximum Mireds field ≤ ColorTempPhysicalMaxMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Maximum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Maximum Mireds field is set to 0x0000, ColorTempPhysicalMaxMireds SHALL be used as the upper bound for the ColorTemperatureMireds attribute\end{quote}
+\begin{quote}Parameter colorTempMinMireds: The Color Temperature Minimum Mireds field is 16-bits in length and specifies a lower bound on the ColorTemperatureMireds attribute (an upper bound on the color temperature in kelvins) for the current move operation such that: ColorTempPhysicalMinMireds <= Color Temperature Minimum Mireds field <= ColorTemperatureMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Minimum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Minimum Mireds field is set to 0x0000, ColorTempPhysicalMinMireds SHALL be used as the lower bound for the ColorTemperatureMireds attribute\end{quote}
+\begin{quote}Parameter colorTempMaxMireds: The Color Temperature Maximum Mireds field is 16-bits in length and specifies an upper bound on the ColorTemperatureMireds attribute (a lower bound on the color temperature in kelvins) for the current move operation such that: ColorTemperatureMireds <= Color Temperature Maximum Mireds field <= ColorTempPhysicalMaxMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Maximum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Maximum Mireds field is set to 0x0000, ColorTempPhysicalMaxMireds SHALL be used as the upper bound for the ColorTemperatureMireds attribute\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
@@ -711,8 +681,8 @@ Data holders:
 \begin{quote}Description: Move Color Temperature (0x4b/75)\end{quote}
 \begin{quote}Parameter moveMode: Move mode:. 0x00 - Stop. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
 \begin{quote}Parameter rate: The Rate field is 16-bits in length and specifies the rate of movement in steps per second. A step is a change in the color temperature of a device by one unit. If the Rate field has a value of zero, the command has no effect and a ZCL Default Response command SHALL be sent in response, with the status code set to INVALID\_FIELD\end{quote}
-\begin{quote}Parameter colorTempMinMireds: The Color Temperature Minimum Mireds field is 16-bits in length and specifies a lower bound on the ColorTemperatureMireds attribute (≡ an upper bound on the color temperature in kelvins) for the current move operation such that: ColorTempPhysicalMinMireds ≤ Color Temperature Minimum Mireds field ≤ ColorTemperatureMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Minimum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Minimum Mireds field is set to 0x0000, ColorTempPhysicalMinMireds SHALL be used as the lower bound for the ColorTemperatureMireds attribute\end{quote}
-\begin{quote}Parameter colorTempMaxMireds: The Color Temperature Maximum Mireds field is 16-bits in length and specifies an upper bound on the ColorTemperatureMireds attribute (≡ a lower bound on the color temperature in kelvins) for the current move operation such that: ColorTemperatureMireds ≤ Color Temperature Maximum Mireds field ≤ ColorTempPhysicalMaxMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Maximum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Maximum Mireds field is set to 0x0000, ColorTempPhysicalMaxMireds SHALL be used as the upper bound for the ColorTemperatureMireds attribute\end{quote}
+\begin{quote}Parameter colorTempMinMireds: The Color Temperature Minimum Mireds field is 16-bits in length and specifies a lower bound on the ColorTemperatureMireds attribute (an upper bound on the color temperature in kelvins) for the current move operation such that: ColorTempPhysicalMinMireds <= Color Temperature Minimum Mireds field <= ColorTemperatureMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Minimum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Minimum Mireds field is set to 0x0000, ColorTempPhysicalMinMireds SHALL be used as the lower bound for the ColorTemperatureMireds attribute\end{quote}
+\begin{quote}Parameter colorTempMaxMireds: The Color Temperature Maximum Mireds field is 16-bits in length and specifies an upper bound on the ColorTemperatureMireds attribute (a lower bound on the color temperature in kelvins) for the current move operation such that: ColorTemperatureMireds <= Color Temperature Maximum Mireds field <= ColorTempPhysicalMaxMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Maximum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Maximum Mireds field is set to 0x0000, ColorTempPhysicalMaxMireds SHALL be used as the upper bound for the ColorTemperatureMireds attribute\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
@@ -724,8 +694,8 @@ Data holders:
 \begin{quote}Parameter stepMode: Move mode:. 0x00 - Reserved. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
 \begin{quote}Parameter stepSize: The Step Size field is 16-bits in length and specifies the change to be added to (or subtracted from) the current value of the device’s color temperature\end{quote}
 \begin{quote}Parameter transitionTime: The Transition Time field is 16-bits in length and specifies, in units of 1/10ths of a second, the time that SHALL be taken to perform the step. A step is a change to the device’s color temperature of a magnitude corresponding to the Step Size field\end{quote}
-\begin{quote}Parameter colorTempMinMireds: The Color Temperature Minimum Mireds field is 16-bits in length and specifies a lower bound on the ColorTemperatureMireds attribute (≡ an upper bound on the color temperature in kelvins) for the current move operation such that: ColorTempPhysicalMinMireds ≤ Color Temperature Minimum Mireds field ≤ ColorTemperatureMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Minimum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Minimum Mireds field is set to 0x0000, ColorTempPhysicalMinMireds SHALL be used as the lower bound for the ColorTemperatureMireds attribute\end{quote}
-\begin{quote}Parameter colorTempMaxMireds: The Color Temperature Maximum Mireds field is 16-bits in length and specifies an upper bound on the ColorTemperatureMireds attribute (≡ a lower bound on the color temperature in kelvins) for the current move operation such that: ColorTemperatureMireds ≤ Color Temperature Maximum Mireds field ≤ ColorTempPhysicalMaxMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Maximum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Maximum Mireds field is set to 0x0000, ColorTempPhysicalMaxMireds SHALL be used as the upper bound for the ColorTemperatureMireds attribute\end{quote}
+\begin{quote}Parameter colorTempMinMireds: The Color Temperature Minimum Mireds field is 16-bits in length and specifies a lower bound on the ColorTemperatureMireds attribute (an upper bound on the color temperature in kelvins) for the current move operation such that: ColorTempPhysicalMinMireds <= Color Temperature Minimum Mireds field <= ColorTemperatureMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Minimum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Minimum Mireds field is set to 0x0000, ColorTempPhysicalMinMireds SHALL be used as the lower bound for the ColorTemperatureMireds attribute\end{quote}
+\begin{quote}Parameter colorTempMaxMireds: The Color Temperature Maximum Mireds field is 16-bits in length and specifies an upper bound on the ColorTemperatureMireds attribute (a lower bound on the color temperature in kelvins) for the current move operation such that: ColorTemperatureMireds <= Color Temperature Maximum Mireds field <= ColorTempPhysicalMaxMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Maximum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Maximum Mireds field is set to 0x0000, ColorTempPhysicalMaxMireds SHALL be used as the upper bound for the ColorTemperatureMireds attribute\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
@@ -733,9 +703,7 @@ Data holders:
 
 \section{Cluster Class Level Control (0x0008/8)}
 
-
-
-\Profile ZigBee Device Profile (0x0104/260)}
+Profile ZigBee Device Profile (0x0104/260)
 
 This cluster provides an interface for controlling a characteristic of a device that can be set to a level, for example the brightness of a light, the degree of closure of a door, or the power output of a heater.
 \newline
