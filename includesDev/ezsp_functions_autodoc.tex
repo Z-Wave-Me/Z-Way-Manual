@@ -62,6 +62,14 @@
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: TODO\end{quote}
 
+\paragraph{Function Class NetworkInitNoOption}
+\begin{quote}Syntax: NetworkInitNoOption(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_network\_init\_no\_option(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: TODO\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: TODO\end{quote}
+
 \paragraph{Function Class FormNetwork}
 \begin{quote}Syntax: FormNetwork(successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}C Syntax: ZWError zbee\_ef\_form\_network(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
@@ -256,6 +264,54 @@
 \begin{quote}Parameter routeErrorThreshold: The number of route errors that will trigger a re-broadcast of the MTORR\end{quote}
 \begin{quote}Parameter deliveryFailureThreshold: The number of APS delivery failures that will trigger a re-broadcast of the MTORR\end{quote}
 \begin{quote}Parameter maxHops: The maximum number of hops that the MTORR broadcast will be allowed to have. A value of 0 will be converted to the EMBER\_MAX\_HOPS value set by the stack\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class ClearTransientLinkKeys}
+\begin{quote}Syntax: ClearTransientLinkKeys(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_clear\_transient\_link\_keys(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Clear Transient Link Key\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class SetSourceRouteDiscoveryMode}
+\begin{quote}Syntax: SetSourceRouteDiscoveryMode(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_source\_route\_discovery\_mode(ZBee zbee, ZWBYTE mode, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Source Route Discovery Mode\end{quote}
+\begin{quote}Parameter mode: Source route discovery mode:. 0 - off. 1 - on. 2 - reschedule\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class FindKeyTableEntry}
+\begin{quote}Syntax: FindKeyTableEntry(address, linkKey, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_find\_key\_table\_entry(ZBee zbee, const ZBEUI64 address, ZWBOOL link\_key, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Find Key Table Entry\end{quote}
+\begin{quote}Parameter address: TODO\end{quote}
+\begin{quote}Parameter linkKey: TODO\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class GetMulticastTableEntry}
+\begin{quote}Syntax: GetMulticastTableEntry(index, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_get\_multicast\_table\_entry(ZBee zbee, ZWBYTE index, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get Multicast Table Entry\end{quote}
+\begin{quote}Parameter index: Entry index\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class SetMulticastTableEntry}
+\begin{quote}Syntax: SetMulticastTableEntry(index, multicastId, endpoint, networkId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_multicast\_table\_entry(ZBee zbee, ZWBYTE index, ZWWORD multicast\_id, ZWBYTE endpoint, ZWBYTE network\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Multicast Table Entry\end{quote}
+\begin{quote}Parameter index: Entry index\end{quote}
+\begin{quote}Parameter multicastId: Multicast Address\end{quote}
+\begin{quote}Parameter endpoint: Endpoint\end{quote}
+\begin{quote}Parameter networkId: Multicast Address\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
