@@ -317,7 +317,7 @@ Data holders:
 \item \textbf{deviceEnabled}: The DeviceEnabled attribute is a Boolean and specifies whether the device is enabled or disabled. This attribute SHALL be set to one of the non-reserved value 'Disabled' means that the device does not send or respond to application level commands, other than commands to read or write attributes. Values of attributes which depend on the operation of the application MAY be invalid, and any functionality triggered by writing to such attributes MAY be disabled. ZigBee networking functionality remains operational. If implemented, the identify cluster cannot be disabled, i.e., it remains functional regardless of this setting
 \item \textbf{alarmMask}: The AlarmMask attribute is 8 bits in length and specifies which of a number of general alarms MAY be generated. These alarms are provided as basic alarms that a device MAY use even if no other clusters with alarms are present on the device
 \item \textbf{disableLocalConfig}: The DisableLocalConfig attribute allows a number of local device configuration functions to be disable. The intention of this attribute is to allow disabling of any local configuration user interface, for example to prevent reset or binding buttons being activated by non-authorized persons in a public building. Bit 0 of the DisableLocalConfig attribute disables any factory reset button (or equivalent) on the device. Bit 1 disables any device configuration button(s) (or equivalent)—for example, a bind button.
-\item \textbf{swBuildIs}: The SWBuildID attribute represents a detailed, manufacturer-specific reference to the version of the software
+\item \textbf{swBuildId}: The SWBuildID attribute represents a detailed, manufacturer-specific reference to the version of the software
 \end{itemize}
 
 \paragraph{Cluster Basic Reset}
@@ -795,6 +795,320 @@ Data holders:
 \begin{quote}Syntax: StopOnOff(successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_stop\_on\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Stop (with On/Off) (0x07/7)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class Door Lock (0x0101/257)}
+
+Profile ZigBee Device Profile (0x0104/260)
+
+The door lock cluster provides an interface to a generic way to secure a door. The physical object that provides the locking functionality is abstracted from the cluster. The cluster has a small list of mandatory attributes and functions and a list of optional features. 0th bit - 0x00 (Event Source) 0x00 (Operation Event Code) Unknown or manufacturer-specific keypad operation event. 1st bit - 0x00 (Event Source) 0x01 (Operation Event Code) Lock, source: keypad. 2nd bit - 0x00 (Event Source) 0x02 (Operation Event Code) Unlock, source: keypad. 3rd bit - 0x00 (Event Source) 0x03 (Operation Event Code) Lock, source: keypad, error: invalid PIN. 4th bit - 0x00 (Event Source) 0x04 (Operation Event Code) Lock, source: keypad, error: invalid schedule. 5th bit - 0x00 (Event Source) 0x05 (Operation Event Code) Unlock, source: keypad, error: invalid code. 6th bit - 0x00 (Event Source) 0x06 (Operation Event Code) Unlock, source: keypad, error: invalid schedule. 7th bit - 0x00 (Event Source) 0x0F (Operation Event Code) Non-Access User operation event, source keypad. 0th bit - 0x01 (Event Source) 0x00 (Operation Event Code)  Unknown or manufacturer-specific RF operation event. 1st bit - 0x01 (Event Source) 0x01 (Operation Event Code)  Lock, source: RF. 2nd bit - 0x01 (Event Source) 0x02 (Operation Event Code)  Unlock, source: RF. 3rd bit - 0x01 (Event Source) 0x03 (Operation Event Code)  Lock, source: RF, error: invalid code. 4th bit - 0x01 (Event Source) 0x04 (Operation Event Code)  Lock, source: RF, error: invalid schedule. 5th bit - 0x01 (Event Source) 0x05 (Operation Event Code)  Unlock, source: RF, error: invalid code. 6th bit - 0x01 (Event Source) 0x06 (Operation Event Code)  Unlock, source: RF, error: invalid schedule. 0th bit - 0x02 (Event Source) 0x00 (Operation Event Code)  Unknown or manufacturer-specific manual operation event. 1st bit - 0x02 (Event Source) 0x01 (Operation Event Code)  Thumbturn Lock. 2nd bit - 0x02 (Event Source) 0x02 (Operation Event Code)  Thumbturn Unlock. 3rd bit - 0x02 (Event Source) 0x07 (Operation Event Code)  One touch lock. 4th bit - 0x02 (Event Source) 0x08 (Operation Event Code)  Key Lock. 5th bit - 0x02 (Event Source) 0x09 (Operation Event Code)  Key Unlock. 6th bit - 0x02 (Event Source) 0x0A (Operation Event Code)  Auto lock. 7th bit - 0x02 (Event Source) 0x0B (Operation Event Code)  Schedule Lock. 8th bit - 0x02 (Event Source) 0x0C (Operation Event Code)  Schedule Unlock. 9th bit - 0x02 (Event Source) 0x0D (Operation Event Code)  Manual Lock (Key or Thumbturn). 1st bit - 0x02 (Event Source) 0x0E (Operation Event Code) ) Manual Unlock (Key or Thumbturn). 0rd bit - 0x03 (Event Source) 0x00 (Operation Event Code)  Unknown or manufacturer-specific keypad operation even. 1th bit - 0x03 (Event Source) 0x01 (Operation Event Code)  Lock, source: RFID. 2th bit - 0x03 (Event Source) 0x02 (Operation Event Code)  Unlock, source: RFID. 3th bit - 0x03 (Event Source) 0x03 (Operation Event Code)  Lock, source: RFID, error: invalid RFID ID. 4th bit - 0x03 (Event Source) 0x04 (Operation Event Code)  Lock, source: RFID, error: invalid schedule. 5th bit - 0x03 (Event Source) 0x05 (Operation Event Code)  Unlock, source: RFID, error: invalid RFID ID. 6th bit - 0x03 (Event Source) 0x06 (Operation Event Code)  Unlock, source: RFID, error: invalid schedule. 0th bit - 0x00 (Event Source) 0x00 (Operation Event Code)  Unknown or manufacturer-specific keypad programming event. 1th bit - 0x00 (Event Source) 0x01 (Operation Event Code)  Master code changed, source: keypad User ID: master user ID. PIN: default or master code if codes can be sent over the air per attribute. User type: default User Status: default. 2th bit - 0x00 (Event Source) 0x02 (Operation Event Code)  PIN added, source: keypad User ID: user ID that was added. PIN: code that was added (if codes can be sent over the air per attribute.) User type: default or type added. User Status: default or status added. 3th bit - 0x00 (Event Source) 0x03 (Operation Event Code)  PIN deleted, source: keypad User ID: user ID that was deleted. PIN: code that was deleted (if codes can be sent over the air per attribute.) User type: default or type deleted. User Status: default or status deleted. 4th bit - 0x00 (Event Source) 0x04 (Operation Event Code)  PIN changed Source: keypad User ID: user ID that was changed PIN: code that was changed (if codes can be sent over the air per attribute.) User type: default or type changed. User Status: default or status changed. 0th bit - 0x01 (Event Source) 0x00 (Operation Event Code)  Unknown or manufacturer-specific RF programming event. 2th bit - 0x01 (Event Source) 0x02 (Operation Event Code)  PIN added, source RF Same as keypad source above. 3th bit - 0x01 (Event Source) 0x03 (Operation Event Code)  PIN deleted, source RF Same as keypad source above. 4th bit - 0x01 (Event Source) 0x04 (Operation Event Code)  PIN changed Source RF Same as keypad source above. 5th bit - 0x01 (Event Source) 0x05 (Operation Event Code)  RFID code added, Source RF. 6th bit - 0x01 (Event Source) 0x06 (Operation Event Code)  RFID code deleted, Source RF. 0th bit - 0x03 (Event Source) 0x00 (Operation Event Code)  Unknown or manufacturer-specific keypad programming event. 5th bit - 0x03 (Event Source) 0x05 (Operation Event Code)  ID Added, Source: RFID User ID: user ID that was added. ID: ID that was added (if codes can be sent over the air per at- tribute.) User Type: default or type added. User Status: default or status added. 6th bit - 0x03 (Event Source) 0x06 (Operation Event Code)  ID Deleted, Source: RFID User ID: user ID that was deleted. ID: ID that was deleted (if codes can be sent over the air per attribute.) User Type: default or type deleted. User Status: default or status deleted.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{lockState}: It describes lock states.
+\item \textbf{lockType}: It describes lock types.
+\item \textbf{actuatorEnabled}: It describes if actuator is enable or not
+\item \textbf{doorState}: It describes possible door states.
+\item \textbf{doorOpenEvents}: This attribute holds the number of door open events that have occurred since it was last zeroed
+\item \textbf{doorClosedEvents}: This attribute holds the number of door closed events that have occurred since it was last zeroed.
+\item \textbf{openPeriod}: This attribute holds the number of minutes the door has been open since the last time it transitioned from closed to open.
+\item \textbf{numberOfLogRecordsSupported}: The number of available log records
+\item \textbf{numberOfTotalUsersSupported}: Number of total users supported by the lock. This value is equal to the higher one of [\# of PIN Users Supported] and [\# of RFID Users Supported]
+\item \textbf{numberOfPINUsersSupported}: The number of PIN users supported.
+\item \textbf{numberOfRFIDUsersSupported}: The number of RFID users supported.
+\item \textbf{numberOfWeekDaySchedulesSupportedPerUser}: The number of configurable week day schedule supported per user.
+\item \textbf{numberOfYearDaySchedulesSupportedPerUser}: The number of configurable year day schedule supported per user
+\item \textbf{numberOfHolidaySchedulesSupported}: The number of holiday schedules supported for the entire door lock device.
+\item \textbf{maxPINCodeLength}: An 8 bit value indicates the maximum length in bytes of a PIN Code on this device. The default is set to 8 since most lock manufacturers currently allow PIN Codes of 8 bytes or less
+\item \textbf{minPINCodeLength}: An 8 bit value indicates the minimum length in bytes of a PIN Code on this device. The default is set to 4 since most lock manufacturers do not support PIN Codes that are shorter than 4 bytes.
+\item \textbf{maxRFIDCodeLength}: An 8 bit value indicates the maximum length in bytes of a RFID Code on this device. The value depends on the RFID code range specified by the manufacturer, if media anti-collision identifiers (UID) are used as RFID code, a value of 20 (equals 10 Byte ISO 14443A UID) is recommended
+\item \textbf{minRFIDCodeLength}: An 8 bit value indicates the minimum length in bytes of a RFID Code on this device. The value depends on the RFID code range specified by the manufacturer, if media anti-collision identifiers (UID) are used as RFID code, a value of 8 (equals 4 Byte ISO 14443A UID) is recommended.
+\item \textbf{enableLogging}: Enable/disable event logging. When event logging is enabled, all event messages are stored on the lock for retrieval. Logging events can be but not limited to Tamper Alarm, Lock, Unlock, Autolock, User Code Added, User Code Deleted, Schedule Added, and Schedule Deleted. For a full detail of all the possible alarms and events, please refer to the full list in the Alarm and Event Masks Attribute Set.
+\item \textbf{language}: Modifies the language for the on-screen or audible user interface using three bytes from ISO-639-1. It consists of one byte of length and two bytes for the language code. For example if the language is set to English, the value would be "02 65 6E" for the language code "en".
+\item \textbf{ledSettings}: The settings for the LED support three different modes
+\item \textbf{autoRelockTime}: The number of seconds to wait after unlocking a lock before it automatically locks again. 0=disabled. If set, unlock operations from any source will be timed. For one time unlock with timeout use the specific command.
+\item \textbf{soundVolume}: The sound volume on a door lock has three possible setting
+\item \textbf{operatingMode}: It describes operating modes
+\item \textbf{supportedOperatingModes}: This bitmap contains all operating bits of the Operating Mode Attribute supported by the lock.
+\item \textbf{defaultConfigurationRegister}: This attribute represents the default configurations as they are physically set on the device
+\item \textbf{enableLocalProgramming}: Enable/disable local programming on the door lock. The local programming features includes but not limited to adding new user codes, deleting existing user codes, add new schedule, deleting existing schedule on the local door lock interfaces. If this value is set to 0x01 or TRUE then local programming is enabled on the door lock. If it is set to 0x00 or FALSE then local programming is disabled on the door lock. Local programming is enabled by default.
+\item \textbf{enableOneTouchLocking}: Enable/disable the ability to lock the door lock with a single touch on the door lock
+\item \textbf{enableInsideStatusLED}: Enable/disable an inside LED that allows the user to see at a glance if the door is locked.
+\item \textbf{enablePrivacyModeButton}: Enable/disable a button inside the door that is used to put the lock into privacy mode. When the lock is in privacy mode it cannot be manipulated from the outside
+\item \textbf{wrongCodeEntryLimit}: The number of incorrect codes or RFID presentment attempts a user is allowed to enter before the door will enter a lockout state. The lockout state will be for the duration of UserCodeTemporaryDisableTime
+\item \textbf{userCodeTemporaryDisableTime}: The number of seconds that the lock shuts down following wrong code entry. 1-255 seconds. Device can shutdown to lock user out for specified amount of time. (Makes it difficult to try and guess a PIN for the device.)
+\item \textbf{sendPINOverTheAir}: Boolean set to True if it is ok for the door lock server to send PINs over the air. This attribute determines the behavior of the server’s TX operation. If it is false, then it is not ok for the device to send PIN in any messages over the air. The PIN field within any door lock cluster message SHALL keep the first octet unchanged and masks the actual code by replacing with 0xFF. For example (PIN "1234" ): If the attribute value is True, 0x04 0x31 0x32 0x33 0x34 SHALL be used in the PIN field in any door lock cluster message payload. If the attribute value is False, 0x04 0xFF 0xFF 0xFF 0xFF SHALL be used
+\item \textbf{requirePINforRFOperation}: Boolean set to True if the door lock server requires that an optional PINs be included in the payload of RF lock operation events like Lock, Unlock and Toggle in order to function.
+\item \textbf{zigBeeSecurityLevel}: The Security Level attribute allows the door lock manufacturer to indicate what level of security the door lock requires.
+\item \textbf{alarmMask}: The alarm mask is used to turn on/off alarms for particular functions
+\item \textbf{keypadOperationEventMask}: Event mask used to turn on and off the transmission of keypad operation events. This mask DOES NOT apply to the storing of events in the report table.
+\item \textbf{rfOperationEventMask}: Event mask used to turn on and off the transmission of RF operation events. This mask DOES NOT apply to the storing of events in the report table.
+\item \textbf{manualOperationEventMask}: Event mask used to turn on and off manual operation events. This mask DOES NOT apply to the storing of events in the report table.
+\item \textbf{rfidOperandonEventMask}: Event mask used to turn on and off RFID operation events. This mask DOES NOT apply to the storing of events in the report table
+\item \textbf{keypadProgrammingEventMask}: Event mask used to turn on and off keypad programming events. This mask DOES NOT apply to the storing of events in the report table.
+\item \textbf{rfProgrammingEventMask}: Event mask used to turn on and off RF programming events. This mask DOES NOT apply to the storing of events in the report table.
+\item \textbf{rfidProgrammingEventMask}: Event mask used to turn on and off RFID programming events. This mask DOES NOT apply to the storing of events in the report table.
+\end{itemize}
+
+\paragraph{Cluster DoorLock LockDoor}
+\begin{quote}Syntax: LockDoor(code, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_lock\_door(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE size, const ZWBYTE * code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Lock Door (0x00/0)\end{quote}
+\begin{quote}Parameter code: Pin Code\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock UnlockDoor}
+\begin{quote}Syntax: UnlockDoor(code, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_unlock\_door(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE size, const ZWBYTE * code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Unlock Door (0x01/1)\end{quote}
+\begin{quote}Parameter code: Pin Code\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock Toggle}
+\begin{quote}Syntax: Toggle(code, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_toggle(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE size, const ZWBYTE * code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Toggle (0x02/2)\end{quote}
+\begin{quote}Parameter code: Pin Code\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock UnlockWithTimeout}
+\begin{quote}Syntax: UnlockWithTimeout(timeout, code, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_unlock\_with\_timeout(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD timeout, ZWBYTE size, const ZWBYTE * code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Unlock with Timeout (0x03/3)\end{quote}
+\begin{quote}Parameter timeout: Relock Timeout\end{quote}
+\begin{quote}Parameter code: Pin Code\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock GetLogRecord}
+\begin{quote}Syntax: GetLogRecord(logIndex, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_log\_record(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD log\_index, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get Log Record (0x04/4)\end{quote}
+\begin{quote}Parameter logIndex: Log Entry Index\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock SetPinCode}
+\begin{quote}Syntax: SetPinCode(userId, userStatus, userType, pin, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_pin\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZWBYTE user\_status, ZWBYTE user\_type, ZWBYTE size, const ZWBYTE * pin, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set PIN Code (0x05/5)\end{quote}
+\begin{quote}Parameter userId: User Identifier\end{quote}
+\begin{quote}Parameter userStatus: User Status\end{quote}
+\begin{quote}Parameter userType: User Type\end{quote}
+\begin{quote}Parameter pin: Pin Code\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock GetPinCode}
+\begin{quote}Syntax: GetPinCode(userId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_pin\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get PIN Code (0x06/6)\end{quote}
+\begin{quote}Parameter userId: User Identifier\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock ClearPinCode}
+\begin{quote}Syntax: ClearPinCode(userId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_pin\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Clear PIN Code (0x07/7)\end{quote}
+\begin{quote}Parameter userId: User Identifier\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock ClearAllPinCodes}
+\begin{quote}Syntax: ClearAllPinCodes(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_all\_pin\_codes(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Clear All PIN Codes (0x08/8)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock SetUserStatus}
+\begin{quote}Syntax: SetUserStatus(userId, userType, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_user\_status(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZWBYTE user\_type, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set User Status (0x09/9)\end{quote}
+\begin{quote}Parameter userId: User Identifier\end{quote}
+\begin{quote}Parameter userType: User Type\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock GetUserStatus}
+\begin{quote}Syntax: GetUserStatus(userId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_user\_status(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get User Status (0x0A/10)\end{quote}
+\begin{quote}Parameter userId: User Identifier\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock SetWeekdaySchedule}
+\begin{quote}Syntax: SetWeekdaySchedule(id, userId, days, startHour, startMinute, endHour, endMinute, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_weekday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, ZWBYTE days, ZWBYTE start\_hour, ZWBYTE start\_minute, ZWBYTE end\_hour, ZWBYTE end\_minute, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Weekday Schedule (0x0B/11)\end{quote}
+\begin{quote}Parameter id: Schedule Identifier\end{quote}
+\begin{quote}Parameter userId: User Type\end{quote}
+\begin{quote}Parameter days: Days Mask\end{quote}
+\begin{quote}Parameter startHour: Start Hour\end{quote}
+\begin{quote}Parameter startMinute: Start Minute\end{quote}
+\begin{quote}Parameter endHour: End Hour\end{quote}
+\begin{quote}Parameter endMinute: End Minute\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock GetWeekdaySchedule}
+\begin{quote}Syntax: GetWeekdaySchedule(id, userId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_weekday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get Weekday Schedule (0x0C/12)\end{quote}
+\begin{quote}Parameter id: Schedule Identifier\end{quote}
+\begin{quote}Parameter userId: User Identifier\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock ClearWeekdaySchedule}
+\begin{quote}Syntax: ClearWeekdaySchedule(id, userId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_weekday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Clear Weekday Schedule (0x0D/13)\end{quote}
+\begin{quote}Parameter id: Schedule Identifier\end{quote}
+\begin{quote}Parameter userId: User Identifier\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock SetYearDaySchedule}
+\begin{quote}Syntax: SetYearDaySchedule(id, userId, startTime, endTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_year\_day\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, unsigned int start\_time, unsigned int end\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Year Day Schedule (0x0E/14)\end{quote}
+\begin{quote}Parameter id: Schedule Identifier\end{quote}
+\begin{quote}Parameter userId: User Type\end{quote}
+\begin{quote}Parameter startTime: Start Time\end{quote}
+\begin{quote}Parameter endTime: Start Minute\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock GetYearDaySchedule}
+\begin{quote}Syntax: GetYearDaySchedule(id, userId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_year\_day\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get Year Day Schedule (0x0F/15)\end{quote}
+\begin{quote}Parameter id: Schedule Identifier\end{quote}
+\begin{quote}Parameter userId: User Identifier\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock ClearYearDaySchedule}
+\begin{quote}Syntax: ClearYearDaySchedule(id, userId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_year\_day\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Clear Year Day Schedule (0x10/16)\end{quote}
+\begin{quote}Parameter id: Schedule Identifier\end{quote}
+\begin{quote}Parameter userId: User Identifier\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock SetHolidaySchedule}
+\begin{quote}Syntax: SetHolidaySchedule(id, startTime, endTime, mode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_holiday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, unsigned int start\_time, unsigned int end\_time, ZWBYTE mode, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Holiday Schedule (0x11/17)\end{quote}
+\begin{quote}Parameter id: Schedule Identifier\end{quote}
+\begin{quote}Parameter startTime: Start Time\end{quote}
+\begin{quote}Parameter endTime: Start Minute\end{quote}
+\begin{quote}Parameter mode: Operating Mode During Holiday\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock GetHolidaySchedule}
+\begin{quote}Syntax: GetHolidaySchedule(id, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_holiday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get Holiday Schedule (0x12/18)\end{quote}
+\begin{quote}Parameter id: Schedule Identifier\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock ClearHolidaySchedule}
+\begin{quote}Syntax: ClearHolidaySchedule(id, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_holiday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Clear Holiday Schedule (0x13/19)\end{quote}
+\begin{quote}Parameter id: Schedule Identifier\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock SetUserType}
+\begin{quote}Syntax: SetUserType(userId, userType, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_user\_type(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZWBYTE user\_type, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set User Type (0x14/20)\end{quote}
+\begin{quote}Parameter userId: User Identifier\end{quote}
+\begin{quote}Parameter userType: User Type\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock GetUserType}
+\begin{quote}Syntax: GetUserType(userId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_user\_type(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get User Status (0x15/21)\end{quote}
+\begin{quote}Parameter userId: User Identifier\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock SetRfidCode}
+\begin{quote}Syntax: SetRfidCode(userId, userStatus, userType, code, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_rfid\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZWBYTE user\_status, ZWBYTE user\_type, ZWBYTE size, const ZWBYTE * code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set RFID Code (0x16/22)\end{quote}
+\begin{quote}Parameter userId: User Identifier\end{quote}
+\begin{quote}Parameter userStatus: User Status\end{quote}
+\begin{quote}Parameter userType: User Type\end{quote}
+\begin{quote}Parameter code: RFID Code\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock GetRfidCode}
+\begin{quote}Syntax: GetRfidCode(userId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_rfid\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get RFID Code (0x17/23)\end{quote}
+\begin{quote}Parameter userId: User Identifier\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock ClearRfidCode}
+\begin{quote}Syntax: ClearRfidCode(userId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_rfid\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Clear RFID Code (0x18/24)\end{quote}
+\begin{quote}Parameter userId: User Identifier\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock ClearAllRfidCodes}
+\begin{quote}Syntax: ClearAllRfidCodes(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_all\_rfid\_codes(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Clear All RFID Code (0x19/25)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
