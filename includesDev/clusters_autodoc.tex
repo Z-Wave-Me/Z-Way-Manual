@@ -213,6 +213,22 @@ Data holders:
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
 
+\paragraph{Cluster OnOff Get}
+\begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: On Off Get\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster OnOff ConfigurationGet}
+\begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: On Off Configuration Get\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
 
 \section{Cluster Class PollControl (0x0020/32)}
 
@@ -256,6 +272,14 @@ Data holders:
 \begin{quote}C Syntax: ZWError zbee\_cc\_poll\_control\_set\_short\_poll\_interval(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD new\_short\_poll\_interval, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Short Poll Interval\end{quote}
 \begin{quote}Parameter newShortPollInterval: New Short Poll Interval\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster PollControl ConfigurationGet}
+\begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_poll\_control\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Poll Control Configuration Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
@@ -328,6 +352,14 @@ Data holders:
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
 
+\paragraph{Cluster Basic ConfigurationGet}
+\begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_basic\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Configuration Get\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
 
 \section{Cluster Class Identify (0x0003/3)}
 
@@ -379,6 +411,14 @@ Data holders:
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
 
+\paragraph{Cluster Identify Get}
+\begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_identify\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Identify Get\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
 
 \section{Cluster Class Ias Zone (0x0500/1280)}
 
@@ -424,6 +464,22 @@ Data holders:
 \begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_enroll(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE zone\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Enroll Device\end{quote}
 \begin{quote}Parameter zoneId: Zone Identifier\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster IasZone Get}
+\begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Ias Zone Get\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster IasZone ConfigurationGet}
+\begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Ias Zone Configuration Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
@@ -696,6 +752,30 @@ Data holders:
 \begin{quote}Parameter transitionTime: The Transition Time field is 16-bits in length and specifies, in units of 1/10ths of a second, the time that SHALL be taken to perform the step. A step is a change to the device’s color temperature of a magnitude corresponding to the Step Size field\end{quote}
 \begin{quote}Parameter colorTempMinMireds: The Color Temperature Minimum Mireds field is 16-bits in length and specifies a lower bound on the ColorTemperatureMireds attribute (an upper bound on the color temperature in kelvins) for the current move operation such that: ColorTempPhysicalMinMireds <= Color Temperature Minimum Mireds field <= ColorTemperatureMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Minimum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Minimum Mireds field is set to 0x0000, ColorTempPhysicalMinMireds SHALL be used as the lower bound for the ColorTemperatureMireds attribute\end{quote}
 \begin{quote}Parameter colorTempMaxMireds: The Color Temperature Maximum Mireds field is 16-bits in length and specifies an upper bound on the ColorTemperatureMireds attribute (a lower bound on the color temperature in kelvins) for the current move operation such that: ColorTemperatureMireds <= Color Temperature Maximum Mireds field <= ColorTempPhysicalMaxMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Maximum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Maximum Mireds field is set to 0x0000, ColorTempPhysicalMaxMireds SHALL be used as the upper bound for the ColorTemperatureMireds attribute\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl GetHueSaturation}
+\begin{quote}Syntax: GetHueSaturation(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_get\_hue\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Color Control Get Hue, Saturation\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl GetColor}
+\begin{quote}Syntax: GetColor(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_get\_color(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Color Control Get Color\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl GetRemainingTime}
+\begin{quote}Syntax: GetRemainingTime(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_get\_remaining\_time(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Color Control Get Remaining Time\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
@@ -1109,6 +1189,22 @@ Data holders:
 \begin{quote}Syntax: ClearAllRfidCodes(successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_all\_rfid\_codes(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Clear All RFID Code (0x19/25)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock GetState}
+\begin{quote}Syntax: GetState(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_state(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Color Control Get State\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster DoorLock ConfigurationGet}
+\begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Color Control Configuration Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
