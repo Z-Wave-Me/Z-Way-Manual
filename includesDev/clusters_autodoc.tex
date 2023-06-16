@@ -7,7 +7,7 @@ Profile Zigbee Device Profile (0x0000/0)
 The Node\_Desc\_req command is generated from a local device wishing to inquire. as to the node descriptor of a remote device. This command shall be unicast either. to the remote device itself or to an alternative device that contains the discovery. information of the remote device.
 \paragraph{Cluster NodeDescriptorRequest Run}
 \begin{quote}Syntax: Run(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_node\_descriptor\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_node\_descriptor\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Node Descriptor Request\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -21,7 +21,7 @@ Profile Zigbee Device Profile (0x0000/0)
 The Active\_EP\_req command is generated from a local device wishing to acquire. the list of endpoints on a remote device with simple descriptors. This command. shall be unicast either to the remote device itself or to an alternative device that. contains the discovery information of the remote device.
 \paragraph{Cluster ActiveEndPointsRequest Run}
 \begin{quote}Syntax: Run(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_active\_endpoints\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_active\_endpoints\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Active EndPoints Request\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -35,7 +35,7 @@ Profile Zigbee Device Profile (0x0000/0)
 The Simple\_Desc\_req command is generated from a local device wishing to. inquire as to the simple descriptor of a remote device on a specified endpoint. This. command shall be unicast either to the remote device itself or to an alternative. device that contains the discovery information of the remote device.
 \paragraph{Cluster SimpleDescriptorRequest Run}
 \begin{quote}Syntax: Run(newEndpointId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_simple\_descriptor\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE new\_endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_simple\_descriptor\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE new\_endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Simple Descriptor Request\end{quote}
 \begin{quote}Parameter newEndpointId: Inquired EndPoint Id\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -50,7 +50,7 @@ Profile Zigbee Device Profile (0x0000/0)
 The End\_Device\_annce is provided to enable Zigbee end devices on the network. to notify other Zigbee devices that the end device has joined or re-joined the. network, identifying the end devices 64-bit IEEE address and new 16-bit. NWKaddress and informing the Remote Devices of the capability of the Zigbee. EndDevice. The destination addressing on this primitive is broadcast to all. devices.
 \paragraph{Cluster EndDeviceAnnounce Run}
 \begin{quote}Syntax: Run(ieee, capability, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_end\_device\_announce(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, const ZBEUI64 ieee, ZWBYTE capability, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_end\_device\_announce(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, const ZBEUI64 ieee, ZWBYTE capability, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: End Device Announce\end{quote}
 \begin{quote}Parameter ieee: IEEE address for Local Device\end{quote}
 \begin{quote}Parameter capability: Capability of the local device\end{quote}
@@ -66,7 +66,7 @@ Profile Zigbee Device Profile (0x0000/0)
 The End\_Device\_annce is provided to enable Zigbee end devices on the network. to notify other Zigbee devices that the end device has joined or re-joined the. network, identifying the end devices 64-bit IEEE address and new 16-bit. NWKaddress and informing the Remote Devices of the capability of the Zigbee. EndDevice. The destination addressing on this primitive is broadcast to all. devices.
 \paragraph{Cluster BindRequest ByGroupAddr}
 \begin{quote}Syntax: ByGroupAddr(srcAddress, srcEndpointId, clusterId, groupAddr, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_bind\_request\_by\_group\_addr(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, const ZBEUI64 src\_address, ZWBYTE src\_endpoint\_id, ZWWORD cluster\_id, ZWWORD group\_addr, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_bind\_request\_by\_group\_addr(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, const ZBEUI64 src\_address, ZWBYTE src\_endpoint\_id, ZWWORD cluster\_id, ZWWORD group\_addr, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Bind By Group Address\end{quote}
 \begin{quote}Parameter srcAddress: The IEEE address for the source\end{quote}
 \begin{quote}Parameter srcEndpointId: The source endpoint for the binding entry\end{quote}
@@ -78,7 +78,7 @@ The End\_Device\_annce is provided to enable Zigbee end devices on the network. 
 
 \paragraph{Cluster BindRequest ByIeee}
 \begin{quote}Syntax: ByIeee(srcAddress, srcEndpointId, clusterId, dstAddr, dstEndpointId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_bind\_request\_by\_ieee(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, const ZBEUI64 src\_address, ZWBYTE src\_endpoint\_id, ZWWORD cluster\_id, const ZBEUI64 dst\_addr, ZWBYTE dst\_endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_bind\_request\_by\_ieee(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, const ZBEUI64 src\_address, ZWBYTE src\_endpoint\_id, ZWWORD cluster\_id, const ZBEUI64 dst\_addr, ZWBYTE dst\_endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Bind By IEEE\end{quote}
 \begin{quote}Parameter srcAddress: The IEEE address for the source\end{quote}
 \begin{quote}Parameter srcEndpointId: The source endpoint for the binding entry\end{quote}
@@ -91,7 +91,7 @@ The End\_Device\_annce is provided to enable Zigbee end devices on the network. 
 
 \paragraph{Cluster BindRequest ToLocalDeviceByDeviceId}
 \begin{quote}Syntax: ToLocalDeviceByDeviceId(srcEndpointId, clusterId, dstEndpointId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_bind\_request\_to\_local\_device\_by\_device\_id(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE src\_endpoint\_id, ZWWORD cluster\_id, ZWBYTE dst\_endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_bind\_request\_to\_local\_device\_by\_device\_id(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE src\_endpoint\_id, ZWWORD cluster\_id, ZWBYTE dst\_endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Bind By Device Id\end{quote}
 \begin{quote}Parameter srcEndpointId: The source endpoint for the binding entry\end{quote}
 \begin{quote}Parameter clusterId: The identifier of the cluster on the source device that is bound to the destination\end{quote}
@@ -108,7 +108,7 @@ Profile Zigbee Device Profile (0x0000/0)
 The Power\_Desc\_req command is generated from a local device wishing to inquire. as to the power descriptor of a remote device. This command shall be unicast. either to the remote device itself or. to an alternative device that contains the discovery information of the remote device.
 \paragraph{Cluster PowerDescriptorRequest Run}
 \begin{quote}Syntax: Run(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_power\_descriptor\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_power\_descriptor\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Power Descriptor Request\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -122,7 +122,7 @@ Profile Zigbee Device Profile (0x0000/0)
 The NWK\_addr\_req is generated from a Local Device wishing to inquire as to the. 16 bit address of the Remote Device based on its known IEEE address. The. destination addressing on this command shall be broadcast to all RxOnWhenIdle. devices.
 \paragraph{Cluster NetworkAddressRequest Run}
 \begin{quote}Syntax: Run(ieee, requestType, startIndex, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_network\_address\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, const ZBEUI64 ieee, ZWBYTE request\_type, ZWBYTE start\_index, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_network\_address\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, const ZBEUI64 ieee, ZWBYTE request\_type, ZWBYTE start\_index, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Network Address Request\end{quote}
 \begin{quote}Parameter ieee: The IEEE address to be matched by the Remote Device\end{quote}
 \begin{quote}Parameter requestType: Request Type for this command:. 0x00        - Single device response. 0x01        - Extended response. 0x02...0xFF - Reserved\end{quote}
@@ -151,7 +151,7 @@ Data holders:
 
 \paragraph{Cluster OnOff Set}
 \begin{quote}Syntax: Set(value, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_set(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL value, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_set(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL value, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send On (0x00/0) or Off (0x01/1)\end{quote}
 \begin{quote}Parameter value: New onOff state:. TRUE  - send On command. FALSE - send Off command\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -160,7 +160,7 @@ Data holders:
 
 \paragraph{Cluster OnOff Toggle}
 \begin{quote}Syntax: Toggle(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_toggle(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_toggle(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Toggle (0x02/2)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -168,7 +168,7 @@ Data holders:
 
 \paragraph{Cluster OnOff OffWithEffect}
 \begin{quote}Syntax: OffWithEffect(effectId, effectVar, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_off\_with\_effect(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE effect\_id, ZWBYTE effect\_var, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_off\_with\_effect(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE effect\_id, ZWBYTE effect\_var, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send Off with Effect (0x40/64)\end{quote}
 \begin{quote}Parameter effectId: Effect Id:. 0x00        - Delayed All Off. 0x01        - Dying Light. 0x02...0xFF - Reserved\end{quote}
 \begin{quote}Parameter effectVar: Effect Variant:. if effect\_id 0x00:. @default: 0x00. 0x00        - Fade to off in 0.8 seconds. 0x01        - No fade. 0x02        - 50\% dim down in 0.8 seconds then fade to off in 12 seconds. 0x03...0xFF - Reserved. if effect\_id 0x01:. @default: 0x00. 0x00        - 20\% dim up in 0.5s then fade to off in 1 second. 0x01...0xFF - Reserved. if effect\_id 0x02...0xFF:. 0x00...0xFF - Reserved\end{quote}
@@ -178,7 +178,7 @@ Data holders:
 
 \paragraph{Cluster OnOff OnWithRecallGlobalScene}
 \begin{quote}Syntax: OnWithRecallGlobalScene(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_on\_with\_recall\_global\_scene(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_on\_with\_recall\_global\_scene(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send On with Recall Global Scene (0x41/65)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -186,7 +186,7 @@ Data holders:
 
 \paragraph{Cluster OnOff OnWithTimedOff}
 \begin{quote}Syntax: OnWithTimedOff(control, onTime, offWaitTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_on\_with\_timed\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL control, ZWWORD on\_time, ZWWORD off\_wait\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_on\_with\_timed\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL control, ZWWORD on\_time, ZWWORD off\_wait\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send On with Time Off (0x42/66)\end{quote}
 \begin{quote}Parameter control: Contains information on how the device is to be operated. 0x00        -  The On With Timed Off command SHALL be processed unconditionally. 0x01...0x7F - Reserved. 0x80        - The On With Timed Off command SHALL only be accepted if the OnOff attribute is equal to 0x01. 0x81...0xFF - Reserved\end{quote}
 \begin{quote}Parameter onTime: The length of time (in 1/10ths second) that the device is to remain “on”. 0x0000...0xFFFE - time in 1/10th second. 0xFFFF          - Reserved\end{quote}
@@ -197,7 +197,7 @@ Data holders:
 
 \paragraph{Cluster OnOff SetOnTime}
 \begin{quote}Syntax: SetOnTime(onTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_set\_on\_time(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD on\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_set\_on\_time(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD on\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Time of On Time\end{quote}
 \begin{quote}Parameter onTime: The length of time (in 1/10ths second) that the device SHALL remain “off”. 0x0000...0xFFFE - time in 1/10th second. 0xFFFF          - Reserved\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -206,7 +206,7 @@ Data holders:
 
 \paragraph{Cluster OnOff SetOffWaitTime}
 \begin{quote}Syntax: SetOffWaitTime(offWaitTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_set\_off\_wait\_time(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD off\_wait\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_set\_off\_wait\_time(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD off\_wait\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Time of On with Time Off\end{quote}
 \begin{quote}Parameter offWaitTime: The length of time (in 1/10ths second) that the device SHALL remain “off”. 0x0000...0xFFFE - time in 1/10th second. 0xFFFF          - Reserved\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -215,7 +215,7 @@ Data holders:
 
 \paragraph{Cluster OnOff Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: On Off Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -223,7 +223,7 @@ Data holders:
 
 \paragraph{Cluster OnOff ConfigurationGet}
 \begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: On Off Configuration Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -252,7 +252,7 @@ Data holders:
 
 \paragraph{Cluster PollControl FastPollStop}
 \begin{quote}Syntax: FastPollStop(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_poll\_control\_fast\_poll\_stop(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_poll\_control\_fast\_poll\_stop(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Fast Poll Stop\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -260,7 +260,7 @@ Data holders:
 
 \paragraph{Cluster PollControl SetLongPollInterval}
 \begin{quote}Syntax: SetLongPollInterval(newLongPollInterval, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_poll\_control\_set\_long\_poll\_interval(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, int new\_long\_poll\_interval, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_poll\_control\_set\_long\_poll\_interval(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, int new\_long\_poll\_interval, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Long Poll Interval\end{quote}
 \begin{quote}Parameter newLongPollInterval: New Long Poll Interval\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -269,7 +269,7 @@ Data holders:
 
 \paragraph{Cluster PollControl SetShortPollInterval}
 \begin{quote}Syntax: SetShortPollInterval(newShortPollInterval, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_poll\_control\_set\_short\_poll\_interval(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD new\_short\_poll\_interval, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_poll\_control\_set\_short\_poll\_interval(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD new\_short\_poll\_interval, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Short Poll Interval\end{quote}
 \begin{quote}Parameter newShortPollInterval: New Short Poll Interval\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -278,7 +278,7 @@ Data holders:
 
 \paragraph{Cluster PollControl ConfigurationGet}
 \begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_poll\_control\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_poll\_control\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Poll Control Configuration Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -292,7 +292,7 @@ Profile Zigbee Device Profile (0x0000/0)
 The Mgmt\_Permit\_Joining\_req is generated from a Local Device requesting that. a remote device or devices allow or disallow association. The. Mgmt\_Permit\_Joining\_req is generated by a management application or. commissioning tool which directs the request to a remote device(s) where the. NLME-PERMIT-JOINING.request is executed using the PermitDuration. parameter supplied by Mgmt\_Permit\_Joining\_req. Additionally, if the remote. device is the Trust Center and TC\_Significance is set to 1, the trust center. authentication policy will be affected. The addressing may be unicast or. ‘broadcast to all RxOnWhenIdle devices’.
 \paragraph{Cluster MgmtPermitJoiningRequest Run}
 \begin{quote}Syntax: Run(permitDuration, tcSignificance, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_mgmt\_permit\_joining\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE permit\_duration, ZWBOOL tc\_significance, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_mgmt\_permit\_joining\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE permit\_duration, ZWBOOL tc\_significance, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Mgmt Permit Joining Request\end{quote}
 \begin{quote}Parameter permitDuration: Permit duration in seconds\end{quote}
 \begin{quote}Parameter tcSignificance: Effect on Trust Center:. TRUE  - If the remote device is the trust center, the command affects the trust center authentication policy. FALSE - There is no effect on the trust center\end{quote}
@@ -308,7 +308,7 @@ Profile Zigbee Device Profile (0x0000/0)
 The Mgmt\_Leave\_req is generated from a Local Device requesting that a Remote. Device leave the network or to request that another device leave the network. The. Mgmt\_Leave\_req is generated by a management application which directs the. request to a Remote Device where the NLME-LEAVE.request is to be executed. using the parameter supplied by Mgmt\_Leave\_req.
 \paragraph{Cluster MgmtLeaveRequest Run}
 \begin{quote}Syntax: Run(removeChildren, rejoin, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_mgmt\_leave\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL remove\_children, ZWBOOL rejoin, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_mgmt\_leave\_request(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL remove\_children, ZWBOOL rejoin, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Mgmt Leave Request\end{quote}
 \begin{quote}Parameter removeChildren: Remove children flag:. TRUE  - If the device being asked to leave the network is also being asked to remove its child devices, if any. FALSE - None children will be removed\end{quote}
 \begin{quote}Parameter rejoin: Effect on Trust Center:. TRUE  - If the device being asked to leave from the current parent is requested to rejoin the network. FALSE - Otherwise\end{quote}
@@ -346,7 +346,7 @@ Data holders:
 
 \paragraph{Cluster Basic Reset}
 \begin{quote}Syntax: Reset(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_basic\_reset(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_basic\_reset(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Basic Reset\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -354,7 +354,7 @@ Data holders:
 
 \paragraph{Cluster Basic ConfigurationGet}
 \begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_basic\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_basic\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Configuration Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -377,7 +377,7 @@ Data holders:
 
 \paragraph{Cluster Identify Identify}
 \begin{quote}Syntax: Identify(identifyTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_identify\_identify(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD identify\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_identify\_identify(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD identify\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Identify Identify\end{quote}
 \begin{quote}Parameter identifyTime: Identify Time\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -386,7 +386,7 @@ Data holders:
 
 \paragraph{Cluster Identify IdentifyQuery}
 \begin{quote}Syntax: IdentifyQuery(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_identify\_identify\_query(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_identify\_identify\_query(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Identify Identify Query\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -394,7 +394,7 @@ Data holders:
 
 \paragraph{Cluster Identify TriggerEffect}
 \begin{quote}Syntax: TriggerEffect(effectId, effectVar = 0x00, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_identify\_trigger\_effect(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE effect\_id, ZWBYTE effect\_var, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_identify\_trigger\_effect(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE effect\_id, ZWBYTE effect\_var, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Identify Trigger Effect\end{quote}
 \begin{quote}Parameter effectId: The Effect Identifier field specifies the identify effect to use:. 0x00 - Blink. e.g., Light is turned on/off once. 0x01 - Breathe. e.g., Light turned on/off over 1 second and repeated 15 times. 0x02 - Okay. e.g., Colored light turns green for 1 second; noncolored light flashes twice. 0x0b - Channel change. e.g., Colored light turns orange for 8 seconds; noncolored light switches to maximum brightness for 0.5s and then minimum brightness for 7.5s. 0xfe - Finish effect. Complete the current effect sequence before terminating. e.g., if in the middle of a breathe effect (as above), first complete the current 1s breathe effect and then terminate the effect. 0xff - Stop effect. Terminate the effect as soon as possible. \end{quote}
 \begin{quote}Parameter effectVar: Effect Variant:. 0x00 - Default\end{quote}
@@ -404,7 +404,7 @@ Data holders:
 
 \paragraph{Cluster Identify SetIdentifyTime}
 \begin{quote}Syntax: SetIdentifyTime(identifyTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_identify\_set\_identify\_time(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD identify\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_identify\_set\_identify\_time(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD identify\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Identify Set Identify Time\end{quote}
 \begin{quote}Parameter identifyTime: It specifies the remaining length of time, in seconds, that the device will continue to identify itself\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -413,7 +413,7 @@ Data holders:
 
 \paragraph{Cluster Identify Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_identify\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_identify\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Identify Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -443,7 +443,7 @@ Data holders:
 
 \paragraph{Cluster IasZone InitiateNormalOperationMode}
 \begin{quote}Syntax: InitiateNormalOperationMode(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_initiate\_normal\_operation\_mode(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_initiate\_normal\_operation\_mode(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: IAS Zone Initiate Normal Operation Mode\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -451,7 +451,7 @@ Data holders:
 
 \paragraph{Cluster IasZone InitiateTestMode}
 \begin{quote}Syntax: InitiateTestMode(testModeDuration, currentZoneSensivityLevel, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_initiate\_test\_mode(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE test\_mode\_duration, ZWBYTE current\_zone\_sensivity\_level, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_initiate\_test\_mode(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE test\_mode\_duration, ZWBYTE current\_zone\_sensivity\_level, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: IAS Zone Initiate Test Mode\end{quote}
 \begin{quote}Parameter testModeDuration: Specifies the duration, in seconds, for which the IAS Zone server SHALL operate in its test mode\end{quote}
 \begin{quote}Parameter currentZoneSensivityLevel: Specifies the sensitivity level the IAS Zone server SHALL use for the duration of the Test Mode and with which it must update its CurrentZoneSensitivityLevel attribute\end{quote}
@@ -461,7 +461,7 @@ Data holders:
 
 \paragraph{Cluster IasZone Enroll}
 \begin{quote}Syntax: Enroll(zoneId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_enroll(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE zone\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_enroll(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE zone\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Enroll Device\end{quote}
 \begin{quote}Parameter zoneId: Zone Identifier\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -470,7 +470,7 @@ Data holders:
 
 \paragraph{Cluster IasZone Get}
 \begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Ias Zone Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -478,7 +478,7 @@ Data holders:
 
 \paragraph{Cluster IasZone ConfigurationGet}
 \begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Ias Zone Configuration Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -549,7 +549,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl MoveToHue}
 \begin{quote}Syntax: MoveToHue(hue, direction, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_to\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE hue, ZWBYTE direction, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_to\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE hue, ZWBYTE direction, ZWWORD transition\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Move to Hue (0x00/0)\end{quote}
 \begin{quote}Parameter hue: Hue\end{quote}
 \begin{quote}Parameter direction: Direction:. 0x00 - Shortest distance. 0x01 - Longest distance. 0x02 - Up. 0x03 - Down. \end{quote}
@@ -560,7 +560,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl MoveHue}
 \begin{quote}Syntax: MoveHue(moveMode, rate, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWBYTE rate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWBYTE rate, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Move Hue (0x01/1)\end{quote}
 \begin{quote}Parameter moveMode: Move mode. 0x00 - Stop. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
 \begin{quote}Parameter rate: The Rate field specifies the rate of movement in steps per second. A step is a change in the device’s hue of one unit. If the Rate field has a value of zero, the command has no effect and a default response command is sent in response, with the status code set to INVALID\_FIELD\end{quote}
@@ -570,7 +570,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl StepHue}
 \begin{quote}Syntax: StepHue(stepMode, stepSize, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_step\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWBYTE step\_size, ZWBYTE transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_step\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWBYTE step\_size, ZWBYTE transition\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Step Hue (0x02/2)\end{quote}
 \begin{quote}Parameter stepMode: Move mode. 0x00 - Reserved. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
 \begin{quote}Parameter stepSize: The change to be added to (or subtracted from) the current value of the device’s hue\end{quote}
@@ -581,7 +581,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl MoveToSaturation}
 \begin{quote}Syntax: MoveToSaturation(saturation, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_to\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE saturation, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_to\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE saturation, ZWWORD transition\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Move to Saturation (0x03/3)\end{quote}
 \begin{quote}Parameter saturation: Desired Saturation\end{quote}
 \begin{quote}Parameter transitionTime: The Transition Time field specifies, in 1/10ths of a second, the time that SHALL be taken to perform the step\end{quote}
@@ -591,7 +591,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl MoveSaturation}
 \begin{quote}Syntax: MoveSaturation(moveMode, rate, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWBYTE rate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWBYTE rate, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Move Saturation (0x04/4)\end{quote}
 \begin{quote}Parameter moveMode: Move Mode. 0x00 - Stop. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
 \begin{quote}Parameter rate: The Rate field specifies the rate of movement in steps per second. A step is a change in the device’s hue of one unit. If the Rate field has a value of zero, the command has no effect and a default response command is sent in response, with the status code set to INVALID\_FIELD\end{quote}
@@ -601,7 +601,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl StepSaturation}
 \begin{quote}Syntax: StepSaturation(stepMode, stepSize, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_step\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWBYTE step\_size, ZWBYTE transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_step\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWBYTE step\_size, ZWBYTE transition\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Step Saturation (0x05/5)\end{quote}
 \begin{quote}Parameter stepMode: Move mode. 0x00 - Reserved. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
 \begin{quote}Parameter stepSize: The change to be added to (or subtracted from) the current value of the device’s saturation\end{quote}
@@ -612,7 +612,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl MoveToHueAndSaturation}
 \begin{quote}Syntax: MoveToHueAndSaturation(hue, saturation, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_to\_hue\_and\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE hue, ZWBYTE saturation, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_to\_hue\_and\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE hue, ZWBYTE saturation, ZWWORD transition\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Move to Hue and Saturation (0x06/6)\end{quote}
 \begin{quote}Parameter hue: Desired hue\end{quote}
 \begin{quote}Parameter saturation: Desired Saturation\end{quote}
@@ -623,7 +623,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl MoveToColor}
 \begin{quote}Syntax: MoveToColor(colorX, colorY, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_to\_color(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD color\_x, ZWWORD color\_y, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_to\_color(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD color\_x, ZWWORD color\_y, ZWWORD transition\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Move to Color (0x07/7)\end{quote}
 \begin{quote}Parameter colorX: Desired Color X\end{quote}
 \begin{quote}Parameter colorY: Desired Color Y\end{quote}
@@ -634,7 +634,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl MoveColor}
 \begin{quote}Syntax: MoveColor(rateX, rateY, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_color(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD rate\_x, ZWWORD rate\_y, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_color(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD rate\_x, ZWWORD rate\_y, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Move Color (0x08/8)\end{quote}
 \begin{quote}Parameter rateX: The RateX field specifies the rate of movement in steps per second. A step is a change in the device's CurrentX attribute of one unit\end{quote}
 \begin{quote}Parameter rateY: The RateY field specifies the rate of movement in steps per second. A step is a change in the device's CurrentY attribute of one unit\end{quote}
@@ -644,7 +644,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl StepColor}
 \begin{quote}Syntax: StepColor(stepX, stepY, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_step\_color(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD step\_x, ZWWORD step\_y, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_step\_color(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD step\_x, ZWWORD step\_y, ZWWORD transition\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Step Color (0x09/9)\end{quote}
 \begin{quote}Parameter stepX: The StepX fields specify the change to be added to the device's CurrentX attribute attribute\end{quote}
 \begin{quote}Parameter stepY: The StepY fields specify the change to be added to the device's CurrentY attribute attribute\end{quote}
@@ -655,7 +655,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl MoveToColorTemperature}
 \begin{quote}Syntax: MoveToColorTemperature(colorTempMireds, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_to\_color\_temperature(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD color\_temp\_mireds, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_to\_color\_temperature(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD color\_temp\_mireds, ZWWORD transition\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Step Color (0x0A/10)\end{quote}
 \begin{quote}Parameter colorTempMireds: Move from its current color to the color given by the Color Temperature Mireds field\end{quote}
 \begin{quote}Parameter transitionTime: The Transition Time field specifies, in 1/10ths of a second, the time that SHALL be taken to perform the step\end{quote}
@@ -665,7 +665,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl EnhanceMoveToHue}
 \begin{quote}Syntax: EnhanceMoveToHue(enhancedHue, direction, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_enhance\_move\_to\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD enhanced\_hue, ZWBYTE direction, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_enhance\_move\_to\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD enhanced\_hue, ZWBYTE direction, ZWWORD transition\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Enhanced Move to Hue (0x40/64)\end{quote}
 \begin{quote}Parameter enhancedHue: Enhanced Hue\end{quote}
 \begin{quote}Parameter direction: Direction:. 0x00 - Shortest distance. 0x01 - Longest distance. 0x02 - Up. 0x03 - Down. \end{quote}
@@ -676,7 +676,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl EnhanceMoveHue}
 \begin{quote}Syntax: EnhanceMoveHue(moveMode, rate, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_enhance\_move\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWWORD rate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_enhance\_move\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWWORD rate, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Enhanced Move Hue (0x41/65)\end{quote}
 \begin{quote}Parameter moveMode: Move mode. 0x00 - Stop. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
 \begin{quote}Parameter rate: The Rate field specifies the rate of movement in steps per second. A step is a change in the device’s hue of one unit. If the Rate field has a value of zero, the command has no effect and a default response command is sent in response, with the status code set to INVALID\_FIELD\end{quote}
@@ -686,7 +686,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl EnhanceStepHue}
 \begin{quote}Syntax: EnhanceStepHue(stepMode, stepSize, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_enhance\_step\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWWORD step\_size, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_enhance\_step\_hue(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWWORD step\_size, ZWWORD transition\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Enhanced Step Hue (0x42/66)\end{quote}
 \begin{quote}Parameter stepMode: Move mode. 0x00 - Reserved. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
 \begin{quote}Parameter stepSize: The change to be added to (or subtracted from) the current value of the device’s hue\end{quote}
@@ -695,9 +695,9 @@ Data holders:
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
 
-\paragraph{Cluster ColorControl EnhanceMoveHueAndSaturation}
-\begin{quote}Syntax: EnhanceMoveHueAndSaturation(enhancedHue, saturation, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_enhance\_move\_hue\_and\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD enhanced\_hue, ZWBYTE saturation, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\paragraph{Cluster ColorControl EnhanceMoveToHueAndSaturation}
+\begin{quote}Syntax: EnhanceMoveToHueAndSaturation(enhancedHue, saturation, transitionTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_enhance\_move\_to\_hue\_and\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD enhanced\_hue, ZWBYTE saturation, ZWWORD transition\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Enhanced Move to Hue and Saturation (0x43/67)\end{quote}
 \begin{quote}Parameter enhancedHue: Desired Enhanced Hue\end{quote}
 \begin{quote}Parameter saturation: Desired Saturation\end{quote}
@@ -708,7 +708,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl ColorLoopSet}
 \begin{quote}Syntax: ColorLoopSet(updateFlags, action, direction, time, startHue, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_color\_loop\_set(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE update\_flags, ZWBYTE action, ZWBYTE direction, ZWWORD time, ZWWORD start\_hue, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_color\_loop\_set(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE update\_flags, ZWBYTE action, ZWBYTE direction, ZWWORD time, ZWWORD start\_hue, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Color Loop Set (0x44/68)\end{quote}
 \begin{quote}Parameter updateFlags: The Update Flags field is 8 bits in length and specifies which color loop attributes to update before the color loop is started\end{quote}
 \begin{quote}Parameter action: The Action field is 8 bits in length and specifies the action to take for the color loop if the Update Action sub-field of the Update Flags field is set to 1. 0x00 - De-activate the color loop. 0x01 - Activate the color loop from the value in the ColorLoopStartEnhancedHue field. 0x02 - Activate the color loop from the value of the EnhancedCurrentHue attribute\end{quote}
@@ -721,7 +721,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl StopMoveStep}
 \begin{quote}Syntax: StopMoveStep(moveMode, rate, colorTempMinMireds, colorTempMaxMireds, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_stop\_move\_step(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWWORD rate, ZWWORD color\_temp\_min\_mireds, ZWWORD color\_temp\_max\_mireds, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_stop\_move\_step(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWWORD rate, ZWWORD color\_temp\_min\_mireds, ZWWORD color\_temp\_max\_mireds, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Stop Move Step (0x47/71)\end{quote}
 \begin{quote}Parameter moveMode: Move mode:. 0x00 - Stop. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
 \begin{quote}Parameter rate: The Rate field is 16-bits in length and specifies the rate of movement in steps per second. A step is a change in the color temperature of a device by one unit. If the Rate field has a value of zero, the command has no effect and a ZCL Default Response command SHALL be sent in response, with the status code set to INVALID\_FIELD\end{quote}
@@ -733,7 +733,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl MoveColorTemperature}
 \begin{quote}Syntax: MoveColorTemperature(moveMode, rate, colorTempMinMireds, colorTempMaxMireds, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_color\_temperature(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWWORD rate, ZWWORD color\_temp\_min\_mireds, ZWWORD color\_temp\_max\_mireds, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_move\_color\_temperature(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWWORD rate, ZWWORD color\_temp\_min\_mireds, ZWWORD color\_temp\_max\_mireds, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Move Color Temperature (0x4b/75)\end{quote}
 \begin{quote}Parameter moveMode: Move mode:. 0x00 - Stop. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
 \begin{quote}Parameter rate: The Rate field is 16-bits in length and specifies the rate of movement in steps per second. A step is a change in the color temperature of a device by one unit. If the Rate field has a value of zero, the command has no effect and a ZCL Default Response command SHALL be sent in response, with the status code set to INVALID\_FIELD\end{quote}
@@ -745,7 +745,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl StepColorTemperature}
 \begin{quote}Syntax: StepColorTemperature(stepMode, stepSize, transitionTime, colorTempMinMireds, colorTempMaxMireds, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_step\_color\_temperature(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWWORD step\_size, ZWWORD transition\_time, ZWWORD color\_temp\_min\_mireds, ZWWORD color\_temp\_max\_mireds, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_step\_color\_temperature(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWWORD step\_size, ZWWORD transition\_time, ZWWORD color\_temp\_min\_mireds, ZWWORD color\_temp\_max\_mireds, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Move Color Temperature (0x4c/76)\end{quote}
 \begin{quote}Parameter stepMode: Move mode:. 0x00 - Reserved. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
 \begin{quote}Parameter stepSize: The Step Size field is 16-bits in length and specifies the change to be added to (or subtracted from) the current value of the device’s color temperature\end{quote}
@@ -758,7 +758,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl GetHueSaturation}
 \begin{quote}Syntax: GetHueSaturation(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_get\_hue\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_get\_hue\_saturation(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Color Control Get Hue, Saturation\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -766,7 +766,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl GetColor}
 \begin{quote}Syntax: GetColor(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_get\_color(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_get\_color(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Color Control Get Color\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -774,7 +774,7 @@ Data holders:
 
 \paragraph{Cluster ColorControl GetRemainingTime}
 \begin{quote}Syntax: GetRemainingTime(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_get\_remaining\_time(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_get\_remaining\_time(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Color Control Get Remaining Time\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -803,7 +803,7 @@ Data holders:
 
 \paragraph{Cluster LevelControl MoveToLevel}
 \begin{quote}Syntax: MoveToLevel(level, transitionTime = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_move\_to\_level(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE level, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_move\_to\_level(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE level, ZWWORD transition\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Move to Level (0x00/0)\end{quote}
 \begin{quote}Parameter level: Device dependent level\end{quote}
 \begin{quote}Parameter transitionTime: Transition time\end{quote}
@@ -813,7 +813,7 @@ Data holders:
 
 \paragraph{Cluster LevelControl Move}
 \begin{quote}Syntax: Move(moveMode, rate = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_move(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWBYTE rate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_move(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWBYTE rate, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Move (0x01/1)\end{quote}
 \begin{quote}Parameter moveMode: Move mode:. 0x00 - Up. 0x01 - Down\end{quote}
 \begin{quote}Parameter rate: The Rate field specifies the rate of movement in units per second:. 0x00...0xFE - used value. 0xFF        - used value from DefaultMoveRate\end{quote}
@@ -823,7 +823,7 @@ Data holders:
 
 \paragraph{Cluster LevelControl Step}
 \begin{quote}Syntax: Step(stepMode, stepSize, transitionTime = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_step(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWBYTE step\_size, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_step(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWBYTE step\_size, ZWWORD transition\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Step (0x02/2)\end{quote}
 \begin{quote}Parameter stepMode: Move mode:. 0x00 - Up. 0x01 - Down\end{quote}
 \begin{quote}Parameter stepSize: Step size\end{quote}
@@ -834,7 +834,7 @@ Data holders:
 
 \paragraph{Cluster LevelControl Stop}
 \begin{quote}Syntax: Stop(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_stop(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_stop(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Stop (0x03/3)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -842,7 +842,7 @@ Data holders:
 
 \paragraph{Cluster LevelControl MoveToLevelOnOff}
 \begin{quote}Syntax: MoveToLevelOnOff(level, transitionTime = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_move\_to\_level\_on\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE level, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_move\_to\_level\_on\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE level, ZWWORD transition\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Move to Level (with On/Off) (0x04/4)\end{quote}
 \begin{quote}Parameter level: Device dependent level\end{quote}
 \begin{quote}Parameter transitionTime: Transition time\end{quote}
@@ -852,7 +852,7 @@ Data holders:
 
 \paragraph{Cluster LevelControl MoveOnOff}
 \begin{quote}Syntax: MoveOnOff(moveMode, rate = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_move\_on\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWBYTE rate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_move\_on\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWBYTE rate, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Move (with On/Off) (0x05/5)\end{quote}
 \begin{quote}Parameter moveMode: Move mode:. 0x00 - Up. 0x01 - Down\end{quote}
 \begin{quote}Parameter rate: The Rate field specifies the rate of movement in units per second:. 0x00...0xFE - used value. 0xFF        - used value from DefaultMoveRate\end{quote}
@@ -862,7 +862,7 @@ Data holders:
 
 \paragraph{Cluster LevelControl StepOnOff}
 \begin{quote}Syntax: StepOnOff(stepMode, stepSize, transitionTime = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_step\_on\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWBYTE step\_size, ZWWORD transition\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_step\_on\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE step\_mode, ZWBYTE step\_size, ZWWORD transition\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Step (with On/Off) (0x06/6)\end{quote}
 \begin{quote}Parameter stepMode: Move mode:. 0x00 - Up. 0x01 - Down\end{quote}
 \begin{quote}Parameter stepSize: Step size\end{quote}
@@ -873,7 +873,7 @@ Data holders:
 
 \paragraph{Cluster LevelControl StopOnOff}
 \begin{quote}Syntax: StopOnOff(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_stop\_on\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_stop\_on\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Stop (with On/Off) (0x07/7)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -938,7 +938,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock LockDoor}
 \begin{quote}Syntax: LockDoor(code, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_lock\_door(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE size, const ZWBYTE * code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_lock\_door(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE size, const ZWBYTE * code, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Lock Door (0x00/0)\end{quote}
 \begin{quote}Parameter code: Pin Code\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -947,7 +947,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock UnlockDoor}
 \begin{quote}Syntax: UnlockDoor(code, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_unlock\_door(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE size, const ZWBYTE * code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_unlock\_door(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE size, const ZWBYTE * code, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Unlock Door (0x01/1)\end{quote}
 \begin{quote}Parameter code: Pin Code\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -956,7 +956,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock Toggle}
 \begin{quote}Syntax: Toggle(code, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_toggle(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE size, const ZWBYTE * code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_toggle(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE size, const ZWBYTE * code, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Toggle (0x02/2)\end{quote}
 \begin{quote}Parameter code: Pin Code\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -965,7 +965,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock UnlockWithTimeout}
 \begin{quote}Syntax: UnlockWithTimeout(timeout, code, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_unlock\_with\_timeout(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD timeout, ZWBYTE size, const ZWBYTE * code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_unlock\_with\_timeout(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD timeout, ZWBYTE size, const ZWBYTE * code, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Unlock with Timeout (0x03/3)\end{quote}
 \begin{quote}Parameter timeout: Relock Timeout\end{quote}
 \begin{quote}Parameter code: Pin Code\end{quote}
@@ -975,7 +975,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock GetLogRecord}
 \begin{quote}Syntax: GetLogRecord(logIndex, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_log\_record(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD log\_index, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_log\_record(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD log\_index, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get Log Record (0x04/4)\end{quote}
 \begin{quote}Parameter logIndex: Log Entry Index\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -984,7 +984,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock SetPinCode}
 \begin{quote}Syntax: SetPinCode(userId, userStatus, userType, pin, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_pin\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZWBYTE user\_status, ZWBYTE user\_type, ZWBYTE size, const ZWBYTE * pin, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_pin\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZWBYTE user\_status, ZWBYTE user\_type, ZWBYTE size, const ZWBYTE * pin, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set PIN Code (0x05/5)\end{quote}
 \begin{quote}Parameter userId: User Identifier\end{quote}
 \begin{quote}Parameter userStatus: User Status\end{quote}
@@ -996,7 +996,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock GetPinCode}
 \begin{quote}Syntax: GetPinCode(userId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_pin\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_pin\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get PIN Code (0x06/6)\end{quote}
 \begin{quote}Parameter userId: User Identifier\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1005,7 +1005,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock ClearPinCode}
 \begin{quote}Syntax: ClearPinCode(userId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_pin\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_pin\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Clear PIN Code (0x07/7)\end{quote}
 \begin{quote}Parameter userId: User Identifier\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1014,7 +1014,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock ClearAllPinCodes}
 \begin{quote}Syntax: ClearAllPinCodes(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_all\_pin\_codes(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_all\_pin\_codes(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Clear All PIN Codes (0x08/8)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1022,7 +1022,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock SetUserStatus}
 \begin{quote}Syntax: SetUserStatus(userId, userType, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_user\_status(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZWBYTE user\_type, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_user\_status(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZWBYTE user\_type, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set User Status (0x09/9)\end{quote}
 \begin{quote}Parameter userId: User Identifier\end{quote}
 \begin{quote}Parameter userType: User Type\end{quote}
@@ -1032,7 +1032,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock GetUserStatus}
 \begin{quote}Syntax: GetUserStatus(userId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_user\_status(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_user\_status(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get User Status (0x0A/10)\end{quote}
 \begin{quote}Parameter userId: User Identifier\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1041,7 +1041,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock SetWeekdaySchedule}
 \begin{quote}Syntax: SetWeekdaySchedule(id, userId, days, startHour, startMinute, endHour, endMinute, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_weekday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, ZWBYTE days, ZWBYTE start\_hour, ZWBYTE start\_minute, ZWBYTE end\_hour, ZWBYTE end\_minute, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_weekday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, ZWBYTE days, ZWBYTE start\_hour, ZWBYTE start\_minute, ZWBYTE end\_hour, ZWBYTE end\_minute, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Weekday Schedule (0x0B/11)\end{quote}
 \begin{quote}Parameter id: Schedule Identifier\end{quote}
 \begin{quote}Parameter userId: User Type\end{quote}
@@ -1056,7 +1056,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock GetWeekdaySchedule}
 \begin{quote}Syntax: GetWeekdaySchedule(id, userId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_weekday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_weekday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get Weekday Schedule (0x0C/12)\end{quote}
 \begin{quote}Parameter id: Schedule Identifier\end{quote}
 \begin{quote}Parameter userId: User Identifier\end{quote}
@@ -1066,7 +1066,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock ClearWeekdaySchedule}
 \begin{quote}Syntax: ClearWeekdaySchedule(id, userId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_weekday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_weekday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Clear Weekday Schedule (0x0D/13)\end{quote}
 \begin{quote}Parameter id: Schedule Identifier\end{quote}
 \begin{quote}Parameter userId: User Identifier\end{quote}
@@ -1076,7 +1076,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock SetYearDaySchedule}
 \begin{quote}Syntax: SetYearDaySchedule(id, userId, startTime, endTime, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_year\_day\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, unsigned int start\_time, unsigned int end\_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_year\_day\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, unsigned int start\_time, unsigned int end\_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Year Day Schedule (0x0E/14)\end{quote}
 \begin{quote}Parameter id: Schedule Identifier\end{quote}
 \begin{quote}Parameter userId: User Type\end{quote}
@@ -1088,7 +1088,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock GetYearDaySchedule}
 \begin{quote}Syntax: GetYearDaySchedule(id, userId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_year\_day\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_year\_day\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get Year Day Schedule (0x0F/15)\end{quote}
 \begin{quote}Parameter id: Schedule Identifier\end{quote}
 \begin{quote}Parameter userId: User Identifier\end{quote}
@@ -1098,7 +1098,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock ClearYearDaySchedule}
 \begin{quote}Syntax: ClearYearDaySchedule(id, userId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_year\_day\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_year\_day\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZWWORD user\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Clear Year Day Schedule (0x10/16)\end{quote}
 \begin{quote}Parameter id: Schedule Identifier\end{quote}
 \begin{quote}Parameter userId: User Identifier\end{quote}
@@ -1108,7 +1108,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock SetHolidaySchedule}
 \begin{quote}Syntax: SetHolidaySchedule(id, startTime, endTime, mode, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_holiday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, unsigned int start\_time, unsigned int end\_time, ZWBYTE mode, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_holiday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, unsigned int start\_time, unsigned int end\_time, ZWBYTE mode, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Holiday Schedule (0x11/17)\end{quote}
 \begin{quote}Parameter id: Schedule Identifier\end{quote}
 \begin{quote}Parameter startTime: Start Time\end{quote}
@@ -1120,7 +1120,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock GetHolidaySchedule}
 \begin{quote}Syntax: GetHolidaySchedule(id, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_holiday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_holiday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get Holiday Schedule (0x12/18)\end{quote}
 \begin{quote}Parameter id: Schedule Identifier\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1129,7 +1129,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock ClearHolidaySchedule}
 \begin{quote}Syntax: ClearHolidaySchedule(id, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_holiday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_holiday\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Clear Holiday Schedule (0x13/19)\end{quote}
 \begin{quote}Parameter id: Schedule Identifier\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1138,7 +1138,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock SetUserType}
 \begin{quote}Syntax: SetUserType(userId, userType, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_user\_type(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZWBYTE user\_type, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_user\_type(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZWBYTE user\_type, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set User Type (0x14/20)\end{quote}
 \begin{quote}Parameter userId: User Identifier\end{quote}
 \begin{quote}Parameter userType: User Type\end{quote}
@@ -1148,7 +1148,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock GetUserType}
 \begin{quote}Syntax: GetUserType(userId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_user\_type(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_user\_type(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get User Status (0x15/21)\end{quote}
 \begin{quote}Parameter userId: User Identifier\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1157,7 +1157,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock SetRfidCode}
 \begin{quote}Syntax: SetRfidCode(userId, userStatus, userType, code, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_rfid\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZWBYTE user\_status, ZWBYTE user\_type, ZWBYTE size, const ZWBYTE * code, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_set\_rfid\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZWBYTE user\_status, ZWBYTE user\_type, ZWBYTE size, const ZWBYTE * code, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set RFID Code (0x16/22)\end{quote}
 \begin{quote}Parameter userId: User Identifier\end{quote}
 \begin{quote}Parameter userStatus: User Status\end{quote}
@@ -1169,7 +1169,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock GetRfidCode}
 \begin{quote}Syntax: GetRfidCode(userId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_rfid\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_rfid\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get RFID Code (0x17/23)\end{quote}
 \begin{quote}Parameter userId: User Identifier\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1178,7 +1178,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock ClearRfidCode}
 \begin{quote}Syntax: ClearRfidCode(userId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_rfid\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_rfid\_code(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD user\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Clear RFID Code (0x18/24)\end{quote}
 \begin{quote}Parameter userId: User Identifier\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -1187,7 +1187,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock ClearAllRfidCodes}
 \begin{quote}Syntax: ClearAllRfidCodes(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_all\_rfid\_codes(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_clear\_all\_rfid\_codes(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Clear All RFID Code (0x19/25)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1195,7 +1195,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock GetState}
 \begin{quote}Syntax: GetState(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_state(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_get\_state(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Color Control Get State\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -1203,7 +1203,7 @@ Data holders:
 
 \paragraph{Cluster DoorLock ConfigurationGet}
 \begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Color Control Configuration Get\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}

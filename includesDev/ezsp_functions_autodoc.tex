@@ -1,7 +1,7 @@
 
 \paragraph{Function Class Version}
 \begin{quote}Syntax: Version(desiredVersion, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_version(ZBee zbee, ZWBYTE desired\_version, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_version(ZBee zbee, ZWBYTE desired\_version, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter desiredVersion: Desired EZSP Version\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -10,7 +10,7 @@
 
 \paragraph{Function Class GetValue}
 \begin{quote}Syntax: GetValue(valueId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_get\_value(ZBee zbee, ZWBYTE value\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_get\_value(ZBee zbee, ZWBYTE value\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter valueId: Config ID\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -19,7 +19,7 @@
 
 \paragraph{Function Class GetConfigurationValue}
 \begin{quote}Syntax: GetConfigurationValue(id, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_get\_configuration\_value(ZBee zbee, ZWBYTE id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_get\_configuration\_value(ZBee zbee, ZWBYTE id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get NCP configuration\end{quote}
 \begin{quote}Parameter id: Config ID\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -28,7 +28,7 @@
 
 \paragraph{Function Class SetConfigurationValue}
 \begin{quote}Syntax: SetConfigurationValue(configId, value, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_set\_configuration\_value(ZBee zbee, ZWBYTE config\_id, ZWWORD value, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_configuration\_value(ZBee zbee, ZWBYTE config\_id, ZWWORD value, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set NCP configuration\end{quote}
 \begin{quote}Parameter configId: Config ID\end{quote}
 \begin{quote}Parameter value: Config value\end{quote}
@@ -38,7 +38,7 @@
 
 \paragraph{Function Class GetMfgToken}
 \begin{quote}Syntax: GetMfgToken(tokenId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_get\_mfg\_token(ZBee zbee, ZWBYTE token\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_get\_mfg\_token(ZBee zbee, ZWBYTE token\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get manufacturer token\end{quote}
 \begin{quote}Parameter tokenId: Token ID to request\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -47,7 +47,7 @@
 
 \paragraph{Function Class NetworkState}
 \begin{quote}Syntax: NetworkState(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_network\_state(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_network\_state(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -55,7 +55,7 @@
 
 \paragraph{Function Class NetworkInit}
 \begin{quote}Syntax: NetworkInit(options = 0, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_network\_init(ZBee zbee, ZWWORD options, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_network\_init(ZBee zbee, ZWWORD options, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter options: TODO\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -64,7 +64,7 @@
 
 \paragraph{Function Class NetworkInitNoOption}
 \begin{quote}Syntax: NetworkInitNoOption(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_network\_init\_no\_option(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_network\_init\_no\_option(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -72,7 +72,7 @@
 
 \paragraph{Function Class FormNetwork}
 \begin{quote}Syntax: FormNetwork(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_form\_network(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_form\_network(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Form new network\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -80,7 +80,7 @@
 
 \paragraph{Function Class LeaveNetwork}
 \begin{quote}Syntax: LeaveNetwork(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_leave\_network(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_leave\_network(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Leafe from existing network\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -88,7 +88,7 @@
 
 \paragraph{Function Class SetInitialSecurityState}
 \begin{quote}Syntax: SetInitialSecurityState(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_set\_initial\_security\_state(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_initial\_security\_state(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -96,7 +96,7 @@
 
 \paragraph{Function Class GetNetworkParameters}
 \begin{quote}Syntax: GetNetworkParameters(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_get\_network\_parameters(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_get\_network\_parameters(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -104,7 +104,7 @@
 
 \paragraph{Function Class GetNodeId}
 \begin{quote}Syntax: GetNodeId(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_get\_node\_id(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_get\_node\_id(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get my node ID\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -112,7 +112,7 @@
 
 \paragraph{Function Class GetEui64}
 \begin{quote}Syntax: GetEui64(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_get\_eui64(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_get\_eui64(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get my MAC (EUI64)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -120,7 +120,7 @@
 
 \paragraph{Function Class GetKey}
 \begin{quote}Syntax: GetKey(keyType, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_get\_key(ZBee zbee, ZWBYTE key\_type, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_get\_key(ZBee zbee, ZWBYTE key\_type, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter keyType: TODO\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -129,7 +129,7 @@
 
 \paragraph{Function Class GetCurrentSecurityState}
 \begin{quote}Syntax: GetCurrentSecurityState(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_get\_current\_security\_state(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_get\_current\_security\_state(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -137,7 +137,7 @@
 
 \paragraph{Function Class SetPolicy}
 \begin{quote}Syntax: SetPolicy(policyId, decisionId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_set\_policy(ZBee zbee, ZWBYTE policy\_id, ZWWORD decision\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_policy(ZBee zbee, ZWBYTE policy\_id, ZWWORD decision\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter policyId: TODO\end{quote}
 \begin{quote}Parameter decisionId: TODO\end{quote}
@@ -147,7 +147,7 @@
 
 \paragraph{Function Class SetExtendedTimeout}
 \begin{quote}Syntax: SetExtendedTimeout(remoteEui64, extendedTimeout, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_set\_extended\_timeout(ZBee zbee, const ZBEUI64 remoteEui64, ZWBOOL extendedTimeout, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_extended\_timeout(ZBee zbee, const ZBEUI64 remoteEui64, ZWBOOL extendedTimeout, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter remoteEui64: EUI64 of the node\end{quote}
 \begin{quote}Parameter extendedTimeout: TODO\end{quote}
@@ -157,7 +157,7 @@
 
 \paragraph{Function Class SendUnicast}
 \begin{quote}Syntax: SendUnicast(data, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_send\_unicast(ZBee zbee, size\_t length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_send\_unicast(ZBee zbee, size\_t length, const ZWBYTE * data, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send unicast packet\end{quote}
 \begin{quote}Parameter data: Data\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -166,7 +166,7 @@
 
 \paragraph{Function Class PermitJoining}
 \begin{quote}Syntax: PermitJoining(duration, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_permit\_joining(ZBee zbee, ZWBYTE duration, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_permit\_joining(ZBee zbee, ZWBYTE duration, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Open network for new nodes\end{quote}
 \begin{quote}Parameter duration: Close the network after this period in seconds\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -175,7 +175,7 @@
 
 \paragraph{Function Class StartScan}
 \begin{quote}Syntax: StartScan(scanType, channelMask, duration, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_start\_scan(ZBee zbee, ZWBYTE scanType, ZWDWORD channelMask, ZWBYTE duration, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_start\_scan(ZBee zbee, ZWBYTE scanType, ZWDWORD channelMask, ZWBYTE duration, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter scanType: TODO\end{quote}
 \begin{quote}Parameter channelMask: TODO\end{quote}
@@ -186,7 +186,7 @@
 
 \paragraph{Function Class ReadCounters}
 \begin{quote}Syntax: ReadCounters(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_read\_counters(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_read\_counters(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -194,7 +194,7 @@
 
 \paragraph{Function Class SendBroadcast}
 \begin{quote}Syntax: SendBroadcast(data, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_send\_broadcast(ZBee zbee, size\_t length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_send\_broadcast(ZBee zbee, size\_t length, const ZWBYTE * data, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Send broadcast packet\end{quote}
 \begin{quote}Parameter data: Data\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -203,7 +203,7 @@
 
 \paragraph{Function Class ClearKeyTable}
 \begin{quote}Syntax: ClearKeyTable(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_clear\_key\_table(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_clear\_key\_table(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -211,7 +211,7 @@
 
 \paragraph{Function Class AddTransientLinkKey}
 \begin{quote}Syntax: AddTransientLinkKey(ieee, key, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_add\_transient\_link\_key(ZBee zbee, const ZBEUI64 ieee, const ZBKey16 key, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_add\_transient\_link\_key(ZBee zbee, const ZBEUI64 ieee, const ZBKey16 key, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter ieee: TODO\end{quote}
 \begin{quote}Parameter key: TODO\end{quote}
@@ -221,7 +221,7 @@
 
 \paragraph{Function Class SetBinding}
 \begin{quote}Syntax: SetBinding(index, type, local, clusterId, remoteEndpointId, destinationIeee, networkIndex, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_set\_binding(ZBee zbee, ZWBYTE index, ZWBYTE type, ZWBYTE local, ZBClusterId cluster\_id, ZWBYTE remote\_endpoint\_id, const ZBEUI64 destination\_ieee, ZWBYTE network\_index, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_binding(ZBee zbee, ZWBYTE index, ZWBYTE type, ZWBYTE local, ZBClusterId cluster\_id, ZWBYTE remote\_endpoint\_id, const ZBEUI64 destination\_ieee, ZWBYTE network\_index, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Binding\end{quote}
 \begin{quote}Parameter index: The index of a binding table entry\end{quote}
 \begin{quote}Parameter type: The type of binding\end{quote}
@@ -236,7 +236,7 @@
 
 \paragraph{Function Class ZllSetRadioIdleMode}
 \begin{quote}Syntax: ZllSetRadioIdleMode(radioPowerMode, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_zll\_set\_radio\_idle\_mode(ZBee zbee, ZWBYTE radio\_power\_mode, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_zll\_set\_radio\_idle\_mode(ZBee zbee, ZWBYTE radio\_power\_mode, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: ZLL Set Radio Idle Mode\end{quote}
 \begin{quote}Parameter radioPowerMode: The power mode to be set. 0x00 - The radio receiver is switched on. 0x01 - The radio receiver is switched off\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -245,7 +245,7 @@
 
 \paragraph{Function Class SetValue}
 \begin{quote}Syntax: SetValue(valueId, valueData, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_set\_value(ZBee zbee, ZWBYTE value\_id, ZWBYTE value\_length, const ZWBYTE * value\_data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_value(ZBee zbee, ZWBYTE value\_id, ZWBYTE value\_length, const ZWBYTE * value\_data, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Value\end{quote}
 \begin{quote}Parameter valueId: Value Id\end{quote}
 \begin{quote}Parameter valueData: Value Data\end{quote}
@@ -255,7 +255,7 @@
 
 \paragraph{Function Class SetConcentrator}
 \begin{quote}Syntax: SetConcentrator(on, concentratorType, minTime, maxTime, routeErrorThreshold, deliveryFailureThreshold, maxHops, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_set\_concentrator(ZBee zbee, ZWBOOL on, ZWWORD concentrator\_type, ZWWORD min\_time, ZWWORD max\_time, ZWBYTE route\_error\_threshold, ZWBYTE delivery\_failure\_threshold, ZWBYTE max\_hops, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_concentrator(ZBee zbee, ZWBOOL on, ZWWORD concentrator\_type, ZWWORD min\_time, ZWWORD max\_time, ZWBYTE route\_error\_threshold, ZWBYTE delivery\_failure\_threshold, ZWBYTE max\_hops, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Concentrator\end{quote}
 \begin{quote}Parameter on: Is Enable\end{quote}
 \begin{quote}Parameter concentratorType: Concentrator Type:. 0xFFF8 - A concentrator with insufficient memory to store source routes for the entire network. Route records are sent to the concentrator prior to every inbound APS unicast. 0xFFF9 - A concentrator with sufficient memory to store source routes for the entire network. Remote nodes stop sending route records once the concentrator has successfully received one\end{quote}
@@ -270,7 +270,7 @@
 
 \paragraph{Function Class ClearTransientLinkKeys}
 \begin{quote}Syntax: ClearTransientLinkKeys(successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_clear\_transient\_link\_keys(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_clear\_transient\_link\_keys(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Clear Transient Link Key\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
@@ -278,7 +278,7 @@
 
 \paragraph{Function Class SetSourceRouteDiscoveryMode}
 \begin{quote}Syntax: SetSourceRouteDiscoveryMode(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_set\_source\_route\_discovery\_mode(ZBee zbee, ZWBYTE mode, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_source\_route\_discovery\_mode(ZBee zbee, ZWBYTE mode, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Source Route Discovery Mode\end{quote}
 \begin{quote}Parameter mode: Source route discovery mode:. 0 - off. 1 - on. 2 - reschedule\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -287,7 +287,7 @@
 
 \paragraph{Function Class FindKeyTableEntry}
 \begin{quote}Syntax: FindKeyTableEntry(address, linkKey, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_find\_key\_table\_entry(ZBee zbee, const ZBEUI64 address, ZWBOOL link\_key, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_find\_key\_table\_entry(ZBee zbee, const ZBEUI64 address, ZWBOOL link\_key, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Find Key Table Entry\end{quote}
 \begin{quote}Parameter address: TODO\end{quote}
 \begin{quote}Parameter linkKey: TODO\end{quote}
@@ -297,7 +297,7 @@
 
 \paragraph{Function Class GetMulticastTableEntry}
 \begin{quote}Syntax: GetMulticastTableEntry(index, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_get\_multicast\_table\_entry(ZBee zbee, ZWBYTE index, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_get\_multicast\_table\_entry(ZBee zbee, ZWBYTE index, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Get Multicast Table Entry\end{quote}
 \begin{quote}Parameter index: Entry index\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
@@ -306,12 +306,21 @@
 
 \paragraph{Function Class SetMulticastTableEntry}
 \begin{quote}Syntax: SetMulticastTableEntry(index, multicastId, endpoint, networkId, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_set\_multicast\_table\_entry(ZBee zbee, ZWBYTE index, ZWWORD multicast\_id, ZWBYTE endpoint, ZWBYTE network\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_multicast\_table\_entry(ZBee zbee, ZWBYTE index, ZWWORD multicast\_id, ZWBYTE endpoint, ZWBYTE network\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Set Multicast Table Entry\end{quote}
 \begin{quote}Parameter index: Entry index\end{quote}
 \begin{quote}Parameter multicastId: Multicast Address\end{quote}
 \begin{quote}Parameter endpoint: Endpoint\end{quote}
 \begin{quote}Parameter networkId: Multicast Address\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class CustomFrame}
+\begin{quote}Syntax: CustomFrame(payload, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_custom\_frame(ZBee zbee, ZWBYTE size, const ZWBYTE * payload, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Custom Frame\end{quote}
+\begin{quote}Parameter payload: Payload\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
