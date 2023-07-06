@@ -324,3 +324,28 @@
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
+
+\paragraph{Function Class CustomFrameLoadFirmware}
+\begin{quote}Syntax: CustomFrameLoadFirmware(data, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_custom\_frame\_load\_firmware(ZBee zbee, size\_t length, const ZWBYTE * data, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Custom Frame Load Firmware\end{quote}
+\begin{quote}Parameter data: Firmware\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class CustomFrameReset}
+\begin{quote}Syntax: CustomFrameReset(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_custom\_frame\_reset(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Custom Frame Reset\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class CustomFrameReadVersion}
+\begin{quote}Syntax: CustomFrameReadVersion(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_custom\_frame\_read\_version(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Custom Frame Read Version\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
