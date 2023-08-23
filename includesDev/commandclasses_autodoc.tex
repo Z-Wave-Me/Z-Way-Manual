@@ -1969,14 +1969,17 @@ Data holders:
 \item \qquad\textbf{alarmType}: V1 alarm type
 \item \qquad\textbf{level}: V1 status
 \item \textbf{typeMask}: bit mask of supported alarm types
-\item \textbf{[typeId]}: subtree to store events of specific alarm types
+\item \textbf{[typeId]}: subtree storing a specific alarm type
 \item \qquad\textbf{typeString}: name of the alarm type
 \item \qquad\textbf{status}: flag with alarm status (alarm enabled/disabled)
+\item \qquad\textbf{sequence}: internal; sequence number of the event
 \item \qquad\textbf{eventMask}: bit mask of supported events of this alarm type
-\item \qquad\textbf{event}: last event ID
-\item \qquad\textbf{eventString}: last event name
-\item \qquad\textbf{eventParameters}: last event parameters
-\item \qquad\textbf{eventSequence}: internal
+\item \qquad\textbf{[eventId]}: subtree storing a specific event type
+\item \qquad\qquad\textbf{status}: event status
+\item \qquad\qquad\textbf{eventString}: last event name
+\item \qquad\qquad\textbf{parameters}: last event parameters
+\item \qquad\qquad\textbf{isState}: TRUE if the event is a state change, FALSE if it is a notification of a stateless event
+\item \qquad\qquad\textbf{oppositeTo}: internal; ID of the opposite event. Used for statefull events pairs
 \end{itemize}
 
 \paragraph{Command Alarm Get}
@@ -2132,7 +2135,7 @@ Data holders:
 \begin{quote}Parameter delayActivation: Set to TRUE to delay the activation of the uploaded firmware. Use zway\_cc\_firmware\_update\_activation\_set to initiate the activation\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
-\begin{quote}Report: updateStatus, updateStatusStr, waitTime, fragmentCount, fragmentTransmitted updated\end{quote}
+\begin{quote}Report: updateStatus, updateStatusStr, waitTime, fragmentData, fragmentCount, fragmentTransmitted updated\end{quote}
 
 \paragraph{Command FirmwareUpdate Activation}
 \begin{quote}Syntax: Activation(manufacturerId, firmwareId, firmwareTarget, data, successCallback = NULL, failureCallback = NULL)\end{quote}
@@ -2156,6 +2159,14 @@ Data holders:
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: prepareStatus, prepareStatusStr updated\end{quote}
+
+\paragraph{Command FirmwareUpdate Abandon}
+\begin{quote}Syntax: Abandon(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_firmware\_update\_abandon(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Abandon an ongoing Firmware Update process. Stop responding to an ongoing update process and erase the firmware data prepared for the update. This call is executed synchroneously and does not fire success/failure callbacks\end{quote}
+\begin{quote}Parameter successCallback: Not used\end{quote}
+\begin{quote}Parameter failureCallback: Not used\end{quote}
+\begin{quote}Report: updateStatus, updateStatusStr, fragmentData, fragmentCount, fragmentTransmitted updated\end{quote}
 
 
 \section{Command Class Association Group Information (0x59/89)}

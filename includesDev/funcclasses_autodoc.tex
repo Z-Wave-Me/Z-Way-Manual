@@ -441,7 +441,7 @@
 \begin{quote}Syntax: ZMEFreqChange(freq, successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}C Syntax: ZWError zway\_fc\_zme\_freq\_change(ZWay zway, ZWBYTE freq, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Change Z-Wave.Me Z-Stick 4 frequency. This function is specific for Z-Wave.Me hardware\end{quote}
-\begin{quote}Parameter freq: 0x00 EU. 0x01 RU. 0x02 IN. 0x03 US. 0x04 ANZ. 0x05 HK. 0x06 CN. 0x07 JP. 0x08 KR. 0x09 IL. 0x0A MY. 0xFF request current frequency (ZME firmwares prior to 5.03 don't support this feature)\end{quote}
+\begin{quote}Parameter freq: 0x00 EU. 0x01 RU. 0x02 IN. 0x03 US. 0x04 ANZ. 0x05 HK. 0x06 CN. 0x07 JP. 0x08 KR. 0x09 IL. 0x0A MY. 0x0B US Long Range. 0xFF request current frequency (ZME firmwares prior to 5.03 don't support 0xFF feature)\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: frequency\end{quote}
