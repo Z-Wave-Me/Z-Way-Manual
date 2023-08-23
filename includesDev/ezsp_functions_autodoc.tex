@@ -351,10 +351,33 @@
 
 
 \paragraph{Function Class IncomingMessageHandlerInject}
-\begin{quote}Syntax: IncomingMessageHandlerInject(data, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_ef\_incoming\_message\_handler\_inject(ZBee zbee, ZWBYTE size, const ZWBYTE * data, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Syntax: IncomingMessageHandlerInject(seq, type = 0, profileId = 0x0104, clusterId, srcEndpointId, dstEndpointId, options = 0x0000, groupId = 0x0000, apsSeq = 0x00, lqi = 0, rssi = 0, sender, bindingIndex = 0, addrIndex = 0, data, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_incoming\_message\_handler\_inject(ZBee zbee, ZWBYTE seq, ZWBYTE type, ZWWORD profile\_id, ZWWORD cluster\_id, ZWBYTE src\_endpoint\_id, ZWBYTE dst\_endpoint\_id, ZWWORD options, ZWWORD group\_id, ZWBYTE aps\_seq, ZWBYTE lqi, ZWBYTE rssi, ZWWORD sender, ZWBYTE binding\_index, ZWBYTE addr\_index, ZWBYTE size, const ZWBYTE * data, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Incoming Message Handler Inject\end{quote}
+\begin{quote}Parameter seq: Sequence number\end{quote}
+\begin{quote}Parameter type: Message Type:. INCOMING\_UNICAST - 0x00;. INCOMING\_UNICAST\_REPLY - 0x01;. INCOMING\_MULTICAST - 0x02;. INCOMING\_MULTICAST\_LOOPBACK - 0x03;. INCOMING\_BROADCAST - 0x04;. INCOMING\_BROADCAST\_LOOPBACK - 0x05;. INCOMING\_MANY\_TO\_ONE\_ROUTE\_REQUEST - 0x06\end{quote}
+\begin{quote}Parameter profileId: Profile Id\end{quote}
+\begin{quote}Parameter clusterId: Cluster Id\end{quote}
+\begin{quote}Parameter srcEndpointId: Source Endpoint Id\end{quote}
+\begin{quote}Parameter dstEndpointId: Destination Endpoint Id\end{quote}
+\begin{quote}Parameter options: Options\end{quote}
+\begin{quote}Parameter groupId: Group Id\end{quote}
+\begin{quote}Parameter apsSeq: APS Sequence Number\end{quote}
+\begin{quote}Parameter lqi: LQI\end{quote}
+\begin{quote}Parameter rssi: RSSI\end{quote}
+\begin{quote}Parameter sender: Sender\end{quote}
+\begin{quote}Parameter bindingIndex: Binding Table Index\end{quote}
+\begin{quote}Parameter addrIndex: Address Index\end{quote}
+\begin{quote}Parameter data: Input Data\end{quote}
+\begin{quote}Parameter successCallback: Unused. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Unused. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Function Class IncomingMessageHandlerInjectRaw}
+\begin{quote}Syntax: IncomingMessageHandlerInjectRaw(data, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_incoming\_message\_handler\_inject\_raw(ZBee zbee, ZWBYTE size, const ZWBYTE * data, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Incoming Message Handler Inject Raw\end{quote}
 \begin{quote}Parameter data: Data\end{quote}
-\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
-\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter successCallback: Unused. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Unused. NULL if callback is not needed\end{quote}
 
