@@ -229,6 +229,27 @@ Data holders:
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
 
+\paragraph{Cluster OnOff SetOnOffReporting}
+\begin{quote}Syntax: SetOnOffReporting(direction, minInterval, maxInterval, timeout, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_set\_on\_off\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set On Off Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster OnOff ResetOnOffReporting}
+\begin{quote}Syntax: ResetOnOffReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_on\_off\_reset\_on\_off\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set On Off Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
 
 \section{Cluster Class PollControl (0x0020/32)}
 
@@ -780,6 +801,116 @@ Data holders:
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
 
+\paragraph{Cluster ColorControl SetCurrentHueReporting}
+\begin{quote}Syntax: SetCurrentHueReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_set\_current\_hue\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWBYTE threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Current Hue Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl ResetCurrentHueReporting}
+\begin{quote}Syntax: ResetCurrentHueReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_reset\_current\_hue\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Reset Current Hue Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl SetCurrentSaturationReporting}
+\begin{quote}Syntax: SetCurrentSaturationReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_set\_current\_saturation\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWBYTE threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Current Saturation Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl ResetCurrentSaturationReporting}
+\begin{quote}Syntax: ResetCurrentSaturationReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_reset\_current\_saturation\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Reset Current Saturation Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl SetCurrentXReporting}
+\begin{quote}Syntax: SetCurrentXReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_set\_current\_x\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Current X Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl ResetCurrentXReporting}
+\begin{quote}Syntax: ResetCurrentXReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_reset\_current\_x\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Reset Current X Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl SetCurrentYReporting}
+\begin{quote}Syntax: SetCurrentYReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_set\_current\_y\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Current Y Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl ResetCurrentYReporting}
+\begin{quote}Syntax: ResetCurrentYReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_reset\_current\_y\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Reset Current Y Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl SetColorTemperatureMiredsReporting}
+\begin{quote}Syntax: SetColorTemperatureMiredsReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_set\_color\_temperature\_mireds\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Color Temperature Mireds Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ColorControl ResetColorTemperatureMiredsReporting}
+\begin{quote}Syntax: ResetColorTemperatureMiredsReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_reset\_color\_temperature\_mireds\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Reset Color Temperature Mireds Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
 
 \section{Cluster Class Level Control (0x0008/8)}
 
@@ -875,6 +1006,44 @@ Data holders:
 \begin{quote}Syntax: StopOnOff(successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_stop\_on\_off(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Stop (with On/Off) (0x07/7)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster LevelControl Get}
+\begin{quote}Syntax: Get(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Level Control Get\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster LevelControl ConfigurationGet}
+\begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Level Control Configuration Get\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster LevelControl SetCurrentLevelReporting}
+\begin{quote}Syntax: SetCurrentLevelReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_set\_current\_level\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWBYTE threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Current Level Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster LevelControl ResetCurrentLevelReporting}
+\begin{quote}Syntax: ResetCurrentLevelReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_level\_control\_reset\_current\_level\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Reset Current Level Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
@@ -1205,6 +1374,40 @@ Data holders:
 \begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Color Control Configuration Get\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class OccupancySensing (0x0406/1030)}
+
+Profile Zigbee Device Profile (0x0104/260)
+
+The server cluster provides an interface to occupancy sensing functionality, including configuration and provision of notifications of occupancy status.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{occupancy}: Occupied State
+\item \textbf{occupancySensorType}: Specifies the type of the occupancy sensor
+\item \textbf{pirOccupiedToUnoccupiedDelay}: Specifies the time delay, in seconds, before the PIR sensor changes to its unoccupied state after the last detection of movement in the sensed area.
+\item \textbf{pirUnoccupiedToOccupiedDelay}: Specifies the time delay, in seconds, before the PIR sensor changes to its occupied state after the detection of movement in the sensed area
+\item \textbf{pirOccupiedToUnoccupiedThreshold}: Specifies the number of movement detection events that must occur in the period PIRUnoccupiedToOccupiedDelay, before the PIR sensor changes to its occupied state
+\item \textbf{ultrasonicOccupiedToUnoccupiedDelay}: Specifies the time delay, in seconds, before the Ultrasonic sensor changes to its unoccupied state after the last detection of movement in the sensed area.
+\item \textbf{ultrasonicUnoccupiedToOccupiedDelay}: Specifies the time delay, in seconds, before the Ultrasonic sensor changes to its occupied state after the detection of movement in the sensed area.
+\item \textbf{ultrasonicOccupiedToUnoccupiedThreshold}: Specifies the number of movement detection events that must occur in the period UltrasonicUnoccupiedToOccupiedDelay, before the Ultrasonic sensor changes to its occupied state
+\end{itemize}
+
+\paragraph{Cluster OccupancySensing SetOccupancyReporting}
+\begin{quote}Syntax: SetOccupancyReporting(direction, minInterval, maxInterval, timeout, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_occupancy\_sensing\_set\_occupancy\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Occupancy Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
