@@ -99,7 +99,32 @@ and \keystroke{Show controller's device data.}
 \item  deviceRelaxDelay: time in 10ms to wait before sending next command to same device (configurable in Defaults.xml)
 \item  promiscMode: true if Zniffer promiscuous mode is enabled
 \item  incomingPacket: last incoming packet from Z-Wave network
+\begin {itemize}
+\item  nodeId: source Node Id
+\item  dstNodeId: destination NodeId (usually the controller Id, but in primiscuous mode it will show the real destination)
+\item  securePayload: decoded payload for secure packet (if decoding was possible)
+\item  RSSI: RSSI level
+\item  frameType: packet type: "Explore Frame", "broadcast", "multicast", "singlecast"
+\item  hops: array of repeaters nodes, zero means no more repeaters
+\item  duplicate: the number of repetition of this packet, >0 means it is a duplicate
+\end {itemize}
+
 \item  outgoingPacket: last outgoing packet to Z-Wave network
+\begin {itemize}
+\item  delivered: was the packet delivered
+\item  deliveryTime: delivery time in 10 ms
+\item  packetLength: packet length
+\item  nodeId: nodeId
+\item  returnRSSI: array of RSSI levels the recipient and hops have detected
+\item  hops: array of repeaters nodes, zero means no more repeaters
+\item  returnChannel: the channel of the ACK
+\item  txChannel: the channel of the outgoing packet
+\item  speed: used speed
+\item  schemeState: used scheme state
+\item  tries: number of retries
+\item  lastFailPath: array of two nodes at which the last failure occured (if the packet was not delivered): last working repeater on the path and the unreachable repeater
+\item  securePayload: unencrypted payload for a secure packet
+\end {itemize}
 
 \item  curSerialAPIAckTimeout10ms: timing parameter of Serial API
 \item  curSerialAPIBytetimeout10ms: timing parameter of Serial API
