@@ -16,7 +16,7 @@ latex2html -split +1 -no_auto_link -long_titles 20 -use_pdftex -html_version 5.0
 cd ZWayManual
 
 # extract TOC
-echo '<div id="TOC">' > TOC.html
+echo '<div id="TOC">  <div class="toc-open"><div></div>Z-Way Manual</div>' > TOC.html
 awk '/^<!--End of Table of Child-Links-->$/ { tocStart = 0 } { if (tocStart) { print } } /^<!--Table of Child-Links-->$/ { tocStart = 1 }' ZWayManual.html >> TOC.html
 echo '</div>' >> TOC.html
 # delete TOC
@@ -50,6 +50,7 @@ cd ..
 rm -f TOC.html ZWayManual.css
 
 # Copy to the server
-
-scp ZWayManual.pdf ZWayManual/* zwm1.z-wave.me:/var/www/z-wave.me/manual/z-way/
-scp ZWayManual.pdf ZWayManual/* storage.z-wave.me:/var/www/rus.z-wave.me/files/manual/z-way/
+if [ "$DRY_RUN" != "true" ]; then
+    scp ZWayManual.pdf ZWayManual/* zwm1.z-wave.me:/var/www/z-wave.me/manual/z-way/
+    scp ZWayManual.pdf ZWayManual/* storage.z-wave.me:/var/www/rus.z-wave.me/files/manual/z-way/
+fi
