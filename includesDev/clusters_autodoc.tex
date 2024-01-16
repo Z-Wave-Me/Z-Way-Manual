@@ -337,6 +337,16 @@ The Mgmt\_Leave\_req is generated from a Local Device requesting that a Remote. 
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
 
+\paragraph{Cluster MgmtLeaveRequest ForceRemove}
+\begin{quote}Syntax: ForceRemove(removeChildren, rejoin, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_mgmt\_leave\_request\_force\_remove(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL remove\_children, ZWBOOL rejoin, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Force Remove\end{quote}
+\begin{quote}Parameter removeChildren: Remove children flag:. TRUE  - If the device being asked to leave the network is also being asked to remove its child devices, if any. FALSE - None children will be removed\end{quote}
+\begin{quote}Parameter rejoin: Effect on Trust Center:. TRUE  - If the device being asked to leave from the current parent is requested to rejoin the network. FALSE - Otherwise\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
 
 \section{Cluster Class Basic (0x0000/0)}
 
@@ -1374,6 +1384,241 @@ Data holders:
 \begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}C Syntax: ZWError zbee\_cc\_door\_lock\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Color Control Configuration Get\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class TemperatureMeasurement (0x0402/1026)}
+
+Profile Zigbee Device Profile (0x0104/260)
+
+The cluster provides an interface to temperature measurement functionality, including configuration and provision of notifications of temperature measurements.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{measuredValue}: It represents the temperature in degrees Celsius as follows: MeasuredValue = 100 x temperature in degrees Celsius. Where -273.15°C <= temperature <= 327.67 ºC, corresponding to a MeasuredValue in the range 0x954d to 0x7fff. The maximum resolution this format allows is 0.01 ºC. A MeasuredValue of 0x8000 indicates that the temperature measurement is invalid. MeasuredValue is updated continuously as new measurements are made.
+\item \textbf{minMeasuredValue}: It indicates the minimum value of MeasuredValue that is capable of being measured. A MinMeasuredValue of 0x8000 indicates that the minimum value is unknown.
+\item \textbf{maxMeasuredValue}: It indicates the maximum value of MeasuredValue that is capable of being measured. MaxMeasuredValue shall be greater than MinMeasuredValue. MinMeasuredValue and MaxMeasuredValue define the range of the sensor. A MaxMeasuredValue of 0x8000 indicates that the maximum value is unknown.
+\item \textbf{tolerance}: It indicates the magnitude of the possible error that is associated with MeasuredValue. The true value is located in the range (MeasuredValue – Tolerance) to (MeasuredValue + Tolerance).
+\end{itemize}
+
+\paragraph{Cluster TemperatureMeasurement SetMeasuredValueReporting}
+\begin{quote}Syntax: SetMeasuredValueReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_temperature\_measurement\_set\_measured\_value\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Measured Value Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster TemperatureMeasurement ResetMeasuredValueReporting}
+\begin{quote}Syntax: ResetMeasuredValueReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_temperature\_measurement\_reset\_measured\_value\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Reset Measured Value Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster TemperatureMeasurement SetToleranceReporting}
+\begin{quote}Syntax: SetToleranceReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_temperature\_measurement\_set\_tolerance\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Tolerance Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster TemperatureMeasurement ResetToleranceReporting}
+\begin{quote}Syntax: ResetToleranceReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_temperature\_measurement\_reset\_tolerance\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Reset Tolerance Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class PressureMeasurement (0x0403/1027)}
+
+Profile Zigbee Device Profile (0x0104/260)
+
+The cluster provides an interface to pressure measurement functionality, including configuration and provision of notifications of pressure measurements.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{measuredValue}: It represents the pressure in kPa as follows: MeasuredValue = 10 x Pressure Where -3276.7 kPa <= Pressure <= 3276.7 kPa, corresponding to a MeasuredValue in the range 0x8001 to 0x7fff. A MeasuredValue of 0x8000 indicates that the pressure measurement is invalid. MeasuredValue is updated continuously as new measurements are made.
+\item \textbf{minMeasuredValue}: It indicates the minimum value of MeasuredValue that is capable of being measured. A MinMeasuredValue of 0x8000 indicates that the minimum value is unknown.
+\item \textbf{maxMeasuredValue}: It indicates the maximum value of MeasuredValue that is capable of being measured. MaxMeasuredValue shall be greater than MinMeasuredValue. MinMeasuredValue and MaxMeasuredValue define the range of the sensor. A MaxMeasuredValue of 0x8000 indicates that the maximum value is unknown.
+\item \textbf{tolerance}: It indicates the magnitude of the possible error that is associated with MeasuredValue. The true value is located in the range (MeasuredValue – Tolerance) to (MeasuredValue + Tolerance).
+\item \textbf{scaledValue}: It represents the pressure in Pascals as follows: ScaledValue = 10\^Scale x Pressure in Pa Where -3276.7x10\^Scale Pa <= Pressure <= 3276.7x10\^Scale Pa corresponding to a ScaledValue in the range 0x8001 to 0x7fff. A ScaledValue of 0x8000 indicates that the pressure measurement is invalid. ScaledValue is updated continuously as new measurements are made.
+\item \textbf{minScaledValue}: It indicates the magnitude of the possible error that is associated with MeasuredValue. The true value is located in the range (MeasuredValue – Tolerance) to (MeasuredValue + Tolerance).
+\item \textbf{maxScaledValue}: It indicates the magnitude of the possible error that is associated with MeasuredValue. The true value is located in the range (MeasuredValue – Tolerance) to (MeasuredValue + Tolerance).
+\item \textbf{scaledTolerance}: It indicates the magnitude of the possible error that is associated with ScaledValue. The true value is located in the range (ScaledValue – ScaledTolerance) to (ScaledValue + ScaledTolerance).
+\item \textbf{scale}: It indicates  indicates the base 10 exponent used to obtain ScaledValue.
+\end{itemize}
+
+\paragraph{Cluster PressureMeasurement SetMeasuredValueReporting}
+\begin{quote}Syntax: SetMeasuredValueReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_pressure\_measurement\_set\_measured\_value\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Measured Value Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster PressureMeasurement ResetMeasuredValueReporting}
+\begin{quote}Syntax: ResetMeasuredValueReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_pressure\_measurement\_reset\_measured\_value\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Reset Measured Value Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster PressureMeasurement SetToleranceReporting}
+\begin{quote}Syntax: SetToleranceReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_pressure\_measurement\_set\_tolerance\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Tolerance Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster PressureMeasurement ResetToleranceReporting}
+\begin{quote}Syntax: ResetToleranceReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_pressure\_measurement\_reset\_tolerance\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Reset Tolerance Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster PressureMeasurement SetScaledValueReporting}
+\begin{quote}Syntax: SetScaledValueReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_pressure\_measurement\_set\_scaled\_value\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Scaled Value Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster PressureMeasurement ResetScaledValueReporting}
+\begin{quote}Syntax: ResetScaledValueReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_pressure\_measurement\_reset\_scaled\_value\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Reset Scaled Value Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster PressureMeasurement SetScaledToleranceReporting}
+\begin{quote}Syntax: SetScaledToleranceReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_pressure\_measurement\_set\_scaled\_tolerance\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Scaled Tolerance Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster PressureMeasurement ResetScaledToleranceReporting}
+\begin{quote}Syntax: ResetScaledToleranceReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_pressure\_measurement\_reset\_scaled\_tolerance\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Reset Scaled Tolerance Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class RelativeHumidityMeasurement (0x0405/1029)}
+
+Profile Zigbee Device Profile (0x0104/260)
+
+The cluster provides an interface to relative humidity measurement functionality, including configuration and provision of notifications of temperature measurements.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{measuredValue}: It represents the relative humidity in \% as follows: MeasuredValue = 100 x Relative humidity Where 0\% <= Relative humidity <= 100\%, corresponding to a MeasuredValue in the range 0 to 0x2710. The maximum resolution this format allows is 0.01\%. A MeasuredValue of 0xffff indicates that the measurement is invalid. MeasuredValue is updated continuously as new measurements are made.
+\item \textbf{minMeasuredValue}: It indicates the minimum value of MeasuredValue that is capable of being measured. A MinMeasuredValue of 0x8000 indicates that the minimum value is unknown.
+\item \textbf{maxMeasuredValue}: It indicates the maximum value of MeasuredValue that is capable of being measured. MaxMeasuredValue shall be greater than MinMeasuredValue. MinMeasuredValue and MaxMeasuredValue define the range of the sensor. A MaxMeasuredValue of 0x8000 indicates that the maximum value is unknown.
+\item \textbf{tolerance}: It indicates the magnitude of the possible error that is associated with MeasuredValue. The true value is located in the range (MeasuredValue – Tolerance) to (MeasuredValue + Tolerance).
+\end{itemize}
+
+\paragraph{Cluster RelativeHumidityMeasurement SetMeasuredValueReporting}
+\begin{quote}Syntax: SetMeasuredValueReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_relative\_humidity\_measurement\_set\_measured\_value\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Measured Value Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster RelativeHumidityMeasurement ResetMeasuredValueReporting}
+\begin{quote}Syntax: ResetMeasuredValueReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_relative\_humidity\_measurement\_reset\_measured\_value\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Reset Measured Value Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster RelativeHumidityMeasurement SetToleranceReporting}
+\begin{quote}Syntax: SetToleranceReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_relative\_humidity\_measurement\_set\_tolerance\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Tolerance Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster RelativeHumidityMeasurement ResetToleranceReporting}
+\begin{quote}Syntax: ResetToleranceReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_relative\_humidity\_measurement\_reset\_tolerance\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Reset Tolerance Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 

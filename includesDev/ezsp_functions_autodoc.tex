@@ -26,6 +26,15 @@
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: TODO\end{quote}
 
+\paragraph{Function Class SetRadioChannel}
+\begin{quote}Syntax: SetRadioChannel(channelId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_radio\_channel(ZBee zbee, ZWBYTE channel\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Radio Channel\end{quote}
+\begin{quote}Parameter channelId: Channel id from 11 to 26\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: TODO\end{quote}
+
 \paragraph{Function Class SetConfigurationValue}
 \begin{quote}Syntax: SetConfigurationValue(configId, value, successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}C Syntax: ZWError zbee\_ef\_set\_configuration\_value(ZBee zbee, ZWBYTE config\_id, ZWWORD value, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
