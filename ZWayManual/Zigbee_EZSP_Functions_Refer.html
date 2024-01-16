@@ -938,15 +938,25 @@
   HREF="Clusters_Reference.html#SECTION0019150000000000000000">Cluster Class Color Control (0x0300/768)</A>
 <LI><A ID="tex2html650"
   HREF="Clusters_Reference.html#SECTION0019160000000000000000">Cluster Class Level Control (0x0008/8)</A>
+<LI><A ID="tex2html651"
+  HREF="Clusters_Reference.html#SECTION0019170000000000000000">Cluster Class Door Lock (0x0101/257)</A>
+<LI><A ID="tex2html652"
+  HREF="Clusters_Reference.html#SECTION0019180000000000000000">Cluster Class TemperatureMeasurement (0x0402/1026)</A>
+<LI><A ID="tex2html653"
+  HREF="Clusters_Reference.html#SECTION0019190000000000000000">Cluster Class PressureMeasurement (0x0403/1027)</A>
+<LI><A ID="tex2html654"
+  HREF="Clusters_Reference.html#SECTION0019200000000000000000">Cluster Class RelativeHumidityMeasurement (0x0405/1029)</A>
+<LI><A ID="tex2html655"
+  HREF="Clusters_Reference.html#SECTION0019210000000000000000">Cluster Class OccupancySensing (0x0406/1030)</A>
 </UL>
 <BR>
-<LI><A ID="tex2html651"
+<LI><A ID="tex2html656"
   HREF="Zigbee_EZSP_Functions_Refer.html">Zigbee EZSP Functions Reference</A>
-<LI><A ID="tex2html652"
+<LI><A ID="tex2html657"
   HREF="List_Tables.html">List of Tables</A>
-<LI><A ID="tex2html653"
+<LI><A ID="tex2html658"
   HREF="List_Figures.html">List of Figures</A>
-<LI><A ID="tex2html654"
+<LI><A ID="tex2html659"
   HREF="Index.html">Index</A>
 </UL>
 </div>
@@ -968,7 +978,7 @@ Function Class Version</A>
 Syntax: Version(desiredVersion, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_version(ZBee zbee, ZWBYTE desired_version, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_version(ZBee zbee, ZWBYTE desired_version, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: TODO
@@ -995,7 +1005,7 @@ Function Class GetValue</A>
 Syntax: GetValue(valueId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_get_value(ZBee zbee, ZWBYTE value_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_get_value(ZBee zbee, ZWBYTE value_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: TODO
@@ -1022,7 +1032,7 @@ Function Class GetConfigurationValue</A>
 Syntax: GetConfigurationValue(id, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_get_configuration_value(ZBee zbee, ZWBYTE id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_get_configuration_value(ZBee zbee, ZWBYTE id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Get NCP configuration
@@ -1043,13 +1053,40 @@ Report: TODO
 <P>
 
 <H4><A ID="SECTION002000040000000000000">
+Function Class SetRadioChannel</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetRadioChannel(channelId, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_ef_set_radio_channel(ZBee zbee, ZWBYTE channel_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Radio Channel
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter channelId: Channel id from 11 to 26
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Report: TODO
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION002000050000000000000">
 Function Class SetConfigurationValue</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: SetConfigurationValue(configId, value, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_set_configuration_value(ZBee zbee, ZWBYTE config_id, ZWWORD value, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_set_configuration_value(ZBee zbee, ZWBYTE config_id, ZWWORD value, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Set NCP configuration
@@ -1072,14 +1109,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION002000050000000000000">
+<H4><A ID="SECTION002000060000000000000">
 Function Class GetMfgToken</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: GetMfgToken(tokenId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_get_mfg_token(ZBee zbee, ZWBYTE token_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_get_mfg_token(ZBee zbee, ZWBYTE token_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Get manufacturer token
@@ -1099,14 +1136,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION002000060000000000000">
+<H4><A ID="SECTION002000070000000000000">
 Function Class NetworkState</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: NetworkState(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_network_state(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_network_state(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: TODO
@@ -1123,14 +1160,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION002000070000000000000">
+<H4><A ID="SECTION002000080000000000000">
 Function Class NetworkInit</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: NetworkInit(options = 0, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_network_init(ZBee zbee, ZWWORD options, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_network_init(ZBee zbee, ZWWORD options, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: TODO
@@ -1150,14 +1187,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION002000080000000000000">
+<H4><A ID="SECTION002000090000000000000">
 Function Class NetworkInitNoOption</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: NetworkInitNoOption(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_network_init_no_option(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_network_init_no_option(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: TODO
@@ -1174,14 +1211,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION002000090000000000000">
+<H4><A ID="SECTION0020000100000000000000">
 Function Class FormNetwork</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: FormNetwork(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_form_network(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_form_network(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Form new network
@@ -1198,14 +1235,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION0020000100000000000000">
+<H4><A ID="SECTION0020000110000000000000">
 Function Class LeaveNetwork</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: LeaveNetwork(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_leave_network(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_leave_network(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Leafe from existing network
@@ -1222,38 +1259,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION0020000110000000000000">
+<H4><A ID="SECTION0020000120000000000000">
 Function Class SetInitialSecurityState</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: SetInitialSecurityState(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_set_initial_security_state(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
-</BLOCKQUOTE>
-<BLOCKQUOTE>
-Description: TODO
-</BLOCKQUOTE>
-<BLOCKQUOTE>
-Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
-</BLOCKQUOTE>
-<BLOCKQUOTE>
-Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
-</BLOCKQUOTE>
-<BLOCKQUOTE>
-Report: TODO
-</BLOCKQUOTE>
-
-<P>
-
-<H4><A ID="SECTION0020000120000000000000">
-Function Class GetNetworkParameters</A>
-</H4>
-<BLOCKQUOTE>
-Syntax: GetNetworkParameters(successCallback = NULL, failureCallback = NULL)
-</BLOCKQUOTE>
-<BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_get_network_parameters(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_set_initial_security_state(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: TODO
@@ -1271,13 +1284,37 @@ Report: TODO
 <P>
 
 <H4><A ID="SECTION0020000130000000000000">
+Function Class GetNetworkParameters</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: GetNetworkParameters(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_ef_get_network_parameters(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: TODO
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Report: TODO
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0020000140000000000000">
 Function Class GetNodeId</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: GetNodeId(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_get_node_id(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_get_node_id(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Get my node ID
@@ -1294,14 +1331,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION0020000140000000000000">
+<H4><A ID="SECTION0020000150000000000000">
 Function Class GetEui64</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: GetEui64(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_get_eui64(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_get_eui64(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Get my MAC (EUI64)
@@ -1318,14 +1355,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION0020000150000000000000">
+<H4><A ID="SECTION0020000160000000000000">
 Function Class GetKey</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: GetKey(keyType, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_get_key(ZBee zbee, ZWBYTE key_type, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_get_key(ZBee zbee, ZWBYTE key_type, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: TODO
@@ -1345,14 +1382,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION0020000160000000000000">
+<H4><A ID="SECTION0020000170000000000000">
 Function Class GetCurrentSecurityState</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: GetCurrentSecurityState(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_get_current_security_state(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_get_current_security_state(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: TODO
@@ -1369,14 +1406,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION0020000170000000000000">
+<H4><A ID="SECTION0020000180000000000000">
 Function Class SetPolicy</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: SetPolicy(policyId, decisionId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_set_policy(ZBee zbee, ZWBYTE policy_id, ZWWORD decision_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_set_policy(ZBee zbee, ZWBYTE policy_id, ZWWORD decision_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: TODO
@@ -1399,14 +1436,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION0020000180000000000000">
+<H4><A ID="SECTION0020000190000000000000">
 Function Class SetExtendedTimeout</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: SetExtendedTimeout(remoteEui64, extendedTimeout, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_set_extended_timeout(ZBee zbee, const ZBEUI64 remoteEui64, ZWBOOL extendedTimeout, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_set_extended_timeout(ZBee zbee, const ZBEUI64 remoteEui64, ZWBOOL extendedTimeout, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: TODO
@@ -1429,14 +1466,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION0020000190000000000000">
+<H4><A ID="SECTION0020000200000000000000">
 Function Class SendUnicast</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: SendUnicast(data, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_send_unicast(ZBee zbee, size_t length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_send_unicast(ZBee zbee, size_t length, const ZWBYTE * data, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send unicast packet
@@ -1456,14 +1493,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION0020000200000000000000">
+<H4><A ID="SECTION0020000210000000000000">
 Function Class PermitJoining</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: PermitJoining(duration, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_permit_joining(ZBee zbee, ZWBYTE duration, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_permit_joining(ZBee zbee, ZWBYTE duration, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Open network for new nodes
@@ -1483,14 +1520,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION0020000210000000000000">
+<H4><A ID="SECTION0020000220000000000000">
 Function Class StartScan</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: StartScan(scanType, channelMask, duration, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_start_scan(ZBee zbee, ZWBYTE scanType, ZWDWORD channelMask, ZWBYTE duration, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_start_scan(ZBee zbee, ZWBYTE scanType, ZWDWORD channelMask, ZWBYTE duration, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: TODO
@@ -1516,14 +1553,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION0020000220000000000000">
+<H4><A ID="SECTION0020000230000000000000">
 Function Class ReadCounters</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: ReadCounters(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_read_counters(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_read_counters(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: TODO
@@ -1540,14 +1577,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION0020000230000000000000">
+<H4><A ID="SECTION0020000240000000000000">
 Function Class SendBroadcast</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: SendBroadcast(data, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_send_broadcast(ZBee zbee, size_t length, const ZWBYTE * data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_send_broadcast(ZBee zbee, size_t length, const ZWBYTE * data, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send broadcast packet
@@ -1567,14 +1604,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION0020000240000000000000">
+<H4><A ID="SECTION0020000250000000000000">
 Function Class ClearKeyTable</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: ClearKeyTable(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_clear_key_table(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_clear_key_table(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: TODO
@@ -1591,14 +1628,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION0020000250000000000000">
+<H4><A ID="SECTION0020000260000000000000">
 Function Class AddTransientLinkKey</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: AddTransientLinkKey(ieee, key, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_add_transient_link_key(ZBee zbee, const ZBEUI64 ieee, const ZBKey16 key, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_add_transient_link_key(ZBee zbee, const ZBEUI64 ieee, const ZBKey16 key, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: TODO
@@ -1621,14 +1658,14 @@ Report: TODO
 
 <P>
 
-<H4><A ID="SECTION0020000260000000000000">
+<H4><A ID="SECTION0020000270000000000000">
 Function Class SetBinding</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: SetBinding(index, type, local, clusterId, remoteEndpointId, destinationIeee, networkIndex, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_set_binding(ZBee zbee, ZWBYTE index, ZWBYTE type, ZWBYTE local, ZBClusterId cluster_id, ZWBYTE remote_endpoint_id, const ZBEUI64 destination_ieee, ZWBYTE network_index, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_set_binding(ZBee zbee, ZWBYTE index, ZWBYTE type, ZWBYTE local, ZBClusterId cluster_id, ZWBYTE remote_endpoint_id, const ZBEUI64 destination_ieee, ZWBYTE network_index, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Set Binding
@@ -1663,14 +1700,14 @@ Parameter failureCallback: Custom function to be called on function failure. NUL
 
 <P>
 
-<H4><A ID="SECTION0020000270000000000000">
+<H4><A ID="SECTION0020000280000000000000">
 Function Class ZllSetRadioIdleMode</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: ZllSetRadioIdleMode(radioPowerMode, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_zll_set_radio_idle_mode(ZBee zbee, ZWBYTE radio_power_mode, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_zll_set_radio_idle_mode(ZBee zbee, ZWBYTE radio_power_mode, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: ZLL Set Radio Idle Mode
@@ -1687,14 +1724,14 @@ Parameter failureCallback: Custom function to be called on function failure. NUL
 
 <P>
 
-<H4><A ID="SECTION0020000280000000000000">
+<H4><A ID="SECTION0020000290000000000000">
 Function Class SetValue</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: SetValue(valueId, valueData, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_set_value(ZBee zbee, ZWBYTE value_id, ZWBYTE value_length, const ZWBYTE * value_data, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_set_value(ZBee zbee, ZWBYTE value_id, ZWBYTE value_length, const ZWBYTE * value_data, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Set Value
@@ -1714,14 +1751,14 @@ Parameter failureCallback: Custom function to be called on function failure. NUL
 
 <P>
 
-<H4><A ID="SECTION0020000290000000000000">
+<H4><A ID="SECTION0020000300000000000000">
 Function Class SetConcentrator</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: SetConcentrator(on, concentratorType, minTime, maxTime, routeErrorThreshold, deliveryFailureThreshold, maxHops, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_set_concentrator(ZBee zbee, ZWBOOL on, ZWWORD concentrator_type, ZWWORD min_time, ZWWORD max_time, ZWBYTE route_error_threshold, ZWBYTE delivery_failure_threshold, ZWBYTE max_hops, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_set_concentrator(ZBee zbee, ZWBOOL on, ZWWORD concentrator_type, ZWWORD min_time, ZWWORD max_time, ZWBYTE route_error_threshold, ZWBYTE delivery_failure_threshold, ZWBYTE max_hops, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Set Concentrator
@@ -1756,14 +1793,14 @@ Parameter failureCallback: Custom function to be called on function failure. NUL
 
 <P>
 
-<H4><A ID="SECTION0020000300000000000000">
+<H4><A ID="SECTION0020000310000000000000">
 Function Class ClearTransientLinkKeys</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: ClearTransientLinkKeys(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_clear_transient_link_keys(ZBee zbee, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_clear_transient_link_keys(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Clear Transient Link Key
@@ -1777,14 +1814,14 @@ Parameter failureCallback: Custom function to be called on function failure. NUL
 
 <P>
 
-<H4><A ID="SECTION0020000310000000000000">
+<H4><A ID="SECTION0020000320000000000000">
 Function Class SetSourceRouteDiscoveryMode</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: SetSourceRouteDiscoveryMode(mode, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_set_source_route_discovery_mode(ZBee zbee, ZWBYTE mode, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_set_source_route_discovery_mode(ZBee zbee, ZWBYTE mode, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Set Source Route Discovery Mode
@@ -1801,14 +1838,14 @@ Parameter failureCallback: Custom function to be called on function failure. NUL
 
 <P>
 
-<H4><A ID="SECTION0020000320000000000000">
+<H4><A ID="SECTION0020000330000000000000">
 Function Class FindKeyTableEntry</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: FindKeyTableEntry(address, linkKey, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_find_key_table_entry(ZBee zbee, const ZBEUI64 address, ZWBOOL link_key, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_find_key_table_entry(ZBee zbee, const ZBEUI64 address, ZWBOOL link_key, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Find Key Table Entry
@@ -1828,14 +1865,14 @@ Parameter failureCallback: Custom function to be called on function failure. NUL
 
 <P>
 
-<H4><A ID="SECTION0020000330000000000000">
+<H4><A ID="SECTION0020000340000000000000">
 Function Class GetMulticastTableEntry</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: GetMulticastTableEntry(index, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_get_multicast_table_entry(ZBee zbee, ZWBYTE index, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_get_multicast_table_entry(ZBee zbee, ZWBYTE index, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Get Multicast Table Entry
@@ -1852,14 +1889,14 @@ Parameter failureCallback: Custom function to be called on function failure. NUL
 
 <P>
 
-<H4><A ID="SECTION0020000340000000000000">
+<H4><A ID="SECTION0020000350000000000000">
 Function Class SetMulticastTableEntry</A>
 </H4>
 <BLOCKQUOTE>
 Syntax: SetMulticastTableEntry(index, multicastId, endpoint, networkId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_ef_set_multicast_table_entry(ZBee zbee, ZWBYTE index, ZWWORD multicast_id, ZWBYTE endpoint, ZWBYTE network_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_ef_set_multicast_table_entry(ZBee zbee, ZWBYTE index, ZWWORD multicast_id, ZWBYTE endpoint, ZWBYTE network_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Set Multicast Table Entry
@@ -1881,6 +1918,186 @@ Parameter successCallback: Custom function to be called on function success. NUL
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0020000360000000000000">
+Function Class CustomFrame</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: CustomFrame(payload, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_ef_custom_frame(ZBee zbee, ZWBYTE size, const ZWBYTE * payload, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Custom Frame
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter payload: Payload
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0020000370000000000000">
+Function Class CustomFrameLoadFirmware</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: CustomFrameLoadFirmware(data, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_ef_custom_frame_load_firmware(ZBee zbee, size_t length, const ZWBYTE * data, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Custom Frame Load Firmware
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter data: Firmware
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0020000380000000000000">
+Function Class CustomFrameReset</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: CustomFrameReset(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_ef_custom_frame_reset(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Custom Frame Reset
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0020000390000000000000">
+Function Class CustomFrameReadVersion</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: CustomFrameReadVersion(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_ef_custom_frame_read_version(ZBee zbee, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Custom Frame Read Version
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0020000400000000000000">
+Function Class IncomingMessageHandlerInject</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: IncomingMessageHandlerInject(seq, type = 0, profileId = 0x0104, clusterId, srcEndpointId, dstEndpointId, options = 0x0000, groupId = 0x0000, apsSeq = 0x00, lqi = 0, rssi = 0, sender, bindingIndex = 0, addrIndex = 0, data, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_ef_incoming_message_handler_inject(ZBee zbee, ZWBYTE seq, ZWBYTE type, ZWWORD profile_id, ZWWORD cluster_id, ZWBYTE src_endpoint_id, ZWBYTE dst_endpoint_id, ZWWORD options, ZWWORD group_id, ZWBYTE aps_seq, ZWBYTE lqi, ZWBYTE rssi, ZWWORD sender, ZWBYTE binding_index, ZWBYTE addr_index, ZWBYTE size, const ZWBYTE * data, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Incoming Message Handler Inject
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter seq: Sequence number
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter type: Message Type:. INCOMING_UNICAST - 0x00;. INCOMING_UNICAST_REPLY - 0x01;. INCOMING_MULTICAST - 0x02;. INCOMING_MULTICAST_LOOPBACK - 0x03;. INCOMING_BROADCAST - 0x04;. INCOMING_BROADCAST_LOOPBACK - 0x05;. INCOMING_MANY_TO_ONE_ROUTE_REQUEST - 0x06
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter profileId: Profile Id
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter clusterId: Cluster Id
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter srcEndpointId: Source Endpoint Id
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter dstEndpointId: Destination Endpoint Id
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter options: Options
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter groupId: Group Id
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter apsSeq: APS Sequence Number
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter lqi: LQI
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter rssi: RSSI
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter sender: Sender
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter bindingIndex: Binding Table Index
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter addrIndex: Address Index
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter data: Input Data
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Unused. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Unused. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0020000410000000000000">
+Function Class IncomingMessageHandlerInjectRaw</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: IncomingMessageHandlerInjectRaw(data, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_ef_incoming_message_handler_inject_raw(ZBee zbee, ZWBYTE size, const ZWBYTE * data, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Incoming Message Handler Inject Raw
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter data: Data
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Unused. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Unused. NULL if callback is not needed
 </BLOCKQUOTE>
 
 <P>

@@ -938,15 +938,25 @@
   HREF="Clusters_Reference.html#SECTION0019150000000000000000">Cluster Class Color Control (0x0300/768)</A>
 <LI><A ID="tex2html650"
   HREF="Clusters_Reference.html#SECTION0019160000000000000000">Cluster Class Level Control (0x0008/8)</A>
+<LI><A ID="tex2html651"
+  HREF="Clusters_Reference.html#SECTION0019170000000000000000">Cluster Class Door Lock (0x0101/257)</A>
+<LI><A ID="tex2html652"
+  HREF="Clusters_Reference.html#SECTION0019180000000000000000">Cluster Class TemperatureMeasurement (0x0402/1026)</A>
+<LI><A ID="tex2html653"
+  HREF="Clusters_Reference.html#SECTION0019190000000000000000">Cluster Class PressureMeasurement (0x0403/1027)</A>
+<LI><A ID="tex2html654"
+  HREF="Clusters_Reference.html#SECTION0019200000000000000000">Cluster Class RelativeHumidityMeasurement (0x0405/1029)</A>
+<LI><A ID="tex2html655"
+  HREF="Clusters_Reference.html#SECTION0019210000000000000000">Cluster Class OccupancySensing (0x0406/1030)</A>
 </UL>
 <BR>
-<LI><A ID="tex2html651"
+<LI><A ID="tex2html656"
   HREF="Zigbee_EZSP_Functions_Refer.html">Zigbee EZSP Functions Reference</A>
-<LI><A ID="tex2html652"
+<LI><A ID="tex2html657"
   HREF="List_Tables.html">List of Tables</A>
-<LI><A ID="tex2html653"
+<LI><A ID="tex2html658"
   HREF="List_Figures.html">List of Figures</A>
-<LI><A ID="tex2html654"
+<LI><A ID="tex2html659"
   HREF="Index.html">Index</A>
 </UL>
 </div>
@@ -5503,21 +5513,27 @@ Data holders:
 </LI>
 <LI><SPAN  CLASS="textbf">typeMask</SPAN>: bit mask of supported alarm types
 </LI>
-<LI><SPAN  CLASS="textbf">[typeId]</SPAN>: subtree to store events of specific alarm types
+<LI><SPAN  CLASS="textbf">[typeId]</SPAN>: subtree storing a specific alarm type
 </LI>
 <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN  CLASS="textbf">typeString</SPAN>: name of the alarm type
 </LI>
 <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN  CLASS="textbf">status</SPAN>: flag with alarm status (alarm enabled/disabled)
 </LI>
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN  CLASS="textbf">sequence</SPAN>: internal; sequence number of the event
+</LI>
 <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN  CLASS="textbf">eventMask</SPAN>: bit mask of supported events of this alarm type
 </LI>
-<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN  CLASS="textbf">event</SPAN>: last event ID
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN  CLASS="textbf">[eventId]</SPAN>: subtree storing a specific event type
 </LI>
-<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN  CLASS="textbf">eventString</SPAN>: last event name
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN  CLASS="textbf">status</SPAN>: event status
 </LI>
-<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN  CLASS="textbf">eventParameters</SPAN>: last event parameters
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN  CLASS="textbf">eventString</SPAN>: last event name
 </LI>
-<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN  CLASS="textbf">eventSequence</SPAN>: internal
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN  CLASS="textbf">parameters</SPAN>: last event parameters
+</LI>
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN  CLASS="textbf">isState</SPAN>: TRUE if the event is a state change, FALSE if it is a notification of a stateless event
+</LI>
+<LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<SPAN  CLASS="textbf">oppositeTo</SPAN>: internal; ID of the opposite event. Used for statefull events pairs
 </LI>
 </UL>
 
@@ -5887,7 +5903,7 @@ Parameter successCallback: Custom function to be called on function success. NUL
 Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-Report: updateStatus, updateStatusStr, waitTime, fragmentCount, fragmentTransmitted updated
+Report: updateStatus, updateStatusStr, waitTime, fragmentData, fragmentCount, fragmentTransmitted updated
 </BLOCKQUOTE>
 
 <P>
@@ -5957,6 +5973,30 @@ Parameter failureCallback: Custom function to be called on function failure. NUL
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Report: prepareStatus, prepareStatusStr updated
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0016440050000000000000">
+Command FirmwareUpdate Abandon</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: Abandon(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zway_cc_firmware_update_abandon(ZWay zway, ZWNODE node_id, ZWBYTE instance_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Abandon an ongoing Firmware Update process. Stop responding to an ongoing update process and erase the firmware data prepared for the update. This call is executed synchroneously and does not fire success/failure callbacks
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Not used
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Not used
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Report: updateStatus, updateStatusStr, fragmentData, fragmentCount, fragmentTransmitted updated
 </BLOCKQUOTE>
 
 <P>

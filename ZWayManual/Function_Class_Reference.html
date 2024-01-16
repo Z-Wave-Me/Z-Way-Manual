@@ -938,15 +938,25 @@
   HREF="Clusters_Reference.html#SECTION0019150000000000000000">Cluster Class Color Control (0x0300/768)</A>
 <LI><A ID="tex2html650"
   HREF="Clusters_Reference.html#SECTION0019160000000000000000">Cluster Class Level Control (0x0008/8)</A>
+<LI><A ID="tex2html651"
+  HREF="Clusters_Reference.html#SECTION0019170000000000000000">Cluster Class Door Lock (0x0101/257)</A>
+<LI><A ID="tex2html652"
+  HREF="Clusters_Reference.html#SECTION0019180000000000000000">Cluster Class TemperatureMeasurement (0x0402/1026)</A>
+<LI><A ID="tex2html653"
+  HREF="Clusters_Reference.html#SECTION0019190000000000000000">Cluster Class PressureMeasurement (0x0403/1027)</A>
+<LI><A ID="tex2html654"
+  HREF="Clusters_Reference.html#SECTION0019200000000000000000">Cluster Class RelativeHumidityMeasurement (0x0405/1029)</A>
+<LI><A ID="tex2html655"
+  HREF="Clusters_Reference.html#SECTION0019210000000000000000">Cluster Class OccupancySensing (0x0406/1030)</A>
 </UL>
 <BR>
-<LI><A ID="tex2html651"
+<LI><A ID="tex2html656"
   HREF="Zigbee_EZSP_Functions_Refer.html">Zigbee EZSP Functions Reference</A>
-<LI><A ID="tex2html652"
+<LI><A ID="tex2html657"
   HREF="List_Tables.html">List of Tables</A>
-<LI><A ID="tex2html653"
+<LI><A ID="tex2html658"
   HREF="List_Figures.html">List of Figures</A>
-<LI><A ID="tex2html654"
+<LI><A ID="tex2html659"
   HREF="Index.html">Index</A>
 </UL>
 </div>
@@ -2231,7 +2241,7 @@ C Syntax: ZWError zway_fc_zme_freq_change(ZWay zway, ZWBYTE freq, ZJobCustomCall
 Description: Change Z-Wave.Me Z-Stick 4 frequency. This function is specific for Z-Wave.Me hardware
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-Parameter freq: 0x01 RU. 0x02 IN. 0x03 US. 0x04 ANZ. 0x05 HK. 0x06 CN. 0x07 JP. 0x08 KR. 0x09 IL. 0x0A MY. 0xFF request current frequency (ZME firmwares prior to 5.03 don't support this feature)
+Parameter freq: 0x00 EU. 0x01 RU. 0x02 IN. 0x03 US. 0x04 ANZ. 0x05 HK. 0x06 CN. 0x07 JP. 0x08 KR. 0x09 IL. 0x0A MY. 0x0B US Long Range. 0xFF request current frequency (ZME firmwares prior to 5.03 don't support 0xFF feature)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
@@ -3044,7 +3054,7 @@ Function Class GetLongRangeChannel</A>
 Syntax: GetLongRangeChannel(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_fc_get_get_long_range_channel(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_fc_get_long_range_channel(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Get Long Range channel
@@ -3065,7 +3075,7 @@ Function Class SetLongRangeChannel</A>
 Syntax: SetLongRangeChannel(channel, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zway_fc_set_get_long_range_channel(ZWay zway, ZWBYTE channel, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zway_fc_set_long_range_channel(ZWay zway, ZWBYTE channel, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Set Long Range channel

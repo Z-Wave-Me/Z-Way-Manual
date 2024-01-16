@@ -938,15 +938,25 @@
   HREF="Clusters_Reference.html#SECTION0019150000000000000000">Cluster Class Color Control (0x0300/768)</A>
 <LI><A ID="tex2html650"
   HREF="Clusters_Reference.html#SECTION0019160000000000000000">Cluster Class Level Control (0x0008/8)</A>
+<LI><A ID="tex2html651"
+  HREF="Clusters_Reference.html#SECTION0019170000000000000000">Cluster Class Door Lock (0x0101/257)</A>
+<LI><A ID="tex2html652"
+  HREF="Clusters_Reference.html#SECTION0019180000000000000000">Cluster Class TemperatureMeasurement (0x0402/1026)</A>
+<LI><A ID="tex2html653"
+  HREF="Clusters_Reference.html#SECTION0019190000000000000000">Cluster Class PressureMeasurement (0x0403/1027)</A>
+<LI><A ID="tex2html654"
+  HREF="Clusters_Reference.html#SECTION0019200000000000000000">Cluster Class RelativeHumidityMeasurement (0x0405/1029)</A>
+<LI><A ID="tex2html655"
+  HREF="Clusters_Reference.html#SECTION0019210000000000000000">Cluster Class OccupancySensing (0x0406/1030)</A>
 </UL>
 <BR>
-<LI><A ID="tex2html651"
+<LI><A ID="tex2html656"
   HREF="Zigbee_EZSP_Functions_Refer.html">Zigbee EZSP Functions Reference</A>
-<LI><A ID="tex2html652"
+<LI><A ID="tex2html657"
   HREF="List_Tables.html">List of Tables</A>
-<LI><A ID="tex2html653"
+<LI><A ID="tex2html658"
   HREF="List_Figures.html">List of Figures</A>
-<LI><A ID="tex2html654"
+<LI><A ID="tex2html659"
   HREF="Index.html">Index</A>
 </UL>
 </div>
@@ -989,7 +999,7 @@ Cluster NodeDescriptorRequest Run</A>
 Syntax: Run(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_node_descriptor_request(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_node_descriptor_request(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Node Descriptor Request
@@ -1023,7 +1033,7 @@ Cluster ActiveEndPointsRequest Run</A>
 Syntax: Run(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_active_endpoints_request(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_active_endpoints_request(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Active EndPoints Request
@@ -1057,7 +1067,7 @@ Cluster SimpleDescriptorRequest Run</A>
 Syntax: Run(newEndpointId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_simple_descriptor_request(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE new_endpoint_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_simple_descriptor_request(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE new_endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Simple Descriptor Request
@@ -1091,7 +1101,7 @@ Cluster EndDeviceAnnounce Run</A>
 Syntax: Run(ieee, capability, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_end_device_announce(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, const ZBEUI64 ieee, ZWBYTE capability, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_end_device_announce(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, const ZBEUI64 ieee, ZWBYTE capability, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: End Device Announce
@@ -1128,7 +1138,7 @@ Cluster BindRequest ByGroupAddr</A>
 Syntax: ByGroupAddr(srcAddress, srcEndpointId, clusterId, groupAddr, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_bind_request_by_group_addr(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, const ZBEUI64 src_address, ZWBYTE src_endpoint_id, ZWWORD cluster_id, ZWWORD group_addr, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_bind_request_by_group_addr(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, const ZBEUI64 src_address, ZWBYTE src_endpoint_id, ZWWORD cluster_id, ZWWORD group_addr, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Bind By Group Address
@@ -1161,7 +1171,7 @@ Cluster BindRequest ByIeee</A>
 Syntax: ByIeee(srcAddress, srcEndpointId, clusterId, dstAddr, dstEndpointId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_bind_request_by_ieee(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, const ZBEUI64 src_address, ZWBYTE src_endpoint_id, ZWWORD cluster_id, const ZBEUI64 dst_addr, ZWBYTE dst_endpoint_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_bind_request_by_ieee(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, const ZBEUI64 src_address, ZWBYTE src_endpoint_id, ZWWORD cluster_id, const ZBEUI64 dst_addr, ZWBYTE dst_endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Bind By IEEE
@@ -1197,7 +1207,7 @@ Cluster BindRequest ToLocalDeviceByDeviceId</A>
 Syntax: ToLocalDeviceByDeviceId(srcEndpointId, clusterId, dstEndpointId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_bind_request_to_local_device_by_device_id(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE src_endpoint_id, ZWWORD cluster_id, ZWBYTE dst_endpoint_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_bind_request_to_local_device_by_device_id(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE src_endpoint_id, ZWWORD cluster_id, ZWBYTE dst_endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Bind By Device Id
@@ -1237,7 +1247,7 @@ Cluster PowerDescriptorRequest Run</A>
 Syntax: Run(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_power_descriptor_request(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_power_descriptor_request(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Power Descriptor Request
@@ -1268,7 +1278,7 @@ Cluster NetworkAddressRequest Run</A>
 Syntax: Run(ieee, requestType, startIndex, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_network_address_request(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, const ZBEUI64 ieee, ZWBYTE request_type, ZWBYTE start_index, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_network_address_request(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, const ZBEUI64 ieee, ZWBYTE request_type, ZWBYTE start_index, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Network Address Request
@@ -1327,7 +1337,7 @@ Cluster OnOff Set</A>
 Syntax: Set(value, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_on_off_set(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL value, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_on_off_set(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL value, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send On (0x00/0) or Off (0x01/1)
@@ -1351,7 +1361,7 @@ Cluster OnOff Toggle</A>
 Syntax: Toggle(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_on_off_toggle(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_on_off_toggle(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send Toggle (0x02/2)
@@ -1372,7 +1382,7 @@ Cluster OnOff OffWithEffect</A>
 Syntax: OffWithEffect(effectId, effectVar, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_on_off_off_with_effect(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE effect_id, ZWBYTE effect_var, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_on_off_off_with_effect(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE effect_id, ZWBYTE effect_var, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send Off with Effect (0x40/64)
@@ -1399,7 +1409,7 @@ Cluster OnOff OnWithRecallGlobalScene</A>
 Syntax: OnWithRecallGlobalScene(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_on_off_on_with_recall_global_scene(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_on_off_on_with_recall_global_scene(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send On with Recall Global Scene (0x41/65)
@@ -1420,7 +1430,7 @@ Cluster OnOff OnWithTimedOff</A>
 Syntax: OnWithTimedOff(control, onTime, offWaitTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_on_off_on_with_timed_off(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL control, ZWWORD on_time, ZWWORD off_wait_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_on_off_on_with_timed_off(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL control, ZWWORD on_time, ZWWORD off_wait_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Send On with Time Off (0x42/66)
@@ -1450,7 +1460,7 @@ Cluster OnOff SetOnTime</A>
 Syntax: SetOnTime(onTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_on_off_set_on_time(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD on_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_on_off_set_on_time(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD on_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Set Time of On Time
@@ -1474,13 +1484,112 @@ Cluster OnOff SetOffWaitTime</A>
 Syntax: SetOffWaitTime(offWaitTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_on_off_set_off_wait_time(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD off_wait_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_on_off_set_off_wait_time(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD off_wait_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Set Time of On with Time Off
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter offWaitTime: The length of time (in 1/10ths second) that the device SHALL remain “off”. 0x0000...0xFFFE - time in 1/10th second. 0xFFFF          - Reserved
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION001980080000000000000">
+Cluster OnOff Get</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: Get(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_on_off_get(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: On Off Get
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION001980090000000000000">
+Cluster OnOff ConfigurationGet</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_on_off_configuration_get(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: On Off Configuration Get
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019800100000000000000">
+Cluster OnOff SetOnOffReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetOnOffReporting(direction, minInterval, maxInterval, timeout, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_on_off_set_on_off_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set On Off Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019800110000000000000">
+Cluster OnOff ResetOnOffReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ResetOnOffReporting(direction, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_on_off_reset_on_off_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set On Off Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
@@ -1533,7 +1642,7 @@ Cluster PollControl FastPollStop</A>
 Syntax: FastPollStop(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_poll_control_fast_poll_stop(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_poll_control_fast_poll_stop(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Fast Poll Stop
@@ -1554,7 +1663,7 @@ Cluster PollControl SetLongPollInterval</A>
 Syntax: SetLongPollInterval(newLongPollInterval, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_poll_control_set_long_poll_interval(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, int new_long_poll_interval, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_poll_control_set_long_poll_interval(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, int new_long_poll_interval, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Set Long Poll Interval
@@ -1578,13 +1687,34 @@ Cluster PollControl SetShortPollInterval</A>
 Syntax: SetShortPollInterval(newShortPollInterval, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_poll_control_set_short_poll_interval(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD new_short_poll_interval, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_poll_control_set_short_poll_interval(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD new_short_poll_interval, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Set Short Poll Interval
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter newShortPollInterval: New Short Poll Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION001990040000000000000">
+Cluster PollControl ConfigurationGet</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_poll_control_configuration_get(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Poll Control Configuration Get
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
@@ -1612,7 +1742,7 @@ Cluster MgmtPermitJoiningRequest Run</A>
 Syntax: Run(permitDuration, tcSignificance, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_mgmt_permit_joining_request(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE permit_duration, ZWBOOL tc_significance, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_mgmt_permit_joining_request(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE permit_duration, ZWBOOL tc_significance, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Mgmt Permit Joining Request
@@ -1649,10 +1779,37 @@ Cluster MgmtLeaveRequest Run</A>
 Syntax: Run(removeChildren, rejoin, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_mgmt_leave_request(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL remove_children, ZWBOOL rejoin, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_mgmt_leave_request(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL remove_children, ZWBOOL rejoin, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Mgmt Leave Request
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter removeChildren: Remove children flag:. TRUE  - If the device being asked to leave the network is also being asked to remove its child devices, if any. FALSE - None children will be removed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter rejoin: Effect on Trust Center:. TRUE  - If the device being asked to leave from the current parent is requested to rejoin the network. FALSE - Otherwise
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019110020000000000000">
+Cluster MgmtLeaveRequest ForceRemove</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ForceRemove(removeChildren, rejoin, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_mgmt_leave_request_force_remove(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL remove_children, ZWBOOL rejoin, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Force Remove
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter removeChildren: Remove children flag:. TRUE  - If the device being asked to leave the network is also being asked to remove its child devices, if any. FALSE - None children will be removed
@@ -1712,7 +1869,7 @@ Data holders:
 </LI>
 <LI><SPAN  CLASS="textbf">disableLocalConfig</SPAN>: The DisableLocalConfig attribute allows a number of local device configuration functions to be disable. The intention of this attribute is to allow disabling of any local configuration user interface, for example to prevent reset or binding buttons being activated by non-authorized persons in a public building. Bit 0 of the DisableLocalConfig attribute disables any factory reset button (or equivalent) on the device. Bit 1 disables any device configuration button(s) (or equivalent)—for example, a bind button.
 </LI>
-<LI><SPAN  CLASS="textbf">swBuildIs</SPAN>: The SWBuildID attribute represents a detailed, manufacturer-specific reference to the version of the software
+<LI><SPAN  CLASS="textbf">swBuildId</SPAN>: The SWBuildID attribute represents a detailed, manufacturer-specific reference to the version of the software
 </LI>
 </UL>
 
@@ -1725,10 +1882,31 @@ Cluster Basic Reset</A>
 Syntax: Reset(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_basic_reset(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_basic_reset(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Basic Reset
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019120020000000000000">
+Cluster Basic ConfigurationGet</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_basic_configuration_get(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Configuration Get
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
@@ -1769,7 +1947,7 @@ Cluster Identify Identify</A>
 Syntax: Identify(identifyTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_identify_identify(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD identify_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_identify_identify(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD identify_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Identify Identify
@@ -1793,7 +1971,7 @@ Cluster Identify IdentifyQuery</A>
 Syntax: IdentifyQuery(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_identify_identify_query(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_identify_identify_query(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Identify Identify Query
@@ -1814,7 +1992,7 @@ Cluster Identify TriggerEffect</A>
 Syntax: TriggerEffect(effectId, effectVar = 0x00, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_identify_trigger_effect(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE effect_id, ZWBYTE effect_var, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_identify_trigger_effect(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE effect_id, ZWBYTE effect_var, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Identify Trigger Effect
@@ -1841,13 +2019,34 @@ Cluster Identify SetIdentifyTime</A>
 Syntax: SetIdentifyTime(identifyTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_identify_set_identify_time(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD identify_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_identify_set_identify_time(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD identify_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Identify Set Identify Time
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter identifyTime: It specifies the remaining length of time, in seconds, that the device will continue to identify itself
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019130050000000000000">
+Cluster Identify Get</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: Get(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_identify_get(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Identify Get
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
@@ -1902,7 +2101,7 @@ Cluster IasZone InitiateNormalOperationMode</A>
 Syntax: InitiateNormalOperationMode(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_ias_zone_initiate_normal_operation_mode(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_ias_zone_initiate_normal_operation_mode(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: IAS Zone Initiate Normal Operation Mode
@@ -1923,7 +2122,7 @@ Cluster IasZone InitiateTestMode</A>
 Syntax: InitiateTestMode(testModeDuration, currentZoneSensivityLevel, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_ias_zone_initiate_test_mode(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE test_mode_duration, ZWBYTE current_zone_sensivity_level, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_ias_zone_initiate_test_mode(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE test_mode_duration, ZWBYTE current_zone_sensivity_level, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: IAS Zone Initiate Test Mode
@@ -1950,13 +2149,55 @@ Cluster IasZone Enroll</A>
 Syntax: Enroll(zoneId, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_ias_zone_enroll(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE zone_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_ias_zone_enroll(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE zone_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Enroll Device
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter zoneId: Zone Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019140040000000000000">
+Cluster IasZone Get</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: Get(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_ias_zone_get(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Ias Zone Get
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019140050000000000000">
+Cluster IasZone ConfigurationGet</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_ias_zone_configuration_get(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Ias Zone Configuration Get
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
@@ -2093,7 +2334,7 @@ Cluster ColorControl MoveToHue</A>
 Syntax: MoveToHue(hue, direction, transitionTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_move_to_hue(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE hue, ZWBYTE direction, ZWWORD transition_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_move_to_hue(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE hue, ZWBYTE direction, ZWWORD transition_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Move to Hue (0x00/0)
@@ -2123,7 +2364,7 @@ Cluster ColorControl MoveHue</A>
 Syntax: MoveHue(moveMode, rate, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_move_hue(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE move_mode, ZWBYTE rate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_move_hue(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE move_mode, ZWBYTE rate, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Move Hue (0x01/1)
@@ -2150,7 +2391,7 @@ Cluster ColorControl StepHue</A>
 Syntax: StepHue(stepMode, stepSize, transitionTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_step_hue(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE step_mode, ZWBYTE step_size, ZWBYTE transition_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_step_hue(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE step_mode, ZWBYTE step_size, ZWBYTE transition_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Step Hue (0x02/2)
@@ -2180,7 +2421,7 @@ Cluster ColorControl MoveToSaturation</A>
 Syntax: MoveToSaturation(saturation, transitionTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_move_to_saturation(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE saturation, ZWWORD transition_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_move_to_saturation(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE saturation, ZWWORD transition_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Move to Saturation (0x03/3)
@@ -2207,7 +2448,7 @@ Cluster ColorControl MoveSaturation</A>
 Syntax: MoveSaturation(moveMode, rate, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_move_saturation(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE move_mode, ZWBYTE rate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_move_saturation(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE move_mode, ZWBYTE rate, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Move Saturation (0x04/4)
@@ -2234,7 +2475,7 @@ Cluster ColorControl StepSaturation</A>
 Syntax: StepSaturation(stepMode, stepSize, transitionTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_step_saturation(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE step_mode, ZWBYTE step_size, ZWBYTE transition_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_step_saturation(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE step_mode, ZWBYTE step_size, ZWBYTE transition_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Step Saturation (0x05/5)
@@ -2264,7 +2505,7 @@ Cluster ColorControl MoveToHueAndSaturation</A>
 Syntax: MoveToHueAndSaturation(hue, saturation, transitionTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_move_to_hue_and_saturation(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE hue, ZWBYTE saturation, ZWWORD transition_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_move_to_hue_and_saturation(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE hue, ZWBYTE saturation, ZWWORD transition_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Move to Hue and Saturation (0x06/6)
@@ -2294,7 +2535,7 @@ Cluster ColorControl MoveToColor</A>
 Syntax: MoveToColor(colorX, colorY, transitionTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_move_to_color(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD color_x, ZWWORD color_y, ZWWORD transition_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_move_to_color(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD color_x, ZWWORD color_y, ZWWORD transition_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Move to Color (0x07/7)
@@ -2324,7 +2565,7 @@ Cluster ColorControl MoveColor</A>
 Syntax: MoveColor(rateX, rateY, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_move_color(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD rate_x, ZWWORD rate_y, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_move_color(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD rate_x, ZWWORD rate_y, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Move Color (0x08/8)
@@ -2351,7 +2592,7 @@ Cluster ColorControl StepColor</A>
 Syntax: StepColor(stepX, stepY, transitionTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_step_color(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD step_x, ZWWORD step_y, ZWWORD transition_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_step_color(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD step_x, ZWWORD step_y, ZWWORD transition_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Step Color (0x09/9)
@@ -2381,7 +2622,7 @@ Cluster ColorControl MoveToColorTemperature</A>
 Syntax: MoveToColorTemperature(colorTempMireds, transitionTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_move_to_color_temperature(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD color_temp_mireds, ZWWORD transition_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_move_to_color_temperature(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD color_temp_mireds, ZWWORD transition_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Step Color (0x0A/10)
@@ -2408,7 +2649,7 @@ Cluster ColorControl EnhanceMoveToHue</A>
 Syntax: EnhanceMoveToHue(enhancedHue, direction, transitionTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_enhance_move_to_hue(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD enhanced_hue, ZWBYTE direction, ZWWORD transition_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_enhance_move_to_hue(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD enhanced_hue, ZWBYTE direction, ZWWORD transition_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Enhanced Move to Hue (0x40/64)
@@ -2438,7 +2679,7 @@ Cluster ColorControl EnhanceMoveHue</A>
 Syntax: EnhanceMoveHue(moveMode, rate, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_enhance_move_hue(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE move_mode, ZWWORD rate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_enhance_move_hue(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE move_mode, ZWWORD rate, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Enhanced Move Hue (0x41/65)
@@ -2465,7 +2706,7 @@ Cluster ColorControl EnhanceStepHue</A>
 Syntax: EnhanceStepHue(stepMode, stepSize, transitionTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_enhance_step_hue(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE step_mode, ZWWORD step_size, ZWWORD transition_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_enhance_step_hue(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE step_mode, ZWWORD step_size, ZWWORD transition_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Enhanced Step Hue (0x42/66)
@@ -2489,13 +2730,13 @@ Parameter failureCallback: Custom function to be called on function failure. NUL
 <P>
 
 <H4><A ID="SECTION00191500150000000000000">
-Cluster ColorControl EnhanceMoveHueAndSaturation</A>
+Cluster ColorControl EnhanceMoveToHueAndSaturation</A>
 </H4>
 <BLOCKQUOTE>
-Syntax: EnhanceMoveHueAndSaturation(enhancedHue, saturation, transitionTime, successCallback = NULL, failureCallback = NULL)
+Syntax: EnhanceMoveToHueAndSaturation(enhancedHue, saturation, transitionTime, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_enhance_move_hue_and_saturation(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD enhanced_hue, ZWBYTE saturation, ZWWORD transition_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_enhance_move_to_hue_and_saturation(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD enhanced_hue, ZWBYTE saturation, ZWWORD transition_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Enhanced Move to Hue and Saturation (0x43/67)
@@ -2525,7 +2766,7 @@ Cluster ColorControl ColorLoopSet</A>
 Syntax: ColorLoopSet(updateFlags, action, direction, time, startHue, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_color_loop_set(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE update_flags, ZWBYTE action, ZWBYTE direction, ZWWORD time, ZWWORD start_hue, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_color_loop_set(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE update_flags, ZWBYTE action, ZWBYTE direction, ZWWORD time, ZWWORD start_hue, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Color Loop Set (0x44/68)
@@ -2561,7 +2802,7 @@ Cluster ColorControl StopMoveStep</A>
 Syntax: StopMoveStep(moveMode, rate, colorTempMinMireds, colorTempMaxMireds, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_stop_move_step(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE move_mode, ZWWORD rate, ZWWORD color_temp_min_mireds, ZWWORD color_temp_max_mireds, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_stop_move_step(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE move_mode, ZWWORD rate, ZWWORD color_temp_min_mireds, ZWWORD color_temp_max_mireds, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Stop Move Step (0x47/71)
@@ -2594,7 +2835,7 @@ Cluster ColorControl MoveColorTemperature</A>
 Syntax: MoveColorTemperature(moveMode, rate, colorTempMinMireds, colorTempMaxMireds, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_move_color_temperature(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE move_mode, ZWWORD rate, ZWWORD color_temp_min_mireds, ZWWORD color_temp_max_mireds, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_move_color_temperature(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE move_mode, ZWWORD rate, ZWWORD color_temp_min_mireds, ZWWORD color_temp_max_mireds, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Move Color Temperature (0x4b/75)
@@ -2627,7 +2868,7 @@ Cluster ColorControl StepColorTemperature</A>
 Syntax: StepColorTemperature(stepMode, stepSize, transitionTime, colorTempMinMireds, colorTempMaxMireds, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_color_control_step_color_temperature(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE step_mode, ZWWORD step_size, ZWWORD transition_time, ZWWORD color_temp_min_mireds, ZWWORD color_temp_max_mireds, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_color_control_step_color_temperature(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE step_mode, ZWWORD step_size, ZWWORD transition_time, ZWWORD color_temp_min_mireds, ZWWORD color_temp_max_mireds, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Move Color Temperature (0x4c/76)
@@ -2646,6 +2887,369 @@ Parameter colorTempMinMireds: The Color Temperature Minimum Mireds field is 16-b
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter colorTempMaxMireds: The Color Temperature Maximum Mireds field is 16-bits in length and specifies an upper bound on the ColorTemperatureMireds attribute (a lower bound on the color temperature in kelvins) for the current move operation such that: ColorTemperatureMireds &lt;= Color Temperature Maximum Mireds field &lt;= ColorTempPhysicalMaxMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Maximum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Maximum Mireds field is set to 0x0000, ColorTempPhysicalMaxMireds SHALL be used as the upper bound for the ColorTemperatureMireds attribute
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191500200000000000000">
+Cluster ColorControl GetHueSaturation</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: GetHueSaturation(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_color_control_get_hue_saturation(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Color Control Get Hue, Saturation
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191500210000000000000">
+Cluster ColorControl GetColor</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: GetColor(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_color_control_get_color(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Color Control Get Color
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191500220000000000000">
+Cluster ColorControl GetRemainingTime</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: GetRemainingTime(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_color_control_get_remaining_time(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Color Control Get Remaining Time
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191500230000000000000">
+Cluster ColorControl SetCurrentHueReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetCurrentHueReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_color_control_set_current_hue_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZWBYTE threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Current Hue Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter threshold: Threshold
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191500240000000000000">
+Cluster ColorControl ResetCurrentHueReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ResetCurrentHueReporting(direction, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_color_control_reset_current_hue_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Reset Current Hue Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191500250000000000000">
+Cluster ColorControl SetCurrentSaturationReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetCurrentSaturationReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_color_control_set_current_saturation_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZWBYTE threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Current Saturation Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter threshold: Threshold
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191500260000000000000">
+Cluster ColorControl ResetCurrentSaturationReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ResetCurrentSaturationReporting(direction, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_color_control_reset_current_saturation_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Reset Current Saturation Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191500270000000000000">
+Cluster ColorControl SetCurrentXReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetCurrentXReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_color_control_set_current_x_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Current X Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter threshold: Threshold
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191500280000000000000">
+Cluster ColorControl ResetCurrentXReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ResetCurrentXReporting(direction, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_color_control_reset_current_x_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Reset Current X Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191500290000000000000">
+Cluster ColorControl SetCurrentYReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetCurrentYReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_color_control_set_current_y_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Current Y Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter threshold: Threshold
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191500300000000000000">
+Cluster ColorControl ResetCurrentYReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ResetCurrentYReporting(direction, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_color_control_reset_current_y_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Reset Current Y Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191500310000000000000">
+Cluster ColorControl SetColorTemperatureMiredsReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetColorTemperatureMiredsReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_color_control_set_color_temperature_mireds_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Color Temperature Mireds Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter threshold: Threshold
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191500320000000000000">
+Cluster ColorControl ResetColorTemperatureMiredsReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ResetColorTemperatureMiredsReporting(direction, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_color_control_reset_color_temperature_mireds_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Reset Color Temperature Mireds Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
@@ -2698,7 +3302,7 @@ Cluster LevelControl MoveToLevel</A>
 Syntax: MoveToLevel(level, transitionTime = 0, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_level_control_move_to_level(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE level, ZWWORD transition_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_level_control_move_to_level(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE level, ZWWORD transition_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Move to Level (0x00/0)
@@ -2725,7 +3329,7 @@ Cluster LevelControl Move</A>
 Syntax: Move(moveMode, rate = 0, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_level_control_move(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE move_mode, ZWBYTE rate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_level_control_move(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE move_mode, ZWBYTE rate, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Move (0x01/1)
@@ -2752,7 +3356,7 @@ Cluster LevelControl Step</A>
 Syntax: Step(stepMode, stepSize, transitionTime = 0, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_level_control_step(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE step_mode, ZWBYTE step_size, ZWWORD transition_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_level_control_step(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE step_mode, ZWBYTE step_size, ZWWORD transition_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Step (0x02/2)
@@ -2782,7 +3386,7 @@ Cluster LevelControl Stop</A>
 Syntax: Stop(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_level_control_stop(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_level_control_stop(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Stop (0x03/3)
@@ -2803,7 +3407,7 @@ Cluster LevelControl MoveToLevelOnOff</A>
 Syntax: MoveToLevelOnOff(level, transitionTime = 0, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_level_control_move_to_level_on_off(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE level, ZWWORD transition_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_level_control_move_to_level_on_off(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE level, ZWWORD transition_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Move to Level (with On/Off) (0x04/4)
@@ -2830,7 +3434,7 @@ Cluster LevelControl MoveOnOff</A>
 Syntax: MoveOnOff(moveMode, rate = 0, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_level_control_move_on_off(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE move_mode, ZWBYTE rate, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_level_control_move_on_off(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE move_mode, ZWBYTE rate, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Move (with On/Off) (0x05/5)
@@ -2857,7 +3461,7 @@ Cluster LevelControl StepOnOff</A>
 Syntax: StepOnOff(stepMode, stepSize, transitionTime = 0, successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_level_control_step_on_off(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE step_mode, ZWBYTE step_size, ZWWORD transition_time, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_level_control_step_on_off(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE step_mode, ZWBYTE step_size, ZWWORD transition_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Step (with On/Off) (0x06/6)
@@ -2887,10 +3491,1601 @@ Cluster LevelControl StopOnOff</A>
 Syntax: StopOnOff(successCallback = NULL, failureCallback = NULL)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
-C Syntax: ZWError zbee_cc_level_control_stop_on_off(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)
+C Syntax: ZWError zbee_cc_level_control_stop_on_off(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Description: Stop (with On/Off) (0x07/7)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019160090000000000000">
+Cluster LevelControl Get</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: Get(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_level_control_get(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Level Control Get
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191600100000000000000">
+Cluster LevelControl ConfigurationGet</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_level_control_configuration_get(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Level Control Configuration Get
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191600110000000000000">
+Cluster LevelControl SetCurrentLevelReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetCurrentLevelReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_level_control_set_current_level_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZWBYTE threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Current Level Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter threshold: Threshold
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191600120000000000000">
+Cluster LevelControl ResetCurrentLevelReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ResetCurrentLevelReporting(direction, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_level_control_reset_current_level_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Reset Current Level Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H1><A ID="SECTION0019170000000000000000">
+Cluster Class Door Lock (0x0101/257)</A>
+</H1>
+
+<P>
+Profile ZigBee Device Profile (0x0104/260)
+
+<P>
+The door lock cluster provides an interface to a generic way to secure a door. The physical object that provides the locking functionality is abstracted from the cluster. The cluster has a small list of mandatory attributes and functions and a list of optional features. 0th bit - 0x00 (Event Source) 0x00 (Operation Event Code) Unknown or manufacturer-specific keypad operation event. 1st bit - 0x00 (Event Source) 0x01 (Operation Event Code) Lock, source: keypad. 2nd bit - 0x00 (Event Source) 0x02 (Operation Event Code) Unlock, source: keypad. 3rd bit - 0x00 (Event Source) 0x03 (Operation Event Code) Lock, source: keypad, error: invalid PIN. 4th bit - 0x00 (Event Source) 0x04 (Operation Event Code) Lock, source: keypad, error: invalid schedule. 5th bit - 0x00 (Event Source) 0x05 (Operation Event Code) Unlock, source: keypad, error: invalid code. 6th bit - 0x00 (Event Source) 0x06 (Operation Event Code) Unlock, source: keypad, error: invalid schedule. 7th bit - 0x00 (Event Source) 0x0F (Operation Event Code) Non-Access User operation event, source keypad. 0th bit - 0x01 (Event Source) 0x00 (Operation Event Code)  Unknown or manufacturer-specific RF operation event. 1st bit - 0x01 (Event Source) 0x01 (Operation Event Code)  Lock, source: RF. 2nd bit - 0x01 (Event Source) 0x02 (Operation Event Code)  Unlock, source: RF. 3rd bit - 0x01 (Event Source) 0x03 (Operation Event Code)  Lock, source: RF, error: invalid code. 4th bit - 0x01 (Event Source) 0x04 (Operation Event Code)  Lock, source: RF, error: invalid schedule. 5th bit - 0x01 (Event Source) 0x05 (Operation Event Code)  Unlock, source: RF, error: invalid code. 6th bit - 0x01 (Event Source) 0x06 (Operation Event Code)  Unlock, source: RF, error: invalid schedule. 0th bit - 0x02 (Event Source) 0x00 (Operation Event Code)  Unknown or manufacturer-specific manual operation event. 1st bit - 0x02 (Event Source) 0x01 (Operation Event Code)  Thumbturn Lock. 2nd bit - 0x02 (Event Source) 0x02 (Operation Event Code)  Thumbturn Unlock. 3rd bit - 0x02 (Event Source) 0x07 (Operation Event Code)  One touch lock. 4th bit - 0x02 (Event Source) 0x08 (Operation Event Code)  Key Lock. 5th bit - 0x02 (Event Source) 0x09 (Operation Event Code)  Key Unlock. 6th bit - 0x02 (Event Source) 0x0A (Operation Event Code)  Auto lock. 7th bit - 0x02 (Event Source) 0x0B (Operation Event Code)  Schedule Lock. 8th bit - 0x02 (Event Source) 0x0C (Operation Event Code)  Schedule Unlock. 9th bit - 0x02 (Event Source) 0x0D (Operation Event Code)  Manual Lock (Key or Thumbturn). 1st bit - 0x02 (Event Source) 0x0E (Operation Event Code) ) Manual Unlock (Key or Thumbturn). 0rd bit - 0x03 (Event Source) 0x00 (Operation Event Code)  Unknown or manufacturer-specific keypad operation even. 1th bit - 0x03 (Event Source) 0x01 (Operation Event Code)  Lock, source: RFID. 2th bit - 0x03 (Event Source) 0x02 (Operation Event Code)  Unlock, source: RFID. 3th bit - 0x03 (Event Source) 0x03 (Operation Event Code)  Lock, source: RFID, error: invalid RFID ID. 4th bit - 0x03 (Event Source) 0x04 (Operation Event Code)  Lock, source: RFID, error: invalid schedule. 5th bit - 0x03 (Event Source) 0x05 (Operation Event Code)  Unlock, source: RFID, error: invalid RFID ID. 6th bit - 0x03 (Event Source) 0x06 (Operation Event Code)  Unlock, source: RFID, error: invalid schedule. 0th bit - 0x00 (Event Source) 0x00 (Operation Event Code)  Unknown or manufacturer-specific keypad programming event. 1th bit - 0x00 (Event Source) 0x01 (Operation Event Code)  Master code changed, source: keypad User ID: master user ID. PIN: default or master code if codes can be sent over the air per attribute. User type: default User Status: default. 2th bit - 0x00 (Event Source) 0x02 (Operation Event Code)  PIN added, source: keypad User ID: user ID that was added. PIN: code that was added (if codes can be sent over the air per attribute.) User type: default or type added. User Status: default or status added. 3th bit - 0x00 (Event Source) 0x03 (Operation Event Code)  PIN deleted, source: keypad User ID: user ID that was deleted. PIN: code that was deleted (if codes can be sent over the air per attribute.) User type: default or type deleted. User Status: default or status deleted. 4th bit - 0x00 (Event Source) 0x04 (Operation Event Code)  PIN changed Source: keypad User ID: user ID that was changed PIN: code that was changed (if codes can be sent over the air per attribute.) User type: default or type changed. User Status: default or status changed. 0th bit - 0x01 (Event Source) 0x00 (Operation Event Code)  Unknown or manufacturer-specific RF programming event. 2th bit - 0x01 (Event Source) 0x02 (Operation Event Code)  PIN added, source RF Same as keypad source above. 3th bit - 0x01 (Event Source) 0x03 (Operation Event Code)  PIN deleted, source RF Same as keypad source above. 4th bit - 0x01 (Event Source) 0x04 (Operation Event Code)  PIN changed Source RF Same as keypad source above. 5th bit - 0x01 (Event Source) 0x05 (Operation Event Code)  RFID code added, Source RF. 6th bit - 0x01 (Event Source) 0x06 (Operation Event Code)  RFID code deleted, Source RF. 0th bit - 0x03 (Event Source) 0x00 (Operation Event Code)  Unknown or manufacturer-specific keypad programming event. 5th bit - 0x03 (Event Source) 0x05 (Operation Event Code)  ID Added, Source: RFID User ID: user ID that was added. ID: ID that was added (if codes can be sent over the air per at- tribute.) User Type: default or type added. User Status: default or status added. 6th bit - 0x03 (Event Source) 0x06 (Operation Event Code)  ID Deleted, Source: RFID User ID: user ID that was deleted. ID: ID that was deleted (if codes can be sent over the air per attribute.) User Type: default or type deleted. User Status: default or status deleted.
+<BR>
+
+<P>
+Data holders:
+
+<P>
+
+<UL>
+<LI><SPAN  CLASS="textbf">lockState</SPAN>: It describes lock states.
+</LI>
+<LI><SPAN  CLASS="textbf">lockType</SPAN>: It describes lock types.
+</LI>
+<LI><SPAN  CLASS="textbf">actuatorEnabled</SPAN>: It describes if actuator is enable or not
+</LI>
+<LI><SPAN  CLASS="textbf">doorState</SPAN>: It describes possible door states.
+</LI>
+<LI><SPAN  CLASS="textbf">doorOpenEvents</SPAN>: This attribute holds the number of door open events that have occurred since it was last zeroed
+</LI>
+<LI><SPAN  CLASS="textbf">doorClosedEvents</SPAN>: This attribute holds the number of door closed events that have occurred since it was last zeroed.
+</LI>
+<LI><SPAN  CLASS="textbf">openPeriod</SPAN>: This attribute holds the number of minutes the door has been open since the last time it transitioned from closed to open.
+</LI>
+<LI><SPAN  CLASS="textbf">numberOfLogRecordsSupported</SPAN>: The number of available log records
+</LI>
+<LI><SPAN  CLASS="textbf">numberOfTotalUsersSupported</SPAN>: Number of total users supported by the lock. This value is equal to the higher one of [# of PIN Users Supported] and [# of RFID Users Supported]
+</LI>
+<LI><SPAN  CLASS="textbf">numberOfPINUsersSupported</SPAN>: The number of PIN users supported.
+</LI>
+<LI><SPAN  CLASS="textbf">numberOfRFIDUsersSupported</SPAN>: The number of RFID users supported.
+</LI>
+<LI><SPAN  CLASS="textbf">numberOfWeekDaySchedulesSupportedPerUser</SPAN>: The number of configurable week day schedule supported per user.
+</LI>
+<LI><SPAN  CLASS="textbf">numberOfYearDaySchedulesSupportedPerUser</SPAN>: The number of configurable year day schedule supported per user
+</LI>
+<LI><SPAN  CLASS="textbf">numberOfHolidaySchedulesSupported</SPAN>: The number of holiday schedules supported for the entire door lock device.
+</LI>
+<LI><SPAN  CLASS="textbf">maxPINCodeLength</SPAN>: An 8 bit value indicates the maximum length in bytes of a PIN Code on this device. The default is set to 8 since most lock manufacturers currently allow PIN Codes of 8 bytes or less
+</LI>
+<LI><SPAN  CLASS="textbf">minPINCodeLength</SPAN>: An 8 bit value indicates the minimum length in bytes of a PIN Code on this device. The default is set to 4 since most lock manufacturers do not support PIN Codes that are shorter than 4 bytes.
+</LI>
+<LI><SPAN  CLASS="textbf">maxRFIDCodeLength</SPAN>: An 8 bit value indicates the maximum length in bytes of a RFID Code on this device. The value depends on the RFID code range specified by the manufacturer, if media anti-collision identifiers (UID) are used as RFID code, a value of 20 (equals 10 Byte ISO 14443A UID) is recommended
+</LI>
+<LI><SPAN  CLASS="textbf">minRFIDCodeLength</SPAN>: An 8 bit value indicates the minimum length in bytes of a RFID Code on this device. The value depends on the RFID code range specified by the manufacturer, if media anti-collision identifiers (UID) are used as RFID code, a value of 8 (equals 4 Byte ISO 14443A UID) is recommended.
+</LI>
+<LI><SPAN  CLASS="textbf">enableLogging</SPAN>: Enable/disable event logging. When event logging is enabled, all event messages are stored on the lock for retrieval. Logging events can be but not limited to Tamper Alarm, Lock, Unlock, Autolock, User Code Added, User Code Deleted, Schedule Added, and Schedule Deleted. For a full detail of all the possible alarms and events, please refer to the full list in the Alarm and Event Masks Attribute Set.
+</LI>
+<LI><SPAN  CLASS="textbf">language</SPAN>: Modifies the language for the on-screen or audible user interface using three bytes from ISO-639-1. It consists of one byte of length and two bytes for the language code. For example if the language is set to English, the value would be "02 65 6E" for the language code "en".
+</LI>
+<LI><SPAN  CLASS="textbf">ledSettings</SPAN>: The settings for the LED support three different modes
+</LI>
+<LI><SPAN  CLASS="textbf">autoRelockTime</SPAN>: The number of seconds to wait after unlocking a lock before it automatically locks again. 0=disabled. If set, unlock operations from any source will be timed. For one time unlock with timeout use the specific command.
+</LI>
+<LI><SPAN  CLASS="textbf">soundVolume</SPAN>: The sound volume on a door lock has three possible setting
+</LI>
+<LI><SPAN  CLASS="textbf">operatingMode</SPAN>: It describes operating modes
+</LI>
+<LI><SPAN  CLASS="textbf">supportedOperatingModes</SPAN>: This bitmap contains all operating bits of the Operating Mode Attribute supported by the lock.
+</LI>
+<LI><SPAN  CLASS="textbf">defaultConfigurationRegister</SPAN>: This attribute represents the default configurations as they are physically set on the device
+</LI>
+<LI><SPAN  CLASS="textbf">enableLocalProgramming</SPAN>: Enable/disable local programming on the door lock. The local programming features includes but not limited to adding new user codes, deleting existing user codes, add new schedule, deleting existing schedule on the local door lock interfaces. If this value is set to 0x01 or TRUE then local programming is enabled on the door lock. If it is set to 0x00 or FALSE then local programming is disabled on the door lock. Local programming is enabled by default.
+</LI>
+<LI><SPAN  CLASS="textbf">enableOneTouchLocking</SPAN>: Enable/disable the ability to lock the door lock with a single touch on the door lock
+</LI>
+<LI><SPAN  CLASS="textbf">enableInsideStatusLED</SPAN>: Enable/disable an inside LED that allows the user to see at a glance if the door is locked.
+</LI>
+<LI><SPAN  CLASS="textbf">enablePrivacyModeButton</SPAN>: Enable/disable a button inside the door that is used to put the lock into privacy mode. When the lock is in privacy mode it cannot be manipulated from the outside
+</LI>
+<LI><SPAN  CLASS="textbf">wrongCodeEntryLimit</SPAN>: The number of incorrect codes or RFID presentment attempts a user is allowed to enter before the door will enter a lockout state. The lockout state will be for the duration of UserCodeTemporaryDisableTime
+</LI>
+<LI><SPAN  CLASS="textbf">userCodeTemporaryDisableTime</SPAN>: The number of seconds that the lock shuts down following wrong code entry. 1-255 seconds. Device can shutdown to lock user out for specified amount of time. (Makes it difficult to try and guess a PIN for the device.)
+</LI>
+<LI><SPAN  CLASS="textbf">sendPINOverTheAir</SPAN>: Boolean set to True if it is ok for the door lock server to send PINs over the air. This attribute determines the behavior of the server’s TX operation. If it is false, then it is not ok for the device to send PIN in any messages over the air. The PIN field within any door lock cluster message SHALL keep the first octet unchanged and masks the actual code by replacing with 0xFF. For example (PIN "1234" ): If the attribute value is True, 0x04 0x31 0x32 0x33 0x34 SHALL be used in the PIN field in any door lock cluster message payload. If the attribute value is False, 0x04 0xFF 0xFF 0xFF 0xFF SHALL be used
+</LI>
+<LI><SPAN  CLASS="textbf">requirePINforRFOperation</SPAN>: Boolean set to True if the door lock server requires that an optional PINs be included in the payload of RF lock operation events like Lock, Unlock and Toggle in order to function.
+</LI>
+<LI><SPAN  CLASS="textbf">zigBeeSecurityLevel</SPAN>: The Security Level attribute allows the door lock manufacturer to indicate what level of security the door lock requires.
+</LI>
+<LI><SPAN  CLASS="textbf">alarmMask</SPAN>: The alarm mask is used to turn on/off alarms for particular functions
+</LI>
+<LI><SPAN  CLASS="textbf">keypadOperationEventMask</SPAN>: Event mask used to turn on and off the transmission of keypad operation events. This mask DOES NOT apply to the storing of events in the report table.
+</LI>
+<LI><SPAN  CLASS="textbf">rfOperationEventMask</SPAN>: Event mask used to turn on and off the transmission of RF operation events. This mask DOES NOT apply to the storing of events in the report table.
+</LI>
+<LI><SPAN  CLASS="textbf">manualOperationEventMask</SPAN>: Event mask used to turn on and off manual operation events. This mask DOES NOT apply to the storing of events in the report table.
+</LI>
+<LI><SPAN  CLASS="textbf">rfidOperandonEventMask</SPAN>: Event mask used to turn on and off RFID operation events. This mask DOES NOT apply to the storing of events in the report table
+</LI>
+<LI><SPAN  CLASS="textbf">keypadProgrammingEventMask</SPAN>: Event mask used to turn on and off keypad programming events. This mask DOES NOT apply to the storing of events in the report table.
+</LI>
+<LI><SPAN  CLASS="textbf">rfProgrammingEventMask</SPAN>: Event mask used to turn on and off RF programming events. This mask DOES NOT apply to the storing of events in the report table.
+</LI>
+<LI><SPAN  CLASS="textbf">rfidProgrammingEventMask</SPAN>: Event mask used to turn on and off RFID programming events. This mask DOES NOT apply to the storing of events in the report table.
+</LI>
+</UL>
+
+<P>
+
+<H4><A ID="SECTION0019170010000000000000">
+Cluster DoorLock LockDoor</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: LockDoor(code, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_lock_door(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE size, const ZWBYTE * code, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Lock Door (0x00/0)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter code: Pin Code
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019170020000000000000">
+Cluster DoorLock UnlockDoor</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: UnlockDoor(code, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_unlock_door(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE size, const ZWBYTE * code, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Unlock Door (0x01/1)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter code: Pin Code
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019170030000000000000">
+Cluster DoorLock Toggle</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: Toggle(code, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_toggle(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE size, const ZWBYTE * code, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Toggle (0x02/2)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter code: Pin Code
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019170040000000000000">
+Cluster DoorLock UnlockWithTimeout</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: UnlockWithTimeout(timeout, code, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_unlock_with_timeout(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD timeout, ZWBYTE size, const ZWBYTE * code, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Unlock with Timeout (0x03/3)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Relock Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter code: Pin Code
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019170050000000000000">
+Cluster DoorLock GetLogRecord</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: GetLogRecord(logIndex, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_get_log_record(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD log_index, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Get Log Record (0x04/4)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter logIndex: Log Entry Index
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019170060000000000000">
+Cluster DoorLock SetPinCode</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetPinCode(userId, userStatus, userType, pin, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_set_pin_code(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD user_id, ZWBYTE user_status, ZWBYTE user_type, ZWBYTE size, const ZWBYTE * pin, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set PIN Code (0x05/5)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userStatus: User Status
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userType: User Type
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter pin: Pin Code
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019170070000000000000">
+Cluster DoorLock GetPinCode</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: GetPinCode(userId, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_get_pin_code(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD user_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Get PIN Code (0x06/6)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019170080000000000000">
+Cluster DoorLock ClearPinCode</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ClearPinCode(userId, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_clear_pin_code(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD user_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Clear PIN Code (0x07/7)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019170090000000000000">
+Cluster DoorLock ClearAllPinCodes</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ClearAllPinCodes(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_clear_all_pin_codes(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Clear All PIN Codes (0x08/8)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700100000000000000">
+Cluster DoorLock SetUserStatus</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetUserStatus(userId, userType, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_set_user_status(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD user_id, ZWBYTE user_type, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set User Status (0x09/9)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userType: User Type
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700110000000000000">
+Cluster DoorLock GetUserStatus</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: GetUserStatus(userId, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_get_user_status(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD user_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Get User Status (0x0A/10)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700120000000000000">
+Cluster DoorLock SetWeekdaySchedule</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetWeekdaySchedule(id, userId, days, startHour, startMinute, endHour, endMinute, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_set_weekday_schedule(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE id, ZWWORD user_id, ZWBYTE days, ZWBYTE start_hour, ZWBYTE start_minute, ZWBYTE end_hour, ZWBYTE end_minute, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Weekday Schedule (0x0B/11)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter id: Schedule Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Type
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter days: Days Mask
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter startHour: Start Hour
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter startMinute: Start Minute
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter endHour: End Hour
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter endMinute: End Minute
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700130000000000000">
+Cluster DoorLock GetWeekdaySchedule</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: GetWeekdaySchedule(id, userId, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_get_weekday_schedule(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE id, ZWWORD user_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Get Weekday Schedule (0x0C/12)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter id: Schedule Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700140000000000000">
+Cluster DoorLock ClearWeekdaySchedule</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ClearWeekdaySchedule(id, userId, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_clear_weekday_schedule(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE id, ZWWORD user_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Clear Weekday Schedule (0x0D/13)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter id: Schedule Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700150000000000000">
+Cluster DoorLock SetYearDaySchedule</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetYearDaySchedule(id, userId, startTime, endTime, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_set_year_day_schedule(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE id, ZWWORD user_id, unsigned int start_time, unsigned int end_time, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Year Day Schedule (0x0E/14)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter id: Schedule Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Type
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter startTime: Start Time
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter endTime: Start Minute
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700160000000000000">
+Cluster DoorLock GetYearDaySchedule</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: GetYearDaySchedule(id, userId, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_get_year_day_schedule(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE id, ZWWORD user_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Get Year Day Schedule (0x0F/15)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter id: Schedule Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700170000000000000">
+Cluster DoorLock ClearYearDaySchedule</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ClearYearDaySchedule(id, userId, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_clear_year_day_schedule(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE id, ZWWORD user_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Clear Year Day Schedule (0x10/16)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter id: Schedule Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700180000000000000">
+Cluster DoorLock SetHolidaySchedule</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetHolidaySchedule(id, startTime, endTime, mode, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_set_holiday_schedule(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE id, unsigned int start_time, unsigned int end_time, ZWBYTE mode, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Holiday Schedule (0x11/17)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter id: Schedule Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter startTime: Start Time
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter endTime: Start Minute
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter mode: Operating Mode During Holiday
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700190000000000000">
+Cluster DoorLock GetHolidaySchedule</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: GetHolidaySchedule(id, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_get_holiday_schedule(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Get Holiday Schedule (0x12/18)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter id: Schedule Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700200000000000000">
+Cluster DoorLock ClearHolidaySchedule</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ClearHolidaySchedule(id, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_clear_holiday_schedule(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBYTE id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Clear Holiday Schedule (0x13/19)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter id: Schedule Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700210000000000000">
+Cluster DoorLock SetUserType</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetUserType(userId, userType, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_set_user_type(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD user_id, ZWBYTE user_type, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set User Type (0x14/20)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userType: User Type
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700220000000000000">
+Cluster DoorLock GetUserType</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: GetUserType(userId, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_get_user_type(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD user_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Get User Status (0x15/21)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700230000000000000">
+Cluster DoorLock SetRfidCode</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetRfidCode(userId, userStatus, userType, code, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_set_rfid_code(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD user_id, ZWBYTE user_status, ZWBYTE user_type, ZWBYTE size, const ZWBYTE * code, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set RFID Code (0x16/22)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userStatus: User Status
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userType: User Type
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter code: RFID Code
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700240000000000000">
+Cluster DoorLock GetRfidCode</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: GetRfidCode(userId, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_get_rfid_code(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD user_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Get RFID Code (0x17/23)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700250000000000000">
+Cluster DoorLock ClearRfidCode</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ClearRfidCode(userId, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_clear_rfid_code(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWWORD user_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Clear RFID Code (0x18/24)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter userId: User Identifier
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700260000000000000">
+Cluster DoorLock ClearAllRfidCodes</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ClearAllRfidCodes(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_clear_all_rfid_codes(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Clear All RFID Code (0x19/25)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700270000000000000">
+Cluster DoorLock GetState</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: GetState(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_get_state(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Color Control Get State
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION00191700280000000000000">
+Cluster DoorLock ConfigurationGet</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_door_lock_configuration_get(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Color Control Configuration Get
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H1><A ID="SECTION0019180000000000000000">
+Cluster Class TemperatureMeasurement (0x0402/1026)</A>
+</H1>
+
+<P>
+Profile Zigbee Device Profile (0x0104/260)
+
+<P>
+The cluster provides an interface to temperature measurement functionality, including configuration and provision of notifications of temperature measurements.
+<BR>
+
+<P>
+Data holders:
+
+<P>
+
+<UL>
+<LI><SPAN  CLASS="textbf">measuredValue</SPAN>: It represents the temperature in degrees Celsius as follows: MeasuredValue = 100 x temperature in degrees Celsius. Where -273.15°C &lt;= temperature &lt;= 327.67 ºC, corresponding to a MeasuredValue in the range 0x954d to 0x7fff. The maximum resolution this format allows is 0.01 ºC. A MeasuredValue of 0x8000 indicates that the temperature measurement is invalid. MeasuredValue is updated continuously as new measurements are made.
+</LI>
+<LI><SPAN  CLASS="textbf">minMeasuredValue</SPAN>: It indicates the minimum value of MeasuredValue that is capable of being measured. A MinMeasuredValue of 0x8000 indicates that the minimum value is unknown.
+</LI>
+<LI><SPAN  CLASS="textbf">maxMeasuredValue</SPAN>: It indicates the maximum value of MeasuredValue that is capable of being measured. MaxMeasuredValue shall be greater than MinMeasuredValue. MinMeasuredValue and MaxMeasuredValue define the range of the sensor. A MaxMeasuredValue of 0x8000 indicates that the maximum value is unknown.
+</LI>
+<LI><SPAN  CLASS="textbf">tolerance</SPAN>: It indicates the magnitude of the possible error that is associated with MeasuredValue. The true value is located in the range (MeasuredValue – Tolerance) to (MeasuredValue + Tolerance).
+</LI>
+</UL>
+
+<P>
+
+<H4><A ID="SECTION0019180010000000000000">
+Cluster TemperatureMeasurement SetMeasuredValueReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetMeasuredValueReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_temperature_measurement_set_measured_value_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Measured Value Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter threshold: Threshold
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019180020000000000000">
+Cluster TemperatureMeasurement ResetMeasuredValueReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ResetMeasuredValueReporting(direction, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_temperature_measurement_reset_measured_value_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Reset Measured Value Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019180030000000000000">
+Cluster TemperatureMeasurement SetToleranceReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetToleranceReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_temperature_measurement_set_tolerance_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Tolerance Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter threshold: Threshold
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019180040000000000000">
+Cluster TemperatureMeasurement ResetToleranceReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ResetToleranceReporting(direction, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_temperature_measurement_reset_tolerance_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Reset Tolerance Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H1><A ID="SECTION0019190000000000000000">
+Cluster Class PressureMeasurement (0x0403/1027)</A>
+</H1>
+
+<P>
+Profile Zigbee Device Profile (0x0104/260)
+
+<P>
+The cluster provides an interface to pressure measurement functionality, including configuration and provision of notifications of pressure measurements.
+<BR>
+
+<P>
+Data holders:
+
+<P>
+
+<UL>
+<LI><SPAN  CLASS="textbf">measuredValue</SPAN>: It represents the pressure in kPa as follows: MeasuredValue = 10 x Pressure Where -3276.7 kPa &lt;= Pressure &lt;= 3276.7 kPa, corresponding to a MeasuredValue in the range 0x8001 to 0x7fff. A MeasuredValue of 0x8000 indicates that the pressure measurement is invalid. MeasuredValue is updated continuously as new measurements are made.
+</LI>
+<LI><SPAN  CLASS="textbf">minMeasuredValue</SPAN>: It indicates the minimum value of MeasuredValue that is capable of being measured. A MinMeasuredValue of 0x8000 indicates that the minimum value is unknown.
+</LI>
+<LI><SPAN  CLASS="textbf">maxMeasuredValue</SPAN>: It indicates the maximum value of MeasuredValue that is capable of being measured. MaxMeasuredValue shall be greater than MinMeasuredValue. MinMeasuredValue and MaxMeasuredValue define the range of the sensor. A MaxMeasuredValue of 0x8000 indicates that the maximum value is unknown.
+</LI>
+<LI><SPAN  CLASS="textbf">tolerance</SPAN>: It indicates the magnitude of the possible error that is associated with MeasuredValue. The true value is located in the range (MeasuredValue – Tolerance) to (MeasuredValue + Tolerance).
+</LI>
+<LI><SPAN  CLASS="textbf">scaledValue</SPAN>: It represents the pressure in Pascals as follows: ScaledValue = 10Ŝcale x Pressure in Pa Where -3276.7x10Ŝcale Pa &lt;= Pressure &lt;= 3276.7x10Ŝcale Pa corresponding to a ScaledValue in the range 0x8001 to 0x7fff. A ScaledValue of 0x8000 indicates that the pressure measurement is invalid. ScaledValue is updated continuously as new measurements are made.
+</LI>
+<LI><SPAN  CLASS="textbf">minScaledValue</SPAN>: It indicates the magnitude of the possible error that is associated with MeasuredValue. The true value is located in the range (MeasuredValue – Tolerance) to (MeasuredValue + Tolerance).
+</LI>
+<LI><SPAN  CLASS="textbf">maxScaledValue</SPAN>: It indicates the magnitude of the possible error that is associated with MeasuredValue. The true value is located in the range (MeasuredValue – Tolerance) to (MeasuredValue + Tolerance).
+</LI>
+<LI><SPAN  CLASS="textbf">scaledTolerance</SPAN>: It indicates the magnitude of the possible error that is associated with ScaledValue. The true value is located in the range (ScaledValue – ScaledTolerance) to (ScaledValue + ScaledTolerance).
+</LI>
+<LI><SPAN  CLASS="textbf">scale</SPAN>: It indicates  indicates the base 10 exponent used to obtain ScaledValue.
+</LI>
+</UL>
+
+<P>
+
+<H4><A ID="SECTION0019190010000000000000">
+Cluster PressureMeasurement SetMeasuredValueReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetMeasuredValueReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_pressure_measurement_set_measured_value_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Measured Value Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter threshold: Threshold
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019190020000000000000">
+Cluster PressureMeasurement ResetMeasuredValueReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ResetMeasuredValueReporting(direction, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_pressure_measurement_reset_measured_value_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Reset Measured Value Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019190030000000000000">
+Cluster PressureMeasurement SetToleranceReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetToleranceReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_pressure_measurement_set_tolerance_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Tolerance Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter threshold: Threshold
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019190040000000000000">
+Cluster PressureMeasurement ResetToleranceReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ResetToleranceReporting(direction, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_pressure_measurement_reset_tolerance_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Reset Tolerance Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019190050000000000000">
+Cluster PressureMeasurement SetScaledValueReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetScaledValueReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_pressure_measurement_set_scaled_value_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Scaled Value Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter threshold: Threshold
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019190060000000000000">
+Cluster PressureMeasurement ResetScaledValueReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ResetScaledValueReporting(direction, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_pressure_measurement_reset_scaled_value_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Reset Scaled Value Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019190070000000000000">
+Cluster PressureMeasurement SetScaledToleranceReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetScaledToleranceReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_pressure_measurement_set_scaled_tolerance_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Scaled Tolerance Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter threshold: Threshold
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019190080000000000000">
+Cluster PressureMeasurement ResetScaledToleranceReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ResetScaledToleranceReporting(direction, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_pressure_measurement_reset_scaled_tolerance_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Reset Scaled Tolerance Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H1><A ID="SECTION0019200000000000000000">
+Cluster Class RelativeHumidityMeasurement (0x0405/1029)</A>
+</H1>
+
+<P>
+Profile Zigbee Device Profile (0x0104/260)
+
+<P>
+The cluster provides an interface to relative humidity measurement functionality, including configuration and provision of notifications of temperature measurements.
+<BR>
+
+<P>
+Data holders:
+
+<P>
+
+<UL>
+<LI><SPAN  CLASS="textbf">measuredValue</SPAN>: It represents the relative humidity in % as follows: MeasuredValue = 100 x Relative humidity Where 0% &lt;= Relative humidity &lt;= 100%, corresponding to a MeasuredValue in the range 0 to 0x2710. The maximum resolution this format allows is 0.01%. A MeasuredValue of 0xffff indicates that the measurement is invalid. MeasuredValue is updated continuously as new measurements are made.
+</LI>
+<LI><SPAN  CLASS="textbf">minMeasuredValue</SPAN>: It indicates the minimum value of MeasuredValue that is capable of being measured. A MinMeasuredValue of 0x8000 indicates that the minimum value is unknown.
+</LI>
+<LI><SPAN  CLASS="textbf">maxMeasuredValue</SPAN>: It indicates the maximum value of MeasuredValue that is capable of being measured. MaxMeasuredValue shall be greater than MinMeasuredValue. MinMeasuredValue and MaxMeasuredValue define the range of the sensor. A MaxMeasuredValue of 0x8000 indicates that the maximum value is unknown.
+</LI>
+<LI><SPAN  CLASS="textbf">tolerance</SPAN>: It indicates the magnitude of the possible error that is associated with MeasuredValue. The true value is located in the range (MeasuredValue – Tolerance) to (MeasuredValue + Tolerance).
+</LI>
+</UL>
+
+<P>
+
+<H4><A ID="SECTION0019200010000000000000">
+Cluster RelativeHumidityMeasurement SetMeasuredValueReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetMeasuredValueReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_relative_humidity_measurement_set_measured_value_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Measured Value Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter threshold: Threshold
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019200020000000000000">
+Cluster RelativeHumidityMeasurement ResetMeasuredValueReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ResetMeasuredValueReporting(direction, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_relative_humidity_measurement_reset_measured_value_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Reset Measured Value Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019200030000000000000">
+Cluster RelativeHumidityMeasurement SetToleranceReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetToleranceReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_relative_humidity_measurement_set_tolerance_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Tolerance Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter threshold: Threshold
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A ID="SECTION0019200040000000000000">
+Cluster RelativeHumidityMeasurement ResetToleranceReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: ResetToleranceReporting(direction, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_relative_humidity_measurement_reset_tolerance_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Reset Tolerance Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
+
+<P>
+
+<H1><A ID="SECTION0019210000000000000000">
+Cluster Class OccupancySensing (0x0406/1030)</A>
+</H1>
+
+<P>
+Profile Zigbee Device Profile (0x0104/260)
+
+<P>
+The server cluster provides an interface to occupancy sensing functionality, including configuration and provision of notifications of occupancy status.
+<BR>
+
+<P>
+Data holders:
+
+<P>
+
+<UL>
+<LI><SPAN  CLASS="textbf">occupancy</SPAN>: Occupied State
+</LI>
+<LI><SPAN  CLASS="textbf">occupancySensorType</SPAN>: Specifies the type of the occupancy sensor
+</LI>
+<LI><SPAN  CLASS="textbf">pirOccupiedToUnoccupiedDelay</SPAN>: Specifies the time delay, in seconds, before the PIR sensor changes to its unoccupied state after the last detection of movement in the sensed area.
+</LI>
+<LI><SPAN  CLASS="textbf">pirUnoccupiedToOccupiedDelay</SPAN>: Specifies the time delay, in seconds, before the PIR sensor changes to its occupied state after the detection of movement in the sensed area
+</LI>
+<LI><SPAN  CLASS="textbf">pirOccupiedToUnoccupiedThreshold</SPAN>: Specifies the number of movement detection events that must occur in the period PIRUnoccupiedToOccupiedDelay, before the PIR sensor changes to its occupied state
+</LI>
+<LI><SPAN  CLASS="textbf">ultrasonicOccupiedToUnoccupiedDelay</SPAN>: Specifies the time delay, in seconds, before the Ultrasonic sensor changes to its unoccupied state after the last detection of movement in the sensed area.
+</LI>
+<LI><SPAN  CLASS="textbf">ultrasonicUnoccupiedToOccupiedDelay</SPAN>: Specifies the time delay, in seconds, before the Ultrasonic sensor changes to its occupied state after the detection of movement in the sensed area.
+</LI>
+<LI><SPAN  CLASS="textbf">ultrasonicOccupiedToUnoccupiedThreshold</SPAN>: Specifies the number of movement detection events that must occur in the period UltrasonicUnoccupiedToOccupiedDelay, before the Ultrasonic sensor changes to its occupied state
+</LI>
+</UL>
+
+<P>
+
+<H4><A ID="SECTION0019210010000000000000">
+Cluster OccupancySensing SetOccupancyReporting</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: SetOccupancyReporting(direction, minInterval, maxInterval, timeout, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zbee_cc_occupancy_sensing_set_occupancy_reporting(ZBee zbee, ZBNWK node_id, ZEndPoint endpoint_id, ZWBOOL direction, ZWWORD min_interval, ZWWORD max_interval, ZWWORD timeout, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Set Occupancy Reporting
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter minInterval: Minimal Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter maxInterval: Maximum Reporting Interval
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter timeout: Timeout
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed

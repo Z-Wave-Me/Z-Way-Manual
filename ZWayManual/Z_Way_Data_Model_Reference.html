@@ -938,15 +938,25 @@
   HREF="Clusters_Reference.html#SECTION0019150000000000000000">Cluster Class Color Control (0x0300/768)</A>
 <LI><A ID="tex2html650"
   HREF="Clusters_Reference.html#SECTION0019160000000000000000">Cluster Class Level Control (0x0008/8)</A>
+<LI><A ID="tex2html651"
+  HREF="Clusters_Reference.html#SECTION0019170000000000000000">Cluster Class Door Lock (0x0101/257)</A>
+<LI><A ID="tex2html652"
+  HREF="Clusters_Reference.html#SECTION0019180000000000000000">Cluster Class TemperatureMeasurement (0x0402/1026)</A>
+<LI><A ID="tex2html653"
+  HREF="Clusters_Reference.html#SECTION0019190000000000000000">Cluster Class PressureMeasurement (0x0403/1027)</A>
+<LI><A ID="tex2html654"
+  HREF="Clusters_Reference.html#SECTION0019200000000000000000">Cluster Class RelativeHumidityMeasurement (0x0405/1029)</A>
+<LI><A ID="tex2html655"
+  HREF="Clusters_Reference.html#SECTION0019210000000000000000">Cluster Class OccupancySensing (0x0406/1030)</A>
 </UL>
 <BR>
-<LI><A ID="tex2html651"
+<LI><A ID="tex2html656"
   HREF="Zigbee_EZSP_Functions_Refer.html">Zigbee EZSP Functions Reference</A>
-<LI><A ID="tex2html652"
+<LI><A ID="tex2html657"
   HREF="List_Tables.html">List of Tables</A>
-<LI><A ID="tex2html653"
+<LI><A ID="tex2html658"
   HREF="List_Figures.html">List of Figures</A>
-<LI><A ID="tex2html654"
+<LI><A ID="tex2html659"
   HREF="Index.html">Index</A>
 </UL>
 </div>
@@ -1093,7 +1103,7 @@ and <SPAN  CLASS="textbf">Show controller's device data.</SPAN>
 </LI>
 <LI>lastIncludedDevice: Node ID of last included device
 </LI>
-<LI>secureInclusion: shall inclusion be done using Security: 0 (unsecure inclusion), 1 (S2 if possible, otherwise unsecure), 2 (S2 or S0 if possible, otherwise unsecure)
+<LI>secureInclusion: shall inclusion be done using Security: 0 (unsecure inclusion), 1 (S2 if possible, otherwise unsecure), 2 (S2 or S0 if possible, otherwise unsecure), 3 (S0 if possible, otherwise unsecure)
 
 <P>
 </LI>
@@ -1144,8 +1154,56 @@ and <SPAN  CLASS="textbf">Show controller's device data.</SPAN>
 <LI>promiscMode: true if Zniffer promiscuous mode is enabled
 </LI>
 <LI>incomingPacket: last incoming packet from Z-Wave network
+
+<UL>
+<LI>nodeId: source Node Id
+</LI>
+<LI>dstNodeId: destination NodeId (usually the controller Id, but in primiscuous mode it will show the real destination)
+</LI>
+<LI>securePayload: decoded payload for secure packet (if decoding was possible)
+</LI>
+<LI>RSSI: RSSI level
+</LI>
+<LI>frameType: packet type: "Explore Frame", "broadcast", "multicast", "singlecast"
+</LI>
+<LI>hops: array of repeaters nodes, zero means no more repeaters
+</LI>
+<LI>duplicate: the number of repetition of this packet, &gt;0 means it is a duplicate
+</LI>
+</UL>
+
+<P>
 </LI>
 <LI>outgoingPacket: last outgoing packet to Z-Wave network
+
+<UL>
+<LI>delivered: was the packet delivered
+</LI>
+<LI>deliveryTime: delivery time in 10 ms
+</LI>
+<LI>packetLength: packet length
+</LI>
+<LI>nodeId: nodeId
+</LI>
+<LI>returnRSSI: array of RSSI levels the recipient and hops have detected
+</LI>
+<LI>hops: array of repeaters nodes, zero means no more repeaters
+</LI>
+<LI>returnChannel: the channel of the ACK
+</LI>
+<LI>txChannel: the channel of the outgoing packet
+</LI>
+<LI>speed: used speed
+</LI>
+<LI>schemeState: used scheme state
+</LI>
+<LI>tries: number of retries
+</LI>
+<LI>lastFailPath: array of two nodes at which the last failure occured (if the packet was not delivered): last working repeater on the path and the unreachable repeater
+</LI>
+<LI>securePayload: unencrypted payload for a secure packet
+</LI>
+</UL>
 
 <P>
 </LI>
@@ -1183,15 +1241,21 @@ controller itself -  has a device object in Z-Way.
 <UL>
 <LI>Description: list of devices
 </LI>
-<LI>Syntax:  X with  X as child object
+<LI>Syntax:  devices.X with X as child object
 </LI>
 <LI>Child objects
-<table width="90%"><tr><td align="right" valign="top">m</td><td valign="top">&nbsp;: Device object
-</LI>
+
+<UL>
+<LI>Device object
+
+<UL>
 <LI>length: Length of the list
 </LI>
 <LI>SaveData(): Save Z-Way Z-Wave data for hot start on next run (in config/zddx/HOMEID-DevicesData.xml)
-</td></tr></table>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 </UL>
 
@@ -1209,7 +1273,7 @@ The data object can be accesses in the <SPAN  CLASS="textbf">Z-W<SMALL>AVE </SMA
 <UL>
 <LI>Description: the device object
 </LI>
-<LI>Syntax:  device[n].X with  X as child object
+<LI>Syntax:  devices[n].X with X as child object
 </LI>
 <LI>Child objects
 
@@ -1364,7 +1428,7 @@ classes are located in instances only.
 <UL>
 <LI>Description: list of instances
 </LI>
-<LI>Syntax:  device[n].instance[m].X with  X as child object
+<LI>Syntax:  devices[n].instance[m].X with X as child object
 </LI>
 <LI>Child objects
 <table width="90%"><tr><td align="right" valign="top">m</td><td valign="top">&nbsp;: instance object
@@ -1401,7 +1465,7 @@ in chapter <A HREF="Command_Class_Reference.html#ccs"><IMG  ALT="[*]" SRC="cross
 <UL>
 <LI>Description: Command Class Implementation
 </LI>
-<LI>Syntax:  device[n].instance[m].commandclass[id].X with  X as child object
+<LI>Syntax:  device[n].instance[m].commandclass[id].X with X as child object
 </LI>
 <LI>Child objects
 
