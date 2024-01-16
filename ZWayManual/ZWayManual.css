@@ -62,11 +62,74 @@ SPAN.arabic		{   }
 SPAN.textbf		{ font-weight: bold  }
 SPAN.textit		{ font-style: italic  }
 SPAN.texttt		{ font-family: monospace  }
+/* Century Schoolbook font is very similar to Computer Modern Math: cmmi */
+.MATH    { font-family: "Century Schoolbook", serif; }
+.MATH I  { font-family: "Century Schoolbook", serif; font-style: italic }
+.BOLDMATH { font-family: "Century Schoolbook", serif; font-weight: bold }
+DIV.equation { text-align-last:justify; white-space: nowrap; } /* place eq nos */
+SPAN.MATH { display:inline-block; }	/* don't stretch spaces inside eqn */
+
+DIV.author_info { text-align:center; } /* latex centers author */
+
+.LEFT    { text-align:left; }
+.CENTER  { }
+.CENTER > * { }
+.RIGHT   { text-align:right; }
+.TOP     { vertical-align:top; }
+.MIDDLE  { vertical-align:middle; }
+.BOTTOM  { vertical-align:bottom; }
+
+IMG.LEFT    { float:left; }
+IMG.RIGHT   { float:right; }
+IMG.TOP     { vertical-align:top; }
+IMG.BOTTOM  { vertical-align:baseline; }
+
+DL.COMPACT > dt { float:left; padding-right: 1em; }
+BODY { width:95%; max-width:50em; margin:auto; }
+
+/* implement both fixed-size and relative sizes */
+.XTINY		{ font-size : xx-small }
+.TINY		{ font-size : x-small  }
+.SCRIPTSIZE	{ font-size : smaller  }
+.FOOTNOTESIZE	{ font-size : small    }
+.SMALL		{  }
+.LARGE		{  }
+.XLARGE		{ font-size : large    }
+.XXLARGE		{ font-size : x-large  }
+.HUGE		{ font-size : larger   }
+.XHUGE		{ font-size : xx-large }
+
+/* heading styles */
+H1		{  }
+H2		{  }
+H3		{  }
+H4		{  }
+H5		{  }
+
+/* mathematics styles */
+DIV.displaymath		{ }	/* math displays */
+TD.eqno			{ width:0; }	/* equation-number cells */
+TABLE.PAD TD	{ padding:3px; }
+TABLE.BORDER TD	{ border:1px solid black; }
+TABLE.equation	{ width:100%; }	/* place eq nos at right/left edge */
+TABLE.equation > *	{ vertical-align:baseline; }
+TABLE.equation TD	{ white-space:nowrap; }
+TABLE		{ border-collapse: collapse; }
+
+/* document-specific styles come next */
+DIV.center		{   }
+DIV.navigation		{   }
+PRE.preform		{   }
+DIV.quote		{   }
+DIV.tiny		{   }
+SPAN.arabic		{   }
+SPAN.textbf		{ font-weight: bold  }
+SPAN.textit		{ font-style: italic  }
+SPAN.texttt		{ font-family: monospace  }
 
 body{
     font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
-    margin-left: 320px !important;
-    margin-right: 30px !important;
+    padding: 0 30px 0 320px;
     width: auto !important;
     max-width: none !important;
 }
@@ -164,4 +227,120 @@ img {max-width: 100%;}
 
 #TOC ul li ul li a.tocCurrentItem {
     font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-left: 30px;
+        padding-top: 40px;
+    }
+
+    #TOC {
+        position: fixed;
+        width: 80%;
+        box-shadow: 0 0 5px rgba(0, 0, 0, .67);
+        left: -150%;
+        transition: left 0.3s ease;
+        z-index: 4;
+    }
+
+    #TOC.open {
+        left: 0;
+    }
+
+    .toc-open {
+        display: block;
+        position: fixed;
+        text-align: center;
+        top: 0;
+        right: 0;
+        left: 0; /* Для расширения по всей ширине */
+        z-index: 3;
+        background: #FAFAFA;
+        padding: 10px;
+        border: 1px solid #e6e6e6;
+        cursor: pointer;
+    }
+
+    .toc-open:before,
+    .toc-open:after,
+    .toc-open div {
+        content: "";
+        position: absolute;
+        height: 3px; /* Соответствует стилю крестика */
+        width: 30px; /* Соответствует стилю крестика */
+        background: #3f3f3f; /* Соответствует стилю крестика */
+        border-radius: 2px; /* Добавлено для соответствия стилю крестика */
+        transition: all .3s ease;
+    }
+
+    .toc-open:before {
+        top: 10px;
+        left: 10px;
+    }
+
+    .toc-open:after {
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .toc-open div {
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+    }
+}
+
+@media (min-width: 769px) {
+    .toc-open {
+        display: none;
+    }
+
+    body {
+        padding-left: 320px;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+#CHILD_LINKS {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 30px;
+    top: 18px;
+}
+
+#CHILD_LINKS:before, #CHILD_LINKS:after {
+    position: absolute;
+    content: '';
+    height: 30px;
+    width: 3px;
+    background-color: #3f3f3f;
+    border-radius: 2px;
+}
+
+#CHILD_LINKS:before {
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#CHILD_LINKS:after {
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
 }
