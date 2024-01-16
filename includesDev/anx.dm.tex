@@ -145,12 +145,14 @@ controller itself -  has a device object in \zway.
 
 \begin {itemize}
 \item Description: list of devices
-\item Syntax:  X with  X as child object
+\item Syntax:  devices.X with X as child object
 \item Child objects
 \begin {itemize}
-\item [m]: Device object
+\item Device object
+\begin {itemize}
 \item length: Length of the list
 \item SaveData(): Save \zway Z-Wave data for hot start on next run (in config/zddx/HOMEID-DevicesData.xml)
+\end {itemize}
 \end {itemize}
 \end {itemize}
  
@@ -161,7 +163,7 @@ The data object can be accesses in the \zweui in advanced mode of 'Configuration
 
 \begin {itemize}
 \item Description: the device object
-\item Syntax:  device[n].X with  X as child object
+\item Syntax:  devices[n].X with X as child object
 \item Child objects
 \begin {itemize}
 \item id: (node) Id of the device
@@ -241,7 +243,7 @@ classes are located in instances only.
 
 \begin {itemize}
 \item Description: list of instances
-\item Syntax:  device[n].instance[m].X with  X as child object
+\item Syntax:  devices[n].instance[m].X with X as child object
 \item Child objects
 \begin {itemize}
 \item [m]: instance object
@@ -263,7 +265,7 @@ in chapter \ref{ccs}
 
 \begin {itemize}
 \item Description: Command Class Implementation
-\item Syntax:  device[n].instance[m].commandclass[id].X with  X as child object
+\item Syntax:  device[n].instance[m].commandclass[id].X with X as child object
 \item Child objects
 \begin {itemize}
 \item id: Id of the Command Class of the instance of the device
