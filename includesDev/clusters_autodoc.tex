@@ -76,6 +76,18 @@ The End\_Device\_annce is provided to enable Zigbee end devices on the network. 
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
 
+\paragraph{Cluster BindRequest DeviceToDeviceById}
+\begin{quote}Syntax: DeviceToDeviceById(srcEndpointId, clusterId, dstNodeId, dstEndpointId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_bind\_request\_device\_to\_device\_by\_id(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE src\_endpoint\_id, ZWWORD cluster\_id, ZBNWK dst\_node\_id, ZWBYTE dst\_endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Bind Device to Device By Id\end{quote}
+\begin{quote}Parameter srcEndpointId: The source endpoint for the binding entry\end{quote}
+\begin{quote}Parameter clusterId: The identifier of the cluster on the source device that is bound to the destination\end{quote}
+\begin{quote}Parameter dstNodeId: Destination Node Id\end{quote}
+\begin{quote}Parameter dstEndpointId: The destination endpoint for the binding entry\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
 \paragraph{Cluster BindRequest ByIeee}
 \begin{quote}Syntax: ByIeee(srcAddress, srcEndpointId, clusterId, dstAddr, dstEndpointId, successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}C Syntax: ZWError zbee\_cc\_bind\_request\_by\_ieee(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, const ZBEUI64 src\_address, ZWBYTE src\_endpoint\_id, ZWWORD cluster\_id, const ZBEUI64 dst\_addr, ZWBYTE dst\_endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
@@ -392,6 +404,143 @@ Data holders:
 
 
 
+\section{Cluster Class Power Configuration (0x0001/1)}
+
+Profile ZigBee Device Profile (0x0104/260)
+
+Attributes for determining detailed information about a device’s power source(s) and for configuring under/over voltage alarms.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{mainsVoltage}: It  is 16 bits in length and specifies the actual (measured) RMS voltage (or DC voltage in the case of a DC supply) currently applied to the device, measured in units of 100mV.
+\item \textbf{mainsFrequency}: It  is 8 bits in length and represents the frequency, in Hertz, of the mains as determined by the device as follows: MainsFrequency = 0.5 x measured frequency Where 2 Hz <= measured frequency <= 506 Hz, corresponding to a MainsFrequency in the range 1 to 0xfd. The maximum resolution this format allows is 2 Hz. The following special values of MainsFrequency apply. In the case of a DC supply, this attribute SHALL also have the value zero.
+\item \textbf{mainsAlarmMask}: The MainsAlarmMask attribute is 8 bits in length and specifies which mains alarms MAY be generated, as listed in Table. A ‘1’ in each bit position enables the alarm
+\item \textbf{mainsVoltageMinThreshold}: The MainsVoltageMinThreshold attribute is 16 bits in length and specifies the lower alarm threshold, measured in units of 100mV, for the MainsVoltage attribute. The value of this attribute SHALL be less than MainsVoltageMaxThreshold. If the value of MainsVoltage drops below the threshold specified by MainsVoltageMinThreshold, the device SHALL start a timer to expire after MainsVoltageDwellTripPoint seconds. If the value of this attribute increases to greater than or equal to MainsVoltageMinThreshold before the timer expires, the device SHALL stop and reset the timer. If the timer expires, an alarm SHALL be generated. The Alarm Code field included in the generated alarm SHALL be 0x00. If this attribute takes the value 0xffff then this alarm SHALL NOT be generated
+\item \textbf{mainsVoltageMaxThreshold}: The MainsVoltageMaxThreshold attribute is 16 bits in length and specifies the upper alarm threshold, measured in units of 100mV, for the MainsVoltage attribute. The value of this attribute SHALL be greater than MainsVoltageMinThreshold. If the value of MainsVoltage rises above the threshold specified by MainsVoltageMaxThreshold, the device SHALL start a timer to expire after MainsVoltageDwellTripPoint seconds. If the value of this attribute drops to lower than or equal to MainsVoltageMaxThreshold before the timer expires, the device SHALL stop and reset the timer. If the timer expires, an alarm SHALL be generated. The Alarm Code field included in the generated alarm SHALL be 0x01. If this attribute takes the value 0xffff then this alarm SHALL NOT be generated.
+\item \textbf{mainsVoltageDwellTripPoint}: The MainsVoltageDwellTripPoint attribute is 16 bits in length and specifies the length of time, in seconds that the value of MainsVoltage MAY exist beyond either of its thresholds before an alarm is generated. If this attribute takes the value 0xffff then the associated alarms SHALL NOT be generated.
+\item \textbf{batteryVoltage}: The BatteryVoltage attribute is 8 bits in length and specifies the current actual (measured) battery voltage, in units of 100mV. The value 0xff indicates an invalid or unknown reading.
+\item \textbf{batteryPercentageRemaining}: Specifies the remaining battery life as a half integer percentage of the full battery capacity (e.g., 34.5\%, 45\%, 68.5\%, 90\%) with a range between zero and 100\%, with 0x00 = 0\%, 0x64 = 50\%, and 0xC8 = 100\%. This is particularly suited for devices with rechargeable batteries. The value 0xff indicates an invalid or unknown reading. This attribute SHALL be configurable for attribute reporting.
+\item \textbf{batteryManufacturer}: The BatteryManufacturer attribute is a maximum of 16 bytes in length and specifies the name of the battery manufacturer as a ZigBee character string
+\item \textbf{batterySize}: The BatterySize attribute is an enumeration which specifies the type of battery being used by the device. This attribute SHALL be set to one of the non-reserved values listed in Table
+\item \textbf{batteryAHrRating}: The BatteryAHrRating attribute is 16 bits in length and specifies the Ampere-hour rating of the battery, measured in units of 10mAHr.
+\item \textbf{batteryQuantity}: The BatteryQuantity attribute is 8 bits in length and specifies the number of battery cells used to power the device.
+\item \textbf{batteryRatedVoltage}: The BatteryRatedVoltage attribute is 8 bits in length and specifies the rated voltage of the battery being used in the device, measured in units of 100mV.
+\item \textbf{batteryAlarmMask}: The BatteryAlarmMask attribute specifies which battery alarms must be generated, as listed in Table. A ‘1’ in each bit position enables the alarm. Manufacturers are responsible for determining the capability to sense and levels at which the alarms are generated
+\item \textbf{batteryVoltageMinThreshold}: Specifies the low battery voltage alarm threshold, measured in units of 100mV at which the device can no longer operate or transmit via its radio (i.e., last gasp). If the value of BatteryVoltage drops below the threshold specified by BatteryVoltageMinThreshold, an appropriate alarm SHALL be generated and/or the corresponding bit SHALL be updated in the BatteryAlarmState attribute. In order to report to Power Configuration clients, servers that implement BatteryVoltageMinThreshold attribute SHALL implement alarming via the Alarm Cluster, attribute reporting via the BatteryAlarmState attribute, or both. For servers that implement alarming via the Alarm Cluster, the appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryVoltageMinThreshold attribute reached. For example, when the BatteryVoltage attribute reaches the value specified by the BatteryVoltageMinThreshold attribute, an alarm with the Alarm Code Field Enumeration “0x10” SHALL be generated. For servers that implement battery alarm reporting via the BatteryAlarmState attribute, the bit corresponding to the threshold level reached SHALL be set to TRUE. See the BatteryAlarmState attribute details for more information.
+\item \textbf{batteryVoltageThreshold1}: Specify the low voltage alarm thresholds, measured in units of 100mV, for the BatteryVoltage attribute. If the value of BatteryVoltage drops below the threshold specified by a BatteryVoltageThreshold, an appropriate alarm SHALL be generated and/or the corresponding bit SHALL be updated in the BatteryAlarmState attribute. The BatteryVoltageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryVoltage level specified to trigger: BatteryVoltageThreshold3 is higher than the level specified to trigger BatteryVoltageThreshold2 BatteryVoltageThreshold2 is higher than the level specified to trigger BatteryVoltageThreshold BatteryVoltageThreshold1 is higher than the level specified to trigger BatteryVoltageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryVoltageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryVoltageThreshold2}: Specify the low voltage alarm thresholds, measured in units of 100mV, for the BatteryVoltage attribute. If the value of BatteryVoltage drops below the threshold specified by a BatteryVoltageThreshold, an appropriate alarm SHALL be generated and/or the corresponding bit SHALL be updated in the BatteryAlarmState attribute. The BatteryVoltageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryVoltage level specified to trigger: BatteryVoltageThreshold3 is higher than the level specified to trigger BatteryVoltageThreshold2 BatteryVoltageThreshold2 is higher than the level specified to trigger BatteryVoltageThreshold BatteryVoltageThreshold1 is higher than the level specified to trigger BatteryVoltageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryVoltageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryVoltageThreshold3}: Specify the low voltage alarm thresholds, measured in units of 100mV, for the BatteryVoltage attribute. If the value of BatteryVoltage drops below the threshold specified by a BatteryVoltageThreshold, an appropriate alarm SHALL be generated and/or the corresponding bit SHALL be updated in the BatteryAlarmState attribute. The BatteryVoltageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryVoltage level specified to trigger: BatteryVoltageThreshold3 is higher than the level specified to trigger BatteryVoltageThreshold2 BatteryVoltageThreshold2 is higher than the level specified to trigger BatteryVoltageThreshold BatteryVoltageThreshold1 is higher than the level specified to trigger BatteryVoltageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryVoltageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryPercentageMinThreshold}: Specifies the low battery percentage alarm threshold, measured in percentage (i.e., zero to 100\%), for the BatteryPercentageRemaining attribute. If the value of BatteryPercentageRemaining drops below the threshold specified by a BatteryPercentageThreshold, an appropriate alarm SHALL be generated. The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be the value in Table that corresponds with this threshold being reached for a given battery source. The host determines which alarm code to populate based on the BatteryAlarmMask attribute. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryPercentageThreshold1}: Specify the low battery percentage alarm thresholds, measured in percentage (i.e., zero to 100\%), for the BatteryPercentageRemaining attribute. If the value of BatteryPercentageRemaining drops below the threshold specified by a BatteryPercentageThreshold, an appropriate alarm SHALL be generated. The BatteryPercentageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryPercentageRemaining level specified to trigger: BatteryPercentageThreshold3 is higher than the level specified to trigger BatteryPercentageThreshold2 BatteryPercentageThreshold2 is higher than the level specified to trigger BatteryPercentageThreshold BatteryPercentageThreshold1 is higher than the level specified to trigger BatteryPercentageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryPercentageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryPercentageThreshold2}: Specify the low battery percentage alarm thresholds, measured in percentage (i.e., zero to 100\%), for the BatteryPercentageRemaining attribute. If the value of BatteryPercentageRemaining drops below the threshold specified by a BatteryPercentageThreshold, an appropriate alarm SHALL be generated. The BatteryPercentageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryPercentageRemaining level specified to trigger: BatteryPercentageThreshold3 is higher than the level specified to trigger BatteryPercentageThreshold2 BatteryPercentageThreshold2 is higher than the level specified to trigger BatteryPercentageThreshold BatteryPercentageThreshold1 is higher than the level specified to trigger BatteryPercentageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryPercentageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryPercentageThreshold3}: Specify the low battery percentage alarm thresholds, measured in percentage (i.e., zero to 100\%), for the BatteryPercentageRemaining attribute. If the value of BatteryPercentageRemaining drops below the threshold specified by a BatteryPercentageThreshold, an appropriate alarm SHALL be generated. The BatteryPercentageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryPercentageRemaining level specified to trigger: BatteryPercentageThreshold3 is higher than the level specified to trigger BatteryPercentageThreshold2 BatteryPercentageThreshold2 is higher than the level specified to trigger BatteryPercentageThreshold BatteryPercentageThreshold1 is higher than the level specified to trigger BatteryPercentageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryPercentageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryAlarmState}: Specifies the current state of the device's battery alarms. This attribute provides a persistent record of a device's battery alarm conditions as well as a mechanism for reporting changes to those conditions, including the elimination of battery alarm states (e.g., when a battery is replaced). If implemented, the server SHALL support attribute reporting for BatteryAlarmState attribute. This provides clients with a mechanism for reading the current state in case they missed the initial attribute report and also reduces network and battery use due to repeated polling of this attribute when it has not changed. It also provides a way of notifying clients when battery alarm conditions no longer exist (e.g., when the batteries have been replaced).
+\item \textbf{batteryVoltage2}: The BatteryVoltage attribute is 8 bits in length and specifies the current actual (measured) battery voltage, in units of 100mV. The value 0xff indicates an invalid or unknown reading.
+\item \textbf{batteryPercentageRemaining2}: Specifies the remaining battery life as a half integer percentage of the full battery capacity (e.g., 34.5\%, 45\%, 68.5\%, 90\%) with a range between zero and 100\%, with 0x00 = 0\%, 0x64 = 50\%, and 0xC8 = 100\%. This is particularly suited for devices with rechargeable batteries. The value 0xff indicates an invalid or unknown reading. This attribute SHALL be configurable for attribute reporting.
+\item \textbf{batteryManufacturer2}: The BatteryManufacturer attribute is a maximum of 16 bytes in length and specifies the name of the battery manufacturer as a ZigBee character string
+\item \textbf{batterySize2}: The BatterySize attribute is an enumeration which specifies the type of battery being used by the device. This attribute SHALL be set to one of the non-reserved values listed in Table
+\item \textbf{batteryAHrRating2}: The BatteryAHrRating attribute is 16 bits in length and specifies the Ampere-hour rating of the battery, measured in units of 10mAHr.
+\item \textbf{batteryQuantity2}: The BatteryQuantity attribute is 8 bits in length and specifies the number of battery cells used to power the device.
+\item \textbf{batteryRatedVoltage2}: The BatteryRatedVoltage attribute is 8 bits in length and specifies the rated voltage of the battery being used in the device, measured in units of 100mV.
+\item \textbf{batteryAlarmMask2}: The BatteryAlarmMask attribute specifies which battery alarms must be generated, as listed in Table. A ‘1’ in each bit position enables the alarm. Manufacturers are responsible for determining the capability to sense and levels at which the alarms are generated
+\item \textbf{batteryVoltageMinThreshold2}: Specifies the low battery voltage alarm threshold, measured in units of 100mV at which the device can no longer operate or transmit via its radio (i.e., last gasp). If the value of BatteryVoltage drops below the threshold specified by BatteryVoltageMinThreshold, an appropriate alarm SHALL be generated and/or the corresponding bit SHALL be updated in the BatteryAlarmState attribute. In order to report to Power Configuration clients, servers that implement BatteryVoltageMinThreshold attribute SHALL implement alarming via the Alarm Cluster, attribute reporting via the BatteryAlarmState attribute, or both. For servers that implement alarming via the Alarm Cluster, the appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryVoltageMinThreshold attribute reached. For example, when the BatteryVoltage attribute reaches the value specified by the BatteryVoltageMinThreshold attribute, an alarm with the Alarm Code Field Enumeration “0x10” SHALL be generated. For servers that implement battery alarm reporting via the BatteryAlarmState attribute, the bit corresponding to the threshold level reached SHALL be set to TRUE. See the BatteryAlarmState attribute details for more information.
+\item \textbf{batteryVoltageThreshold12}: Specify the low voltage alarm thresholds, measured in units of 100mV, for the BatteryVoltage attribute. If the value of BatteryVoltage drops below the threshold specified by a BatteryVoltageThreshold, an appropriate alarm SHALL be generated and/or the corresponding bit SHALL be updated in the BatteryAlarmState attribute. The BatteryVoltageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryVoltage level specified to trigger: BatteryVoltageThreshold3 is higher than the level specified to trigger BatteryVoltageThreshold2 BatteryVoltageThreshold2 is higher than the level specified to trigger BatteryVoltageThreshold BatteryVoltageThreshold1 is higher than the level specified to trigger BatteryVoltageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryVoltageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryVoltageThreshold22}: Specify the low voltage alarm thresholds, measured in units of 100mV, for the BatteryVoltage attribute. If the value of BatteryVoltage drops below the threshold specified by a BatteryVoltageThreshold, an appropriate alarm SHALL be generated and/or the corresponding bit SHALL be updated in the BatteryAlarmState attribute. The BatteryVoltageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryVoltage level specified to trigger: BatteryVoltageThreshold3 is higher than the level specified to trigger BatteryVoltageThreshold2 BatteryVoltageThreshold2 is higher than the level specified to trigger BatteryVoltageThreshold BatteryVoltageThreshold1 is higher than the level specified to trigger BatteryVoltageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryVoltageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryVoltageThreshold32}: Specify the low voltage alarm thresholds, measured in units of 100mV, for the BatteryVoltage attribute. If the value of BatteryVoltage drops below the threshold specified by a BatteryVoltageThreshold, an appropriate alarm SHALL be generated and/or the corresponding bit SHALL be updated in the BatteryAlarmState attribute. The BatteryVoltageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryVoltage level specified to trigger: BatteryVoltageThreshold3 is higher than the level specified to trigger BatteryVoltageThreshold2 BatteryVoltageThreshold2 is higher than the level specified to trigger BatteryVoltageThreshold BatteryVoltageThreshold1 is higher than the level specified to trigger BatteryVoltageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryVoltageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryPercentageMinThreshold2}: Specifies the low battery percentage alarm threshold, measured in percentage (i.e., zero to 100\%), for the BatteryPercentageRemaining attribute. If the value of BatteryPercentageRemaining drops below the threshold specified by a BatteryPercentageThreshold, an appropriate alarm SHALL be generated. The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be the value in Table that corresponds with this threshold being reached for a given battery source. The host determines which alarm code to populate based on the BatteryAlarmMask attribute. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryPercentageThreshold12}: Specify the low battery percentage alarm thresholds, measured in percentage (i.e., zero to 100\%), for the BatteryPercentageRemaining attribute. If the value of BatteryPercentageRemaining drops below the threshold specified by a BatteryPercentageThreshold, an appropriate alarm SHALL be generated. The BatteryPercentageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryPercentageRemaining level specified to trigger: BatteryPercentageThreshold3 is higher than the level specified to trigger BatteryPercentageThreshold2 BatteryPercentageThreshold2 is higher than the level specified to trigger BatteryPercentageThreshold BatteryPercentageThreshold1 is higher than the level specified to trigger BatteryPercentageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryPercentageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryPercentageThreshold22}: Specify the low battery percentage alarm thresholds, measured in percentage (i.e., zero to 100\%), for the BatteryPercentageRemaining attribute. If the value of BatteryPercentageRemaining drops below the threshold specified by a BatteryPercentageThreshold, an appropriate alarm SHALL be generated. The BatteryPercentageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryPercentageRemaining level specified to trigger: BatteryPercentageThreshold3 is higher than the level specified to trigger BatteryPercentageThreshold2 BatteryPercentageThreshold2 is higher than the level specified to trigger BatteryPercentageThreshold BatteryPercentageThreshold1 is higher than the level specified to trigger BatteryPercentageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryPercentageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryPercentageThreshold32}: Specify the low battery percentage alarm thresholds, measured in percentage (i.e., zero to 100\%), for the BatteryPercentageRemaining attribute. If the value of BatteryPercentageRemaining drops below the threshold specified by a BatteryPercentageThreshold, an appropriate alarm SHALL be generated. The BatteryPercentageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryPercentageRemaining level specified to trigger: BatteryPercentageThreshold3 is higher than the level specified to trigger BatteryPercentageThreshold2 BatteryPercentageThreshold2 is higher than the level specified to trigger BatteryPercentageThreshold BatteryPercentageThreshold1 is higher than the level specified to trigger BatteryPercentageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryPercentageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryAlarmState2}: Specifies the current state of the device's battery alarms. This attribute provides a persistent record of a device's battery alarm conditions as well as a mechanism for reporting changes to those conditions, including the elimination of battery alarm states (e.g., when a battery is replaced). If implemented, the server SHALL support attribute reporting for BatteryAlarmState attribute. This provides clients with a mechanism for reading the current state in case they missed the initial attribute report and also reduces network and battery use due to repeated polling of this attribute when it has not changed. It also provides a way of notifying clients when battery alarm conditions no longer exist (e.g., when the batteries have been replaced).
+\item \textbf{batteryVoltage3}: The BatteryVoltage attribute is 8 bits in length and specifies the current actual (measured) battery voltage, in units of 100mV. The value 0xff indicates an invalid or unknown reading.
+\item \textbf{batteryPercentageRemaining3}: Specifies the remaining battery life as a half integer percentage of the full battery capacity (e.g., 34.5\%, 45\%, 68.5\%, 90\%) with a range between zero and 100\%, with 0x00 = 0\%, 0x64 = 50\%, and 0xC8 = 100\%. This is particularly suited for devices with rechargeable batteries. The value 0xff indicates an invalid or unknown reading. This attribute SHALL be configurable for attribute reporting.
+\item \textbf{batteryManufacturer3}: The BatteryManufacturer attribute is a maximum of 16 bytes in length and specifies the name of the battery manufacturer as a ZigBee character string
+\item \textbf{batterySize3}: The BatterySize attribute is an enumeration which specifies the type of battery being used by the device. This attribute SHALL be set to one of the non-reserved values listed in Table
+\item \textbf{batteryAHrRating3}: The BatteryAHrRating attribute is 16 bits in length and specifies the Ampere-hour rating of the battery, measured in units of 10mAHr.
+\item \textbf{batteryQuantity3}: The BatteryQuantity attribute is 8 bits in length and specifies the number of battery cells used to power the device.
+\item \textbf{batteryRatedVoltage3}: The BatteryRatedVoltage attribute is 8 bits in length and specifies the rated voltage of the battery being used in the device, measured in units of 100mV.
+\item \textbf{batteryAlarmMask3}: The BatteryAlarmMask attribute specifies which battery alarms must be generated, as listed in Table. A ‘1’ in each bit position enables the alarm. Manufacturers are responsible for determining the capability to sense and levels at which the alarms are generated
+\item \textbf{batteryVoltageMinThreshold3}: Specifies the low battery voltage alarm threshold, measured in units of 100mV at which the device can no longer operate or transmit via its radio (i.e., last gasp). If the value of BatteryVoltage drops below the threshold specified by BatteryVoltageMinThreshold, an appropriate alarm SHALL be generated and/or the corresponding bit SHALL be updated in the BatteryAlarmState attribute. In order to report to Power Configuration clients, servers that implement BatteryVoltageMinThreshold attribute SHALL implement alarming via the Alarm Cluster, attribute reporting via the BatteryAlarmState attribute, or both. For servers that implement alarming via the Alarm Cluster, the appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryVoltageMinThreshold attribute reached. For example, when the BatteryVoltage attribute reaches the value specified by the BatteryVoltageMinThreshold attribute, an alarm with the Alarm Code Field Enumeration “0x10” SHALL be generated. For servers that implement battery alarm reporting via the BatteryAlarmState attribute, the bit corresponding to the threshold level reached SHALL be set to TRUE. See the BatteryAlarmState attribute details for more information.
+\item \textbf{batteryVoltageThreshold13}: Specify the low voltage alarm thresholds, measured in units of 100mV, for the BatteryVoltage attribute. If the value of BatteryVoltage drops below the threshold specified by a BatteryVoltageThreshold, an appropriate alarm SHALL be generated and/or the corresponding bit SHALL be updated in the BatteryAlarmState attribute. The BatteryVoltageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryVoltage level specified to trigger: BatteryVoltageThreshold3 is higher than the level specified to trigger BatteryVoltageThreshold2 BatteryVoltageThreshold2 is higher than the level specified to trigger BatteryVoltageThreshold BatteryVoltageThreshold1 is higher than the level specified to trigger BatteryVoltageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryVoltageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryVoltageThreshold23}: Specify the low voltage alarm thresholds, measured in units of 100mV, for the BatteryVoltage attribute. If the value of BatteryVoltage drops below the threshold specified by a BatteryVoltageThreshold, an appropriate alarm SHALL be generated and/or the corresponding bit SHALL be updated in the BatteryAlarmState attribute. The BatteryVoltageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryVoltage level specified to trigger: BatteryVoltageThreshold3 is higher than the level specified to trigger BatteryVoltageThreshold2 BatteryVoltageThreshold2 is higher than the level specified to trigger BatteryVoltageThreshold BatteryVoltageThreshold1 is higher than the level specified to trigger BatteryVoltageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryVoltageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryVoltageThreshold33}: Specify the low voltage alarm thresholds, measured in units of 100mV, for the BatteryVoltage attribute. If the value of BatteryVoltage drops below the threshold specified by a BatteryVoltageThreshold, an appropriate alarm SHALL be generated and/or the corresponding bit SHALL be updated in the BatteryAlarmState attribute. The BatteryVoltageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryVoltage level specified to trigger: BatteryVoltageThreshold3 is higher than the level specified to trigger BatteryVoltageThreshold2 BatteryVoltageThreshold2 is higher than the level specified to trigger BatteryVoltageThreshold BatteryVoltageThreshold1 is higher than the level specified to trigger BatteryVoltageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryVoltageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryPercentageMinThreshold3}: Specifies the low battery percentage alarm threshold, measured in percentage (i.e., zero to 100\%), for the BatteryPercentageRemaining attribute. If the value of BatteryPercentageRemaining drops below the threshold specified by a BatteryPercentageThreshold, an appropriate alarm SHALL be generated. The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be the value in Table that corresponds with this threshold being reached for a given battery source. The host determines which alarm code to populate based on the BatteryAlarmMask attribute. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryPercentageThreshold13}: Specify the low battery percentage alarm thresholds, measured in percentage (i.e., zero to 100\%), for the BatteryPercentageRemaining attribute. If the value of BatteryPercentageRemaining drops below the threshold specified by a BatteryPercentageThreshold, an appropriate alarm SHALL be generated. The BatteryPercentageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryPercentageRemaining level specified to trigger: BatteryPercentageThreshold3 is higher than the level specified to trigger BatteryPercentageThreshold2 BatteryPercentageThreshold2 is higher than the level specified to trigger BatteryPercentageThreshold BatteryPercentageThreshold1 is higher than the level specified to trigger BatteryPercentageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryPercentageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryPercentageThreshold23}: Specify the low battery percentage alarm thresholds, measured in percentage (i.e., zero to 100\%), for the BatteryPercentageRemaining attribute. If the value of BatteryPercentageRemaining drops below the threshold specified by a BatteryPercentageThreshold, an appropriate alarm SHALL be generated. The BatteryPercentageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryPercentageRemaining level specified to trigger: BatteryPercentageThreshold3 is higher than the level specified to trigger BatteryPercentageThreshold2 BatteryPercentageThreshold2 is higher than the level specified to trigger BatteryPercentageThreshold BatteryPercentageThreshold1 is higher than the level specified to trigger BatteryPercentageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryPercentageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryPercentageThreshold33}: Specify the low battery percentage alarm thresholds, measured in percentage (i.e., zero to 100\%), for the BatteryPercentageRemaining attribute. If the value of BatteryPercentageRemaining drops below the threshold specified by a BatteryPercentageThreshold, an appropriate alarm SHALL be generated. The BatteryPercentageThreshold1-3 attributes SHALL be ordered in ascending order such that the BatteryPercentageRemaining level specified to trigger: BatteryPercentageThreshold3 is higher than the level specified to trigger BatteryPercentageThreshold2 BatteryPercentageThreshold2 is higher than the level specified to trigger BatteryPercentageThreshold BatteryPercentageThreshold1 is higher than the level specified to trigger BatteryPercentageMinThreshold The appropriate alarm is specified in the Alarm Code field included in the generated alarm and SHALL be one of the values in Table. The host determines which alarm code to populate based on the BatteryAlarmMask attribute and the BatteryPercentageThreshold1-3 attribute reached. If this attribute takes the value 0xff then this alarm SHALL NOT be generated.
+\item \textbf{batteryAlarmState3}: Specifies the current state of the device's battery alarms. This attribute provides a persistent record of a device's battery alarm conditions as well as a mechanism for reporting changes to those conditions, including the elimination of battery alarm states (e.g., when a battery is replaced). If implemented, the server SHALL support attribute reporting for BatteryAlarmState attribute. This provides clients with a mechanism for reading the current state in case they missed the initial attribute report and also reduces network and battery use due to repeated polling of this attribute when it has not changed. It also provides a way of notifying clients when battery alarm conditions no longer exist (e.g., when the batteries have been replaced).
+\end{itemize}
+
+\paragraph{Cluster PowerConfiguration SetBatteryPercentageRemainingReporting}
+\begin{quote}Syntax: SetBatteryPercentageRemainingReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_power\_configuration\_set\_battery\_percentage\_remaining\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWBYTE threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Power Configuration Set Battery Percentage Remaining Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster PowerConfiguration ResetBatteryPercentageRemainingReporting}
+\begin{quote}Syntax: ResetBatteryPercentageRemainingReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_power\_configuration\_reset\_battery\_percentage\_remaining\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Power Configuration Reset Battery Percentage Remaining Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster PowerConfiguration SetBatteryPercentageRemaining2Reporting}
+\begin{quote}Syntax: SetBatteryPercentageRemaining2Reporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_power\_configuration\_set\_battery\_percentage\_remaining\_2\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWBYTE threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Power Configuration Set Battery Percentage Remaining 2 Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster PowerConfiguration ResetBatteryPercentageRemaining2Reporting}
+\begin{quote}Syntax: ResetBatteryPercentageRemaining2Reporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_power\_configuration\_reset\_battery\_percentage\_remaining\_2\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Power Configuration Reset Battery Percentage Remaining 2 Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster PowerConfiguration SetBatteryPercentageRemaining3Reporting}
+\begin{quote}Syntax: SetBatteryPercentageRemaining3Reporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_power\_configuration\_set\_battery\_percentage\_remaining\_3\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWBYTE threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Power Configuration Set Battery Percentage Remaining 3 Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster PowerConfiguration ResetBatteryPercentageRemaining3Reporting}
+\begin{quote}Syntax: ResetBatteryPercentageRemaining3Reporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_power\_configuration\_reset\_battery\_percentage\_remaining\_3\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Power Configuration Reset Battery Percentage Remaining 3 Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
 \section{Cluster Class Identify (0x0003/3)}
 
 Profile ZigBee Device Profile (0x0104/260)
@@ -511,6 +660,144 @@ Data holders:
 \begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}C Syntax: ZWError zbee\_cc\_ias\_zone\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Ias Zone Configuration Get\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class Window Covering (0x0102/258)}
+
+Profile ZigBee Device Profile (0x0104/260)
+
+The window covering cluster provides an interface for controlling and adjusting automatic window coverings such as drapery motors, automatic shades, and blinds.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{windowCoveringType}: The WindowCoveringType attribute identifies the type of window covering being controlled by this endpoint and SHALL be set to one of the non-reserved values in Table
+\item \textbf{physicalClosedLimitLift}: The PhysicalClosedLimitLift attribute identifies the maximum possible encoder position possible (in centimeters) to position the height of the window covering – this is ignored if the device is running in Open Loop Control.
+\item \textbf{physicalClosedLimitTilt}: The PhysicalClosedLimitTilt attribute identifies the maximum possible encoder position possible (tenth of a degrees) to position the angle of the window covering – this is ignored if the device is running in Open Loop Control.
+\item \textbf{currentPositionLift}: The CurrentPositionLift attribute identifies the actual position (in centimeters) of the window covering from the top of the shade if Closed Loop Control is enabled. This attribute is ignored if the device is running in Open Loop Control.
+\item \textbf{currentPositionTilt}: The CurrentPositionTilt attribute identifies the actual tilt position (in tenth of an degree) of the window covering from Open if Closed Loop Control is enabled. This attribute is ignored if the device is running in Open Loop Control.
+\item \textbf{numberOfActuationsLift}: The NumberOfActuationsLift attribute identifies the total number of lift actuations applied to the Window Covering since the device was installed.
+\item \textbf{numberOfActuationsTilt}: The NumberOfActuationsTilt attribute identifies the total number of tilt actuations applied to the Window Covering since the device was installed.
+\item \textbf{configStatus}: The ConfigStatus attribute makes configuration and status information available. To change settings, devices SHALL write to the Mode attribute of the Window Covering Settings Attribute Set. The behavior causing the setting or clearing of each bit is vendor specific. See Table for details on each bit.
+\item \textbf{currentPositionLiftPercentag}: The CurrentPositionLiftPercentage attribute identifies the actual position as a percentage between the InstalledOpenLimitLift attribute and the InstalledClosedLimitLift58attribute of the window covering from the up/open position if Closed Loop Control is enabled. If the device is running in Open Loop Control or the device only supports Tilt actions, this attribute is not required as an attribute but has a special interpretation when received as part of a scene command (see “Scene Table Extensions” below).
+\item \textbf{currentPositionTiltPercentag}: The CurrentPositionTiltPercentage attribute identifies the actual position as a percentage between the InstalledOpenLimitTilt attribute and the InstalledClosedLimitTilt59attribute of the window covering from the up/open position if Closed Loop Control is enabled. If the device is running in Open Loop Control or the device only support Lift actions, this attribute is not required as an attribute but has a special interpretation when received as part of a scene command (see “Scene Table Extensions” below).
+\item \textbf{installedOpenLimitLift}: The InstalledOpenLimitLift attribute identifies the Open Limit for Lifting the Window Covering whether position (in centimeters) is encoded or timed. This attribute is ignored if the device is running in Open Loop Control or only supports Tilt actions
+\item \textbf{installedClosedLimitLift}: The InstalledClosedLimitLift attribute identifies the Closed Limit for Lifting the Window Covering whether position (in centimeters) is encoded or timed. This attribute is ignored if the device is running in Open Loop Control or only supports Tilt actions.
+\item \textbf{installedOpenLimitTilt}: The InstalledOpenLimitTilt attribute identifies the Open Limit for Tilting the Window Covering whether position (in tenth of a degree) is encoded or timed. This attribute is ignored if the device is running in Open Loop Control or only supports Lift actions
+\item \textbf{installedClosedLimitTilt}: The InstalledClosedLimitTilt attribute identifies the Closed Limit for Tilting the Window Covering whether position (in tenth of a degree) is encoded or timed. This attribute is ignored if the device is running in Open Loop Control or only supports Lift actions.
+\item \textbf{velocityLift}: The VelocityLift attribute identifies the velocity (in centimeters per second) associated with Lifting the Window Covering
+\item \textbf{accelerationTimeLift}: The AccelerationTimeLift attribute identifies any ramp up times to reaching the velocity setting (in tenth of a second) for positioning the Window Covering.
+\item \textbf{decelerationTimeLift}: The DecelerationTimeLift attribute identifies any ramp down times associated with stopping the positioning (in tenth of a second) of the Window Covering.
+\item \textbf{mode}: The Mode attribute allows configuration of the Window Covering, such as: reversing the motor direction, placing the Window Covering into calibration mode, placing the motor into maintenance mode, disabling the ZigBee network, and disabling status LEDs
+\item \textbf{intermediateSetpointsLift}: Identifies the number of Intermediate Setpoints supported by the Window Covering for Lift and then identifies the position settings for those Intermediate Setpoints if Closed Loop Control is supported. This is a comma delimited ASCII character string. For example: “2,0x0013, 0x0030”
+\item \textbf{intermediateSetpointsTilt}: Identifies the number of Intermediate Setpoints supported by the Window Covering for Tilt and then identifies the position settings for those Intermediate Setpoints if Closed Loop Control is supported. This is a comma delimited ASCII character string. For example: “2,0x0013, 0x0030”
+\end{itemize}
+
+\paragraph{Cluster WindowCovering UpOpen}
+\begin{quote}Syntax: UpOpen(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_window\_covering\_up\_open(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Window Covering Up Open\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster WindowCovering DownClose}
+\begin{quote}Syntax: DownClose(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_window\_covering\_down\_close(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Window Covering Down Close\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster WindowCovering Stop}
+\begin{quote}Syntax: Stop(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_window\_covering\_stop(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Window Covering Stop\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster WindowCovering GoToLiftValue}
+\begin{quote}Syntax: GoToLiftValue(liftValue, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_window\_covering\_go\_to\_lift\_value(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD lift\_value, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Window Covering Go To Lift Value\end{quote}
+\begin{quote}Parameter liftValue: Lift Value\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster WindowCovering GoToLiftPercentage}
+\begin{quote}Syntax: GoToLiftPercentage(percentageLiftValue, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_window\_covering\_go\_to\_lift\_percentage(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE percentage\_lift\_value, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Window Covering Go To Lift Value\end{quote}
+\begin{quote}Parameter percentageLiftValue: Lift Value Percentage\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster WindowCovering GoToTiltValue}
+\begin{quote}Syntax: GoToTiltValue(tiltValue, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_window\_covering\_go\_to\_tilt\_value(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD tilt\_value, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Window Covering Go To Lift Value\end{quote}
+\begin{quote}Parameter tiltValue: Tilt Value\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster WindowCovering GoToTiltPercentage}
+\begin{quote}Syntax: GoToTiltPercentage(percentageTiltValue, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_window\_covering\_go\_to\_tilt\_percentage(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE percentage\_tilt\_value, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Window Covering Go To Lift Value\end{quote}
+\begin{quote}Parameter percentageTiltValue: Tilt Value Percentage\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster WindowCovering SetCurrentPositionLiftReporting}
+\begin{quote}Syntax: SetCurrentPositionLiftReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_window\_covering\_set\_current\_position\_lift\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWBYTE threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Window Covering Set Current Possion Lift Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster WindowCovering ResetCurrentPositionLiftReporting}
+\begin{quote}Syntax: ResetCurrentPositionLiftReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_window\_covering\_reset\_current\_position\_lift\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Window Covering Reset Current Position Lift Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster WindowCovering SetCurrentPositionTiltReporting}
+\begin{quote}Syntax: SetCurrentPositionTiltReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_window\_covering\_set\_current\_position\_tilt\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWBYTE threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Window Covering Set Current Possion Tilt Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster WindowCovering ResetCurrentPositionTiltReporting}
+\begin{quote}Syntax: ResetCurrentPositionTiltReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_window\_covering\_reset\_current\_position\_tilt\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Window Covering Reset Current Position Tilt Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
@@ -917,6 +1204,224 @@ Data holders:
 \begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_reset\_color\_temperature\_mireds\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Reset Color Temperature Mireds Reporting\end{quote}
 \begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class Thermostat (0x0201/513)}
+
+Profile ZigBee Device Profile (0x0104/260)
+
+This cluster provides an interface to the functionality of a thermostat.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{currentLevel}: It represents the current level of this device. The meaning of 'level' is device dependent.
+\item \textbf{remainingTime}: It represents the time remaining until the current command is complete - it is specified in 1/10ths of a second.
+\item \textbf{onOffTransitionTime}: It represents the time taken to move to or from the target level when On of Off commands are received by an On/Off cluster on the same endpoint. It is specified in 1/10ths of a second. The actual time taken SHOULD be as close to OnOffTransitionTime as the device is able. N.B. If the device is not able to move at a variable rate, the OnOffTransitionTime attribute SHOULD not be implemented.
+\item \textbf{onLevel}: It determines the value that the CurrentLevel attribute is set to when the OnOff attribute of an On/Off cluster on the same endpoint is set to On. If the OnLevel attribute is not implemented, or is set to 0xff, it has no effect.
+\item \textbf{onTransitionTime}: It represents the time taken to move the current level from the minimum level to the maximum level when an On command is received by an On/Off cluster on the same endpoint. It is specified in 10ths of a second. If this command is not implemented, or contains a value of 0xffff, the On/OffTransitionTime will be used instead
+\item \textbf{offTransitionTime}: It represents the time taken to move the current level from the maximum level to the minimum level when an Off command is received by an On/Off cluster on the same endpoint. It is specified in 10ths of a second. If this command is not implemented, or contains a value of 0xffff, the On/OffTransitionTime will be used instead.
+\item \textbf{defaultMoveRat}: It determines the movement rate, in units per second, when a Move command is received with a Rate parameter of 0xFF
+\end{itemize}
+
+\paragraph{Cluster Thermostat SetpointRaiseLower}
+\begin{quote}Syntax: SetpointRaiseLower(mode, amount, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_setpoint\_raise\_lower(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE mode, int amount, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Setpoint Raise/Lower (0x00/0)\end{quote}
+\begin{quote}Parameter mode: Mode:. 0x00 - Heat. 0x01 - Cool. 0x02 - Both\end{quote}
+\begin{quote}Parameter amount: Amount of setpoint\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Thermostat GetWeeklySchedule}
+\begin{quote}Syntax: GetWeeklySchedule(daysToReturn, modeToReturn, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_get\_weekly\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE days\_to\_return, ZWBYTE mode\_to\_return, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get weekly schedule (0x02/2)\end{quote}
+\begin{quote}Parameter daysToReturn: Days of week. 0th bit - Sunday. 1st bit - Monday. 2nd bit - Tuesday. 3rd bit - Wednesday. 4th bit - Thursday. 5th bit - Friday. 6th bit - Saturday. 7th bit - Away or Vacation\end{quote}
+\begin{quote}Parameter modeToReturn: Mode:. 0th bit - Heat Setpoint Field Present in Payload. 1st bit - Cool Setpoint Field Present in Payload\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Thermostat ClearWeeklySchedule}
+\begin{quote}Syntax: ClearWeeklySchedule(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_clear\_weekly\_schedule(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Clear weekly schedule (0x03/3)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Thermostat GetRelayStatusLog}
+\begin{quote}Syntax: GetRelayStatusLog(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_get\_relay\_status\_log(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get Relay Status Log (0x04/4)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Thermostat ConfigurationGet}
+\begin{quote}Syntax: ConfigurationGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_configuration\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat Configuration Get\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Thermostat SetLocalTemperatureReporting}
+\begin{quote}Syntax: SetLocalTemperatureReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_set\_local\_temperature\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat Set Local Temperature Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Thermostat ResetLocalTemperatureReporting}
+\begin{quote}Syntax: ResetLocalTemperatureReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_reset\_local\_temperature\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat Reset Local Temperature Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Thermostat SetPiCoolingDemandReporting}
+\begin{quote}Syntax: SetPiCoolingDemandReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_set\_pi\_cooling\_demand\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWBYTE threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat Set PI Cooling Demand Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Thermostat ResetPiCoolingDemandReporting}
+\begin{quote}Syntax: ResetPiCoolingDemandReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_reset\_pi\_cooling\_demand\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat Reset PI Cooling Demand Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Thermostat SetPiHeatingDemandReporting}
+\begin{quote}Syntax: SetPiHeatingDemandReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_set\_pi\_heating\_demand\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWBYTE threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat Set PI Heating Demand Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Thermostat ResetPiHeatingDemandReporting}
+\begin{quote}Syntax: ResetPiHeatingDemandReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_reset\_pi\_heating\_demand\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat Reset PI Heating Demand Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class Thermostat User Interface (0x0204/516)}
+
+Profile ZigBee Device Profile (0x0104/260)
+
+This cluster provides an interface to allow configuration of the user interface for a thermostat, or a thermostat controller device, that supports a keypad and LCD screen.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{localTemperature}:  	It represents the temperature in degrees Celsius, as measured locally or remotely (over the network) as follows: LocalTemperature = 100 x temperature in degrees Celsius. Where -273.15°C <= temperature <= 327.67 ºC, corresponding to a LocalTemperature in the range 0x954d to 0x7fff. The maximum resolution this format allows is 0.01 ºC. A LocalTemperature of 0x8000 indicates that the temperature measurement is invalid.
+\item \textbf{outdoorTemperature}: It represents the outdoor temperature in degrees Celsius, as measured locally or remotely (over the network). It is measured as described for LocalTemperature.
+\item \textbf{occupancy}: It specifies whether the heated/cooled space is occupied or not, as measured locally or remotely (over the network). If bit 0 = 1, the space is occupied, else it is unoccupied. All other bits are reserved.
+\item \textbf{absMinHeatSetpointLimit}: It specifies the absolute minimum level that the heating setpoint MAY be set to. This is a limitation imposed by the manufacturer. The value is calculated as described in the LocalTemperature attribute.
+\item \textbf{absMaxHeatSetpointLimit}: It specifies the absolute maximum level that the heating setpoint MAY be set to. This is a limitation imposed by the manufacturer. The value is calculated as described in the LocalTemperature attribute.
+\item \textbf{absMinCoolSetpointLimit}: It  specifies the absolute minimum level that the cooling setpoint MAY be set to. This is a limitation imposed by the manufacturer. The value is calculated as described in the LocalTemperature attribute.
+\item \textbf{absMaxCoolSetpointLimit}: It  specifies the absolute maximum level that the cooling setpoint MAY be set to. This is a limitation imposed by the manufacturer. The value is calculated as described in the LocalTemperature attribute.
+\item \textbf{piCoolingDemand}: It is 8 bits in length and specifies the level of cooling demanded by the PI (proportional integral) control loop in use by the thermostat (if any), in percent. This value is 0 when the thermostat is in “off” or “heating” mode. This attribute is reported regularly and MAY be used to control a heating device.
+\item \textbf{piHeatingDemand}: It is 8 bits in length and specifies the level of heating demanded by the PI loop in percent. This value is 0 when the thermostat is in “off” or “cooling” mode. This attribute is reported regularly and MAY be used to control a cooling device.
+\item \textbf{hvacSystemTypeConfiguration}:  It specifies the HVAC system type controlled by the thermostat. If the thermostat uses physical DIP switches to set these parameters, this information SHALL be available read-only from the DIP switches. If these parameters are set via software, there SHALL be read/write access in order to provide remote programming capability. The meanings of individual bits are detailed in Table. Each bit represents a type of system configuration.
+\item \textbf{localTemperatureCalibration}: It specifies the offset that can be added/subtracted to the actual displayed room temperature, in steps of 0.1°C. The range of this offset is –2.5 °C to +2.5 °C).
+\item \textbf{occupiedCoolingSetpoint}: It is 16 bits in length and specifies the cooling mode setpoint when the room is occupied. It SHALL be set to a value in the range defined by the MinCoolSetpointLimit and MaxCoolSetpointLimit attributes. The value is calculated as described in the LocalTemperature attribute. The OccupiedHeatingSetpoint attribute SHALL always be below the value specified in the OccupiedCooling Setpoint by at least SetpointDeadband. If an attempt is made to set it such that this condition is violated, a default response command with the status code INVALID\_VALUE (see 2.5.3) SHALL be returned. This SHALL apply to all attempts to set values of attributes which violate similar conditions. If it is unknown if the room is occupied or not, this attribute SHALL be used as the cooling mode setpoint
+\item \textbf{occupiedHeatingSetpoint}: It  is 16 bits in length and specifies the heating mode setpoint when the room is occupied. It SHALL be set to a value in the range defined by the MinHeatSetpointLimit and MaxHeatSetpointLimit attributes. The value is calculated as described in the LocalTemperature attribute. The OccupiedCoolingSetpoint attribute SHALL always be above the value specified in the OccupiedHeatingSetpoint by at least SetpointDeadband. If it is unknown if the room is occupied or not, this attribute SHALL be used as the cooling mode setpoint
+\item \textbf{unoccupiedCoolingSetpoint}: It  is 16 bits in length and specifies the cooling mode setpoint when the room is unoccupied. It SHALL be set to a value in the range defined by the MinCoolSetpointLimit and MaxCoolSetpointLimit attributes. The value is calculated as described in the LocalTemperature attribute. The UnoccupiedHeatingSetpoint attribute SHALL always be below the value specified in the UnoccupiedCooling Setpoint by at least SetpointDeadband. If it is unknown if the room is occupied or not, this attribute SHALL not be used.
+\item \textbf{unoccupiedHeatingSetpoint}: It is 16 bits in length and specifies the heating mode setpoint when the room is unoccupied. It SHALL be set to a value in the range defined by the MinHeatSetpointLimit and MaxHeatSetpointLimit attributes. The value is calculated as described in the LocalTemperature attribute. The UnoccupiedCoolingSetpoint attribute SHALL always be below the value specified in the UnoccupiedHeating Setpoint by at least SetpointDeadband. If it is unknown if the room is occupied or not, this attribute SHALL not be used.
+\item \textbf{minHeatSetpointLimit}: It specifies the minimum level that the heating setpoint MAY be set to. The value is calculated as described in the LocalTemperature attribute. It must be greater than or equal to AbsMinHeatSetpointLimit. If this attribute is not present, it SHALL be taken as equal to AbsMinHeatSetpointLimit. This attribute, and the following three attributes, allow the user to define setpoint limits more constrictive than the manufacturer imposed ones. Limiting users (e.g., in a commercial building) to such setpoint limits can help conserve power.
+\item \textbf{maxHeatSetpointLimit}: It specifies the maximum level that the heating setpoint MAY be set to. The value is calculated as described in the LocalTemperature attribute. It must be less than or equal to AbsMaxHeatSetpointLimit. If this attribute is not present, it SHALL be taken as equal to AbsMaxHeatSetpointLimit.
+\item \textbf{minCoolSetpointLimit}: It specifies the minimum level that the cooling setpoint MAY be set to. The value is calculated as described in the LocalTemperature attribute. It must be greater than or equal to AbsMinCoolSetpointLimit. If this attribute is not present, it SHALL be taken as equal to AbsMinCoolSetpointLimit.
+\item \textbf{maxCoolSetpointLimit}: It specifies the maximum level that the cooling setpoint MAY be set to. The value is calculated as described in the LocalTemperature attribute. It must be less than or equal to AbsMaxCoolSetpointLimit. If this attribute is not present, it SHALL be taken as equal to AbsMaxCoolSetpointLimit.
+\item \textbf{minSetpointDeadBand}: It specifies the minimum difference between the Heat Setpoint and the Cool SetPoint, in steps of 0.1°C. Its range is 0x0a to 0x19 (1°C to 2.5°C).
+\item \textbf{remoteSensing}: It is an 8-bit bitmap that specifies whether the local temperature, outdoor temperature and occupancy are being sensed by internal sensors or remote networked sensors. The meanings of individual bits are detailed in Table
+\item \textbf{controlSequenceOfOperation}:  It specifies the overall operating environment of the thermostat, and thus the possible system modes that the thermostat can operate in. It SHALL be set to one of the non-reserved values in Table. (Note: it is not mandatory to support all values)
+\item \textbf{systemMode}:  It specifies the current operating mode of the thermostat, It SHALL be set to one of the non-reserved values in Table. (Note: It is not mandatory to support all values).
+\item \textbf{alarmMask}: It specifies whether each of the alarms listed in Table Alarm Codes is enabled. When the bit number corresponding to the alarm code is set to 1, the alarm is enabled, else it is disabled. Bits not corresponding to a code in the table are reserved. When the Alarms cluster is implemented on a device, and one of the alarm conditions included in this table occurs, an alarm notification is generated, with the alarm code field set as listed in the table.
+\item \textbf{thermostatRunningMode}: It epresents the running mode of the thermostat. The thermostat running mode can only be Off, Cool or Heat. This attribute is intended to provide additional information when the thermostat’s system mode is in auto mode. The attribute value is maintained to have the same value as the SystemMode attribute.
+\item \textbf{startOfWeek}: It represents the day of the week that this thermostat considers to be the start of week for weekly set point scheduling. The possible values are given in Table. If the Weekly schedule extension is supported this attribute SHALL be supported. This attribute MAY be able to be used as the base to determine if the device supports weekly scheduling by reading the attribute. Successful response means that the weekly scheduling is supported.
+\item \textbf{numberOfWeeklyTransitions}: It determines how many weekly schedule transitions the thermostat is capable of handling.	
+\item \textbf{numberOfDailyTransitions}: It determines how many daily schedule transitions the thermostat is capable of handling.
+\item \textbf{temperatureSetpointHold}: It specifies the temperature hold status on the thermostat, as shown in Table. If hold status is on, the thermostat SHOULD maintain the temperature set point for the current mode until a system mode change. If hold status is off, the thermostat SHOULD follow the setpoint transitions specified by its internal scheduling program. If the thermostat supports setpoint hold for a specific duration, it SHOULD also implement the TemperatureSetpointHoldDuration attribute.
+\item \textbf{temperatureSetpointHoldDuration}: It sets the period in minutes for which a setpoint hold is active. Thermostats that support hold for a specified duration SHOULD implement this attribute. The valid range is from 0x0000 – 0x05A0 (1440 minutes within a day). A value of 0xFFFF indicates the field is unused. All other values are reserved.
+\item \textbf{thermostatProgrammingOperationMode}: It determines the operational state of the thermostat’s programming. The thermostat SHALL modify its programming operation when this attribute is modified by a client and update this attribute when its programming operation is modified locally by a user. The thermostat MAY support more than one active ThermostatProgrammingOperationMode. For example, the thermostat MAY operate simultaneously in Schedule Programming Mode and Recovery Mode. If a thermostat supports Thermostat Programming Operation Mode attribute, it SHALL support attribute reporting for this attribute. Any locally-initiated changes to the ThermostatProgrammingOperationMode SHALL be updated and reported to all clients configured to receive such reports. The meanings of individual bits are detailed in Table. Each bit represents a type of operation.
+\item \textbf{thermostatRunningState}: It represents the current relay state of the heat, cool, and fan relays, whose values are shown in Table
+\item \textbf{setpointChangeSource}: It  specifies the source of the current active OccupiedCoolingSetpoint or OccupiedHeatingSetpoint (i.e., who or what determined the current setpoint). SetpointChangeSource attribute enables service providers to determine whether changes to setpoints were initiated due to occupant comfort, scheduled programming or some other source (e.g., electric utility or other service provider). Because automation services MAY initiate frequent setpoint changes, this attribute clearly differentiates the source of setpoint changes made at the thermostat.
+\item \textbf{setpointChangeAmount}: It specifies the delta between the current active OccupiedCoolingSetpoint or OccupiedHeatingSetpoint and the previous active setpoint. This attribute is meant to accompany the SetpointChangeSource attribute; devices implementing SetpointChangeAmount SHOULD also implement SetpointChangeSource.
+\item \textbf{setpointChangeSourceTimestamp}: It specifies the time in UTC at which the SetpointChangeSourceAmount attribute change was recorded.
+\item \textbf{acType}: Indicates the type of Mini Split ACType of Mini Split AC is defined depending on how Cooling and Heating condition is achieved by Mini Split AC.
+\item \textbf{acCapacity}:  Indicates capacity of Mini Split AC in terms of the format defined by the ACCapacityFormat attribute
+\item \textbf{acRefrigerantType}: Indicates type of refrigerant used within the Mini Split AC
+\item \textbf{acCompressorType}: This indicates type of Compressor used within the Mini Split AC.
+\item \textbf{acErrorCode}: This indicates the type of errors encountered within the Mini Split AC. Error values are reported with four bytes values. Each bit within the four bytes indicates the unique error.
+\item \textbf{acLouverPosition}: This indicates the position of Louver on the AC. Attribute values are listed in Table
+\item \textbf{acCoilTemperature}: ACCoilTemperature represents the temperature in degrees Celsius, as measured locally or remotely (over the network) as follows: ACCoilTemperature = 100 x temperature in degrees Celsius. Where -273.15°C <= temperature <= 327.67 ºC, corresponding to an ACCoilTemperature in the range 0x954d to 0x7fff. The maximum resolution this format allows is 0.01 ºC.  ACCoilTemperature of 0x8000 indicates that the temperature measurement is invalid.
+\item \textbf{acCapacityFormat}: This is the format for the ACCapacity attribute
+\item \textbf{temperatureDisplayMode}: The TemperatureDisplayMode attribute specifies the units of the temperature displayed on the thermostat screen. This attribute SHALL be set to one of the non-reserved values in Table
+\item \textbf{keypadLockout}: The KeypadLockout attribute specifies the level of functionality that is available to the user via the keypad. This attribute SHALL be set to one of the non-reserved values Table. The interpretation of the various levels is device-dependent.
+\item \textbf{scheduleProgrammingVisibility}: The ScheduleProgrammingVisibility attribute is used to hide the weekly schedule programming functionality or menu on a thermostat from a user to prevent local user programming of the weekly schedule. The schedule programming MAY still be performed via a remote interface, and the thermostat MAY operate in schedule programming mode. This command is designed to prevent local tampering with or disabling of schedules that MAY have been programmed by users or service providers via a more capable remote interface. The programming schedule SHALL continue to run even though it is not visible to the user locally at the thermostat. It SHALL be set to one of the non-reserved values in Table
+\end{itemize}
+
+\paragraph{Cluster ThermostatUserInterface SetTemperatureDisplayMode}
+\begin{quote}Syntax: SetTemperatureDisplayMode(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_user\_interface\_set\_temperature\_display\_mode(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD mode, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Temperature Display Mode\end{quote}
+\begin{quote}Parameter mode: Mode of displaying temperature\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ThermostatUserInterface SetKeypadLockout}
+\begin{quote}Syntax: SetKeypadLockout(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_user\_interface\_set\_keypad\_lockout(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE mode, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat User Information Set Keypad Lockout\end{quote}
+\begin{quote}Parameter mode: Mode of keypad lock\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ThermostatUserInterface SetScheduleProgrammingVisibility}
+\begin{quote}Syntax: SetScheduleProgrammingVisibility(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_user\_interface\_set\_schedule\_programming\_visibility(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL mode, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat User Information Set Schedule Programming Visibility\end{quote}
+\begin{quote}Parameter mode: Mode of keypad lock\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
@@ -1389,6 +1894,47 @@ Data holders:
 
 
 
+\section{Cluster Class IlluminanceMeasurement (0x0400/1024)}
+
+Profile Zigbee Device Profile (0x0104/260)
+
+The cluster provides an interface to temperature measurement functionality, including configuration and provision of notifications of temperature measurements. 0x00 Photodiode. 0x01 CMOS. 0x40 – 0xfe Reserved for manufacturer specific light sensor types. 0xff Unknown.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{measuredValue}: It represents the temperature in degrees Celsius as follows: MeasuredValue = 100 x temperature in degrees Celsius. Where -273.15°C <= temperature <= 327.67 ºC, corresponding to a MeasuredValue in the range 0x954d to 0x7fff. The maximum resolution this format allows is 0.01 ºC. A MeasuredValue of 0x8000 indicates that the temperature measurement is invalid. MeasuredValue is updated continuously as new measurements are made	
+\item \textbf{minMeasuredValue}: It indicates the minimum value of MeasuredValue that is capable of being measured. A MinMeasuredValue of 0x8000 indicates that the minimum value is unknown		
+\item \textbf{maxMeasuredValue}: It indicates the maximum value of MeasuredValue that is capable of being measured. MaxMeasuredValue shall be greater than MinMeasuredValue. MinMeasuredValue and MaxMeasuredValue define the range of the sensor. A MaxMeasuredValue of 0x8000 indicates that the maximum value is unknown.	
+\item \textbf{tolerance}: It indicates the magnitude of the possible error that is associated with MeasuredValue. The true value is located in the range (MeasuredValue – Tolerance) to (MeasuredValue + Tolerance).
+\item \textbf{lightSensorType}: It  specifies the electronic type of the light sensor. This attribute shall be set to one of the non-reserved values listed in Table
+\end{itemize}
+
+\paragraph{Cluster IlluminanceMeasurement SetMeasuredValueReporting}
+\begin{quote}Syntax: SetMeasuredValueReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_illuminance\_measurement\_set\_measured\_value\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Measured Value Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster IlluminanceMeasurement ResetMeasuredValueReporting}
+\begin{quote}Syntax: ResetMeasuredValueReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_illuminance\_measurement\_reset\_measured\_value\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Reset Measured Value Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
 \section{Cluster Class TemperatureMeasurement (0x0402/1026)}
 
 Profile Zigbee Device Profile (0x0104/260)
@@ -1653,6 +2199,325 @@ Data holders:
 \begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
 \begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
 \begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class Metering (0x0702/1794)}
+
+Profile ZigBee Device Profile (0x0104/260)
+
+The Metering Cluster provides a mechanism to retrieve usage information from Electric, Gas, Water, and potentially Thermal metering devices. These devices can operate on either battery or mains power, and can have a wide variety of sophistication. The Metering Cluster is designed to provide flexibility while limiting capabilities to a set number of metered information types. More advanced forms or data sets from metering devices will be supported in the Smart Energy Tunneling Cluster. The following figures identify three configurations as examples utilizing the Metering Cluster.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{currentSummationDelivered}: (Id 0x0000) CurrentSummationDelivered represents the most recent summed value of Energy, Gas, or Water delivered and consumed in the premises. CurrentSummationDelivered is mandatory and must be provided as part of the minimum data set to be provided by the metering device. CurrentSummationDelivered is updated continuously as new measurements are made.
+\item \textbf{currentSummationReceived}: (Id 0x0001) CurrentSummationReceived represents the most recent summed value of Energy, Gas, or Water generated and delivered from the premises. If optionally provided, CurrentSummationReceived is updated continuously as new measurements are made.
+\item \textbf{currentMaxDemandDelivered}: (Id 0x0002) CurrentMaxDemandDelivered represents the maximum demand or rate of delivered value of Energy, Gas, or Water being utilized at the premises. If optionally provided, CurrentMaxDemandDelivered is updated continuously as new measurements are made.
+\item \textbf{currentMaxDemandReceived}: (Id 0x0003) CurrentMaxDemandReceived represents the maximum demand or rate of received value of Energy, Gas, or Water being utilized by the utility. If optionally provided, CurrentMaxDemandReceived is updated continuously as new measurements are made.
+\item \textbf{dFtSummation}: (Id 0x0004) DFTSummation represents a snapshot of attribute CurrentSummationDelivered captured at the time indicated by attribute DailyFreezeTime. If optionally provided, DFTSummation is updated once every 24 hours and captured
+\item \textbf{dailyFreezeTime}: (Id 0x0005) DailyFreezeTime represents the time of day when DFTSummation is captured. DailyFreezeTime is an unsigned 16-bit value representing the hour and minutes for DFT. The byte usages are: Bits 0 to 7: Range of 0 to 0x3C representing the number of minutes past the top of the hour. Bits 8 to 15: Range of 0 to 0x17 representing the hour of the day (in 24-hour format).
+\item \textbf{powerFactor}: (Id 0x0006) PowerFactor contains the Average Power Factor ratio in 1/100ths. Valid values are 0 to 99.
+\item \textbf{readingSnapShotTime}: (Id 0x0007) The ReadingSnapShotTime attribute represents the last time all of the CurrentSummationDelivered, CurrentSummationReceived, CurrentMaxDemandDelivered, and CurrentMaxDemandReceived attributes that are supported by the device were updated.
+\item \textbf{currentMaxDemandDeliveredTime}: (Id 0x0008) The CurrentMaxDemandDeliveredTime attribute represents the time when CurrentMaxDemandDelivered reading was captured
+\item \textbf{currentMaxDemandReceivedTime}: (Id 0x0009) The CurrentMaxDemandReceivedTime attribute represents the time when CurrentMaxDemandReceived reading was captured.
+\item \textbf{defaultUpdatePeriod}: (Id 0x000A) The DefaultUpdatePeriod attribute represents the interval (seconds) at which the InstantaneousDemand attribute is updated when not in fast poll mode. InstantaneousDemand may be continuously updated as new measurements are acquired, but at a minimum InstantaneousDemand must be updated at the DefaultUpdatePeriod. The DefaultUpdatePeriod may apply to other attributes as defined by the device manufacturer.
+\item \textbf{fastPollUpdatePeriod}: (Id 0x000B) The FastPollUpdatePeriod attribute represents the interval (seconds) at which the InstantaneousDemand attribute is updated when in fast poll mode. InstantaneousDemand may be continuously updated as new measurements are acquired, but at a minimum, InstantaneousDemand must be updated at the FastPollUpdatePeriod. The FastPollUpdatePeriod may apply to other attributes as defined by the device manufacturer.
+\item \textbf{currentBlockPeriodConsumptionDelivered}: (Id 0x000C) The CurrentBlockPeriodConsumptionDelivered attribute represents the most recent summed value of Energy, Gas or Water delivered and consumed in the premises during the Block Tariff Period. The CurrentBlockPeriodConsumptionDelivered is reset at the start of each Block Tariff Period.
+\item \textbf{dailyConsumptionTarget}: (Id 0x000D) The DailyConsumptionTarget attribute is a daily target consumption amount that can be displayed to the consumer on a HAN device, with the intent that it can be used to compare to actual daily consumption (e.g. compare to the CurrentDayConsumptionDelivered). This may be sent from the utility to the ESI, or it may be derived. Although intended to be based on Block Thresholds, it can be used for other targets not related to blocks. The formatting will be based on the HistoricalConsumptionFormatting attribute. Example: If based on a Block Threshold, the DailyConsumptionTarget could be calculated based on the number of days specified in the Block Tariff Period and a given Block Threshold as follows: DailyConsumptionTarget = BlockNThreshold / ((BlockPeriodDuration /60) / 24). Example: If the target is based on a Block1Threshold of 675kWh and where 43200 BlockThresholdPeriod is the number of minutes in the billing period (30 days), the ConsumptionDailyTarget would be 675 / ((43200 / 60) / 24) = 22.5 kWh per day.
+\item \textbf{currentBlock}: (Id 0x000E) When Block Tariffs are enabled, CurrentBlock is an 8-bit Enumeration which indicates the currently active block. If blocks are active then the current active block is based on the CurrentBlockPeriodConsumptionDelivered and the block thresholds. Block 1 is active when the value of CurrentBlockPeriodConsumptionDelivered is less than Block1Threshold value; Block 2 is active when CurrentBlockPeriodConsumptionDelivered is greater than Block1Threshold value and less than Block2Threshold value, and so on. Block 16 is active when the value of CurrentBlockPeriodConsumptionDelivered is greater than Block15Threshold value
+\item \textbf{profileIntervalPeriod}: (Id 0x000F) The ProfileIntervalPeriod attribute is currently included in the Get Profile Response command payload, but does not appear in an attribute set. This represents the duration of each interval. ProfileIntervalPeriod represents the interval or time frame used to capture metered Energy, Gas, and Water consumption for profiling purposes. The enumeration for this field shall match one of the ProfileIntervalPeriod values
+\item \textbf{intervalReadReportingPeriod}: (Id 0x0010) The IntervalReadReportingPeriod attribute represents how often (in minutes) the water or gas meter is to wake up and provide interval data. E.g.: If IntervalReadReportingPeriod is set to 360, then every 6 hours the water or gas mete r is to wake up and provide 6 hours of interval data in a Get Profile Response command. If it is set to 5760, then every 4 days it will wake up and provide 4 days of interval data in a Get Profile Response command. In some cases data may overlap data sent in previous Get Profile Response comm a nd
+\item \textbf{presetReadingTime}: (Id 0x0011) The PresetReadingTime attribute represents the time of day (in quarter hour increments) at which the meter will wake up and report a register reading even if there has been no consumption for the previous 24 hours. PresetReadingTime is an unsigned 16-bit value representing the hour and minutes. The byte usages are: Bits 0 to 7: Range of 0 to 0x3B representing the number of minutes past the top of the hour Bits 8 to 15: Range of 0 to 0x17 representing the hour of the day (in 24-hour format). E.g.: A setting of 0x172D would represent 23:45 hours or 11:45 pm; a setting of 0x071E would represent 07:30 hours or 7:30 am. A setting of 0xFFFF indicates this feature is disabled. The use of Attribute Reporting Configuration is optional.
+\item \textbf{volumePerReport}: (Id 0x0012) The VolumePerReport attribute represents the volume per report increment from the water or gas meter. For example a gas meter might be set to report its register reading for every time 1 cubic meter of gas is used. For a water meter it might report the register value every 10 liters of water usage.
+\item \textbf{flowRestriction}: (Id 0x0013) The FlowRestriction attribute represents the volume per minute limit set in the flow restrictor. This applies to water but not for gas. A setting of 0xFF indicates this feature is disabled.
+\item \textbf{supply}: (Id 0x0014) The SupplyStatus attribute represents the state of the supply at the customer's premises.
+\item \textbf{currentInletEnergyCarrierSummation}: (Id 0x0015) CurrentInletEnergyCarrierSummation is the current integrated volume of a given energy carrier measured on the inlet. The formatting and unit of measure for this value is specified in the EnergyCarrierUnitOfMeasure and EnergyCarrierSummationFormatting attributes. The Energy consumption registered in CurrentSummationDelivered is not necessarily a direct function of this value. The quality of the energy carrier may vary from day to day, e.g. Gas may have different quality. For heat and cooling meters the energy carrier is water at high or low temperature, the energy withdrawn from such a system is a function of the flow and the inlet and outlet temperature.
+\item \textbf{currentOutletEnergyCarrierSummation}: (Id 0x0016) CurrentOutletEnergyCarrierSummation is the current integrated volume of a given energy carrier measured on the outlet. The formatting and unit of measure for this value is specified in the EnergyCarrierUnitOfMeasure and EnergyCarrierSummationFormatting attributes
+\item \textbf{inletTemperature}: (Id 0x0017) InletTemperature is the temperature measured on the energy carrier inlet. The formatting and unit of measure for this value is specified in the TemperatureUnitOfMeasure and TemperatureFormatting attributes
+\item \textbf{outletTemperature}: (Id 0x0018) OutletTemperature is the temperature measured on the energy carrier outlet. The formatting and unit of measure for this value is specified in the TemperatureUnitOfMeasure and TemperatureFormatting attributes
+\item \textbf{controlTemperature}: (Id 0x0019) ControlTemperature is a reference temperature measured on the meter used to validate the Inlet/Outlet temperatures. The formatting and unit of measure for this value is specified in the TemperatureUnitOfMeasure and TemperatureFormatting attributes
+\item \textbf{currentInletEnergyCarrierDemand}: (Id 0x001A) CurrentInletEnergyCarrierDemand is the current absolute demand on the energy carrier inlet. The formatting and unit of measure for this value is specified in the EnergyCarrierUnitOfMeasure and EnergyCarrierDemandFormatting attributes. For a heat or cooling meter this will be the current absolute flow rate measured on the inlet.
+\item \textbf{currentOutletEnergyCarrierDemand}: (Id 0x001B) CurrentInletEnergyCarrierDemand is the current absolute demand on the energy carrier inlet. The formatting and unit of measure for this value is specified in the EnergyCarrierUnitOfMeasure and EnergyCarrierDemandFormatting attributes. For a heat or cooling meter this will be the current absolute flow rate measured on the inlet.
+\item \textbf{previousBlockPeriodConsumptionDelivere}: (Id 0x001C) The PreviousBlockPeriodConsumptionDelivered attribute represents the total value of Energy, Gas or Water delivered and consumed in the premises at the end of the previous Block Tariff Period. If supported, the PreviousBlockPeriodConsumptionDelivered attribute is updated at the end of each Block Tariff Period.
+\item \textbf{currentTierXSummationDelivered}: (Id 0x010N) (N - 0 .. 15. Decimal in name and hex in Id) Attributes CurrentTier1SummationDelivered through CurrentTierNSummationDelivered represent the most recent summed value of Energy, Gas, or Water delivered to the premises (i.e. delivered to the customer from the utility) at a specific price tier as defined by a TOU schedule or a real time pricing period. If optionally provided, attributes CurrentTier1SummationDelivered through CurrentTierNSummationDelivered are up- dated continuously as new measurements are made.
+\item \textbf{currentTierXSummationReceived}: (Id 0x010N) (N - 0 .. 15. Decimal in name and hex in Id) Attributes CurrentTier1SummationReceived through CurrentTierNSummationReceived represent the most recent summed value of Energy, Gas, or Water provided by the premises (i.e. received by the utility from the customer) at a specific price tier as defined by a TOU schedule or a real time pricing period. If optionally provided, attributes CurrentTier1SummationReceived through CurrentTierNSummationReceived are updated continuously as new measurements are made.
+\item \textbf{status}: (Id 0x0200) The Status attribute provides indicators reflecting the current error conditions found by the metering device. This attribute is an 8-bit field where when an individual bit is set, an error or warning condition exists. The behavior causing the setting or resetting each bit is device specific. In other words, the application within the metering device will determine and control when these settings are either set or cleared. Depending on the commodity type, the bits of this attribute will take on different meaning. Table show the bit mappings for the Status attribute for Electricity, Gas, Water and Heating/Cooling, respectively. A battery-operated meter will report any change in state of the Status when it wakes up via a ZCL report attributes command. The ESI is expected to make alarms available to upstream systems together with consumption data collected from the battery operated meter
+\item \textbf{remainingBatteryLife}: (Id 0x0201) RemainingBatteryLife represents the estimated remaining life of the battery in \% of capacity. A setting of 0xFF indicates this feature is disabled. The range 0 - 100 where 100 = 100\%, 0xFF = Unknown
+\item \textbf{hoursInOperation}: (Id 0x0202) HoursInOperation is a counter that increments once every hour during operation. This may be used as a check for tampering. Note: For meters that are not electricity meters turning off the meter does not necessarily prevent delivery of energy—but the meter might not be able to measure it
+\item \textbf{hoursInFault}: (Id 0x0203) HoursInFault is a counter that increments once every hour when the device is in operation with a fault detected. This may be used as a check for tampering. Note: For meters that are not electricity meters turning off the meter does not necessarily prevent delivery of energy—but the meter might not be able to measure it.
+\item \textbf{unitofMeasure}: (Id 0x0300) UnitofMeasure provides a label for the Energy, Gas, or Water being measured by the metering device. The units of measure apply to all summations, consumptions/ profile interval and demand/rate supported by this cluster. Other measurements such as the power factor are self describing. This attribute is an 8-bit enu- merated field. The bit descriptions for this Attribute are listed in Table. Note: When using BCD for meter reads, the values A to F are special values or indicators denoting “Opens”, “Shorts”, and etc. conditions when reading meter register hardware. Any SE device displaying the BCD based values to end users should use a non-decimal value to replace the A to F. In other words, a device could use an “*” in place of the special values or indicators.
+\item \textbf{multiplier}: (Id 0x0301) Multiplier provides a value to be multiplied against a raw or uncompensated sensor count of Energy, Gas, or Water being measured by the metering device. If present, this attribute must be applied against all summation, consumption and demand values to derive the delivered and received values expressed in the unit of measure specified. This attribute must be used in conjunction with the Divisor attribute.
+\item \textbf{divisor}: (Id 0x0302) Divisor provides a value to divide the results of applying the Multiplier Attribute against a raw or uncompensated sensor count of Energy, Gas, or Water being measured by the metering device. If present, this attribute must be applied against all summation, consumption and demand values to derive the delivered and received values expressed in the unit of measure specified. This attribute must be used in conjunction with the Multiplier attribute.
+\item \textbf{summationFormatting}: (Id 0x0303) SummationFormatting provides a method to properly decipher the number of digits and the decimal location of the values found in the Summation Information Set of attributes. This attribute is to be decoded as follows: Bits 0 to 2: Number of Digits to the right of the Decimal Point. Bits 3 to 6: Number of Digits to the left of the Decimal Point. Bit 7: If set, suppress leading zeros. This attribute shall be used against the following attributes: 1) CurrentSummationDelivered; 2) CurrentSummationReceived; 3) TOU Information attributes; 4) DFTSummation; 5) Block Information attributes
+\item \textbf{demandFormatting}: (Id 0x0304) DemandFormatting provides a method to properly decipher the number of digits and the decimal location of the values found in the Demand-related attributes. This attribute is to be decoded as follows: Bits 0 to 2: Number of Digits to the right of the Decimal Point. Bits 3 to 6: Number of Digits to the left of the Decimal Point. Bit 7: If set, suppress leading zeros. This attribute shall be used against the following attributes: 1) CurrentMaxDemandDelivered; 2) CurrentMaxDemandReceived; 3) InstantaneousDemand
+\item \textbf{historicalConsumptionFormatting}: (Id 0x0305) HistoricalConsumptionFormatting provides a method to properly decipher the number of digits and the decimal location of the values found in the Historical Consumption Set of attributes. This attribute is to be decoded as follows: Bits 0 to 2: Number of Digits to the right of the Decimal Point. Bits 3 to 6: Number of Digits to the left of the Decimal Point. Bit 7: If set, suppress leading zeros. This attribute shall be used against the following attributes: 1) CurrentDayConsumptionDelivered; 2) CurrentDayConsumptionReceived; 3) PreviousDayConsumptionDelivered; 4) PreviousDayConsumptionReceived; 5) CurrentPartialProfileIntervalValue; 6) Intervals; 7) DailyConsumptionTarget
+\item \textbf{meteringDeviceType}: (Id 0x0306) MeteringDeviceType provides a label for identifying the type of metering device present. The attribute are values representing Energy, Gas, Water, Thermal, Heat, Cooling, and mirrored metering devices. The defined values. (Note that these values represent an Enumeration, and not an 8-bit bitmap as indicated in the attribute description. For backwards compatibility reasons, the data type has not been changed, though the data itself should be treated like an enum.) Where a mirror is provided for a battery-powered metering device, the mirror shall assume the relevant 'Mirrored Metering' device type (128-133) whilst the meter itself shall utilize the 'Metering' device type (1 to 6). It shall be the responsibility of the device providing the mirror to modify the Device Type shown on the mirror to that of a 'Mirrored Metering' device. Note: Heat and cooling meters are used for measurement and billing of heat (and cooling) delivered through liquid (water) based central heating systems. The consumers are typically billed by the kWh, calculated from the flow and the temperatures in and out.
+\item \textbf{siteId}: (Id 0x0307) The SiteID is a ZCL Octet String field capable of storing a 32 character string (the first octet indicates length) encoded in UTF-8 format. The SiteID is a text string, known in the UK as the M-PAN number for electricity, MPRN for gas and 'Stand Point' in South Africa. These numbers specify the meter point location in a standardized way. The field is defined to accommodate the number of characters typically found in the UK and Europe (16 digits). Generally speaking the field is numeric but is defined for the possibility of an al- pha-numeric format by specifying an octet string
+\item \textbf{meterSerialNumber}: (Id 0x0308) The MeterSerialNumber is a ZCL Octet String field capable of storing a 24 character string (the first octet indicates length) encoded in UTF-8 format. It is used to provide a unique identification of the metering device.
+\item \textbf{energyCarrierUnitOfMeasure}: (Id 0x0309) The EnergyCarrierUnitOfMeasure specifies the unit of measure that the EnergyCarrier is measured in. This unit of measure is typically a unit of volume or flow and cannot be an amount of energy. The enumeration of this attribute is otherwise identical to the UnitofMeasure attribute
+\item \textbf{energyCarrierSummationFormatting}: (Id 0x030A) EnergyCarrierSummationFormatting provides a method to properly decipher the number of digits and the decimal location of the values found in the Summation- related attributes. This attribute is to be decoded as follows: Bits 0 to 2: Number of Digits to the right of the Decimal Point. Bits 3 to 6: Number of Digits to the left of the Decimal Point. Bit 7: If set, suppress leading zeros. This attribute shall be used in relation with the following attributes: 1) CurrentInletEnergyCarrierSummation; 2) CurrentOutletEnergyCarrierSummation
+\item \textbf{energyCarrierDemandFormatting}: (Id 0x030B) EnergyCarrierDemandFormatting provides a method to properly decipher the number of digits and the decimal location of the values found in the Demand-related attributes. This attribute is to be decoded as follows: Bits 0 to 2: Number of Digits to the right of the Decimal Point. Bits 3 to 6: Number of Digits to the left of the Decimal Point. Bit 7: If set, suppress leading zeros. This attribute shall be used in relation with the following attributes: 1) CurrentInletEnergyCarrierDemand; 2) CurrentOutletEnergyCarrierDemand; 3) CurrentDayMaxEnergyCarrierDemand; 4) PreviousDayMaxEnergyCarrierDemand; 5) CurrentMonthMaxEnergyCarrierDemand; 6) CurrentMonthMinEnergyCarrierDemand; 7) CurrentYearMinEnergyCarrierDemand; 8) CurrentYearMaxEnergyCarrierDemand
+\item \textbf{temperatureUnitOfMeasure}: (Id 0x030C) The TemperatureUnitOfMeasure specifies the unit of measure that temperatures are measured in. The enumeration of this attribute is shown in Table
+\item \textbf{temperatureFormatting}: (Id 0x030D) TemperatureFormatting provides a method to properly decipher the number of digits and the decimal location of the values found in the Temperature-related attributes. This attribute is to be decoded as follows: Bits 0 to 2: Number of Digits to the right of the Decimal Point. Bits 3 to 6: Number of Digits to the left of the Decimal Point. Bit 7: If set, suppress leading zeros. This attribute shall be used in relation with the following attributes: 1) InletTemperature; 2) OutletTemperature; 3) ControlTemperature
+\item \textbf{instantaneousDemand}: (Id 0x0400) InstantaneousDemand represents the current Demand of Energy, Gas, or Water delivered or received at the premises. Positive values indicate demand delivered to the premises where negative values indicate demand received from the premises. InstantaneousDemand is updated continuously as new measurements are made. The frequency of updates to this field is specific to the metering device, but should be within the range of once every second to once every 5 seconds
+\item \textbf{currentDayConsumptionDelivered}: (Id 0x0401) CurrentDayConsumptionDelivered represents the summed value of Energy, Gas, or Water generated and delivered to the premises since midnight local time. If optionally provided, CurrentDayConsumptionDelivered is updated continuously as new measurements are made.
+\item \textbf{currentDayConsumptionReceived}: (Id 0x0402) CurrentDayConsumptionReceived represents the summed value of Energy, Gas, or Water generated and received from the premises since midnight local time. If optionally provided, CurrentDayConsumptionReceived is updated continuously as new measurements are made
+\item \textbf{previousDayConsumptionDelivered}: (Id 0x0403) PreviousDayConsumptionDelivered represents the summed value of Energy, Gas, or Water generated and delivered to the premises within the previous 24 hour period starting at midnight local time. If optionally provided, CurrentDayConsumptionDelivered is updated every midnight local time
+\item \textbf{previousDayConsumptionReceived}: (Id 0x0404) PreviousDayConsumptionReceived represents the summed value of Energy, Gas, or Water generated and received from the premises within the previous 24 hour period starting at midnight local time. If optionally provided, CurrentDayConsumptionReceived is updated is updated every midnight local time.
+\item \textbf{currentPartialProfileIntervalStartTimeDelivered}: (Id 0x0405) CurrentPartialProfileIntervalStartTimeDelivered represents the start time of the current Load Profile interval being accumulated for commodity delivered.
+\item \textbf{currentPartialProfileIntervalStartTimeReceived}: (Id 0x0406) CurrentPartialProfileIntervalStartTimeReceived represents the start time of the current Load Profile interval being accumulated for commodity received
+\item \textbf{currentPartialProfileIntervalValueDelivered}: (Id 0x0407) CurrentPartialProfileIntervalValueDelivered represents the value of the current Load Profile interval being accumulated for commodity delivered
+\item \textbf{currentPartialProfileIntervalValueReceived}: (Id 0x0408) CurrentPartialProfileIntervalValueReceived represents the value of the current Load Profile interval being accumulated for commodity received.
+\item \textbf{currentDayMaxPressure}: (Id 0x0409) CurrentDayMaxPressure is the maximum pressure reported during a day from the water or gas meter.
+\item \textbf{currentDayMinPressure}: (Id 0x040A) CurrentDayMinPressure is the minimum pressure reported during a day from the water or gas meter.
+\item \textbf{previousDayMaxPressure}: (Id 0x040B) PreviousDayMaxPressure represents the maximum pressure reported during previous day from the water or gas meter.
+\item \textbf{previousDayMinPressure}: (Id 0x040C) PreviousDayMinPressure represents the minimum pressure reported during previous day from the water or gas meter
+\item \textbf{currentDayMaxDemand}: (Id 0x040D) CurrentDayMaxDemand represents the maximum demand or rate of delivered value of Energy, Gas, or Water being utilized at the premises.
+\item \textbf{previousDayMaxDemand}: (Id 0x040E) PreviousDayMaxDemand represents the maximum demand or rate of delivered value of Energy, Gas, or Water being utilized at the premises. Note: At the end of a day the metering device will transfer the CurrentDayMaxPressure into PreviousDayMaxPressure, CurrentDayMinPressure into PreviousDayMinPressure and CurrentDayMaxDemand into PreviousDayMaxDemand.
+\item \textbf{currentMonthMaxDemand}: (Id 0x040F) CurrentMonthMaxDemand is the maximum demand reported during a month from t he meter. For electricity, heat and cooling meters this is the maximum power reported in a month.
+\item \textbf{currentYearMaxDemand}: (Id 0x0410) CurrentYearMaxDemand is the maximum demand reported during a year from the meter. For electricity, heat and cooling meters this is the maximum power reported in a year.
+\item \textbf{currentDayMaxEnergyCarrierDemand}: (Id 0x0411) CurrentDayMaxEnergyCarrierDemand is the maximum energy carrier demand reported during a day from the meter. Note: At the end of a day the meter will transfer the CurrentDayMaxEnergyCarrierDemand into PreviousDayMaxEnergyCarrierDemand. For heat and cooling meters this is the maximum flow rate on the inlet reported in a day.
+\item \textbf{previousDayMaxEnergyCarrierDemand}: (Id 0x0412) PreviousDayMaxEnergyCarrierDemand is the maximum energy carrier demand reported during the previous day from the meter
+\item \textbf{currentMonthMaxEnergyCarrierDemand}: (Id 0x0413) CurrentMonthMaxEnergyCarrierDemand is the maximum energy carrier demand reported during a month from the meter. For heat and cooling meters this is the maximum flow rate on the inlet reported in a month
+\item \textbf{currentMonthMinEnergyCarrierDemand}: (Id 0x0414) CurrentMonthMinEnergyCarrierDemand is the minimum energy carrier demand reported during a month from the meter. For heat and cooling meters this is the minimum flow rate on the inlet reported in a month. Note: This attribute may be used to detect leaks if there has been no flow rate of zero in the last month
+\item \textbf{currentYearMaxEnergyCarrierDemand}: (Id 0x0415) CurrentYearMaxEnergyCarrierDemand is the maximum energy carrier demand reported during a year from the meter. For heat and cooling meters this is the maximum flow rate on the inlet reported in a year
+\item \textbf{currentYearMinEnergyCarrierDemand}: (Id 0x0416) CurrentYearMinEnergyCarrierDemand is the minimum energy carrier demand reported during a year from the heat meter. For heat and cooling meters this is the minimum flow rate on the inlet reported in a year. Note: This attribute may be used to detect leaks if there has been no flow rate of zero in the last year
+\item \textbf{maxNumberOfPeriodsDelivered}: (Id 0x0500) MaxNumberofPeriodsDelivered represents the maximum number of intervals the device is capable of returning in one Get Profile Response command. It is required MaxNumberofPeriodsDelivered fit within the default Fragmentation ASDU size of 128 bytes, or an optionally agreed upon larger Fragmentation ASDU size supported by both devices. Please refer to [Z1] for further details on Fragmentation settings.
+\item \textbf{currentDemandDelivered}: (Id 0x0600) CurrentDemandDelivered represents the current Demand of Energy, Gas, or Water delivered at the premises. CurrentDemandDelivered may be continuously updated as new measurements are acquired, but at a minimum CurrentDemandDelivered must be updated at the end of each integration sub- period, which can be obtained by dividing the DemandIntegrationPeriod by the NumberOfDemandSubintervals. This attribute shall be adjusted using the Multiplier and Divisor attributes found in the Formatting Attribute Set and can be formatted using the DemandFormatting attribute. The final result represents an engineering value in the unit defined by the UnitofMeasure attribute.
+\item \textbf{demandLimit}: (Id 0x0601) DemandLimit reflects the current supply demand limit set in the meter. This value can be compared to the CurrentDemandDelivered attribute to understand if limits are being approached or exceeded. Adjustment and formatting of this attribute follow the same rules as the CurrentDemandDelivered. A value of “0xFFFFFF” indicates “demand limiting” is switched off .
+\item \textbf{demandIntegrationPeriod}: (Id 0x0602) DemandIntegrationPeriod is the number of minutes over which the CurrentDemandDelivered attribute is calculated. Valid range is 0x01 to 0xFF. 0x00 is a reserved value
+\item \textbf{numberOfDemandSubintervals}: (Id 0x0603) NumberOfDemandSubintervals represents the number of subintervals used within the DemandIntegrationPeriod. The subinterval duration (in minutes) is obtained by dividing the DemandIntegrationPeriod by the NumberOfDemandSubintervals. The CurrentDemandDelivered attribute is updated at each subinterval. Valid range is 0x01 to 0xFF. 0x00 is a reserved value. As a Rolling Demand example, DemandIntegrationPeriod could be set at 30 (for 30 minute period) and NumberOfDemandSubintervals could be set for 6. This would provide 5 minute (30/6 = 5) subinterval periods. As a Block Demand example, DemandIntegrationPeriod could be set at 30 (for 30 minute period) and NumberOfDemandSubintervals could be set for 1. This would provide a single 30 minute subinterval p e riod.
+\item \textbf{currentNoTierBlockXSummationDelivered}: (Id 0x070X) (X - 0 .. 15) Attributes CurrentNoTierBlock1SummationDelivered through CurrentTier15Block16SummationDelivered represent the most recent summed value of Energy, Gas, or Water delivered to the premises (i.e. delivered to the customer from the utility) at a specific price tier as defined by a TOU schedule, Block Threshold or a real time pricing period. If optionally provided, attributes CurrentNoTierBlock1SummationDelivered through CurrentTier15Block16SummationDelivered are updated continuously as new measurements are made. Note: SummationFormatting shall be used against the Block Information attribute set. The expected practical limit for the number of Block attributes supported is 32. The CurrentTierNBlockNSummationDelivered attributes are reset at the start of each Block Threshold Period.
+\item \textbf{currentTierYBlockXSummationDelivered}: (Id 0x07YX) (X - 0 .. 15) (Y - 1 .. 15) Attributes CurrentNoTierBlock1SummationDelivered through CurrentTier15Block16SummationDelivered represent the most recent summed value of Energy, Gas, or Water delivered to the premises (i.e. delivered to the customer from the utility) at a specific price tier as defined by a TOU schedule, Block Threshold or a real time pricing period. If optionally provided, attributes CurrentNoTierBlock1SummationDelivered through CurrentTier15Block16SummationDelivered are updated continuously as new measurements are made. Note: SummationFormatting shall be used against the Block Information attribute set. The expected practical limit for the number of Block attributes supported is 32. The CurrentTierNBlockNSummationDelivered attributes are reset at the start of each Block Threshold Period.
+\item \textbf{genericAlarmMask}: (Id 0x0800) The AlarmMask attributes of the Alarm Attribute Set specify whether each of the alarms listed in the corresponding alarm group in Table 10-49 through Table 10-55 is enabled. When the bit number corresponding to the alarm number (minus the group offset) is set to 1, the alarm is enabled, else it is disabled. Bits not corresponding to a code in the respective table are reserved.
+\item \textbf{electricityAlarmMask}: (Id 0x0801) The alarm codes are organized in logical groups corresponding to the meter type as listed in Table. The three main alarm groups are: Generic, Electricity, and Flow/ Pressure. The Flow/Pressure Alarm Group is further divided into Generic Flow/Pressure, Water Specific, Heat and Cooling Specific, and Gas Specific. It is left for the manufacturer to select which (if any) alarm codes to support.
+\item \textbf{genericFlowPressureAlarmMask}: (Id 0x0802)
+\item \textbf{waterSpecificAlarmMask}: (Id 0x0803)
+\item \textbf{heatandCoolingSpecificAlarmMask}: (Id 0x0804)
+\item \textbf{gasSpecificAlarmMask}: (Id 0x0805)
+\end{itemize}
+
+\paragraph{Cluster Metering GetProfile}
+\begin{quote}Syntax: GetProfile(intervalChannel, endTime, numberOfPeriods, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_metering\_get\_profile(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE interval\_channel, int end\_time, ZWBYTE number\_of\_periods, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get Profile\end{quote}
+\begin{quote}Parameter intervalChannel: Interval Channel\end{quote}
+\begin{quote}Parameter endTime: End Time\end{quote}
+\begin{quote}Parameter numberOfPeriods: Number Of Periods\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Metering RequestFastPollMode}
+\begin{quote}Syntax: RequestFastPollMode(fastPollUpdatePeriod, duration, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_metering\_request\_fast\_poll\_mode(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE fast\_poll\_update\_period, ZWBYTE duration, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Request Fast Poll Mode\end{quote}
+\begin{quote}Parameter fastPollUpdatePeriod: Fast Poll Update Period\end{quote}
+\begin{quote}Parameter duration: Duration\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Metering RequestMirror}
+\begin{quote}Syntax: RequestMirror(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_metering\_request\_mirror(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Request Mirror\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Metering RemoveMirror}
+\begin{quote}Syntax: RemoveMirror(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_metering\_remove\_mirror(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Request Fast Poll Mode\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Metering SetAttrReporting}
+\begin{quote}Syntax: SetAttrReporting(attrId, direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_metering\_set\_attr\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD attr\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWDWORD64 threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Attribute Reporting\end{quote}
+\begin{quote}Parameter attrId: Attribute Id\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Metering ResetAttrReporting}
+\begin{quote}Syntax: ResetAttrReporting(attrId, direction, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_metering\_reset\_attr\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD attr\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Attribute Reporting\end{quote}
+\begin{quote}Parameter attrId: Attribute Id\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
+\section{Cluster Class ElectricalMeasurement (0x0B04/2820)}
+
+Profile Zigbee Device Profile (0x0104/260)
+
+This cluster provides a mechanism for querying data about the electrical properties as measured by the device. This cluster may be implemented on any device type and be implemented on a per-endpoint basis. For example, a power strip device could represent each outlet on a different endpoint and report electrical information for each individual outlet. The only caveat is that if you implement an attribute that has an associated multiplier and divisor, then you must implement the associated multiplier and divisor attributes. For example if you implement DCVoltage, you must also implement DCVoltageMultiplier and DCVoltageDivisor.  If you are interested in reading information about the power supply or battery level on the device, please see the Power Configuration cluster.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{dcVoltage}: This attribute indicates a device’s measurement capabilities. This will be indicated by setting the desire measurement bits to 1, as mentioned in Table and DC Measurement
+\item \textbf{dcVoltageMin}:     			The DCVoltageMin attribute represents the lowest DC voltage value measured in Volts (V). After resetting, this attribute will return a value of 0x8000 until a measurement is made					
+\item \textbf{dcVoltageMax}: The DCVoltageMax attribute represents the highest DC voltage value measured in Volts (V). After resetting, this attribute will return a value of 0x8000 until a measurement is made.
+\item \textbf{dcCurrent}: The DCCurrent attribute represents the most recent DC current reading in Amps (A). If the current cannot be measured, a value of 0x8000 is returned
+\item \textbf{dcCurrentMin}: The DCCurrentMin attribute represents the lowest DC current value measured in Amps (A). After resetting, this attribute will return a value of 0x8000 until a measurement is made.
+\item \textbf{dcCurrentMax}: The DCCurrentMax attribute represents the highest DC current value measured in Amps (A). After resetting, this attribute will return a value of 0x8000 until a measurement is made.
+\item \textbf{dcPower}: The DCPower attribute represents the most recent DC power reading in Watts (W). If the power cannot be measured, a value of 0x8000 is returned.
+\item \textbf{dcPowerMin}: The DCPowerMin attribute represents the lowest DC power value measured in Watts (W). After resetting, this attribute will return a value of 0x8000 until a measurement is made.
+\item \textbf{dcPowerMax}: The DCPowerMax attribute represents the highest DC power value measured in Watts (W). After resetting, this attribute will return a value of 0x8000 until a measurement is made.
+\item \textbf{dcVoltageMultiplier}: The DCVoltageMultiplier provides a value to be multiplied against the DCVoltage, DCVoltageMin, and DCVoltageMax attributes. This attribute must be used in conjunction with the DCVoltageDivisor attribute. 0x0000 is an invalid value for this attribute.
+\item \textbf{dcVoltageDivisor}: The DCVoltageDivisor provides a value to be divided against the DCVoltage, DCVoltageMin, and DCVoltageMax attributes. This attribute must be used in conjunction with the DCVoltageMultiplier attribute. 0x0000 is an invalid value for this attribute.
+\item \textbf{dcCurrentMultiplier}: The DCCurrentMultiplier provides a value to be multiplied against the DCCurrent, DCCurrentMin, and DCCurrentMax attributes. This attribute must be used in conjunction with the DCCurrentDivisor attribute. 0x0000 is an invalid value for this attribute.
+\item \textbf{dcCurrentDivisor}: The DCCurrentDivisor provides a value to be divided against the DCCurrent, DCCurrentMin, and DCCurrentMax attributes. This attribute must be used in conjunction with the DCCurrentMultiplier attribute. 0x0000 is an invalid value for this attribute.
+\item \textbf{dcPowerMultiplier}: The DCPowerMultiplier provides a value to be multiplied against the DCPower, DCPowerMin, and DCPowerMax attributes. This attribute must be used in conjunction with the DCPowerDivisor attribute. 0x0000 is an invalid value for this attribute.
+\item \textbf{dcPowerDivisor}: The DCPowerDivisor provides a value to be divided against the DCPower, DCPowerMin, and DCPowerMax attributes. This attribute must be used in conjunction with the DCPowerMultiplier attribute. 0x0000 is an invalid value for this attribute.
+\item \textbf{acFrequency}: The ACFrequency attribute represents the most recent AC Frequency reading in Hertz (Hz). If the frequency cannot be measured, a value of 0xFFFF is returned.
+\item \textbf{acFrequencyMin}: The ACFrequencyMin attribute represents the lowest AC Frequency value measured in Hertz (Hz). After resetting, this attribute will return a value of 0xFFFF until a measurement is made.
+\item \textbf{acFrequencyMax}: The ACFrequencyMax attribute represents the highest AC Frequency value measured in Hertz (Hz). After resetting, this attribute will return a value of 0xFFFF until a measurement is made.
+\item \textbf{neutralCurrent}: The NeutralCurrent attribute represents the AC neutral (Line-Out) current value at the moment in time the attribute is read, in Amps (A). If the instantaneous current cannot be measured, a value of 0xFFFF is returned
+\item \textbf{totalActivePower}: Active power represents the current demand of active power delivered or received at the premises, in kW. Positive values indicate power delivered to the premises where negative values indicate power received from the premises. In case if device is capable of measuring multi elements or phases then this will be net active power value
+\item \textbf{totalReactivePower}: Reactive power represents the current demand of reactive power delivered or received at the premises, in kVAr. Positive values indicate power delivered to the premises where negative values indicate power received from the premises. In case if device is capable of measuring multi elements or phases then this will be net reactive power value.
+\item \textbf{totalApparentPower}: Represents the current demand of apparent power, in kVA. In case if device is capable of measuring multi elements or phases then this will be net apparent power value.
+\item \textbf{measured1stHarmonicCurrent}: The Measured 1st HarmonicCurrent through MeasuredNthHarmonicCurrent attributes represent the most recent Nth harmonic current reading in an AC frequency. The unit for this measurement is 10\^Nth HarmonicCurrentMultiplier amperes. If Nth HarmonicCurrentMultiplier is not implemented the unit is in amperes. If the Nth harmonic current cannot be measured a value of 0x8000 is returned. A positive value indicates the measured Nth harmonic current is positive, and a negative value indicates that the measured Nth harmonic current is negative
+\item \textbf{measured3rdHarmonicCurrent}: The Measured 1st HarmonicCurrent through MeasuredNthHarmonicCurrent attributes represent the most recent Nth harmonic current reading in an AC frequency. The unit for this measurement is 10\^Nth HarmonicCurrentMultiplier amperes. If Nth HarmonicCurrentMultiplier is not implemented the unit is in amperes. If the Nth harmonic current cannot be measured a value of 0x8000 is returned. A positive value indicates the measured Nth harmonic current is positive, and a negative value indicates that the measured Nth harmonic current is negative
+\item \textbf{measured5thHarmonicCurrent}: The Measured 1st HarmonicCurrent through MeasuredNthHarmonicCurrent attributes represent the most recent Nth harmonic current reading in an AC frequency. The unit for this measurement is 10\^Nth HarmonicCurrentMultiplier amperes. If Nth HarmonicCurrentMultiplier is not implemented the unit is in amperes. If the Nth harmonic current cannot be measured a value of 0x8000 is returned. A positive value indicates the measured Nth harmonic current is positive, and a negative value indicates that the measured Nth harmonic current is negative
+\item \textbf{measured7thHarmonicCurrent}: The Measured 1st HarmonicCurrent through MeasuredNthHarmonicCurrent attributes represent the most recent Nth harmonic current reading in an AC frequency. The unit for this measurement is 10\^Nth HarmonicCurrentMultiplier amperes. If Nth HarmonicCurrentMultiplier is not implemented the unit is in amperes. If the Nth harmonic current cannot be measured a value of 0x8000 is returned. A positive value indicates the measured Nth harmonic current is positive, and a negative value indicates that the measured Nth harmonic current is negative
+\item \textbf{measured9thHarmonicCurrent}: The Measured 1st HarmonicCurrent through MeasuredNthHarmonicCurrent attributes represent the most recent Nth harmonic current reading in an AC frequency. The unit for this measurement is 10\^Nth HarmonicCurrentMultiplier amperes. If Nth HarmonicCurrentMultiplier is not implemented the unit is in amperes. If the Nth harmonic current cannot be measured a value of 0x8000 is returned. A positive value indicates the measured Nth harmonic current is positive, and a negative value indicates that the measured Nth harmonic current is negative
+\item \textbf{measured11thHarmonicCurrent}: The Measured 1st HarmonicCurrent through MeasuredNthHarmonicCurrent attributes represent the most recent Nth harmonic current reading in an AC frequency. The unit for this measurement is 10\^Nth HarmonicCurrentMultiplier amperes. If Nth HarmonicCurrentMultiplier is not implemented the unit is in amperes. If the Nth harmonic current cannot be measured a value of 0x8000 is returned. A positive value indicates the measured Nth harmonic current is positive, and a negative value indicates that the measured Nth harmonic current is negative
+\item \textbf{measuredPhase1stHarmonicCurrent}: The Measured Phase 1st HarmonicCurrent through MeasuredPhaseNthHarmonicCurrent attributes represent the most recent phase of the Nth harmonic current reading in an AC frequency. The unit for this measurement is 10\^Phase * Nth HarmonicCurrentMultiplier degree. If PhaseNthHarmonicCurrentMultiplier is not implemented the unit is in degree. If the phase of the Nth harmonic current cannot be measured a value of 0x8000 is returned. A positive value indicates the measured phase of the Nth harmonic current is prehurry, and a negative value indicates that the measured phase of the Nth harmonic current is lagging.	
+\item \textbf{measuredPhase3rdHarmonicCurrent}: The Measured Phase 1st HarmonicCurrent through MeasuredPhaseNthHarmonicCurrent attributes represent the most recent phase of the Nth harmonic current reading in an AC frequency. The unit for this measurement is 10\^Phase * Nth HarmonicCurrentMultiplier degree. If PhaseNthHarmonicCurrentMultiplier is not implemented the unit is in degree. If the phase of the Nth harmonic current cannot be measured a value of 0x8000 is returned. A positive value indicates the measured phase of the Nth harmonic current is prehurry, and a negative value indicates that the measured phase of the Nth harmonic current is lagging.	
+\item \textbf{measuredPhase5thHarmonicCurrent}: The Measured Phase 1st HarmonicCurrent through MeasuredPhaseNthHarmonicCurrent attributes represent the most recent phase of the Nth harmonic current reading in an AC frequency. The unit for this measurement is 10\^Phase * Nth HarmonicCurrentMultiplier degree. If PhaseNthHarmonicCurrentMultiplier is not implemented the unit is in degree. If the phase of the Nth harmonic current cannot be measured a value of 0x8000 is returned. A positive value indicates the measured phase of the Nth harmonic current is prehurry, and a negative value indicates that the measured phase of the Nth harmonic current is lagging.	
+\item \textbf{measuredPhase7thHarmonicCurrent}: The Measured Phase 1st HarmonicCurrent through MeasuredPhaseNthHarmonicCurrent attributes represent the most recent phase of the Nth harmonic current reading in an AC frequency. The unit for this measurement is 10\^Phase * Nth HarmonicCurrentMultiplier degree. If PhaseNthHarmonicCurrentMultiplier is not implemented the unit is in degree. If the phase of the Nth harmonic current cannot be measured a value of 0x8000 is returned. A positive value indicates the measured phase of the Nth harmonic current is prehurry, and a negative value indicates that the measured phase of the Nth harmonic current is lagging.	
+\item \textbf{measuredPhase9thHarmonicCurrent}: The Measured Phase 1st HarmonicCurrent through MeasuredPhaseNthHarmonicCurrent attributes represent the most recent phase of the Nth harmonic current reading in an AC frequency. The unit for this measurement is 10\^Phase * Nth HarmonicCurrentMultiplier degree. If PhaseNthHarmonicCurrentMultiplier is not implemented the unit is in degree. If the phase of the Nth harmonic current cannot be measured a value of 0x8000 is returned. A positive value indicates the measured phase of the Nth harmonic current is prehurry, and a negative value indicates that the measured phase of the Nth harmonic current is lagging.		
+\item \textbf{measuredPhase11thHarmonicCurrent}: The Measured Phase 1st HarmonicCurrent through MeasuredPhaseNthHarmonicCurrent attributes represent the most recent phase of the Nth harmonic current reading in an AC frequency. The unit for this measurement is 10\^Phase * Nth HarmonicCurrentMultiplier degree. If PhaseNthHarmonicCurrentMultiplier is not implemented the unit is in degree. If the phase of the Nth harmonic current cannot be measured a value of 0x8000 is returned. A positive value indicates the measured phase of the Nth harmonic current is prehurry, and a negative value indicates that the measured phase of the Nth harmonic current is lagging.				
+\item \textbf{acFrequencyMultiplier}: Provides a value to be multiplied against the ACFrequency attribute. This attribute must be used in conjunction with the ACFrequencyDivisor attribute. 0x0000 is an invalid value for this attribute
+\item \textbf{acFrequencyDivisor}: Provides a value to be divided against the ACFrequency attribute. This attribute must be used in conjunction with the ACFrequencyMultiplier attribute. 0x0000 is an invalid value for this attribute.
+\item \textbf{powerMultiplier}: Provides a value to be multiplied against a raw or uncompensated sensor count of power being measured by the metering device. If present, this attribute must be applied against all power/demand values to derive the delivered and received values expressed in the specified units. This attribute must be used in conjunction with the PowerDivisor attribute.
+\item \textbf{powerDivisor}: Provides a value to divide against the results of applying the Multiplier attribute against a raw or uncompensated sensor count of power being measured by the metering device. If present, this attribute must be applied against all demand/power values to derive the delivered and received values expressed in the specified units. This attribute must be used in conjunction with the PowerMultiplier attribute.
+\item \textbf{harmonicCurrentMultiplier}: Represents the unit value for the MeasuredNthHarmonicCurrent attribute in the format MeasuredNthHarmonicCurrent * 10 \^ HarmonicCurrentMultiplier amperes.
+\item \textbf{phaseHarmonicCurrentMultiplier}: Represents the unit value for the MeasuredPhaseNthHarmonicCurrent attribute in the format MeasuredPhaseNthHarmonicCurrent * 10 \^ PhaseHarmonicCurrentMultiplier degrees.
+\item \textbf{lineCurrent}: Represents the single phase or Phase A, AC line current (Square root of active and reactive current) value at the moment in time the attribute is read, in Amps (A). If the instantaneous current cannot be measured, a value of 0x8000 is returned.
+\item \textbf{activeCurrent}: Represents the single phase or Phase A, AC active/resistive current value at the moment in time the attribute is read, in Amps (A). Positive values indicate power delivered to the premises where negative values indicate power received from the premises.
+\item \textbf{reactiveCurrent}: Represents the single phase or Phase A, AC reactive current value at the moment in time the attribute is read, in Amps (A). Positive values indicate power delivered to the premises where negative values indicate power received from the premises.
+\item \textbf{rmsVoltage}: Represents the most recent RMS voltage reading in Volts (V). If the RMS voltage cannot be measured, a value of 0xFFFF is returned.
+\item \textbf{rmsVoltageMin}: Represents the lowest RMS voltage value measured in Volts (V). After resetting, this attribute will return a value of 0xFFFF until a measurement is made.
+\item \textbf{rmsVoltageMax}: Represents the highest RMS voltage value measured in Volts (V). After resetting, this attribute will return a value of 0xFFFF until a measurement is made.
+\item \textbf{rmsCurrent}: Represents the most recent RMS current reading in Amps (A). If the power cannot be measured, a value of 0xFFFF is returned.
+\item \textbf{rmsCurrentMin}: Represents the lowest RMS current value measured in Amps (A). After resetting, this attribute will return a value of 0xFFFF until a measurement is made.
+\item \textbf{rmsCurrentMax}: Represents the highest RMS current value measured in Amps (A). After resetting, this attribute will return a value of 0xFFFF until a measurement is made.
+\item \textbf{activePower}: Represents the single phase or Phase A, current demand of active power delivered or received at the premises, in Watts (W). Positive values indicate power delivered to the premises where negative values indicate power received from the premises
+\item \textbf{activePowerMin}: Represents the lowest AC power value measured in Watts (W). After resetting, this attribute will return a value of 0x8000 until a measurement is made.
+\item \textbf{activePowerMax}: Represents the highest AC power value measured in Watts (W). After resetting, this attribute will return a value of 0x8000 until a measurement is made.
+\item \textbf{reactivePower}: Represents the single phase or Phase A, current demand of reactive power delivered or received at the premises, in VAr. Positive values indicate power delivered to the premises where negative values indicate power received from the premises.
+\item \textbf{apparentPower}: Represents the single phase or Phase A, current demand of apparent (Square root of active and reactive power) power, in VA.
+\item \textbf{powerFactor}: Contains the single phase or PhaseA, Power Factor ratio in 1/100ths.
+\item \textbf{averageRmsVoltageMeasurementPeriod}: The Period in seconds that the RMS voltage is averaged over.
+\item \textbf{averageRmsOverVoltageCounter}: The number of times the average RMS voltage, has been above the AverageRMS OverVoltage threshold since last reset. This counter may be reset by writing zero to the attribute.
+\item \textbf{averageRmsUnderVoltageCounter}: The number of times the average RMS voltage, has been below the AverageRMS underVoltage threshold since last reset. This counter may be reset by writing zero to the attribute.
+\item \textbf{rmsExtremeOverVoltagePeriod}: The duration in seconds used to measure an extreme over voltage condition.
+\item \textbf{rmsExtremeUnderVoltagePeriod}: The duration in seconds used to measure an extreme under voltage condition.
+\item \textbf{rmsVoltageSagPeriod}: The duration in seconds used to measure a voltage sag condition.
+\item \textbf{rmsVoltageSwellPeriod}: The duration in seconds used to measure a voltage swell condition.
+\item \textbf{acVoltageMultiplier}: Provides a value to be multiplied against the InstantaneousVoltage and RMSVoltage attributes. This attribute must be used in conjunction with the ACVoltageDivisor attribute. 0x0000 is an invalid value for this attribute.
+\item \textbf{acVoltageDivisor}: Provides a value to be divided against the InstantaneousVoltage and RMSVoltage attributes. This attribute must be used in conjunction with the ACVoltageMultiplier attribute. 0x0000 is an invalid value for this attribute.
+\item \textbf{acCurrentMultiplier}: Provides a value to be multiplied against the InstantaneousCurrent and RMSCurrent attributes. This attribute must be used in conjunction with the ACCurrentDivisor attribute. 0x0000 is an invalid value for this attribute.
+\item \textbf{acCurrentDivisor}: Provides a value to be divided against the ACCurrent, InstantaneousCurrent and RMSCurrent attributes. This attribute must be used in conjunction with the ACCurrentMultiplier attribute. 0x0000 is an invalid value for this attribute.
+\item \textbf{acPowerMultiplier}: Provides a value to be multiplied against the InstantaneousPower and ActivePower attributes. This attribute must be used in conjunction with the ACPowerDivisor attribute. 0x0000 is an invalid value for this attribute.
+\item \textbf{acPowerDivisor}: Provides a value to be divided against the InstantaneousPower and ActivePower attributes. This attribute must be used in conjunction with the ACPowerMultiplier attribute. 0x0000 is an invalid value for this attribute.
+\item \textbf{dcOverloadAlarmsMask}: Specifies which configurable alarms may be generated, as listed in Figure. A ‘1’ in each bit position enables the alarm
+\item \textbf{dcVoltageOverload}: Specifies the alarm threshold, set by the manufacturer, for the maximum output voltage supported by device. The value is multiplied and divided by the DCVoltageMultiplier the DCVoltageDivisor respectively.
+\item \textbf{dcCurrentOverload}: Specifies the alarm threshold, set by the manufacturer, for the maximum output current supported by device. The value is multiplied and divided by the DCCurrentMultiplier and DCCurrentDivider respectively.
+\item \textbf{acAlarmsMask}: Specifies which configurable alarms may be generated, as listed in Figure. A ‘1’ in each bit position enables the alarm.
+\item \textbf{acVoltageOverload}: Specifies the alarm threshold, set by the manufacturer, for the maximum output voltage supported by device. The value is multiplied and divided by the ACVoltageMultiplier the ACVoltageDivisor, respectively. The value is voltage RMS.
+\item \textbf{acCurrentOverload}: Specifies the alarm threshold, set by the manufacturer, for the maximum output current supported by device. The value is multiplied and divided by the ACCurrentMultiplier and ACCurrentDivider, respectively. The value is current RMS
+\item \textbf{acActivePowerOverload}: Specifies the alarm threshold, set by the manufacturer, for the maximum output active power supported by device. The value is multiplied and divided by the ACPowerMultiplier and ACPowerDivisor, respectively.
+\item \textbf{acReactivePowerOverload}: Specifies the alarm threshold, set by the manufacturer, for the maximum output reactive power supported by device. The value is multiplied and divided by the ACPowerMultiplier and ACPowerDivisor, respectively.
+\item \textbf{averageRmsOverVoltage}: The average RMS voltage above which an over voltage condition is reported. The threshold shall be configurable within the specified operating range of the electricity meter. The value is multiplied and divided by the ACVoltageMultiplier and ACVoltageDivisor, respectively
+\item \textbf{averageRmsUnderVoltage}: The average RMS voltage below which an under voltage condition is reported. The threshold shall be configurable within the specified operating range of the electricity meter. The value is multiplied and divided by the ACVoltageMultiplier and ACVoltageDivisor, respectively.
+\item \textbf{rmsExtremeOverVoltage}: The RMS voltage above which an extreme under voltage condition is reported. The threshold shall be configurable within the specified operating range of the electricity meter. The value is multiplied and divided by the ACVoltageMultiplier and ACVoltageDivisor, respectively.
+\item \textbf{rmsExtremeUnderVoltage}: The RMS voltage below which an extreme under voltage condition is reported. The threshold shall be configurable within the specified operating range of the electricity meter. The value is multiplied and divided by the ACVoltageMultiplier and ACVoltageDivisor, respectively.
+\item \textbf{rmsVoltageSag}: The RMS voltage below which a sag condition is reported. The threshold shall be configurable within the specified operating range of the electricity meter. The value is multiplied and divided by the ACVoltageMultiplier and ACVoltageDivisor, respectively.
+\item \textbf{rmsVoltageSwell}: The RMS voltage above which a swell condition is reported. The threshold shall be configurable within the specified operating range of the electricity meter. The value is multiplied and divided by the ACVoltageMultiplier and ACVoltageDivisor, respectively.
+\item \textbf{lineCurrentPhB}: Represents the Phase B, AC line current (Square root sum of active and reactive currents) value at the moment in time the attribute is read, in Amps (A). If the instantaneous current cannot be measured, a value of 0x8000 is returned.
+\item \textbf{activeCurrentPhB}: Represents the Phase B, AC active/resistive current value at the moment in time the attribute is read, in Amps (A). Positive values indicate power delivered to the premises where negative values indicate power received from the premises.
+\item \textbf{reactiveCurrentPhB}: Represents the Phase B, AC reactive current value at the moment in time the attribute is read, in Amps (A). Positive values indicate power delivered to the premises where negative values indicate power received from the premises.
+\item \textbf{rmsVoltagePhB}: Represents the most recent RMS voltage reading in Volts (V). If the RMS voltage cannot be measured, a value of 0xFFFF is returned.
+\item \textbf{rmsVoltageMinPhB}: Represents the lowest RMS voltage value measured in Volts (V). After resetting, this attribute will return a value of 0xFFFF until a measurement is made.
+\item \textbf{rmsVoltageMaxPhB}: Represents the highest RMS voltage value measured in Volts (V). After resetting, this attribute will return a value of 0xFFFF until a measurement is made
+\item \textbf{rmsCurrentPhB}: Represents the most recent RMS current reading in Amps (A). If the power cannot be measured, a value of 0xFFFF is returned.
+\item \textbf{rmsCurrentMinPhB}: Represents the lowest RMS current value measured in Amps (A). After resetting, this attribute will return a value of 0x8000 until a measurement is made.
+\item \textbf{rmsCurrentMaxPhB}: Represents the highest RMS current value measured in Amps (A). After resetting, this attribute will return a value of 0x8000 until a measurement is made
+\item \textbf{activePowerPhB}: Represents the Phase B, current demand of active power delivered or received at the premises, in Watts (W). Positive values indicate power delivered to the premises where negative values indicate power received from the premises.
+\item \textbf{activePowerMinPhB}: Represents the lowest AC power value measured in Watts (W). After resetting, this attribute will return a value of 0x8000 until a measurement is made.
+\item \textbf{activePowerMaxPhB}: Represents the highest AC power value measured in Watts (W). After resetting, this attribute will return a value of 0x8000 until a measurement is made.
+\item \textbf{reactivePowerPhB}: Represents the Phase B, current demand of reactive power delivered or received at the premises, in VAr. Positive values indicate power delivered to the premises where negative values indicate power received from the premises.
+\item \textbf{apparentPowerPhB}: Represents the Phase B, current demand of apparent (Square root of active and reactive power) power, in VA.
+\item \textbf{powerFactorPhB}: Contains the PhaseB, Power Factor ratio in 1/100ths.
+\item \textbf{averageRmsVoltageMeasurementPeriodPh}: The Period in seconds that the RMS voltage is averaged over.
+\item \textbf{averageRmsOverVoltageCounterPhB}: The number of times the average RMS voltage, has been above the AverageRMS OverVoltage threshold since last reset. This counter may be reset by writing zero to the attribute.
+\item \textbf{averageRmsUnderVoltageCounterPhB}: The number of times the average RMS voltage, has been below the AverageRMS underVoltage threshold since last reset. This counter may be reset by writing zero to the attribute.
+\item \textbf{rmsExtremeOverVoltagePeriodPhB}: The duration in seconds used to measure an extreme over voltage condition.
+\item \textbf{rmsExtremeUnderVoltagePeriodPhB}: The duration in seconds used to measure an extreme under voltage condition.
+\item \textbf{rmsVoltageSagPeriodPhB}: The duration in seconds used to measure a voltage sag condition
+\item \textbf{rmsVoltageSwellPeriodPhB}: The duration in seconds used to measure a voltage swell condition.
+\item \textbf{lineCurrentPhC}: Represents the Phase B, AC line current (Square root sum of active and reactive currents) value at the moment in time the attribute is read, in Amps (A). If the instantaneous current cannot be measured, a value of 0x8000 is returned.
+\item \textbf{activeCurrentPhC}: Represents the Phase B, AC active/resistive current value at the moment in time the attribute is read, in Amps (A). Positive values indicate power delivered to the premises where negative values indicate power received from the premises.
+\item \textbf{reactiveCurrentPhC}: Represents the Phase B, AC reactive current value at the moment in time the attribute is read, in Amps (A). Positive values indicate power delivered to the premises where negative values indicate power received from the premises.
+\item \textbf{rmsVoltagePhC}: Represents the most recent RMS voltage reading in Volts (V). If the RMS voltage cannot be measured, a value of 0xFFFF is returned.
+\item \textbf{rmsVoltageMinPhC}: Represents the lowest RMS voltage value measured in Volts (V). After resetting, this attribute will return a value of 0xFFFF until a measurement is made.
+\item \textbf{rmsVoltageMaxPhC}: Represents the highest RMS voltage value measured in Volts (V). After resetting, this attribute will return a value of 0xFFFF until a measurement is made
+\item \textbf{rmsCurrentPhC}: Represents the most recent RMS current reading in Amps (A). If the power cannot be measured, a value of 0xFFFF is returned.
+\item \textbf{rmsCurrentMinPhC}: Represents the lowest RMS current value measured in Amps (A). After resetting, this attribute will return a value of 0x8000 until a measurement is made.
+\item \textbf{rmsCurrentMaxPhC}: Represents the highest RMS current value measured in Amps (A). After resetting, this attribute will return a value of 0x8000 until a measurement is made
+\item \textbf{activePowerPhC}: Represents the Phase B, current demand of active power delivered or received at the premises, in Watts (W). Positive values indicate power delivered to the premises where negative values indicate power received from the premises.
+\item \textbf{activePowerMinPhC}: Represents the lowest AC power value measured in Watts (W). After resetting, this attribute will return a value of 0x8000 until a measurement is made.
+\item \textbf{activePowerMaxPhC}: Represents the highest AC power value measured in Watts (W). After resetting, this attribute will return a value of 0x8000 until a measurement is made.
+\item \textbf{reactivePowerPhC}: Represents the Phase B, current demand of reactive power delivered or received at the premises, in VAr. Positive values indicate power delivered to the premises where negative values indicate power received from the premises.
+\item \textbf{apparentPowerPhC}: Represents the Phase B, current demand of apparent (Square root of active and reactive power) power, in VA.
+\item \textbf{powerFactorPhC}: Contains the PhaseB, Power Factor ratio in 1/100ths.
+\item \textbf{averageRmsVoltageMeasurementPeriodPc}: The Period in seconds that the RMS voltage is averaged over.
+\item \textbf{averageRmsOverVoltageCounterPhC}: The number of times the average RMS voltage, has been above the AverageRMS OverVoltage threshold since last reset. This counter may be reset by writing zero to the attribute.
+\item \textbf{averageRmsUnderVoltageCounterPhC}: The number of times the average RMS voltage, has been below the AverageRMS underVoltage threshold since last reset. This counter may be reset by writing zero to the attribute.
+\item \textbf{rmsExtremeOverVoltagePeriodPhC}: The duration in seconds used to measure an extreme over voltage condition.
+\item \textbf{rmsExtremeUnderVoltagePeriodPhC}: The duration in seconds used to measure an extreme under voltage condition.
+\item \textbf{rmsVoltageSagPeriodPhC}: The duration in seconds used to measure a voltage sag condition
+\item \textbf{rmsVoltageSwellPeriodPhC}: The duration in seconds used to measure a voltage swell condition.
+\end{itemize}
+
+\paragraph{Cluster ElectricalMeasurement GetProfileInfoCommand}
+\begin{quote}Syntax: GetProfileInfoCommand(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_electrical\_measurement\_get\_profile\_info\_command(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get Profile Info Command\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster ElectricalMeasurement GetMeasurementProfileCommand}
+\begin{quote}Syntax: GetMeasurementProfileCommand(attrId, startTime, numOfIntervals, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_electrical\_measurement\_get\_measurement\_profile\_command(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD attr\_id, ZWBYTE start\_time, ZWBYTE num\_of\_intervals, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get Measurement Profile Command\end{quote}
+\begin{quote}Parameter attrId: Attribute Id\end{quote}
+\begin{quote}Parameter startTime: Start Time\end{quote}
+\begin{quote}Parameter numOfIntervals: Number of Intervals\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
