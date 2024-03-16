@@ -873,7 +873,40 @@ red=20\&green=240\&blue=0 \\
 \label{tab:devicetypes}
 \end{table}	
 
- 
+
+\subsection{Using WebSocket API}
+WebSocket API provides instant control and is similar to the HTTP API.
+
+Before connecting, make sure to authenticate or save the token in Cookies.
+
+\begin{listingverbatim}[Connecting using WebSockets]
+var ws = new WebSocket("ws://localhost:8083");
+
+ws.onopen = function() {
+	console.log("connected");
+};
+ws.onclose = function() {
+	console.log("disconnected");
+};
+ws.onmessage = function(event) {
+	console.log(event.data);
+};
+ws.onerror = function(event) {
+	console.log(event);
+};
+\end{listingverbatim}
+
+Once connected, the send command allows to send commands to the remote site. Convert the parameter object to a string first.
+\begin{listingverbatim}[Sending commands via WebSockets]
+ws.send(JSON.stringify({"event": "httpEncapsulatedRequest", "data": {"url": "/ZAutomation/api/v1/devices/DummyDevice_18/command/on", "method": "GET"}}))
+\end{listingverbatim}
+
+Events are sent in the following format:
+\begin{listingverbatim}[Events format from WebSockets connection]
+{"type":"ws-reply","data":{"status":200,"body":"{\"data\":null,\"code\":200,\"message\":\"200 OK\",\"error\":null}","headers":{"Content-Type":"application/json; charset=utf-8","X-API-VERSION":"2.0.1"}}}
+{"type":"me.z-wave.devices.level","data":{"creationTime":1710555717,"creatorId":18,"customIcons":{},"deviceType":"switchBinary","firmware":"v4.1.2","h":-1669838584,"hasHistory":false,"id":"DummyDevice_18","location":0,"locationName":"globalRoom","manufacturer":"Z-Wave.Me","metrics":{"title":"Dummy Device Binary","icon":"switch","level"
+ \end{listingverbatim}
+
 \subsection{Access to Virtual Devices}
 
 Virtual devices can be access both on the server side using JS modules and on the client 
