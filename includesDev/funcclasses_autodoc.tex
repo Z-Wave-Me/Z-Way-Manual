@@ -611,6 +611,14 @@
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
 
+\paragraph{Function Class SerialAPISetupGetTxPower}
+\begin{quote}Syntax: SerialAPISetupGetTxPower(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_fc\_serial\_api\_setup\_get\_tx\_power(ZWay zway, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get Tx power in Z-Wave.Me firmware\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: txPower\end{quote}
+
 \paragraph{Function Class SerialAPISetupSetTxPower}
 \begin{quote}Syntax: SerialAPISetupSetTxPower(power, successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}C Syntax: ZWError zway\_fc\_serial\_api\_setup\_set\_tx\_power(ZWay zway, ZWBYTE power, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
@@ -618,7 +626,7 @@
 \begin{quote}Parameter power: Power level in 10*dBm\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
-
+\begin{quote}Report: txPower\end{quote}
 
 \paragraph{Function Class ClearNetworkStats}
 \begin{quote}Syntax: ClearNetworkStats(successCallback = NULL, failureCallback = NULL)\end{quote}

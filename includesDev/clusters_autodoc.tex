@@ -1038,13 +1038,9 @@ Data holders:
 
 
 \paragraph{Cluster ColorControl StopMoveStep}
-\begin{quote}Syntax: StopMoveStep(moveMode, rate, colorTempMinMireds, colorTempMaxMireds, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_stop\_move\_step(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE move\_mode, ZWWORD rate, ZWWORD color\_temp\_min\_mireds, ZWWORD color\_temp\_max\_mireds, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Syntax: StopMoveStep(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_color\_control\_stop\_move\_step(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Stop Move Step (0x47/71)\end{quote}
-\begin{quote}Parameter moveMode: Move mode:. 0x00 - Stop. 0x01 - Up. 0x02 - Reserved. 0x03 - Down\end{quote}
-\begin{quote}Parameter rate: The Rate field is 16-bits in length and specifies the rate of movement in steps per second. A step is a change in the color temperature of a device by one unit. If the Rate field has a value of zero, the command has no effect and a ZCL Default Response command SHALL be sent in response, with the status code set to INVALID\_FIELD\end{quote}
-\begin{quote}Parameter colorTempMinMireds: The Color Temperature Minimum Mireds field is 16-bits in length and specifies a lower bound on the ColorTemperatureMireds attribute (an upper bound on the color temperature in kelvins) for the current move operation such that: ColorTempPhysicalMinMireds <= Color Temperature Minimum Mireds field <= ColorTemperatureMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Minimum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Minimum Mireds field is set to 0x0000, ColorTempPhysicalMinMireds SHALL be used as the lower bound for the ColorTemperatureMireds attribute\end{quote}
-\begin{quote}Parameter colorTempMaxMireds: The Color Temperature Maximum Mireds field is 16-bits in length and specifies an upper bound on the ColorTemperatureMireds attribute (a lower bound on the color temperature in kelvins) for the current move operation such that: ColorTemperatureMireds <= Color Temperature Maximum Mireds field <= ColorTempPhysicalMaxMireds As such if the move operation takes the ColorTemperatureMireds attribute towards the value of the Color Temperature Maximum Mireds field it SHALL be clipped so that the above invariant is satisfied. If the Color Temperature Maximum Mireds field is set to 0x0000, ColorTempPhysicalMaxMireds SHALL be used as the upper bound for the ColorTemperatureMireds attribute\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
