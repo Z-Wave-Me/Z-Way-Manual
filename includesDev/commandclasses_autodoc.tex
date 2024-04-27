@@ -2581,6 +2581,209 @@ Data holders:
 
 
 
+\section{Command Class UserCredential (0x83/131)}
+
+\textit{Version 1, Controlled}
+\newline
+
+Manage user credentials in locks, entry control devices and security panels.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{users}: Users subtree
+\item \textbf{    [userId]}: User subtree
+\item \textbf{        userType}: User type
+\item \textbf{        userTypeName}: User type name
+\item \textbf{        active}: User activity state
+\item \textbf{        credentialRule}: Credential rule to be applied to the user
+\item \textbf{        expiringTimeoutMinutes}: Timeout for the user active state
+\item \textbf{        userNameEncoding}: User name encoding
+\item \textbf{        userName}: User name
+\item \qquad\textbf{modifierType}: Type of the last user modifier of the user
+\item \qquad\textbf{modifierNodeId}: Id of the last user modifier of the user
+\item \textbf{credentials}: Credentials subtree
+\item \qquad\textbf{[credentialType]}: Credential type subtree
+\item \qquad\qquad\textbf{typeName}: Credential type name
+\item \qquad\qquad\textbf{maxCredentials}: Maximum number of credential slots
+\item \qquad\qquad\textbf{minDataLength}: Minimum credential data length
+\item \qquad\qquad\textbf{maxDataLength}: Maximum credential data length
+\item \qquad\qquad\textbf{learnSupported}: Is learn process supported
+\item \qquad\qquad\textbf{learnSteps}: Number of learn steps
+\item \qquad\qquad\textbf{learnRecommendedTimeout}: Recommended timeout for learn process
+\item \qquad\qquad\textbf{[credentialId]}: Credential slot subtree
+\item \qquad\qquad\qquad\textbf{userId}: User Id
+\item \qquad\qquad\qquad\textbf{data}: Credential data
+\item \qquad\qquad\qquad\textbf{credentialReadAccess}: Can credential be read back
+\item \qquad\qquad\qquad\textbf{modifierType}: Type of the last user modifier of the slot
+\item \qquad\qquad\qquad\textbf{modifierNodeId}: Id of the last user modifier of the slot
+\item \textbf{credentialLearn}: Credential Learn subtree
+\item \qquad\textbf{userId}: User Id to be assigned to the learnt credential
+\item \qquad\textbf{credentialType}: Credential Type to be learnt
+\item \qquad\textbf{credentialId}: Credential slot Id to be used to save the learnt credential
+\item \qquad\textbf{operationType}: Credential learn operation
+\item \qquad\textbf{timeout}: Credential learn timeout
+\item \textbf{maxUsers}: Maximum number of users
+\item \textbf{maxUserNameLength}: Maximal user name length
+\item \textbf{supportedUserTypesMask}: Supported User Types mask
+\item \textbf{supportedUserTypes}: Supported User Types
+\item \textbf{supportedCredentialRulesMask}: Supported Credential Rules mask
+\item \textbf{supportedCredentialRules}: Supported Credential Rules
+\item \textbf{userScheduleSupported}: Is user schedule supported
+\item \textbf{allUsersChecksumSupported}: Is all users checksum supported
+\item \textbf{userChecksumSupported}: Is user checksum supported
+\item \textbf{credentialChecksumSupported}: Is credential checksum supported
+\item \textbf{learnSupported}: Is learn process supported
+\item \textbf{nextUserRequested}: Internal fields
+\item \textbf{nextCredentialRequested}: Internal fields
+\end{itemize}
+
+\paragraph{Command UserCredential UserGet}
+\begin{quote}Syntax: UserGet(user, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_credential\_user\_get(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, unsigned int user, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get user info\end{quote}
+\begin{quote}Parameter user: User Id\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command UserCredential UserGetWithCredentials}
+\begin{quote}Syntax: UserGetWithCredentials(user, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_credential\_user\_get\_with\_credentials(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, unsigned int user, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get user info and credential slots for this user\end{quote}
+\begin{quote}Parameter user: User Id\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command UserCredential AllUsersGet}
+\begin{quote}Syntax: AllUsersGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_credential\_all\_users\_get(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get user info and credential slots for all users\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command UserCredential UserAdd}
+\begin{quote}Syntax: UserAdd(user, userType, userActiveState, credentialRule, expiringTimeoutMinutes, userNameEncoding, userName, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_credential\_user\_add(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, unsigned int user, ZWBYTE userType, ZWBOOL userActiveState, ZWBYTE credentialRule, unsigned int expiringTimeoutMinutes, ZWBYTE userNameEncoding, ZWCSTR userName, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Add user\end{quote}
+\begin{quote}Parameter user: User Id\end{quote}
+\begin{quote}Parameter userType: User type\end{quote}
+\begin{quote}Parameter userActiveState: User activity state\end{quote}
+\begin{quote}Parameter credentialRule: Credential rule to apply to the user\end{quote}
+\begin{quote}Parameter expiringTimeoutMinutes: User activity expiration time in minutes\end{quote}
+\begin{quote}Parameter userNameEncoding: User name encoding\end{quote}
+\begin{quote}Parameter userName: User name\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command UserCredential UserModify}
+\begin{quote}Syntax: UserModify(user, userType, userActiveState, credentialRule, expiringTimeoutMinutes, userNameEncoding, userName, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_credential\_user\_modify(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, unsigned int user, ZWBYTE userType, ZWBOOL userActiveState, ZWBYTE credentialRule, unsigned int expiringTimeoutMinutes, ZWBYTE userNameEncoding, ZWCSTR userName, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Modify user\end{quote}
+\begin{quote}Parameter user: User Id\end{quote}
+\begin{quote}Parameter userType: User type\end{quote}
+\begin{quote}Parameter userActiveState: User activity state\end{quote}
+\begin{quote}Parameter credentialRule: Credential rule to apply to the user\end{quote}
+\begin{quote}Parameter expiringTimeoutMinutes: User activity expiration time in minutes\end{quote}
+\begin{quote}Parameter userNameEncoding: User name encoding\end{quote}
+\begin{quote}Parameter userName: User name\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command UserCredential UserDelete}
+\begin{quote}Syntax: UserDelete(user, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_credential\_user\_delete(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, unsigned int user, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Delete user\end{quote}
+\begin{quote}Parameter user: User Id\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command UserCredential CredentialGet}
+\begin{quote}Syntax: CredentialGet(user, credentialType, credentialId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_credential\_credential\_get(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, unsigned int user, ZWBYTE credentialType, unsigned int credentialId, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Get credential info\end{quote}
+\begin{quote}Parameter user: User Id\end{quote}
+\begin{quote}Parameter credentialType: Credential type\end{quote}
+\begin{quote}Parameter credentialId: Credential Id\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command UserCredential CredentialAdd}
+\begin{quote}Syntax: CredentialAdd(userId, credentialType, credentialId, credentialData, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_credential\_credential\_add(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, unsigned int userId, ZWBYTE credentialType, unsigned int credentialId, ZWBYTE credentialLength, const ZWBYTE * credentialData, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Add credential\end{quote}
+\begin{quote}Parameter userId: User Id\end{quote}
+\begin{quote}Parameter credentialType: Credential type\end{quote}
+\begin{quote}Parameter credentialId: Credential Id\end{quote}
+\begin{quote}Parameter credentialData: Credential data\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command UserCredential CredentialModify}
+\begin{quote}Syntax: CredentialModify(userId, credentialType, credentialId, credentialData, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_credential\_credential\_modify(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, unsigned int userId, ZWBYTE credentialType, unsigned int credentialId, ZWBYTE credentialLength, const ZWBYTE * credentialData, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Modify credential\end{quote}
+\begin{quote}Parameter userId: User Id\end{quote}
+\begin{quote}Parameter credentialType: Credential type\end{quote}
+\begin{quote}Parameter credentialId: Credential Id\end{quote}
+\begin{quote}Parameter credentialData: Credential data\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command UserCredential CredentialDelete}
+\begin{quote}Syntax: CredentialDelete(userId, credentialType, credentialId, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_credential\_credential\_delete(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, unsigned int userId, ZWBYTE credentialType, unsigned int credentialId, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Delete credential\end{quote}
+\begin{quote}Parameter userId: User Id\end{quote}
+\begin{quote}Parameter credentialType: Credential type\end{quote}
+\begin{quote}Parameter credentialId: Credential Id\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command UserCredential CredentialLearnStartAdd}
+\begin{quote}Syntax: CredentialLearnStartAdd(userId, credentialType, credentialId, learnTimeout, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_credential\_credential\_learn\_start\_add(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, unsigned int userId, ZWBYTE credentialType, unsigned int credentialId, ZWBYTE learnTimeout, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Start learn process adding credential\end{quote}
+\begin{quote}Parameter userId: User Id\end{quote}
+\begin{quote}Parameter credentialType: Credential type\end{quote}
+\begin{quote}Parameter credentialId: Credential Id\end{quote}
+\begin{quote}Parameter learnTimeout: Learn process timeout\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command UserCredential CredentialLearnStartModify}
+\begin{quote}Syntax: CredentialLearnStartModify(userId, credentialType, credentialId, learnTimeout, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_credential\_credential\_learn\_start\_modify(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, unsigned int userId, ZWBYTE credentialType, unsigned int credentialId, ZWBYTE learnTimeout, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Start learn process modifying credential\end{quote}
+\begin{quote}Parameter userId: User Id\end{quote}
+\begin{quote}Parameter credentialType: Credential type\end{quote}
+\begin{quote}Parameter credentialId: Credential Id\end{quote}
+\begin{quote}Parameter learnTimeout: Learn process timeout\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Command UserCredential CredentialLearnCancel}
+\begin{quote}Syntax: CredentialLearnCancel(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zway\_cc\_user\_credential\_credential\_learn\_cancel(ZWay zway, ZWNODE node\_id, ZWBYTE instance\_id, ZJobCustomCallback successCallback, ZJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Cancel an ongoing learn process\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+
 \section{Command Class Hail (0x82/130)}
 
 \textit{Version 1, Controlled}
