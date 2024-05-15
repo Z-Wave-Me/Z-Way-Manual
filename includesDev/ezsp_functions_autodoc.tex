@@ -35,6 +35,15 @@
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: TODO\end{quote}
 
+\paragraph{Function Class SetRadioPower}
+\begin{quote}Syntax: SetRadioPower(power, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_set\_radio\_power(ZBee zbee, ZWBYTE power, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Set Radio Power\end{quote}
+\begin{quote}Parameter power: Power level in dBm\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: TODO\end{quote}
+
 \paragraph{Function Class SetConfigurationValue}
 \begin{quote}Syntax: SetConfigurationValue(configId, value, successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}C Syntax: ZWError zbee\_ef\_set\_configuration\_value(ZBee zbee, ZWBYTE config\_id, ZWWORD value, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
@@ -224,6 +233,17 @@
 \begin{quote}Description: TODO\end{quote}
 \begin{quote}Parameter ieee: TODO\end{quote}
 \begin{quote}Parameter key: TODO\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+\begin{quote}Report: TODO\end{quote}
+
+\paragraph{Function Class ImportTransientKey}
+\begin{quote}Syntax: ImportTransientKey(ieee, key, type, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_ef\_import\_transient\_key(ZBee zbee, const ZBEUI64 ieee, const ZBKey16 key, ZWBYTE type, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: TODO\end{quote}
+\begin{quote}Parameter ieee: TODO\end{quote}
+\begin{quote}Parameter key: TODO\end{quote}
+\begin{quote}Parameter type: TODO\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 \begin{quote}Report: TODO\end{quote}
