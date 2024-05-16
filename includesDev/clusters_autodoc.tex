@@ -350,7 +350,7 @@ The Mgmt\_Leave\_req is generated from a Local Device requesting that a Remote. 
 
 
 \paragraph{Cluster MgmtLeaveRequest ForceRemove}
-\begin{quote}Syntax: ForceRemove(removeChildren, rejoin, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}Syntax: ForceRemove(removeChildren = FALSE, rejoin = FALSE, successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}C Syntax: ZWError zbee\_cc\_mgmt\_leave\_request\_force\_remove(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL remove\_children, ZWBOOL rejoin, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
 \begin{quote}Description: Force Remove\end{quote}
 \begin{quote}Parameter removeChildren: Remove children flag:. TRUE  - If the device being asked to leave the network is also being asked to remove its child devices, if any. FALSE - None children will be removed\end{quote}
