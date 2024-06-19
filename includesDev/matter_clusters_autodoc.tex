@@ -1,0 +1,88 @@
+
+
+\section{Cluster Class OnOff (0x0006/6)}
+
+Profile Zigbee Device Profile (0x0104/260)
+
+Attributes and commands for switching devices between ‘On’ and ‘Off’ states.
+\newline
+
+\noindent
+Data holders:
+
+\begin{itemize}
+\item \textbf{onOff}: Current state
+\item \textbf{globalSceneControl}: Global Scene state
+\item \textbf{onTime}: Time the “on” state SHALL be maintained before automatically transitioning to the “off” state when using the On with timed off command.
+\item \textbf{offWaitTime}: Time the “off” state SHALL be guarded to prevent an on command turning the device back to its “on” state
+\end{itemize}
+
+\paragraph{Cluster OnOff Set}
+\begin{quote}Syntax: Set(value, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zmatter\_cc\_on\_off\_set(ZMatter zmatter, ZMNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL value, ZMJobCustomCallback successCallback, ZMJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send On (0x00/0) or Off (0x01/1)\end{quote}
+\begin{quote}Parameter value: New onOff state:. TRUE  - send On command. FALSE - send Off command\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster OnOff Toggle}
+\begin{quote}Syntax: Toggle(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zmatter\_cc\_on\_off\_toggle(ZMatter zmatter, ZMNWK node\_id, ZEndPoint endpoint\_id, ZMJobCustomCallback successCallback, ZMJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send Toggle (0x02/2)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster OnOff OffWithEffect}
+\begin{quote}Syntax: OffWithEffect(effectId, effectVar, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zmatter\_cc\_on\_off\_off\_with\_effect(ZMatter zmatter, ZMNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE effect\_id, ZWBYTE effect\_var, ZMJobCustomCallback successCallback, ZMJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send Off with Effect (0x40/64)\end{quote}
+\begin{quote}Parameter effectId: Effect Id:. 0x00        - Delayed All Off. 0x01        - Dying Light. 0x02...0xFF - Reserved\end{quote}
+\begin{quote}Parameter effectVar: Effect Variant:. if effect\_id 0x00:. @default: 0x00. 0x00        - Fade to off in 0.8 seconds. 0x01        - No fade. 0x02        - 50\% dim down in 0.8 seconds then fade to off in 12 seconds. 0x03...0xFF - Reserved. if effect\_id 0x01:. @default: 0x00. 0x00        - 20\% dim up in 0.5s then fade to off in 1 second. 0x01...0xFF - Reserved. if effect\_id 0x02...0xFF:. 0x00...0xFF - Reserved\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster OnOff OnWithRecallGlobalScene}
+\begin{quote}Syntax: OnWithRecallGlobalScene(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zmatter\_cc\_on\_off\_on\_with\_recall\_global\_scene(ZMatter zmatter, ZMNWK node\_id, ZEndPoint endpoint\_id, ZMJobCustomCallback successCallback, ZMJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send On with Recall Global Scene (0x41/65)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster OnOff OnWithTimedOff}
+\begin{quote}Syntax: OnWithTimedOff(control, onTime, offWaitTime, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zmatter\_cc\_on\_off\_on\_with\_timed\_off(ZMatter zmatter, ZMNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL control, ZWWORD on\_time, ZWWORD off\_wait\_time, ZMJobCustomCallback successCallback, ZMJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Send On with Time Off (0x42/66)\end{quote}
+\begin{quote}Parameter control: Contains information on how the device is to be operated. 0x00        -  The On With Timed Off command SHALL be processed unconditionally. 0x01...0x7F - Reserved. 0x80        - The On With Timed Off command SHALL only be accepted if the OnOff attribute is equal to 0x01. 0x81...0xFF - Reserved\end{quote}
+\begin{quote}Parameter onTime: The length of time (in 1/10ths second) that the device is to remain “on”. 0x0000...0xFFFE - time in 1/10th second. 0xFFFF          - Reserved\end{quote}
+\begin{quote}Parameter offWaitTime: The length of time (in 1/10ths second) that the device SHALL remain “off”. 0x0000...0xFFFE - time in 1/10th second. 0xFFFF          - Reserved\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+Profile Zigbee Device Profile (0x0104/260)
+
+
+Profile ZigMatter Device Profile (0x0104/260)
+
+
+Profile ZigMatter Device Profile (0x0104/260)
+
+
+Profile ZigMatter Device Profile (0x0104/260)
+
+
+Profile ZigMatter Device Profile (0x0104/260)
+
+
+Profile ZigMatter Device Profile (0x0104/260)
+
+
+Profile ZigMatter Device Profile (0x0104/260)
+
+
+Profile Zigbee Device Profile (0x0104/260)
+
