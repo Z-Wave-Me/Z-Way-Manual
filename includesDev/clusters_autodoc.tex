@@ -1325,15 +1325,6 @@ Data holders:
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
 
-\paragraph{Cluster Thermostat ResetLocalTemperatureReporting}
-\begin{quote}Syntax: ResetLocalTemperatureReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_reset\_local\_temperature\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
-\begin{quote}Description: Thermostat Reset Local Temperature Reporting\end{quote}
-\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
-\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
-\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
-
-
 \paragraph{Cluster Thermostat SetPiCoolingDemandReporting}
 \begin{quote}Syntax: SetPiCoolingDemandReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
 \begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_set\_pi\_cooling\_demand\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWBYTE threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
@@ -1343,15 +1334,6 @@ Data holders:
 \begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
 \begin{quote}Parameter timeout: Timeout\end{quote}
 \begin{quote}Parameter threshold: Threshold\end{quote}
-\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
-\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
-
-
-\paragraph{Cluster Thermostat ResetPiCoolingDemandReporting}
-\begin{quote}Syntax: ResetPiCoolingDemandReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_reset\_pi\_cooling\_demand\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
-\begin{quote}Description: Thermostat Reset PI Cooling Demand Reporting\end{quote}
-\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
@@ -1369,20 +1351,76 @@ Data holders:
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
 
-\paragraph{Cluster Thermostat ResetPiHeatingDemandReporting}
-\begin{quote}Syntax: ResetPiHeatingDemandReporting(direction, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_reset\_pi\_heating\_demand\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
-\begin{quote}Description: Thermostat Reset PI Heating Demand Reporting\end{quote}
+\paragraph{Cluster Thermostat SetOccupiedCoolingSetpointReporting}
+\begin{quote}Syntax: SetOccupiedCoolingSetpointReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_set\_occupied\_cooling\_setpoint\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat Set Occupied Cooling Setpoint Reporting\end{quote}
 \begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
 
-\paragraph{Cluster Thermostat SetAbsoluteTemperature}
-\begin{quote}Syntax: SetAbsoluteTemperature(temp, successCallback = NULL, failureCallback = NULL)\end{quote}
-\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_set\_absolute\_temperature(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWWORD temp, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
-\begin{quote}Description: Thermostat Set Absolute Temperature\end{quote}
-\begin{quote}Parameter temp: Desired temperature calculated as temp = desired\_temperature * 100\end{quote}
+\paragraph{Cluster Thermostat SetOccupiedHeatingSetpointReporting}
+\begin{quote}Syntax: SetOccupiedHeatingSetpointReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_set\_occupied\_heating\_setpoint\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWWORD threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat Set Occupied Heating Setpoint Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Thermostat SetSystemModeReporting}
+\begin{quote}Syntax: SetSystemModeReporting(direction, minInterval, maxInterval, timeout, threshold, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_set\_system\_mode\_reporting(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBOOL direction, ZWWORD min\_interval, ZWWORD max\_interval, ZWWORD timeout, ZWBYTE threshold, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat Set System Mode Reporting\end{quote}
+\begin{quote}Parameter direction: TRUE  - receiver will be configured to receiver reports. FALSE - receiver will be configured to send reports\end{quote}
+\begin{quote}Parameter minInterval: Minimal Reporting Interval\end{quote}
+\begin{quote}Parameter maxInterval: Maximum Reporting Interval\end{quote}
+\begin{quote}Parameter timeout: Timeout\end{quote}
+\begin{quote}Parameter threshold: Threshold\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Thermostat StateGet}
+\begin{quote}Syntax: StateGet(successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_state\_get(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat State Get. This command is used to get the current state of the thermostat (local temperature, heating setpoint, cooling setpoint, system mode, running state)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Thermostat SetMode}
+\begin{quote}Syntax: SetMode(mode, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_set\_mode(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, ZWBYTE mode, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat Set System Mode\end{quote}
+\begin{quote}Parameter mode: Desired system mode between 0x00 (SYSTEM\_MODE\_OFF) and 0x09 (SYSTEM\_MODE\_SLEEP)\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Thermostat SetHeatSetpoint}
+\begin{quote}Syntax: SetHeatSetpoint(value, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_set\_heat\_setpoint(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, float value, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat Set Occupied Heating Setpoint\end{quote}
+\begin{quote}Parameter value: Desired heating setpoint temperature in float between [-327.67, 327.67]\end{quote}
+\begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
+\begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
+
+
+\paragraph{Cluster Thermostat SetCoolSetpoint}
+\begin{quote}Syntax: SetCoolSetpoint(value, successCallback = NULL, failureCallback = NULL)\end{quote}
+\begin{quote}C Syntax: ZWError zbee\_cc\_thermostat\_set\_cool\_setpoint(ZBee zbee, ZBNWK node\_id, ZEndPoint endpoint\_id, float value, ZBJobCustomCallback successCallback, ZBJobCustomCallback failureCallback, void* callbackArg)\end{quote}
+\begin{quote}Description: Thermostat Set Occupied Cooling Setpoint\end{quote}
+\begin{quote}Parameter value: Desired cooling setpoint temperature in float between [-327.67, 327.67]\end{quote}
 \begin{quote}Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed\end{quote}
 \begin{quote}Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed\end{quote}
 
