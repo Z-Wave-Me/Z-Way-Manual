@@ -19,14 +19,19 @@ document.querySelectorAll('#TOC > ul > li').forEach(function(n) {
 });
 
 // mark in bold current item and scroll in the center
-function hiliteTOCElement(section) {
+function hiliteTOCElement(section, doScroll) {
   var oldItem = document.querySelector('#TOC ul li a.tocCurrentItem');
+  var curItem = document.querySelector('#TOC ul li a[href="' + chapterName + '#' + section + '"]');
+  
+  if (oldItem == curItem) return; // nothing to do
+  
   if (oldItem) oldItem.classList.remove("tocCurrentItem");
 
-  var curItem = document.querySelector('#TOC ul li a[href="' + chapterName + '#' + section + '"]');
   if (curItem) {
     curItem.classList.add("tocCurrentItem");
-    curItem.scrollIntoView({block: 'center'});
+    if (doScroll) {
+      curItem.scrollIntoView({block: 'center'});
+    }
   }
 
   if (history.pushState) {
@@ -34,7 +39,7 @@ function hiliteTOCElement(section) {
   }
 }
 
-hiliteTOCElement(sectionName);
+hiliteTOCElement(sectionName, true);
 
 // find absolute position of an element
 function absTop(element) {
@@ -56,9 +61,11 @@ setInterval(function() {
       anchorPositions[a.id] = absTop(a);
     }
   });
-}, 10*1000);
+}, 5*1000);
 
-document.addEventListener("scroll", function(){
+document.addEventListener("scroll", function() {
+  if (Object.keys(anchorPositions).length == 0) return; // too early
+  
   var top = document.documentElement.scrollTop + 10; // +10 to make sure the same section is active when we click on it
 
   var dist = null;
@@ -69,7 +76,7 @@ document.addEventListener("scroll", function(){
       closest = id;
     }
   });
-  hiliteTOCElement(closest);
+  hiliteTOCElement(closest, false);
 });
 
 document.addEventListener('DOMContentLoaded', function() {
