@@ -3,8 +3,8 @@
 <!--Converted with LaTeX2HTML 2019.2 (Released June 5, 2019) -->
 <HTML lang="EN">
 <HEAD>
-<TITLE>Z-Way Manual — Preparation and Ways to Access the System</TITLE>
-<META NAME="description" CONTENT="Preparation and Ways to Access the System">
+<TITLE>Z-Way Manual — Matter Clusters Reference</TITLE>
+<META NAME="description" CONTENT="Matter Clusters Reference">
 <META NAME="keywords" CONTENT="Z-Way Manual">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
@@ -990,567 +990,202 @@
 </UL>
 </div>
 
-<H1><A ID="SECTION00400000000000000000">
-Preparation and Ways to Access the  System</A>
-</H1>
-
-<P>
-
-<H1><A ID="SECTION00410000000000000000"></A>
-<A NAME="626"></A>
-<A NAME="627"></A>
+<H1><A ID="SECTION002100000000000000000"></A>
+<A ID="cls"></A><A ID="Clusters"></A>
 <BR>
-Installation on Raspberry Pi
+Matter Clusters Reference
 </H1>
 
 <P>
-Before you can use the RaZberry solution, you need to complete your gateway hardware 
-and install the software.
+Matter Clusteres are groups of wireless commands that allow using certain functions of a Matter device.
+In Z-Way each Matter device has a data holder entry for each Cluster supported. During the inclusion 
+and interview of the device the Cluster structure is instantiated in the data holder and filled with 
+certain data. Cluster commands change values of the corresponding data holder structure. The follow 
+list shows the public commands of the Clusters supported with their parameters and the data holder 
+objects changed.
 
 <P>
-Here are two ways to install and start Z-Way:
+In <SPAN  CLASS="textbf">M<SMALL>ATTER </SMALL>E<SMALL>XPERT </SMALL>U<SMALL>SER </SMALL>I<SMALL>NTERFACE </SMALL></SPAN>navigate to Configuration &gt; Expert Commands to execute commands 
+of the supported Clusters and visualizes all data holder elements in as tree in 
+a simplified user interface.
+
+<P>
+
+<H1><A ID="SECTION002110000000000000000">
+Cluster Class OnOff (0x0006/6)</A>
+</H1>
+
+<P>
+Profile Zigbee Device Profile (0x0104/260)
+
+<P>
+Attributes and commands for switching devices between ‘On’ and ‘Off’ states.
+<BR>
+
+<P>
+Data holders:
 
 <P>
 
 <UL>
-<LI>A:  You do not have Linux OS on your Raspberry Pi installed yet. Please download 
-an SD card image (minimum 8 GB) from the download section of 
-<BLOCKQUOTE>
-<kbd><A ID="tex2html16"
-  HREF="http://razberry.z-wave.me">http://razberry.z-wave.me</A></kbd>
-</BLOCKQUOTE>. It is based on the Raspberry Pi distribution &ldquo;Jessie.’’
-
-<P>
+<LI><SPAN  CLASS="textbf">onOff</SPAN>: Current state
 </LI>
-<LI>B (recommended): You already have a working Linux (Jessie) running. Log in and 
-execute the following command line:
+<LI><SPAN  CLASS="textbf">globalSceneControl</SPAN>: Global Scene state
+</LI>
+<LI><SPAN  CLASS="textbf">onTime</SPAN>: Time the “on” state SHALL be maintained before automatically transitioning to the “off” state when using the On with timed off command.
+</LI>
+<LI><SPAN  CLASS="textbf">offWaitTime</SPAN>: Time the “off” state SHALL be guarded to prevent an on command turning the device back to its “on” state
+</LI>
+</UL>
 
 <P>
-<BLOCKQUOTE>
-<SPAN style="font-family:sans-serif"><B>wget -q -O - https://storage.z-wave.me/RaspbianInstall | sudo bash</B></SPAN>.
 
+<H4><A ID="SECTION002110010000000000000">
+Cluster OnOff Set</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: Set(value, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zmatter_cc_on_off_set(ZMatter zmatter, ZMNWK node_id, ZEndPoint endpoint_id, ZWBOOL value, ZMJobCustomCallback successCallback, ZMJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Send On (0x00/0) or Off (0x01/1)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter value: New onOff state:. TRUE  - send On command. FALSE - send Off command
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
 
 <P>
-</LI>
-</UL>
 
-<P>
-You may need to configure the Wi-Fi access point of your Raspberry Pi in order to allow 
-direct wireless access.
-
-<P>
-
-<H1><A ID="SECTION00420000000000000000"></A>
-<A NAME="635"></A>
-<BR>
-Installation on other platforms using UZB
-</H1>
-
-<P>
-
-<H2><A ID="SECTION00421000000000000000">
-Unix-based Platforms</A>
-</H2>
-
-<P>
-Let’s assume you already have shell access to your system. You can download a binary 
-distribution from <BLOCKQUOTE>
-<kbd><A ID="tex2html17"
-  HREF="https://razberry.z-wave.me/z-way-server">https://razberry.z-wave.me/z-way-server</A></kbd>
-</BLOCKQUOTE>.
-
-<P>
-
-<DIV class="CENTER"><A ID="rootfile"></A><A ID="641"></A>
-<TABLE>
-<CAPTION class="BOTTOM"><STRONG>Figure 3.1:</STRONG>
-Folder Content of Z-Way </CAPTION>
-<TR><TD>
-<DIV class="CENTER">
-<IMG STYLE=""
- SRC="./rootfolder.png"
- ALT="Image rootfolder">
-
-</DIV></TD></TR>
-</TABLE>
-</DIV>
-
-<P>
-and unpack it. The code can run on every place in the filesystem. Nevertheless, we 
-recommend using <SPAN style="font-family:sans-serif"><B>/opt/z-way-server</B></SPAN> as the folder to store the codebase. The 
-folder content looks as shown in Figure <A HREF="#rootfile">3.1</A>. For more information on the 
-files and the file structure of Z-Way, please refer to Chapter <A HREF="Develop_Code_Z_Way.html#clevelapi">11.4</A>.
-
-<P>
-Z-Way can then be started using the simple shell command from inside the Z-Way folder:
-
-<P>
+<H4><A ID="SECTION002110020000000000000">
+Cluster OnOff Toggle</A>
+</H4>
 <BLOCKQUOTE>
-<SPAN style="font-family:sans-serif"><B>LD_LIBRARY_PATH=./libs ./z-way-server</B></SPAN>
-
+Syntax: Toggle(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zmatter_cc_on_off_toggle(ZMatter zmatter, ZMNWK node_id, ZEndPoint endpoint_id, ZMJobCustomCallback successCallback, ZMJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Send Toggle (0x02/2)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
 </BLOCKQUOTE>
 
 <P>
-Once the code is started, it is possible to access the standard user interface using 
+
+<H4><A ID="SECTION002110030000000000000">
+Cluster OnOff OffWithEffect</A>
+</H4>
 <BLOCKQUOTE>
-<kbd><A ID="tex2html19"
-  HREF="http://localhost:8083">http://localhost:8083</A></kbd>
-</BLOCKQUOTE> 
-
-<P>
-To use Z-Wave, the correct port of the Z-Wave transceivers virtual serial port must be 
-configured. Please  go to the user interface menu and open the app <SPAN  CLASS="textbf"> 'Z-W<SMALL>AY </SMALL>N<SMALL>ETWORK </SMALL>A<SMALL>CCESS'</SMALL></SPAN> 
-as shown in Figure <A HREF="#zwaynetworkapp">3.2</A>. for more information about Z-Way aps please refer 
-to Chapter <A HREF="App_System_making_it_intell.html#apps">6</A>.
-
-<P>
-
-<DIV class="CENTER"><A ID="zwaynetworkapp"></A><A ID="658"></A>
-<TABLE>
-<CAPTION class="BOTTOM"><STRONG>Figure 3.2:</STRONG>
-Z-Wave Network Access App</CAPTION>
-<TR><TD>
-<DIV class="CENTER">
-<IMG STYLE=""
- SRC="./zwavenetwork.png"
- ALT="Image zwavenetwork">
-
-</DIV></TD></TR>
-</TABLE>
-</DIV>
-
-<P>
-After checking the right virtual port created by the operating system, please configure 
-this port name and save the settings. Now Z-Way should be up and running, and you may 
-want to create a startup script to make sure Z-Way is running right after booting.
+Syntax: OffWithEffect(effectId, effectVar, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zmatter_cc_on_off_off_with_effect(ZMatter zmatter, ZMNWK node_id, ZEndPoint endpoint_id, ZWBYTE effect_id, ZWBYTE effect_var, ZMJobCustomCallback successCallback, ZMJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Send Off with Effect (0x40/64)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter effectId: Effect Id:. 0x00        - Delayed All Off. 0x01        - Dying Light. 0x02...0xFF - Reserved
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter effectVar: Effect Variant:. if effect_id 0x00:. @default: 0x00. 0x00        - Fade to off in 0.8 seconds. 0x01        - No fade. 0x02        - 50% dim down in 0.8 seconds then fade to off in 12 seconds. 0x03...0xFF - Reserved. if effect_id 0x01:. @default: 0x00. 0x00        - 20% dim up in 0.5s then fade to off in 1 second. 0x01...0xFF - Reserved. if effect_id 0x02...0xFF:. 0x00...0xFF - Reserved
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
 
 <P>
 
-<H2><A ID="SECTION00422000000000000000"></A>
-<A NAME="663"></A>
-<BR>
-Windows
-</H2>
-
-<P>
-First, note that the Windows platform is only partly supported. There is a binary distribution 
-for Windows, but it certainly lacks the level of testing required. Please use the binary 
-Windows distribution at your own risk.
-
-<P>
-
-<DIV class="CENTER"><A ID="winsetup1"></A><A ID="667"></A>
-<TABLE>
-<CAPTION class="BOTTOM"><STRONG>Figure 3.3:</STRONG>
-Z-Way Windows Setup Wizard</CAPTION>
-<TR><TD>
-<DIV class="CENTER">
-<IMG STYLE=""
- SRC="./winsetup1.png"
- ALT="Image winsetup1">
-
-</DIV></TD></TR>
-</TABLE>
-</DIV>
-
-<P>
-Install the MSI file and start it. You will see a nice wizard&mdash;see Figure <A HREF="#winsetup1">3.3</A>
-&mdash;guiding you through the setup process.
+<H4><A ID="SECTION002110040000000000000">
+Cluster OnOff OnWithRecallGlobalScene</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: OnWithRecallGlobalScene(successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zmatter_cc_on_off_on_with_recall_global_scene(ZMatter zmatter, ZMNWK node_id, ZEndPoint endpoint_id, ZMJobCustomCallback successCallback, ZMJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Send On with Recall Global Scene (0x41/65)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
 
 <P>
 
-<DIV class="CENTER"><A ID="winsetup2"></A><A ID="675"></A>
-<TABLE>
-<CAPTION class="BOTTOM"><STRONG>Figure 3.4:</STRONG>
-Z-Way Windows Installation</CAPTION>
-<TR><TD>
-<DIV class="CENTER">
-<IMG STYLE=""
- SRC="./winsetup2.png"
- ALT="Image winsetup2">
-
-</DIV></TD></TR>
-</TABLE>
-</DIV>
-
-<P>
-The files are installed on the folder of choice as shown in Figure <A HREF="#winsetup2">3.4</A>.
-
-<P>
-
-<DIV class="CENTER"><A ID="winsetup3"></A><A ID="683"></A>
-<TABLE>
-<CAPTION class="BOTTOM"><STRONG>Figure 3.5:</STRONG>
-Windows Hardware manager with new COM port</CAPTION>
-<TR><TD>
-<DIV class="CENTER">
-<IMG STYLE=""
- SRC="./winsetup3.png"
- ALT="Image winsetup3">
-
-</DIV></TD></TR>
-</TABLE>
-</DIV>
+<H4><A ID="SECTION002110050000000000000">
+Cluster OnOff OnWithTimedOff</A>
+</H4>
+<BLOCKQUOTE>
+Syntax: OnWithTimedOff(control, onTime, offWaitTime, successCallback = NULL, failureCallback = NULL)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+C Syntax: ZWError zmatter_cc_on_off_on_with_timed_off(ZMatter zmatter, ZMNWK node_id, ZEndPoint endpoint_id, ZWBOOL control, ZWWORD on_time, ZWWORD off_wait_time, ZMJobCustomCallback successCallback, ZMJobCustomCallback failureCallback, void* callbackArg)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Description: Send On with Time Off (0x42/66)
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter control: Contains information on how the device is to be operated. 0x00        -  The On With Timed Off command SHALL be processed unconditionally. 0x01...0x7F - Reserved. 0x80        - The On With Timed Off command SHALL only be accepted if the OnOff attribute is equal to 0x01. 0x81...0xFF - Reserved
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter onTime: The length of time (in 1/10ths second) that the device is to remain “on”. 0x0000...0xFFFE - time in 1/10th second. 0xFFFF          - Reserved
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter offWaitTime: The length of time (in 1/10ths second) that the device SHALL remain “off”. 0x0000...0xFFFE - time in 1/10th second. 0xFFFF          - Reserved
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter successCallback: Custom function to be called on function success. NULL if callback is not needed
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+Parameter failureCallback: Custom function to be called on function failure. NULL if callback is not needed
+</BLOCKQUOTE>
 
 <P>
-If the UZB stick is plugged into the system, there is a new COM port created for this stick. 
-Figure <A HREF="#winsetup3">3.5</A> shows the Windows hardware manager with the new port. After passing 
-the initial setup page, open the app <SPAN  CLASS="textbf"> 'Z-W<SMALL>AY </SMALL>N<SMALL>ETWORK </SMALL>A<SMALL>CCESS'</SMALL></SPAN> and double check the 
-right COM port. Note that there is a very special syntax for the COM port 
-<SPAN  CLASS="textbf">'\\.\COM3'</SPAN> for serial port 3.
+Profile Zigbee Device Profile (0x0104/260)
 
 <P>
-Figure <A HREF="#winsetup4">3.6</A> shows this dialog.
+Profile ZigMatter Device Profile (0x0104/260)
 
 <P>
-
-<DIV class="CENTER"><A ID="winsetup4"></A><A ID="694"></A>
-<TABLE>
-<CAPTION class="BOTTOM"><STRONG>Figure 3.6:</STRONG>
-Z-Wave Network Access App with COM Port</CAPTION>
-<TR><TD>
-<DIV class="CENTER">
-<IMG STYLE=""
- SRC="./winsetup4.png"
- ALT="Image winsetup4">
-
-</DIV></TD></TR>
-</TABLE>
-</DIV>
+Profile ZigMatter Device Profile (0x0104/260)
 
 <P>
-Under Windows, Z-Way runs as a service. You find the service entry in the Windows Service 
-Management as shown in Figure <A HREF="#winsetup5">3.7</A>. This dialog also allows starting and stopping 
-the service.
+Profile ZigMatter Device Profile (0x0104/260)
 
 <P>
-
-<DIV class="CENTER"><A ID="winsetup5"></A><A ID="702"></A>
-<TABLE>
-<CAPTION class="BOTTOM"><STRONG>Figure 3.7:</STRONG>
-Z-Wave as Windows service</CAPTION>
-<TR><TD>
-<DIV class="CENTER">
-<IMG STYLE=""
- SRC="./winsetup5.png"
- ALT="Image winsetup5">
-
-</DIV></TD></TR>
-</TABLE>
-</DIV>
+Profile ZigMatter Device Profile (0x0104/260)
 
 <P>
-
-<H1><A ID="SECTION00430000000000000000"></A>
-<A ID="remoteaccess"></A><A NAME="708"></A>
-<BR>
-Local and Remote Access
-</H1>
+Profile ZigMatter Device Profile (0x0104/260)
 
 <P>
-Z-Way can be accessed in several ways:
+Profile ZigMatter Device Profile (0x0104/260)
 
 <P>
-
-<UL>
-<LI>Using a standard web browser<A ID="tex2html26"
-  HREF="#foot710"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A> on the controller’s IP address. There is an 
-embedded webserver on Port 8083 providing the web pages of the user interface.
-</LI>
-<LI>Using a standard web browser but the redirection service <BLOCKQUOTE>
-<kbd><A ID="tex2html27"
-  HREF="https://find.z-wave.me">https://find.z-wave.me</A></kbd>
-</BLOCKQUOTE> The 
-user interface is similar, but there is no need to be on the same IP network or to 
-install an explicit port forwarding.
-</LI>
-<LI>Use one of the native apps from Google Playstore or Apple iTunes. These will, 
-however, use the two same services for local and remote access as mentioned above and 
-will only render the user interface differently.
-</LI>
-<LI>Use your own web or native app-based user interface. Again, you will then use one 
-of the two options mentioned above.
-</LI>
-</UL>
+Profile Zigbee Device Profile (0x0104/260)
 
 <P>
-Both the local access and the remote access using the find-service have their pros and 
-cons as listed in Table <A HREF="#compaccess">3.1</A>:
-
-<P>
-<BR><P></P>
-<DIV class="CENTER"><A ID="720"></A>
-<TABLE>
-<CAPTION><STRONG>Table 3.1:</STRONG>
-Comparison of Access methods</CAPTION>
-<TR><TD><TABLE class="PAD  BORDER" style="">
-<TR><TD CLASS="LEFT TOP"  WIDTH=75>Access</TD>
-<TD CLASS="LEFT TOP"  WIDTH=175>Advantage</TD>
-<TD CLASS="LEFT TOP"  WIDTH=175>Disadvantage</TD>
-</TR>
-<TR><TD CLASS="LEFT TOP"  WIDTH=75>Local IP Ethernet</TD>
-<TD CLASS="LEFT TOP"  WIDTH=175>very fast, all data stays within own home</TD>
-<TD CLASS="LEFT TOP"  WIDTH=175>no secure connection due
-to missing IP certificates, IP address must be known, no access from outside the home</TD>
-</TR>
-<TR><TD CLASS="LEFT TOP"  WIDTH=75>Find Service</TD>
-<TD CLASS="LEFT TOP"  WIDTH=175>worked independent of local network setting from everywhere, very safe
-due to complete end-2-end security</TD>
-<TD CLASS="LEFT TOP"  WIDTH=175>depends on external service, more delays</TD>
-</TR>
-<TR><TD CLASS="LEFT TOP"  WIDTH=75>Local IP WIFI</TD>
-<TD CLASS="LEFT TOP"  WIDTH=175>very fast and secure</TD>
-<TD CLASS="LEFT TOP"  WIDTH=175>another WIFI access point, no access from outside the home</TD>
-</TR>
-</TABLE>
-
-<A ID="compaccess"></A></TD></TR>
-</TABLE>
-</DIV><P></P>
-<BR>		
-
-<P>
-The initial access to the user interface must be done using one of the local access routes. 
-Once Z-Way is running, the first access to the interface asks for some basic setup such 
-as the admin password and an email address to recover this password. Figure <A HREF="#init1">3.8</A> 
-shows this screen.
-The number provided in the title (1) is the unique <SPAN  CLASS="textbf">Z-Way Platform ID </SPAN>of the device and it will be needed 
-in the future to access the controller remotely using the find service. 
-
-<P>
-<BR>
-<BR>
-<!-- MATH
- $\framebox{\noindent
-\begin{minipage}{\dimexpr\linewidth-2\fboxrule-2\fboxsep\relax}
-\begin{center}
-{\fontsize{20}{28}\selectfont Please remember this \textbf{Z-Way Platform ID }!}
-\end{center}
-\end{minipage}}$
- -->
-<IMG STYLE=""
- SRC="img1.svg"
- ALT="\framebox{\noindent
-\begin{minipage}{\dimexpr\linewidth-2\fboxrule-2\fboxsep\rel...
-...t Please remember this \textbf{Z-Way Platform ID }!}
-\end{center}\end{minipage}}">
-<BR>
-<BR>
-
-<P>
-The  <IMG STYLE=""
- SRC="./world.png"
- ALT="Image world"> on the upper right side 
-allows changing the interface language from 
-standard English to your chosen language. If your language is not yet available, you 
-may want to consider contributing a translation. Please refer to Chapter <A HREF="Customize_your_system.html#sec:translation">10.3</A> 
-for details on how to do this.
-
-<P>
-
-<DIV class="CENTER"><A ID="init1"></A><A ID="738"></A>
-<TABLE>
-<CAPTION class="BOTTOM"><STRONG>Figure 3.8:</STRONG>
-Initial setup of the Z-Way User Interface</CAPTION>
-<TR><TD>
-<DIV class="CENTER">
-<IMG STYLE=""
- SRC="./init1.png"
- ALT="Image init1">
-
-</DIV></TD></TR>
-</TABLE>
-</DIV>
-
-<P>
-The language selection can be used for the user interface from this time on, but it can 
-be changed in <IMG STYLE=""
- SRC="./smenu.png"
- ALT="Image smenu"> &gt; My Settings.
-
-<P>
-Please note that the email address provided for email recovery will not be stored outside 
-your controller, e.g. in a cloud service. This provides extra security but also means that 
-certain processes like restore are a bit more complicated than is usual.
-
-<P>
-After completing the setup, a welcome screen will guide you through the system and 
-introduce the basic user interface terms/dialogs.
-
-<P>
-
-<UL>
-<LI>Element,
-</LI>
-<LI>Element View,
-</LI>
-<LI>Element Configuration,
-</LI>
-<LI>Dashboard,
-</LI>
-<LI>Event,
-</LI>
-<LI>Timeline,
-</LI>
-<LI>Apps
-</LI>
-</UL>
-
-<P>
-It also offers buttons for direct access to the two most common actions right after installation:
-
-<P>
-
-<UL>
-<LI>Add a new physical device.
-</LI>
-<LI>Add some virtual device, internet service or application.
-</LI>
-</UL>
-
-<P>
-After completing the setup, it is possible to access Z-Way using the find service, or install 
-a native app for the mobile phone. Open the url <BLOCKQUOTE>
-<kbd><A ID="tex2html30"
-  HREF="https://find.z-wave.me/">https://find.z-wave.me/</A></kbd>
-</BLOCKQUOTE> 
-
-<P>
-The dialog on this find service, as shown in Figure <A HREF="#sh1">3.10</A>, is intentionally 
-simple. It offers two ways to log in:
-
-<P>
-
-<UL>
-<LI>Using your <SPAN  CLASS="textbf">Z-Way Platform ID </SPAN>, along with your login name (Example: '23333/admin') and 
-your password for remote login and redirection
-</LI>
-<LI>In case you use the service from a PC or a mobile phone within your home, the 
-service will detect this and show the IP addresses of your Z-Way controllers. It 
-is possible that a Z-Way controller has two IP interfaces (Ethernet + Wi-Fi). In 
-this case, both addresses are shown. Clicking on the IP address will lead to the 
-local IP login screen, as shown in Figure <A HREF="#init2">3.9</A>, where only name (e.g. admin) and 
-password are required.
-</LI>
-</UL>
-
-<P>
-
-<DIV class="CENTER"><A ID="init2"></A><A ID="755"></A>
-<TABLE>
-<CAPTION class="BOTTOM"><STRONG>Figure 3.9:</STRONG>
-Login on local IP address</CAPTION>
-<TR><TD>
-<DIV class="CENTER">
-<IMG STYLE=""
- SRC="./init2.png"
- ALT="Image init2">
-
-</DIV></TD></TR>
-</TABLE>
-</DIV>
-
-<P>
-
-<DIV class="CENTER"><A ID="sh1"></A><A ID="762"></A>
-<TABLE>
-<CAPTION class="BOTTOM"><STRONG>Figure 3.10:</STRONG>
-Remote Login Screen</CAPTION>
-<TR><TD>
-<DIV class="CENTER">
-<IMG STYLE=""
- SRC="./sh1.png"
- ALT="Image sh1">
-
-</DIV></TD></TR>
-</TABLE>
-</DIV>
-
-<P>
-The menu option <SPAN  CLASS="textbf">Logout</SPAN> in the setup menu of the user interface will terminate 
-the session and return you to the login screen or the find service depending on how to 
-log in. You can always force the termination of the find session by calling the 
-URL <BLOCKQUOTE>
-<kbd><A ID="tex2html33"
-  HREF="https://find.z-wave.me/zboxweb">https://find.z-wave.me/zboxweb</A></kbd>
-</BLOCKQUOTE>.
-
-<P>
-
-<H1><A ID="SECTION00440000000000000000"></A>
-<A NAME="769"></A>
-<A NAME="770"></A>
-<BR>
-Security and Privacy
-</H1>
-
-<P>
-Security and privacy are of great importance. Z-Way tries to maximize security and privacy 
-and will not compromise them in order to improve user experience and convenience.
-
-<P>
-
-<UL>
-<LI>All user data including login name and email address are stored only locally, which 
-means that the controller must be available and connected to restore passwords. We 
-believe that this is a robust security and privacy measure.
-
-<P>
-</LI>
-<LI>Z-Way offers certain cloud-based services. This requires certain services and 
-connections to the Z-Way cloud service:
-
-<P>
-
-<UL>
-<LI>Right after boot-up, the Z-Way controller will connect to the find service 
-announcing its presence. This is done using a reverse ssh service. The client side of this 
-service is available on the Z-Way server and you can review its work and source code. 
-If you don’t like this service, you can turn it off using the Z-W<SMALL>AY </SMALL>S<SMALL>MART </SMALL>H<SMALL>OME </SMALL>I<SMALL>NTERFACE </SMALL>. 
-However, be prepared not to have the find service available anymore.
-
-<P>
-</LI>
-<LI>The backup to cloud service will also create a copy of your device data on the 
-cloud service. This is very convenient and ensures that you have a backup file when 
-needed. If you feel uncomfortable leaving a copy of your smart home configuration 
-on the Z-Way cloud service, just don’t use this service and turn it off.
-
-<P>
-</LI>
-</UL>
-
-<P>
-</LI>
-<LI>The find service allows https connection and provides a valid certificate issued by 
-COMODO RSA Domain Validation Secure Server CA. Please check the validity of the 
-certificate before using the find service. This means that the access using the find 
-service has established a complete secure connection from the web browser via the 
-find service to your controller at home.
-
-<P>
-</LI>
-<LI>There is no https access enabled to the local port. This is because there is no way 
-to create a valid certificate on an IP address that is assigned dynamically using DHCP. 
-It would still be possible to run encryption with https, but we believe that this would 
-be mimicking security without having real security. That’s why we only keep http to 
-send a clear message about the risk of accessing a local IP address. We strongly 
-recommend doing an initial password setting and subsequent local access using Wi-Fi 
-only since Wi-Fi comes with its own very secure encryption based on WPA.
-
-<P>
-</LI>
-</UL>
-<BR><HR><H4>Footnotes</H4>
-<DL>
-<DT><A ID="foot710">... browser</A><A
- HREF="Preparation_Ways_Access_Sys.html#tex2html26"><SUP><IMG  ALT="[*]" SRC="footnote.png"></SUP></A></DT>
-<DD>We recommend Chrome, Firefox, or Safari 
-since we frequently see problems with MSIE.
-
-</DD>
-</DL>
 <BR><HR>
 
 </BODY>
