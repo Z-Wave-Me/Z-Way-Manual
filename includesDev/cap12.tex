@@ -661,11 +661,19 @@ This function reads a file from the file system and loads it into the memory. Th
 must contain a valid JSON object. The only argument is the name of the file including 
 relative pathname to the automation folder. Returns the full JSON object or null in case of error.
 
-\subsubsection{fs.load(filename)}
+\subsubsection{fs.loadText(filename)}
 
 This function reads a file from the file system and returns its content as a string. The 
 only argument is the name of the file including relative pathname to the automation folder.
 Returns null in case of error.
+
+\subsubsection{fs.load(filename)}
+
+This function reads a file from the file system and returns its content as a binary array. The 
+only argument is the name of the file including relative pathname to the automation folder.
+Returns null in case of error.
+
+Useful for images and binary data fetching from the file system.
 
 \subsubsection{executeFile(filename) and executeJS(string)}
 
